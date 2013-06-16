@@ -1,0 +1,33 @@
+<div class="row-fluid">
+  <div class="span12">
+    <div class="header">
+      <h1>
+        OUSD Community Partnership
+        <%= link_to 'Edit', edit_community_partner_path(@community_partner), class: "btn btn-primary" %>
+      </h1>
+    </div>
+
+    <div class="table_wrapper">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Organization</th>
+            <th>School</th>
+            <th>Service Type</th>
+            <th>School Quality Indicator Sub Area</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><%= link_to @community_partner.organization.try(:name), community_partner_path(@community_partner) %></td>
+            <td><%= link_to @community_partner.school.try(:name), school_path(@community_partner.school) %></td>
+            <td><%= @community_partner.school_quality_indicator_sub_area.try(:name) %></td>
+            <td><%= @community_partner.service_type.try(:name) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

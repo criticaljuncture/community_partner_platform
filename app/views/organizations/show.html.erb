@@ -1,0 +1,31 @@
+<div class="row-fluid">
+  <div class="span12">
+    <div class="header">
+      <h1><%= @organization.name %></h1>
+      <%= link_to 'Edit', edit_organization_path(@organization), class: "btn btn-primary" %>
+    </div>
+
+    <div class="table_wrapper">
+     <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>School</th>
+          <th>School Quality Indicator Sub Area</th>
+          <th>Service Type</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @community_partnerships.each do |community_partnership| %>
+          <tr>
+            <td><%= link_to community_partnership.school.try(:name), school_path(community_partnership.school) %></td>
+            <td><%= community_partnership.school_quality_indicator_sub_area.try(:name) %></td>
+            <td><%= community_partnership.service_type.try(:name) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table> 
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<%= f.inputs do %>
+  <%= f.input :name %>
+
+  <%= f.input :url, placeholder: "http://example.com" %>
+
+  <%= f.input :address %>
+  <%= f.input :city %>
+  <%= f.input :zip_code %>
+
+  <%= f.input :notes %>
+<% end %>
+
+<%= f.actions do %>
+  <%= f.button 'Save', class: "btn btn-success" %>
+<% end %>

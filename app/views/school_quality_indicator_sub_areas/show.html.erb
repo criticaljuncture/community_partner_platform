@@ -1,0 +1,71 @@
+<div class="row-fluid">
+  <div class="span12">
+    <div class="header">
+      <h1><%= @school_quality_indicator_sub_area.name %></h1>
+      <%= link_to 'Edit', edit_school_quality_indicator_sub_area_path(@school_quality_indicator_sub_area), class: "btn btn-primary" %>
+    </div>
+
+    <div class="table_wrapper">
+     <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Schools</th>
+            <th>Partner Organizations</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><%= @school_quality_indicator_sub_area.schools.uniq.count %></td>
+            <td><%= @school_quality_indicator_sub_area.organizations.uniq.count %></td>
+          </tr>
+        </tbody>
+      </table> 
+    </div>
+
+    <div class="table_wrapper">
+      <h3>Top 5 Organizations</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Partnership Organization</th>
+            <th>Partnership Count</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @top_5.each do |org_name, count| %>
+            <tr>
+              <td><%= org_name %></td>
+              <td><%= count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table> 
+    </div>
+
+    <div class="table_wrapper">
+      <% @school_quality_indicator_sub_area.community_partners.group_by(&:school).each do |school, community_partners| %>
+        <h2><%= link_to school.try(:name), school_path(school) %></h2>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Partner Organization</th>
+              <th>Service Type</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% community_partners.each do |community_partner| %>
+              <tr>
+                <td><%= link_to community_partner.organization.try(:name), community_partner_path(community_partner) %></td>
+                <td><%= community_partner.service_type.try(:name) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %> 
+    </div>
+  </div>
+</div>

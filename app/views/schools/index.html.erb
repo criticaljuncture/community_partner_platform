@@ -1,0 +1,27 @@
+<div class="row-fluid">
+  <div class="span12">
+    <div class="header">
+      <h1>OUSD Schools</h1>
+    </div>
+
+    <div class="table_wrapper">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>School</th>
+            <th>Organizations</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @schools.each do |school| %>
+            <tr>
+              <td><%= link_to school.name, school_path(school) %></td>
+              <td><%= school.community_partners.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

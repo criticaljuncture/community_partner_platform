@@ -1,0 +1,41 @@
+body { 
+  padding: 5px;
+  padding-top: 60px;
+}
+.navbar .brand { 
+  border-right: 1px solid #777;
+  padding-right: 10px;
+  margin-right: 20px;
+  padding-left: 30px;
+}
+
+.header { 
+  background-color: #333;
+  color: #FFF;
+  padding: 10px;
+  @include border-radius(6px);
+  position: relative;
+
+  h1 { width: 70%; }
+
+  .btn-primary { 
+    top: 25px;
+    right: 10px;
+    position: absolute;
+  }
+}
+
+h2 { 
+  font-size: 26px;
+  border-bottom: 2px solid #333;
+}
+
+.table_wrapper,
+.form_wrapper { padding: 20px 20px 0px 20px; }
+
+table.community_partners {
+  .sqisa { width: 30%; }
+  .organization { width: 25%; }
+  .service { width: 35%; }
+  .actions { width: 10%; }
+}

@@ -1,0 +1,31 @@
+<div class="row-fluid">
+  <div class="span12">
+    <div class="header">
+      <h1><%= @school.name %></h1>
+    </div>
+
+    <div class="table_wrapper">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Region</th>
+            <th>Organization</th>
+            <th>Service Type</th>
+            <th>School Quality Indicator Sub Area</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @school.community_partners.each do |community_partner| %>
+            <tr>
+              <td><%= community_partner.region.try(:name) %></td>
+              <td><%= link_to community_partner.organization.try(:name), community_partner_path(community_partner) %></td>
+              <td><%= community_partner.school_quality_indicator_sub_area.try(:name) %></td>
+              <td><%= community_partner.service_type.try(:name) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

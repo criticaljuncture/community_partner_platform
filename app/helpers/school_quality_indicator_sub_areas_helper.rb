@@ -1,0 +1,2 @@
+module SchoolQualityIndicatorSubAreasHelper
+end
