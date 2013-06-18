@@ -1,4 +1,5 @@
 OusdCommunityPartners::Application.routes.draw do
+  devise_for :users
   resources :schools
   resources :community_partners
   resources :organizations

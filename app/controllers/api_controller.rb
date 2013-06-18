@@ -1,4 +1,6 @@
 class ApiController < ApplicationController
+  skip_before_filter :authenticate_user!
+
   def community_partners
     @community_partners = CommunityPartner.includes(:school, :organization).all
 
