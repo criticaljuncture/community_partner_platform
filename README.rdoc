@@ -1,6 +1,17 @@
 == OUSD Community Partners Platform
 
-Built as part of the HacktivateEd event June 15-16, 2013.
+  The original application was built as part of the HacktivateEd event June 15-16, 2013.
+
+  On going development is continuing outside of that event.
 
 == License
-Community Partners Platform is released under the MIT License.
+
+  Community Partners Platform after is released under the Affero GPL v3, which requires that the source code be made available 
+  to any network user of the application. So while we encourage you to fork and run your own copies of this application, any 
+  changes you make need to be shared with their users. Note that this does not allow the use of logos or icons.
+
+  Community Partners Platform at commit https://github.com/peregrinator/community_partners_platform/commit/708718ec88f21ffc34cdc8df199ef8de2d8ded06 
+  was released under the MIT License and remains under that license. Any later commits fall under the Affero GPL v3 license as 
+  outlined in the paragraph above.
+
+  A variety of external software libraries are included with this software; they are all open source, and suitable for use where this application is.
