@@ -18,7 +18,9 @@
         </li>
     </ul>
     <div class="user">
-      Signed in as <%= current_user.email %>
+      <% if current_user.present? %>
+	Signed in as <%= current_user.email %>
+      <% end %>
     </div>
   </div>
 </div>
