@@ -19,6 +19,8 @@ gem "bootstrap-sass", "~> 2.3.2.0"
 gem "formtastic", git: 'git://github.com/justinfrench/formtastic.git', ref: "593ed1e43e8fbf35da589186720d35e7f444519f"
 gem "formtastic-bootstrap", "~> 2.1.3"
 
+# aws email
+gem "aws-ses", "~> 0.5.0"
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
