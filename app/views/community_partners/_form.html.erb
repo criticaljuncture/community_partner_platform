@@ -1,8 +1,8 @@
 <%= f.inputs do %>
-  <%= f.input :organization_id, :as => :select, :collection => Organization.all %>
-  <%= f.input :school_id, :as => :select, :collection => School.all %>
-  <%= f.input :school_quality_indicator_sub_area_id, :as => :select, :collection => SchoolQualityIndicatorSubArea.all %>
-  <%= f.input :service_type_id, :as => :select, :collection => ServiceType.all %>
+  <%= f.input :organization_id, :as => :select, :collection => Organization.all.sort_by(&:name) %>
+  <%= f.input :school_id, :as => :select, :collection => School.all.sort_by(&:name) %>
+  <%= f.input :school_quality_indicator_sub_area_id, :as => :select, :collection => SchoolQualityIndicatorSubArea.all.sort_by(&:name) %>
+  <%= f.input :service_type_id, :as => :select, :collection => ServiceType.all.sort_by(&:name) %>
 
   <%= f.input :notes %>
 <% end %>
