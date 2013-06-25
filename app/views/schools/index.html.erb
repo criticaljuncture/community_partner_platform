@@ -9,7 +9,8 @@
         <thead>
           <tr>
             <th>School</th>
-            <th>Organizations</th>
+	    <th>Organizations</th>
+	    <th></th>
           </tr>
         </thead>
 
@@ -17,7 +18,8 @@
           <% @schools.each do |school| %>
             <tr>
               <td><%= link_to school.name, school_path(school) %></td>
-              <td><%= school.community_partners.count %></td>
+	      <td><%= school.community_partners.count %></td>
+	      <td><%= link_to 'view', school_path(school), class: "btn btn-small btn-info" %></td>
             </tr>
           <% end %>
         </tbody>
