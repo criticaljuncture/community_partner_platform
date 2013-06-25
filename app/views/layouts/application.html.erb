@@ -8,6 +8,16 @@
 </head>
 <body>
   <%= render "layouts/navigation" %>
+  
+  <% [:notice, :error].each do |notice_type| %>
+    <% if flash[notice_type].present? %>
+      <div class="alert <%= notice_type == :error ? 'alert-error' : 'alert-success' %>">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[notice_type] %>
+      </div> 
+    <% end %>
+  <% end %>
+
   <%= yield %>
 </body>
 </html>
