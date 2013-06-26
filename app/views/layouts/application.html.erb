@@ -8,7 +8,8 @@
 </head>
 <body>
   <%= render "layouts/navigation" %>
-  
+  <%= render "layouts/breadcrumbs" %>
+
   <% [:notice, :error].each do |notice_type| %>
     <% if flash[notice_type].present? %>
       <div class="alert <%= notice_type == :error ? 'alert-error' : 'alert-success' %>">
