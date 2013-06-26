@@ -26,7 +26,7 @@
               <td class="center"><%= school.region.try(:name) %></td>
               <td class="center"><%= school.community_partners.count %></td>
               <td class="center"><%= school_quality_indicator_sub_area_display(school) %></td>
-              <td>
+              <td class="center">
                 <%= link_to 'view', school_path(school), class: "btn btn-small btn-info" %>
                 <%= link_to 'edit', edit_school_path(school), class: "btn btn-small btn-info" %>
               </td>
