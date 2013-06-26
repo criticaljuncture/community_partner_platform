@@ -8,21 +8,21 @@
     </div>
 
     <div class="table_wrapper">
-      <table class="table table-striped">
+      <table class="table table-striped table-hover table-sorter">
         <thead>
           <tr>
             <th>School</th>
             <th class="center">Region</th>
             <th class="center">Organizations</th>
             <th class="center">School Quality Indicator Sub Areas Covered</th>
-	    <th></th>
+	    <th class="sorter-false filter-false"></th>
           </tr>
         </thead>
 
         <tbody>
           <% @schools.each do |school| %>
             <tr>
-              <td><%= link_to school.name, school_path(school) %></td>
+              <td><%= school.name %></td>
               <td class="center"><%= school.region.try(:name) %></td>
               <td class="center"><%= school.community_partners.count %></td>
               <td class="center"><%= school_quality_indicator_sub_area_display(school) %></td>

@@ -1,3 +1,8 @@
-// Place all the styles related to the schools controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+table.tablesorter {
+  tr.even:hover td,
+  tr.odd:hover td {
+    background-color: $tableBackgroundHover;
+  }
+
+  input:disabled { display: none; }
+}
