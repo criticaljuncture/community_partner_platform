@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130618220724) do
+ActiveRecord::Schema.define(version: 20130626013954) do
 
   create_table "community_partners", force: true do |t|
     t.integer  "school_id"
-    t.integer  "region_id"
     t.integer  "school_quality_indicator_sub_area_id"
     t.string   "additional_school_quality_indicator_sub_area"
     t.integer  "organization_id"
@@ -29,7 +28,6 @@ ActiveRecord::Schema.define(version: 20130618220724) do
   end
 
   add_index "community_partners", ["organization_id"], name: "index_community_partners_on_organization_id", using: :btree
-  add_index "community_partners", ["region_id"], name: "index_community_partners_on_region_id", using: :btree
   add_index "community_partners", ["school_id"], name: "index_community_partners_on_school_id", using: :btree
   add_index "community_partners", ["service_type_id"], name: "index_community_partners_on_service_type_id", using: :btree
 

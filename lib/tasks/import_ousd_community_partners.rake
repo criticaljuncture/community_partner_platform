@@ -60,5 +60,17 @@ namespace :ousd do
         community_partner.save
       end
     end
+
+    task :move_regions_to_schools => :environment do
+      community_partners = CommunityPartner.all
+
+      community_partners.each do |community_partner|
+        school = community_partner.school
+        if school
+          school.region_id = community_partner.region_id
+          school.save
+        end
+      end
+    end
   end
 end
