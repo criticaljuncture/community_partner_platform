@@ -1,6 +1,7 @@
 body { 
   padding: 5px;
   padding-top: 60px;
+  position: relative;
 }
 
 .header { 
@@ -17,6 +18,17 @@ body {
     right: 10px;
     position: absolute;
   }
+}
+
+#content-wrapper { margin-bottom: 150px; }
+#footer {
+  background-color: #DDD;
+  border-top: 1px solid #999;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 h2 { 
