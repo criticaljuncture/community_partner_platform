@@ -1,0 +1,59 @@
+body { 
+  padding: 5px;
+  padding-top: 60px;
+}
+
+.header { 
+  background-color: #333;
+  color: #FFF;
+  padding: 10px;
+  @include border-radius(6px);
+  position: relative;
+
+  h1 { width: 70%; }
+
+  .btn-primary { 
+    top: 25px;
+    right: 10px;
+    position: absolute;
+  }
+}
+
+h2 { 
+  font-size: 26px;
+  border-bottom: 2px solid #333;
+}
+
+.table_wrapper,
+.form_wrapper { 
+  padding: 20px 20px 0px 20px;
+  overflow: hidden;
+}
+/* override some bootstraps */
+.row-fluid {
+  .table_wrapper[class*="span"],
+  .form_wrapper[class*="span"] {
+    margin-left: 10px;
+  }
+}
+
+table .center { text-align: center; }
+
+.good, 
+.bad { font-weight: bold; }
+
+.good { color: green; }
+.bad { color: red; }
+
+dl {
+  margin-left: 30px;
+  
+  dt {
+    float: left;
+    clear: both;
+    margin-right: 10px;
+
+    &::after { content: ":" }
+  }
+}
+
