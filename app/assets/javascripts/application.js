@@ -4,4 +4,5 @@
 //= require d3
 //= require jquery.tablesorter.min
 //= require jquery.tablesorter.widgets.min
+//= require app.js
 //= require_tree .

@@ -1,3 +1,5 @@
+<%= breadcrumb [['Community Partnerships', schools_path]] %>
+
 <div class="row-fluid">
   <div class="span12">
     <div class="header">
@@ -5,36 +7,16 @@
       <%= link_to 'Create New Partnership', new_community_partner_path(), :class => "btn btn-primary" %>
     </div>
 
+    <%= page_nav_tabs [['Overview', '#overview'],
+                       ['Community Partnerships', '#community-partners-table']] %>
 
-    <% @community_partners.group_by(&:school).each do |school, community_partners| %>
-      <div class="table_wrapper">
-        <h2><%= link_to school.try(:name), school_path(school) %></h2>
-
-        <table class="table table-striped table-hover community_partners">
-          <thead>
-            <tr>
-              <th class="sqisa">School Quality Indicator Sub Area</th>
-              <th class="organization">Organization</th>
-              <th class="service">Service Type</th>
-              <th class="actions"></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% community_partners.each do |community_partner| %>
-              <tr>
-                <td class="sqisa"><%= community_partner.school_quality_indicator_sub_area.try(:name) %></td>
-                <td class="organization"><%= link_to community_partner.organization.try(:name), organization_path( community_partner.organization) %></td>
-                <td class="service"><%= community_partner.service_type.try(:name) %></td>
-                <td class="actions">
-                  <%= link_to 'view', community_partner_path(community_partner), class: "btn btn-info btn-small" %>
-                  <%= link_to 'edit', edit_community_partner_path(community_partner), class: "btn btn-info btn-small" %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+    <div class="tab-content">
+      <div id="overview" class="tab-pane active">
       </div>
-    <% end %>
+
+      <div id="community-partners-table" class="tab-pane">
+        <%= render partial: 'table', locals: {community_partners: @community_partners} %>
+      </div>
+    </div>
   </div>
 </div>
