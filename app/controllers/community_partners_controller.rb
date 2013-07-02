@@ -1,7 +1,7 @@
 class CommunityPartnersController < ApplicationController
 
   def index
-    @community_partners = CommunityPartner.includes(:school_quality_indicator_sub_area, :organization, :service_type).all
+    @community_partners = CommunityPartner.includes(:school_quality_indicator_sub_area, :organization, :service_type).order("organizations.name")
   end
 
   def show
