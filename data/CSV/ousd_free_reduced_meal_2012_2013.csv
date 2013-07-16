@@ -1,0 +1,125 @@
+data_date,county_code,district_code,school_code,direct_funded_charter_school_number,provision_two_three_school,data_source,county_name,lea_name,school_name,low_grade,high_grade,enrollment_k_12,free_meal_count_k_12,percent_eligible_free_k_12,frpm_total_undup_count_k_12,frpm_percent_eligible_k_12,enrollment_5_17,free_meal_count_5_17,percent_eligible_5_17,frpm_total_undup_count_5_17,frpm_percent_eligible_5_17
+2012-10-01,01,61259,0000001,    ,N,CALPADS,Alameda        ,Oakland Unified,"Nonpublic, Nonsectarian Schools",,,165,11,6.67,11,6.67,151,11,7.28,11,7.28
+2012-10-01,01,61259,0100065,0510,N,CALPADS,Alameda        ,Oakland Unified,Oakland Unity High,09,12,269,196,72.86,197,73.23,258,188,72.87,189,73.26
+2012-10-01,01,61259,0100123,0499,N,CALPADS,Alameda        ,Oakland Unified,East Oakland Leadership Academy,KK,08,128,28,21.88,28,21.88,125,28,22.4,28,22.4
+2012-10-01,01,61259,0100701,    ,N,CALPADS,Alameda        ,Oakland Unified,MetWest High,09,12,138,103,74.64,115,83.33,133,99,74.44,111,83.46
+2012-10-01,01,61259,0100792,    ,Y,NSD,Alameda        ,Oakland Unified,Think College Now,KK,05,290,NULL,90.64,NULL,98.75,289,NULL,90.64,NULL,98.75
+2012-10-01,01,61259,0101469,0559,Y,NSD,Alameda        ,Oakland Unified,LPS College Park,09,12,131,NULL,81.11,NULL,90,119,NULL,81.11,NULL,90
+2012-10-01,01,61259,0102988,    ,N,CALPADS,Alameda        ,Oakland Unified,EnCompass Academy Elementary,KK,05,312,312,100,312,100,309,309,100,309,100
+2012-10-01,01,61259,0106542,    ,Y,NSD,Alameda        ,Oakland Unified,Community Day,09,12,29,NULL,84.44,NULL,100,27,NULL,84.44,NULL,100
+2012-10-01,01,61259,0106559,    ,N,CALPADS,Alameda        ,Oakland Unified,Oakland Community Day Middle,06,08,14,14,100,14,100,14,14,100,14,100
+2012-10-01,01,61259,0106906,0661,Y,NSD,Alameda        ,Oakland Unified,Bay Area Technology,06,12,188,NULL,64.86,NULL,73.42,178,NULL,64.86,NULL,73.42
+2012-10-01,01,61259,0108803,0689,N,CALPADS,Alameda        ,Oakland Unified,Aspire Millsmont Academy,KK,12,266,205,77.07,232,87.22,260,201,77.31,227,87.31
+2012-10-01,01,61259,0108944,0700,N,CALPADS,Alameda        ,Oakland Unified,Lighthouse Community Charter High,09,12,223,168,75.34,172,77.13,203,155,76.35,159,78.33
+2012-10-01,01,61259,0109819,0726,N,CALPADS,Alameda        ,Oakland Unified,Aspire Berkley Maynard Academy,KK,08,557,363,65.17,433,77.74,545,355,65.14,422,77.43
+2012-10-01,01,61259,0109983,0745,Y,NSD,Alameda        ,Oakland Unified,World Academy,KK,05,439,NULL,98.05,NULL,100,429,NULL,98.05,NULL,100
+2012-10-01,01,61259,0110189,    ,N,CALPADS,Alameda        ,Oakland Unified,McClymonds High,09,12,268,268,100,268,100,261,261,100,261,100
+2012-10-01,01,61259,0110239,    ,Y,NSD,Alameda        ,Oakland Unified,Reach Academy,KK,05,339,NULL,81.98,NULL,86.34,330,NULL,81.98,NULL,86.34
+2012-10-01,01,61259,0110247,    ,N,CALPADS,Alameda        ,Oakland Unified,Manzanita SEED,KK,05,342,342,100,342,100,336,336,100,336,100
+2012-10-01,01,61259,0110254,    ,Y,NSD,Alameda        ,Oakland Unified,Sankofa Academy,PP,08,312,NULL,60.65,NULL,64.79,299,NULL,60.65,NULL,64.79
+2012-10-01,01,61259,0110262,    ,N,CALPADS,Alameda        ,Oakland Unified,Rise Community,KK,05,325,325,100,325,100,317,317,100,317,100
+2012-10-01,01,61259,0111476,0780,Y,CARS,Alameda        ,Oakland Unified,Achieve Academy,04,05,226,NULL,91.02,NULL,95.51,226,NULL,91.02,NULL,95.51
+2012-10-01,01,61259,0111856,    ,N,CALPADS,Alameda        ,Oakland Unified,American Indian Public High,09,12,243,134,55.14,183,75.31,240,132,55,180,75
+2012-10-01,01,61259,0112763,    ,N,CALPADS,Alameda        ,Oakland Unified,United for Success Academy,06,08,414,414,100,414,100,414,414,100,414,100
+2012-10-01,01,61259,0112771,    ,N,CALPADS,Alameda        ,Oakland Unified,Alliance Academy,06,08,353,353,100,353,100,353,353,100,353,100
+2012-10-01,01,61259,0112789,    ,Y,NSD,Alameda        ,Oakland Unified,Elmhurst Community Prep,06,08,368,NULL,85.34,NULL,90.18,368,NULL,85.34,NULL,90.18
+2012-10-01,01,61259,0112797,    ,N,CALPADS,Alameda        ,Oakland Unified,Coliseum College Prep Academy,06,12,451,451,100,451,100,436,436,100,436,100
+2012-10-01,01,61259,0112805,    ,N,CALPADS,Alameda        ,Oakland Unified,ROOTS International Academy,06,08,350,350,100,350,100,350,350,100,350,100
+2012-10-01,01,61259,0112813,    ,N,CALPADS,Alameda        ,Oakland Unified,Fred T. Korematsu Discovery Academy,KK,05,400,400,100,400,100,387,387,100,387,100
+2012-10-01,01,61259,0114363,0882,N,CALPADS,Alameda        ,Oakland Unified,American Indian Public Charter School II,KK,08,639,364,56.96,504,78.87,637,362,56.83,502,78.81
+2012-10-01,01,61259,0114454,0864,N,CALPADS,Alameda        ,Oakland Unified,Conservatory of Vocal/Instrumental Arts,KK,08,232,73,31.47,86,37.07,231,72,31.17,85,36.8
+2012-10-01,01,61259,0114868,0883,N,CALPADS,Alameda        ,Oakland Unified,Oakland Charter High,09,12,181,128,70.72,154,85.08,172,120,69.77,146,84.88
+2012-10-01,01,61259,0115014,0938,N,CALPADS,Alameda        ,Oakland Unified,KIPP Bridge Charter,05,08,327,194,59.33,224,68.5,327,194,59.33,224,68.5
+2012-10-01,01,61259,0115204,    ,N,CALPADS,Alameda        ,Oakland Unified,Community United Elementary,KK,05,396,396,100,396,100,366,366,100,366,100
+2012-10-01,01,61259,0115238,0837,N,CALPADS,Alameda        ,Oakland Unified,ARISE High,09,12,239,205,85.77,223,93.31,217,189,87.1,204,94.01
+2012-10-01,01,61259,0115386,0948,N,CALPADS,Alameda        ,Oakland Unified,Civicorps Corpsmember Academy,09,Ad,99,85,85.86,91,91.92,2,1,50,2,100
+2012-10-01,01,61259,0115576,    ,N,CALPADS,Alameda        ,Oakland Unified,Futures Elementary,KK,05,333,333,100,333,100,329,329,100,329,100
+2012-10-01,01,61259,0115584,    ,N,CALPADS,Alameda        ,Oakland Unified,Global Family,KK,05,415,415,100,415,100,386,386,100,386,100
+2012-10-01,01,61259,0115592,1442,Y,NSD,Alameda        ,Oakland Unified,Learning Without Limits,KK,05,380,NULL,84.83,NULL,90.49,372,NULL,84.83,NULL,90.49
+2012-10-01,01,61259,0115600,    ,N,CALPADS,Alameda        ,Oakland Unified,East Oakland Pride Elementary,KK,05,472,472,100,472,100,467,467,100,467,100
+2012-10-01,01,61259,0115618,    ,N,CALPADS,Alameda        ,Oakland Unified,Greenleaf Elementary,PP,08,501,501,100,501,100,479,479,100,479,100
+2012-10-01,01,61259,0115626,    ,Y,NSD,Alameda        ,Oakland Unified,West Oakland Middle,06,08,179,NULL,78.8,NULL,85.33,179,NULL,78.8,NULL,85.33
+2012-10-01,01,61259,0115667,    ,Y,NSD,Alameda        ,Oakland Unified,Oakland International High,09,12,325,NULL,72.73,NULL,93.94,214,NULL,72.73,NULL,93.94
+2012-10-01,01,61259,0116137,0955,N,CALPADS,Alameda        ,Oakland Unified,East Oakland Leadership Academy High,09,12,55,10,18.18,10,18.18,53,10,18.87,10,18.87
+2012-10-01,01,61259,0118224,1023,N,CALPADS,Alameda        ,Oakland Unified,Aspire Golden State College Preparatory Academy,06,12,480,382,79.58,416,86.67,475,378,79.58,411,86.53
+2012-10-01,01,61259,0118653,    ,N,CALPADS,Alameda        ,Oakland Unified,Ralph J. Bunche High,09,12,145,112,77.24,120,82.76,70,51,72.86,55,78.57
+2012-10-01,01,61259,0119859,    ,Y,NSD,Alameda        ,Oakland Unified,Gateway to College at Laney College,09,12,74,NULL,29.63,NULL,30.86,21,NULL,29.63,NULL,30.86
+2012-10-01,01,61259,0120188,1115,N,CALPADS,Alameda        ,Oakland Unified,Aspire ERES Academy,KK,08,222,200,90.09,212,95.5,219,198,90.41,210,95.89
+2012-10-01,01,61259,0121210,    ,N,CALPADS,Alameda        ,Oakland Unified,Infant and Preschool Program,PP,PP,23,4,17.39,4,17.39,13,3,23.08,3,23.08
+2012-10-01,01,61259,0121228,    ,N,CALPADS,Alameda        ,Oakland Unified,Young Adult Program,Ad,Ad,0,0,0,0,0,1,0,0,0,0
+2012-10-01,01,61259,0121376,    ,N,CALPADS,Alameda        ,Oakland Unified,Home and Hospital Program,KK,12,8,0,0,0,0,7,0,0,0,0
+2012-10-01,01,61259,0123711,1271,N,CALPADS,Alameda        ,Oakland Unified,Vincent Academy,KK,05,101,85,84.16,88,87.13,95,80,84.21,83,87.37
+2012-10-01,01,61259,0125161,    ,N,CALPADS,Alameda        ,Oakland Unified,Castlemont High,09,12,641,509,79.41,531,82.84,609,487,79.97,509,83.58
+2012-10-01,01,61259,0125716,    ,Y,NSD,Alameda        ,Oakland Unified,Fremont High,09,12,795,NULL,84.15,NULL,87.84,736,NULL,84.15,NULL,87.84
+2012-10-01,01,61259,0125856,1399,N,CALPADS,Alameda        ,Oakland Unified,100 Black Men of the Bay Area Community,KK,12,87,18,20.69,18,20.69,82,18,21.95,18,21.95
+2012-10-01,01,61259,0126748,1449,N,CALPADS,Alameda        ,Oakland Unified,LPS Oakland R & D Campus,09,12,176,176,100,176,100,175,175,100,175,100
+2012-10-01,01,61259,0130146,    ,Y,NSD,Alameda        ,Oakland Unified,Rudsdale Continuation,09,12,148,NULL,63.04,NULL,67.59,73,NULL,63.04,NULL,67.59
+2012-10-01,01,61259,0130179,    ,N,CALPADS,Alameda        ,Oakland Unified,Street Academy (Alternative),09,12,103,64,62.14,73,70.87,94,61,64.89,68,72.34
+2012-10-01,01,61259,0130575,    ,N,CALPADS,Alameda        ,Oakland Unified,LIFE Academy,06,12,338,338,100,338,100,322,322,100,322,100
+2012-10-01,01,61259,0130617,0349,N,CALPADS,Alameda        ,Oakland Unified,"Oakland Military Institute, College Preparatory Ac",06,12,724,417,57.6,486,67.13,710,404,56.9,473,66.62
+2012-10-01,01,61259,0130633,0413,N,CALPADS,Alameda        ,Oakland Unified,Lighthouse Community Charter,KK,08,492,297,60.37,331,67.28,486,293,60.29,327,67.28
+2012-10-01,01,61259,0130666,0465,N,CALPADS,Alameda        ,Oakland Unified,Aspire Lionel Wilson College Preparatory Academy,06,12,501,432,86.23,474,94.61,492,424,86.18,466,94.72
+2012-10-01,01,61259,0132688,    ,N,CALPADS,Alameda        ,Oakland Unified,Dewey Academy,09,12,228,170,74.56,190,83.33,87,69,79.31,76,87.36
+2012-10-01,01,61259,0135905,    ,Y,NSD,Alameda        ,Oakland Unified,Oakland High,09,12,1601,NULL,75.78,NULL,83.26,1519,NULL,75.78,NULL,83.26
+2012-10-01,01,61259,0136051,    ,N,CALPADS,Alameda        ,Oakland Unified,Oakland Technical High,09,12,1987,873,43.94,1017,51.18,1929,840,43.55,983,50.96
+2012-10-01,01,61259,0137943,    ,N,CALPADS,Alameda        ,Oakland Unified,Skyline High,09,12,1798,1048,58.29,1213,67.46,1731,1009,58.29,1169,67.53
+2012-10-01,01,61259,3030772,0340,N,CALPADS,Alameda        ,Oakland Unified,Oakland School for the Arts,09,12,619,96,15.51,109,17.61,605,93,15.37,105,17.36
+2012-10-01,01,61259,6001630,    ,Y,NSD,Alameda        ,Oakland Unified,Allendale Elementary,KK,05,425,NULL,79.91,NULL,89.02,401,NULL,79.91,NULL,89.02
+2012-10-01,01,61259,6001648,    ,N,CALPADS,Alameda        ,Oakland Unified,Chabot Elementary,KK,05,578,43,7.44,54,9.34,576,43,7.47,54,9.38
+2012-10-01,01,61259,6001655,    ,Y,NSD,Alameda        ,Oakland Unified,Bella Vista Elementary,KK,05,525,NULL,75.33,NULL,88.14,517,NULL,75.33,NULL,88.14
+2012-10-01,01,61259,6001663,    ,N,CALPADS,Alameda        ,Oakland Unified,Brookfield Elementary,KK,05,367,243,66.21,260,70.84,364,241,66.21,258,70.88
+2012-10-01,01,61259,6001689,    ,N,CALPADS,Alameda        ,Oakland Unified,Burckhalter Elementary,KK,05,298,214,71.81,224,75.17,295,211,71.53,221,74.92
+2012-10-01,01,61259,6001697,    ,N,CALPADS,Alameda        ,Oakland Unified,Carl B. Munck Elementary,KK,05,321,188,58.57,212,66.04,315,182,57.78,206,65.4
+2012-10-01,01,61259,6001713,    ,N,CALPADS,Alameda        ,Oakland Unified,Howard Elementary,KK,05,205,170,82.93,179,87.32,199,166,83.42,174,87.44
+2012-10-01,01,61259,6001739,    ,N,CALPADS,Alameda        ,Oakland Unified,Cleveland Elementary,KK,05,349,152,43.55,190,54.44,343,151,44.02,187,54.52
+2012-10-01,01,61259,6001754,    ,N,CALPADS,Alameda        ,Oakland Unified,Crocker Highlands Elementary,KK,05,419,19,4.53,22,5.25,412,19,4.61,22,5.34
+2012-10-01,01,61259,6001812,    ,N,CALPADS,Alameda        ,Oakland Unified,Emerson Elementary,KK,05,324,223,68.83,258,79.63,301,212,70.43,245,81.4
+2012-10-01,01,61259,6001820,    ,Y,NSD,Alameda        ,Oakland Unified,Franklin Elementary,KK,05,770,NULL,76.82,NULL,85.4,751,NULL,76.82,NULL,85.4
+2012-10-01,01,61259,6001838,    ,Y,NSD,Alameda        ,Oakland Unified,Fruitvale Elementary,KK,05,436,NULL,77.27,NULL,87.5,430,NULL,77.27,NULL,87.5
+2012-10-01,01,61259,6001846,    ,Y,NSD,Alameda        ,Oakland Unified,Garfield Elementary,KK,05,582,NULL,87.48,NULL,93.31,531,NULL,87.48,NULL,93.31
+2012-10-01,01,61259,6001853,    ,N,CALPADS,Alameda        ,Oakland Unified,Glenview Elementary,KK,05,467,130,27.84,161,34.48,458,127,27.73,157,34.28
+2012-10-01,01,61259,6001879,    ,N,CALPADS,Alameda        ,Oakland Unified,Grass Valley Elementary,KK,05,259,149,57.53,159,61.39,257,148,57.59,158,61.48
+2012-10-01,01,61259,6001895,    ,N,CALPADS,Alameda        ,Oakland Unified,Kaiser Elementary,KK,05,271,36,13.28,48,17.71,269,36,13.38,47,17.47
+2012-10-01,01,61259,6001903,    ,Y,NSD,Alameda        ,Oakland Unified,New Highland Academy,KK,05,298,NULL,84.18,NULL,91.93,290,NULL,84.18,NULL,91.93
+2012-10-01,01,61259,6001911,    ,N,CALPADS,Alameda        ,Oakland Unified,Hillcrest Elementary,KK,08,348,12,3.45,13,3.74,348,12,3.45,13,3.74
+2012-10-01,01,61259,6001929,    ,Y,NSD,Alameda        ,Oakland Unified,Horace Mann Elementary,KK,05,355,NULL,76.54,NULL,85.75,351,NULL,76.54,NULL,85.75
+2012-10-01,01,61259,6001945,    ,N,CALPADS,Alameda        ,Oakland Unified,Joaquin Miller Elementary,KK,05,421,60,14.25,79,18.76,420,60,14.29,79,18.81
+2012-10-01,01,61259,6001978,    ,Y,NSD,Alameda        ,Oakland Unified,Lafayette Elementary,KK,05,299,NULL,68.44,NULL,84.05,294,NULL,68.44,NULL,84.05
+2012-10-01,01,61259,6001994,    ,N,CALPADS,Alameda        ,Oakland Unified,Laurel Elementary,KK,05,533,346,64.92,413,77.49,525,343,65.33,409,77.9
+2012-10-01,01,61259,6002018,    ,N,CALPADS,Alameda        ,Oakland Unified,Lincoln Elementary,KK,05,702,468,66.67,569,81.05,699,468,66.95,569,81.4
+2012-10-01,01,61259,6002042,    ,Y,NSD,Alameda        ,Oakland Unified,Manzanita Community,KK,05,342,NULL,81.21,NULL,87.86,339,NULL,81.21,NULL,87.86
+2012-10-01,01,61259,6002059,    ,Y,NSD,Alameda        ,Oakland Unified,Markham Elementary,KK,05,361,NULL,88.59,NULL,93.75,334,NULL,88.59,NULL,93.75
+2012-10-01,01,61259,6002075,    ,Y,NSD,Alameda        ,Oakland Unified,Bridges Academy,KK,05,381,NULL,77,NULL,85.53,379,NULL,77,NULL,85.53
+2012-10-01,01,61259,6002083,    ,N,CALPADS,Alameda        ,Oakland Unified,Montclair Elementary,KK,05,501,31,6.19,34,6.79,498,31,6.22,34,6.83
+2012-10-01,01,61259,6002091,    ,Y,NSD,Alameda        ,Oakland Unified,Parker Elementary,KK,05,180,NULL,80.54,NULL,85.95,179,NULL,80.54,NULL,85.95
+2012-10-01,01,61259,6002109,    ,N,CALPADS,Alameda        ,Oakland Unified,Peralta Elementary,KK,05,333,89,26.73,120,36.04,327,89,27.22,120,36.7
+2012-10-01,01,61259,6002117,    ,N,CALPADS,Alameda        ,Oakland Unified,Piedmont Avenue Elementary,KK,05,384,237,61.72,263,68.49,376,229,60.9,255,67.82
+2012-10-01,01,61259,6002125,    ,Y,NSD,Alameda        ,Oakland Unified,Preparatory Literary Academy of Cultural Excellenc,KK,05,198,NULL,72.73,NULL,80.3,189,NULL,72.73,NULL,80.3
+2012-10-01,01,61259,6002141,    ,N,CALPADS,Alameda        ,Oakland Unified,Redwood Heights Elementary,KK,05,375,72,19.2,86,22.93,372,72,19.35,86,23.12
+2012-10-01,01,61259,6002174,    ,N,CALPADS,Alameda        ,Oakland Unified,Sequoia Elementary,KK,05,400,149,37.25,185,46.25,396,147,37.12,183,46.21
+2012-10-01,01,61259,6002182,    ,N,CALPADS,Alameda        ,Oakland Unified,Sobrante Park Elementary,KK,05,225,191,84.89,197,87.56,223,189,84.75,195,87.44
+2012-10-01,01,61259,6002190,    ,Y,NSD,Alameda        ,Oakland Unified,Esperanza Elementary,KK,05,321,NULL,89.59,NULL,99.07,318,NULL,89.59,NULL,99.07
+2012-10-01,01,61259,6002216,    ,N,CALPADS,Alameda        ,Oakland Unified,Thornhill Elementary,KK,05,391,16,4.09,19,4.86,385,16,4.16,18,4.68
+2012-10-01,01,61259,6002273,    ,Y,NSD,Alameda        ,Oakland Unified,ACORN Woodland Elementary,KK,05,267,NULL,86.7,NULL,87.22,263,NULL,86.7,NULL,87.22
+2012-10-01,01,61259,6056998,    ,Y,NSD,Alameda        ,Oakland Unified,Bret Harte Middle,06,08,550,NULL,75.67,NULL,82.83,550,NULL,75.67,NULL,82.83
+2012-10-01,01,61259,6057004,    ,N,CALPADS,Alameda        ,Oakland Unified,Claremont Middle,06,08,405,211,52.1,237,58.52,405,211,52.1,237,58.52
+2012-10-01,01,61259,6057020,    ,Y,NSD,Alameda        ,Oakland Unified,Frick Middle,06,08,353,NULL,68.41,NULL,70.88,353,NULL,68.41,NULL,70.88
+2012-10-01,01,61259,6057046,    ,Y,NSD,Alameda        ,Oakland Unified,Hoover Elementary,KK,05,318,NULL,86.56,NULL,92.19,315,NULL,86.56,NULL,92.19
+2012-10-01,01,61259,6057061,    ,N,CALPADS,Alameda        ,Oakland Unified,Edna Brewer Middle,06,08,806,444,55.09,534,66.25,806,444,55.09,534,66.25
+2012-10-01,01,61259,6057079,    ,N,CALPADS,Alameda        ,Oakland Unified,Montera Middle,06,08,947,337,35.59,390,41.18,946,336,35.52,389,41.12
+2012-10-01,01,61259,6057087,    ,Y,NSD,Alameda        ,Oakland Unified,Roosevelt Middle,06,08,630,NULL,73.34,NULL,75.08,630,NULL,73.34,NULL,75.08
+2012-10-01,01,61259,6057095,    ,Y,NSD,Alameda        ,Oakland Unified,Westlake Middle,06,08,591,NULL,57.62,NULL,63.32,591,NULL,57.62,NULL,63.32
+2012-10-01,01,61259,6066450,    ,Y,NSD,Alameda        ,Oakland Unified,Madison Middle,06,08,375,NULL,79.31,NULL,89.39,375,NULL,79.31,NULL,89.39
+2012-10-01,01,61259,6072235,    ,Y,NSD,Alameda        ,Oakland Unified,"Martin Luther King, Jr. Elementary",KK,05,328,NULL,76.45,NULL,79.65,323,NULL,76.45,NULL,79.65
+2012-10-01,01,61259,6096523,    ,N,CALPADS,Alameda        ,Oakland Unified,La Escuelita Elementary,KK,05,279,216,77.42,239,85.66,255,196,76.86,215,84.31
+2012-10-01,01,61259,6098701,    ,Y,NSD,Alameda        ,Oakland Unified,Hillside Academy,06,12,15,NULL,47.37,NULL,52.63,13,NULL,47.37,NULL,52.63
+2012-10-01,01,61259,6111660,0014,N,CALPADS,Alameda        ,Oakland Unified,Oakland Charter Academy,06,08,244,184,75.41,209,85.66,244,184,75.41,209,85.66
+2012-10-01,01,61259,6113807,    ,N,CALPADS,Alameda        ,Oakland Unified,American Indian Public Charter,05,08,286,157,54.9,211,73.78,286,157,54.9,211,73.78
+2012-10-01,01,61259,6114011,    ,N,CALPADS,Alameda        ,Oakland Unified,"Independent Study, Sojourner Truth",KK,08,217,217,100,217,100,163,163,100,163,100
+2012-10-01,01,61259,6117394,0218,Y,NSD,Alameda        ,Oakland Unified,Reems (Ernestine C.) Academy of Technology and Art,KK,08,317,NULL,91.74,NULL,96.58,308,NULL,91.74,NULL,96.58
+2012-10-01,01,61259,6117568,0252,N,CALPADS,Alameda        ,Oakland Unified,Aspire Monarch Academy,KK,05,388,325,83.76,370,95.36,382,319,83.51,364,95.29
+2012-10-01,01,61259,6117972,0302,N,CALPADS,Alameda        ,Oakland Unified,North Oakland Community Charter,KK,08,222,28,12.61,41,18.47,220,28,12.73,41,18.64
+2012-10-01,01,61259,6118608,1443,Y,NSD,Alameda        ,Oakland Unified,ASCEND,KK,08,437,NULL,80.18,NULL,90.21,434,NULL,80.18,NULL,90.21
+2012-10-01,01,61259,6118616,    ,N,CALPADS,Alameda        ,Oakland Unified,International Community,KK,05,346,346,100,346,100,342,342,100,342,100
+2012-10-01,01,61259,6118640,    ,Y,NSD,Alameda        ,Oakland Unified,Melrose Leadership Academy,KK,08,297,NULL,57.67,NULL,65.67,296,NULL,57.67,NULL,65.67
+2012-10-01,01,61259,6118657,    ,Y,NSD,Alameda        ,Oakland Unified,Urban Promise Academy,06,08,320,NULL,77.88,NULL,90.03,320,NULL,77.88,NULL,90.03
