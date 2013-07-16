@@ -2,7 +2,10 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require d3
+//= require colorbrewer
+//= require underscore
 //= require jquery.tablesorter.min
 //= require jquery.tablesorter.widgets.min
+//= require jquery.tipsy.svg.js
 //= require app.js
 //= require_tree .
