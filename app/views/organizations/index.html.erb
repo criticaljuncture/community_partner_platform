@@ -1,3 +1,5 @@
+<%= breadcrumb [['Partner Organizations', organizations_path]] %>
+
 <div class="row-fluid">
   <div class="span12">
     <div class="header">
@@ -5,30 +7,18 @@
       <%= link_to 'Create New Organization', new_organization_path, class: "btn btn-primary" %>
     </div>
 
-    <div class="table_wrapper">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Organization</th>
-            <th>Schools</th>
-            <th>School Quality Indicator Sub Area</th>
-            <th>Service Type</th>
-            <th></th>
-          </tr>
-        </thead>
+    <%= page_nav_tabs [['Overview', '#overview'],
+                       ['Organizations', '#organizations-table']] %>
 
-        <tbody>
-          <% @organizations.each do |organization| %>
-            <tr>
-              <td><%= link_to organization.try(:name), organization_path(organization) %></td>
-              <td><%= organization.schools.count %></td>
-              <td><%= organization.community_partners.map{|cp| cp.school_quality_indicator_sub_area.try(:name)}.uniq.join(', ') %></td>
-              <td><%= organization.community_partners.map{|cp| cp.service_type.try(:name)}.uniq.join(', ') %></td>
-              <td><%= link_to 'edit', edit_organization_path(organization), class: "btn btn-small btn-info" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <div class="tab-content">
+      <div id="overview" class="tab-pane active">
+        <%= render partial: 'overview', locals: {} %> 
+      </div>
+
+      <div id="organizations-table" class="tab-pane">
+        <%= render partial: 'table', locals: {organizations: @organizations} %> 
+      </div>
     </div>
+
   </div>
 </div>
