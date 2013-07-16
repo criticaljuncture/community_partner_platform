@@ -9,6 +9,8 @@ OusdCommunityPartners::Application.routes.draw do
     collection do
       get :community_partners
       get :school_hierarchy
+      get :schools
+      get :school_sub_areas
     end
   end
 

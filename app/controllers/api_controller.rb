@@ -7,6 +7,26 @@ class ApiController < ApplicationController
     render :json => @community_partners, :root => "community_partners"
   end
 
+  def school_sub_areas
+    @schools = School.includes(:community_partners).all
+
+    json = { 
+      schools:  @schools.map do |school|
+                  {
+                    name: school.try(:name),
+                    partners_by_sub_area: SchoolQualityIndicatorSubArea.all.map do |sub_area|
+                        { name: sub_area.name,
+                          id: sub_area.id,
+                          count: school.community_partners.where(school_quality_indicator_sub_area_id: sub_area.id).count
+                        }
+                    end
+                  }
+                end
+    }
+
+    render :json => json
+  end
+
   def school_hierarchy
     @schools = School.includes(:community_partners, :organizations).all
     
@@ -31,5 +51,11 @@ class ApiController < ApplicationController
             end
           }
     render :json => json #@schools, :serializer => SchoolHierarchySerializer, :root => :school
+  end
+
+  def schools
+    @schools = School.includes(:community_partners, :organizations).all
+
+    render :json => @schools, :root => "schools"
   end
 end
