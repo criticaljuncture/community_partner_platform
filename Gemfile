@@ -19,6 +19,8 @@ gem "bootstrap-sass", "~> 2.3.2.0"
 gem "formtastic", git: 'git://github.com/justinfrench/formtastic.git', ref: "593ed1e43e8fbf35da589186720d35e7f444519f"
 gem "formtastic-bootstrap", "~> 2.1.3"
 
+gem "underscore-rails"
+
 # aws email
 gem "aws-ses", "~> 0.5.0"
 
@@ -37,7 +39,7 @@ gem 'jbuilder', '~> 1.0.1'
 
 gem 'active_model_serializers'
 
-gem "d3_rails", "~> 3.1.10"
+gem "d3_rails", "~> 3.2.4"
 
 gem "devise", "~> 3.0.0.rc"
 
