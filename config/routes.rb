@@ -20,5 +20,5 @@ OusdCommunityPartners::Application.routes.draw do
     end
   end
 
-  root to: "community_partners#index"
+  root to: "schools#index"
 end
