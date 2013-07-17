@@ -28,14 +28,24 @@ $(document).ready(function() {
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+  var school_data;
+
+  var nomalize_y_axis = function(max_count) {
+    return Math.ceil(max_count/10) * 10;
+  };
+
   d3.json("/api/schools", function(data) {
 
-    data = _.map(data.schools, function(school) {
-      var data_index = 0;
+    school_data = data;
+
+    var school_quality_indicator_id = 8;
+
+    data = _.map(school_data.schools, function(school) {
+      var data_index = 8;
 
       return {
         frpm: school.frpm_percent_eligible_k_12[0] === undefined ? 0 : +school.frpm_percent_eligible_k_12[0].percent, 
-        partner_count: +school.sub_area_counts[data_index].count,
+        partner_count: _.filter(school.sub_area_counts, function(sub_area) { return sub_area.sub_area_id === school_quality_indicator_id})[0].count,
         id: school.id,
         enrollment: school.frpm_percent_eligible_k_12[0] === undefined ? 0 : +school.frpm_percent_eligible_k_12[0].enrollment,
         name: school.name
@@ -60,8 +70,8 @@ $(document).ready(function() {
       return Math.round(range[0]) + " - " + Math.round(range[1]-1);
     };
 
-    x.domain(d3.extent(data, function(d) { return d.frpm; })).nice();
-    y.domain(d3.extent(data, function(d) { return d.partner_count; })).nice();
+    x.domain([0, d3.max(data, function(d) { return d.frpm; })]).nice();
+    y.domain([0, nomalize_y_axis( d3.max(data, function(d) { return d.partner_count; }))]).nice();
 
     svg.append("g")
         .attr("class", "x axis")
@@ -91,7 +101,7 @@ $(document).ready(function() {
           .attr("class", "dot tip_under link")
           .attr("data-title", function(d) { return d.name })
           .attr("data-url", function(d) { return "/schools/" + d.id })
-          .attr("r", 5)
+          .attr("r", 6)
           .attr("cx", function(d) { return x(d.frpm); })
           .attr("cy", function(d) { return y(d.partner_count); })
           .style("fill", function(d) { return color(group_bucket_scale(d.enrollment)); });
@@ -126,6 +136,56 @@ $(document).ready(function() {
       $('.dot.link').on('click', function(event) {
         event.preventDefault();
         window.location.href = this.getAttribute('data-url');
+      });
+
+      $('#school_quality_indicator_sub_areas').on('change', function(event) {
+        var school_quality_indicator_id = parseInt( $(this).val(), 10);
+
+        data = _.map(school_data.schools, function(school) {
+
+          return {
+            frpm: school.frpm_percent_eligible_k_12[0] === undefined ? 0 : +school.frpm_percent_eligible_k_12[0].percent, 
+            partner_count: _.filter(school.sub_area_counts, function(sub_area) { return sub_area.sub_area_id === school_quality_indicator_id})[0].count,
+            id: school.id,
+            enrollment: school.frpm_percent_eligible_k_12[0] === undefined ? 0 : +school.frpm_percent_eligible_k_12[0].enrollment,
+            name: school.name
+          };
+        });
+
+        x.domain([0, d3.max(data, function(d) { return d.frpm; })]).nice();
+        y.domain([0, nomalize_y_axis( d3.max(data, function(d) { return d.partner_count; }))]).nice();
+
+        xAxis.scale(x);
+        yAxis.scale(y);
+
+        svg.selectAll("g.y.axis")
+        .call(yAxis);
+
+        svg.selectAll("g.x.axis")
+        .call(xAxis);
+
+        svg.selectAll("circle")
+          .data(data)
+          .transition()
+          .duration(1000)
+          .attr("cx", function(d) { return x(d.frpm); })
+          .attr("cy", function(d) { return y(d.partner_count); });
+
+        svg.selectAll("circle")
+          .data(data)
+          .enter()
+          .append("circle")
+          .attr("cx", function(d) { return x(d.frpm); })
+          .attr("cy", function(d) { return y(d.partner_count); })
+          .attr("data-title", function(d) { return d.name })
+          .attr("data-url", function(d) { return "/schools/" + d.id })
+          .attr("r", 6)
+          .style("fill", function(d) { return color(group_bucket_scale(d.enrollment)); });
+
+        svg.selectAll("circle")
+            .data(data)
+            .exit()
+            .remove();
       });
   });
 });

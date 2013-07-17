@@ -30,7 +30,7 @@
         </thead>
 
         <tbody>
-          <% SchoolQualityIndicatorSubArea.all.each do |indicator| %>
+          <% SchoolQualityIndicatorSubArea.all.sort_by(&:name).each do |indicator| %>
             <tr>
               <td><%= link_to indicator.try(:name), school_quality_indicator_sub_area_path(indicator) %></td>
               <td class="center">

@@ -1,6 +1,7 @@
 class SchoolsController < ApplicationController
   def index
     @schools = School.order(:name)
+    @school_quality_indicator_sub_areas = SchoolQualityIndicatorSubArea.all.order('name')
   end
 
   def show

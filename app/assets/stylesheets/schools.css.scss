@@ -1,3 +1,13 @@
+.graph_wrapper {
+  .instructions,
+  form,
+  .graph { padding: 10px; }
+
+  form.scatter_plot_items {
+    select { width: 410px; }
+  }
+}
+
 table.tablesorter {
   tr.even:hover td,
   tr.odd:hover td {
@@ -6,3 +16,4 @@ table.tablesorter {
 
   input:disabled { display: none; }
 }
+
