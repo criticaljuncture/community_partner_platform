@@ -17,8 +17,9 @@ namespace :import do
         record_count += 1
 
         school_name = row['school_name'].strip
+        school_code = row['school_code'].strip
 
-        school = School.find_by_name(school_name) || School.find_by_name("#{school_name} School")
+        school = School.find_by_school_code(school_code)
 
         if school.nil?
           puts "Could not find #{school_name}. Proceeding to next record."
