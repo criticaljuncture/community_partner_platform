@@ -54,8 +54,8 @@ class ApiController < ApplicationController
   end
 
   def schools
-    @schools = School.includes(:community_partners, :organizations).all
+    @schools = School.includes(:community_partners, :organizations, :school_quality_indicator_sub_areas).all
 
-    render :json => @schools, :root => "schools"
+    render json: @schools, root: "schools", meta: {max_partner_count: @schools.map{|s| s.sub_area_counts.map{|sac| sac[:count]}.max}.max} 
   end
 end

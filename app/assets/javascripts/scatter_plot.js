@@ -12,7 +12,8 @@ $(document).ready(function() {
     .range([height, 0]);
 
   var color = d3.scale.ordinal()
-                .range(colorbrewer.Blues[9]);
+                .range(colorbrewer.Blues[9])
+                .domain(d3.range(9));
 
   var xAxis = d3.svg.axis()
     .scale(x)
@@ -38,11 +39,9 @@ $(document).ready(function() {
 
     school_data = data;
 
-    var school_quality_indicator_id = 8;
+    var school_quality_indicator_id = parseInt($('#school_quality_indicator_sub_areas option').first().val(), 10);
 
     data = _.map(school_data.schools, function(school) {
-      var data_index = 8;
-
       return {
         frpm: school.frpm_percent_eligible_k_12[0] === undefined ? 0 : +school.frpm_percent_eligible_k_12[0].percent, 
         partner_count: _.filter(school.sub_area_counts, function(sub_area) { return sub_area.sub_area_id === school_quality_indicator_id})[0].count,
@@ -53,25 +52,26 @@ $(document).ready(function() {
     });
 
     var data_enrollment_max = _.max(data, function(item) { return item.enrollment; }).enrollment,
-        data_enrollment_min = _.min(data, function(item) { return item.enrollment; }).enrollment,
-        data_enrollment_group_size = (data_enrollment_max - data_enrollment_min)/10;
-
-    var group_bucket = _.each(data, function(item) {
-      item.group_bucket = Math.floor(item.enrollment/data_enrollment_group_size);
-      item.group_bucket_label = Math.floor(data_enrollment_group_size) + " - " + Math.floor(data_enrollment_group_size * 2);
-    });
+        data_enrollment_min = _.min(data, function(item) { return item.enrollment; }).enrollment;
 
     var group_bucket_scale = d3.scale.quantize()
                               .domain([data_enrollment_min, data_enrollment_max])
-                              .range(d3.range(10));
+                              .range(d3.range(9));
 
-    var label_for_scale = function(bucket) {
+    var label_for_bucket = function(bucket) {
       var range = group_bucket_scale.invertExtent(bucket);
       return Math.round(range[0]) + " - " + Math.round(range[1]-1);
     };
 
+    var color_for_enrollment = function(enrollment) {
+      return color_for_bucket( group_bucket_scale(enrollment) );
+    }
+
+    var color_for_bucket = function(bucket) { return color(bucket) };
+
+    var y_scale_max = school_data.meta.max_partner_count % 2 === 0 ? school_data.meta.max_partner_count : school_data.meta.max_partner_count + 1;
     x.domain([0, d3.max(data, function(d) { return d.frpm; })]).nice();
-    y.domain([0, nomalize_y_axis( d3.max(data, function(d) { return d.partner_count; }))]).nice();
+    y.domain([0, y_scale_max]).nice();
 
     svg.append("g")
         .attr("class", "x axis")
@@ -104,10 +104,10 @@ $(document).ready(function() {
           .attr("r", 6)
           .attr("cx", function(d) { return x(d.frpm); })
           .attr("cy", function(d) { return y(d.partner_count); })
-          .style("fill", function(d) { return color(group_bucket_scale(d.enrollment)); });
+          .style("fill", function(d) { return color_for_enrollment(d.enrollment); });
 
       var legend = svg.selectAll(".legend")
-                        .data(color.domain())
+                        .data(group_bucket_scale.range())
                       .enter().append("g")
                         .attr("class", "legend")
                         .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
@@ -116,14 +116,14 @@ $(document).ready(function() {
           .attr("x", width - padding.right + 20)
           .attr("width", 18)
           .attr("height", 18)
-          .style("fill", color);
+          .style("fill", function(d) { return color_for_bucket(d); });
 
       legend.append("text")
           .attr("x", width - padding.right + 44)
           .attr("y", 9)
           .attr("dy", ".35em")
           .style("text-anchor", "start")
-          .text(function(d) { return label_for_scale(d); });
+          .text(function(d) { return label_for_bucket(d); });
 
       svg.append("text")
           .attr("x", width - padding.right + 20)
@@ -151,18 +151,6 @@ $(document).ready(function() {
             name: school.name
           };
         });
-
-        x.domain([0, d3.max(data, function(d) { return d.frpm; })]).nice();
-        y.domain([0, nomalize_y_axis( d3.max(data, function(d) { return d.partner_count; }))]).nice();
-
-        xAxis.scale(x);
-        yAxis.scale(y);
-
-        svg.selectAll("g.y.axis")
-        .call(yAxis);
-
-        svg.selectAll("g.x.axis")
-        .call(xAxis);
 
         svg.selectAll("circle")
           .data(data)
