@@ -58,8 +58,8 @@
           <% @school.community_partners.each do |community_partner| %>
             <tr>
               <td><%= link_to community_partner.organization.try(:name), community_partner_path(community_partner) %></td>
-              <td class="center"><%= community_partner.service_type.try(:name) %></td>
               <td class="center"><%= community_partner.school_quality_indicator_sub_area.try(:name) %></td>
+              <td class="center"><%= community_partner.service_type.try(:name) %></td>
             </tr>
           <% end %>
         </tbody>
