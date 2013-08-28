@@ -43,8 +43,8 @@ class ApiController < ApplicationController
                   {
                     name: org.try(:name),
                     child_count: org.school_quality_indicator_sub_areas.uniq.size,
-                    size: 800,
-                    children: org.school_quality_indicator_sub_areas.uniq.map{ |sq| {name: sq.try(:name), size: 900} }
+                    size: 950,
+                    children: org.school_quality_indicator_sub_areas.uniq.map{ |sq| {name: sq.try(:name), size: 1050} }
                   }
                 end
               }
