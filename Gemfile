@@ -43,6 +43,9 @@ gem "d3_rails", "~> 3.2.4"
 
 gem "devise", "~> 3.0.0.rc"
 
+gem "better_errors"
+gem "binding_of_caller"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
