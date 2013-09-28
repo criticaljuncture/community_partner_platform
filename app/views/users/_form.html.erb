@@ -1,0 +1,41 @@
+<h4>User Information</h4>
+<%= f.inputs do %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
+  <%= f.input :phone_number,
+              placeholder: "(555) 555-5555"%>
+<% end %>
+
+<h4>User Access</h4>
+<%= f.inputs do %>
+  <%= f.input :primary_role, 
+              as: :select, 
+              collection: Role.accessible_by(current_ability).map{|r| [r.name, r.id, {"data-role-type" => r.identifier}]},
+              selected: f.object.primary_role.try(:id),
+              required: true,
+              label: 'Role' %>
+
+  <%= f.input :organization,
+              as: :select,
+              collection: Organization.accessible_by(current_ability).select('name, id').sort_by(&:name),
+              label: 'Organization',
+              required: true,
+              disabled: true,
+              wrapper_html: {class: "hidden"} %>
+
+  <%= f.input :schools,
+              as: :select,
+              collection: School.accessible_by(current_ability).select('name, id').sort_by(&:name),
+              label: 'Schools',
+              required: true,
+              disabled: true,
+              multiple: true,
+              wrapper_html: {class: "hidden"} %>
+
+<% end %>
+
+<%= f.actions do %>
+  <%= f.button f.object.new_record? ? 'Create' : 'Save', class: "btn btn-success" %>
+<% end %>
+

@@ -4,10 +4,21 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
     
-    if user.role?(:admin)
+    if user.role?(:super_admin)
       can :manage, :all
+    elsif user.role?(:district_manager)
+      can :manage, User
+      can :read, Role, id: [2,3,4]
+      can :manage, School
+      can :manage, CommunityPartner
+      can :manage, Organization
+      can :manage, QualityElement
+      can :manage, ServiceType
+      can :read, :organization_users
     else
-      can :read, :all
+      can :read, School
+      can :read, CommunityPartner
+      can :read, Organization
     end
     
     # The first argument to `can` is the action you are giving the user 
