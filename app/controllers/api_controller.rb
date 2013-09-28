@@ -1,23 +1,24 @@
 class ApiController < ApplicationController
-  skip_before_filter :authenticate_user!
+  #skip_before_filter :authenticate_user!
+  skip_authorization_check
 
   def community_partners
-    @community_partners = CommunityPartner.includes(:school, :organization).all
+    @community_partners = CommunityPartner.accessible_by(current_ability).includes(:school, :organization).all
 
     render :json => @community_partners, :root => "community_partners"
   end
 
   def school_sub_areas
-    @schools = School.includes(:community_partners).all
+    @schools = School.accessible_by(current_ability).includes(:community_partners).all
 
     json = { 
       schools:  @schools.map do |school|
                   {
                     name: school.try(:name),
-                    partners_by_sub_area: SchoolQualityIndicatorSubArea.all.map do |sub_area|
-                        { name: sub_area.name,
-                          id: sub_area.id,
-                          count: school.community_partners.where(school_quality_indicator_sub_area_id: sub_area.id).count
+                    partners_by_sub_area: QualityElement.accessible_by(current_ability).map do |element|
+                        { name: element.name,
+                          id: element.id,
+                          count: school.quality_elements.where(id: element.id).count
                         }
                     end
                   }
@@ -28,23 +29,23 @@ class ApiController < ApplicationController
   end
 
   def school_hierarchy
-    @schools = School.includes(:community_partners, :organizations).all
+    @schools = School.accessible_by(current_ability).includes(:community_partners, :organizations).all
     
     json = {
             name: 'Schools',
             size: 100,
             child_count: 2,
-            children: @schools.map do |object|
+            children: @schools.map do |school|
               {
-                name: object.try(:name),
+                name: school.try(:name),
                 size: 500,
-                child_count: object.organizations.count,
-                children: object.organizations.uniq.map do |org|
+                child_count: school.organizations.count,
+                children: school.organizations.uniq.map do |org|
                   {
                     name: org.try(:name),
-                    child_count: org.school_quality_indicator_sub_areas.uniq.size,
+                    child_count: org.quality_elements.uniq.size,
                     size: 950,
-                    children: org.school_quality_indicator_sub_areas.uniq.map{ |sq| {name: sq.try(:name), size: 1050} }
+                    children: org.quality_elements.uniq.map{ |sq| {name: sq.try(:name), size: 1050} }
                   }
                 end
               }
@@ -54,8 +55,14 @@ class ApiController < ApplicationController
   end
 
   def schools
-    @schools = School.includes(:community_partners, :organizations, :school_quality_indicator_sub_areas).all
+    @schools = School.accessible_by(current_ability).includes(:community_partners, :organizations, :quality_elements).all
 
-    render json: @schools, root: "schools", meta: {max_partner_count: @schools.map{|s| s.sub_area_counts.map{|sac| sac[:count]}.max}.max} 
+    max_partner_count = @schools.map do |school| 
+                          school.quality_elements.group_by(&:id).map do |id, quality_elements| 
+                            quality_elements.count
+                          end.compact.max
+                        end.compact.max
+
+    render json: @schools, root: "schools", meta: {max_partner_count: max_partner_count} 
   end
 end

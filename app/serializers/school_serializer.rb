@@ -6,4 +6,13 @@ class SchoolSerializer < ActiveModel::Serializer
       {school_year: frm.school_year, percent: frm.frpm_percent_eligible_k_12, enrollment: frm.enrollment_k_12}
     end
   end
+
+  def sub_area_counts
+    sub_area_counts = []
+    QualityElement.accessible_by( Ability.new(scope) ).each do |element|
+      count = object.quality_elements.where(id: element.id).count
+      sub_area_counts << {sub_area_id: element.id, count: count}
+    end
+    sub_area_counts
+  end 
 end
