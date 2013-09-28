@@ -1,0 +1,54 @@
+<%= breadcrumb [['Quality Elements', quality_elements_path], [@quality_element.name, quality_element_path(@quality_element)]] %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="header">
+      <h1><%= @quality_element.name %></h1>
+      <%= link_to 'Edit', edit_quality_element_path(@quality_element), class: "btn btn-primary" %>
+    </div>
+
+    <div class="table_wrapper">
+     <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Schools</th>
+            <th>Partner Organizations</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><%= @quality_element.schools.uniq.count %></td>
+            <td><%= @quality_element.organizations.uniq.count %></td>
+          </tr>
+        </tbody>
+      </table> 
+    </div>
+
+    <div class="table_wrapper">
+      <% @quality_element.community_partners.group_by(&:school).each do |school, community_partners| %>
+        <h2><%= link_to school.try(:name), school_path(school) %></h2>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Partner Organization</th>
+              <th>Quality Element</th>
+              <th>Service Types</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% community_partners.each do |community_partner| %>
+              <tr>
+                <td><%= link_to community_partner.organization.try(:name), community_partner_path(community_partner) %></td>
+                <td><%= community_partner.quality_element.name %></td>
+                <td><%= community_partner.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %> 
+    </div>
+  </div>
+</div>

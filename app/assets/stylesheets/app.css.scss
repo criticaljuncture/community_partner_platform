@@ -44,9 +44,13 @@ h2 {
   border-bottom: 2px solid #333;
 }
 
+h2,
+h3 { clear: both; }
+
 .table_wrapper,
 .form_wrapper,
-.graph_wrapper { 
+.graph_wrapper,
+.detail_wrapper{ 
   padding: 20px 20px 0px 20px;
   overflow: hidden;
 }
@@ -89,5 +93,23 @@ ul.nav.nav-tabs {
 
   .table_wrapper,
   .form_wrapper,
-  .graph_wrapper { padding: 0; }
+  .graph_wrapper,
+  .detail_wrapper { padding: 0; }
+}
+
+dl.horizontal_stack {
+  float: left;
+
+  dt { width: 40%; }
+  dd { 
+    float: left;
+    width: auto;
+  }
+}
+
+.formtastic {
+  textarea {
+    width: 500px;
+    height: 200px;
+  }
 }

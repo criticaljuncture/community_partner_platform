@@ -72,5 +72,21 @@ namespace :ousd do
         end
       end
     end
+
+    desc "Links new quality elements to new service types - 20130918"
+    task :link_quality_element_to_service_types => :environment do
+      require 'csv'
+      QualityElementServiceType.truncate
+
+      CSV.foreach("#{Rails.root}/data/CSV/quality_element_service_type.csv", :headers => true) do |row|
+        puts "importing #{row['service_type'].strip} :: #{row['quality_element'].strip}"
+         service_type = ServiceType.find_by_name!( row['service_type'].strip )
+         quality_element = QualityElement.find_by_name!( row['quality_element'].strip )
+
+         qest = QualityElementServiceType.new(quality_element_id: quality_element.id,
+                                              service_type_id: service_type.id)
+         qest.save
+      end
+    end
   end
 end

@@ -1,9 +1,40 @@
 OusdCommunityPartners::Application.routes.draw do
-  devise_for :users
-  resources :schools
+  devise_for :users, path: "auth", controllers: { registrations: "users/registrations" }
+
+  resources :users do
+    member do
+      post :send_invitation
+    end
+  end
+
+  devise_scope :user do
+    get '/sign_in' => 'devise/sessions#new'
+    get '/sign_out' => 'devise/sessions#destroy'
+    get '/sign_up' => 'devise/registrations#new'
+  end
+  
+
+  resources :schools do
+    member do
+      get :primary_contact_input
+    end
+  end
+
   resources :community_partners
-  resources :organizations
-  resources :school_quality_indicator_sub_areas
+
+  resources :organizations do
+    member do
+      get :primary_contact_input
+    end
+  end
+  
+  resources :quality_elements do
+    member do
+      get :service_type_inputs
+    end
+  end
+
+  resources :service_types
 
   resources :api do
     collection do

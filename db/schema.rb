@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130910213826) do
+ActiveRecord::Schema.define(version: 20130925171212) do
+
+  create_table "community_partner_quality_element_service_types", force: true do |t|
+    t.integer  "community_partner_quality_element_id"
+    t.integer  "service_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "community_partner_quality_element_service_types", ["community_partner_quality_element_id", "service_type_id"], name: "cpqest_cpqeid_stid", using: :btree
+  add_index "community_partner_quality_element_service_types", ["service_type_id", "community_partner_quality_element_id"], name: "cpqest_stid_cpqeid", using: :btree
+
+  create_table "community_partner_quality_elements", force: true do |t|
+    t.integer  "community_partner_id"
+    t.integer  "quality_element_id"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "community_partner_quality_elements", ["community_partner_id", "quality_element_id"], name: "cpqe_cpi_qei", using: :btree
+  add_index "community_partner_quality_elements", ["quality_element_id", "community_partner_id"], name: "cpqe_qei_cpi", using: :btree
 
   create_table "community_partners", force: true do |t|
     t.integer  "school_id"
@@ -25,11 +46,20 @@ ActiveRecord::Schema.define(version: 20130910213826) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "notes"
+    t.integer  "quality_element_id"
+    t.integer  "user_id"
+    t.integer  "school_user_id"
+    t.text     "service_description"
+    t.string   "target_population"
+    t.string   "service_time_of_day"
+    t.boolean  "site_agreement_on_file"
   end
 
   add_index "community_partners", ["organization_id"], name: "index_community_partners_on_organization_id", using: :btree
   add_index "community_partners", ["school_id"], name: "index_community_partners_on_school_id", using: :btree
+  add_index "community_partners", ["school_user_id"], name: "index_community_partners_on_school_user_id", using: :btree
   add_index "community_partners", ["service_type_id"], name: "index_community_partners_on_service_type_id", using: :btree
+  add_index "community_partners", ["user_id"], name: "index_community_partners_on_user_id", using: :btree
 
   create_table "organizations", force: true do |t|
     t.string   "name"
@@ -41,6 +71,21 @@ ActiveRecord::Schema.define(version: 20130910213826) do
     t.string   "zip_code"
     t.string   "phone_number"
     t.text     "notes"
+    t.boolean  "mou_on_file"
+  end
+
+  create_table "quality_element_service_types", force: true do |t|
+    t.integer  "quality_element_id"
+    t.integer  "service_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "quality_elements", force: true do |t|
+    t.string   "name"
+    t.string   "element_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "regions", force: true do |t|
@@ -117,22 +162,39 @@ ActiveRecord::Schema.define(version: 20130910213826) do
   add_index "user_roles", ["role_id", "user_id"], name: "index_user_roles_on_role_id_and_user_id", using: :btree
   add_index "user_roles", ["user_id", "role_id"], name: "index_user_roles_on_user_id_and_role_id", using: :btree
 
+  create_table "user_schools", force: true do |t|
+    t.integer  "school_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "subdomain"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                             default: "",    null: false
+    t.string   "encrypted_password",                default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                     default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "phone_number"
+    t.integer  "organization_id"
+    t.string   "invitation_token",       limit: 60
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.integer  "invited_by_id"
+    t.string   "invited_by_type"
+    t.boolean  "active",                            default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

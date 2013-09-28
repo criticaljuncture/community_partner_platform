@@ -1,5 +1,5 @@
 <div class=" span12">
-  <h2>School Quality Indicator Sub Areas</h2>
+  <h2>Quality Elements</h2>
 
   <div class="graph_wrapper">
     <div class="instructions">
@@ -11,14 +11,14 @@
       </p>
       <p>
         The color of the dots on the graph below represents the October 2012 Enrollment as reported 
-        by CALPADS. Use the select list below to change the School Quality Area Sub Area that you want 
+        by CALPADS. Use the select list below to change the Quality Element that you want 
         to explore and click on any dot to view more details about a particular school.
       </p>
     </div>
 
     <%= form_tag '', class: 'scatter_plot_items' do %>
-      <%= select_tag 'school_quality_indicator_sub_areas', 
-                     options_from_collection_for_select(@school_quality_indicator_sub_areas, "id", "name") %>
+      <%= select_tag 'quality_elements', 
+                     options_from_collection_for_select(@quality_elements, "id", "name") %>
     <% end %>
 
     <div class="graph" id="scatter-plot"></div>

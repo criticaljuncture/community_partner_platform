@@ -14,27 +14,27 @@
       <dt>Community Partners</dt>
       <dd><%= @school.community_partners.count %></dd>
 
-      <dt>School Quality Indicator Sub Areas Covered</dt>
-      <dd><%= school_quality_indicator_sub_area_display(@school) %></dd>
+      <dt>Quality Elements Covered</dt>
+      <dd><%= quality_elements_coverage_display(@school) %></dd>
     </dl>
 
     <div class="table_wrapper span6">
-      <h2>School Quality Indicator Sub Areas</h2>
+      <h2>Quality Elements</h2>
 
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>School Quality Indicator Sub Area</th>
+            <th>Quality Element</th>
             <th class="center">Community Partners</th>
           </tr>
         </thead>
 
         <tbody>
-          <% SchoolQualityIndicatorSubArea.all.sort_by(&:name).each do |indicator| %>
+          <% QualityElement.accessible_by(current_ability).sort_by(&:name).each do |element| %>
             <tr>
-              <td><%= link_to indicator.try(:name), school_quality_indicator_sub_area_path(indicator) %></td>
+              <td><%= link_to element.name, quality_element_path(element) %></td>
               <td class="center">
-                <%= community_partner_count_for_indictor(indicator, @school) %>
+                <%= community_partner_count_for_element(element, @school) %>
               </td>
             </tr>
           <% end %>
@@ -49,8 +49,8 @@
         <thead>
           <tr>
             <th>Organization</th>
-            <th class="center">School Quality Indicator Sub Area</th>
-            <th class="center">Service Type</th>
+            <th class="center">Quality Element</th>
+            <th class="">Service Types</th>
           </tr>
         </thead>
 
@@ -58,8 +58,8 @@
           <% @school.community_partners.each do |community_partner| %>
             <tr>
               <td><%= link_to community_partner.organization.try(:name), community_partner_path(community_partner) %></td>
-              <td class="center"><%= community_partner.school_quality_indicator_sub_area.try(:name) %></td>
-              <td class="center"><%= community_partner.service_type.try(:name) %></td>
+              <td class="center"><%= community_partner.quality_element.try(:name) %></td>
+              <td><%= community_partner.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
             </tr>
           <% end %>
         </tbody>

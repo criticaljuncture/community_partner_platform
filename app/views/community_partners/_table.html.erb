@@ -2,9 +2,9 @@
   <table class="table table-striped table-hover table-sorter community_partners">
     <thead>
       <tr>
-        <th class="sqisa">School Quality Indicator Sub Area</th>
+        <th class="sqisa">Quality Element</th>
         <th class="organization">Organization</th>
-        <th class="service">Service Type</th>
+        <th class="service">Service Types</th>
         <th class="actions sorter-false filter-false"></th>
       </tr>
     </thead>
@@ -12,12 +12,12 @@
     <tbody>
       <% community_partners.each do |community_partner| %>
         <tr>
-          <td class="sqisa"><%= community_partner.school_quality_indicator_sub_area.try(:name) %></td>
+          <td class="sqisa"><%= community_partner.quality_element.try(:name) %></td>
           <td class="organization">
-            <%= link_to(community_partner.organization.try(:name), organization_path(community_partner.organization)) if community_partner.organization.present? %>
+            <%= link_to(community_partner.organization.name, organization_path(community_partner.organization)) if community_partner.organization.present? %>
           </td>
-          <td class="service"><%= community_partner.service_type.try(:name) %></td>
-          <td class="actions">
+          <td class="service"><%= community_partner.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
+          <td class="actions center">
             <%= link_to 'view', community_partner_path(community_partner), class: "btn btn-info btn-small" %>
             <%= link_to 'edit', edit_community_partner_path(community_partner), class: "btn btn-info btn-small" %>
           </td>

@@ -1,12 +1,19 @@
+<h2>Organization Information</h2>
 <%= f.inputs do %>
   <%= f.input :name %>
 
   <%= f.input :url, placeholder: "http://example.com" %>
-  <%= f.input :phone_number, placeholder: "510-867-5309" %>
+  <%= f.input :phone_number, placeholder: "555-555-5555" %>
 
   <%= f.input :address %>
   <%= f.input :city %>
   <%= f.input :zip_code %>
+<% end %>
+
+<h2>District Details</h2>
+<%= f.inputs do %> 
+  <%= f.input :mou_on_file,
+              label: "MOU or contract on file with the District" %>
 
   <%= f.input :notes %>
 <% end %>

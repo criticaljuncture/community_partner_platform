@@ -1,0 +1,45 @@
+<%= breadcrumb [['Users', users_path], [@user.full_name, user_path(@user)]] %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="header">
+      <h1><%= @user.full_name %></h1>
+      <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary" %>
+    </div>
+
+
+    <dl class="horizontal_stack span3">
+      <dt>Name</dt>
+      <dd><%= @user.full_name %></dd>
+
+      <dt>Email</dt>
+      <dd><%= @user.email %></dd>
+
+      <dt>Phone Number</dt>
+      <dd><%= number_to_phone(@user.phone_number) %></dd>
+    </dl>
+
+    <dl class="horizontal_stack span3">
+      <dt>Role</dt>
+      <dd><%= @user.primary_role.name %></dd>
+
+      <% if @user.role?(:school_manager) %>
+        <dt>Schools</dt>
+        <dd><%= @user.schools.map{|s| link_to(s.name, school_path(s))}.join(', <br />').html_safe %></dd>
+      <% end %>
+
+      <% if @user.role?(:community_member) %>
+        <dt>Organization</dt>
+        <dd><%= link_to(@user.organization.name, organization_path(@user.organization)) %></dd>
+      <% end %>
+    </dl>
+
+    <dl class="horizontal_stack span3">
+      <dt>Active</dt>
+      <dd><%= @user.active.to_s %></dd>
+
+      <dt>Invitation Status</dt>
+      <dd><%= invitation_status_for(@user) %></dd>
+    </dl>
+  </div>
+</div>

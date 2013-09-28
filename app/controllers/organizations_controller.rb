@@ -1,11 +1,13 @@
 class OrganizationsController < ApplicationController
+  authorize_resource
+
   def index
-    @organizations = Organization.includes(community_partners: :school).all
+    @organizations = Organization.accessible_by(current_ability).includes(community_partners: :school).sort_by(&:name)
   end
 
   def show
-    @organization = Organization.find(params[:id])
-    @community_partnerships = CommunityPartner.where(organization_id: @organization.id)
+    @organization = Organization.accessible_by(current_ability).find(params[:id])
+    @community_partnerships = CommunityPartner.accessible_by(current_ability).where(organization_id: @organization.id).includes(:school).order("schools.id asc")
   end
 
   def new
@@ -20,14 +22,20 @@ class OrganizationsController < ApplicationController
   end
 
   def edit
-    @organization = Organization.find(params[:id])
+    @organization = Organization.accessible_by(current_ability).find(params[:id])
   end
 
   def update
-    @organization = Organization.find(params[:id])
+    @organization = Organization.accessible_by(current_ability).find(params[:id])
     @organization.update_attributes(organization_params)
 
     redirect_to organization_path(@organization)
+  end
+
+  def primary_contact_input
+    @organization = Organization.accessible_by(current_ability).includes(:users).find(params[:id])
+
+    render "/community_partners/primary_contact_input", layout: false
   end
 
   private

@@ -39,12 +39,12 @@ $(document).ready(function() {
 
     school_data = data;
 
-    var school_quality_indicator_id = parseInt($('#school_quality_indicator_sub_areas option').first().val(), 10);
+    var quality_element_id = parseInt($('#quality_elements option').first().val(), 10);
 
     data = _.map(school_data.schools, function(school) {
       return {
         frpm: school.frpm_percent_eligible_k_12[0] === undefined ? 0 : +school.frpm_percent_eligible_k_12[0].percent, 
-        partner_count: _.filter(school.sub_area_counts, function(sub_area) { return sub_area.sub_area_id === school_quality_indicator_id})[0].count,
+        partner_count: _.filter(school.sub_area_counts, function(sub_area) { return sub_area.sub_area_id === quality_element_id})[0].count,
         id: school.id,
         enrollment: school.frpm_percent_eligible_k_12[0] === undefined ? 0 : +school.frpm_percent_eligible_k_12[0].enrollment,
         name: school.name
@@ -138,14 +138,14 @@ $(document).ready(function() {
         window.location.href = this.getAttribute('data-url');
       });
 
-      $('#school_quality_indicator_sub_areas').on('change', function(event) {
-        var school_quality_indicator_id = parseInt( $(this).val(), 10);
+      $('#quality_elements').on('change', function(event) {
+        var quality_element_id = parseInt( $(this).val(), 10);
 
         data = _.map(school_data.schools, function(school) {
-
+          console.log('s', school);
           return {
             frpm: school.frpm_percent_eligible_k_12[0] === undefined ? 0 : +school.frpm_percent_eligible_k_12[0].percent, 
-            partner_count: _.filter(school.sub_area_counts, function(sub_area) { return sub_area.sub_area_id === school_quality_indicator_id})[0].count,
+            partner_count: _.filter(school.sub_area_counts, function(sub_area) { return sub_area.sub_area_id === quality_element_id})[0].count,
             id: school.id,
             enrollment: school.frpm_percent_eligible_k_12[0] === undefined ? 0 : +school.frpm_percent_eligible_k_12[0].enrollment,
             name: school.name
@@ -176,4 +176,4 @@ $(document).ready(function() {
             .remove();
       });
   });
-});
+}); 

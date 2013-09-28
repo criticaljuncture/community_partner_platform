@@ -1,0 +1,9 @@
+<%= f.inputs do %>
+  <%= f.input :name %>
+  <%= f.input :quality_elements,
+              collection: QualityElement.accessible_by(current_ability).order(:name) %>
+<% end %>
+
+<%= f.actions do %>
+  <%= f.button 'Save', class: "btn btn-success" %>
+<% end %>

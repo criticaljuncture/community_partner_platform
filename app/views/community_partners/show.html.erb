@@ -1,3 +1,5 @@
+<%= breadcrumb [['Community Partnerships', community_partners_path()], ['View Community Partnership', community_partner_path(@community_partner)]] %>
+
 <div class="row-fluid">
   <div class="span12">
     <div class="header">
@@ -7,27 +9,56 @@
       </h1>
     </div>
 
-    <div class="table_wrapper">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Organization</th>
-            <th>School</th>
-            <th>Service Type</th>
-            <th>School Quality Indicator Sub Area</th>
-          </tr>
-        </thead>
+    <div class="detail_wrapper community_partnership_details">
+      <h2>Partnership Details</h2>
+      <dl class="horizontal_stack span3">
+        <dt>Organization</dt>
+        <dd><%= link_to @community_partner.organization.name, organization_path(@community_partner.organization) %></dd>
 
-        <tbody>
-          <tr>
-            <td><%= link_to @community_partner.organization.try(:name), community_partner_path(@community_partner) %></td>
-            <td><%= link_to @community_partner.school.try(:name), school_path(@community_partner.school) %></td>
-            <td><%= @community_partner.school_quality_indicator_sub_area.try(:name) %></td>
-            <td><%= @community_partner.service_type.try(:name) %></td>
-          </tr>
-        </tbody>
-      </table>
+        <dt>Primary Organization Contact</dt>
+        <dd><%= link_to @community_partner.user.full_name, user_path( @community_partner.user ) %></dd>
+      </dl>
+      <dl class="horizontal_stack span3">
+        <dt>School</dt>
+        <dd><%= link_to @community_partner.school.try(:name), school_path(@community_partner.school) %></dd>
+
+        <dt>Primary School Contact</dt>
+        <dd><%= link_to(@community_partner.school_user.full_name, user_path( @community_partner.school_user )) if @community_partner.school_user.present? %></dd>
+      </dl>
+      <dl class="horizontal_stack span5">
+        <dt>Primary Quality Element</dt>
+        <dd><%= @community_partner.primary_quality_element.name %></dd>
+        
+        <dt>Primary Service Types</dt>
+        <dd><%= @community_partner.primary_service_types.map{|st| st.name}.join(', <br />').html_safe %></dd>
+
+        <% if @community_partner.secondary_quality_element.present? %>
+          <dt>Secondary Quality Element</dt>
+          <dd><%= @community_partner.secondary_quality_element.name %></dd>
+
+          <dt>Secondary Service Types</dt>
+          <dd><%= @community_partner.secondary_service_types.map{|st| st.name}.join(', <br />').html_safe %></dd>
+        <% end %>
+      </dl>
     </div>
 
+    <div class="detail_wrapper community_partnership_description">
+      <h2>Partnership Description</h2>
+      <dl class="horizontal_stack span4">
+        <dt>Service Description</dt>
+        <dd><%= @community_partner.service_description %></dd>
+      </dl>
+      <dl class="horizontal_stack span3">
+        <dt>Service Time of Day</dt>
+        <dd><%=@community_partner.service_time_of_day %></dd>
+
+        <dt>Target Population</dt>
+        <dd><%= @community_partner.target_population %></dd>
+      </dl>
+      <dl class="horizontal_stack span3">
+        <dt>Site Agreement on File</dt>
+        <dd><%=@community_partner.site_agreement_on_file %></dd>
+      </dl>
+    </div>
   </div>
 </div>

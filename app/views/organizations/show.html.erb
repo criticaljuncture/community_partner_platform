@@ -1,8 +1,10 @@
+<%= breadcrumb [['Partner Organizations', organizations_path], [@organization.name, organization_path(@organization)]] %>
+
 <div class="row-fluid">
   <div class="span12">
     <div class="header">
       <h1><%= @organization.name %></h1>
-      <%= link_to 'Edit', edit_organization_path(@organization), class: "btn btn-primary" %>
+      <%= link_to('Edit', edit_organization_path(@organization), class: "btn btn-primary") if can?(:update, @organization) %>
     </div>
 
     <div class="table_wrapper">
@@ -10,18 +12,20 @@
       <thead>
         <tr>
           <th>School</th>
-          <th>School Quality Indicator Sub Area</th>
-          <th>Service Type</th>
+          <th>Quality Element</th>
+          <th>Service Types</th>
         </tr>
       </thead>
 
       <tbody>
-        <% @community_partnerships.each do |community_partnership| %>
+        <% @community_partnerships.group_by(&:school).each do |school, community_partnerships| %>
+          <% community_partnerships.each do |community_partnership| %>
           <tr>
-            <td><%= link_to community_partnership.school.try(:name), school_path(community_partnership.school) %></td>
-            <td><%= community_partnership.school_quality_indicator_sub_area.try(:name) %></td>
-            <td><%= community_partnership.service_type.try(:name) %></td>
+            <td><%= link_to school.try(:name), school_path(school) %></td>
+            <td><%= community_partnership.quality_element.try(:name) %></td>
+            <td><%= community_partnership.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
           </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table> 

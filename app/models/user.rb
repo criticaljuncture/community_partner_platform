@@ -13,11 +13,13 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :invitable
 
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, uniqueness: true
+
   validates :roles, presence: true
   validates :primary_role, presence: true
 
@@ -28,6 +30,9 @@ class User < ActiveRecord::Base
             if: -> { role?(:school_manager) }
 
   after_validation :remove_improper_associations_based_on_role
+
+  after_invitation_accepted :activate_user
+
   scope :active,  -> { where(active: true) }
 
   scope :inactive, -> { where(active: false) }
@@ -35,6 +40,11 @@ class User < ActiveRecord::Base
   def role?(role)
     roles.map{|r| r.identifier.to_sym}.include?(role)
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def primary_role
     @primary_role || roles.try(:first)
   end
@@ -54,4 +64,21 @@ class User < ActiveRecord::Base
     !admin_creation
   end
 
+  private
+
+  def remove_improper_associations_based_on_role
+    return unless self.roles.present?
+
+    role = self.roles.first.identifier
+
+    case role
+    when :super_admin, :district_manager
+      self.schools = []
+      self.organization = nil
+    when :school_manager
+      self.organization = nil
+    when :organization_member
+      self.schools = []
+    end
+  end
 end

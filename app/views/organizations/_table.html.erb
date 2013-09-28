@@ -4,8 +4,11 @@
       <tr>
         <th>Organization</th>
         <th class="center">Schools</th>
-        <th>School Quality Indicator Sub Area</th>
-        <th>Service Type</th>
+        <th>Quality Elements</th>
+        <th>Service Types</th>
+        <% if can?(:read, :organization_users) %>
+          <th>Assigned Users</th>
+        <% end %>
         <th class="sorter-false filter-false"></th>
       </tr>
     </thead>
@@ -15,8 +18,11 @@
         <tr>
           <td><%= organization.try(:name) %></td>
           <td class="center"><%= organization.schools.count %></td>
-          <td><%= organization.community_partners.map{|cp| cp.school_quality_indicator_sub_area.try(:name)}.uniq.join(', ') %></td>
-          <td><%= organization.community_partners.map{|cp| cp.service_type.try(:name)}.uniq.join(', ') %></td>
+          <td><%= organization.quality_elements.uniq.map{|qe| qe.name}.join(', <br />').html_safe %></td>
+          <td><%= organization.service_types.uniq.map{|cp| cp.name}.join(', <br />').html_safe %></td>
+          <% if can?(:read, :organization_users) %>
+            <td><%= organization.users.count %></td>
+          <% end %>
           <td class="center buttons">
             <%= link_to 'view', organization_path(organization), class: "btn btn-small btn-info" %>
             <%= link_to 'edit', edit_organization_path(organization), class: "btn btn-small btn-info" %>

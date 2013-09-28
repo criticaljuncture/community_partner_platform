@@ -1,9 +1,65 @@
+<h2>Partnership Details</h2>
 <%= f.inputs do %>
-  <%= f.input :organization_id, :as => :select, :collection => Organization.all.sort_by(&:name) %>
-  <%= f.input :school_id, :as => :select, :collection => School.all.sort_by(&:name) %>
-  <%= f.input :school_quality_indicator_sub_area_id, :as => :select, :collection => SchoolQualityIndicatorSubArea.all.sort_by(&:name) %>
-  <%= f.input :service_type_id, :as => :select, :collection => ServiceType.all.sort_by(&:name) %>
+  <%= f.input :organization_id, 
+              as: :select, 
+              collection: Organization.accessible_by(current_ability).with_users.sort_by(&:name),
+              required: true %>
+  <%= f.input :user_id, 
+              as: :select,
+              collection: User.accessible_by(current_ability).where(organization_id: @community_partner.organization_id).sort_by(&:full_name),
+              label: "Primary organization contact",
+              required: true %> 
+          
+  <%= f.input :school_id, 
+              as: :select,
+              collection: School.accessible_by(current_ability).sort_by(&:name),
+              required: true %>
+  <%= f.input :school_user_id, 
+              as: :select,
+              collection: User.accessible_by(current_ability).includes(:schools).where(schools: {id: @community_partner.school_id}).sort_by(&:full_name),
+              label: "Primary school contact",
+              required: false %> 
 
+  <%= f.input :site_agreement_on_file %>
+  
+  <%= f.semantic_fields_for :primary_quality_element do |element| %>
+    <%= element.input :quality_element_id, 
+                as: :select, 
+                collection: QualityElement.accessible_by(current_ability).sort_by(&:name),
+                required: true,
+                label: "Primary community schools element" %>
+    <%= element.input :service_type_ids, 
+              as: :check_boxes,
+              collection: ServiceType.accessible_by(current_ability).includes(:quality_elements).where(quality_elements: {id: @community_partner.primary_quality_element.quality_element_id}).sort_by(&:name),
+              required: true,
+              label: "Primary service types" %>
+  <% end %>
+          
+  <%= f.semantic_fields_for :secondary_quality_element do |element| %>
+    <%= element.input :quality_element_id, 
+                as: :select, 
+                collection: QualityElement.accessible_by(current_ability).sort_by(&:name),
+                required: true,
+                label: "Secondary community schools element" %>
+    
+    <%= element.input :service_type_ids, 
+              as: :check_boxes,
+              collection: ServiceType.accessible_by(current_ability).includes(:quality_elements).where(quality_elements: {id: @community_partner.secondary_quality_element.quality_element_id}).sort_by(&:name),
+              required: false,
+              label: "Secondary service types" %>
+  <% end %>
+  
+<% end %>
+
+<h2>Partnership Description</h2>
+<%= f.inputs do %>
+  <%= f.input :service_description %>
+  <%= f.input :target_population %>
+  <%= f.input :service_time_of_day %>
+<% end %>
+
+<h2>Internal Details</h2>
+<%= f.inputs do %>
   <%= f.input :notes %>
 <% end %>
 

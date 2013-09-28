@@ -46,6 +46,8 @@ gem 'active_model_serializers'
 gem "d3_rails", "~> 3.2.4"
 
 gem "devise", "~> 3.1.0"
+gem "devise_invitable", 
+    :github => "scambra/devise_invitable"
 gem "cancan", "~> 1.6.10"
 
 group :development, :test do

@@ -1,0 +1,23 @@
+<%= breadcrumb [['Users', users_path]] %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="header">
+      <h1>Users</h1>
+      <%= link_to 'Create New User', new_user_path, class: "btn btn-primary" %>
+    </div>
+
+    <%= page_nav_tabs [['Active Users', '#active'],
+                       ['Inactive Users', '#inactive']] %>
+
+    <div class="tab-content">
+      <div id="active" class="tab-pane active">
+        <%= render partial: 'active_table', locals: {users: @active_users} %> 
+      </div>
+
+      <div id="inactive" class="tab-pane">
+        <%= render partial: 'inactive_table', locals: {users: @inactive_users} %> 
+      </div>
+    </div>
+  </div>
+</div>
