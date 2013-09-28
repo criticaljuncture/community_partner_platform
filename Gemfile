@@ -1,10 +1,14 @@
 source 'https://rubygems.org'
 
+# Remove annoying messages from default webrick
+gem 'webrick', '1.3.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.rc1'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
@@ -52,6 +56,9 @@ group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
   gem "zeus"
+
+  # don't log asset loading as it's too noisy
+  gem "quiet_assets"
 end
 
 group :doc do
