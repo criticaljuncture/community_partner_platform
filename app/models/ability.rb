@@ -15,6 +15,11 @@ class Ability
       can :manage, QualityElement
       can :manage, ServiceType
       can :read, :organization_users
+      can :read, Day
+      can :read, ServiceTime
+      can :read, StudentPopulation
+      can :read, GradeLevel
+      can :read, DemographicGroup
     else
       can :read, School
       can :read, CommunityPartner

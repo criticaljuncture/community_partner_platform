@@ -99,3 +99,91 @@ regions.each do |name|
   r.save
 end
 
+days = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday"
+]
+
+Day.truncate
+days.each do |name|
+  d = Day.new(name: name)
+  d.save
+end
+
+demographic_groups  = [
+  "African American",
+  "Asian",
+  "Latino",
+  "Native American",
+  "Pacific Islander",
+  "White",
+  "English Language Learners",
+  "Foster Youth",
+  "Homeless Youth",
+  "Juvenile Justice/Probation Youth",
+  "Special Needs Students"
+]
+
+DemographicGroup.truncate
+demographic_groups.each do |name|
+  d = DemographicGroup.new(name: name)
+  d.save
+end
+
+grade_levels  = [
+  "Pre-Kingergarten",
+  "Transitional Kindergarten",
+  "Kindergarten",
+  "1st Grade",
+  "2nd Grade",
+  "3rd Grade",
+  "4th Grade",
+  "5th Grade",
+  "6th Grade",
+  "7th Grade",
+  "8th Grade",
+  "9th Grade",
+  "10th Grade",
+  "11th Grade",
+  "12th Grade",
+  "Post-Secondary"
+]
+
+GradeLevel.truncate
+grade_levels.each do |name|
+  gl = GradeLevel.new(name: name)
+  gl.save
+end
+
+student_populations = [
+  "All Students",
+  "Female Students",
+  "Male Students"
+]
+
+StudentPopulation.truncate
+student_populations.each do |name|
+  sp = StudentPopulation.new(name: name)
+  sp.save
+end
+
+
+service_times = [
+  "Advisory",
+  "After school",
+  "Before school",
+  "During school",
+  "Summer"
+]
+
+ServiceTime.truncate
+service_times.each do |name|
+  st = ServiceTime.new(name: name)
+  st.save
+end
+

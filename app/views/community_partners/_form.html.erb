@@ -1,5 +1,10 @@
 <h2>Partnership Details</h2>
 <%= f.inputs do %>
+  <%= f.input :name,
+              label: "Partnership name",
+              hint: "Used to differentiate partnerships - does not need to be an official name",
+              required: true %>
+
   <%= f.input :organization_id, 
               as: :select, 
               collection: Organization.accessible_by(current_ability).with_users.sort_by(&:name),
@@ -21,6 +26,9 @@
               required: false %> 
 
   <%= f.input :site_agreement_on_file %>
+  <%= f.input :mou_on_file,
+              label: "MOU or contract on file with the District" %>
+  <%= f.input :legislative_file_number %>
   
   <%= f.semantic_fields_for :primary_quality_element do |element| %>
     <%= element.input :quality_element_id, 
@@ -39,7 +47,7 @@
     <%= element.input :quality_element_id, 
                 as: :select, 
                 collection: QualityElement.accessible_by(current_ability).sort_by(&:name),
-                required: true,
+                required: false,
                 label: "Secondary community schools element" %>
     
     <%= element.input :service_type_ids, 
@@ -54,8 +62,30 @@
 <h2>Partnership Description</h2>
 <%= f.inputs do %>
   <%= f.input :service_description %>
-  <%= f.input :target_population %>
-  <%= f.input :service_time_of_day %>
+
+  <%= f.input :student_population,
+              as: :select,
+              collection: StudentPopulation.accessible_by(current_ability),
+              label: "Target student population" %>
+  
+  <%= f.input :demographic_groups,
+              as: :check_boxes,
+              collection: DemographicGroup.accessible_by(current_ability).sort_by(&:name),
+              label: "Target demographic groups" %>
+  <%= f.input :grade_levels,
+              as: :check_boxes,
+              collection: GradeLevel.accessible_by(current_ability),
+              label: "Target grade levels" %>
+
+  <%= f.input :service_times,
+              as: :check_boxes,
+              collection: ServiceTime.accessible_by(current_ability),
+              label: "Service times" %>
+
+  <%= f.input :service_days,
+              as: :check_boxes,
+              collection: Day.accessible_by(current_ability),
+              label: "Service days" %>
 <% end %>
 
 <h2>Internal Details</h2>
