@@ -5,6 +5,9 @@ class CommunityPartner < ActiveRecord::Base
   belongs_to :organization
   belongs_to :student_population
 
+  has_many :community_partner_quality_elements
+  has_many :quality_elements, through: :community_partner_quality_elements
+
   has_one :primary_quality_element,
           ->{where type: "PrimaryQualityElement"},
           class_name: CommunityPartnerQualityElement
