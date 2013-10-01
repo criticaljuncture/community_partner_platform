@@ -8,6 +8,8 @@ class CommunityPartner < ActiveRecord::Base
   has_many :community_partner_quality_elements
   has_many :quality_elements, through: :community_partner_quality_elements
 
+  has_many :service_types, through: :quality_elements
+
   has_one :primary_quality_element,
           ->{where type: "PrimaryQualityElement"},
           class_name: CommunityPartnerQualityElement

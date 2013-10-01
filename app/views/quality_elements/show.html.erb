@@ -42,7 +42,7 @@
             <% community_partners.each do |community_partner| %>
               <tr>
                 <td><%= link_to community_partner.organization.try(:name), community_partner_path(community_partner) %></td>
-                <td><%= community_partner.quality_element.name %></td>
+                <td><%= community_partner.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
                 <td><%= community_partner.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
               </tr>
             <% end %>

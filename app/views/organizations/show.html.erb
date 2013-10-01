@@ -22,7 +22,7 @@
           <% community_partnerships.each do |community_partnership| %>
           <tr>
             <td><%= link_to school.try(:name), school_path(school) %></td>
-            <td><%= community_partnership.quality_element.try(:name) %></td>
+            <td><%= community_partnership.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
             <td><%= community_partnership.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
           </tr>
           <% end %>
