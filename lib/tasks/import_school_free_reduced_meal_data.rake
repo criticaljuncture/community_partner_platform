@@ -2,6 +2,28 @@ namespace :import do
   require 'csv'
 
   namespace :school do
+    task :from_state_data => :environment do
+      invalid_school_year = "\n\n************\n Must supply a school year in the format 'school_year=2012-2013' \n************\n\n"
+      raise invalid_school_year unless ENV['school_year'] && ENV['school_year'] =~ /^\d{4}\-\d{4}$/
+
+      school_year = ENV['school_year']
+      school_year_file_format = "#{school_year.slice(0..3)}_#{school_year.slice(5..8)}"
+
+      CSV.foreach("#{Rails.root}/data/CSV/ousd_free_reduced_meal_#{school_year_file_format}.csv", :headers => true) do |row|
+        school_name = row['school_name'].strip
+        school_code = row['school_code'].strip
+
+        school = School.new(name: school_name, school_code: school_code)
+        school.school_code = row['school_code'].strip
+
+        charter_number = row['direct_funded_charter_school_number'].strip
+        school.direct_funded_charter_school = charter_number.blank? ? false : true
+        school.direct_funded_charter_school_number = charter_number
+
+        school.save
+      end
+    end
+
     # see doc/free_reduced_meals.md for field details
     task :free_reduced_meal_data => :environment do
       invalid_school_year = "\n\n************\n Must supply a school year in the format 'school_year=2012-2013' \n************\n\n"
