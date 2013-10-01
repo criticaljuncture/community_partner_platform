@@ -83,7 +83,7 @@ service_types = [
 ServiceType.truncate
 service_types.each do |name|
   st = ServiceType.new(name: name)
-  st.save
+  st.save(validate: false)
 end
 
 regions = [
