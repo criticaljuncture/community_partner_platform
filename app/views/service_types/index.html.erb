@@ -26,9 +26,9 @@
               <tr>
                 <td><%= service_type.name %></td>
                 <td><%= quality_element.name %></td>
-                <td class="center"><%= service_type.schools.count %></td>
-                <td class="center"><%= service_type.community_partners.count %></td>
-                <td class="center"><%= service_type.organizations.count %></td>
+                <td class="center"><%= quality_element.schools.count %></td>
+                <td class="center"><%= quality_element.community_partners.count %></td>
+                <td class="center"><%= quality_element.organizations.count %></td>
                 <td class="actions center">
                   <%= link_to 'view', service_type_path(service_type), class: "btn btn-small btn-info" %>
                   <%= link_to 'edit', edit_service_type_path(service_type), class: "btn btn-small btn-info" %>
