@@ -27,8 +27,7 @@
 
   <%= f.input :site_agreement_on_file %>
   <%= f.input :mou_on_file,
-              label: "MOU or contract on file with the District" %>
-  <%= f.input :legislative_file_number %>
+              label: "MOU or contract on file with the District" %> 
   
   <%= f.semantic_fields_for :primary_quality_element do |element| %>
     <%= element.input :quality_element_id, 
