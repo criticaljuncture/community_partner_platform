@@ -26,14 +26,14 @@
         <dd><%= link_to(@community_partner.school_user.full_name, user_path( @community_partner.school_user )) if @community_partner.school_user.present? %></dd>
       </dl>
       <dl class="horizontal_stack span5">
-        <dt>Primary Quality Element</dt>
+        <dt>Primary Community School Element</dt>
         <dd><%= @community_partner.primary_quality_element.name %></dd>
         
         <dt>Primary Service Types</dt>
         <dd><%= @community_partner.primary_service_types.map{|st| st.name}.join(', <br />').html_safe %></dd>
 
         <% if @community_partner.secondary_quality_element.present? %>
-          <dt>Secondary Quality Element</dt>
+          <dt>Secondary Community School Element</dt>
           <dd><%= @community_partner.secondary_quality_element.name %></dd>
 
           <dt>Secondary Service Types</dt>
