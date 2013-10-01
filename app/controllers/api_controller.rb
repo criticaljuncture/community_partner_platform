@@ -55,14 +55,15 @@ class ApiController < ApplicationController
   end
 
   def schools
-    @schools = School.accessible_by(current_ability).includes(:community_partners, :organizations, :quality_elements).all
+    #@schools = School.accessible_by(current_ability).includes(:community_partners, :organizations, :quality_elements).all
 
-    max_partner_count = @schools.map do |school| 
-                          school.quality_elements.group_by(&:id).map do |id, quality_elements| 
-                            quality_elements.count
-                          end.compact.max
-                        end.compact.max
+    #max_partner_count = @schools.map do |school| 
+    #                      school.quality_elements.group_by(&:id).map do |id, quality_elements| 
+    #                        quality_elements.count
+    #                      end.compact.max
+    #                    end.compact.max
 
-    render json: @schools, root: "schools", meta: {max_partner_count: max_partner_count} 
+    #render json: @schools, root: "schools", meta: {max_partner_count: max_partner_count} 
+    render json: {}
   end
 end
