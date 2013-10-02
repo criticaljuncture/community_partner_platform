@@ -9,7 +9,7 @@
 
     <dl>
       <dt>Region</dt>
-      <dd><%= @school.region.try(:name) %></dd>
+      <dd><%= @school.region.try(:name) || '&nbsp;'.html_safe %></dd>
 
       <dt>Community Partners</dt>
       <dd><%= @school.community_partners.count %></dd>
