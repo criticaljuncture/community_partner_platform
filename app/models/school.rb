@@ -11,4 +11,6 @@ class School < ActiveRecord::Base
   has_many :users, through: :user_schools
 
   belongs_to :region
+
+  default_scope -> { where(direct_funded_charter_school: false) }
 end

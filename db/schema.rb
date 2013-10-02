@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131001175500) do
+ActiveRecord::Schema.define(version: 20131002194423) do
 
   create_table "community_partner_quality_element_service_types", force: true do |t|
     t.integer  "community_partner_quality_element_id"
@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(version: 20131001175500) do
     t.string   "school_code"
     t.boolean  "direct_funded_charter_school"
     t.string   "direct_funded_charter_school_number"
+    t.boolean  "active",                              default: true
   end
 
   add_index "schools", ["school_code"], name: "index_schools_on_school_code", using: :btree
