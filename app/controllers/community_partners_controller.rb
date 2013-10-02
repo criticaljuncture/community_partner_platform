@@ -47,7 +47,9 @@ class CommunityPartnersController < ApplicationController
   private
 
   def community_partner_params
-    params.require(:community_partner).permit(:notes, 
+    params.require(:community_partner).permit(:mou_on_file,
+                                              :name,
+                                              :notes, 
                                               :organization_id,
                                               :school_id,
                                               :school_user_id,
@@ -55,9 +57,12 @@ class CommunityPartnersController < ApplicationController
                                               :service_description,
                                               :service_time_of_day,
                                               :site_agreement_on_file,
+                                              :student_population_id,
                                               :target_population,
                                               :user_id,
-                                              :community_partner_quality_element_service_type_ids,
+                                              day_ids: [],
+                                              demographic_group_ids: [],
+                                              grade_level_ids: [],
                                               primary_quality_element_attributes: [
                                                 :id, 
                                                 :quality_element_id, 
@@ -67,7 +72,8 @@ class CommunityPartnersController < ApplicationController
                                                 :id, 
                                                 :quality_element_id, 
                                                 service_type_ids: []
-                                              ]
+                                              ],
+                                              service_time_ids: []
                                              )
   end
 end

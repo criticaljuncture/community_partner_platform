@@ -17,7 +17,7 @@
           
   <%= f.input :school_id, 
               as: :select,
-              collection: School.accessible_by(current_ability).sort_by(&:name),
+              collection: School.accessible_by(current_ability).where(active: true).sort_by(&:name),
               required: true %>
   <%= f.input :school_user_id, 
               as: :select,
@@ -81,7 +81,7 @@
               collection: ServiceTime.accessible_by(current_ability),
               label: "Service times" %>
 
-  <%= f.input :service_days,
+  <%= f.input :days,
               as: :check_boxes,
               collection: Day.accessible_by(current_ability),
               label: "Service days" %>
