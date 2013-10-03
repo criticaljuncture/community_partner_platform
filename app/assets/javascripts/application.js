@@ -9,4 +9,10 @@
 //= require jquery.tipsy.svg.js
 //= require jquery.parsequery.js
 //= require app.js
-//= require_tree .
+//= require user.js
+//= require user_form.js
+//= require schools.js
+//= require community_partner.js		
+//= require community_partner_form.js
+//= require service_types.js
+//= require tipsy.js
