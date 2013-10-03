@@ -62,6 +62,7 @@ class CommunityPartnersController < ApplicationController
                                               :user_id,
                                               day_ids: [],
                                               demographic_group_ids: [],
+                                              ethnicity_culture_group_ids: [],
                                               grade_level_ids: [],
                                               primary_quality_element_attributes: [
                                                 :id, 
