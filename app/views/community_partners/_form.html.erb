@@ -65,7 +65,12 @@
   <%= f.input :student_population,
               as: :select,
               collection: StudentPopulation.accessible_by(current_ability),
-              label: "Target student population" %>
+              label: "Target population" %>
+
+  <%= f.input :ethnicity_culture_groups,
+              as: :check_boxes,
+              collection: EthnicityCultureGroup.accessible_by(current_ability).sort_by(&:name),
+              label: "Target ethnicity/culture groups" %>
   
   <%= f.input :demographic_groups,
               as: :check_boxes,

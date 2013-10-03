@@ -25,6 +25,9 @@ class CommunityPartner < ActiveRecord::Base
            through: :secondary_quality_element,
            source: :service_types
 
+  has_many :community_partnership_ethnicity_culture_groups
+  has_many :ethnicity_culture_groups, through: :community_partnership_ethnicity_culture_groups
+
   has_many :community_partnership_demographic_groups
   has_many :demographic_groups, through: :community_partnership_demographic_groups
 

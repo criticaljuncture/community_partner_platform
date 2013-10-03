@@ -115,7 +115,7 @@ days.each do |name|
   d.save
 end
 
-demographic_groups  = [
+ethnicity_culture_groups  = [
   "African American",
   "Asian",
   "Latino",
@@ -129,11 +129,37 @@ demographic_groups  = [
   "Special Needs Students"
 ]
 
+EthnicityCultureGroup.truncate
+ethnicity_culture_groups.each do |name|
+  ecg = EthnicityCultureGroup.new(name: name)
+  ecg.save
+end
+
+demographic_groups = [
+  "All Students",
+  "By Application", 
+  "By Referral Only",
+  "Chronically Absent Youth",
+  "English Language Learners",
+  "Foster Youth",
+  "High Performing Youth",
+  "High Risk Youth (Drugs and Alcohol)",
+  "High Risk Youth (Violence)",
+  "Homeless Youth",
+  "Juvenile Justice/Probation Youth",
+  "LGBTQ Youth",
+  "Students with Disabilities",
+  "Students with Mental Health Needs",
+  "Students with Social Service Needs",
+  "Undocumented Students"
+]
+
 DemographicGroup.truncate
 demographic_groups.each do |name|
-  d = DemographicGroup.new(name: name)
-  d.save
+  dg = DemographicGroup.new(name: name)
+  dg.save
 end
+
 
 grade_levels  = [
   "Pre-Kingergarten",
@@ -163,7 +189,11 @@ end
 student_populations = [
   "All Students",
   "Female Students",
-  "Male Students"
+  "Male Students",
+  "Parents/ Families",
+  "Teachers",
+  "School Administrators",
+  "School Staff"
 ]
 
 StudentPopulation.truncate

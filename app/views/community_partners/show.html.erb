@@ -49,8 +49,11 @@
         <dd><%= @community_partner.service_description %></dd>
       </dl>
       <dl class="horizontal_stack span3">
-        <dt>Target Student Population</dt>
+        <dt>Target Population</dt>
         <dd><%= @community_partner.student_population.try(:name) %></dd>
+
+        <dt>Target Ethnicity/Culture Groups</dt>
+        <dd><%= @community_partner.ethnicity_culture_groups.map{|ecg| ecg.name}.join(', <br />').html_safe %></dd>
 
         <dt>Target Demographic Groups</dt>
         <dd><%= @community_partner.demographic_groups.map{|dg| dg.name}.join(', <br />').html_safe %></dd>

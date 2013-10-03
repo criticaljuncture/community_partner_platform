@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131002200708) do
+ActiveRecord::Schema.define(version: 20131003173104) do
 
   create_table "community_partner_quality_element_service_types", force: true do |t|
     t.integer  "community_partner_quality_element_id"
@@ -46,20 +46,15 @@ ActiveRecord::Schema.define(version: 20131002200708) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "notes"
+    t.integer  "quality_element_id"
     t.integer  "user_id"
     t.integer  "school_user_id"
     t.text     "service_description"
     t.string   "target_population"
     t.string   "service_time_of_day"
     t.boolean  "site_agreement_on_file"
-    t.integer  "primary_quality_element_id"
-    t.string   "primary_service_type_ids"
-    t.integer  "secondary_quality_element_id"
-    t.string   "secondary_service_type_ids"
     t.boolean  "mou_on_file"
     t.integer  "student_population_id"
-    t.string   "name"
-    t.string   "legislative_file_number"
   end
 
   add_index "community_partners", ["organization_id"], name: "index_community_partners_on_organization_id", using: :btree
@@ -77,6 +72,16 @@ ActiveRecord::Schema.define(version: 20131002200708) do
 
   add_index "community_partnership_demographic_groups", ["community_partner_id", "demographic_group_id"], name: "cpdg_cpid_dgid", using: :btree
   add_index "community_partnership_demographic_groups", ["demographic_group_id", "community_partner_id"], name: "cpdg_dgid_cpid", using: :btree
+
+  create_table "community_partnership_ethnicity_culture_groups", force: true do |t|
+    t.integer  "community_partner_id"
+    t.integer  "ethnicity_culture_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "community_partnership_ethnicity_culture_groups", ["community_partner_id", "ethnicity_culture_group_id"], name: "cpecg_cpid_ecgid", using: :btree
+  add_index "community_partnership_ethnicity_culture_groups", ["ethnicity_culture_group_id", "community_partner_id"], name: "cpecg_ecgid_cpid", using: :btree
 
   create_table "community_partnership_grade_levels", force: true do |t|
     t.integer  "grade_level_id"
@@ -109,7 +114,6 @@ ActiveRecord::Schema.define(version: 20131002200708) do
   add_index "community_partnership_service_times", ["service_time_id", "community_partner_id"], name: "cpst_stid_cpid", using: :btree
 
   create_table "days", force: true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -120,29 +124,14 @@ ActiveRecord::Schema.define(version: 20131002200708) do
     t.datetime "updated_at"
   end
 
-  create_table "employee_scales", force: true do |t|
+  create_table "ethnicity_culture_groups", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "grade_levels", force: true do |t|
+  create_table "grades", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "legal_statuses", force: true do |t|
-    t.string   "name"
-    t.boolean  "active",     default: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "organization_partnership_services", force: true do |t|
-    t.integer  "organization_id"
-    t.integer  "partnership_service_id"
-    t.string   "time_frame"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -157,27 +146,8 @@ ActiveRecord::Schema.define(version: 20131002200708) do
     t.string   "zip_code"
     t.string   "phone_number"
     t.text     "notes"
-    t.string   "status"
-    t.integer  "legal_status_id"
-    t.string   "other_legal_status"
-    t.string   "incorporation_date"
-    t.string   "service_start_date"
-    t.integer  "current_year_budget"
-    t.integer  "full_time_employees_id"
-    t.integer  "part_time_employees_id"
-    t.text     "mission_statement"
-    t.text     "services_description"
-    t.text     "program_impact"
-    t.string   "cost_per_student"
     t.boolean  "mou_on_file"
     t.string   "legislative_file_number"
-  end
-
-  create_table "partnership_services", force: true do |t|
-    t.string   "identifier"
-    t.string   "label"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "quality_element_service_types", force: true do |t|
@@ -233,13 +203,6 @@ ActiveRecord::Schema.define(version: 20131002200708) do
 
   add_index "school_free_reduced_meal_data", ["date"], name: "index_school_free_reduced_meal_data_on_date", using: :btree
   add_index "school_free_reduced_meal_data", ["school_id"], name: "index_school_free_reduced_meal_data_on_school_id", using: :btree
-
-  create_table "school_quality_indicator_sub_area_service_types", force: true do |t|
-    t.integer  "school_quality_indicator_sub_area_id"
-    t.integer  "service_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "school_quality_indicator_sub_areas", force: true do |t|
     t.string   "name"
@@ -301,26 +264,26 @@ ActiveRecord::Schema.define(version: 20131002200708) do
     t.string   "subdomain"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: ""
+    t.string   "email",                             default: "",    null: false
+    t.string   "encrypted_password",                default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                     default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "phone_number"
     t.integer  "organization_id"
-    t.string   "invitation_token"
+    t.string   "invitation_token",       limit: 60
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
-    t.boolean  "active",                 default: false
+    t.boolean  "active",                            default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
