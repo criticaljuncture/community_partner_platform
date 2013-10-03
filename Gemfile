@@ -61,6 +61,10 @@ group :development, :test do
 
   # don't log asset loading as it's too noisy
   gem "quiet_assets"
+
+  # live reloading of css & html via chrome browser extension
+  gem 'guard'
+  gem 'guard-livereload'
 end
 
 group :doc do
