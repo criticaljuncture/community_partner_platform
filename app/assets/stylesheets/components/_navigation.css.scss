@@ -1,0 +1,92 @@
+$navbar-height: 60px;
+$navbar-color: #f9f9f9;
+$nav-item-a-padding: 10px;
+$active-color: #4daf7b;
+$active-border-height: 4px;
+
+/* RESET OF BOOTSTRAP STYLES AS NEEDED */
+.navbar {
+  background-image: none;
+  background-repeat: none;
+  border: none;
+
+  .navbar-inner { 
+    box-shadow: none;
+    border: none;
+
+    .nav { 
+      float: none;
+      
+      .icon { background: none; }
+    }
+  }
+}
+
+.navbar {
+  @extend .pt_sans;
+  font-weight: 700; //bold
+
+  height: $navbar-height;
+
+  .navbar-inner {
+    @extend .row-fluid;
+    background-color: $navbar-color;
+    
+    .brand { 
+      @extend .span3;
+      margin: 0;
+      padding: 20px 10px 10px 30px;
+      height: $navbar-height - 30px;
+    }
+
+    .nav {
+      @extend .span9;
+      @extend .offset3;
+
+      .nav-item { 
+        @extend .span2;
+        text-align: left;
+        text-transform: uppercase; 
+
+        &.active { 
+          height: $navbar-height - $active-border-height;
+          border-bottom: $active-border-height solid $active-color;
+
+          > a { 
+            box-shadow: none;
+            color: $active-color;
+          }
+        }
+
+        a {
+          height: $navbar-height - (2 * $nav-item-a-padding);
+          padding: $nav-item-a-padding;
+
+          &.single-line { 
+            padding-top: $nav-item-a-padding + 10px;
+            height: $navbar-height - (2 * $nav-item-a-padding) - 10px - $active-border-height;
+          }
+
+          &:hover { color: $active-color; }
+
+          .icon {
+            width: 26px;
+            height: 26px;
+            font-size: 30px;
+            position: relative;
+            top: -9px;
+            margin-right: 10px;
+            background-color: $navbar-color;
+          }
+          .icon-school { margin-left: 18px; }
+        }
+      }
+    }
+  }
+}
+
+.user-navigation {
+  @extend .span12;
+  margin-top: $navbar-height;
+  text-align: right;
+}

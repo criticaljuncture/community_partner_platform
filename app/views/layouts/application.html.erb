@@ -2,14 +2,24 @@
 <html lang="en">
 <head>
   <title>Ousd Community Partner Platform</title>
+
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic|Open+Sans:400italic,800italic,400,700' rel='stylesheet' type='text/css'>
+
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
+
+  <!--[if lte IE 7]>
+    <script src="<%= asset_path('lte-ie7.js') %>"></script>
+  <![endif]-->
+
   <%= csrf_meta_tags %>
 
   <%= yield :javascripts %>
 </head>
-<body>
+<body class="row-fluid span12">
   <%= render "layouts/navigation" %>
+  <%= render "layouts/user_navigation" %>
+
   <%= render "layouts/notices" %>
   <%= render "layouts/breadcrumbs" %>
  

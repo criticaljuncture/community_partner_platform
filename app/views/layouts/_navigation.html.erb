@@ -2,15 +2,23 @@
   <div class="navbar-inner">
     <a class="brand" href="#">OUSD Community Partner Platform</a>
     <ul class="nav">
-      <li class="<%= active_for_controller('schools') %>"><%= link_to 'Schools', schools_path %></li>
-      <li class="<%= active_for_controller('community_partners') %>"><%= link_to 'Community Partnerships', community_partners_path %></li>
-      <li class="<%= active_for_controller('organizations') %>"><%= link_to 'Organizations', organizations_path %></li>
+      <li class="nav-item <%= active_for_controller('schools') %>">
+        <%= icon_link_to 'Schools', schools_path, class: "single-line", icon_class: "icon-school" %>
+      </li>
+      <li class="nav-item <%= active_for_controller('community_partners') %>">
+        <%= icon_link_to 'Community Partnerships', community_partners_path, icon_class: "icon-handshake" %>
+      </li>
+      <li class="nav-item <%= active_for_controller('organizations') %>">
+        <%= icon_link_to 'Organizations', organizations_path, class: "single-line", icon_class: "icon-small_business" %>
+      </li>
 
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle <%= active_for_controller('service_types') %> <%= active_for_controller('quality_elements') %>" data-toggle="dropdown">
-          Admin
-          <b class="caret"></b>
-        </a>
+      <li class="nav-item dropdown">
+        <%= icon_link_to 'Admin', '#', 
+              class: "dropdown-toggle single-line #{active_for_controller('service_types')} #{active_for_controller('quality_elements')}",
+              icon_class: "icon-gears",
+              dropdown: true,
+              :"data-toggle" => "dropdown" %>
+
         <ul class="dropdown-menu">
           <li><%= link_to 'Community School Elements', quality_elements_path %></li>
           <li><%= link_to 'Service Types', service_types_path %></li>
@@ -18,22 +26,17 @@
         </ul>
       </li>
 
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle <%= active_for_controller('visualizations') %>" data-toggle="dropdown">
-          Visualizations
-          <b class="caret"></b>
-        </a>
+      <li class="nav-item dropdown">
+        <%= icon_link_to 'Visualizations', '#', 
+              class: "dropdown-toggle single-line #{active_for_controller('visualizations')}",
+              icon_class: "icon-graph",
+              dropdown: true,
+              :"data-toggle" => "dropdown" %>
         <ul class="dropdown-menu">
           <li><%= link_to 'School Partnerships', school_hierarchy_visualizations_path %></li>
         </ul>
       </li>
-    </ul>
-    <div class="user">
-      <% if current_user.present? %>
-        Signed in as <%= current_user.email %>
-        <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-      <% end %>
-    </div>
+    </ul> 
   </div>
 </div>
 

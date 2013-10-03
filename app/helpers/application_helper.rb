@@ -1,6 +1,14 @@
 module ApplicationHelper
   def page_specific_javascript(file_name)
     content_for :javascripts, javascript_include_tag(file_name) 
+
+  def icon_link_to(name, path, options={})
+    dropdown = options.delete(:dropdown)
+
+    link = content_tag(:span, "", class:"icon #{options.delete(:icon_class)}") + name
+    link = link + content_tag(:span, "", class: "caret") if dropdown
+
+    link_to(link.html_safe, path, options)
   end
 
   def join_with_br(items, method=nil, joiner=",")
