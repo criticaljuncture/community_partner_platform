@@ -106,7 +106,8 @@ days = [
   "Thursday",
   "Friday",
   "Saturday",
-  "Sunday"
+  "Sunday",
+  "Varies"
 ]
 
 Day.truncate
@@ -116,17 +117,16 @@ days.each do |name|
 end
 
 ethnicity_culture_groups  = [
+  "All Students",
   "African American",
   "Asian",
-  "Latino",
-  "Native American",
+  "Filipino",
   "Pacific Islander",
+  "Native American",
   "White",
-  "English Language Learners",
-  "Foster Youth",
-  "Homeless Youth",
-  "Juvenile Justice/Probation Youth",
-  "Special Needs Students"
+  "Hispanic/Latino",
+  "Arabic Speakers",
+  "Other"
 ]
 
 EthnicityCultureGroup.truncate
@@ -208,7 +208,10 @@ service_times = [
   "After school",
   "Before school",
   "During school",
-  "Summer"
+  "Holidays",
+  "Monthly",
+  "Summer",
+  "Varies" 
 ]
 
 ServiceTime.truncate
