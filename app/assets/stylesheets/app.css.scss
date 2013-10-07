@@ -1,6 +1,4 @@
 body { 
-  padding: 5px;
-  padding-top: 60px;
   position: relative;
 }
 
@@ -28,7 +26,10 @@ ul.breadcrumb {
   }
 }
 
-#content-wrapper { margin-bottom: 150px; }
+#content-wrapper { 
+  margin-top: 120px;
+  margin-bottom: 150px;
+}
 #footer {
   background-color: #DDD;
   border-top: 1px solid #999;

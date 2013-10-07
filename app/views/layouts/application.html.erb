@@ -16,14 +16,15 @@
 
   <%= yield :javascripts %>
 </head>
-<body class="row-fluid span12">
+<body class="row-fluid">
   <%= render "layouts/navigation" %>
   <%= render "layouts/user_navigation" %>
 
-  <%= render "layouts/notices" %>
-  <%= render "layouts/breadcrumbs" %>
+  <%= render "layouts/notices" %> 
  
   <div id="content-wrapper"> 
+    <%= render "layouts/breadcrumbs" %>
+
     <%= yield %>
   </div>
 

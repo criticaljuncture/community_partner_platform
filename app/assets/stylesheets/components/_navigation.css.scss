@@ -1,8 +1,15 @@
+$app-background-color: #FFFFFF;
+
 $navbar-height: 60px;
 $navbar-color: #f9f9f9;
-$nav-item-a-padding: 10px;
+$navbar-active-color: #e6e6e6;
+$navbar-dropdown-width: 240px;
+$nav-item-border-color: #DEDEDE;
+$nav-item-a-color: #777777;
+$nav-item-a-margin: 10px;
 $active-color: #4daf7b;
 $active-border-height: 4px;
+$dropdown-active-border-width: 4px;
 
 /* RESET OF BOOTSTRAP STYLES AS NEEDED */
 .navbar {
@@ -16,6 +23,21 @@ $active-border-height: 4px;
 
     .nav { 
       float: none;
+
+      .nav-item {
+        &.dropdown {
+          .dropdown-menu {
+            box-shadow: none;
+            border: none;
+            
+            &:before,
+            &:after {
+              border: none !important;
+              content: "" !important;
+            }
+          }
+        }
+      }
       
       .icon { background: none; }
     }
@@ -37,6 +59,7 @@ $active-border-height: 4px;
       margin: 0;
       padding: 20px 10px 10px 30px;
       height: $navbar-height - 30px;
+      border-right: none;
     }
 
     .nav {
@@ -46,11 +69,20 @@ $active-border-height: 4px;
       .nav-item { 
         @extend .span2;
         text-align: left;
-        text-transform: uppercase; 
+        text-transform: uppercase;
+        border-left: 1px solid $nav-item-border-color;
+        height: $navbar-height;
+        position: relative;
 
-        &.active { 
+        &:last-child {
+          border-right: 1px solid $nav-item-border-color;
+        }
+
+        &.active,
+        &.open { 
           height: $navbar-height - $active-border-height;
           border-bottom: $active-border-height solid $active-color;
+          background-color: $navbar-active-color;
 
           > a { 
             box-shadow: none;
@@ -58,16 +90,67 @@ $active-border-height: 4px;
           }
         }
 
+        &.dropdown {
+          .dropdown-toggle {
+            .caret { margin-left: 5px; }
+          }
+
+          .dropdown-menu {
+            top: $navbar-height - 2px;
+            background-color: $navbar-color;
+            @include rounded-top(0);
+
+            li {
+              padding: 15px 10px;
+              height: 20px;
+              width: $navbar-dropdown-width;
+            
+              &:hover {
+                background-color: $navbar-active-color;
+                border-left: $dropdown-active-border-width solid $active-color;
+                width: $navbar-dropdown-width - 2px;
+
+                a { 
+                  color: $active-color;
+                  padding-left: 1px;
+                }
+              }
+
+              a {
+                height: auto;
+                margin: 0;
+                font-weight: 700; // bold
+                padding-left: $dropdown-active-border-width;
+                color: $nav-item-a-color;
+
+                &:hover { background: none; }
+              }
+            }
+          }
+        }
+
         a {
-          height: $navbar-height - (2 * $nav-item-a-padding);
-          padding: $nav-item-a-padding;
+          height: $navbar-height - (2 * $nav-item-a-margin);
+          margin: $nav-item-a-margin 5px;
+          padding: 0;
+          overflow: hidden;
+          font-size: 13px;
+          color: $nav-item-a-color;
 
           &.single-line { 
-            padding-top: $nav-item-a-padding + 10px;
-            height: $navbar-height - (2 * $nav-item-a-padding) - 10px - $active-border-height;
+            padding-top: $nav-item-a-margin;
+            height: $navbar-height - (2 * $nav-item-a-margin) - 10px - $active-border-height;
           }
 
           &:hover { color: $active-color; }
+
+          .icon,
+          .nav-label { 
+            display: block;
+            float: left;
+          }
+
+          .community_partnership.nav-label { width: 97px; }
 
           .icon {
             width: 26px;
@@ -76,9 +159,25 @@ $active-border-height: 4px;
             position: relative;
             top: -9px;
             margin-right: 10px;
-            background-color: $navbar-color;
           }
           .icon-school { margin-left: 18px; }
+          .icon-handshake { 
+            left: -4px;
+            top: 6px;
+            margin-right: 6px;
+            width: 46px;
+            font-size: 24px;
+          }
+          .icon-small_business { 
+            margin-left: 6px;
+            margin-right: 7px;
+            top: -7px;
+          }
+          .icon-gears { margin-left: 25px; }
+          .icon-graph { 
+            width: 32px;
+            margin-left: 14px;
+          }
         }
       }
     }
@@ -89,4 +188,13 @@ $active-border-height: 4px;
   @extend .span12;
   margin-top: $navbar-height;
   text-align: right;
+  position: fixed;
+  z-index: 1030;
+  background-color: $app-background-color;
+
+  .current_user { 
+    padding: 10px;
+    display: block;
+    height: 20px;
+  }
 }

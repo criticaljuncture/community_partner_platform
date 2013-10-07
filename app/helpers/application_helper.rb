@@ -6,7 +6,9 @@ module ApplicationHelper
   def icon_link_to(name, path, options={})
     dropdown = options.delete(:dropdown)
 
-    link = content_tag(:span, "", class:"icon #{options.delete(:icon_class)}") + name
+    link = content_tag(:span, "", class:"icon #{options.delete(:icon_class)}") + 
+            content_tag(:span, name, class: "nav-label #{options.delete(:nav_label_class)}")
+
     link = link + content_tag(:span, "", class: "caret") if dropdown
 
     link_to(link.html_safe, path, options)

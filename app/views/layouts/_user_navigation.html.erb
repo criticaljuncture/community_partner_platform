@@ -1,6 +1,8 @@
 <div class="user-navigation">
   <% if current_user.present? %>
-    Signed in as <%= current_user.email %>
-    <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+    <span class="current_user">
+      Signed in as <%= current_user.email %>
+      <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+    </span>
   <% end %>
 </div>

@@ -6,7 +6,7 @@
         <%= icon_link_to 'Schools', schools_path, class: "single-line", icon_class: "icon-school" %>
       </li>
       <li class="nav-item <%= active_for_controller('community_partners') %>">
-        <%= icon_link_to 'Community Partnerships', community_partners_path, icon_class: "icon-handshake" %>
+        <%= icon_link_to 'Community Partnerships', community_partners_path, icon_class: "icon-handshake", nav_label_class: "community_partnership" %>
       </li>
       <li class="nav-item <%= active_for_controller('organizations') %>">
         <%= icon_link_to 'Organizations', organizations_path, class: "single-line", icon_class: "icon-small_business" %>
@@ -27,7 +27,7 @@
       </li>
 
       <li class="nav-item dropdown">
-        <%= icon_link_to 'Visualizations', '#', 
+        <%= icon_link_to 'Visualize', '#', 
               class: "dropdown-toggle single-line #{active_for_controller('visualizations')}",
               icon_class: "icon-graph",
               dropdown: true,
