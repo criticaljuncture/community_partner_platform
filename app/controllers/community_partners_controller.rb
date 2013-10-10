@@ -2,7 +2,7 @@ class CommunityPartnersController < ApplicationController
   authorize_resource
   
   def index
-    @community_partners = CommunityPartner.accessible_by(current_ability).includes(:quality_elements, :organization, :service_types).order("organizations.name")
+    @community_partners = CommunityPartner.accessible_by(current_ability).includes(:organization).order("organizations.name")
   end
 
   def show

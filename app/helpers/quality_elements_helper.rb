@@ -1,6 +1,6 @@
 module QualityElementsHelper
   def quality_elements_coverage_display(school)
-    school_sub_area_count = school.quality_elements.uniq.count
+    school_sub_area_count = school.quality_elements.count
     sub_area_count = QualityElement.accessible_by(current_ability).count
 
     ratio = school_sub_area_count.to_f / sub_area_count.to_f

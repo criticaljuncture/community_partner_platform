@@ -5,11 +5,6 @@ class CommunityPartner < ActiveRecord::Base
   belongs_to :organization
   belongs_to :student_population
 
-  has_many :community_partner_quality_elements
-  has_many :quality_elements, through: :community_partner_quality_elements
-
-  has_many :service_types, through: :quality_elements
-
   has_one :primary_quality_element,
           ->{where type: "PrimaryQualityElement"},
           class_name: CommunityPartnerQualityElement
@@ -54,4 +49,12 @@ class CommunityPartner < ActiveRecord::Base
   validates :school_id, presence: true
   
   validates :primary_quality_element, presence: true  
+
+  def quality_elements
+    [primary_quality_element, secondary_quality_element].flatten.compact
+  end
+
+  def service_types
+    quality_elements.map{|qe| qe.service_types}.flatten.compact
+  end
 end

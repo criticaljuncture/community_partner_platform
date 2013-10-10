@@ -11,6 +11,7 @@
      <table class="table table-striped table-hover">
       <thead>
         <tr>
+          <th>Partnership Name</th>
           <th>School</th>
           <th>Community School Element</th>
           <th>Service Types</th>
@@ -21,6 +22,7 @@
         <% @community_partnerships.group_by(&:school).each do |school, community_partnerships| %>
           <% community_partnerships.each do |community_partnership| %>
           <tr>
+            <td><%= link_to community_partnership.name, community_partner_path(community_partnership) %></td>
             <td><%= link_to school.try(:name), school_path(school) %></td>
             <td><%= community_partnership.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
             <td><%= community_partnership.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
