@@ -2,7 +2,7 @@ class SchoolsController < ApplicationController
   authorize_resource
 
   def index
-    @schools = School.accessible_by(current_ability).includes(:community_partners, :quality_elements).order(:name)
+    @schools = School.accessible_by(current_ability).includes(:community_partners).order(:name)
     @quality_elements = QualityElement.accessible_by(current_ability).order(:name)
   end
 
