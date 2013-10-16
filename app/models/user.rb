@@ -58,10 +58,11 @@ class User < ActiveRecord::Base
     self.save(validate: false)
   end
 
+
   protected 
 
   def password_required?
-    !admin_creation
+    admin_creation ? false : super
   end
 
   private
