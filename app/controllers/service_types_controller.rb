@@ -1,5 +1,5 @@
 class ServiceTypesController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
 
   def index
     @quality_elements = QualityElement.accessible_by(current_ability).includes(:service_types).order("service_types.name")
@@ -34,7 +34,10 @@ class ServiceTypesController < ApplicationController
   private
   
   def service_type_params
-    params.require(:service_type).permit(:name, :quality_element_id)
+    params.
+      require(:service_type).
+      permit(:name, 
+             quality_element_ids: [])
   end
   
 end

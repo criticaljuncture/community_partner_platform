@@ -151,7 +151,8 @@ demographic_groups = [
   "Students with Disabilities",
   "Students with Mental Health Needs",
   "Students with Social Service Needs",
-  "Undocumented Students"
+  "Undocumented Students",
+  "Students with Special Needs"
 ]
 
 DemographicGroup.truncate
