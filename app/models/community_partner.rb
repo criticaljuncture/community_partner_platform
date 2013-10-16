@@ -51,7 +51,7 @@ class CommunityPartner < ActiveRecord::Base
   validates :primary_quality_element, presence: true  
 
   def quality_elements
-    [primary_quality_element, secondary_quality_element].flatten.compact
+    [primary_quality_element.try(:quality_element), secondary_quality_element.try(:quality_element)].flatten.compact
   end
 
   def service_types
