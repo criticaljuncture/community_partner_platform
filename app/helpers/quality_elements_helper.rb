@@ -12,8 +12,8 @@ module QualityElementsHelper
                 class: display_class)
   end
 
-  def community_partner_count_for_element(quality_element, school) 
-    count = school.quality_elements.select{|qe| qe.id == quality_element.id}.count
+  def community_partner_count_for_element(quality_element, school)
+    count = school.quality_elements.select{|qe| qe.quality_element_id == quality_element.id}.count
 
     content_tag(:span, count, class: count > 0 ? 'satisfactory' : 'bad')
   end
