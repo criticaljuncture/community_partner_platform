@@ -8,6 +8,8 @@ class Ability
       can :manage, :all
     elsif user.role?(:district_manager)
       can :manage, User
+      can :add_role, User
+
       can :read, Role, id: [2,3,4]
       can :manage, School
       can :manage, CommunityPartner

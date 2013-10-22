@@ -17,6 +17,25 @@ class UserRolesController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.accessible_by(current_ability).find(params[:user_id])
+    @user_role = @user.user_roles.find(params[:id])
+
+    User.transaction do
+      case @user_role.role.identifier.to_sym
+      when :school_manager
+        @user.user_schools.each{|user_school| user_school.destroy}
+      when :organization_member
+        @user.organization = nil
+      end
+
+      @user_role.destroy
+      @user.save
+    end
+
+    redirect_to user_path(@user), notice: "Role '#{@user_role.role.name}' successfully removed from #{@user.full_name}."
+  end
+
   private
 
   def user_role_params

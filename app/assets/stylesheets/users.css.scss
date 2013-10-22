@@ -1,0 +1,11 @@
+.header .button_wrapper {
+  position: absolute;
+  right: 10px;
+  top: 25px;
+
+  .btn {
+    top: 0;
+    right: 0;
+    position: relative;
+  }
+}

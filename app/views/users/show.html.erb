@@ -4,7 +4,10 @@
   <div class="span12">
     <div class="header">
       <h1><%= @user.full_name %></h1>
-      <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary" %>
+      <div class="button_wrapper">
+        <%= link_to('Edit', edit_user_path(@user), class: "btn btn-primary") if can?(:manage, @user) %>
+        <%= link_to('Add Role', new_user_role_path(@user), class: "btn btn-warning") if can?(:add_role, User) %>
+      </div>
     </div>
 
 

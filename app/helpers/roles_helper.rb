@@ -7,12 +7,15 @@ module RolesHelper
       view = role_view_for_organization_member(role, user.organization)
     end
 
-    role_header(role) + view
+    role_header(role, user) + view
   end
 
-  def role_header(role)
+  def role_header(role, user)
     content_tag(:dt, 'Role') + 
-      content_tag(:dd, role.name)
+      content_tag(:dd) do
+        delete_button = user.primary_role == role ? '' : link_to('Delete', user_role_path(user, user.user_roles.where(role_id: role.id).first.id), method: :delete, class: "btn btn-small btn-danger")
+        (role.name + delete_button).html_safe
+      end
   end
 
   def role_view_for_school_mangager(role, schools)

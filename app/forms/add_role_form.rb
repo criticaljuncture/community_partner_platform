@@ -2,7 +2,7 @@ class AddRoleForm
   include ActiveModel::Model
 
   attr_reader :user
-  attr_accessor :role, :organization, :schools
+  attr_accessor :role, :organization, :schools, :position
 
   validates :role, presence: true
 
@@ -11,6 +11,8 @@ class AddRoleForm
 
   validates :schools, presence: true,
             if: -> { role?(:school_manager) }
+
+  validates :position, presence: true
 
   validate :role_is_not_already_assigned
 
@@ -23,15 +25,22 @@ class AddRoleForm
     self.organization = params[:organization]
     self.schools = params[:schools]
 
-    self.save
+    self.position = user.user_roles.last.position + 1
+
+    save
   end
 
   def save
     if valid?
-      user.roles << self.role
+      user_role = UserRole.new(user: user, role: self.role, position: self.position)
+
       user.organization_id = self.organization if self.organization
       user.school_ids = self.schools if self.schools
-      user.save
+
+      User.transaction do
+        user.save
+        user_role.save
+      end
     else
       false
     end
