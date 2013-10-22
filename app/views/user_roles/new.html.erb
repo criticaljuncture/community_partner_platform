@@ -1,0 +1,48 @@
+<%= breadcrumb [['Users', users_path], [@user_role.user.full_name, user_path(@user_role.user)], ['Add Role', '#']] %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="header">
+      <h1>Add Role to <%= @user_role.user.full_name %></h1>
+    </div>
+
+    <div class="form_wrapper">
+      <%= semantic_form_for @user_role, url: user_roles_path, method: :post, html: {class: "form-horizontal"} do |f| %>
+        <%= f.inputs do %>
+          <%= f.input :role, 
+                      as: :select, 
+                      collection: @user_role.available_roles(current_ability).map{|r| [r.name, r.id, {"data-role-type" => r.identifier}]},
+                      selected: f.object.role.try(:id),
+                      required: true,
+                      label: 'Role' %>
+
+          <% if @user_role.available_role_identifiers(current_ability).include?(:organization) %>
+          <%= f.input :organization,
+                      as: :select,
+                      collection: Organization.accessible_by(current_ability).select('name, id').sort_by(&:name),
+                      label: 'Organization',
+                      required: true,
+                      disabled: true,
+                      wrapper_html: {class: "hidden"} %>
+          <% end %>
+
+          <% if @user_role.available_role_identifiers(current_ability).include?(:school_manager) %>
+          <%= f.input :schools,
+                      as: :select,
+                      collection: School.accessible_by(current_ability).select('name, id').sort_by(&:name),
+                      label: 'Schools',
+                      required: true,
+                      disabled: true,
+                      multiple: true,
+                      wrapper_html: {class: "hidden"} %>
+          <% end %>
+        <% end %>
+
+        <%= f.actions do %>
+          <%= f.button 'Add Role', class: "btn btn-success" %>
+        <% end %> 
+      <% end %>
+    </div>
+  </div>
+</div>
+

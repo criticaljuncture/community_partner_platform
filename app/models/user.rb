@@ -70,16 +70,22 @@ class User < ActiveRecord::Base
   def remove_improper_associations_based_on_role
     return unless self.roles.present?
 
-    role = self.roles.first.identifier
+    # only remove other attributes if the user has one role
+    # otherwise we leave things alone...
+    if self.roles.count == 1
+      role = self.roles.first.identifier
 
-    case role
-    when :super_admin, :district_manager
-      self.schools = []
-      self.organization = nil
-    when :school_manager
-      self.organization = nil
-    when :organization_member
-      self.schools = []
+      case role
+      when :super_admin, :district_manager
+        self.schools = []
+        self.organization = nil
+      when :school_manager
+        self.organization = nil
+      when :organization_member
+        self.schools = []
+      end
+
+      self.save(validate: false)
     end
   end
 end

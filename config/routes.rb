@@ -5,6 +5,8 @@ OusdCommunityPartners::Application.routes.draw do
     member do
       post :send_invitation
     end
+
+    resources :user_roles, only: [:new, :create, :destroy], as: :roles
   end
 
   devise_scope :user do

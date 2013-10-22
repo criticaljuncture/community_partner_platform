@@ -20,17 +20,8 @@
     </dl>
 
     <dl class="horizontal_stack span3">
-      <dt>Role</dt>
-      <dd><%= @user.primary_role.name %></dd>
-
-      <% if @user.role?(:school_manager) %>
-        <dt>Schools</dt>
-        <dd><%= @user.schools.map{|s| link_to(s.name, school_path(s))}.join(', <br />').html_safe %></dd>
-      <% end %>
-
-      <% if @user.role?(:community_member) %>
-        <dt>Organization</dt>
-        <dd><%= link_to(@user.organization.name, organization_path(@user.organization)) %></dd>
+      <% @user.roles.each do |role| %>
+        <%= role_view(role, @user) %>
       <% end %>
     </dl>
 
