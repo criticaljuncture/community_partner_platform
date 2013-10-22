@@ -38,7 +38,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.accessible_by(current_ability).find(params[:id])
-    #@user.primary_role = @user.roles.first
   end
 
   def update
