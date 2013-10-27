@@ -2,10 +2,9 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <div class="header">
-      <h1>OUSD Community Partner Organizations</h1>
-      <%= link_to 'Create New Organization', new_organization_path, class: "btn btn-primary" %>
-    </div>
+    <%= page_header("Organizations", "icon-small_business") do %>
+      <%= link_to 'Create New Organization', new_organization_path, class: "btn btn-primary large" %>
+    <% end %>
 
     <%= page_nav_tabs [['Overview', '#overview'],
                        ['Organizations', '#organizations-table']] %>
@@ -19,6 +18,5 @@
         <%= render partial: 'table', locals: {organizations: @organizations} %> 
       </div>
     </div>
-
   </div>
 </div>

@@ -2,10 +2,9 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <div class="header">
-      <h1>Schools</h1>
+    <%= page_header("Schools", "icon-school") do %>
       <%= link_to 'Create New School', new_school_path, class: "btn btn-primary" %>
-    </div>
+    <% end %>
 
     <%= page_nav_tabs [['Overview', '#overview'],
                        ['Schools', '#schools-table']] %>

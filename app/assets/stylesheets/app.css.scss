@@ -1,29 +1,14 @@
 body { 
   position: relative;
 }
-
+.page-wrapper { 
+  @extend .span12;
+}
 
 ul.breadcrumb {
   background: none;
   float: right;
   margin-bottom: 0;
-}
-
-.header { 
-  clear: both;
-  background-color: #e5e5e5;
-  color: #333;
-  padding: 10px;
-  @include border-radius(6px);
-  position: relative;
-
-  h1 { width: 70%; }
-
-  .btn-primary { 
-    top: 25px;
-    right: 10px;
-    position: absolute;
-  }
 }
 
 #content-wrapper { 

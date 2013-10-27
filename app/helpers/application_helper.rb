@@ -21,4 +21,22 @@ module ApplicationHelper
       items.join("#{joiner} <br />").html_safe
     end
   end
+
+  def page_header(title, icon, &block)
+    header = <<-HTML
+      <div class="header">
+        <div class="header_outer">
+          <div class="header_inner">
+            <h1>
+              <span class="icon #{icon}"></span>
+              #{title}
+            </h1>
+            #{capture(&block)}
+          </div>
+        </div>
+      </div>
+    HTML
+
+    header.html_safe
+  end
 end

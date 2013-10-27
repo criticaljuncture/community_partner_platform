@@ -1,0 +1,58 @@
+$header-background-color: #FFFFFF;
+$header-color: $gray-70;
+$header-border-color: $gray-70;
+
+.header {
+  @extend .pt_sans;
+
+  clear: both;
+  background-color: $header-background-color;
+  color: $header-color;
+  padding: 10px;
+  margin-left: 10px;
+  position: relative;
+
+  .header_outer {
+    height: 62px;
+    border-bottom: 1px solid $header-border-color;
+  }
+
+  .header_inner {
+    height: 56px;
+    border-bottom: 3px solid $header-border-color;
+  }
+
+  h1 { 
+    @extend .span9;
+
+    .icon {
+      font-size: 40px;
+      display: inline-block;
+      background: none;
+      margin-right: 5px;
+      width: 40px;
+      height: 40px;
+    }
+
+    .icon-school { 
+      margin-left: 10px;
+      margin-right: 0;
+    }
+
+    .icon-handshake {
+      font-size: 35px;
+      width: 70px;
+      top: 6px;
+      position: relative;
+    }
+
+    .icon-small_business { width: 30px; }
+  }
+
+
+  .btn-primary { 
+    top: 25px;
+    right: 10px;
+    position: absolute;
+  }
+}

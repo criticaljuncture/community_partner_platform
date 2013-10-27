@@ -1,15 +1,17 @@
-$app-background-color: #FFFFFF;
-
+/* dimensions */
 $navbar-height: 60px;
-$navbar-color: #f9f9f9;
-$navbar-active-color: #e6e6e6;
 $navbar-dropdown-width: 240px;
-$nav-item-border-color: #DEDEDE;
-$nav-item-a-color: #777777;
 $nav-item-a-margin: 10px;
-$active-color: #4daf7b;
-$active-border-height: 4px;
+$nav-active-border-height: 4px;
 $dropdown-active-border-width: 4px;
+
+/* colors */
+$navbar-color: $gray-2;
+$nav-active-bgcolor: $gray-10;
+$nav-item-border-color: $gray-15;
+$nav-item-a-color: $gray-50;
+$nav-active-color: $green;
+
 
 /* RESET OF BOOTSTRAP STYLES AS NEEDED */
 .navbar {
@@ -80,13 +82,14 @@ $dropdown-active-border-width: 4px;
 
         &.active,
         &.open { 
-          height: $navbar-height - $active-border-height;
-          border-bottom: $active-border-height solid $active-color;
-          background-color: $navbar-active-color;
+          height: $navbar-height - $nav-active-border-height;
+          border-bottom: $nav-active-border-height solid $nav-active-color;
+          background-color: $nav-active-bgcolor;
 
           > a { 
             box-shadow: none;
-            color: $active-color;
+            color: $nav-active-color;
+            background-color: $nav-active-bgcolor;
           }
         }
 
@@ -106,12 +109,12 @@ $dropdown-active-border-width: 4px;
               width: $navbar-dropdown-width;
             
               &:hover {
-                background-color: $navbar-active-color;
-                border-left: $dropdown-active-border-width solid $active-color;
+                background-color: $nav-active-bgcolor;
+                border-left: $dropdown-active-border-width solid $nav-active-color;
                 width: $navbar-dropdown-width - 2px;
 
                 a { 
-                  color: $active-color;
+                  color: $nav-active-color;
                   padding-left: 1px;
                 }
               }
@@ -139,10 +142,10 @@ $dropdown-active-border-width: 4px;
 
           &.single-line { 
             padding-top: $nav-item-a-margin;
-            height: $navbar-height - (2 * $nav-item-a-margin) - 10px - $active-border-height;
+            height: $navbar-height - (2 * $nav-item-a-margin) - 10px - $nav-active-border-height;
           }
 
-          &:hover { color: $active-color; }
+          &:hover { color: $nav-active-color; }
 
           .icon,
           .nav-label { 
@@ -150,7 +153,7 @@ $dropdown-active-border-width: 4px;
             float: left;
           }
 
-          .community_partnership.nav-label { width: 97px; }
+          .community_partnership.nav-label { width: 91px; }
 
           .icon {
             width: 26px;
@@ -189,7 +192,6 @@ $dropdown-active-border-width: 4px;
   margin-top: $navbar-height;
   text-align: right;
   position: fixed;
-  z-index: 1030;
   background-color: $app-background-color;
 
   .current_user { 

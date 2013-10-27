@@ -1,0 +1,17 @@
+/* reset bootstrap */
+.btn,
+.btn-primary {
+  text-shadow: none;
+  background-image: none;
+  border: none;
+  background-color: $blue;
+
+  &:hover { background-color: $blue-alt; }
+}
+
+/* design */
+.btn.large {
+  height: 30px;
+  font-size: 16px;
+  line-height: 30px;
+}
