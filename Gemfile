@@ -4,14 +4,15 @@ source 'https://rubygems.org'
 gem 'webrick', '1.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '~> 4.0.1.rc3'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'sass', '~>3.3.0.rc.1'
+gem 'sass-rails', '~> 4.0.1'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -65,6 +66,9 @@ group :development, :test do
   # live reloading of css & html via chrome browser extension
   gem 'guard'
   gem 'guard-livereload'
+
+  # chrome inspector support
+  gem 'sass-rails-source-maps'
 end
 
 group :doc do
