@@ -19,3 +19,5 @@
 # Ignore Zeus configuration files
 zeus.json
 custom_plan.rb
+
+public/assets/source_maps/*
