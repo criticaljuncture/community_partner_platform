@@ -1,13 +1,13 @@
-<%= breadcrumb [['Community Partnerships', community_partners_path()], ['View Community Partnership', community_partner_path(@community_partner)]] %>
+<%= breadcrumb [
+  ['Community Partnerships', community_partners_path()], 
+  [@community_partner.name, community_partner_path(@community_partner)]
+] %>
 
 <div class="row-fluid">
   <div class="span12">
-    <div class="header">
-      <h1>
-        <%= @community_partner.name %> 
-        <%= link_to 'Edit', edit_community_partner_path(@community_partner), class: "btn btn-primary" %>
-      </h1>
-    </div>
+    <%= page_header(@community_partner.name, "icon-handshake") do %>
+      <%= link_to 'Edit', edit_community_partner_path(@community_partner), class: "btn btn-primary" %>
+    <% end %>
 
     <div class="detail_wrapper community_partnership_details">
       <h2>Partnership Details</h2>
