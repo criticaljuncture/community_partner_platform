@@ -31,7 +31,7 @@ module ApplicationHelper
               <span class="icon #{icon}"></span>
               #{title}
             </h1>
-            #{capture(&block)}
+            #{capture(&block) if block_given?}
           </div>
         </div>
       </div>

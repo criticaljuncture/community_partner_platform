@@ -34,7 +34,9 @@ $header-border-color: $gray-70;
       height: 40px;
     }
 
-    .icon-school { 
+    .icon-school {
+      position: relative;
+      top: 4px;
       margin-left: 10px;
       margin-right: 0;
     }
@@ -46,7 +48,13 @@ $header-border-color: $gray-70;
       position: relative;
     }
 
-    .icon-small_business { width: 30px; }
+    .icon-small_business {
+      position: relative;
+      top: 5px;
+      width: 30px;
+      margin-right: 0;
+      margin-left: 5px;
+    }
   }
 
 
