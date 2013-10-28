@@ -5,6 +5,10 @@ $nav-item-a-margin: 10px;
 $nav-active-border-height: 4px;
 $dropdown-active-border-width: 4px;
 
+$user-nav-height: 20px;
+$user-nav-vertical-padding: 5px;
+$user-nav-border-size: 1px;
+
 /* colors */
 $navbar-color: $gray-2;
 $nav-active-bgcolor: $gray-10;
@@ -22,6 +26,7 @@ $nav-active-color: $green;
   .navbar-inner { 
     box-shadow: none;
     border: none;
+    background-image: none;
 
     .nav { 
       float: none;
@@ -51,6 +56,7 @@ $nav-active-color: $green;
   font-weight: 700; //bold
 
   height: $navbar-height;
+  margin-top: $user-nav-height + ($user-nav-vertical-padding * 2) + $user-nav-border-size;
 
   .navbar-inner {
     @extend .row-fluid;
@@ -189,14 +195,16 @@ $nav-active-color: $green;
 
 .user-navigation {
   @extend .span12;
-  margin-top: $navbar-height;
   text-align: right;
   position: fixed;
+  top: 0px;
   background-color: $app-background-color;
+  border-bottom: 1px solid $gray-10;
+  color: $nav-item-a-color;
 
   .current_user { 
-    padding: 10px;
+    padding: $user-nav-vertical-padding 10px;
     display: block;
-    height: 20px;
+    height: $user-nav-height;
   }
 }
