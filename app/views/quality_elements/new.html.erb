@@ -1,10 +1,11 @@
-<%= breadcrumb [['Community School Elements', quality_elements_path], ["New Community School Element", ""]] %>
+<%= breadcrumb [
+  ['Community School Elements', quality_elements_path],
+  ["Create", ""]
+] %>
 
 <div class="row-fluid">
   <div class="span12">
-    <div class="header">
-      <h1>New Community School Element</h1>
-    </div>
+    <%= page_header("Create New Community School Element", "") %>
 
     <div class="form_wrapper">
       <%= semantic_form_for @quality_element, method: :post, html: {class: "form-horizontal"} do |f| %>

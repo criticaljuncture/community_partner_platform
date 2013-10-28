@@ -28,7 +28,9 @@ module ApplicationHelper
         <div class="header_outer">
           <div class="header_inner">
             <h1>
-              <span class="icon #{icon}"></span>
+              #{unless icon.blank?
+                "<span class='icon #{icon}'icon></span>"
+              end}
               #{title}
             </h1>
             #{capture(&block) if block_given?}

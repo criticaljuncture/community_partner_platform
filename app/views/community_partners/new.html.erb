@@ -1,10 +1,11 @@
-<%= breadcrumb [['Community Partnerships', community_partners_path()], ['Create Community Partnership', ""]] %>
+<%= breadcrumb [
+  ['Community Partnerships', community_partners_path()],
+  ['Create', ""]
+] %>
 
 <div class="row-fluid">
   <div class="span12">
-    <div class="header">
-      <h1>Create New Community Partnership</h1>
-    </div>
+    <%= page_header('Create New Community Partnership', "icon-handshake") %>
 
     <div class="form_wrapper">
       <%= semantic_form_for @community_partner, method: :post, html: {class: "form-horizontal"} do |f| %>

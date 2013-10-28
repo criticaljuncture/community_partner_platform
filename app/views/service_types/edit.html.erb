@@ -1,10 +1,11 @@
-<%= breadcrumb [['Service Types', service_types_path], [@service_type.name, service_type_path(@service_type)], ["Edit Service Type", ""]] %>
+<%= breadcrumb [
+  ['Service Types', service_types_path],
+  [truncate(@service_type.name, length: 20), service_type_path(@service_type)],
+  ["Edit", ""]] %>
 
 <div class="row-fluid">
   <div class="span12">
-    <div class="header">
-      <h1><%= @service_type.name %></h1>
-    </div>
+    <%= page_header("Edit '#{@service_type.name}'", "") %>
 
     <div class="form_wrapper">
       <%= semantic_form_for @service_type, method: :put, html: {class: "form-horizontal"} do |f| %>

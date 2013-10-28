@@ -1,10 +1,12 @@
-<%= breadcrumb [['Users', users_path], [@user_role.user.full_name, user_path(@user_role.user)], ['Add Role', '#']] %>
+<%= breadcrumb [
+  ['Users', users_path],
+  [truncate(@user_role.user.full_name, length: 20), user_path(@user_role.user)],
+  ['Add Role', '#']]
+%>
 
 <div class="row-fluid">
   <div class="span12">
-    <div class="header">
-      <h1>Add Role to <%= @user_role.user.full_name %></h1>
-    </div>
+    <%= page_header("Add Role to #{@user_role.user.full_name}", "") %>
 
     <div class="form_wrapper">
       <%= semantic_form_for @user_role, url: user_roles_path, method: :post, html: {class: "form-horizontal"} do |f| %>

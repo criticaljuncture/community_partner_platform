@@ -1,12 +1,14 @@
-<%= breadcrumb [['Service Types', service_types_path], [@service_type.name, service_type_path(@service_type)]] %>
+<%= breadcrumb [
+  ['Service Types', service_types_path],
+  [truncate(@service_type.name, length: 20), service_type_path(@service_type)]
+] %>
 
 
 <div class="row-fluid">
   <div class="span12">
-    <div class="header">
-      <h1><%= @service_type.name %></h1>
+    <%= page_header(@service_type.name, "") do %>
       <%= link_to 'Edit', edit_service_type_path(@service_type), class: "btn btn-primary" %>
-    </div>
+    <% end %>
 
     <div class="table_wrapper">
      <table class="table table-striped">

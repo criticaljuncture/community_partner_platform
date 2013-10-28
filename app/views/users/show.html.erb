@@ -1,16 +1,17 @@
-<%= breadcrumb [['Users', users_path], [@user.full_name, user_path(@user)]] %>
+<%= breadcrumb [
+  ['Users', users_path],
+  [truncate(@user.full_name, length: 20), user_path(@user)]
+] %>
 
 <div class="row-fluid">
   <div class="span12">
-    <div class="header">
-      <h1><%= @user.full_name %></h1>
+    <%= page_header(@user.full_name, "") do %>
       <div class="button_wrapper">
         <%= link_to('Edit', edit_user_path(@user), class: "btn btn-primary") if can?(:manage, @user) %>
         <%= link_to('Add Role', new_user_role_path(@user), class: "btn btn-warning") if can?(:add_role, User) %>
       </div>
-    </div>
-
-
+    <% end %>
+    
     <dl class="horizontal_stack span3">
       <dt>Name</dt>
       <dd><%= @user.full_name %></dd>
