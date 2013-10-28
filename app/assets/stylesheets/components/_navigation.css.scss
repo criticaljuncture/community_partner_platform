@@ -159,7 +159,10 @@ $nav-active-color: $green;
             float: left;
           }
 
-          .community_partnership.nav-label { width: 91px; }
+          .community_partnership.nav-label,
+          .organization.nav-label { 
+            width: 91px;
+          }
 
           .icon {
             width: 26px;
@@ -180,7 +183,7 @@ $nav-active-color: $green;
           .icon-small_business { 
             margin-left: 6px;
             margin-right: 7px;
-            top: -7px;
+            top: 3px;
           }
           .icon-gears { margin-left: 25px; }
           .icon-graph { 
