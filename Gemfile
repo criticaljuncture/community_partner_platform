@@ -59,6 +59,10 @@ group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
   gem "zeus"
+  
+  # replace rails console with pry
+  gem "pry", "~> 0.9.12.2"
+  gem 'pry-rails'
 
   # don't log asset loading as it's too noisy
   gem "quiet_assets"
