@@ -55,6 +55,6 @@ class CommunityPartner < ActiveRecord::Base
   end
 
   def service_types
-    quality_elements.map{|qe| qe.service_types}.flatten.compact
+    (primary_service_types + secondary_service_types).flatten.compact
   end
 end
