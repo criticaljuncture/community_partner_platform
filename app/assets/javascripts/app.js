@@ -24,7 +24,11 @@ $(function () {
 
   /* remove error state when an input is changed */
   $('form.formtastic div.input.required.error').on('change', 'input, select', function() {
-    $(this).closest('div.input.required').removeClass('error');
+    var $this = $(this);
+
+    if( $this.val() !== "" ) {
+      $this.closest('div.input.required').removeClass('error');
+    }
   });
 
 });
