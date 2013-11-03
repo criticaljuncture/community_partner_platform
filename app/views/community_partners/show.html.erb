@@ -58,6 +58,9 @@
         <dt>Target Demographic Groups</dt>
         <dd><%= @community_partner.demographic_groups.map{|dg| dg.name}.join(', <br />').html_safe %></dd>
 
+        <dt>Target Grade Levels</dt>
+        <dd><%= @community_partner.grade_levels.map{|g| g.name}.join(', <br />').html_safe %></dd>
+
         <dt>Service Times</dt>
         <dd><%= @community_partner.service_times.map{|st| st.name}.join(', <br />').html_safe %></dd>
 
