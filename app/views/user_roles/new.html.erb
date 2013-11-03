@@ -18,7 +18,7 @@
                       required: true,
                       label: 'Role' %>
 
-          <% if @user_role.available_role_identifiers(current_ability).include?(:organization) %>
+          <% if @user_role.available_role_identifiers(current_ability).include?(:organization_member) %>
           <%= f.input :organization,
                       as: :select,
                       collection: Organization.accessible_by(current_ability).select('name, id').sort_by(&:name),
