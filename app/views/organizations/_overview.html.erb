@@ -1,0 +1,13 @@
+<h3>Organization Overview</h3>
+
+<dl>
+  <dt>Total Organizations</dt>
+  <dd><%= @organizations.count %></dd>
+
+  <dt>Total Partnerships</dt>
+  <dd><%= @organizations.map{|o| o.community_partner_ids}.flatten.uniq.count %></dd>
+
+  <dt>Schools with Organizations Present</dt>
+  <dd><%= @organizations.map{|o| o.community_partners.map{|cp| cp.school_id}}.flatten.uniq.count %>/<%= School.count %></dd>
+</dl>
+
