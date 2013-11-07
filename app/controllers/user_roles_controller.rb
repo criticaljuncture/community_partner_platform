@@ -24,7 +24,9 @@ class UserRolesController < ApplicationController
     User.transaction do
       case @user_role.role.identifier.to_sym
       when :school_manager
+        @schools_to_update = @user.schools.all
         @user.user_schools.each{|user_school| user_school.destroy}
+        @schools_to_update.each{|s| s.update_version}
       when :organization_member
         @user.organization = nil
       end

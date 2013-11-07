@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include UserAudit
+
   has_many :user_roles
   has_many :roles, through: :user_roles
 
@@ -6,6 +8,15 @@ class User < ActiveRecord::Base
 
   has_many :user_schools
   has_many :schools, through: :user_schools
+
+  has_many :community_partnerships_as_school_contact,
+           class_name: CommunityPartner,
+           foreign_key: :school_user_id
+
+  has_many :community_partnerships_as_organization_contact,
+           class_name: CommunityPartner,
+           foreign_key: :user_id
+
 
   attr_accessor :primary_role, :admin_creation
 

@@ -1,4 +1,6 @@
 class CommunityPartner < ActiveRecord::Base
+  include CommunityPartnerAudit
+
   belongs_to :school
   has_one :region, through: :school
 
@@ -39,7 +41,10 @@ class CommunityPartner < ActiveRecord::Base
   accepts_nested_attributes_for :secondary_quality_element, reject_if: proc {|attr| attr['quality_element_id'].blank? }
 
   belongs_to :user
-  belongs_to :school_user, foreign_key: :school_user_id, class_name: User
+
+  belongs_to :school_user,
+             class_name: User,
+             foreign_key: :school_user_id
 
 
   validates :name, presence: true

@@ -29,6 +29,9 @@ gem "underscore-rails"
 # aws email
 gem "aws-ses", "~> 0.5.0"
 
+# record versioning
+gem 'paper_trail', '>= 3.0.0.rc1'
+
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

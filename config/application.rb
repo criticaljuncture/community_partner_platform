@@ -19,6 +19,7 @@ module OusdCommunityPartners
     
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'forms', '{**}')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'audits', '{**}')]
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.

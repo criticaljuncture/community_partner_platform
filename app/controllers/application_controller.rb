@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_url, :alert => exception.message
     end
   end
+
+  def info_for_paper_trail
+    { user_id: current_user.id }
+  end
 end

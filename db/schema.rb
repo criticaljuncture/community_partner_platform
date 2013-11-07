@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131022202413) do
+ActiveRecord::Schema.define(version: 20131105043220) do
 
   create_table "community_partner_quality_element_service_types", force: true do |t|
     t.integer  "community_partner_quality_element_id"
@@ -130,12 +130,6 @@ ActiveRecord::Schema.define(version: 20131022202413) do
     t.datetime "updated_at"
   end
 
-  create_table "employee_scales", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "ethnicity_culture_groups", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -144,21 +138,6 @@ ActiveRecord::Schema.define(version: 20131022202413) do
 
   create_table "grade_levels", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "legal_statuses", force: true do |t|
-    t.string   "name"
-    t.boolean  "active",     default: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "organization_partnership_services", force: true do |t|
-    t.integer  "organization_id"
-    t.integer  "partnership_service_id"
-    t.string   "time_frame"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -173,27 +152,8 @@ ActiveRecord::Schema.define(version: 20131022202413) do
     t.string   "zip_code"
     t.string   "phone_number"
     t.text     "notes"
-    t.string   "status"
-    t.integer  "legal_status_id"
-    t.string   "other_legal_status"
-    t.string   "incorporation_date"
-    t.string   "service_start_date"
-    t.integer  "current_year_budget"
-    t.integer  "full_time_employees_id"
-    t.integer  "part_time_employees_id"
-    t.text     "mission_statement"
-    t.text     "services_description"
-    t.text     "program_impact"
-    t.string   "cost_per_student"
     t.boolean  "mou_on_file"
     t.string   "legislative_file_number"
-  end
-
-  create_table "partnership_services", force: true do |t|
-    t.string   "identifier"
-    t.string   "label"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "quality_element_service_types", force: true do |t|
@@ -249,13 +209,6 @@ ActiveRecord::Schema.define(version: 20131022202413) do
 
   add_index "school_free_reduced_meal_data", ["date"], name: "index_school_free_reduced_meal_data_on_date", using: :btree
   add_index "school_free_reduced_meal_data", ["school_id"], name: "index_school_free_reduced_meal_data_on_school_id", using: :btree
-
-  create_table "school_quality_indicator_sub_area_service_types", force: true do |t|
-    t.integer  "school_quality_indicator_sub_area_id"
-    t.integer  "service_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "school_quality_indicator_sub_areas", force: true do |t|
     t.string   "name"
@@ -343,5 +296,19 @@ ActiveRecord::Schema.define(version: 20131022202413) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "versions", force: true do |t|
+    t.string   "item_type",    null: false
+    t.integer  "item_id",      null: false
+    t.string   "event",        null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.text     "associations"
+    t.integer  "user_id"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+  add_index "versions", ["user_id"], name: "index_versions_on_user_id", using: :btree
 
 end

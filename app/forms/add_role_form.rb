@@ -40,6 +40,7 @@ class AddRoleForm
       User.transaction do
         user.save
         user_role.save
+        user.schools.each{|s| s.update_version}
       end
     else
       false

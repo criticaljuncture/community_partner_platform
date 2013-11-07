@@ -1,4 +1,6 @@
 class Organization < ActiveRecord::Base
+  include OrganizationAudit
+
   has_many :community_partners
   has_many :schools, through: :community_partners
   has_many :users
