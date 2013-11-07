@@ -21,6 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   def info_for_paper_trail
-    { user_id: current_user.id }
+    { user_id: current_user.try(:id) }
   end
 end
