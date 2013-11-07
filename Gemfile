@@ -9,7 +9,6 @@ gem 'rails', '~> 4.0.1.rc3'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
-
 # Use SCSS for stylesheets
 gem 'sass', '~>3.3.0.rc.1'
 gem 'sass-rails', '~> 4.0.1'
@@ -21,7 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 gem "bootstrap-sass", "~> 2.3.2.0"
-gem "formtastic", git: 'git://github.com/justinfrench/formtastic.git', ref: "593ed1e43e8fbf35da589186720d35e7f444519f"
+gem "formtastic", git: 'git://github.com/justinfrench/formtastic.git', ref: "cd6cb88f28ea7444267802ced8e5ec0f5cfd0f90"
 gem "formtastic-bootstrap", "~> 2.1.3"
 
 gem "underscore-rails"
@@ -76,6 +75,10 @@ group :development, :test do
 
   # chrome inspector support
   gem 'sass-rails-source-maps'
+
+  # Deployment
+  #gem 'capistrano', "~> 2.15.5"
+  #gem 'thunder_punch', require: false
 end
 
 group :doc do

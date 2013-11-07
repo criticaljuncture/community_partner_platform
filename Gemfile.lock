@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/justinfrench/formtastic.git
-  revision: 593ed1e43e8fbf35da589186720d35e7f444519f
-  ref: 593ed1e43e8fbf35da589186720d35e7f444519f
+  revision: cd6cb88f28ea7444267802ced8e5ec0f5cfd0f90
+  ref: cd6cb88f28ea7444267802ced8e5ec0f5cfd0f90
   specs:
-    formtastic (2.2.1)
+    formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
 
 GIT
@@ -122,6 +122,9 @@ GEM
     multi_json (1.8.2)
     mysql2 (0.3.13)
     orm_adapter (0.4.0)
+    paper_trail (3.0.0.rc1)
+      activerecord (>= 3.0, < 5.0)
+      activesupport (>= 3.0, < 5.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -231,6 +234,7 @@ DEPENDENCIES
   jbuilder (~> 1.0.1)
   jquery-rails
   mysql2
+  paper_trail (>= 3.0.0.rc1)
   pry (~> 0.9.12.2)
   pry-rails
   quiet_assets
