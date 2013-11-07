@@ -2,7 +2,7 @@ module Audit
   extend ActiveSupport::Concern
 
   included do
-    attr_accessor :associations, :user_id
+    attr_accessor :associations, :current_user_id
 
     has_paper_trail :meta => {
       associations: :associations_for_audit
