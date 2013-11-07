@@ -14,7 +14,7 @@
               collection: User.accessible_by(current_ability).where(organization_id: @community_partner.organization_id).sort_by(&:full_name),
               label: "Primary organization contact",
               required: true,
-              selected: @community_partner.user.id %> 
+              selected: @community_partner.user.try(:id) %> 
           
   <%= f.input :school_id, 
               as: :select,
