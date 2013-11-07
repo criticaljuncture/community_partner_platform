@@ -13,7 +13,8 @@
               as: :select,
               collection: User.accessible_by(current_ability).where(organization_id: @community_partner.organization_id).sort_by(&:full_name),
               label: "Primary organization contact",
-              required: true %> 
+              required: true,
+              selected: @community_partner.user.id %> 
           
   <%= f.input :school_id, 
               as: :select,
