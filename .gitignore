@@ -20,4 +20,8 @@
 zeus.json
 custom_plan.rb
 
+# Ignore source maps for use with Chrome inspector
 public/assets/source_maps/*
+
+# Ignore our secret keys
+.env
