@@ -1,6 +1,8 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <a class="brand" href="#">OUSD Community Partner Platform</a>
+    <a class="brand" href="#">
+      <%= t("#{request.subdomain}.app.title") %>
+    </a>
     <ul class="nav">
       <li class="nav-item <%= active_for_controller('schools') %>">
         <%= icon_link_to 'Schools', schools_path, class: "single-line", icon_class: "icon-school" %>
