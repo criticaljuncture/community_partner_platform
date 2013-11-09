@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131107225305) do
+ActiveRecord::Schema.define(version: 20131108204402) do
 
   create_table "community_partner_quality_element_service_types", force: true do |t|
     t.integer  "community_partner_quality_element_id"
@@ -36,13 +36,7 @@ ActiveRecord::Schema.define(version: 20131107225305) do
 
   create_table "community_partners", force: true do |t|
     t.integer  "school_id"
-    t.integer  "school_quality_indicator_sub_area_id"
-    t.string   "additional_school_quality_indicator_sub_area"
     t.integer  "organization_id"
-    t.text     "service_provided"
-    t.integer  "service_type_id"
-    t.date     "date_collected"
-    t.string   "point_of_contact"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "notes"
@@ -65,7 +59,6 @@ ActiveRecord::Schema.define(version: 20131107225305) do
   add_index "community_partners", ["organization_id"], name: "index_community_partners_on_organization_id", using: :btree
   add_index "community_partners", ["school_id"], name: "index_community_partners_on_school_id", using: :btree
   add_index "community_partners", ["school_user_id"], name: "index_community_partners_on_school_user_id", using: :btree
-  add_index "community_partners", ["service_type_id"], name: "index_community_partners_on_service_type_id", using: :btree
   add_index "community_partners", ["user_id"], name: "index_community_partners_on_user_id", using: :btree
 
   create_table "community_partnership_demographic_groups", force: true do |t|
