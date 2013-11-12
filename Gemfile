@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'webrick', '1.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.0.1.rc3'
+gem 'rails', '~> 4.0.1'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
@@ -31,6 +31,14 @@ gem "aws-ses", "~> 0.5.0"
 # record versioning
 gem 'paper_trail', '>= 3.0.0.rc1'
 
+# ember
+gem 'ember-rails'
+gem 'ember-source', '1.2.0.beta.3'
+#gem "handlebars-source", "~> 1.1.1"
+
+# redis analytics
+gem "minuteman", "~> 1.0.3"
+
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -46,7 +54,7 @@ gem 'jbuilder', '~> 1.0.1'
 
 gem 'active_model_serializers'
 
-gem "d3_rails", "~> 3.2.4"
+gem "d3_rails", "~> 3.3.7"
 
 gem "devise", "~> 3.1.0"
 gem "devise_invitable", 

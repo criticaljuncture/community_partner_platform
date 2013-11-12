@@ -9,6 +9,8 @@
       <%= link_to 'Edit', edit_school_path(@school), class: "btn btn-primary" %>
     <% end %>
 
+    <%= completeness_donut(@school.quality_elements.count, QualityElement.accessible_by(current_ability).count - @school.quality_elements.count) %>
+
     <dl>
       <dt>Region</dt>
       <dd><%= @school.region.try(:name) || '&nbsp;'.html_safe %></dd>

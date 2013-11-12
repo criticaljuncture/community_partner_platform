@@ -28,7 +28,7 @@
       <dl class="horizontal_stack span5">
         <dt>Primary Community School Element</dt>
         <dd><%= @community_partner.primary_quality_element.name %></dd>
-        
+
         <dt>Primary Service Types</dt>
         <dd><%= @community_partner.primary_service_types.map{|st| st.name}.join(', <br />').html_safe %></dd>
 
