@@ -9,8 +9,9 @@ class SchoolSerializer < ActiveModel::Serializer
 
   def sub_area_counts
     sub_area_counts = []
+    school_quality_elements = object.community_partners.map{|cp| cp.quality_elements}.flatten
     QualityElement.accessible_by( Ability.new(scope) ).each do |element|
-      count = object.quality_elements.where(id: element.id).count
+      count = school_quality_elements.select{|qe| qe.id == element.id}.count
       sub_area_counts << {sub_area_id: element.id, count: count}
     end
     sub_area_counts
