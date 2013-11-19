@@ -23,6 +23,9 @@ gem "bootstrap-sass", "~> 2.3.2.0"
 gem "formtastic", git: 'git://github.com/justinfrench/formtastic.git', ref: "cd6cb88f28ea7444267802ced8e5ec0f5cfd0f90"
 gem "formtastic-bootstrap", "~> 2.1.3"
 
+# css3 mixins
+gem "bourbon", "~> 3.2.0.beta.1"
+
 gem "underscore-rails"
 
 # aws email
