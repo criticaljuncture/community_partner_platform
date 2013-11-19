@@ -55,7 +55,7 @@ class ApiController < ApplicationController
   end
 
   def schools
-    @schools = School.accessible_by(current_ability).includes(:community_partners, :organizations, :quality_elements).all
+    @schools = School.accessible_by(current_ability).includes(:community_partners, :organizations)
 
     max_partner_count = @schools.map do |school| 
                           school.quality_elements.group_by(&:id).map do |id, quality_elements| 
