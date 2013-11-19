@@ -25,4 +25,4 @@
 //= require ousd_community_partners
 
 // for more details see: http://emberjs.com/guides/application/
-window.OusdCommunityPartners = Ember.Application.create();
+window.CommunityPartnerPlatform = Ember.Application.create();
