@@ -9,20 +9,44 @@
       <%= link_to 'Edit', edit_school_path(@school), class: "btn btn-primary" %>
     <% end %>
 
-    <%= completeness_donut(@school.quality_elements.count, QualityElement.accessible_by(current_ability).count - @school.quality_elements.count) %>
+    <div class="donut_status_box_wrapper">
+      <%= completeness_donut(
+          'Community School Elements Covered',
+          @school.quality_elements.count,
+          QualityElement.accessible_by(current_ability).count) %>
 
-    <dl>
+      <%= completeness_donut(
+          'Student Populations with Partnerships',
+          @school.student_populations_with_partnerships.count,
+          StudentPopulation.accessible_by(current_ability).for_completeness.count) %>
+
+      <%= completeness_donut(
+          'Ethnicity/Culture Groups with Partnerships',
+          @school.ethnicity_culture_groups_with_partnerships.count,
+          EthnicityCultureGroup.accessible_by(current_ability).for_completeness.count) %>
+
+      <%= completeness_donut(
+          'Demographic Groups with Partnerships',
+          @school.demographic_groups_with_partnerships.count,
+          DemographicGroup.accessible_by(current_ability).for_completeness.count) %>
+
+      <%= completeness_donut(
+          'Service Days Covered',
+          @school.service_days_with_partnerships.count,
+          Day.accessible_by(current_ability).for_completeness.count) %>
+
+      <%= completeness_donut(
+          'Sevice Times Covered',
+          @school.service_times_with_partnerships.count,
+          ServiceTime.accessible_by(current_ability).for_completeness.count) %>
+    </div>
+
+    <dl class="clear">
       <dt>Region</dt>
       <dd><%= @school.region.try(:name) || '&nbsp;'.html_safe %></dd>
 
       <dt>Community Partnerships</dt>
       <dd><%= @school.community_partners.count %></dd>
-
-      <dt>Community School Elements Covered</dt>
-      <dd><%= quality_elements_coverage_display(@school) %></dd>
-
-      <dt>Active</dt>
-      <dd><%= @school.active %></dd>
     </dl>
 
     <div class="table_wrapper span6">
