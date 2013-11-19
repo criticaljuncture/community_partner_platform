@@ -17,7 +17,7 @@ $(function () {
   /* allow for direct navigation to a particular tab on a page */
   var query_keys = $.parsequery(location.search).keys;
       active_tab = query_keys["active_tab"];
-      
+
   if( active_tab ) {
     $('a[data-toggle="tab"][href="#' + active_tab + '"]').trigger('click')
   }
