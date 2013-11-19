@@ -17,7 +17,9 @@
   <%= yield :javascripts %>
 </head>
 <body class="row-fluid">
+<% if controller.controller_name == 'schools' && controller.action_name == 'show' %>
 <script type='text/x-handlebars' data-template-name='application'>
+<% end %>
   <%= render "layouts/user_navigation" %>
   <%= render "layouts/navigation" %>
 
@@ -33,6 +35,8 @@
 
   <div id="footer">
   </div>
+<% if controller.controller_name == 'schools' && controller.action_name == 'show' %>
 </script>
+<% end %>
 </body>
 </html>
