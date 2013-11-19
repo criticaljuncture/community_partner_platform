@@ -32,3 +32,10 @@ $(function () {
   });
 
 });
+
+$(document).ready(function() {
+  setTimeout(function() {
+    /* select first tab on page load */
+    $('.nav.nav-tabs').find('a').first().tab('show');
+  }, 25);
+});
