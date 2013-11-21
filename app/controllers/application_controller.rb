@@ -23,4 +23,15 @@ class ApplicationController < ActionController::Base
   def info_for_paper_trail
     { current_user_id: current_user.try(:id) }
   end
+
+  before_filter do
+    Honeybadger.context({
+      :user_id => current_user.id,
+      :user_email => current_user.email
+    }) if current_user
+
+    Honeybadger.context({
+      :subdomain => request.subdomain
+    })
+  end
 end

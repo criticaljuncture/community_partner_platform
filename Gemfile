@@ -67,6 +67,9 @@ gem "cancan", "~> 1.6.10"
 gem 'honeybadger'
 gem 'dotenv-rails'
 
+# memcached client
+gem "dalli", "~> 2.6.4"
+
 group :development, :test do
   gem "rspec-rails", "~> 2.14.0"
   gem "factory_girl_rails", "~> 4.2.1"
