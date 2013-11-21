@@ -6,6 +6,7 @@ class Ability
     
     if user.role?(:super_admin)
       can :manage, :all
+      can :view, :debug_toolbar
     elsif user.role?(:district_manager)
       can :manage, User
       can :add_role, User

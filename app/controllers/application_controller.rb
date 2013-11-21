@@ -34,4 +34,18 @@ class ApplicationController < ActionController::Base
       :subdomain => request.subdomain
     })
   end
+
+  # Peek
+  def peek_enabled?
+    can?(:view, :debug_toolbar)
+  end
+
+  Peek::ResultsController.send(:skip_authorization_check)
+
+  # Rack Mini-Profiler
+  def authorize
+    if can?(:view, :debug_toolbar)
+      Rack::MiniProfiler.authorize_request
+    end
+  end
 end

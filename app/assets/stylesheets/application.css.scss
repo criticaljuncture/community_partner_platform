@@ -15,3 +15,8 @@ $tableBackgroundHover: #f5fcff;
 @import "community_partners";
 @import "schools";
 @import "users";
+
+@import "peek";
+@import "peek/views/performance_bar";
+@import "peek/views/rblineprof";
+@import "peek_changes";

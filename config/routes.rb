@@ -53,5 +53,7 @@ OusdCommunityPartners::Application.routes.draw do
     end
   end
 
+  mount Peek::Railtie => '/peek'
+
   root to: "schools#index"
 end

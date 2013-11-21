@@ -42,6 +42,14 @@ gem 'ember-source', '1.2.0.beta.3'
 # redis analytics
 gem "minuteman", "~> 1.0.3"
 
+# application performance insights
+gem "peek", "~> 0.1.7"
+gem 'peek-git'
+gem 'peek-mysql2'
+gem 'peek-gc'
+gem 'peek-performance_bar'
+gem 'peek-rblineprof'
+gem 'rack-mini-profiler'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -55,15 +63,19 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
 
+# json api
 gem 'active_model_serializers'
 
+# graphing
 gem "d3_rails", "~> 3.3.7"
 
+# user signin and auth checks
 gem "devise", "~> 3.1.0"
 gem "devise_invitable", 
     :github => "scambra/devise_invitable"
 gem "cancan", "~> 1.6.10"
 
+# error reporting
 gem 'honeybadger'
 gem 'dotenv-rails'
 
