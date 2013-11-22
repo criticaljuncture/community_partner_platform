@@ -49,6 +49,7 @@ gem 'peek-mysql2'
 gem 'peek-gc'
 gem 'peek-performance_bar'
 gem 'peek-rblineprof'
+gem 'peek-dalli'
 gem 'rack-mini-profiler'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -71,7 +72,7 @@ gem "d3_rails", "~> 3.3.7"
 
 # user signin and auth checks
 gem "devise", "~> 3.1.0"
-gem "devise_invitable", 
+gem "devise_invitable",
     :github => "scambra/devise_invitable"
 gem "cancan", "~> 1.6.10"
 
@@ -90,7 +91,7 @@ group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
   gem "zeus"
-  
+
   # replace rails console with pry
   gem "pry", "~> 0.9.12.2"
   gem 'pry-rails'

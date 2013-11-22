@@ -167,6 +167,10 @@ GEM
     peek (0.1.7)
       atomic (>= 1.0.0)
       rails (>= 3.0.0)
+    peek-dalli (1.1.2)
+      atomic (>= 1.0.0)
+      dalli
+      peek
     peek-gc (0.0.2)
       peek
     peek-git (1.0.2)
@@ -303,6 +307,7 @@ DEPENDENCIES
   mysql2
   paper_trail (>= 3.0.0.rc1)
   peek (~> 0.1.7)
+  peek-dalli
   peek-gc
   peek-git
   peek-mysql2
