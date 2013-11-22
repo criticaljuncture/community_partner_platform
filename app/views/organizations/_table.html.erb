@@ -17,11 +17,11 @@
       <% @organizations.each do |organization| %>
         <tr>
           <td><%= organization.try(:name) %></td>
-          <td class="center"><%= organization.schools.count %></td>
+          <td class="center"><%= organization.cached_schools.count %></td>
           <td><%= organization.quality_elements.uniq.map{|qe| qe.name}.join(', <br />').html_safe %></td>
           <td><%= organization.service_types.uniq.map{|cp| cp.name}.join(', <br />').html_safe %></td>
           <% if can?(:read, :organization_users) %>
-            <td><%= organization.users.count %></td>
+            <td><%= organization.cached_user_count %></td>
           <% end %>
           <td class="center buttons">
             <%= link_to 'view', organization_path(organization), class: "btn btn-small btn-info" %>

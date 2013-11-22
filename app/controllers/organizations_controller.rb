@@ -7,7 +7,6 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.accessible_by(current_ability).find(params[:id])
-    @community_partnerships = CommunityPartner.accessible_by(current_ability).where(organization_id: @organization.id).includes(:school).order("schools.id asc")
   end
 
   def new

@@ -1,6 +1,9 @@
 class CommunityPartner < ActiveRecord::Base
   include CommunityPartnerAudit
 
+  after_create :clear_associated_cache
+  after_update :clear_associated_cache
+
   belongs_to :school
   has_one :region, through: :school
 
@@ -56,10 +59,26 @@ class CommunityPartner < ActiveRecord::Base
   validates :primary_quality_element, presence: true  
 
   def quality_elements
-    [primary_quality_element.try(:quality_element), secondary_quality_element.try(:quality_element)].flatten.compact
+    Rails.cache.fetch([self, "quality_elements"]) do
+      [primary_quality_element.try(:quality_element), secondary_quality_element.try(:quality_element)].flatten.compact
+    end
   end
 
   def service_types
-    (primary_service_types + secondary_service_types).flatten.compact
+    Rails.cache.fetch([self, "service_types"]) do
+      (primary_service_types + secondary_service_types).flatten.compact
+    end
+  end
+
+  def cached_organization
+    Rails.cache.fetch([self, "cached_organization"]) do
+      organization
+    end
+  end
+
+  private
+  def clear_associated_cache
+    school.touch
+    organization.touch
   end
 end

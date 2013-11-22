@@ -13,31 +13,63 @@ class School < ActiveRecord::Base
 
   default_scope -> { where(direct_funded_charter_school: false) }
 
+  def cached_community_partners
+    Rails.cache.fetch([self, "cached_community_partners"]) do
+      community_partners
+    end
+  end
+
+  def cached_community_partner_count
+    Rails.cache.fetch([self, "cached_community_partner_count"]) do
+      cached_community_partners.count
+    end
+  end
+
+  def cached_organizations
+    Rails.cache.fetch([self, "cached_organizations"]) do
+      organizations
+    end
+  end
+
   def quality_elements
-    @quality_elements ||= community_partners.map{|cp| cp.quality_elements}.flatten.uniq
+    Rails.cache.fetch([self, "quality_elements"]) do
+      cached_community_partners.map{|cp| cp.quality_elements}.flatten.uniq
+    end
   end
 
   def service_types
-    @service_types ||= community_partners.map{|cp| cp.service_types}.flatten.uniq
+    Rails.cache.fetch([self, "service_types"]) do
+      cached_community_partners.map{|cp| cp.service_types}.flatten.uniq
+    end
   end
 
   def student_populations_with_partnerships
-    @student_populations_with_partnerships ||= community_partners.map{|cp| cp.student_population}.compact.uniq
+    Rails.cache.fetch([self, "student_populations_with_partnerships"]) do
+      cached_community_partners.map{|cp| cp.student_population}.compact.uniq
+    end
   end
 
   def ethnicity_culture_groups_with_partnerships
-    @ethnicity_culture_groups_with_partnerships ||= community_partners.map{|cp| cp.ethnicity_culture_groups}.flatten.compact.uniq
+    Rails.cache.fetch([self, "ethnicity_culture_groups_with_partnerships"]) do
+      cached_community_partners.map{|cp| cp.ethnicity_culture_groups}.flatten.compact.uniq
+    end
   end
 
   def demographic_groups_with_partnerships
-    @demographic_groups_with_partnerships ||= community_partners.map{|cp| cp.demographic_groups}.flatten.compact.uniq
+    Rails.cache.fetch([self, "demographic_groups_with_partnerships"]) do
+      cached_community_partners.map{|cp| cp.demographic_groups}.flatten.compact.uniq
+    end
   end
 
   def service_days_with_partnerships
-    @service_days_with_partnerships ||= community_partners.map{|cp| cp.days}.flatten.compact.uniq
+    Rails.cache.fetch([self, "service_days_with_partnerships"]) do
+      cached_community_partners.map{|cp| cp.days}.flatten.compact.uniq
+    end
   end
 
   def service_times_with_partnerships
-    @service_times_with_partnerships ||= community_partners.map{|cp| cp.service_times}.flatten.compact.uniq
+    Rails.cache.fetch([self, "service_times_with_partnerships"]) do
+      cached_community_partners.map{|cp| cp.service_times}.flatten.compact.uniq
+    end
   end
 end

@@ -59,7 +59,7 @@ class ApiController < ApplicationController
 
     max_partner_count = @schools.map do |school| 
                           school.quality_elements.group_by(&:id).map do |id, quality_elements| 
-                            quality_elements.count
+                            quality_elements.size
                           end.compact.max
                         end.compact.max
 

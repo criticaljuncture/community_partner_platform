@@ -87,7 +87,7 @@
         </thead>
 
         <tbody>
-          <% @school.community_partners.each do |community_partner| %>
+          <% @school.cached_community_partners.each do |community_partner| %>
             <tr>
               <td><%= link_to community_partner.organization.try(:name), organization_path(community_partner.organization) %></td>
               <td><%= link_to community_partner.name, community_partner_path(community_partner) %></td>

@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   include UserAudit
 
+  after_create :clear_associated_cache
+  after_update :clear_associated_cache
+
   has_many :user_roles
   has_many :roles, through: :user_roles
 
@@ -98,5 +101,10 @@ class User < ActiveRecord::Base
 
       self.save(validate: false)
     end
+  end
+
+  def clear_associated_cache
+    school.touch
+    organization.touch
   end
 end

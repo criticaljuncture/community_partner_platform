@@ -11,7 +11,18 @@ OusdCommunityPartners::Application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  # config.action_controller.perform_caching = false
+  #
+  config.action_controller.perform_caching = true
+  begin
+    # check if memcached is running; if it is, use that instead of the default memory cache
+    Timeout.timeout(0.5) { TCPSocket.open("localhost", 11211) { } }
+    config.cache_store = :dalli_store, %w(localhost:11211), { :namespace => ENV['APP_SUBDOMAIN'], :compress => true }
+    $stderr.puts "Using memcached on localhost:11211"
+  rescue StandardError
+    config.cache_store = nil
+    $stderr.puts "memcached not running, caching to memory"
+  end
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

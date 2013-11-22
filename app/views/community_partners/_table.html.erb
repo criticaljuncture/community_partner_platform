@@ -15,7 +15,7 @@
         <tr>
           <td class="partnership_name"><%= community_partner.name %></td>
           <td class="organization">
-            <%= link_to(community_partner.organization.name, organization_path(community_partner.organization)) if community_partner.organization.present? %>
+            <%= link_to(community_partner.cached_organization.name, organization_path(community_partner.cached_organization)) if community_partner.cached_organization.present? %>
           </td>
           <td class="sqisa"><%= community_partner.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
           <td class="service"><%= community_partner.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
