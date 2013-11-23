@@ -21,7 +21,9 @@
 <script type='text/x-handlebars' data-template-name='application'>
 <% end %>
 
-  <%= render 'peek/bar' %>
+  <% if Rails.env.development? %>
+    <%= render 'peek/bar' %>
+  <% end %>
   <%= render "layouts/user_navigation" %>
   <%= render "layouts/navigation" %>
 

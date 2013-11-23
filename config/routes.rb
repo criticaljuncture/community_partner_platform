@@ -53,7 +53,9 @@ OusdCommunityPartners::Application.routes.draw do
     end
   end
 
-  mount Peek::Railtie => '/peek'
+  if Rails.env.development?
+    mount Peek::Railtie => '/peek'
+  end
 
   root to: "schools#index"
 end

@@ -42,16 +42,6 @@ gem 'ember-source', '1.2.0.beta.3'
 # redis analytics
 gem "minuteman", "~> 1.0.3"
 
-# application performance insights
-gem "peek", "~> 0.1.7"
-gem 'peek-git'
-gem 'peek-mysql2'
-gem 'peek-gc'
-gem 'peek-performance_bar'
-gem 'peek-rblineprof'
-gem 'peek-dalli'
-gem 'rack-mini-profiler'
-
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -105,6 +95,16 @@ group :development, :test do
 
   # chrome inspector support
   gem 'sass-rails-source-maps'
+
+  # application performance insights
+  gem "peek", "~> 0.1.7"
+  gem 'peek-git'
+  gem 'peek-mysql2'
+  gem 'peek-gc'
+  gem 'peek-performance_bar'
+  gem 'peek-rblineprof'
+  gem 'peek-dalli'
+  gem 'rack-mini-profiler'
 
   # Deployment
   #gem 'capistrano', "~> 2.15.5"

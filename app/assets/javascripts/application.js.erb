@@ -24,9 +24,12 @@
 //= require_self
 //= require ousd_community_partners
 
+<% if Rails.env.development? %>
 //= require peek
 //= require peek/views/performance_bar
 //= require peek/views/rblineprof
+<% end %>
+
 
 // for more details see: http://emberjs.com/guides/application/
 window.CommunityPartnerPlatform = Ember.Application.create();

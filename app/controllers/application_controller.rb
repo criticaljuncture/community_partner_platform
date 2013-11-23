@@ -40,7 +40,9 @@ class ApplicationController < ActionController::Base
     can?(:view, :debug_toolbar)
   end
 
-  Peek::ResultsController.send(:skip_authorization_check)
+  if Rails.env.development?
+    Peek::ResultsController.send(:skip_authorization_check)
+  end
 
   # Rack Mini-Profiler
   def authorize

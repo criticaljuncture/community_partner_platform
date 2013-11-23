@@ -16,7 +16,9 @@ $tableBackgroundHover: #f5fcff;
 @import "schools";
 @import "users";
 
+<% if Rails.env.development? %>
 @import "peek";
 @import "peek/views/performance_bar";
 @import "peek/views/rblineprof";
 @import "peek_changes";
+<% end %>

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include UserAudit
 
   after_create :clear_associated_cache
+  before_update :watch_associations
   after_update :clear_associated_cache
 
   has_many :user_roles
@@ -21,7 +22,7 @@ class User < ActiveRecord::Base
            foreign_key: :user_id
 
 
-  attr_accessor :primary_role, :admin_creation
+  attr_accessor :primary_role, :admin_creation, :school_ids_were
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -103,8 +104,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def watch_associations
+    self.school_ids_were = self.school_ids.sort
+  end
+
   def clear_associated_cache
-    school.touch
-    organization.touch
+    schools.each{|s| s.touch} if self.school_ids.sort != self.school_ids_were
+    organization.touch if organization.present? && organization.changed?
   end
 end
