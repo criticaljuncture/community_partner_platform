@@ -24,6 +24,7 @@ class Ability
       can :read, GradeLevel
       can :read, DemographicGroup
       can :read, EthnicityCultureGroup
+      can :read, Region
     else
       can :read, School
       can :read, CommunityPartner
