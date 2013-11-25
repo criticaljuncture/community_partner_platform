@@ -87,9 +87,9 @@ service_types.each do |name|
 end
 
 regions = [
-  "1",
-  "2",
-  "3",
+  "Region 1",
+  "Region 2",
+  "Region 3",
   "High School"
 ]
 
