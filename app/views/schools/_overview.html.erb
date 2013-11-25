@@ -25,4 +25,31 @@
 
     <div class="graph" id="scatter-plot"></div>
   </div>
+
+  <h2>Partnership Breakdown by Region</h2>
+
+  <dl>
+    <% Region.accessible_by(current_ability).each do |region| %>
+      <dt><%= region.name %></dt>
+      <dd><%= pluralize(region.cached_community_partner_count, "partnership") %></dd>
+    <% end %>
+  </dl>
+
+  <h4>Community School Element Breakdown</h4>
+  <div class="instructions">
+    Each partnership can address up to two community school elements (a primary element and a secondary element).
+    The data below represents all community school elements assigned to a partnership.
+  </div>
+
+  <% Region.accessible_by(current_ability).each do |region| %>
+    <%= render partial: "schools/overview/community_school_elements_for_region", locals: {region: region}  %>
+  <% end %>
+
+
+  <h2>School Status</h2>
+
+  <dl>
+    <dt>Schools without a region assigned</dt>
+    <dd><%= pluralize(School.where("region_id IS NULL").count, "school") %></dd>
+  </dl>
 </div>

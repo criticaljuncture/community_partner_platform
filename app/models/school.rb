@@ -1,6 +1,10 @@
 class School < ActiveRecord::Base
   include SchoolAudit
 
+  after_create :clear_associated_cache
+  after_update :clear_associated_cache
+  after_touch  :clear_associated_cache
+
   has_many :community_partners
   has_many :organizations, through: :community_partners
 
@@ -71,5 +75,10 @@ class School < ActiveRecord::Base
     Rails.cache.fetch([self, "service_times_with_partnerships"]) do
       cached_community_partners.map{|cp| cp.service_times}.flatten.compact.uniq
     end
+  end
+
+  private
+  def clear_associated_cache
+    region.touch if region_id.present?
   end
 end

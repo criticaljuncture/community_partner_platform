@@ -1,0 +1,8 @@
+<h5><%= region.name %></h5>
+
+<dl>
+  <% region.community_partners_by_quality_element.each do |quality_element_id, quality_elements| %>
+    <dt><%= quality_elements.first.name %></dt>
+    <dd><%= pluralize(quality_elements.count, "partnership") %></dd>
+  <% end %>
+</dl>
