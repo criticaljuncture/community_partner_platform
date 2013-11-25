@@ -15,7 +15,7 @@ class School < ActiveRecord::Base
 
   belongs_to :region
 
-  default_scope -> { where(direct_funded_charter_school: false) }
+  default_scope -> { where(direct_funded_charter_school: false).where(active: true) }
 
   def cached_community_partners
     Rails.cache.fetch([self, "cached_community_partners"]) do
