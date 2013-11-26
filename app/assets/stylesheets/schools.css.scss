@@ -17,3 +17,8 @@ table.tablesorter {
   input:disabled { display: none; }
 }
 
+dl.quality_element_stats {
+  dt { width: 300px; }
+
+  .extra_info { color: $gray-30; }
+}

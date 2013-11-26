@@ -16,7 +16,7 @@ class Region < ActiveRecord::Base
 
   def community_partners_by_quality_element
     Rails.cache.fetch([self, "community_partners_by_quality_element"]) do
-      cached_community_partners.map{|cp| cp.quality_elements}.flatten.group_by(&:id)
+      cached_community_partners.map{|cp| cp.primary_quality_element}.map{|pqe| pqe.quality_element}.group_by(&:id)
     end
   end
 end
