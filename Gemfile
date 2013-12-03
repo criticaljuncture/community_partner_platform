@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'webrick', '1.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.0.1'
+gem 'rails', '~> 4.0.2'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
