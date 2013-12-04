@@ -1,5 +1,5 @@
 OusdCommunityPartners::Application.routes.draw do
-  devise_for :users, path: "auth", controllers: { registrations: "users/registrations" }
+  devise_for :users, path: "auth", class_name: 'User', controllers: { registrations: "users/registrations" }
 
   resources :users do
     member do
