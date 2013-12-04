@@ -10,6 +10,7 @@ class Ability
     elsif user.role?(:district_manager)
       can :manage, User
       can :add_role, User
+      can :send_invitation, User
 
       can :read, Role, id: [2,3,4]
       can :manage, School

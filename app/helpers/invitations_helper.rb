@@ -17,14 +17,24 @@ module InvitationsHelper
   end
 
   def invited(user)
-    'Sent ' +
-      user.invitation_sent_at.to_s(:date_at_time) + 
-      '<br />' +
-      link_to('Resend Invitation', send_invitation_user_path(user.id), method: :post)
+    status = 'Sent ' + user.invitation_sent_at.to_s(:date_at_time)
+
+    if can?(:send_invitation, user)
+      status = status +
+                '<br />' +
+                link_to('Resend Invitation', send_invitation_user_path(user.id), method: :post)
+    end
+
+    status
   end
 
   def not_invited(user)
-    'Not Sent <br />' +
-      link_to('Send Invitation', send_invitation_user_path(user.id), method: :post)
+    status = 'Not Sent <br />'
+
+    if can?(:send_invitation, user)
+      status = status + link_to('Send Invitation', send_invitation_user_path(user.id), method: :post)
+    end
+
+    status
   end
 end
