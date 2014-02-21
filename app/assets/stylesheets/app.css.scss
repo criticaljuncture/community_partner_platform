@@ -26,6 +26,8 @@ h2 {
 
 h2,
 h3 { clear: both; }
+h5, h6 { font-size: 14px; }
+h6 { color: $gray-80; }
 
 .table_wrapper,
 .form_wrapper,
@@ -95,4 +97,13 @@ dl.horizontal_stack {
 }
 
 .clear { clear: both; }
-
+.hide { display: none; }
+.hint {
+  font-size: 12px;
+  color: $gray-40;
+  font-style: italic;
+}
+.toggle {
+  color: $blue;
+  cursor: pointer;
+}
