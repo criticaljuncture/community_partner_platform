@@ -24,7 +24,7 @@
 //= require_self
 //= require ousd_community_partners
 
-<% if Rails.env.development? %>
+<% if defined?(PEEK) && Rails.env.development? %>
 //= require peek
 //= require peek/views/performance_bar
 //= require peek/views/rblineprof

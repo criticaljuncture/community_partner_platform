@@ -37,10 +37,11 @@ class ApplicationController < ActionController::Base
 
   # Peek
   def peek_enabled?
-    can?(:view, :debug_toolbar)
+    false
+    #can?(:view, :debug_toolbar)
   end
 
-  if Rails.env.development?
+  if defined?(Peek) && Rails.env.development?
     Peek::ResultsController.send(:skip_authorization_check)
   end
 

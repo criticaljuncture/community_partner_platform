@@ -53,7 +53,7 @@ OusdCommunityPartners::Application.routes.draw do
     end
   end
 
-  if Rails.env.development?
+  if defined?(Peek) && Rails.env.development?
     mount Peek::Railtie => '/peek'
   end
 

@@ -1,4 +1,4 @@
-if Rails.env.development?
+if defined?(Peek) && Rails.env.development?
   Peek.into Peek::Views::Git, :nwo => 'peregrinator/community_partners_platform', :domain => 'github.com', :protocol => 'https'
   Peek.into Peek::Views::Mysql2
   Peek.into Peek::Views::GC
