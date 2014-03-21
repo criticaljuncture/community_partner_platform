@@ -19,11 +19,11 @@ var CommunityPartnerFormHandler = (function() {
         this.form.find('#community_partner_secondary_quality_element_attributes_quality_element_id').trigger('change');
       }
       
-      if( this.form.find('#community_partner_organization_id').val() === "" ) {
+      if( this.form.find('#community_partner_user_id').val() === ""  ) {
         this.form.find('#community_partner_organization_id').trigger('change');
       }
 
-      if( this.form.find('#community_partner_school_id').val() === "" ) {
+      if( this.form.find('#community_partner_school_user_id').val() === "" ) {
         this.form.find('#community_partner_school_id').trigger('change');
       }
     },

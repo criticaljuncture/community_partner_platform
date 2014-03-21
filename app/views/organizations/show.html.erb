@@ -10,29 +10,88 @@
     <% end %>
 
     <div class="table_wrapper">
-     <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>School</th>
-          <th>Partnership Name</th>
-          <th>Community School Element</th>
-          <th>Service Types</th>
-        </tr>
-      </thead>
+      <h2>Programs</h2>
 
-      <tbody>
-        <% @organization.cached_community_partners.order("schools.id asc").group_by(&:school).each do |school, community_partnerships| %>
-          <% community_partnerships.each do |community_partnership| %>
+      <% if @organization.reported_program_discrepency? %>
+        <div class="alert">
+          <strong>
+            <%= pluralize @organization.reported_program_discrepency, 'Item' %>
+            <%= @organization.reported_program_discrepency == 1 ? 'Needs' : 'Need' %>
+            Attention!
+          </strong>
+          There are <%= pluralize @organization.reported_program_discrepency, 'program' %>
+          that have been reported for this organization but have not yet been
+          created. Please add them using the table below.
+        </div>
+      <% end %>
+
+      <table class="table table-striped table-hover table-sorter">
+        <thead>
           <tr>
-            <td><%= link_to school.try(:name), school_path(school) %></td>
-            <td><%= link_to community_partnership.name, community_partner_path(community_partnership) %></td>
-            <td><%= community_partnership.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
-            <td><%= community_partnership.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
+            <th>School</th>
+            <th>Partnership Name</th>
+            <th>Community School Elements</th>
+            <th>Service Types</th>
+            <th class="sorter-false filter-false"></th>
           </tr>
+        </thead>
+
+        <tbody>
+          <% reported_programs =  @organization.reported_school_programs %>
+          <% @organization.cached_community_partners.order("schools.id asc").group_by(&:school).each do |school, community_partnerships| %>
+            <%
+              reported_program_count = reported_programs[school.id.to_s]
+              reported_programs.delete(school.id.to_s)
+            %>
+
+            <% community_partnerships.each do |community_partnership| %>
+              <tr>
+                <td><%= link_to school.try(:name), school_path(school) %></td>
+                <td><%= community_partnership.name %></td>
+                <td><%= community_partnership.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
+                <td><%= community_partnership.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
+                <td class="center buttons">
+                  <%= link_to 'view', community_partner_path(community_partnership), class: "btn btn-small btn-info" %>
+                </td>
+              </tr>
+            <% end %>
+            <% (reported_program_count - community_partnerships.count).times do %>
+              <tr>
+                <td><%= school.try(:name) %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="center buttons">
+                  <%= link_to 'create',
+                        new_community_partner_path(params: {school_id: school.id,
+                                                            organization_id: @organization.id}),
+                        class: "btn btn-small btn-info" %>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
-        <% end %>
-      </tbody>
-    </table> 
+          <% reported_programs.each do |key, value| %>
+            <% school = School.find(key.to_i) %>
+            <% value.times do |i| %>
+              <tr>
+                <td><%= school.try(:name) %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="center buttons">
+                  <%= link_to 'create',
+                        new_community_partner_path(params: {  community_partner: {
+                                                                school_id: school.id,
+                                                                organization_id: @organization.id
+                                                              }
+                                                           }),
+                        class: "btn btn-small btn-info" %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table> 
     </div>
     
   </div>

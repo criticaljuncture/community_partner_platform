@@ -1,6 +1,8 @@
 class Organization < ActiveRecord::Base
   include OrganizationAudit
 
+  serialize :reported_school_programs, JSON
+
   after_create :clear_associated_cache
   after_update :clear_associated_cache
 
@@ -38,6 +40,26 @@ class Organization < ActiveRecord::Base
     Rails.cache.fetch([self, "service_types"]) do
       cached_community_partners.map{|cp| cp.service_types}.flatten.uniq
     end
+  end
+
+  def self.needs_verification_path(organization)
+    Rails.application.routes.url_helpers.verification_organization_path(organization)
+  end
+
+  def verification_required?
+    last_verified_at.nil?
+  end
+
+  def reported_program_count
+    reported_school_programs.sum{|k,v| v}
+  end
+
+  def reported_program_discrepency
+    reported_program_count - community_partners.count
+  end
+
+  def reported_program_discrepency?
+    reported_program_discrepency > 0
   end
 
   private

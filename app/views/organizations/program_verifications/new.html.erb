@@ -1,0 +1,38 @@
+<%= breadcrumb [
+  ['Partner Organizations', organizations_path],
+  ['Verify Programs', ""]
+] %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <%= page_header("Verify Active Programs", "icon-handshake") %>
+
+    <div class="span6 form-instructions">
+      <p>
+        Please tell us how many programs you conduct at each school site.
+        <br />
+        For reference, we've included the programs for your organization that
+        have already been entered in the Community Partner Platform.
+      </p>
+
+      <p>
+        If you have more programs at a school than are listed update the number
+        next to that school.
+      </p>
+      <p>
+        To add a school simply choose it from the select list below and it will
+        be added to the list where you can enter the number of active programs
+        your organization conducts.
+      </p>
+    </div>
+
+    <div class="span-8 form_wrapper">
+      <%= semantic_form_for @organization,
+            url: organization_program_verifications_path(@organization),
+            method: :post,
+            html: {class: "form-horizontal verify-programs"} do |f| %>
+        <%= render :partial => 'form', :locals => {:f => f} %>
+      <% end %>
+    </div>
+  </div>
+</div>

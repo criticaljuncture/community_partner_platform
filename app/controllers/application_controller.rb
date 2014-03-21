@@ -5,12 +5,24 @@ class ApplicationController < ActionController::Base
 
   # devise
   before_filter :authenticate_user!
-  
+
   # cancan
   check_authorization :unless => :devise_controller?
 
   # active model serializers
   serialization_scope :current_user
+
+
+  def after_sign_in_path_for(user)
+    if user.role?(:organization_member) && user.organization.verification_required?
+      flash[:notice] = "Welcome. Please verify and complete the information about your organization below."
+      Organization.needs_verification_path(user.organization)
+    elsif user.role?(:organization_member)
+      organization_path(user.organization)
+    else
+      root_path
+    end
+  end
 
   rescue_from CanCan::AccessDenied do |exception|
     if Rails.env.development?

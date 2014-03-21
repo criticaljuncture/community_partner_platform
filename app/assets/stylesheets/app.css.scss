@@ -83,7 +83,7 @@ dl.horizontal_stack {
   float: left;
 
   dt { width: 40%; }
-  dd { 
+  dd {
     float: left;
     width: auto;
   }
@@ -93,6 +93,15 @@ dl.horizontal_stack {
   textarea {
     width: 500px;
     height: 200px;
+  }
+}
+.form-horizontal {
+  .controls { width: 510px; }
+
+  input + .help-block,
+  textarea + .help-block{
+    margin-top: 5px;
+    font-style: italic;
   }
 }
 

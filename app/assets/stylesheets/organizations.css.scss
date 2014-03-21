@@ -1,3 +1,16 @@
-// Place all the styles related to the organizations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+form.verify-programs {
+  &.form-horizontal {
+    .control-label { width: 260px; }
+    .controls { margin-left: 280px; }
+    input {
+      width: 30px;
+      text-align: center;
+    }
+
+    .select.input .controls {
+      margin-left: 20px;
+
+      select { width: 600px; }
+    }
+  }
+}

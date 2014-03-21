@@ -15,10 +15,29 @@ class Ability
       can :read, Role, id: [2,3,4]
       can :manage, School
       can :manage, CommunityPartner
+
       can :manage, Organization
+      can :manage_district_details, Organization
+
       can :manage, QualityElement
       can :manage, ServiceType
       can :read, :organization_users
+      can :read, Day
+      can :read, ServiceTime
+      can :read, StudentPopulation
+      can :read, GradeLevel
+      can :read, DemographicGroup
+      can :read, EthnicityCultureGroup
+      can :read, Region
+    elsif user.role?(:organization_member)
+      can [:index, :show, :edit, :update, :verification], Organization, id: user.organization_id
+      can :read, :organization_users
+
+      can :read, School
+      can :read, :primary_school_contact_input
+
+      can :new, CommunityPartner
+      can [:create, :edit, :update], CommunityPartner, organization_id: user.organization_id
       can :read, Day
       can :read, ServiceTime
       can :read, StudentPopulation

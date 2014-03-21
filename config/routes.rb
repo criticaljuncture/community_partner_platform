@@ -25,7 +25,12 @@ OusdCommunityPartners::Application.routes.draw do
   resources :community_partners
 
   resources :organizations do
+    resources :program_verifications,
+              controller: 'organizations/program_verifications',
+              only: [:new, :create]
+
     member do
+      get :verification
       get :primary_contact_input
     end
   end

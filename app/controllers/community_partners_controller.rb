@@ -1,22 +1,25 @@
 class CommunityPartnersController < ApplicationController
-  authorize_resource
-  
   def index
     @community_partners = CommunityPartner.accessible_by(current_ability).includes(:organization).order("organizations.name")
   end
 
   def show
     @community_partner = CommunityPartner.find(params[:id])
+    authorize! :show, @community_partner
   end
 
   def new
-    @community_partner = CommunityPartner.new
+    @community_partner = CommunityPartner.new(community_partner_params)
+    authorize! :new, @community_partner
+
     @community_partner.build_primary_quality_element
     @community_partner.build_secondary_quality_element
   end
 
   def create
     @community_partner = CommunityPartner.new(community_partner_params)
+    authorize! :create, @community_partner
+
     @community_partner.save!
 
     redirect_to community_partner_path(@community_partner)
@@ -29,11 +32,15 @@ class CommunityPartnersController < ApplicationController
 
   def edit
     @community_partner = CommunityPartner.find(params[:id])
+    authorize! :edit, @community_partner
+
     @community_partner.build_secondary_quality_element unless @community_partner.secondary_quality_element.present?
   end
 
   def update
     @community_partner = CommunityPartner.find(params[:id])
+    authorize! :update, @community_partner
+
     @community_partner.update_attributes!(community_partner_params)
 
     redirect_to community_partner_path(@community_partner)

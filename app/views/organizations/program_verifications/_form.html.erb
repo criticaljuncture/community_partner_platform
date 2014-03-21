@@ -1,0 +1,37 @@
+<%= f.inputs do %>
+  <div class="select input control-group">
+    <div class="controls">
+      <%= select_tag :schools,
+                      options_from_collection_for_select(
+                        School.accessible_by(current_ability).sort_by(&:name),
+                        :id,
+                        :name,
+                        disabled: @organization.school_ids
+                      ),
+                      prompt: 'Add a School' %>
+    </div>
+  </div>
+
+  <%= embed_ember_template 'school-program-verification-input', 'school_program_verification_input' %>
+
+  <div class="school-programs-list">
+    <% @organization.community_partners.group_by(&:school).each do |school, programs| %>
+      <div class="string input optional stringish control-group">
+        <label class="control-label"><%= school.name %></label>
+        <div class="controls">
+          <%= text_field_tag "school[#{school.id}]", programs.count, type: "number" %>
+          <h6>Exisiting Programs</h6>
+          <ul>
+            <% programs.each do |program| %>
+              <li><%= program.name %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= f.actions do %>
+  <%= f.button 'Save', class: "btn btn-success" %>
+<% end %>

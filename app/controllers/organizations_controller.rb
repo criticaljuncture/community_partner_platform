@@ -1,38 +1,53 @@
 class OrganizationsController < ApplicationController
-  authorize_resource
-
   def index
     @organizations = Organization.accessible_by(current_ability).includes(community_partners: :school).sort_by(&:name)
   end
 
   def show
-    @organization = Organization.accessible_by(current_ability).find(params[:id])
+    @organization = Organization.find(params[:id])
+    authorize! :show, @organization
   end
 
   def new
     @organization = Organization.new
+    authorize! :new, @organization
   end
 
   def create
     @organization = Organization.new(organization_params)
+    authorize! :create, @organization
+
     @organization.save
 
     redirect_to organization_path(@organization)
   end
 
   def edit
-    @organization = Organization.accessible_by(current_ability).find(params[:id])
+    @organization = Organization.find(params[:id])
+    authorize! :edit, @organization
   end
 
   def update
-    @organization = Organization.accessible_by(current_ability).find(params[:id])
+    @organization = Organization.find(params[:id])
+    authorize! :update, @organization
+
     @organization.update_attributes(organization_params)
 
-    redirect_to organization_path(@organization)
+    if @organization.verification_required?
+      redirect_to new_organization_program_verification_path(@organization)
+    else
+      redirect_to organization_path(@organization)
+    end
+  end
+
+  def verification
+    @organization = Organization.find(params[:id])
+    authorize! :verification, @organization
   end
 
   def primary_contact_input
-    @organization = Organization.accessible_by(current_ability).includes(:users).find(params[:id])
+    @organization = Organization.includes(:users).find(params[:id])
+    authorize! :edit, @organization
 
     render "/community_partners/primary_contact_input", layout: false
   end
@@ -44,11 +59,16 @@ class OrganizationsController < ApplicationController
         .permit(
                 :address,
                 :city,
+                :cost_per_student,
+                :legal_status_id,
                 :legislative_file_number,
+                :mission_statement,
                 :mou_on_file,
                 :name,
                 :notes,
                 :phone_number,
+                :program_impact,
+                :services_description,
                 :url,
                 :zip_code,
         )
