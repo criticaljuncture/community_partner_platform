@@ -4,14 +4,14 @@ source 'https://rubygems.org'
 gem 'webrick', '1.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.0.2'
+gem 'rails', '~> 4.0.4'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
 # Use SCSS for stylesheets
-gem 'sass', '~>3.3.0.rc.1'
-gem 'sass-rails', '~> 4.0.1'
+gem 'sass', '~> 3.2.15'
+gem 'sass-rails', '~> 4.0.2'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -24,7 +24,7 @@ gem "formtastic", git: 'git://github.com/justinfrench/formtastic.git', ref: "cd6
 gem "formtastic-bootstrap", "~> 2.1.3"
 
 # css3 mixins
-gem "bourbon", "~> 3.2.0.beta.1"
+gem "bourbon", "~> 3.1.8"
 
 gem "underscore-rails"
 
@@ -36,7 +36,7 @@ gem 'paper_trail', '>= 3.0.0.rc1'
 
 # ember
 gem 'ember-rails'
-gem 'ember-source', '1.2.0.beta.3'
+gem 'ember-source', '1.4.0'
 #gem "handlebars-source", "~> 1.1.1"
 
 # redis analytics
@@ -61,7 +61,7 @@ gem 'active_model_serializers'
 gem "d3_rails", "~> 3.3.7"
 
 # user signin and auth checks
-gem "devise", "~> 3.1.0"
+gem "devise", "~> 3.2.4"
 gem "devise_invitable",
     :github => "scambra/devise_invitable"
 gem "cancan", "~> 1.6.10"
@@ -80,7 +80,7 @@ group :development, :test do
 
   gem "better_errors"
   gem "binding_of_caller"
-  gem "zeus"
+  #gem "zeus"
 
   # replace rails console with pry
   gem "pry", "~> 0.9.12.2"
@@ -94,17 +94,17 @@ group :development, :test do
   gem 'guard-livereload'
 
   # chrome inspector support
-  gem 'sass-rails-source-maps'
+  #gem 'sass-rails-source-maps'
 
   # application performance insights
-  gem "peek", "~> 0.1.7"
-  gem 'peek-git'
-  gem 'peek-mysql2'
-  gem 'peek-gc'
-  gem 'peek-performance_bar'
-  gem 'peek-rblineprof'
-  gem 'peek-dalli'
-  gem 'rack-mini-profiler'
+  #gem "peek", "~> 0.1.7"
+  #gem 'peek-git'
+  #gem 'peek-mysql2'
+  #gem 'peek-gc'
+  #gem 'peek-performance_bar'
+  #gem 'peek-rblineprof'
+  #gem 'peek-dalli'
+  #gem 'rack-mini-profiler'
 
   # Deployment
   #gem 'capistrano', "~> 2.15.5"
