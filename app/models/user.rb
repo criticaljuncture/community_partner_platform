@@ -38,10 +38,10 @@ class User < ActiveRecord::Base
   validates :roles, presence: true
   validates :primary_role, presence: true
 
-  validates :organization_id, presence: true, 
+  validates :organization_id, presence: true,
             if: -> { role?(:organization_member) }
 
-  validates :schools, presence: true, 
+  validates :schools, presence: true,
             if: -> { role?(:school_manager) }
 
   after_validation :remove_improper_associations_based_on_role
@@ -73,8 +73,7 @@ class User < ActiveRecord::Base
     self.save(validate: false)
   end
 
-
-  protected 
+  protected
 
   def password_required?
     admin_creation ? false : super

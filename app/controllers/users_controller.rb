@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def send_invitation
-    @user = User.accessible_by(current_ability).find(params[:id]) 
+    @user = User.accessible_by(current_ability).find(params[:id])
     @user.invite!(current_user)
 
     flash.notice = "Sent invitation to #{@user.full_name} (#{@user.email})."

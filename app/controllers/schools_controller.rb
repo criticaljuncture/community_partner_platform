@@ -1,6 +1,4 @@
 class SchoolsController < ApplicationController
-  authorize_resource
-
   def index
     @schools = School.accessible_by(current_ability).order(:name)
     @quality_elements = QualityElement.accessible_by(current_ability).order(:name)
@@ -8,14 +6,18 @@ class SchoolsController < ApplicationController
 
   def show
     @school = School.includes(:community_partners).find(params[:id])
+    authorize! :show, @school
   end
 
   def new
     @school = School.new
+    authorize! :new, @school
   end
 
   def create
     @school = School.new(school_params)
+    authorize! :create, @school
+
     @school.save
 
     redirect_to school_path(@school)
@@ -23,17 +25,21 @@ class SchoolsController < ApplicationController
 
   def edit
     @school = School.find(params[:id])
+    authorize! :edit, @school
   end
 
   def update
     @school = School.find(params[:id])
+    authorize! :update, @school
+
     @school.update_attributes(school_params)
 
     redirect_to school_path(@school)
   end
 
   def primary_contact_input
-    @school = School.accessible_by(current_ability).includes(:users).find(params[:id])
+    @school = School.includes(:users).find(params[:id])
+    authorize! :read, :primary_school_contact_input
 
     render "/community_partners/primary_school_contact_input", layout: false
   end
