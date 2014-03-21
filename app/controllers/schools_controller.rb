@@ -1,6 +1,8 @@
 class SchoolsController < ApplicationController
   def index
     @schools = School.accessible_by(current_ability).order(:name)
+    authorize! :index, @schools
+
     @quality_elements = QualityElement.accessible_by(current_ability).order(:name)
   end
 
