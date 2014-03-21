@@ -77,7 +77,7 @@ service_types = [
   "Visual arts education and enrichment activities",
   "Volunteer recruitment, training, and/or management",
   "Workforce exposure, engagement, and preparation",
-  "Youth leadership"  
+  "Youth leadership"
 ]
 
 ServiceType.truncate
@@ -137,7 +137,7 @@ end
 
 demographic_groups = [
   "All Students",
-  "By Application", 
+  "By Application",
   "By Referral Only",
   "Chronically Absent Youth",
   "English Language Learners",
@@ -212,7 +212,7 @@ service_times = [
   "Holidays",
   "Monthly",
   "Summer",
-  "Varies" 
+  "Varies"
 ]
 
 ServiceTime.truncate
@@ -221,3 +221,21 @@ service_times.each do |name|
   st.save
 end
 
+
+legal_statuses = [
+  'Public agency',
+  'Non-profit organization with its own 501c3 status',
+  'Non-profit organization working under fiscal sponsorship of another agency',
+  'Sole proprietorship or consultancy',
+  'LLC or LLP',
+  'Corporation',
+  'Ad hoc committee or group',
+  'Interested individual',
+  'Other',
+]
+
+LegalStatus.truncate
+legal_statuses.each do |name|
+  ls = LegalStatus.new(name: name)
+  ls.save
+end
