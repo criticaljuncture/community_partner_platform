@@ -1,72 +1,67 @@
-class Ability
-  include CanCan::Ability
+class Ability < BaseAbility
 
-  def initialize(user)
-    user ||= User.new # guest user (not logged in)
-    
-    if user.role?(:super_admin)
-      can :manage, :all
-      can :view, :debug_toolbar
-    elsif user.role?(:district_manager)
-      can :manage, User
-      can :add_role, User
-      can :send_invitation, User
+  def debug_abilities
+    can :view, :debug_toolbar
+  end
 
-      can :read, Role, id: [2,3,4]
-      can :manage, School
-      can :manage, CommunityPartner
+  def super_admin_abilities
+    debug_abilities
 
-      can :manage, Organization
-      can :manage_district_details, Organization
+    can :manage, :all
+  end
 
-      can :manage, QualityElement
-      can :manage, ServiceType
-      can :read, :organization_users
-      can :read, Day
-      can :read, ServiceTime
-      can :read, StudentPopulation
-      can :read, GradeLevel
-      can :read, DemographicGroup
-      can :read, EthnicityCultureGroup
-      can :read, Region
-    elsif user.role?(:organization_member)
-      can [:index, :show, :edit, :update, :verification], Organization, id: user.organization_id
-      can :read, :organization_users
+  def district_manager_abilities
+    can :manage, User
+    can :add_role, User
+    can :send_invitation, User
 
-      can :read, School
-      can :read, :primary_school_contact_input
+    can :read, Role, id: [2,3,4]
+    can :manage, School
+    can :manage, CommunityPartner
 
-      can :new, CommunityPartner
-      can [:create, :edit, :update], CommunityPartner, organization_id: user.organization_id
-      can :read, Day
-      can :read, ServiceTime
-      can :read, StudentPopulation
-      can :read, GradeLevel
-      can :read, DemographicGroup
-      can :read, EthnicityCultureGroup
-      can :read, Region
-    else
-      can :read, School
-      can :read, CommunityPartner
-      can :read, Organization
+    can :manage, Organization
+    can :manage_district_details, Organization
+
+    can :manage, QualityElement
+    can :manage, ServiceType
+    can :read, :organization_users
+    can :read, Region
+  end
+
+  def school_manager_abilities
+  end
+
+  def organization_member_abilities
+    can [:index, :show, :edit, :update, :verification], Organization, id: @user.organization_id
+    can :read, :organization_users
+
+    can :read, :primary_school_contact_input
+
+    can :read, Role, id: [4]
+
+    can :new, CommunityPartner
+    can [:create, :edit, :update], CommunityPartner, organization_id: @user.organization_id
+
+    can :manage, User, organization_id: @user.organization_id
+    can :index, User
+  end
+
+  def shared_abilities
+    can :manage, :application do
+      can?(:manage, QualityElement) || can?(:manage, ServiceType) || can?(:index, User)
     end
-    
-    # The first argument to `can` is the action you are giving the user 
-    # permission to do.
-    # If you pass :manage it will apply to every action. Other common actions
-    # here are :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on. 
-    # If you pass :all it will apply to every resource. Otherwise pass a Ruby
-    # class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the
-    # objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
-    # See the wiki for details:
-    # https://github.com/ryanb/cancan/wiki/Defining-Abilities
+  end
+
+  def public_abilities
+    can :read, School
+    can :read, CommunityPartner
+    can :read, Organization
+
+    can :read, Day
+    can :read, ServiceTime
+    can :read, StudentPopulation
+    can :read, GradeLevel
+    can :read, DemographicGroup
+    can :read, EthnicityCultureGroup
   end
 end
