@@ -14,31 +14,33 @@
         <%= icon_link_to 'Partner Organizations', organizations_path, icon_class: "icon-small_business", nav_label_class: "organization" %>
       </li>
 
+      <% if can? :manage, :application %>
       <li class="nav-item dropdown">
-        <%= icon_link_to 'Manage', '#', 
+        <%= icon_link_to 'Manage', '#',
               class: "dropdown-toggle single-line #{active_for_controller('service_types')} #{active_for_controller('quality_elements')}",
               icon_class: "icon-gears",
               dropdown: true,
               :"data-toggle" => "dropdown" %>
 
         <ul class="dropdown-menu">
-          <li><%= link_to 'Community School Elements', quality_elements_path %></li>
-          <li><%= link_to 'Service Types', service_types_path %></li>
-          <li><%= link_to 'Users', users_path %></li>
+          <li><%= link_to_if can?(:manage, QualityElement), 'Community School Elements', quality_elements_path %></li>
+          <li><%= link_to_if can?(:manage, ServiceType), 'Service Types', service_types_path %></li>
+          <li><%= link_to_if can?(:manage, User), 'Users', users_path %></li>
         </ul>
       </li>
+      <% end %>
 
       <li class="nav-item dropdown">
-        <%= icon_link_to 'Visualize', '#', 
+        <%= icon_link_to 'Visualize', '#',
               class: "dropdown-toggle single-line #{active_for_controller('visualizations')}",
               icon_class: "icon-graph",
               dropdown: true,
               :"data-toggle" => "dropdown" %>
         <ul class="dropdown-menu">
-          <li><%= link_to 'School Partnerships', school_hierarchy_visualizations_path %></li>
+          <li><%= link_to 'Community Programs', school_hierarchy_visualizations_path %></li>
         </ul>
       </li>
-    </ul> 
+    </ul>
   </div>
 </div>
 
