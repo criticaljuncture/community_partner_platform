@@ -1,5 +1,5 @@
 <%= breadcrumb [
-  ['Community School Elements', quality_elements_path], 
+  ['Community School Elements', quality_elements_path],
   [truncate(@quality_element.name, length: 20), quality_element_path(@quality_element)]
 ] %>
 
@@ -24,11 +24,11 @@
             <td><%= @quality_element.organizations.uniq.count %></td>
           </tr>
         </tbody>
-      </table> 
+      </table>
     </div>
 
     <div class="table_wrapper">
-      <% @quality_element.community_partners.group_by(&:school).each do |school, community_partners| %>
+      <% @quality_element.community_programs.group_by(&:school).each do |school, community_programs| %>
         <h2><%= link_to school.try(:name), school_path(school) %></h2>
 
         <table class="table table-striped">
@@ -41,16 +41,16 @@
           </thead>
 
           <tbody>
-            <% community_partners.each do |community_partner| %>
+            <% community_programs.each do |community_program| %>
               <tr>
-                <td><%= link_to community_partner.organization.try(:name), community_partner_path(community_partner) %></td>
-                <td><%= community_partner.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
-                <td><%= community_partner.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
+                <td><%= link_to community_program.organization.try(:name), community_program_path(community_program) %></td>
+                <td><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
+                <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
-      <% end %> 
+      <% end %>
     </div>
   </div>
 </div>

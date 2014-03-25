@@ -1,5 +1,5 @@
 <%= breadcrumb [
-  ['Partner Organizations', organizations_path], 
+  ['Partner Organizations', organizations_path],
   [@organization.name, organization_path(@organization)]
 ] %>
 
@@ -21,7 +21,7 @@
           </strong>
           There are <%= pluralize @organization.reported_program_discrepency, 'program' %>
           that have been reported for this organization but have not yet been
-          created. Please add them using the table below.
+          created. Please add them by using the 'create' button in the table below.
         </div>
       <% end %>
 
@@ -29,7 +29,7 @@
         <thead>
           <tr>
             <th>School</th>
-            <th>Partnership Name</th>
+            <th>Program Name</th>
             <th>Community School Elements</th>
             <th>Service Types</th>
             <th class="sorter-false filter-false"></th>
@@ -37,25 +37,25 @@
         </thead>
 
         <tbody>
-          <% reported_programs =  @organization.reported_school_programs %>
-          <% @organization.cached_community_partners.order("schools.id asc").group_by(&:school).each do |school, community_partnerships| %>
+          <% reported_programs = @organization.reported_school_programs %>
+          <% @organization.cached_community_programs.order("schools.id asc").group_by(&:school).each do |school, community_programs| %>
             <%
               reported_program_count = reported_programs[school.id.to_s]
               reported_programs.delete(school.id.to_s)
             %>
 
-            <% community_partnerships.each do |community_partnership| %>
+            <% community_programs.each do |community_program| %>
               <tr>
                 <td><%= link_to school.try(:name), school_path(school) %></td>
-                <td><%= community_partnership.name %></td>
-                <td><%= community_partnership.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
-                <td><%= community_partnership.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
+                <td><%= community_program.name %></td>
+                <td><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
+                <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
                 <td class="center buttons">
-                  <%= link_to 'view', community_partner_path(community_partnership), class: "btn btn-small btn-info" %>
+                  <%= link_to 'view', community_program_path(community_program), class: "btn btn-small btn-info" %>
                 </td>
               </tr>
             <% end %>
-            <% (reported_program_count - community_partnerships.count).times do %>
+            <% (reported_program_count - community_programs.count).times do %>
               <tr>
                 <td><%= school.try(:name) %></td>
                 <td></td>
@@ -63,8 +63,11 @@
                 <td></td>
                 <td class="center buttons">
                   <%= link_to 'create',
-                        new_community_partner_path(params: {school_id: school.id,
-                                                            organization_id: @organization.id}),
+                        new_community_program_path(params: {  community_program: {
+                                                                school_id: school.id,
+                                                                organization_id: @organization.id
+                                                              }
+                                                           }),
                         class: "btn btn-small btn-info" %>
                 </td>
               </tr>
@@ -80,7 +83,7 @@
                 <td></td>
                 <td class="center buttons">
                   <%= link_to 'create',
-                        new_community_partner_path(params: {  community_partner: {
+                        new_community_program_path(params: {  community_program: {
                                                                 school_id: school.id,
                                                                 organization_id: @organization.id
                                                               }
@@ -91,8 +94,8 @@
             <% end %>
           <% end %>
         </tbody>
-      </table> 
+      </table>
     </div>
-    
+
   </div>
 </div>

@@ -7,7 +7,7 @@ class SchoolsController < ApplicationController
   end
 
   def show
-    @school = School.includes(:community_partners).find(params[:id])
+    @school = School.includes(:community_programs).find(params[:id])
     authorize! :show, @school
   end
 

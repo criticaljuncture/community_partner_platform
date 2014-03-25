@@ -1,2 +1,0 @@
-class PrimaryQualityElement < CommunityPartnerQualityElement
-end

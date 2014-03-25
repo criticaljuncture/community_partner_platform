@@ -17,27 +17,27 @@
 
       <%= completeness_donut(
           'Student Populations with Partnerships',
-          @school.student_populations_with_partnerships.count,
+          @school.student_populations_with_programs.count,
           StudentPopulation.accessible_by(current_ability).for_completeness.count) %>
 
       <%= completeness_donut(
           'Ethnicity/Culture Groups with Partnerships',
-          @school.ethnicity_culture_groups_with_partnerships.count,
+          @school.ethnicity_culture_groups_with_programs.count,
           EthnicityCultureGroup.accessible_by(current_ability).for_completeness.count) %>
 
       <%= completeness_donut(
           'Demographic Groups with Partnerships',
-          @school.demographic_groups_with_partnerships.count,
+          @school.demographic_groups_with_programs.count,
           DemographicGroup.accessible_by(current_ability).for_completeness.count) %>
 
       <%= completeness_donut(
           'Service Days Covered',
-          @school.service_days_with_partnerships.count,
+          @school.service_days_with_programs.count,
           Day.accessible_by(current_ability).for_completeness.count) %>
 
       <%= completeness_donut(
           'Sevice Times Covered',
-          @school.service_times_with_partnerships.count,
+          @school.service_times_with_programs.count,
           ServiceTime.accessible_by(current_ability).for_completeness.count) %>
     </div>
 
@@ -45,8 +45,8 @@
       <dt>Region</dt>
       <dd><%= @school.region.try(:name) || '&nbsp;'.html_safe %></dd>
 
-      <dt>Community Partnerships</dt>
-      <dd><%= @school.community_partners.count %></dd>
+      <dt>Community Programs</dt>
+      <dd><%= @school.community_programs.count %></dd>
     </dl>
 
     <div class="table_wrapper span6">
@@ -56,7 +56,7 @@
         <thead>
           <tr>
             <th>Community School Element</th>
-            <th class="center">Community Partnerships</th>
+            <th class="center">Community Programs</th>
           </tr>
         </thead>
 
@@ -65,7 +65,7 @@
             <tr>
               <td><%= link_to element.name, quality_element_path(element) %></td>
               <td class="center">
-                <%= community_partner_count_for_element(element, @school) %>
+                <%= community_program_count_for_element(element, @school) %>
               </td>
             </tr>
           <% end %>
@@ -74,25 +74,25 @@
     </div>
 
     <div class="table_wrapper span10">
-      <h2>Community Partners</h2>
+      <h2>Community Programs</h2>
 
       <table class="table table-striped table-sorter">
         <thead>
           <tr>
             <th>Organization</th>
-            <th>Partnership Name</th>
+            <th>Program Name</th>
             <th class="center">Community School Elements</th>
             <th class="">Service Types</th>
           </tr>
         </thead>
 
         <tbody>
-          <% @school.cached_community_partners.each do |community_partner| %>
+          <% @school.cached_community_programs.each do |community_program| %>
             <tr>
-              <td><%= link_to community_partner.organization.try(:name), organization_path(community_partner.organization) %></td>
-              <td><%= link_to community_partner.name, community_partner_path(community_partner) %></td>
-              <td class="center"><%= community_partner.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
-              <td><%= community_partner.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
+              <td><%= link_to community_program.organization.try(:name), organization_path(community_program.organization) %></td>
+              <td><%= link_to community_program.name, community_program_path(community_program) %></td>
+              <td class="center"><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
+              <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
             </tr>
           <% end %>
         </tbody>

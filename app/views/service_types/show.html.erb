@@ -17,19 +17,19 @@
             <th>Community School Elements</th>
             <th class="center">Schools</th>
             <th class="center">Organizations</th>
-            <th class="center">Community Partnerships</th>
+            <th class="center">Community Programs</th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
-            <td><%= @service_type.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
+            <td><%= @service_type.quality_elements.map{|qe| link_to(qe.name, quality_element_path(qe))}.join(', <br />').html_safe %></td>
             <td class="center"><%= @service_type.schools.uniq.count %></td>
             <td class="center"><%= @service_type.organizations.uniq.count %></td>
-            <td class="center"><%= @service_type.community_partners.count %></td>
+            <td class="center"><%= @service_type.community_programs.count %></td>
           </tr>
         </tbody>
-      </table> 
+      </table>
     </div>
 
   </div>

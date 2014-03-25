@@ -1,5 +1,5 @@
-class CommunityPartner < ActiveRecord::Base
-  include CommunityPartnerAudit
+class CommunityProgram < ActiveRecord::Base
+  include CommunityProgramAudit
 
   after_create :clear_associated_cache
   after_update :clear_associated_cache
@@ -12,33 +12,33 @@ class CommunityPartner < ActiveRecord::Base
 
   has_one :primary_quality_element,
           ->{where type: "PrimaryQualityElement"},
-          class_name: CommunityPartnerQualityElement
+          class_name: CommunityProgramQualityElement
   has_many :primary_service_types,
            through: :primary_quality_element,
            source: :service_types
 
   has_one :secondary_quality_element,
           ->{where type: "SecondaryQualityElement"},
-          class_name: CommunityPartnerQualityElement
+          class_name: CommunityProgramQualityElement
 
   has_many :secondary_service_types,
            through: :secondary_quality_element,
            source: :service_types
 
-  has_many :community_partnership_ethnicity_culture_groups
-  has_many :ethnicity_culture_groups, through: :community_partnership_ethnicity_culture_groups
+  has_many :community_program_ethnicity_culture_groups
+  has_many :ethnicity_culture_groups, through: :community_program_ethnicity_culture_groups
 
-  has_many :community_partnership_demographic_groups
-  has_many :demographic_groups, through: :community_partnership_demographic_groups
+  has_many :community_program_demographic_groups
+  has_many :demographic_groups, through: :community_program_demographic_groups
 
-  has_many :community_partnership_grade_levels
-  has_many :grade_levels, through: :community_partnership_grade_levels
+  has_many :community_program_grade_levels
+  has_many :grade_levels, through: :community_program_grade_levels
 
-  has_many :community_partnership_service_days
-  has_many :days, through: :community_partnership_service_days
+  has_many :community_program_service_days
+  has_many :days, through: :community_program_service_days
 
-  has_many :community_partnership_service_times
-  has_many :service_times, through: :community_partnership_service_times
+  has_many :community_program_service_times
+  has_many :service_times, through: :community_program_service_times
 
   accepts_nested_attributes_for :primary_quality_element, reject_if: proc {|attr| attr['quality_element_id'].blank? }
   accepts_nested_attributes_for :secondary_quality_element, reject_if: proc {|attr| attr['quality_element_id'].blank? }
@@ -53,10 +53,10 @@ class CommunityPartner < ActiveRecord::Base
   validates :name, presence: true
   validates :organization_id, presence: true
   validates :user_id, presence: true
-  
+
   validates :school_id, presence: true
-  
-  validates :primary_quality_element, presence: true  
+
+  validates :primary_quality_element, presence: true
 
   def quality_elements
     Rails.cache.fetch([self, "quality_elements"]) do

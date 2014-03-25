@@ -1,64 +1,64 @@
-<h2>Partnership Details</h2>
+<h2>Program Details</h2>
 <%= f.inputs do %>
   <%= f.input :name,
-              label: "Partnership name",
-              hint: "Used to differentiate partnerships - does not need to be an official name",
+              label: "Program name",
+              hint: "Used to differentiate programs at a school. Does not need to be an official name but should be descriptive.",
               required: true %>
 
-  <%= f.input :organization_id, 
-              as: :select, 
+  <%= f.input :organization_id,
+              as: :select,
               collection: Organization.accessible_by(current_ability).with_users.sort_by(&:name),
               required: true %>
-  <%= f.input :user_id, 
+  <%= f.input :user_id,
               as: :select,
-              collection: User.accessible_by(current_ability).where(organization_id: @community_partner.organization_id).sort_by(&:full_name),
+              collection: User.accessible_by(current_ability).where(organization_id: @community_program.organization_id).sort_by(&:full_name),
               label: "Primary organization contact",
-              required: true %> 
-          
-  <%= f.input :school_id, 
+              required: true %>
+
+  <%= f.input :school_id,
               as: :select,
               collection: School.accessible_by(current_ability).where(active: true).sort_by(&:name),
               required: true %>
-  <%= f.input :school_user_id, 
+  <%= f.input :school_user_id,
               as: :select,
-              collection: User.accessible_by(current_ability).includes(:schools).where(schools: {id: @community_partner.school_id}).sort_by(&:full_name),
+              collection: User.accessible_by(current_ability).includes(:schools).where(schools: {id: @community_program.school_id}).sort_by(&:full_name),
               label: "Primary school contact",
-              required: false %> 
+              required: false %>
 
   <%= f.input :site_agreement_on_file %>
   <%= f.input :mou_on_file,
-              label: "MOU or contract on file with the District" %> 
-  
+              label: "MOU or contract on file with the District" %>
+
   <%= f.semantic_fields_for :primary_quality_element do |element| %>
-    <%= element.input :quality_element_id, 
-                as: :select, 
+    <%= element.input :quality_element_id,
+                as: :select,
                 collection: QualityElement.accessible_by(current_ability).sort_by(&:name),
                 required: true,
                 label: "Primary community schools element" %>
-    <%= element.input :service_type_ids, 
+    <%= element.input :service_type_ids,
               as: :check_boxes,
-              collection: ServiceType.accessible_by(current_ability).includes(:quality_elements).where(quality_elements: {id: @community_partner.primary_quality_element.quality_element_id}).sort_by(&:name),
+              collection: ServiceType.accessible_by(current_ability).includes(:quality_elements).where(quality_elements: {id: @community_program.primary_quality_element.quality_element_id}).sort_by(&:name),
               required: true,
               label: "Primary service types" %>
   <% end %>
-          
+
   <%= f.semantic_fields_for :secondary_quality_element do |element| %>
-    <%= element.input :quality_element_id, 
-                as: :select, 
+    <%= element.input :quality_element_id,
+                as: :select,
                 collection: QualityElement.accessible_by(current_ability).sort_by(&:name),
                 required: false,
                 label: "Secondary community schools element" %>
-    
-    <%= element.input :service_type_ids, 
+
+    <%= element.input :service_type_ids,
               as: :check_boxes,
-              collection: ServiceType.accessible_by(current_ability).includes(:quality_elements).where(quality_elements: {id: @community_partner.secondary_quality_element.quality_element_id}).sort_by(&:name),
+              collection: ServiceType.accessible_by(current_ability).includes(:quality_elements).where(quality_elements: {id: @community_program.secondary_quality_element.quality_element_id}).sort_by(&:name),
               required: false,
               label: "Secondary service types" %>
   <% end %>
-  
+
 <% end %>
 
-<h2>Partnership Description</h2>
+<h2>Program Description</h2>
 <%= f.inputs do %>
   <%= f.input :service_description %>
 
@@ -71,7 +71,7 @@
               as: :check_boxes,
               collection: EthnicityCultureGroup.accessible_by(current_ability).sort_by(&:name),
               label: "Target ethnicity/culture groups" %>
-  
+
   <%= f.input :demographic_groups,
               as: :check_boxes,
               collection: DemographicGroup.accessible_by(current_ability).sort_by(&:name),

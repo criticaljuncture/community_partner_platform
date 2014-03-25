@@ -6,21 +6,21 @@ class Organization < ActiveRecord::Base
   after_create :clear_associated_cache
   after_update :clear_associated_cache
 
-  has_many :community_partners
-  has_many :schools, through: :community_partners
+  has_many :community_programs
+  has_many :schools, through: :community_programs
   has_many :users
 
   scope :with_users, -> { joins(:users).where("users.organization_id IS NOT NULL").group("organizations.id") }
 
-  def cached_community_partners
-    Rails.cache.fetch([self, "cached_community_partners"]) do
-      community_partners.includes(:school)
+  def cached_community_programs
+    Rails.cache.fetch([self, "cached_community_programs"]) do
+      community_programs.includes(:school)
     end
   end
 
   def cached_schools
     Rails.cache.fetch([self, "cached_schools"]) do
-      community_partners.map(&:school).uniq
+      community_programs.map(&:school).uniq
     end
   end
 
@@ -32,13 +32,13 @@ class Organization < ActiveRecord::Base
 
   def quality_elements
     Rails.cache.fetch([self, "quality_elements"]) do
-      cached_community_partners.map{|cp| cp.quality_elements}.flatten.uniq
+      cached_community_programs.map{|cp| cp.quality_elements}.flatten.uniq
     end
   end
 
   def service_types
     Rails.cache.fetch([self, "service_types"]) do
-      cached_community_partners.map{|cp| cp.service_types}.flatten.uniq
+      cached_community_programs.map{|cp| cp.service_types}.flatten.uniq
     end
   end
 
@@ -55,7 +55,7 @@ class Organization < ActiveRecord::Base
   end
 
   def reported_program_discrepency
-    reported_program_count - community_partners.count
+    reported_program_count - community_programs.count
   end
 
   def reported_program_discrepency?
@@ -65,6 +65,6 @@ class Organization < ActiveRecord::Base
   private
   def clear_associated_cache
     schools.each{|s| s.touch}
-    community_partners.each{|cp| cp.touch}
+    community_programs.each{|cp| cp.touch}
   end
 end

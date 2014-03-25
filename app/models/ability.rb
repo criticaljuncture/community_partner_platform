@@ -17,7 +17,7 @@ class Ability < BaseAbility
 
     can :read, Role, id: [2,3,4]
     can :manage, School
-    can :manage, CommunityPartner
+    can :manage, CommunityProgram
 
     can :manage, Organization
     can :manage_district_details, Organization
@@ -39,8 +39,8 @@ class Ability < BaseAbility
 
     can :read, Role, id: [4]
 
-    can :new, CommunityPartner
-    can [:create, :edit, :update], CommunityPartner, organization_id: @user.organization_id
+    can :new, CommunityProgram
+    can [:create, :edit, :update], CommunityProgram, organization_id: @user.organization_id
 
     can :manage, User, organization_id: @user.organization_id
     can :index, User
@@ -54,7 +54,7 @@ class Ability < BaseAbility
 
   def public_abilities
     can :read, School
-    can :read, CommunityPartner
+    can :read, CommunityProgram
     can :read, Organization
 
     can :read, Day

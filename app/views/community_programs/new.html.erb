@@ -1,0 +1,17 @@
+<%= breadcrumb [
+  ['Community Programs', community_programs_path()],
+  ['Create', ""]
+] %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <%= page_header('Create New Community Program', "icon-handshake") %>
+
+    <div class="form_wrapper">
+      <%= semantic_form_for @community_program, method: :post, html: {class: "form-horizontal"} do |f| %>
+        <%= render :partial => 'form', :locals => {:f => f} %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

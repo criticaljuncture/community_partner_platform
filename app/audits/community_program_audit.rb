@@ -1,4 +1,4 @@
-module CommunityPartnerAudit
+module CommunityProgramAudit
   extend ActiveSupport::Concern
   include Audit
 
@@ -22,7 +22,7 @@ module CommunityPartnerAudit
 
     user.update_version if user_id_changed?
     school_user.update_version if (user && school_user) &&
-                                    user.id != school_user.id && 
+                                    user.id != school_user.id &&
                                     school_user_id_changed?
   end
 end

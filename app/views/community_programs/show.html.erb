@@ -1,0 +1,79 @@
+<%= breadcrumb [
+  ['Community Programs', community_programs_path()], 
+  [@community_program.name, community_program_path(@community_program)]
+] %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <%= page_header(@community_program.name, "icon-handshake") do %>
+      <%= link_to 'Edit', edit_community_program_path(@community_program), class: "btn btn-primary" %>
+    <% end %>
+
+    <div class="detail_wrapper community_programship_details">
+      <h2>Program Details</h2>
+      <dl class="horizontal_stack span3">
+        <dt>Organization</dt>
+        <dd><%= link_to @community_program.organization.name, organization_path(@community_program.organization) %></dd>
+
+        <dt>Primary Organization Contact</dt>
+        <dd><%= link_to @community_program.user.full_name, user_path( @community_program.user ) %></dd>
+      </dl>
+      <dl class="horizontal_stack span3">
+        <dt>School</dt>
+        <dd><%= link_to @community_program.school.try(:name), school_path(@community_program.school) %></dd>
+
+        <dt>Primary School Contact</dt>
+        <dd><%= link_to(@community_program.school_user.full_name, user_path( @community_program.school_user )) if @community_program.school_user.present? %></dd>
+      </dl>
+      <dl class="horizontal_stack span5">
+        <dt>Primary Community School Element</dt>
+        <dd><%= @community_program.primary_quality_element.name %></dd>
+
+        <dt>Primary Service Types</dt>
+        <dd><%= @community_program.primary_service_types.map{|st| st.name}.join(', <br />').html_safe %></dd>
+
+        <% if @community_program.secondary_quality_element.present? %>
+          <dt>Secondary Community School Element</dt>
+          <dd><%= @community_program.secondary_quality_element.name %></dd>
+
+          <dt>Secondary Service Types</dt>
+          <dd><%= @community_program.secondary_service_types.map{|st| st.name}.join(', <br />').html_safe %></dd>
+        <% end %>
+      </dl>
+    </div>
+
+    <div class="detail_wrapper community_programship_description">
+      <h2>Program Description</h2>
+      <dl class="horizontal_stack span4">
+        <dt>Service Description</dt>
+        <dd><%= @community_program.service_description %></dd>
+      </dl>
+      <dl class="horizontal_stack span3">
+        <dt>Target Population</dt>
+        <dd><%= @community_program.student_population.try(:name) %></dd>
+
+        <dt>Target Ethnicity/Culture Groups</dt>
+        <dd><%= @community_program.ethnicity_culture_groups.map{|ecg| ecg.name}.join(', <br />').html_safe %></dd>
+
+        <dt>Target Demographic Groups</dt>
+        <dd><%= @community_program.demographic_groups.map{|dg| dg.name}.join(', <br />').html_safe %></dd>
+
+        <dt>Target Grade Levels</dt>
+        <dd><%= @community_program.grade_levels.map{|g| g.name}.join(', <br />').html_safe %></dd>
+
+        <dt>Service Times</dt>
+        <dd><%= @community_program.service_times.map{|st| st.name}.join(', <br />').html_safe %></dd>
+
+        <dt>Service Days</dt>
+        <dd><%= @community_program.days.map{|d| d.name}.join(', <br />').html_safe %></dd>
+      </dl>
+      <dl class="horizontal_stack span3">
+        <dt>Site Agreement on File</dt>
+        <dd><%=@community_program.site_agreement_on_file %></dd>
+        
+        <dt>MOU or contract on file with the District</dt>
+        <dd><%=@community_program.mou_on_file %></dd>
+      </dl>
+    </div>
+  </div>
+</div>

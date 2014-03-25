@@ -1,0 +1,23 @@
+<%= breadcrumb [['Community Programs', community_programs_path()]] %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <%= page_header("Community Programs", "icon-handshake") do %>
+      <%= link_to 'Create New Program', new_community_program_path(), :class => "btn btn-primary" %>
+    <% end %>
+
+
+    <%= page_nav_tabs [['Overview', '#overview'],
+                       ['Community Programs', '#community-programs-table']] %>
+
+    <div class="tab-content">
+      <div id="overview" class="tab-pane active">
+        <%= render partial: 'overview', locals: {community_programs: @community_programs} %>
+      </div>
+
+      <div id="community-programs-table" class="tab-pane">
+        <%= render partial: 'table', locals: {community_programs: @community_programs} %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,20 +1,20 @@
 <h5><%= region.name %></h5>
 
 <dl class="quality_element_stats">
-  <% quality_elements_with_partnerships = [] %>
-  <% region.community_partners_by_quality_element.sort_by{|k,v| v.count}.reverse.each do |quality_element_id, quality_elements| %>
-    <% quality_elements_with_partnerships << quality_elements.first %>
+  <% quality_elements_with_programs = [] %>
+  <% region.community_programs_by_quality_element.sort_by{|k,v| v.count}.reverse.each do |quality_element_id, quality_elements| %>
+    <% quality_elements_with_programs << quality_elements.first %>
     <dt class="toggle" data-target="#<%= region.id %>_<%= quality_elements.first.id %>"><%= quality_elements.first.name %></dt>
     <dd>
-      <%= pluralize(quality_elements.count, "partnership") %>
-      <span class="extra_info">(<%= (quality_elements.count.to_f / region.cached_community_partner_count.to_f * 100).round %>%)</span>
+      <%= pluralize(quality_elements.count, "program") %>
+      <span class="extra_info">(<%= (quality_elements.count.to_f / region.cached_community_program_count.to_f * 100).round %>%)</span>
 
       <% if quality_elements.count > 0 %>
         <div id="<%= region.id %>_<%= quality_elements.first.id %>" class="hide service_type_stats_wrapper">
-          <h6>Service Type Breakdown <span class="hint">(each partnership can have multiple)</span></h6>
+          <h6>Service Type Breakdown <span class="hint">(each program can have multiple)</span></h6>
 
           <dl class="service_type_stats">
-            <% ids = region.cached_community_partners.map{|cp| cp.primary_service_types.map{|st| st}}.flatten
+            <% ids = region.cached_community_programs.map{|cp| cp.primary_service_types.map{|st| st}}.flatten
                ids.inject(Hash.new(0)){|result, element| result[element] += 1; result}.sort_by{|item| item[0].name}.each do |service_type, count| %>
               <dt><%= service_type.name %></dt>
               <dd><%= count %></dd>
@@ -25,8 +25,8 @@
     </dd>
   <% end %>
 
-  <% (QualityElement.accessible_by(current_ability).all - quality_elements_with_partnerships).each do |quality_element| %>
+  <% (QualityElement.accessible_by(current_ability).all - quality_elements_with_programs).each do |quality_element| %>
     <dt><%= quality_element.name %></dt>
-    <dd>0 partnerships <span class="extra_info">(0%)</span></dd>
+    <dd>0 programs <span class="extra_info">(0%)</span></dd>
   <% end %>
 </dl>

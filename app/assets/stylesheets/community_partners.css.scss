@@ -1,19 +1,19 @@
-table.community_partners {
-  .partnership_name { width: 20%; }
+table.community_programs {
+  .program_name { width: 20%; }
   .organization { width: 20%; }
   .sqisa { width: 25%; }
   .service { width: 25%; }
   .actions { width: 10%; }
 }
 
-.detail_wrapper.community_partnership_details {
+.detail_wrapper.community_program_details {
   dl.horizontal_stack dt { margin-bottom: 5px; }
 
   dl.horizontal_stack.span3 dt { width: 85px; }
   dl.horizontal_stack.span5 dt { width: 200px; }
 }
 
-.detail_wrapper.community_partnership_description {
+.detail_wrapper.community_program_description {
   dl.horizontal_stack dt { margin-bottom: 5px; }
 
   dl.horizontal_stack.span4 dt { width: 150px; }

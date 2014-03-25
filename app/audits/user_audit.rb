@@ -6,8 +6,8 @@ module UserAudit
     {
       role_ids: role_ids,
       school_ids: school_ids,
-      community_partnerships_as_organization_contact_ids: community_partnerships_as_organization_contact_ids,
-      community_partnerships_as_school_contact_ids: community_partnerships_as_school_contact_ids,
+      community_programs_as_organization_contact_ids: community_programs_as_organization_contact_ids,
+      community_programs_as_school_contact_ids: community_programs_as_school_contact_ids,
     }.to_json
   end
 

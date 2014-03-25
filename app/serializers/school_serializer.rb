@@ -1,5 +1,5 @@
 class SchoolSerializer < ActiveModel::Serializer
-  attributes :id, :name, :sub_area_counts, :frpm_percent_eligible_k_12 
+  attributes :id, :name, :sub_area_counts, :frpm_percent_eligible_k_12
 
   def frpm_percent_eligible_k_12
     object.free_reduced_meal_data.map do |frm|
@@ -9,11 +9,11 @@ class SchoolSerializer < ActiveModel::Serializer
 
   def sub_area_counts
     sub_area_counts = []
-    school_quality_elements = object.community_partners.map{|cp| cp.quality_elements}.flatten
+    school_quality_elements = object.community_programs.map{|cp| cp.quality_elements}.flatten
     QualityElement.accessible_by( Ability.new(scope) ).each do |element|
       count = school_quality_elements.select{|qe| qe.id == element.id}.count
       sub_area_counts << {sub_area_id: element.id, count: count}
     end
     sub_area_counts
-  end 
+  end
 end

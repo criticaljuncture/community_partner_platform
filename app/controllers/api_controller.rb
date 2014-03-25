@@ -1,17 +1,17 @@
 class ApiController < ApplicationController
-  #skip_before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!
   skip_authorization_check
 
-  def community_partners
-    @community_partners = CommunityPartner.accessible_by(current_ability).includes(:school, :organization).all
+  def community_programs
+    @community_programs = CommunityProgram.accessible_by(current_ability).includes(:school, :organization).all
 
-    render :json => @community_partners, :root => "community_partners"
+    render :json => @community_programs, :root => "community_programs"
   end
 
   def school_sub_areas
-    @schools = School.accessible_by(current_ability).includes(:community_partners).all
+    @schools = School.accessible_by(current_ability).includes(:community_programs).all
 
-    json = { 
+    json = {
       schools:  @schools.map do |school|
                   {
                     name: school.try(:name),
@@ -29,8 +29,8 @@ class ApiController < ApplicationController
   end
 
   def school_hierarchy
-    @schools = School.accessible_by(current_ability).includes(:community_partners, :organizations).all
-    
+    @schools = School.accessible_by(current_ability).includes(:community_programs, :organizations).all
+
     json = {
             name: 'Schools',
             size: 100,
@@ -55,14 +55,14 @@ class ApiController < ApplicationController
   end
 
   def schools
-    @schools = School.accessible_by(current_ability).includes(:community_partners, :organizations)
+    @schools = School.accessible_by(current_ability).includes(:community_programs, :organizations)
 
-    max_partner_count = @schools.map do |school| 
-                          school.quality_elements.group_by(&:id).map do |id, quality_elements| 
+    max_partner_count = @schools.map do |school|
+                          school.quality_elements.group_by(&:id).map do |id, quality_elements|
                             quality_elements.size
                           end.compact.max
                         end.compact.max
 
-    render json: @schools, root: "schools", meta: {max_partner_count: max_partner_count} 
+    render json: @schools, root: "schools", meta: {max_partner_count: max_partner_count}
   end
 end

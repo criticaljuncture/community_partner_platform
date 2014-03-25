@@ -11,30 +11,80 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321180322) do
+ActiveRecord::Schema.define(version: 20140324232135) do
 
-  create_table "community_partner_quality_element_service_types", force: true do |t|
-    t.integer  "community_partner_quality_element_id"
+  create_table "community_program_demographics", force: true do |t|
+    t.integer  "demographic_group_id"
+    t.integer  "community_program_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "community_program_demographics", ["community_program_id", "demographic_group_id"], name: "cpdg_cpid_dgid", using: :btree
+  add_index "community_program_demographics", ["demographic_group_id", "community_program_id"], name: "cpdg_dgid_cpid", using: :btree
+
+  create_table "community_program_ethnicity_culture_groups", force: true do |t|
+    t.integer  "community_program_id"
+    t.integer  "ethnicity_culture_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "community_program_ethnicity_culture_groups", ["community_program_id", "ethnicity_culture_group_id"], name: "cpecg_cpid_ecgid", using: :btree
+  add_index "community_program_ethnicity_culture_groups", ["ethnicity_culture_group_id", "community_program_id"], name: "cpecg_ecgid_cpid", using: :btree
+
+  create_table "community_program_grade_levels", force: true do |t|
+    t.integer  "grade_level_id"
+    t.integer  "community_program_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "community_program_grade_levels", ["community_program_id", "grade_level_id"], name: "cpgl_cpid_glid", using: :btree
+  add_index "community_program_grade_levels", ["grade_level_id", "community_program_id"], name: "cpgl_glid_cpid", using: :btree
+
+  create_table "community_program_quality_element_service_types", force: true do |t|
+    t.integer  "community_program_quality_element_id"
     t.integer  "service_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "community_partner_quality_element_service_types", ["community_partner_quality_element_id", "service_type_id"], name: "cpqest_cpqeid_stid", using: :btree
-  add_index "community_partner_quality_element_service_types", ["service_type_id", "community_partner_quality_element_id"], name: "cpqest_stid_cpqeid", using: :btree
+  add_index "community_program_quality_element_service_types", ["community_program_quality_element_id", "service_type_id"], name: "cpqest_cpqeid_stid", using: :btree
+  add_index "community_program_quality_element_service_types", ["service_type_id", "community_program_quality_element_id"], name: "cpqest_stid_cpqeid", using: :btree
 
-  create_table "community_partner_quality_elements", force: true do |t|
-    t.integer  "community_partner_id"
+  create_table "community_program_quality_elements", force: true do |t|
+    t.integer  "community_program_id"
     t.integer  "quality_element_id"
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "community_partner_quality_elements", ["community_partner_id", "quality_element_id"], name: "cpqe_cpi_qei", using: :btree
-  add_index "community_partner_quality_elements", ["quality_element_id", "community_partner_id"], name: "cpqe_qei_cpi", using: :btree
+  add_index "community_program_quality_elements", ["community_program_id", "quality_element_id"], name: "cpqe_cpi_qei", using: :btree
+  add_index "community_program_quality_elements", ["quality_element_id", "community_program_id"], name: "cpqe_qei_cpi", using: :btree
 
-  create_table "community_partners", force: true do |t|
+  create_table "community_program_service_days", force: true do |t|
+    t.integer  "community_program_id"
+    t.integer  "day_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "community_program_service_days", ["community_program_id", "day_id"], name: "cpsd_cpid_did", using: :btree
+  add_index "community_program_service_days", ["day_id", "community_program_id"], name: "cpsd_did_cpid", using: :btree
+
+  create_table "community_program_service_times", force: true do |t|
+    t.integer  "community_program_id"
+    t.integer  "service_time_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "community_program_service_times", ["community_program_id", "service_time_id"], name: "cpst_cpid_stid", using: :btree
+  add_index "community_program_service_times", ["service_time_id", "community_program_id"], name: "cpst_stid_cpid", using: :btree
+
+  create_table "community_programs", force: true do |t|
     t.integer  "school_id"
     t.integer  "organization_id"
     t.datetime "created_at"
@@ -56,60 +106,10 @@ ActiveRecord::Schema.define(version: 20140321180322) do
     t.string   "legislative_file_number"
   end
 
-  add_index "community_partners", ["organization_id"], name: "index_community_partners_on_organization_id", using: :btree
-  add_index "community_partners", ["school_id"], name: "index_community_partners_on_school_id", using: :btree
-  add_index "community_partners", ["school_user_id"], name: "index_community_partners_on_school_user_id", using: :btree
-  add_index "community_partners", ["user_id"], name: "index_community_partners_on_user_id", using: :btree
-
-  create_table "community_partnership_demographic_groups", force: true do |t|
-    t.integer  "demographic_group_id"
-    t.integer  "community_partner_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "community_partnership_demographic_groups", ["community_partner_id", "demographic_group_id"], name: "cpdg_cpid_dgid", using: :btree
-  add_index "community_partnership_demographic_groups", ["demographic_group_id", "community_partner_id"], name: "cpdg_dgid_cpid", using: :btree
-
-  create_table "community_partnership_ethnicity_culture_groups", force: true do |t|
-    t.integer  "community_partner_id"
-    t.integer  "ethnicity_culture_group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "community_partnership_ethnicity_culture_groups", ["community_partner_id", "ethnicity_culture_group_id"], name: "cpecg_cpid_ecgid", using: :btree
-  add_index "community_partnership_ethnicity_culture_groups", ["ethnicity_culture_group_id", "community_partner_id"], name: "cpecg_ecgid_cpid", using: :btree
-
-  create_table "community_partnership_grade_levels", force: true do |t|
-    t.integer  "grade_level_id"
-    t.integer  "community_partner_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "community_partnership_grade_levels", ["community_partner_id", "grade_level_id"], name: "cpgl_cpid_glid", using: :btree
-  add_index "community_partnership_grade_levels", ["grade_level_id", "community_partner_id"], name: "cpgl_glid_cpid", using: :btree
-
-  create_table "community_partnership_service_days", force: true do |t|
-    t.integer  "community_partner_id"
-    t.integer  "day_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "community_partnership_service_days", ["community_partner_id", "day_id"], name: "cpsd_cpid_did", using: :btree
-  add_index "community_partnership_service_days", ["day_id", "community_partner_id"], name: "cpsd_did_cpid", using: :btree
-
-  create_table "community_partnership_service_times", force: true do |t|
-    t.integer  "community_partner_id"
-    t.integer  "service_time_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "community_partnership_service_times", ["community_partner_id", "service_time_id"], name: "cpst_cpid_stid", using: :btree
-  add_index "community_partnership_service_times", ["service_time_id", "community_partner_id"], name: "cpst_stid_cpid", using: :btree
+  add_index "community_programs", ["organization_id"], name: "index_community_partners_on_organization_id", using: :btree
+  add_index "community_programs", ["school_id"], name: "index_community_partners_on_school_id", using: :btree
+  add_index "community_programs", ["school_user_id"], name: "index_community_partners_on_school_user_id", using: :btree
+  add_index "community_programs", ["user_id"], name: "index_community_partners_on_user_id", using: :btree
 
   create_table "days", force: true do |t|
     t.string   "name"

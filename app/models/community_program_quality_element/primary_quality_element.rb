@@ -1,0 +1,2 @@
+class PrimaryQualityElement < CommunityProgramQualityElement
+end
