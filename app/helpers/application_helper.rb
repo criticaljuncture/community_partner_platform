@@ -1,6 +1,6 @@
 module ApplicationHelper
   def page_specific_javascript(file_name)
-    content_for :javascripts, javascript_include_tag(file_name)
+    content_for :javascripts, javascript_include_tag(asset_path(file_name))
   end
 
   def icon_link_to(name, path, options={})
