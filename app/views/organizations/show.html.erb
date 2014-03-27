@@ -51,7 +51,11 @@
                 <td><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
                 <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
                 <td class="center buttons">
-                  <%= link_to 'view', community_program_path(community_program), class: "btn btn-small btn-info" %>
+                  <% if community_program.verification_required? && can?(:edit, community_program) %>
+                    <%= link_to 'verify', edit_community_program_path(community_program, redirect_back: organization_path(@organization)), class: "btn btn-small btn-info" %>
+                  <% else %>
+                    <%= link_to 'view', community_program_path(community_program), class: "btn btn-small btn-info" %>
+                  <% end %>
                 </td>
               </tr>
             <% end %>

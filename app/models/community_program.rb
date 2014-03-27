@@ -76,6 +76,10 @@ class CommunityProgram < ActiveRecord::Base
     end
   end
 
+  def verification_required?
+    last_verified_at.nil?
+  end
+
   private
   def clear_associated_cache
     school.touch

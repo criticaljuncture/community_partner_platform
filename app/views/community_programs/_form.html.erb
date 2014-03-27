@@ -104,5 +104,6 @@
 <% end %>
 
 <%= f.actions do %>
-  <%= f.button 'Save', class: "btn btn-success" %>
+  <% save_label = !f.object.new_record? && current_user.role?(:organization_member) && f.object.verification_required? ? 'Verify' : 'Save' %>
+  <%= f.button save_label, class: "btn btn-success" %>
 <% end %>

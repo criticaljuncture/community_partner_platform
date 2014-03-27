@@ -39,7 +39,7 @@ class Ability < BaseAbility
 
     can :read, Role, id: [4]
 
-    can :new, CommunityProgram
+    can [:read, :new], CommunityProgram
     can [:create, :edit, :update], CommunityProgram, organization_id: @user.organization_id
 
     can :manage, User, organization_id: @user.organization_id

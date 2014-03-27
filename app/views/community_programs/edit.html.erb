@@ -1,3 +1,5 @@
+<% edit_or_verify = !@community_program.new_record? && current_user.role?(:organization_member) && @community_program.verification_required? ? 'Verify' : 'Edit' %>
+
 <%= breadcrumb [
   ['Community Programs', community_programs_path()],
   [truncate(@community_program.name, length: 20), community_program_path(@community_program)],
@@ -6,7 +8,7 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <%= page_header("Edit #{@community_program.name}", "icon-handshake") %>
+    <%= page_header("#{edit_or_verify} #{@community_program.name} #{'@ ' + @community_program.school.name if @community_program.school}", "icon-handshake") %>
 
     <div class="form_wrapper">
       <%= semantic_form_for @community_program, method: :put, html: {class: "form-horizontal"} do |f| %>

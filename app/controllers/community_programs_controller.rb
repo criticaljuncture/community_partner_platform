@@ -35,6 +35,10 @@ class CommunityProgramsController < ApplicationController
     @community_program = CommunityProgram.find(params[:id])
     authorize! :edit, @community_program
 
+    if params[:redirect_back]
+      session[:redirect_back] = params[:redirect_back]
+    end
+
     @community_program.build_secondary_quality_element unless @community_program.secondary_quality_element.present?
   end
 
@@ -44,7 +48,28 @@ class CommunityProgramsController < ApplicationController
 
     @community_program.update_attributes!(community_program_params)
 
-    redirect_to community_partner_path(@community_program)
+    if current_user.role?(:organization_member)
+      previously_needed_verified = @community_program.verification_required?
+      @community_program.update_attributes!(last_verified_at: Time.now)
+    end
+
+    if current_user.role?(:organization_member) && previously_needed_verified
+      flash.notice = t('community_programs.flash_messages.verified',
+                       name: @community_program.name,
+                       school_name: @community_program.school.name)
+    else
+      flash.notice = t('community_programs.flash_messages.save.success',
+                       name: @community_program.name,
+                       school_name: @community_program.school.name)
+    end
+
+    if session[:redirect_back]
+      redirect_back = session[:redirect_back]
+      session[:redirect_back] = nil
+      redirect_to redirect_back
+    else
+      redirect_to community_program_path(@community_program)
+    end
   rescue ActiveRecord::RecordInvalid
     @community_program.build_primary_quality_element unless @community_program.primary_quality_element
     @community_program.build_secondary_quality_element unless @community_program.secondary_quality_element
