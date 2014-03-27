@@ -68,28 +68,34 @@
               label: "Target population" %>
 
   <%= f.input :ethnicity_culture_groups,
-              as: :check_boxes,
+              as: :columized_checkboxes,
               collection: EthnicityCultureGroup.accessible_by(current_ability).sort_by(&:name),
-              label: "Target ethnicity/culture groups" %>
+              label: "Target ethnicity/culture groups",
+              columns: 3 %>
 
   <%= f.input :demographic_groups,
-              as: :check_boxes,
+              as: :columized_checkboxes,
               collection: DemographicGroup.accessible_by(current_ability).sort_by(&:name),
-              label: "Target demographic groups" %>
+              label: "Target demographic groups",
+              columns: 3 %>
+
   <%= f.input :grade_levels,
-              as: :check_boxes,
+              as: :columized_checkboxes,
               collection: GradeLevel.accessible_by(current_ability),
-              label: "Target grade levels" %>
+              label: "Target grade levels",
+              columns: 4 %>
 
   <%= f.input :service_times,
-              as: :check_boxes,
+              as: :columized_checkboxes,
               collection: ServiceTime.accessible_by(current_ability),
-              label: "Service times" %>
+              label: "Service times",
+              columns: 3 %>
 
   <%= f.input :days,
-              as: :check_boxes,
+              as: :columized_checkboxes,
               collection: Day.accessible_by(current_ability),
-              label: "Service days" %>
+              label: "Service days",
+              columns: 3 %>
 <% end %>
 
 <h2>Internal Details</h2>

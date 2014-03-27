@@ -20,6 +20,7 @@ module OusdCommunityPartners
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'forms', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'audits', '{**}')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'inputs', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('lib')]
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
