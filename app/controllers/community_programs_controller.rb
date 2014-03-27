@@ -26,7 +26,7 @@ class CommunityProgramsController < ApplicationController
     authorize! :create, @community_program
 
     if current_user.role?(:organization_member)
-      @community_program.last_verified_at = Time.now)
+      @community_program.last_verified_at = Time.now
     end
 
     @community_program.save!
