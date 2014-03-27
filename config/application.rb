@@ -35,6 +35,8 @@ module OusdCommunityPartners
     config.assets.precompile += %w(
       *.png *.jpg *.jpeg *.gif
       *.eot *.svg *.ttf *.woff
+      organization_verification.js
+      scatter_plot.js
     )
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
