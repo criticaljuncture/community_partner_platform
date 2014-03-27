@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324232135) do
+ActiveRecord::Schema.define(version: 20140326170334) do
 
-  create_table "community_program_demographics", force: true do |t|
+  create_table "community_program_demographic_groups", force: true do |t|
     t.integer  "demographic_group_id"
     t.integer  "community_program_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "community_program_demographics", ["community_program_id", "demographic_group_id"], name: "cpdg_cpid_dgid", using: :btree
-  add_index "community_program_demographics", ["demographic_group_id", "community_program_id"], name: "cpdg_dgid_cpid", using: :btree
+  add_index "community_program_demographic_groups", ["community_program_id", "demographic_group_id"], name: "cpdg_cpid_dgid", using: :btree
+  add_index "community_program_demographic_groups", ["demographic_group_id", "community_program_id"], name: "cpdg_dgid_cpid", using: :btree
 
   create_table "community_program_ethnicity_culture_groups", force: true do |t|
     t.integer  "community_program_id"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20140324232135) do
     t.integer  "student_population_id"
     t.string   "name"
     t.string   "legislative_file_number"
+    t.datetime "last_verified_at"
   end
 
   add_index "community_programs", ["organization_id"], name: "index_community_partners_on_organization_id", using: :btree

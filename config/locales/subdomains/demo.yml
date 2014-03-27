@@ -2,3 +2,6 @@ en:
   demo:
     app:
       title: 'Community Partner Platform'
+    district:
+      name: 'Demo District'
+      abbreviation: 'Demo'

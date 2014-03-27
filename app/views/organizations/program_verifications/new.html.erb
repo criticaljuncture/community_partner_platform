@@ -3,27 +3,59 @@
   ['Verify Programs', ""]
 ] %>
 
+<% page_specific_javascript('organization_verification') %>
+
 <div class="row-fluid">
   <div class="span12">
     <%= page_header("Verify Active Programs", "icon-handshake") %>
 
     <div class="span6 form-instructions">
-      <p>
-        Please tell us how many programs you conduct at each school site.
-        <br />
-        For reference, we've included the programs for your organization that
-        have already been entered in the Community Partner Platform.
-      </p>
+      Not sure what to do?
+      <%= link_to 'Open instructions here.',
+            '#',
+            :'data-toggle' => "modal",
+            :'data-target' => "#instructions",
+            :'data-options' => {escapeClose: false,
+                                clickClose: false,
+                                showClose: false}.to_json %>
+    </div>
 
-      <p>
-        If you have more programs at a school than are listed update the number
-        next to that school.
-      </p>
-      <p>
-        To add a school simply choose it from the select list below and it will
-        be added to the list where you can enter the number of active programs
-        your organization conducts.
-      </p>
+    <div id="instructions" class="instruction-modal modal" role="dialog" aria-labelledby="instructionsModal" aria-hidden="true">
+      <div class="modal-header">
+        <h3>
+          <span class="icon-bym icon-handshake"></span>
+          Program Counts
+        </h3>
+      </div>
+
+      <div class="modal-body">
+        <p>
+          Now we need you to tell us how many programs you have at each school
+          site. Below we've listed the schools we alredy know have programs
+          that are provided by your organization. For reference we've included
+          the names of those programs that have already been entered in the
+          <%= t("#{current_user.subdomain}.app.title") %> (see diagram below).
+        </p>
+
+        <p>
+          If you have more programs at a school than are listed, update the number
+          next to that school. If you believe that you have fewer programs,
+          <strong>do not</strong> change the number. We will work with you to
+          identify and correct the discrepency.
+        </p>
+
+        <%= image_tag asset_path('program_verification_diagram.png') %>
+
+        <p>
+          To add additional schools simply choose them from the menu
+          above the list. It will be added to the page where you can enter
+          the number of active programs your organization provides.
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Continue</button>
+      </div>
     </div>
 
     <div class="span-8 form_wrapper">

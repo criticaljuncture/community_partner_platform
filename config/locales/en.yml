@@ -1,8 +1,8 @@
 en:
-  app:
-    title: 'Community Partner Platform'
   community_programs:
     flash_messages:
       verified: "Thank you for verifying %{name} @ %{school_name}"
       save:
         success: "Successfully saved %{name} @ %{school_name}"
+      create:
+        success: "Successfully created %{name} @ %{school_name}"

@@ -1,11 +1,16 @@
-body { 
+body {
   position: relative;
 }
-.page-wrapper { 
+.page-wrapper {
   @extend .span12;
 }
 
-#content-wrapper { 
+.navbar-fixed-top,
+.user-navigation {
+  z-index: 1;
+}
+
+#content-wrapper {
   margin-top: 120px;
   margin-bottom: 150px;
 }
@@ -19,7 +24,7 @@ body {
   width: 100%;
 }
 
-h2 { 
+h2 {
   font-size: 26px;
   border-bottom: 2px solid #333;
 }
@@ -29,10 +34,12 @@ h3 { clear: both; }
 h5, h6 { font-size: 14px; }
 h6 { color: $gray-80; }
 
+.flash-messages { padding: 0px 20px; }
+
 .table_wrapper,
 .form_wrapper,
 .graph_wrapper,
-.detail_wrapper{ 
+.detail_wrapper{
   padding: 20px 20px 0px 20px;
   overflow: hidden;
 }
@@ -48,7 +55,7 @@ h6 { color: $gray-80; }
 table .center { text-align: center; }
 table .buttons { width: 129px; }
 
-.good, 
+.good,
 .bad { font-weight: bold; }
 
 .good { color: green; }
@@ -56,7 +63,7 @@ table .buttons { width: 129px; }
 
 dl {
   margin-left: 30px;
-  
+
   dt {
     float: left;
     clear: both;
@@ -69,7 +76,7 @@ dl {
 ul.nav.nav-tabs {
   margin: 30px 20px 10px 20px;
 }
-.tab-content { 
+.tab-content {
   min-height: 400px;
   padding: 20px 30px 0px 30px;
 

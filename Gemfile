@@ -73,6 +73,11 @@ gem 'dotenv-rails'
 # memcached client
 gem "dalli", "~> 2.6.4"
 
+# modals
+gem 'jquery-modal-rails',
+    github: 'peregrinator/jquery-modal-rails',
+    ref: '97bc84d7723d324876971f45f255e066fbb6ad49'
+
 group :development, :test do
   gem "rspec-rails", "~> 2.14.0"
   gem "factory_girl_rails", "~> 4.2.1"

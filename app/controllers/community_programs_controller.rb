@@ -1,7 +1,7 @@
 class CommunityProgramsController < ApplicationController
   def index
     @community_programs = CommunityProgram.accessible_by(current_ability).includes(:organization).order("organizations.name")
-    authorize! :index, @community_programs
+    authorize! :index, CommunityProgram
   end
 
   def show
@@ -10,8 +10,12 @@ class CommunityProgramsController < ApplicationController
   end
 
   def new
-    @community_program = CommunityProgram.new(community_program_params)
+    @community_program = params[:community_program].present? ? CommunityProgram.new(community_program_params) : CommunityProgram.new()
     authorize! :new, @community_program
+
+    if params[:redirect_back]
+      session[:redirect_back] = params[:redirect_back]
+    end
 
     @community_program.build_primary_quality_element
     @community_program.build_secondary_quality_element
@@ -21,9 +25,23 @@ class CommunityProgramsController < ApplicationController
     @community_program = CommunityProgram.new(community_program_params)
     authorize! :create, @community_program
 
+    if current_user.role?(:organization_member)
+      @community_program.last_verified_at = Time.now)
+    end
+
     @community_program.save!
 
-    redirect_to community_partner_path(@community_program)
+    flash.notice = t('community_programs.flash_messages.create.success',
+                      name: @community_program.name,
+                      school_name: @community_program.school.name)
+
+    if session[:redirect_back]
+      redirect_back = session[:redirect_back]
+      session[:redirect_back] = nil
+      redirect_to redirect_back
+    else
+      redirect_to community_program_path(@community_program)
+    end
   rescue ActiveRecord::RecordInvalid
     @community_program.build_primary_quality_element unless @community_program.primary_quality_element
     @community_program.build_secondary_quality_element unless @community_program.secondary_quality_element

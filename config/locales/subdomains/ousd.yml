@@ -2,3 +2,6 @@ en:
   ousd:
     app:
       title: 'OUSD Community Partner Platform'
+    district:
+      name: 'Oakland Unified School District'
+      abbreviation: 'OUSD'

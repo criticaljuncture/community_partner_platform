@@ -4,9 +4,64 @@
   ['Verify', ""]
 ] %>
 
+<% page_specific_javascript('organization_verification') %>
+
 <div class="row-fluid">
   <div class="span12">
     <%= page_header("Verify #{@organization.name}", "icon-small_business") %>
+
+    <div id="instructions" class="instruction-modal modal" role="dialog" aria-labelledby="instructionsModal" aria-hidden="true">
+      <div class="modal-header">
+        <h3>
+          <span class="icon-bym icon-small_business"></span>
+          Organization Verification
+        </h3>
+      </div>
+
+      <div class="modal-body">
+        <p>
+          To get started we need to verify information about your organization
+          and the programs it provides at
+          <%= t("#{current_user.subdomain}.district.name") %>.
+        </p>
+
+        <p>
+          There are <strong>3 steps</strong> to the process. But don't worry,
+          we'll give you instructions along the way!
+        </p>
+
+        <ul>
+          <li>
+            <span class="instruction-number">1</span>
+            <p class="instruction-content">
+              First, we need you to verify the basic information about your
+              organization, your mission, and the various services you provide.
+            </p>
+          </li>
+          <li>
+            <span class="instruction-number">2</span>
+            <p class="instruction-content">
+              Next, we'll have you provide the number of different programs your
+              organization provides at each school within
+              <%= t("#{current_user.subdomain}.district.abbreviation") %>.
+            </p>
+          </li>
+          <li>
+            <span class="instruction-number">3</span>
+            <p class="instruction-content">
+              At the end of the process, we'll ask that you spend some time
+              reviewing and verifying the information we already have about
+              your programs. We'll also ask you to provide details about any
+              additional programs you identified in step 2.
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Get Started</button>
+      </div>
+    </div>
 
     <div class="form_wrapper">
       <%= semantic_form_for @organization, method: :put, html: {class: "form-horizontal"} do |f| %>

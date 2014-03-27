@@ -15,17 +15,19 @@
   <%= embed_ember_template 'school-program-verification-input', 'school_program_verification_input' %>
 
   <div class="school-programs-list">
-    <% @organization.community_partners.group_by(&:school).each do |school, programs| %>
+    <% @organization.community_programs.group_by(&:school).each do |school, community_programs| %>
       <div class="string input optional stringish control-group">
         <label class="control-label"><%= school.name %></label>
         <div class="controls">
-          <%= text_field_tag "school[#{school.id}]", programs.count, type: "number" %>
-          <h6>Exisiting Programs</h6>
-          <ul>
-            <% programs.each do |program| %>
-              <li><%= program.name %></li>
-            <% end %>
-          </ul>
+          <%= text_field_tag "school[#{school.id}]", community_programs.count, type: "number" %>
+          <div class="program-data">
+            <h6>Exisiting Programs</h6>
+            <ul>
+              <% community_programs.each do |community_program| %>
+                <li><%= community_program.name %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
     <% end %>
@@ -33,5 +35,5 @@
 <% end %>
 
 <%= f.actions do %>
-  <%= f.button 'Save', class: "btn btn-success" %>
+  <%= f.button 'Save and Continue', class: "btn btn-success" %>
 <% end %>

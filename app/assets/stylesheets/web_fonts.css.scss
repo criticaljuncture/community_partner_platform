@@ -1,7 +1,18 @@
+@mixin pt_sans { font-family: 'PT Sans', sans-serif; }
+@mixin open_sans { font-family: 'Open Sans', sans-serif; }
+
+/* we only include characters 0-9 for fancy lists, etc. */
+@mixin merriweather { font-family: 'Merriweather', serif; }
+
 .pt_sans {
-  font-family: 'PT Sans', sans-serif;
+  @include pt_sans;
 }
 
 .open_sans {
-  font-family: 'Open Sans', sans-serif;
+  @include open_sans;
 }
+
+.merriweather {
+  @include merriweather;
+}
+

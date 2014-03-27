@@ -50,6 +50,14 @@ class Organization < ActiveRecord::Base
     last_verified_at.nil?
   end
 
+  def any_unverified_programs?
+    unverified_program_count > 0
+  end
+
+  def unverified_program_count
+    cached_community_programs.sum{|cp| cp.verification_required? ? 1 : 0}
+  end
+
   def reported_program_count
     reported_school_programs.sum{|k,v| v}
   end
