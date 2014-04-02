@@ -36,6 +36,7 @@ class Ability < BaseAbility
     can :read, :organization_users
 
     can :read, :primary_school_contact_input
+    can :read, QualityElement
 
     can :read, Role, id: [4]
 
@@ -57,6 +58,8 @@ class Ability < BaseAbility
     can :read, CommunityProgram
     can :read, Organization
 
+    can :read, QualityElement
+    can :read, ServiceType
     can :read, Day
     can :read, ServiceTime
     can :read, StudentPopulation

@@ -1,9 +1,9 @@
-var CommunityPartnerFormHandler = (function() {
-  var CommunityPartnerFormHandler = function() {
+var CommunityProgramFormHandler = (function() {
+  var CommunityProgramFormHandler = function() {
     this.form = null;
   };
 
-  CommunityPartnerFormHandler.prototype = {
+  CommunityProgramFormHandler.prototype = {
     initialize: function(form) {
       this.form = form;
 
@@ -12,19 +12,19 @@ var CommunityPartnerFormHandler = (function() {
     },
 
     ensure_form_consistency: function() {
-      if( this.form.find('#community_partner_primary_quality_element_attributes_quality_element_id').val() === "" ) {
-        this.form.find('#community_partner_primary_quality_element_attributes_quality_element_id').trigger('change');
+      if( this.form.find('#community_program_primary_quality_element_attributes_quality_element_id').val() === "" ) {
+        this.form.find('#community_program_primary_quality_element_attributes_quality_element_id').trigger('change');
       }
-      if( this.form.find('#community_partner_secondary_quality_element_attributes_quality_element_id').val() === "" ) {
-        this.form.find('#community_partner_secondary_quality_element_attributes_quality_element_id').trigger('change');
-      }
-      
-      if( this.form.find('#community_partner_user_id').val() === ""  ) {
-        this.form.find('#community_partner_organization_id').trigger('change');
+      if( this.form.find('#community_program_secondary_quality_element_attributes_quality_element_id').val() === "" ) {
+        this.form.find('#community_program_secondary_quality_element_attributes_quality_element_id').trigger('change');
       }
 
-      if( this.form.find('#community_partner_school_user_id').val() === "" ) {
-        this.form.find('#community_partner_school_id').trigger('change');
+      if( this.form.find('#community_program_user_id').val() === "" && !this.form.hasClass('errors') ) {
+        this.form.find('#community_program_organization_id').trigger('change');
+      }
+
+      if( this.form.find('#community_program_school_user_id').val() === "" && !this.form.hasClass('errors') ) {
+        this.form.find('#community_program_school_id').trigger('change');
       }
     },
 
@@ -32,21 +32,21 @@ var CommunityPartnerFormHandler = (function() {
       var form_handler = this;
 
       /* quality element change */
-      form_handler.form.find('#community_partner_primary_quality_element_attributes_quality_element_id').on('change', function() {
+      form_handler.form.find('#community_program_primary_quality_element_attributes_quality_element_id').on('change', function() {
         form_handler.primary_quality_element_change( $(this).val() );
       });
-      form_handler.form.find('#community_partner_secondary_quality_element_attributes_quality_element_id').on('change', function() {
+      form_handler.form.find('#community_program_secondary_quality_element_attributes_quality_element_id').on('change', function() {
         form_handler.secondary_quality_element_change( $(this).val() );
       });
 
 
       /* organization change */
-      form_handler.form.find('#community_partner_organization_id').on('change', function() {
+      form_handler.form.find('#community_program_organization_id').on('change', function() {
         form_handler.organization_change( $(this).val() );
       });
 
       /* school change */
-      form_handler.form.find('#community_partner_school_id').on('change', function() {
+      form_handler.form.find('#community_program_school_id').on('change', function() {
         form_handler.school_change( $(this).val() );
       });
     },
@@ -66,13 +66,13 @@ var CommunityPartnerFormHandler = (function() {
         url: '/quality_elements/' + quality_element_id + '/service_type_inputs?type=primary',
         dataType: 'html',
       })
-        .done(function(html) { 
-          form_handler.form.find('#community_partner_primary_quality_element_attributes_quality_element_id_input').after(html);
+        .done(function(html) {
+          form_handler.form.find('#community_program_primary_quality_element_attributes_quality_element_id_input').after(html);
         });
     },
 
     remove_primary_quality_element_related_fields: function() {
-      this.form.find('#community_partner_primary_quality_element_attributes_service_type_ids_input').remove();
+      this.form.find('#community_program_primary_quality_element_attributes_service_type_ids_input').remove();
     },
 
     secondary_quality_element_change: function(quality_element_id) {
@@ -90,13 +90,13 @@ var CommunityPartnerFormHandler = (function() {
         url: '/quality_elements/' + quality_element_id + '/service_type_inputs?type=secondary',
         dataType: 'html',
       })
-        .done(function(html) { 
-          form_handler.form.find('#community_partner_secondary_quality_element_attributes_quality_element_id_input').after(html);
+        .done(function(html) {
+          form_handler.form.find('#community_program_secondary_quality_element_attributes_quality_element_id_input').after(html);
         });
     },
 
     remove_secondary_quality_element_related_fields: function() {
-      this.form.find('#community_partner_secondary_quality_element_attributes_service_type_ids_input').remove();
+      this.form.find('#community_program_secondary_quality_element_attributes_service_type_ids_input').remove();
     },
 
     organization_change: function(organization_id) {
@@ -114,13 +114,13 @@ var CommunityPartnerFormHandler = (function() {
         url: '/organizations/' + organization_id + '/primary_contact_input',
         dataType: 'html',
       })
-        .done(function(html) { 
-          form_handler.form.find('#community_partner_organization_id_input').after(html);
+        .done(function(html) {
+          form_handler.form.find('#community_program_organization_id_input').after(html);
         });
     },
 
     remove_organization_related_fields: function() {
-      this.form.find('#community_partner_user_id_input').remove();
+      this.form.find('#community_program_user_id_input').remove();
     },
 
     school_change: function(school_id) {
@@ -138,16 +138,16 @@ var CommunityPartnerFormHandler = (function() {
         url: '/schools/' + school_id + '/primary_contact_input',
         dataType: 'html',
       })
-        .done(function(html) { 
-          form_handler.form.find('#community_partner_school_id_input').after(html);
+        .done(function(html) {
+          form_handler.form.find('#community_program_school_id_input').after(html);
         });
     },
 
     remove_school_related_fields: function() {
-      this.form.find('#community_partner_school_user_id_input').remove();
+      this.form.find('#community_program_school_user_id_input').remove();
     }
   };
 
-  return CommunityPartnerFormHandler;
+  return CommunityProgramFormHandler;
 })();
 

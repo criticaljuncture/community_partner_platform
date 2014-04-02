@@ -9,13 +9,15 @@ class ColumizedCheckboxesInput < FormtasticBootstrap::Inputs::CheckBoxesInput
 
     groups_of = (collection.length.to_f / input_options[:columns]).ceil
 
-    collection.in_groups_of(groups_of, false) do |choices|
-      html = ["<div class='checkbox-column'>"]
-      html << choices.map do |choice|
-                choice_html(choice)
-              end.join("\n").html_safe
-      html << "</div>"
-      choice_groups << html.join("\n").html_safe
+    if collection.present?
+      collection.in_groups_of(groups_of, false) do |choices|
+        html = ["<div class='checkbox-column'>"]
+        html << choices.map do |choice|
+                  choice_html(choice)
+                end.join("\n").html_safe
+        html << "</div>"
+        choice_groups << html.join("\n").html_safe
+      end
     end
 
     control_group_wrapping do

@@ -50,13 +50,26 @@ class CommunityProgram < ActiveRecord::Base
              foreign_key: :school_user_id
 
 
-  validates :name, presence: true
-  validates :organization_id, presence: true
-  validates :user_id, presence: true
-
-  validates :school_id, presence: true
-
-  validates :primary_quality_element, presence: true
+  validates :name,
+    presence: {
+      message: "must choose a program name"
+    }
+  validates :organization_id,
+    presence: {
+      message: "must choose an organization"
+    }
+  validates :user_id,
+    presence: {
+      message: "must choose an organization contact"
+    }
+  validates :school_id,
+    presence: {
+      message: "must choose a school"
+    }
+  validates :primary_quality_element,
+    presence: {
+      message: "must choose a primary quality element"
+    }
 
   def quality_elements
     Rails.cache.fetch([self, "quality_elements"]) do

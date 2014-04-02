@@ -8,7 +8,7 @@
     <%= page_header('Create New Community Program', "icon-handshake") %>
 
     <div class="form_wrapper">
-      <%= semantic_form_for @community_program, method: :post, html: {class: "form-horizontal"} do |f| %>
+      <%= semantic_form_for @community_program, method: :post, html: {class: "form-horizontal #{'errors' if @community_program.present?}"} do |f| %>
         <%= render :partial => 'form', :locals => {:f => f} %>
       <% end %>
     </div>

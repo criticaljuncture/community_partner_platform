@@ -13,7 +13,8 @@
               as: :select,
               collection: User.accessible_by(current_ability).where(organization_id: @community_program.organization_id).sort_by(&:full_name),
               label: "Primary organization contact",
-              required: true %>
+              required: true,
+              input_html: {class: 'wrap'} %>
 
   <%= f.input :school_id,
               as: :select,
@@ -34,9 +35,11 @@
                 as: :select,
                 collection: QualityElement.accessible_by(current_ability).sort_by(&:name),
                 required: true,
-                label: "Primary community schools element" %>
+                label: "Primary community schools element",
+                input_html: {class: 'wrap'} %>
     <%= element.input :service_type_ids,
-              as: :check_boxes,
+              as: :columized_checkboxes,
+              columns: 2,
               collection: ServiceType.accessible_by(current_ability).includes(:quality_elements).where(quality_elements: {id: @community_program.primary_quality_element.quality_element_id}).sort_by(&:name),
               required: true,
               label: "Primary service types" %>
@@ -47,10 +50,12 @@
                 as: :select,
                 collection: QualityElement.accessible_by(current_ability).sort_by(&:name),
                 required: false,
-                label: "Secondary community schools element" %>
+                label: "Secondary community schools element",
+                input_html: {class: 'wrap'} %>
 
     <%= element.input :service_type_ids,
-              as: :check_boxes,
+              as: :columized_checkboxes,
+              columns: 2,
               collection: ServiceType.accessible_by(current_ability).includes(:quality_elements).where(quality_elements: {id: @community_program.secondary_quality_element.quality_element_id}).sort_by(&:name),
               required: false,
               label: "Secondary service types" %>

@@ -50,7 +50,7 @@ class OrganizationsController < ApplicationController
     @organization = Organization.includes(:users).find(params[:id])
     authorize! :edit, @organization
 
-    render "/community_partners/primary_contact_input", layout: false
+    render "/community_programs/primary_contact_input", layout: false
   end
 
   private

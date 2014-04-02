@@ -1,3 +1,9 @@
+%hint {
+  font-size: 12px;
+  color: $gray-40;
+  font-style: italic;
+}
+
 body {
   position: relative;
 }
@@ -105,7 +111,51 @@ dl.horizontal_stack {
   }
 }
 .form-horizontal {
-  .controls { width: 510px; }
+  .controls { width: 910px; }
+
+  select.wrap {
+    top: 5px;
+    position: relative;
+  }
+
+  &.errors .inputs {
+    .control-label { color: $green; }
+    .error .control-label { color: $error-red; }
+  }
+
+  .error {
+    &.control-group {
+      .checkbox { color: inherit; }
+    }
+
+    .controls {
+      position: relative;
+
+      .help-inline {
+        position: absolute;
+        top: 5px;
+        left: 250px;
+        font-weight: bold;
+        color: $error-red;
+      }
+
+      .help-block { color: $gray-40; }
+    }
+  }
+
+  .error.columized_checkboxes {
+    .controls .help-inline {
+      position: relative;
+      top: 4px;
+      float: left;
+      left: 0;
+    }
+  }
+
+  .help-block {
+    @extend %hint;
+    font-size: 13px;
+  }
 
   input + .help-block,
   textarea + .help-block{
@@ -117,9 +167,7 @@ dl.horizontal_stack {
 .clear { clear: both; }
 .hide { display: none; }
 .hint {
-  font-size: 12px;
-  color: $gray-40;
-  font-style: italic;
+  @extend %hint;
 }
 .toggle {
   color: $blue;

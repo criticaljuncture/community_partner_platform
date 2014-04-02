@@ -1,4 +1,8 @@
 en:
+  errors:
+    form_error:
+      one: "There is %{count} error below. Please correct it and click 'Save' to continue."
+      other: "There are %{count} errors below. Please correct them and click 'Save' to continue."
   community_programs:
     flash_messages:
       verified: "Thank you for verifying %{name} @ %{school_name}"

@@ -1,7 +1,7 @@
-<div class="select input optional control-group" id="community_partner_user_id_input">
-  <label class="control-label" for="community_partner_user_id">Primary organization contact</label>
+<div class="select input optional control-group" id="community_program_user_id_input">
+  <label class="control-label" for="community_program_user_id">Primary organization contact</label>
   <div class="controls">
-    <select id="community_partner_user_id" name="community_partner[user_id]">
+    <select id="community_program_user_id" name="community_program[user_id]">
       <option value=""></option>
       <% @organization.users.sort_by(&:full_name).each do |user| %>
         <option value="<%= user.id %>"><%= user.full_name %></option>

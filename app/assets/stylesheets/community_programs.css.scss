@@ -20,9 +20,10 @@ table.community_programs {
   dl.horizontal_stack.span3 dt { width: 165px; }
 }
 
-.formtastic .columized_checkboxes {
-  .controls {
-    width: 810px;
+.formtastic.form-horizontal {
+  .columized_checkboxes {
+    .controls {
+      width: 810px;
+    }
   }
 }
-

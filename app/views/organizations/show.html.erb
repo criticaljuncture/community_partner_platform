@@ -118,11 +118,12 @@
                 <td></td>
                 <td class="center buttons">
                   <%= link_to 'create',
-                        new_community_program_path(params: {  community_program: {
-                                                                school_id: school.id,
-                                                                organization_id: @organization.id
-                                                              }
-                                                           }),
+                        new_community_program_path(
+                          community_program: {
+                            school_id: school.id,
+                            organization_id: @organization.id
+                          },
+                          redirect_back: organization_path(@organization)),
                         class: "btn btn-small btn-info" %>
                 </td>
               </tr>

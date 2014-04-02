@@ -1,15 +1,15 @@
-<div class="check_boxes input required control-group" id="community_partner_<%=element_type%>_quality_element_attributes_service_type_ids_input">
+<div class="check_boxes input required control-group" id="community_program_<%=element_type%>_quality_element_attributes_service_type_ids_input">
   <label class="control-label"><%=element_type.capitalize%> service types<abbr title="required">*</abbr></label>
-  <input id="community_partner[<%=element_type%>_quality_element_attributes]_service_type_ids_none" 
-    name="community_partner[<%=element_type%>_quality_element_attributes][service_type_ids][]" 
-    type="hidden" 
+  <input id="community_program[<%=element_type%>_quality_element_attributes]_service_type_ids_none"
+    name="community_program[<%=element_type%>_quality_element_attributes][service_type_ids][]"
+    type="hidden"
     value="">
     <div class="controls">
       <% @quality_element.service_types.sort_by(&:name).each do |service_type| %>
-        <label class="choice checkbox" for="community_partner_<%=element_type%>_quality_element_attributes_service_type_ids_<%= service_type.id %>">
-          <input id="community_partner_<%=element_type%>_quality_element_attributes_service_type_ids_<%= service_type.id %>" 
-            name="community_partner[<%=element_type%>_quality_element_attributes][service_type_ids][]" 
-            type="checkbox" 
+        <label class="choice checkbox" for="community_program_<%=element_type%>_quality_element_attributes_service_type_ids_<%= service_type.id %>">
+          <input id="community_program_<%=element_type%>_quality_element_attributes_service_type_ids_<%= service_type.id %>"
+            name="community_program[<%=element_type%>_quality_element_attributes][service_type_ids][]"
+            type="checkbox"
             value="<%= service_type.id %>">
           <%= service_type.name %>
         </label>

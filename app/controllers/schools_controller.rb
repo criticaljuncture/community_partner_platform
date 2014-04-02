@@ -43,7 +43,7 @@ class SchoolsController < ApplicationController
     @school = School.includes(:users).find(params[:id])
     authorize! :read, :primary_school_contact_input
 
-    render "/community_partners/primary_school_contact_input", layout: false
+    render "/community_programs/primary_school_contact_input", layout: false
   end
 
   private
