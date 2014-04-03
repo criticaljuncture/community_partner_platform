@@ -70,6 +70,11 @@ class Organization < ActiveRecord::Base
     reported_program_discrepency > 0
   end
 
+  def show_verification_modal?(current_user)
+    current_user.role?(:organization_member) &&
+      (any_unverified_programs? || reported_program_discrepency?)
+  end
+
   private
   def clear_associated_cache
     schools.each{|s| s.touch}
