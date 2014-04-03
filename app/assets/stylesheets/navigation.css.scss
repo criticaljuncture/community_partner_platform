@@ -1,5 +1,5 @@
 .navbar {
-  .brand { 
+  .brand {
     border-right: 1px solid #777;
     padding-right: 10px;
     margin-right: 10px;
@@ -11,8 +11,15 @@
     padding-right: 10px;
   }
 
-  .user { 
+  .user {
     color: #777777;
     overflow: hidden;
+  }
+
+  .nav-bar-fade {
+    height: 15px;
+    width: 100%;
+    background-color: #FFF;
+    opacity: 0.8;
   }
 }
