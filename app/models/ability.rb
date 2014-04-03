@@ -1,5 +1,4 @@
 class Ability < BaseAbility
-
   def debug_abilities
     can :view, :debug_toolbar
   end
@@ -32,7 +31,7 @@ class Ability < BaseAbility
   end
 
   def organization_member_abilities
-    can [:index, :show, :edit, :update, :verification], Organization, id: @user.organization_id
+    can [:edit, :update, :verification], Organization, id: @user.organization_id
     can :read, :organization_users
 
     can :read, :primary_school_contact_input
@@ -40,7 +39,7 @@ class Ability < BaseAbility
 
     can :read, Role, id: [4]
 
-    can [:read, :new], CommunityProgram
+    can :new, CommunityProgram
     can [:create, :edit, :update], CommunityProgram, organization_id: @user.organization_id
 
     can :manage, User, organization_id: @user.organization_id

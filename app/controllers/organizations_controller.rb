@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController
   def index
     @organizations = Organization.accessible_by(current_ability).includes(community_programs: :school).sort_by(&:name)
-    authorize! :index, @organizations
+    authorize! :index, Organization
   end
 
   def show
