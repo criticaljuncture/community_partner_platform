@@ -23,12 +23,12 @@ $nav-active-color: $green;
   background-repeat: none;
   border: none;
 
-  .navbar-inner { 
+  .navbar-inner {
     box-shadow: none;
     border: none;
     background-image: none;
 
-    .nav { 
+    .nav {
       float: none;
 
       .nav-item {
@@ -36,7 +36,9 @@ $nav-active-color: $green;
           .dropdown-menu {
             box-shadow: none;
             border: none;
-            
+
+            a:hover { background-image: none; }
+
             &:before,
             &:after {
               border: none !important;
@@ -45,7 +47,7 @@ $nav-active-color: $green;
           }
         }
       }
-      
+
       .icon { background: none; }
     }
   }
@@ -61,8 +63,8 @@ $nav-active-color: $green;
   .navbar-inner {
     @extend .row-fluid;
     background-color: $navbar-color;
-    
-    .brand { 
+
+    .brand {
       @extend .span3;
       margin: 0;
       padding: 20px 10px 10px 30px;
@@ -74,7 +76,7 @@ $nav-active-color: $green;
       @extend .span9;
       @extend .offset3;
 
-      .nav-item { 
+      .nav-item {
         @extend .span2;
         text-align: left;
         text-transform: uppercase;
@@ -87,12 +89,12 @@ $nav-active-color: $green;
         }
 
         &.active,
-        &.open { 
+        &.open {
           height: $navbar-height - $nav-active-border-height;
           border-bottom: $nav-active-border-height solid $nav-active-color;
           background-color: $nav-active-bgcolor;
 
-          > a { 
+          > a {
             box-shadow: none;
             color: $nav-active-color;
             background-color: $nav-active-bgcolor;
@@ -110,29 +112,30 @@ $nav-active-color: $green;
             @include rounded-top(0);
 
             li {
-              padding: 15px 10px;
-              height: 20px;
               width: $navbar-dropdown-width;
-            
+
               &:hover {
-                background-color: $nav-active-bgcolor;
-                border-left: $dropdown-active-border-width solid $nav-active-color;
                 width: $navbar-dropdown-width - 2px;
 
-                a { 
+                a {
                   color: $nav-active-color;
-                  padding-left: 1px;
+                  background-color: $nav-active-bgcolor;
+                  border-left: $dropdown-active-border-width solid $nav-active-color;
                 }
               }
 
               a {
-                height: auto;
+                height: 40px;
+                line-height: 40px;
                 margin: 0;
                 font-weight: 700; // bold
-                padding-left: $dropdown-active-border-width;
-                color: $nav-item-a-color;
+                padding-left: 10px;
 
-                &:hover { background: none; }
+                color: $nav-item-a-color;
+                background-color: $navbar-color;
+                border-left: $dropdown-active-border-width solid $navbar-color;
+
+                &:hover { background-color: $nav-active-bgcolor; }
               }
             }
           }
@@ -146,7 +149,7 @@ $nav-active-color: $green;
           font-size: 13px;
           color: $nav-item-a-color;
 
-          &.single-line { 
+          &.single-line {
             padding-top: $nav-item-a-margin;
             height: $navbar-height - (2 * $nav-item-a-margin) - 10px - $nav-active-border-height;
           }
@@ -154,13 +157,13 @@ $nav-active-color: $green;
           &:hover { color: $nav-active-color; }
 
           .icon,
-          .nav-label { 
+          .nav-label {
             display: block;
             float: left;
           }
 
           .community_partnership.nav-label,
-          .organization.nav-label { 
+          .organization.nav-label {
             width: 91px;
           }
 
@@ -173,20 +176,20 @@ $nav-active-color: $green;
             margin-right: 10px;
           }
           .icon-school { margin-left: 18px; }
-          .icon-handshake { 
+          .icon-handshake {
             left: -4px;
             top: 6px;
             margin-right: 6px;
             width: 46px;
             font-size: 24px;
           }
-          .icon-small_business { 
+          .icon-small_business {
             margin-left: 6px;
             margin-right: 7px;
             top: 3px;
           }
           .icon-gears { margin-left: 25px; }
-          .icon-graph { 
+          .icon-graph {
             width: 32px;
             margin-left: 14px;
           }
@@ -205,7 +208,7 @@ $nav-active-color: $green;
   border-bottom: 1px solid $gray-10;
   color: $nav-item-a-color;
 
-  .current_user { 
+  .current_user {
     padding: $user-nav-vertical-padding 10px;
     display: block;
     height: $user-nav-height;
