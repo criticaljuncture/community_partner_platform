@@ -11,7 +11,7 @@
     <%= page_header("#{edit_or_verify} #{@community_program.name} #{'@ ' + @community_program.school.name if @community_program.school}", "icon-handshake") %>
 
     <div class="form_wrapper">
-      <%= semantic_form_for @community_program, method: :put, html: {class: "form-horizontal"} do |f| %>
+      <%= semantic_form_for @community_program, method: :put, html: {class: "form-horizontal #{'errors' if @community_program.errors.present?}"} do |f| %>
         <%= render :partial => 'form', :locals => {:f => f} %>
       <% end %>
     </div>

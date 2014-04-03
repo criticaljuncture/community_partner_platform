@@ -1,11 +1,20 @@
 /* base */
 $green: #4DAF7B;
+$green-dark: darken($green, 10);
+
 $blue: #3863b4;
-$blue-alt: darken($blue, 5);
+$blue-dark: darken($blue, 10);
+
+$info: #49AFCD;
+$info-dark: darken($info, 10);
+
 $purple: #BC52B7;
 $golden: #FFDA29;
 $brown: #ED9B52;
+
 $orange: #F78F28;
+$orange-dark: darken($orange, 10);
+
 $red: #ED4948;
 $teal: #39A9AF;
 

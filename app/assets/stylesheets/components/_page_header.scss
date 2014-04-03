@@ -20,6 +20,8 @@ $header-border-color: $gray-70;
   .header_inner {
     height: 56px;
     border-bottom: 3px solid $header-border-color;
+
+    h1 { width: 100%; }
   }
 
   h1 { 
@@ -58,7 +60,7 @@ $header-border-color: $gray-70;
   }
 
 
-  .btn-primary {
+  .btn {
     top: 35px;
     right: 30px;
     position: absolute;

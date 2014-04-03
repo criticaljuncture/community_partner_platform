@@ -3,7 +3,15 @@
 <div class="row-fluid">
   <div class="span12">
     <%= page_header("Organizations", "icon-small_business") do %>
-      <%= link_to 'Create New Organization', new_organization_path, class: "btn btn-primary" %>
+      <% if can? :create, Organization %>
+        <%= link_to 'Create New Organization',
+          new_organization_path,
+          class: "btn btn-primary" %>
+      <% elsif current_user.role?(:organization_member) %>
+        <%= link_to 'View My Organization',
+          organization_path(current_user.organization),
+          class: "btn btn-info" %>
+      <% end %>
     <% end %>
 
     <%= page_nav_tabs [['Overview', '#overview'],

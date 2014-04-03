@@ -3,7 +3,13 @@
 <div class="row-fluid">
   <div class="span12">
     <%= page_header("Community Programs", "icon-handshake") do %>
-      <%= link_to 'Create New Program', new_community_program_path(), :class => "btn btn-primary" %>
+      <%= link_to( 'Create New Program',
+        new_community_program_path(
+          community_program: {
+            organization_id: current_user.organization
+          }
+        ),
+        :class => "btn btn-primary") if can?(:create, CommunityProgram) %>
     <% end %>
 
 

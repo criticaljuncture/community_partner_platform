@@ -10,7 +10,11 @@
 }
 
 /* design */
-.btn { @extend .open_sans; }
+.btn {
+  @extend .open_sans;
+
+  color: $white;
+}
 
 .btn.large {
   height: 30px;
@@ -18,8 +22,36 @@
   line-height: 30px;
 }
 
-.btn-primary {
-  background-color: $blue;
+.btn-small {
+  padding: 2px 10px;
+  font-size: 12px;
+  @include border-radius(3);
+  min-width: 35px;
+}
 
-  &:hover { background-color: $blue-alt; }
+@mixin button_color($color, $hover-color, $text-color: $white) {
+  background-color: $color;
+  color: $text-color;
+
+  &:hover {
+    background-color: $hover-color;
+    color: $text-color;
+  }
+}
+
+.btn-primary {
+  @include button_color($blue, $blue-dark);
+}
+
+.btn-info {
+  @include button_color($info, $info-dark);
+  border: none;
+}
+
+.btn-create {
+  @include button_color($orange, $orange-dark);
+}
+
+.btn-action {
+  @include button_color($green, $green-dark);
 }
