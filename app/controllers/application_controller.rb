@@ -63,4 +63,12 @@ class ApplicationController < ActionController::Base
       Rack::MiniProfiler.authorize_request
     end
   end
+
+  private
+
+  def add_flash_js(key, value)
+    flash[:js] = {} if flash[:js].nil?
+
+    flash[:js][key] = value
+  end
 end

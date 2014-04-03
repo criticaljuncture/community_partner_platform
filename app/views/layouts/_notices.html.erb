@@ -4,7 +4,15 @@
       <div class="alert <%= notice_type == :error ? 'alert-error' : 'alert-success' %>">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <%= flash[notice_type] %>
-      </div> 
+      </div>
     <% end %>
+  <% end %>
+
+  <% if flash[:js].present? %>
+    <script type='text/javascript'>
+      <% flash[:js].each do |key, value| %>
+        var GLOBAL_<%= key %> = <%= value %>;
+      <% end %>
+    </script>
   <% end %>
 </div>

@@ -9,10 +9,10 @@
 <div class="row-fluid">
   <div class="span12">
     <%= page_header(@organization.name, "icon-small_business") do %>
-      <%= link_to('Edit', edit_organization_path(@organization), class: "btn btn-primary") if can?(:update, @organization) %>
+      <%= link_to('Edit Organization', edit_organization_path(@organization), class: "btn btn-primary") if can?(:update, @organization) %>
     <% end %>
 
-    <% if current_user.role?(:organization_member) && @organization.any_unverified_programs? %>
+    <% if @organization.show_verification_modal?(current_user) %>
       <div id="instructions" class="instruction-modal modal" role="dialog" aria-labelledby="instructionsModal" aria-hidden="true">
         <div class="modal-header">
           <h3>
@@ -22,20 +22,22 @@
         </div>
 
         <div class="modal-body">
-          <p>
-            In the table on this page you'll find a list of all of the programs
-            your organization conducts. Please take some time to verify the details
-            for each program. The 'Verify' button on the right hand side will take
-            you to a page where you can review and update each program.
-          </p>
-
-          <% if current_user.role?(:organization_member) && @organization.reported_program_discrepency? %>
+          <% if @organization.any_unverified_programs? %>
             <p>
-              In the verification process you also reported that there are
-              <%= pluralize @organization.reported_program_discrepency, 'program' %>
-              that have not yet been entered into our system. Please use
-              the 'Create' button on the right hand side of each row to provide us
-              with the details about each program.
+              In the table on this page you'll find a list of all of the programs
+              your organization conducts. Please take some time to verify the details
+              for each program. The 'Verify' button on the right hand side will take
+              you to a page where you can review and update each program.
+            </p>
+          <% end %>
+
+          <% if @organization.reported_program_discrepency? %>
+            <p>
+              In the verification process you reported that
+              <%= t('organizations.messages.modal.missing_programs',
+                   count: @organization.reported_program_discrepency ) %>.
+              Please use the 'Create' button on the right hand side of each row
+              to provide us with the details about each program.
             </p>
           <% end %>
         </div>
@@ -51,28 +53,13 @@
 
       <% if @organization.reported_program_discrepency? %>
         <div class="alert">
-          <strong>
-            <%= pluralize @organization.reported_program_discrepency, 'Programs' %>
-            <%= @organization.reported_program_discrepency == 1 ? 'Needs' : 'Need' %>
-            Creation!
-          </strong>
-          There are <%= pluralize @organization.reported_program_discrepency, 'program' %>
-          that have been reported for this organization but have not yet been
-          created. Please add them by using the 'create' buttons in the table below.
+          <%= t('organizations.messages.uncreated_programs', count: @organization.reported_program_discrepency).html_safe %>
         </div>
       <% end %>
 
       <% if @organization.any_unverified_programs? %>
         <div class="alert">
-          <strong>
-            <%= pluralize @organization.unverified_program_count, 'Programs' %>
-            <%= @organization.unverified_program_count == 1 ? 'Needs' : 'Need' %>
-            Verification!
-          </strong>
-          There are <%= pluralize @organization.unverified_program_count, 'program' %>
-          that have not yet had their details reviewed and verified by your
-          organization. Use the 'verify' buttons in the table below to review
-          and verify them.
+          <%= t('organizations.messages.unverified_programs', count: @organization.unverified_program_count).html_safe %>
         </div>
       <% end %>
 
@@ -103,9 +90,14 @@
                 <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
                 <td class="center buttons">
                   <% if community_program.verification_required? && can?(:edit, community_program) %>
-                    <%= link_to 'verify', edit_community_program_path(community_program, redirect_back: organization_path(@organization)), class: "btn btn-small btn-info" %>
+                    <%= link_to 'verify',
+                      edit_community_program_path(community_program,
+                                                  redirect_back: organization_path(@organization)),
+                      class: "btn btn-small btn-action" %>
                   <% else %>
-                    <%= link_to 'view', community_program_path(community_program), class: "btn btn-small btn-info" %>
+                    <%= link_to 'view',
+                      community_program_path(community_program),
+                      class: "btn btn-small btn-info" %>
                   <% end %>
                 </td>
               </tr>
@@ -118,13 +110,14 @@
                 <td></td>
                 <td class="center buttons">
                   <%= link_to 'create',
-                        new_community_program_path(
-                          community_program: {
-                            school_id: school.id,
-                            organization_id: @organization.id
-                          },
-                          redirect_back: organization_path(@organization)),
-                        class: "btn btn-small btn-info" %>
+                    new_community_program_path(
+                      community_program: {
+                        school_id: school.id,
+                        organization_id: @organization.id
+                      },
+                      redirect_back: organization_path(@organization)
+                    ),
+                    class: "btn btn-small btn-create" %>
                 </td>
               </tr>
             <% end %>
@@ -144,7 +137,7 @@
                                                                 organization_id: @organization.id
                                                               }
                                                            }),
-                        class: "btn btn-small btn-info" %>
+                        class: "btn btn-small btn-create" %>
                 </td>
               </tr>
             <% end %>
