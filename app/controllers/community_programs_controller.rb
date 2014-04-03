@@ -38,6 +38,9 @@ class CommunityProgramsController < ApplicationController
     if session[:redirect_back]
       redirect_back = session[:redirect_back]
       session[:redirect_back] = nil
+
+      add_flash_js(:open_verification_modal, false)
+
       redirect_to redirect_back
     else
       redirect_to community_program_path(@community_program)
@@ -46,7 +49,7 @@ class CommunityProgramsController < ApplicationController
     @community_program.build_primary_quality_element unless @community_program.primary_quality_element
     @community_program.build_secondary_quality_element unless @community_program.secondary_quality_element
 
-    flash[:error] = t('errors.form_error', count: @community_program.errors.count)
+    flash.now[:error] = t('errors.form_error', count: @community_program.errors.count)
     render :new
   end
 
@@ -85,6 +88,9 @@ class CommunityProgramsController < ApplicationController
     if session[:redirect_back]
       redirect_back = session[:redirect_back]
       session[:redirect_back] = nil
+
+      add_flash_js(:open_verification_modal, false)
+
       redirect_to redirect_back
     else
       redirect_to community_program_path(@community_program)
@@ -93,7 +99,7 @@ class CommunityProgramsController < ApplicationController
     @community_program.build_primary_quality_element unless @community_program.primary_quality_element
     @community_program.build_secondary_quality_element unless @community_program.secondary_quality_element
 
-    flash[:error] = t('errors.form_error', count: @community_program.errors.count)
+    flash.now[:error] = t('errors.form_error', count: @community_program.errors.count)
     render :edit
   end
 
