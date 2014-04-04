@@ -7,6 +7,8 @@ class Ability < BaseAbility
     debug_abilities
 
     can :manage, :all
+
+    can :send_invitation, User
   end
 
   def district_manager_abilities
@@ -33,6 +35,10 @@ class Ability < BaseAbility
   def organization_member_abilities
     can [:edit, :update, :verification], Organization, id: @user.organization_id
     can :read, :organization_users
+
+    can :new, User
+    can [:index, :show, :create, :update], User, organization_id: @user.organization_id
+    can :send_invitation, User, organization_id: @user.organization_id
 
     can :read, :primary_school_contact_input
     can :read, QualityElement

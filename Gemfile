@@ -39,7 +39,14 @@ gem 'ember-rails'
 gem 'ember-source', '1.4.0'
 #gem "handlebars-source", "~> 1.1.1"
 
+# redis
+gem 'redis', '~> 3.0.7'
+gem 'redis-namespace', '~> 1.4.1'
+
 # redis analytics
+gem "minuteman-rails",
+  git: 'git@github.com:elcuervo/minuteman-rails.git',
+  ref: '473197950a5072fa60bda39f4736098958d7b9ed'
 gem "minuteman", "~> 1.0.3"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

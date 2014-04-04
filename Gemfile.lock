@@ -25,6 +25,15 @@ GIT
       actionmailer (>= 3.2.6, < 5)
       devise (>= 3.2.0)
 
+GIT
+  remote: git@github.com:elcuervo/minuteman-rails.git
+  revision: 473197950a5072fa60bda39f4736098958d7b9ed
+  ref: 473197950a5072fa60bda39f4736098958d7b9ed
+  specs:
+    minuteman-rails (0.1.1)
+      minuteman (~> 1.0.3)
+      rails (> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -211,6 +220,8 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     redis (3.0.7)
+    redis-namespace (1.4.1)
+      redis (~> 3.0.4)
     rspec-core (2.14.8)
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -291,12 +302,15 @@ DEPENDENCIES
   jquery-modal-rails!
   jquery-rails
   minuteman (~> 1.0.3)
+  minuteman-rails!
   mysql2
   paper_trail (>= 3.0.0.rc1)
   pry (~> 0.9.12.2)
   pry-rails
   quiet_assets
   rails (~> 4.0.4)
+  redis (~> 3.0.7)
+  redis-namespace (~> 1.4.1)
   rspec-rails (~> 2.14.0)
   sass (~> 3.2.15)
   sass-rails (~> 4.0.2)
