@@ -22,3 +22,13 @@ en:
         missing_programs:
           one: there is %{count} program that has not yet been entered into our system
           other: there are %{count} programs that have not yet been entered into our system
+  users:
+    flash_messages:
+      invitation:
+        sent: Sent invitation to %{name} (%{email}).
+      save:
+        failure: There were %{errors} on this user. Please correct them below and 'save' the user again.
+      create:
+        success: "%{name} has been created with role '%{role}', but not invited to the Community Partner Platform."
+      update:
+        success: "%{name} has been updated."
