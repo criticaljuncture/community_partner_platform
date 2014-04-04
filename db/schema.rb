@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326170334) do
+ActiveRecord::Schema.define(version: 20140404020850) do
 
   create_table "community_program_demographic_groups", force: true do |t|
     t.integer  "demographic_group_id"
@@ -162,6 +162,23 @@ ActiveRecord::Schema.define(version: 20140326170334) do
     t.text     "cost_per_student"
     t.integer  "legal_status_id"
     t.text     "reported_school_programs"
+  end
+
+  create_table "page_views", force: true do |t|
+    t.integer  "user_id"
+    t.string   "method"
+    t.boolean  "xhr"
+    t.string   "url",          limit: 5000
+    t.string   "referer",      limit: 5000
+    t.string   "remote_ip"
+    t.string   "user_agent"
+    t.integer  "completed_in"
+    t.string   "controller"
+    t.string   "action"
+    t.string   "id_parameter"
+    t.integer  "status"
+    t.integer  "pid"
+    t.datetime "created_at"
   end
 
   create_table "quality_element_service_types", force: true do |t|

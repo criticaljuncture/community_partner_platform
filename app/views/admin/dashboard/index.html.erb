@@ -1,0 +1,25 @@
+<%= breadcrumb [['Dashboard', '']] %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <%= page_header("Admin Dashboard", "") %>
+
+    <%= page_nav_tabs [['Page Views', '#page-views'],
+                       ['API Hits', '#api-hits'],
+                       ['Analytics', '#analytics']] %>
+
+    <div class="tab-content">
+      <div id="page-views" class="tab-pane active">
+        <%= render partial: 'page_views', locals: {records: @page_views} %>
+      </div>
+
+      <div id="api-hits" class="tab-pane active">
+        <%= render partial: 'page_views', locals: {records: @api_hits} %>
+      </div>
+
+      <div id="analytics" class="tab-pane">
+        <%#= render partial: 'analytics', locals: {analytics: @analytics} %>
+      </div>
+    </div>
+  </div>
+</div>

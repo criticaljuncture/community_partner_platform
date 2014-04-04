@@ -9,6 +9,7 @@ class Ability < BaseAbility
     can :manage, :all
 
     can :send_invitation, User
+    can :view, :admin_dashboard
   end
 
   def district_manager_abilities

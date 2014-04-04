@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   # active model serializers
   serialization_scope :current_user
 
+  # page views and speed tracking
+  around_filter :track_page_speed
 
   def after_sign_in_path_for(user)
     if user.role?(:organization_member) && user.organization.verification_required?
@@ -70,5 +72,27 @@ class ApplicationController < ActionController::Base
     flash[:js] = {} if flash[:js].nil?
 
     flash[:js][key] = value
+  end
+
+  def track_page_speed
+    completed_in = Benchmark.ms { yield }
+
+    if current_user
+      PageView.create!(
+        user_id: current_user.id,
+        url: request.url,
+        method: request.method,
+        xhr: !!request.xhr?,
+        remote_ip: request.remote_ip,
+        referer: request.referer == '/' ? nil : request.referer,
+        user_agent: request.user_agent,
+        completed_in: completed_in,
+        status: response.status,
+        controller: params[:controller],
+        action: params[:action],
+        id_parameter: params[:id],
+        pid: Process.pid
+      )
+    end
   end
 end

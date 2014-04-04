@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
            class_name: CommunityProgram,
            foreign_key: :user_id
 
+  has_many :page_views
 
   attr_accessor :primary_role, :admin_creation, :school_ids_were
 

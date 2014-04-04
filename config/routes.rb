@@ -58,6 +58,10 @@ OusdCommunityPartners::Application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :dashboard, only: :index
+  end
+
   if defined?(Peek) && Rails.env.development?
     mount Peek::Railtie => '/peek'
   end
