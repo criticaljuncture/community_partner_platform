@@ -4,11 +4,10 @@
       <tr>
         <th>Last Name</th>
         <th>First Name</th>
-        <th>Email</th>
-        <th>Phone</th>
         <th>Role</th>
         <th>Organization</th>
         <th>Schools</th>
+        <th class="sorter-false filter-false">Last Signed In</th>
         <th class="sorter-false filter-false"></th>
       </tr>
     </thead>
@@ -18,11 +17,10 @@
         <tr>
           <td><%= user.last_name %></td>
           <td><%= user.first_name %></td>
-          <td><%= user.email %></td>
-          <td><%= number_to_phone(user.phone_number) %></td>
           <td><%= user.roles.map(&:name).join(', <br />').html_safe %></td>
           <td><%= user.organization.try(:name) %></td>
           <td><%= user.schools.map(&:name).join(', <br />').html_safe %></td>
+          <td><%= user.current_sign_in_at.to_s(:date_at_time) %></td>
           <td class="center">
             <%= link_to 'view', user_path(user), class: "btn btn-small btn-info" %>
             <%= link_to 'edit', edit_user_path(user), class: "btn btn-small btn-info" %>

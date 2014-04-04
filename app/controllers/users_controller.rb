@@ -2,9 +2,8 @@ class UsersController < ApplicationController
   skip_before_filter :require_no_authentication
 
   def index
-    @active_users = User.accessible_by(current_ability).active.sort_by(&:last_name).sort_by(&:first_name)
-    @inactive_users = User.accessible_by(current_ability).inactive.sort_by(&:last_name).sort_by(&:first_name)
-
+    @active_users = User.accessible_by(current_ability, :update).active.sort_by(&:last_name).sort_by(&:first_name)
+    @inactive_users = User.accessible_by(current_ability, :update).inactive.sort_by(&:last_name).sort_by(&:first_name)
     authorize! :index, User
   end
 
