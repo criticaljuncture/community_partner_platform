@@ -59,6 +59,10 @@ h6 { color: $gray-80; }
     margin-left: 10px;
   }
 }
+[class^="icon-"], [class*=" icon-"] {
+  background: none;
+  margin-top: 0;
+}
 
 table .center { text-align: center; }
 table .buttons { width: 129px; }
@@ -104,65 +108,7 @@ dl.horizontal_stack {
   }
 }
 
-.formtastic {
-  textarea {
-    width: 500px;
-    height: 200px;
-  }
-}
-.form-horizontal {
-  .controls { width: 910px; }
 
-  select.wrap {
-    top: 5px;
-    position: relative;
-  }
-
-  &.errors .inputs {
-    .control-label { color: $green; }
-    .error .control-label { color: $error-red; }
-  }
-
-  .error {
-    &.control-group {
-      .checkbox { color: inherit; }
-    }
-
-    .controls {
-      position: relative;
-
-      .help-inline {
-        position: absolute;
-        top: 5px;
-        left: 250px;
-        font-weight: bold;
-        color: $error-red;
-      }
-
-      .help-block { color: $gray-40; }
-    }
-  }
-
-  .error.columized_checkboxes {
-    .controls .help-inline {
-      position: relative;
-      top: 4px;
-      float: left;
-      left: 0;
-    }
-  }
-
-  .help-block {
-    @extend %hint;
-    font-size: 13px;
-  }
-
-  input + .help-block,
-  textarea + .help-block{
-    margin-top: 5px;
-    font-style: italic;
-  }
-}
 
 .clear { clear: both; }
 .hide { display: none; }

@@ -8,44 +8,38 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <%= page_header(@organization.name, "icon-small_business") do %>
+    <%= page_header(@organization.name, "icon-cpp-small-business") do %>
       <%= link_to('Edit Organization', edit_organization_path(@organization), class: "btn btn-primary") if can?(:update, @organization) %>
     <% end %>
 
-    <% if @organization.show_verification_modal?(current_user) %>
-      <div id="instructions" class="instruction-modal modal" role="dialog" aria-labelledby="instructionsModal" aria-hidden="true">
-        <div class="modal-header">
-          <h3>
-            <span class="icon-bym icon-handshake"></span>
-            Program Details
-          </h3>
-        </div>
+    <% if true %> <%@organization.show_verification_modal?(current_user) %>
+      <%= modal(:with_button,
+                modal_id: "instructions",
+                modal_class: "instruction-modal",
+                header_text: 'Program Details',
+                header_icon: 'icon-cpp-handshake',
+                footer_button_text: 'Continue') do %>
 
-        <div class="modal-body">
-          <% if @organization.any_unverified_programs? %>
-            <p>
-              In the table on this page you'll find a list of all of the programs
-              your organization conducts. Please take some time to verify the details
-              for each program. The 'Verify' button on the right hand side will take
-              you to a page where you can review and update each program.
-            </p>
-          <% end %>
+        <% if @organization.any_unverified_programs? %>
+          <p>
+            In the table on this page you'll find a list of all of the programs
+            your organization conducts. Please take some time to verify the details
+            for each program. The 'Verify' button on the right hand side will take
+            you to a page where you can review and update each program.
+          </p>
+        <% end %>
 
-          <% if @organization.reported_program_discrepency? %>
-            <p>
-              In the verification process you reported that
-              <%= t('organizations.messages.modal.missing_programs',
-                   count: @organization.reported_program_discrepency ) %>.
-              Please use the 'Create' button on the right hand side of each row
-              to provide us with the details about each program.
-            </p>
-          <% end %>
-        </div>
+        <% if @organization.reported_program_discrepency? %>
+          <p>
+            In the verification process you reported that
+            <%= t('organizations.messages.modal.missing_programs',
+                 count: @organization.reported_program_discrepency ) %>.
+            Please use the 'Create' button on the right hand side of each row
+            to provide us with the details about each program.
+          </p>
+        <% end %>
 
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Continue</button>
-        </div>
-      </div>
+      <% end %>
     <% end %>
 
     <div class="table_wrapper">

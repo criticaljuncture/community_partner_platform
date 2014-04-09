@@ -3,7 +3,7 @@
   <div class="controls">
     <select id="community_program_school_user_id" name="community_program[school_user_id]">
       <option value=""></option>
-      <% @school.users.sort_by(&:full_name).each do |user| %>
+      <% @users.each do |user| %>
         <option value="<%= user.id %>"><%= user.full_name %></option>
       <% end %>
     </select>

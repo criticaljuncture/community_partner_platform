@@ -1,0 +1,80 @@
+.formtastic {
+  textarea {
+    width: 500px;
+    height: 200px;
+  }
+}
+.form-horizontal {
+  .controls { width: 910px; }
+
+  select.wrap {
+    top: 10px;
+    position: relative;
+  }
+
+  &.errors .inputs {
+    .error .control-label { color: $error-red; }
+  }
+
+  .error {
+    &.control-group {
+      .checkbox { color: inherit; }
+    }
+
+    .controls {
+      position: relative;
+
+      .help-inline {
+        position: absolute;
+        top: 5px;
+        left: 250px;
+        font-weight: bold;
+        color: $error-red;
+      }
+
+      .help-block { color: $gray-40; }
+    }
+  }
+
+  .user-add-wrapper .error .controls .help-inline {
+    top: 10px;
+    left: 480px;
+  }
+  .user-add-wrapper .error .controls .wrap + .help-inline { top: 12px; }
+
+  .error.columized_checkboxes {
+    .controls .help-inline {
+      position: relative;
+      top: 4px;
+      float: left;
+      left: 0;
+    }
+  }
+
+  .help-block {
+    @extend %hint;
+    font-size: 13px;
+  }
+
+  input + .help-block,
+  textarea + .help-block{
+    margin-top: 5px;
+    font-style: italic;
+  }
+}
+
+/*                    *
+ * AJAX FORM in MODAL *
+ *                    */
+
+.modal-body .formtastic.form-horizontal {
+  margin-bottom: 0;
+
+  .controls { width: 400px; }
+
+  .form-actions {
+    background-color: inherit;
+    border-top: 0;
+    margin-bottom: 0;
+  }
+}

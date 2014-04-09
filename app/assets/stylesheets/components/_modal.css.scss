@@ -1,0 +1,31 @@
+.modal {
+  width: 600px;
+  display: none;
+  position: relative;
+
+  .modal-header {
+    .icon-cpp {
+      margin-right: 5px;
+      width: 20px;
+    }
+
+    .icon-cpp-users {
+      width: 42px;
+      height: 30px;
+      font-size: 29px;
+    }
+  }
+
+  .close-modal {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    font-size: 25px;
+    color: $red;
+
+    &:hover {
+      text-decoration: none;
+      color: $red-dark;
+    }
+  }
+}

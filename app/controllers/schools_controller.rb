@@ -40,7 +40,9 @@ class SchoolsController < ApplicationController
   end
 
   def primary_contact_input
-    @school = School.includes(:users).find(params[:id])
+    school = School.includes(:users).find(params[:id])
+    @users = school.users.all.sort_by(&:full_name)
+
     authorize! :read, :primary_school_contact_input
 
     render "/community_programs/primary_school_contact_input", layout: false

@@ -8,23 +8,37 @@
   <%= f.input :organization_id,
               as: :select,
               collection: Organization.accessible_by(current_ability).with_users.sort_by(&:name),
+              selected: current_user.role?(:organization_member) ? current_user.organization_id : "",
               required: true %>
-  <%= f.input :user_id,
-              as: :select,
-              collection: User.accessible_by(current_ability).where(organization_id: @community_program.organization_id).sort_by(&:full_name),
-              label: "Primary organization contact",
-              required: true,
-              input_html: {class: 'wrap'} %>
+  <div id="org-user-wrapper" class="user-add-wrapper">
+    <%= f.input :user_id,
+                as: :select,
+                collection: User.accessible_by(current_ability).where(organization_id: @community_program.organization_id).sort_by(&:full_name),
+                label: "Primary organization contact",
+                required: true,
+                input_html: {class: 'wrap'} %>
+
+    <div id="add-org-user" class="user-add wrapped-input-label btn btn-create">
+      Create new organization user
+    </div>
+  </div>
 
   <%= f.input :school_id,
               as: :select,
               collection: School.accessible_by(current_ability).where(active: true).sort_by(&:name),
               required: true %>
-  <%= f.input :school_user_id,
-              as: :select,
-              collection: User.accessible_by(current_ability).includes(:schools).where(schools: {id: @community_program.school_id}).sort_by(&:full_name),
-              label: "Primary school contact",
-              required: false %>
+
+  <div id="school-user-wrapper" class="user-add-wrapper">
+    <%= f.input :school_user_id,
+                as: :select,
+                collection: User.accessible_by(current_ability).includes(:schools).where(schools: {id: @community_program.school_id}).sort_by(&:full_name),
+                label: "Primary school contact",
+                required: false %>
+
+    <div id="add-school-user" class="user-add btn btn-create">
+      Create new school user
+    </div>
+  </div>
 
   <%= f.input :site_agreement_on_file %>
   <%= f.input :mou_on_file,

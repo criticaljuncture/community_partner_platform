@@ -9,6 +9,7 @@ var CommunityProgramFormHandler = (function() {
 
       this.add_change_handler();
       this.ensure_form_consistency();
+      this.add_ajax_button_handler();
     },
 
     ensure_form_consistency: function() {
@@ -25,6 +26,14 @@ var CommunityProgramFormHandler = (function() {
 
       if( this.form.find('#community_program_school_user_id').val() === "" && !this.form.hasClass('errors') ) {
         this.form.find('#community_program_school_id').trigger('change');
+      }
+
+      if( this.form.find('#community_program_organization_id').val() !== "" ) {
+        this.form.find('#add-org-user').css('display', 'block');
+      }
+
+      if( this.form.find('#community_program_school_id').val() !== "" ) {
+        this.form.find('#add-school-user').css('display', 'block');
       }
     },
 
@@ -115,12 +124,14 @@ var CommunityProgramFormHandler = (function() {
         dataType: 'html',
       })
         .done(function(html) {
-          form_handler.form.find('#community_program_organization_id_input').after(html);
+          form_handler.form.find('#org-user-wrapper').prepend(html);
+          $('#add-org-user').show();
         });
     },
 
     remove_organization_related_fields: function() {
       this.form.find('#community_program_user_id_input').remove();
+      $('#add-org-user').hide();
     },
 
     school_change: function(school_id) {
@@ -139,12 +150,64 @@ var CommunityProgramFormHandler = (function() {
         dataType: 'html',
       })
         .done(function(html) {
-          form_handler.form.find('#community_program_school_id_input').after(html);
+          form_handler.form.find('#school-user-wrapper').prepend(html);
+          $('#add-school-user').show();
         });
     },
 
     remove_school_related_fields: function() {
       this.form.find('#community_program_school_user_id_input').remove();
+    },
+
+    add_ajax_button_handler: function() {
+      this.add_org_user_handler();
+      this.add_school_user_handler();
+    },
+
+    add_org_user_handler: function() {
+      var FormHandler = this,
+          button = FormHandler.form.find('#add-org-user'),
+          select = FormHandler.form.find('#community_program_user_id');
+
+      $(button).on('click', function(e) {
+        $.ajax({
+          url: '/users/new',
+          data: {role_id: 4},
+          dataType: 'html'
+        })
+        .done(function(html) {
+          $('.user-modal .modal-body').html(html);
+
+          $('.user-modal').modal({
+            escapeClose: false,
+            clickClose: false,
+            showClose: false
+          });
+        });
+      });
+    },
+
+    add_school_user_handler: function() {
+      var FormHandler = this,
+          button = FormHandler.form.find('#add-school-user'),
+          select = FormHandler.form.find('#community_program_school_id');
+
+      $(button).on('click', function(e) {
+        $.ajax({
+          url: '/users/new',
+          data: {role_id: 3, school_id: select.val()},
+          dataType: 'html'
+        })
+        .done(function(html) {
+          $('.user-modal .modal-body').html(html);
+
+          $('.user-modal').modal({
+            escapeClose: false,
+            clickClose: false,
+            showClose: false
+          });
+        });
+      });
     }
   };
 

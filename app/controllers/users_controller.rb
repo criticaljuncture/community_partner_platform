@@ -14,33 +14,73 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    authorize! :create, @user
+    authorize! :new, @user
+
+    @organizations = Organization.accessible_by(current_ability, :update).select('name, id').sort_by(&:name)
+
+    if request.xhr?
+      @schools = if params[:school_id]
+                   School.accessible_by(current_ability).where(id: params[:school_id])
+                 else
+                   nil
+                 end
+      role = Role.accessible_by(current_ability).where(id: params[:role_id])
+      @roles = role.map{|r| [r.name, r.id, {"data-role-type" => r.identifier}]}
+      @user.primary_role = role.first
+      render :ajax_new, layout: false
+    else
+      @schools = School.accessible_by(current_ability).select('name, id').sort_by(&:name)
+      @roles = Role.accessible_by(current_ability).map{|r| [r.name, r.id, {"data-role-type" => r.identifier}]}
+      render :new
+    end
   end
 
   def create
+    params[:user][:school_ids] = Array( params[:user][:school_ids] )
     @user = User.new(user_params)
-    authorize! :create, @user
 
     begin
       User.transaction do
-        primary_role = user_params[:primary_role].present? ? user_params[:primary_role].to_i : nil
-        if primary_role
-          @user.roles = [ Role.accessible_by(current_ability).find( primary_role ) ]
+        primary_role_id = user_params[:primary_role].present? ? user_params[:primary_role].to_i : nil
+        if primary_role_id
+          @user.roles = [ Role.accessible_by(current_ability).find( primary_role_id ) ]
           @user.primary_role = @user.roles.first
         end
+
+        authorize! :create, @user
 
         @user.admin_creation = can?(:create, User)
         @user.save!
 
-        flash.notice = t('users.flash_messages.create.success',
-                         name: @user.full_name,
-                         role: @user.primary_role.name)
-        redirect_to users_path(active_tab: 'inactive')
+        message = t('users.flash_messages.create.success',
+                             name: @user.full_name,
+                             role: @user.primary_role.name)
+
+        respond_to do |format|
+          format.html {
+            flash.notice = message
+            redirect_to users_path(active_tab: 'inactive')
+          }
+
+          format.json {
+            render json: {message: message, user: {name: @user.full_name, id: @user.id, role_id: @user.primary_role.id}}, status: 200
+          }
+        end
       end
     rescue ActiveRecord::RecordInvalid
-      flash.now[:notice] = t('users.flash_messages.save.failure',
-                            errors: @user.errors.count)
-      render action: :new
+      message = t('users.flash_messages.save.failure',
+                  count: @user.errors.count )
+
+      respond_to do |format|
+        format.html {
+          flash.now[:notice] = message
+          render action: :new
+        }
+
+        format.json {
+          render json: {message: message, errors: @user.errors}, status: 400
+        }
+      end
     end
   end
 

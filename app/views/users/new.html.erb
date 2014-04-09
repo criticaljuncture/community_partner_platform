@@ -9,7 +9,13 @@
 
     <div class="form_wrapper">
       <%= semantic_form_for @user, method: :post, html: {class: "form-horizontal"} do |f| %>
-        <%= render :partial => 'form', :locals => {:f => f} %>
+        <%= render :partial => 'form',
+          :locals => {
+            f: f,
+            roles: @roles,
+            schools: @schools,
+            organizations: @organizations
+          } %>
       <% end %>
     </div>
   </div>

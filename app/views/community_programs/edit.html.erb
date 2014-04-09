@@ -6,9 +6,11 @@
   ['Edit', ""]
 ] %>
 
+<%= embed_ember_template 'school-program-verification-input', 'school_program_verification_input' %>
+
 <div class="row-fluid">
   <div class="span12">
-    <%= page_header("#{edit_or_verify} #{@community_program.name} #{'@ ' + @community_program.school.name if @community_program.school}", "icon-handshake") %>
+    <%= page_header("#{edit_or_verify} #{@community_program.name} #{'@ ' + @community_program.school.name if @community_program.school}", "icon-cpp-handshake") %>
 
     <div class="form_wrapper">
       <%= semantic_form_for @community_program, method: :put, html: {class: "form-horizontal #{'errors' if @community_program.errors.present?}"} do |f| %>

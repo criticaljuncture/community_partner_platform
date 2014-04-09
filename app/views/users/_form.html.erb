@@ -9,30 +9,44 @@
 
 <h4>User Access</h4>
 <%= f.inputs do %>
-  <%= f.input :primary_role, 
-              as: :select, 
-              collection: Role.accessible_by(current_ability).map{|r| [r.name, r.id, {"data-role-type" => r.identifier}]},
+  <%= f.input :primary_role,
+              as: :select,
+              collection: roles,
               selected: f.object.primary_role.try(:id),
               required: true,
               label: 'Role' %>
 
   <%= f.input :organization,
               as: :select,
-              collection: Organization.accessible_by(current_ability).select('name, id').sort_by(&:name),
+              collection: organizations,
+              selected: current_user.organization_id.nil? ? "" : current_user.organization_id,
               label: 'Organization',
               required: true,
               disabled: true,
               wrapper_html: {class: "hidden"} %>
 
-  <%= f.input :schools,
-              as: :select,
-              collection: School.accessible_by(current_ability).select('name, id').sort_by(&:name),
-              label: 'Schools',
-              required: true,
-              disabled: true,
-              multiple: true,
-              wrapper_html: {class: "hidden"} %>
-
+  <% if schools %>
+    <% if schools.size > 1 %>
+      <%= f.input :schools,
+                  as: :select,
+                  collection: schools,
+                  label: 'Schools',
+                  required: true,
+                  disabled: true,
+                  multiple: true,
+                  wrapper_html: {class: "hidden"} %>
+    <% else %>
+      <%= f.input :schools,
+                  as: :select,
+                  collection: schools,
+                  label: 'Schools',
+                  required: true,
+                  disabled: true,
+                  multiple: false,
+                  selected: schools.first.id,
+                  wrapper_html: {class: "hidden"} %>
+    <% end %>
+  <% end %>
 <% end %>
 
 <%= f.actions do %>

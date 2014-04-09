@@ -3,9 +3,20 @@
   ['Create', ""]
 ] %>
 
+<%= embed_ember_template 'flash-message', 'flash_message' %>
+
 <div class="row-fluid">
   <div class="span12">
-    <%= page_header('Create New Community Program', "icon-handshake") %>
+    <%= page_header('Create New Community Program', "icon-cpp-handshake") %>
+
+    <%= modal(:basic,
+              modal_id: "user-modal",
+              modal_class: "user-modal",
+              header_text: 'Add User',
+              header_icon: 'icon-cpp-users',
+              footer: false) do %>
+    <% end %>
+
 
     <div class="form_wrapper">
       <%= semantic_form_for @community_program, method: :post, html: {class: "form-horizontal #{'errors' if @community_program.errors.present?}"} do |f| %>

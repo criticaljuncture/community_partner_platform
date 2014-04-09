@@ -39,18 +39,21 @@ class Ability < BaseAbility
 
     can :new, User
     can [:index, :show, :create, :update], User, organization_id: @user.organization_id
+    can :create, User, role_id: 3 #school_user
     can :send_invitation, User, organization_id: @user.organization_id
 
     can :read, :primary_school_contact_input
+
     can :read, QualityElement
 
-    can :read, Role, id: [4]
+    can :read, Role, id: [3,4]
 
     can :new, CommunityProgram
     can [:create, :edit, :update], CommunityProgram, organization_id: @user.organization_id
 
-    can :manage, User, organization_id: @user.organization_id
-    can :index, User
+    can [:index, :new], User
+    can [:create, :update], User, organization_id: @user.organization_id
+    can :create, User, primary_role: {id: [3,4]}
   end
 
   def shared_abilities

@@ -1,13 +1,6 @@
-.instruction-modal {
-  width: 600px;
-  display: none;
-
+.instruction-modal.modal {
   .modal-header {
-    .icon-bym {
-      margin-right: 5px;
-      width: 20px;
-    }
-    .icon-handshake {
+    .icon-cpp-handshake {
       width: 50px;
       position: relative;
       top: 3px;

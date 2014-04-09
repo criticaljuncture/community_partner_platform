@@ -5,20 +5,29 @@
     </a>
     <ul class="nav">
       <li class="nav-item <%= active_for_controller('schools') %>">
-        <%= icon_link_to 'Schools', schools_path, class: "single-line", icon_class: "icon-school" %>
+        <%= icon_link_to 'Schools',
+          schools_path,
+          class: "single-line",
+          icon_class: "icon-cpp-school" %>
       </li>
       <li class="nav-item <%= active_for_controller('community_programs') %>">
-        <%= icon_link_to 'Community Programs', community_programs_path, icon_class: "icon-handshake", nav_label_class: "community_partnership" %>
+        <%= icon_link_to 'Community Programs',
+          community_programs_path,
+          icon_class: "icon-cpp-handshake",
+          nav_label_class: "community_partnership" %>
       </li>
       <li class="nav-item <%= active_for_controller('organizations') %>">
-        <%= icon_link_to 'Partner Organizations', organizations_path, icon_class: "icon-small_business", nav_label_class: "organization" %>
+        <%= icon_link_to 'Partner Organizations',
+          organizations_path,
+          icon_class: "icon-cpp-small-business",
+          nav_label_class: "organization" %>
       </li>
 
       <% if can? :manage, :application %>
       <li class="nav-item dropdown">
         <%= icon_link_to 'Manage', '#',
               class: "dropdown-toggle single-line #{active_for_controller('service_types')} #{active_for_controller('quality_elements')}",
-              icon_class: "icon-gears",
+              icon_class: "icon-cpp-gears",
               dropdown: true,
               :"data-toggle" => "dropdown" %>
 
@@ -39,7 +48,7 @@
       <li class="nav-item dropdown">
         <%= icon_link_to 'Visualize', '#',
               class: "dropdown-toggle single-line #{active_for_controller('visualizations')}",
-              icon_class: "icon-graph",
+              icon_class: "icon-cpp-graph",
               dropdown: true,
               :"data-toggle" => "dropdown" %>
         <ul class="dropdown-menu">
