@@ -1,55 +1,49 @@
 @font-face {
-	font-family: 'community_partner_platform';
-	src:url('<%= asset_path("community_partner_platform.eot") %>');
-	src:url('<%= asset_path("community_partner_platform.eot") %> + "?#iefix"') format('embedded-opentype'),
-		url('<%= asset_path("community_partner_platform.woff") %>') format('woff'),
-		url('<%= asset_path("community_partner_platform.ttf") %>') format('truetype'),
-		url('<%= asset_path("community_partner_platform.svg") %> + "#community_partner_platform"') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'community_partner_platform';
+  src:url('<%= asset_path("community_partner_platform.eot") %>');
+  src:url('<%= asset_path("community_partner_platform.eot") %> + "?#iefix"') format('embedded-opentype'),
+          url('<%= asset_path("community_partner_platform.woff") %>') format('woff'),
+          url('<%= asset_path("community_partner_platform.ttf") %>') format('truetype'),
+          url('<%= asset_path("community_partner_platform.svg") %> + "#community_partner_platform"') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
-/* Use the following CSS code if you want to use data attributes for inserting your icons */
-[data-icon]:before {
+[class^="icon-cpp-"], [class*=" icon-cpp-"] {
 	font-family: 'community_partner_platform';
-	content: attr(data-icon);
 	speak: none;
+	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
 	line-height: 1;
+
+	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
-/* Use the following CSS code if you want to have a class per icon */
-/*
-Instead of a list of all class selectors,
-you can use the generic selector below, but it's slower:
-[class*="icon-"] {
-*/
-.icon-gears, .icon-graph, .icon-handshake, .icon-school, .icon-small_business {
-	font-family: 'community_partner_platform';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
+.icon-cpp-close-x-inv:before {
+	content: "\e607";
 }
-.icon-gears:before {
-	content: "\e000";
+.icon-cpp-users:before {
+	content: "\e606";
 }
-.icon-graph:before {
-	content: "\e001";
+.icon-cpp-small-business:before {
+	content: "\e600";
 }
-.icon-handshake:before {
-	content: "\e002";
+.icon-cpp-school:before {
+	content: "\e601";
 }
-.icon-school:before {
-	content: "\e003";
+.icon-cpp-handshake:before {
+	content: "\e602";
 }
-.icon-small_business:before {
-	content: "\e004";
+.icon-cpp-graph:before {
+	content: "\e603";
+}
+.icon-cpp-gears:before {
+	content: "\e604";
+}
+.icon-cpp-close-x:before {
+	content: "\e605";
 }
