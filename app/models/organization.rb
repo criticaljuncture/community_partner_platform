@@ -75,6 +75,10 @@ class Organization < ActiveRecord::Base
       (any_unverified_programs? || reported_program_discrepency?)
   end
 
+  def reported_school_programs
+    read_attribute(:reported_school_programs) ? read_attribute(:reported_school_programs) : []
+  end
+
   private
   def clear_associated_cache
     schools.each{|s| s.touch}
