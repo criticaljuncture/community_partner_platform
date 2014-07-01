@@ -44,15 +44,21 @@
 
     <div class="table_wrapper">
       <h2>Programs</h2>
-        <% if @organization.reported_program_count > 0 %>
-          <%= render partial: 'reported_programs',
-            locals: {
-              organization: @organization,
-              reported_programs: @organization.reported_school_programs,
-            } %>
-        <% else %>
-          <p>There are no programs reported for this organization.</p>
-        <% end %>
+
+      <% if @organization.reported_program_count > 0 %>
+        <%= render partial: 'reported_programs',
+          locals: {
+            organization: @organization,
+            reported_programs: @organization.reported_school_programs,
+        } %>
+      <% elsif @organization.community_programs.present? %>
+        <%= render partial: 'programs',
+          locals: {
+            organization: @organization
+        } %>
+      <% else %>
+        <p>There are no programs reported for this organization.</p>
+      <% end %>
     </div>
   </div>
 </div>
