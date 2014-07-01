@@ -70,7 +70,7 @@ class CommunityProgramsController < ApplicationController
 
     @community_program.update_attributes!(community_program_params)
 
-    if current_user.role?(:organization_member)
+    if params[:button] == "verify" && can?(:verify, @community_program)
       previously_needed_verified = @community_program.verification_required?
       @community_program.update_attributes!(last_verified_at: Time.now)
     end

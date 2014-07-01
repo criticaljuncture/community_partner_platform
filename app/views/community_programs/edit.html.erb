@@ -13,6 +13,12 @@
     <%= page_header("#{edit_or_verify} #{@community_program.name} #{'@ ' + @community_program.school.name if @community_program.school}", "icon-cpp-handshake") %>
 
     <div class="form_wrapper">
+      <% if @community_program.verification_required? %>
+        <%= message_box :alert do %>
+          This program needs verfication. Please check the information below and use the 'Save & Verify' button below.
+        <% end %>
+      <% end %>
+
       <%= semantic_form_for @community_program, method: :put, html: {class: "form-horizontal #{'errors' if @community_program.errors.present?}"} do |f| %>
         <%= render :partial => 'form', :locals => {:f => f} %>
       <% end %>

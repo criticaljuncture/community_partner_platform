@@ -28,9 +28,12 @@ class Ability < BaseAbility
     can :manage, ServiceType
     can :read, :organization_users
     can :read, Region
+
+    can :verify, CommunityProgram
   end
 
   def school_manager_abilities
+    can :verify, CommunityProgram, school_id: @user.school_id
   end
 
   def organization_member_abilities
@@ -54,6 +57,7 @@ class Ability < BaseAbility
     can [:index, :new], User
     can [:create, :update], User, organization_id: @user.organization_id
     can :create, User, primary_role: {id: [3,4]}
+    can :verify, CommunityProgram, organization_id: @user.organization_id
   end
 
   def shared_abilities

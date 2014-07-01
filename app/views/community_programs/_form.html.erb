@@ -123,6 +123,15 @@
 <% end %>
 
 <%= f.actions do %>
-  <% save_label = !f.object.new_record? && current_user.role?(:organization_member) && f.object.verification_required? ? 'Verify' : 'Save' %>
-  <%= f.button save_label, class: "btn btn-success" %>
+  <%= f.button 'Save', class: "btn #{f.object.verification_required? ? 'btn-primary' : 'btn-success'}" %>
+
+  <% if f.object.verification_required? && can?(:verify, f.object) %>
+    <%= f.button 'Save & Verify', class: "btn btn-success", value: 'verify' %>
+    <%= help_hover do %>
+      This program needs verification. If for some reason you need to
+      update a piece of data but are unable to verify the rest of the program
+      information use the 'Save' button. Note: Programs that aren't verified may not
+      show up to some users of the system.
+    <% end %>
+  <% end %>
 <% end %>
