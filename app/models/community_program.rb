@@ -90,7 +90,7 @@ class CommunityProgram < ActiveRecord::Base
   end
 
   def verification_required?
-    last_verified_at.nil?
+    !new_record? && last_verified_at.nil?
   end
 
   private
