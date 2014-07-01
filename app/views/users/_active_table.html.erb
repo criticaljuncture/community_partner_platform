@@ -5,8 +5,15 @@
         <th>Last Name</th>
         <th>First Name</th>
         <th>Role</th>
-        <th>Organization</th>
-        <th>Schools</th>
+
+        <% if [:super_admin, :district_manager, :organization_member].any?{|role| current_user.role?(role) } %>
+          <th>Organization</th>
+        <% end %>
+
+        <% if [:super_admin, :district_manager, :school_manager].any?{|role| current_user.role?(role) } %>
+          <th>Schools</th>
+        <% end %>
+
         <th class="sorter-false filter-false">Last Signed In</th>
         <th class="sorter-false filter-false"></th>
       </tr>
@@ -18,8 +25,15 @@
           <td><%= user.last_name %></td>
           <td><%= user.first_name %></td>
           <td><%= user.roles.map(&:name).join(', <br />').html_safe %></td>
-          <td><%= user.organization.try(:name) %></td>
-          <td><%= user.schools.map(&:name).join(', <br />').html_safe %></td>
+
+          <% if [:super_admin, :district_manager, :organization_member].any?{|role| current_user.role?(role) } %>
+            <td><%= user.organization.try(:name) %></td>
+          <% end %>
+
+          <% if [:super_admin, :district_manager, :school_manager].any?{|role| current_user.role?(role) } %>
+            <td><%= user.schools.map(&:name).join(', <br />').html_safe %></td>
+          <% end %>
+
           <td><%= user.current_sign_in_at.to_s(:date_at_time) %></td>
           <td class="center">
             <%= link_to 'view', user_path(user), class: "btn btn-small btn-info" %>

@@ -1,55 +1,62 @@
 <%= page_specific_javascript("scatter_plot") %>
 
 <div class=" span12">
-  <h2>Community School Elements</h2>
+  <% if can? :view, :school_overview_scatter_plot %>
+    <h2>Community School Elements</h2>
 
-  <div class="graph_wrapper">
-    <div class="instructions">
-      <p>
-        The graph below allows you to explore the Community Program counts for each school
-        in comparison to the Percent of Students at that school eligible for Free and Reduced
-        Price meals in 2012 (October 2012 FRPM Total Unduplicated Count [K–12] divided by CALPADS
-        October 2012 Enrollment [K–12]).
-      </p>
-      <p>
-        The color of the dots on the graph below represents the October 2012 Enrollment as reported
-        by CALPADS. Use the select list below to change the Community School Element that you want
-        to explore and click on any dot to view more details about a particular school.
-      </p>
+    <div class="graph_wrapper">
+      <div class="instructions">
+        <p>
+          The graph below allows you to explore the Community Program counts for each school
+          in comparison to the Percent of Students at that school eligible for Free and Reduced
+          Price meals in 2012 (October 2012 FRPM Total Unduplicated Count [K–12] divided by CALPADS
+          October 2012 Enrollment [K–12]).
+        </p>
+        <p>
+          The color of the dots on the graph below represents the October 2012 Enrollment as reported
+          by CALPADS. Use the select list below to change the Community School Element that you want
+          to explore and click on any dot to view more details about a particular school.
+        </p>
+      </div>
+
+      <%= form_tag '', class: 'scatter_plot_items' do %>
+        <%= select_tag 'quality_elements',
+                       options_from_collection_for_select(@quality_elements, "id", "name") %>
+      <% end %>
+
+      <div class="graph" id="scatter-plot"></div>
     </div>
-
-    <%= form_tag '', class: 'scatter_plot_items' do %>
-      <%= select_tag 'quality_elements',
-                     options_from_collection_for_select(@quality_elements, "id", "name") %>
-    <% end %>
-
-    <div class="graph" id="scatter-plot"></div>
-  </div>
-
-  <h2>Program Breakdown by Region</h2>
-
-  <dl>
-    <% Region.accessible_by(current_ability).each do |region| %>
-      <dt><%= region.name %></dt>
-      <dd><%= pluralize(region.cached_community_program_count, "program") %></dd>
-    <% end %>
-  </dl>
-
-  <h4>Community School Element Breakdown</h4>
-  <div class="instructions">
-    Each program can address up to two community school elements (a primary element and a secondary element).
-    The data below represents the primary community school element assigned to each program.
-  </div>
-
-  <% Region.accessible_by(current_ability).each do |region| %>
-    <%= render partial: "schools/overview/community_school_elements_for_region", locals: {region: region} %>
   <% end %>
 
+  <% if can? :view, :school_overview_program_breakdown_by_region %>
+    <h2>Program Breakdown by Region</h2>
 
-  <h2>School Status</h2>
+    <dl>
+      <% Region.accessible_by(current_ability).each do |region| %>
+        <dt><%= region.name %></dt>
+        <dd><%= pluralize(region.cached_community_program_count, "program") %></dd>
+      <% end %>
+    </dl>
+  <% end %>
 
-  <dl>
-    <dt>Schools without a region assigned</dt>
-    <dd><%= pluralize(School.where("region_id IS NULL").count, "school") %></dd>
-  </dl>
+  <% if can? :view, :school_overview_community_school_element_breakdown %>
+    <h4>Community School Element Breakdown</h4>
+    <div class="instructions">
+      Each program can address up to two community school elements (a primary element and a secondary element).
+      The data below represents the primary community school element assigned to each program.
+    </div>
+
+    <% Region.accessible_by(current_ability).each do |region| %>
+      <%= render partial: "schools/overview/community_school_elements_for_region", locals: {region: region} %>
+    <% end %>
+  <% end %>
+
+  <% if can? :view, :school_overview_school_status %>
+    <h2>School Status</h2>
+
+    <dl>
+      <dt>Schools without a region assigned</dt>
+      <dd><%= pluralize(School.where("region_id IS NULL").count, "school") %></dd>
+    </dl>
+  <% end %>
 </div>

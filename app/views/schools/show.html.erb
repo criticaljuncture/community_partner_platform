@@ -6,40 +6,42 @@
 <div class="row-fluid">
   <div class="span12">
     <%= page_header(@school.name, "icon-cpp-school") do %>
-      <%= link_to 'Edit', edit_school_path(@school), class: "btn btn-primary" %>
+      <%= link_to('Edit', edit_school_path(@school), class: "btn btn-primary") if can? :manage, @school %>
     <% end %>
 
-    <div class="donut_status_box_wrapper">
-      <%= completeness_donut(
-          'Community School Elements Covered',
-          @school.quality_elements.count,
-          QualityElement.accessible_by(current_ability).count) %>
+    <% if can? :view, :school_partnership_status_dashboard_panels %>
+      <div class="donut_status_box_wrapper">
+        <%= completeness_donut(
+            'Community School Elements Covered',
+            @school.quality_elements.count,
+            QualityElement.accessible_by(current_ability).count) %>
 
-      <%= completeness_donut(
-          'Student Populations with Partnerships',
-          @school.student_populations_with_programs.count,
-          StudentPopulation.accessible_by(current_ability).for_completeness.count) %>
+        <%= completeness_donut(
+            'Student Populations with Partnerships',
+            @school.student_populations_with_programs.count,
+            StudentPopulation.accessible_by(current_ability).for_completeness.count) %>
 
-      <%= completeness_donut(
-          'Ethnicity/Culture Groups with Partnerships',
-          @school.ethnicity_culture_groups_with_programs.count,
-          EthnicityCultureGroup.accessible_by(current_ability).for_completeness.count) %>
+        <%= completeness_donut(
+            'Ethnicity/Culture Groups with Partnerships',
+            @school.ethnicity_culture_groups_with_programs.count,
+            EthnicityCultureGroup.accessible_by(current_ability).for_completeness.count) %>
 
-      <%= completeness_donut(
-          'Demographic Groups with Partnerships',
-          @school.demographic_groups_with_programs.count,
-          DemographicGroup.accessible_by(current_ability).for_completeness.count) %>
+        <%= completeness_donut(
+            'Demographic Groups with Partnerships',
+            @school.demographic_groups_with_programs.count,
+            DemographicGroup.accessible_by(current_ability).for_completeness.count) %>
 
-      <%= completeness_donut(
-          'Service Days Covered',
-          @school.service_days_with_programs.count,
-          Day.accessible_by(current_ability).for_completeness.count) %>
+        <%= completeness_donut(
+            'Service Days Covered',
+            @school.service_days_with_programs.count,
+            Day.accessible_by(current_ability).for_completeness.count) %>
 
-      <%= completeness_donut(
-          'Sevice Times Covered',
-          @school.service_times_with_programs.count,
-          ServiceTime.accessible_by(current_ability).for_completeness.count) %>
-    </div>
+        <%= completeness_donut(
+            'Sevice Times Covered',
+            @school.service_times_with_programs.count,
+            ServiceTime.accessible_by(current_ability).for_completeness.count) %>
+      </div>
+    <% end %>
 
     <dl class="clear">
       <dt>Region</dt>
@@ -76,27 +78,31 @@
     <div class="table_wrapper span10">
       <h2>Community Programs</h2>
 
-      <table class="table table-striped table-sorter">
-        <thead>
-          <tr>
-            <th>Organization</th>
-            <th>Program Name</th>
-            <th class="center">Community School Elements</th>
-            <th class="">Service Types</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @school.cached_community_programs.each do |community_program| %>
+      <% if @school.cached_community_programs.count > 0 %>
+        <table class="table table-striped table-sorter">
+          <thead>
             <tr>
-              <td><%= link_to community_program.organization.try(:name), organization_path(community_program.organization) %></td>
-              <td><%= link_to community_program.name, community_program_path(community_program) %></td>
-              <td class="center"><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
-              <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
+              <th>Organization</th>
+              <th>Program Name</th>
+              <th class="center">Community School Elements</th>
+              <th class="">Service Types</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            <% @school.cached_community_programs.each do |community_program| %>
+              <tr>
+                <td><%= link_to community_program.organization.try(:name), organization_path(community_program.organization) %></td>
+                <td><%= link_to community_program.name, community_program_path(community_program) %></td>
+                <td class="center"><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
+                <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>There are currently no community programs available for <%= @school.name %></p>
+      <% end %>
     </div>
 
   </div>

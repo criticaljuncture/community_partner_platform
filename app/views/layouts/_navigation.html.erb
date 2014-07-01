@@ -38,23 +38,25 @@
           <% if can?(:manage, ServiceType) %>
             <li><%= link_to 'Service Types', service_types_path %></li>
           <% end %>
-          <% if can?(:manage, User) %>
+          <% if can?(:new, User) %>
             <li><%= link_to 'Users', users_path %></li>
           <% end %>
         </ul>
       </li>
       <% end %>
 
-      <li class="nav-item dropdown">
-        <%= icon_link_to 'Visualize', '#',
-              class: "dropdown-toggle single-line #{active_for_controller('visualizations')}",
-              icon_class: "icon-cpp-graph",
-              dropdown: true,
-              :"data-toggle" => "dropdown" %>
-        <ul class="dropdown-menu">
-          <li><%= link_to 'Community Programs', school_hierarchy_visualizations_path %></li>
-        </ul>
-      </li>
+      <% if can? :view, :visualizations %>
+        <li class="nav-item dropdown">
+          <%= icon_link_to 'Visualize', '#',
+                class: "dropdown-toggle single-line #{active_for_controller('visualizations')}",
+                icon_class: "icon-cpp-graph",
+                dropdown: true,
+                :"data-toggle" => "dropdown" %>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Community Programs', school_hierarchy_visualizations_path %></li>
+          </ul>
+        </li>
+      <% end %>
     </ul>
   </div>
 

@@ -6,7 +6,9 @@
 <div class="row-fluid">
   <div class="span12">
     <%= page_header(@community_program.name, "icon-cpp-handshake") do %>
-      <%= link_to 'Edit Program', edit_community_program_path(@community_program), class: "btn btn-primary" %>
+      <%= link_to('Edit Program',
+                  edit_community_program_path(@community_program),
+                  class: "btn btn-primary") if can?(:manage, @community_program) %>
     <% end %>
 
     <div class="detail_wrapper community_programship_details">

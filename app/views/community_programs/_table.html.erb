@@ -27,7 +27,7 @@
               class: "btn btn-info btn-small" %>
             <%= link_to( 'edit',
               edit_community_program_path(community_program),
-              class: "btn btn-primary btn-small") if can?(:edit, community_program) %>
+              class: "btn btn-primary btn-small") if can?(:manage, community_program) %>
           </td>
         </tr>
       <% end %>

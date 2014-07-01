@@ -18,8 +18,8 @@
           <td class="center"><%= school.cached_organizations.uniq.count %></td>
           <td class="center"><%= quality_elements_coverage_display(school) %></td>
           <td class="center">
-            <%= link_to 'view', school_path(school), class: "btn btn-small btn-info" %>
-            <%= link_to 'edit', edit_school_path(school), class: "btn btn-small btn-info" %>
+            <%= link_to('view', school_path(school), class: "btn btn-small btn-info") if can? :show, school %>
+            <%= link_to('edit', edit_school_path(school), class: "btn btn-small btn-info") if can? :edit, school %>
           </td>
         </tr>
       <% end %>

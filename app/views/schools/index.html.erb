@@ -3,7 +3,7 @@
 <div class="row-fluid">
   <div class="span12">
     <%= page_header("Schools", "icon-cpp-school") do %>
-      <%= link_to 'Create New School', new_school_path, class: "btn btn-primary" %>
+      <%= link_to('Create New School', new_school_path, class: "btn btn-primary") if can? :manage, School %>
     <% end %>
 
     <%= page_nav_tabs [['Overview', '#overview'],
@@ -11,11 +11,11 @@
 
     <div class="tab-content">
       <div id="overview" class="tab-pane active">
-        <%= render partial: 'overview', locals: {} %> 
+        <%= render partial: 'overview', locals: {} %>
       </div>
 
       <div id="schools-table" class="tab-pane">
-        <%= render partial: 'table', locals: {schools: @schools} %> 
+        <%= render partial: 'table', locals: {schools: @schools} %>
       </div>
     </div>
   </div>
