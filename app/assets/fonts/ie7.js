@@ -13,6 +13,7 @@
 		el.innerHTML = '<span style="font-family: \'community_partner_platform\'">' + entity + '</span>' + html;
 	}
 	var icons = {
+		'icon-cpp-help': '&#xe608;',
 		'icon-cpp-close-x-inv': '&#xe607;',
 		'icon-cpp-users': '&#xe606;',
 		'icon-cpp-small-business': '&#xe600;',
