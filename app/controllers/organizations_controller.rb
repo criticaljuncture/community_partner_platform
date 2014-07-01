@@ -32,6 +32,9 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
     authorize! :update, @organization
 
+    verfication = organization_params.delete(:verification)
+    @organization.last_verified_at = Time.now if verification
+
     @organization.update_attributes(organization_params)
 
     if @organization.verification_required?
@@ -71,6 +74,7 @@ class OrganizationsController < ApplicationController
                 :program_impact,
                 :services_description,
                 :url,
+                :verification,
                 :zip_code,
         )
     end

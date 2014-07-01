@@ -12,7 +12,7 @@
       <%= link_to('Edit Organization', edit_organization_path(@organization), class: "btn btn-primary") if can?(:update, @organization) %>
     <% end %>
 
-    <% if true %> <%@organization.show_verification_modal?(current_user) %>
+    <% if @organization.show_verification_modal?(current_user) %>
       <%= modal(:with_button,
                 modal_id: "instructions",
                 modal_class: "instruction-modal",
@@ -44,101 +44,15 @@
 
     <div class="table_wrapper">
       <h2>Programs</h2>
-
-      <% if @organization.reported_program_discrepency? %>
-        <div class="alert">
-          <%= t('organizations.messages.uncreated_programs', count: @organization.reported_program_discrepency).html_safe %>
-        </div>
-      <% end %>
-
-      <% if @organization.any_unverified_programs? %>
-        <div class="alert">
-          <%= t('organizations.messages.unverified_programs', count: @organization.unverified_program_count).html_safe %>
-        </div>
-      <% end %>
-
-      <table class="table table-striped table-hover table-sorter">
-        <thead>
-          <tr>
-            <th>School</th>
-            <th>Program Name</th>
-            <th>Community School Elements</th>
-            <th>Service Types</th>
-            <th class="sorter-false filter-false"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% reported_programs = @organization.reported_school_programs %>
-          <% @organization.cached_community_programs.order("schools.id asc").group_by(&:school).each do |school, community_programs| %>
-            <%
-              reported_program_count = reported_programs[school.id.to_s]
-              reported_programs.delete(school.id.to_s)
-            %>
-
-            <% community_programs.each do |community_program| %>
-              <tr>
-                <td><%= link_to school.try(:name), school_path(school) %></td>
-                <td><%= community_program.name %></td>
-                <td><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
-                <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
-                <td class="center buttons">
-                  <% if community_program.verification_required? && can?(:edit, community_program) %>
-                    <%= link_to 'verify',
-                      edit_community_program_path(community_program,
-                                                  redirect_back: organization_path(@organization)),
-                      class: "btn btn-small btn-action" %>
-                  <% else %>
-                    <%= link_to 'view',
-                      community_program_path(community_program),
-                      class: "btn btn-small btn-info" %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-            <% (reported_program_count - community_programs.count).times do %>
-              <tr>
-                <td><%= school.try(:name) %></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="center buttons">
-                  <%= link_to 'create',
-                    new_community_program_path(
-                      community_program: {
-                        school_id: school.id,
-                        organization_id: @organization.id
-                      },
-                      redirect_back: organization_path(@organization)
-                    ),
-                    class: "btn btn-small btn-create" %>
-                </td>
-              </tr>
-            <% end %>
-          <% end %>
-          <% reported_programs.each do |key, value| %>
-            <% school = School.find(key.to_i) %>
-            <% value.times do |i| %>
-              <tr>
-                <td><%= school.try(:name) %></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="center buttons">
-                  <%= link_to 'create',
-                        new_community_program_path(params: {  community_program: {
-                                                                school_id: school.id,
-                                                                organization_id: @organization.id
-                                                              }
-                                                           }),
-                        class: "btn btn-small btn-create" %>
-                </td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
+        <% if @organization.reported_program_count > 0 %>
+          <%= render partial: 'reported_programs',
+            locals: {
+              organization: @organization,
+              reported_programs: @organization.reported_school_programs,
+            } %>
+        <% else %>
+          <p>There are no programs reported for this organization.</p>
+        <% end %>
     </div>
-
   </div>
 </div>

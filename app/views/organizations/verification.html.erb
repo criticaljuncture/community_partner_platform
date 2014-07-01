@@ -65,7 +65,7 @@
 
     <div class="form_wrapper">
       <%= semantic_form_for @organization, method: :put, html: {class: "form-horizontal"} do |f| %>
-        <%= render partial: 'form', locals: {f: f} %>
+        <%= render partial: 'form', locals: {f: f, verfication: true} %>
       <% end %>
     </div>
   </div>
