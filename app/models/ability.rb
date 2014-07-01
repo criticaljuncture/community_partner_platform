@@ -45,6 +45,9 @@ class Ability < BaseAbility
     can :create, User, role_id: 3 #school_user
     can :send_invitation, User, organization_id: @user.organization_id
 
+    can [:index, :new], User
+    can :create, User, primary_role: {id: [3,4]}
+
     can :read, :primary_school_contact_input
 
     can :read, QualityElement
@@ -53,10 +56,6 @@ class Ability < BaseAbility
 
     can :new, CommunityProgram
     can [:create, :edit, :update], CommunityProgram, organization_id: @user.organization_id
-
-    can [:index, :new], User
-    can [:create, :update], User, organization_id: @user.organization_id
-    can :create, User, primary_role: {id: [3,4]}
     can :verify, CommunityProgram, organization_id: @user.organization_id
   end
 
@@ -79,5 +78,18 @@ class Ability < BaseAbility
     can :read, GradeLevel
     can :read, DemographicGroup
     can :read, EthnicityCultureGroup
+  end
+
+  def page_level_abilities
+    if user.role?(:super_admin) || user.role?(:district_admin)
+      can :view, :school_overview_scatter_plot
+      can :view, :school_overview_program_breakdown_by_region
+      can :view, :school_overview_community_school_element_breakdown
+      can :view, :school_overview_school_status
+
+      can :view, :school_partnership_status_dashboard_panels
+
+      can :view, :visualizations
+    end
   end
 end

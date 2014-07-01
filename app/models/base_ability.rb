@@ -13,6 +13,7 @@ class BaseAbility
       end
 
       shared_abilities
+      page_level_abilities
 
       if Rails.env.development?
         debug_abilities
