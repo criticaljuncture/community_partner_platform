@@ -25,7 +25,7 @@
               class: "btn btn-small btn-info" %>
             <%= link_to( 'edit',
               edit_organization_path(organization),
-              class: "btn btn-small btn-info") if can?(:edit, organization) %>
+              class: "btn btn-small btn-primary") if can?(:edit, organization) %>
           </td>
         </tr>
       <% end %>
