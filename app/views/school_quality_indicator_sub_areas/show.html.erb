@@ -20,7 +20,7 @@
             <td><%= @school_quality_indicator_sub_area.organizations.uniq.count %></td>
           </tr>
         </tbody>
-      </table> 
+      </table>
     </div>
 
     <div class="table_wrapper">
@@ -45,7 +45,7 @@
     </div>
 
     <div class="table_wrapper">
-      <% @school_quality_indicator_sub_area.community_partners.group_by(&:school).each do |school, community_partners| %>
+      <% @school_quality_indicator_sub_area.community_programs.group_by(&:school).each do |school, community_programs| %>
         <h2><%= link_to school.try(:name), school_path(school) %></h2>
 
         <table class="table table-striped">
@@ -57,15 +57,15 @@
           </thead>
 
           <tbody>
-            <% community_partners.each do |community_partner| %>
+            <% community_programs.each do |community_program| %>
               <tr>
-                <td><%= link_to community_partner.organization.try(:name), community_partner_path(community_partner) %></td>
-                <td><%= community_partner.service_type.try(:name) %></td>
+                <td><%= link_to community_program.organization.try(:name), community_program_path(community_program) %></td>
+                <td><%= community_program.service_type.try(:name) %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
-      <% end %> 
+      <% end %>
     </div>
   </div>
 </div>

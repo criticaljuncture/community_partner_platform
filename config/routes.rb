@@ -45,7 +45,7 @@ OusdCommunityPartners::Application.routes.draw do
 
   resources :api do
     collection do
-      get :community_partners
+      get :community_programs
       get :school_hierarchy
       get :schools
       get :school_sub_areas

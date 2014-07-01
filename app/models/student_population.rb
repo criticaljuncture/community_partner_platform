@@ -1,5 +1,5 @@
 class StudentPopulation < ActiveRecord::Base
-  has_many :community_partnerships
+  has_many :community_programs
 
   def self.for_completeness
     where("id != 1")
