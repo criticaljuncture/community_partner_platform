@@ -37,4 +37,28 @@ module ApplicationHelper
 
     header.html_safe
   end
+
+  def message_box(type, content=nil, &block)
+    message_box = <<-HTML
+      <div class="#{type.to_s}">
+        #{content ? content : capture(&block)}
+      </div>
+    HTML
+
+    message_box.html_safe
+  end
+
+  def help_hover(options={}, &block)
+    gravity   = options.fetch(:gravity) { 's' }
+    classname = options.fetch(:classname) { 'help-hover-tooltip' }
+
+    help_hover = <<-HTML
+      <span class="help-hover icon-cpp-help"
+        data-tooltip-content="#{capture(&block)}"
+        data-tooltip-gravity="#{gravity}"
+        data-tooltip-classname="#{classname}"></span>
+    HTML
+
+    help_hover.html_safe
+  end
 end
