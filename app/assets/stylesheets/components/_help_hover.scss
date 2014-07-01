@@ -1,0 +1,12 @@
+.help-hover {
+  font-size: 17px;
+  color: $gray-30;
+}
+
+
+.help-hover-tooltip {
+  font-size: 14px;
+  width: 300px;
+
+  .tipsy-inner { max-width: inherit; }
+}
