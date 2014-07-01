@@ -4,11 +4,14 @@
     padding-right: 10px;
     margin-right: 10px;
     padding-left: 30px;
+    min-width: 342px;
   }
 
   .nav {
     border-right: 1px solid #777;
     padding-right: 10px;
+
+    .nav-item { min-width: 153px; }
   }
 
   .user {
