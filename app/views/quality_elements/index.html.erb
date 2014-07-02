@@ -5,7 +5,7 @@
     <%= page_header("Community School Elements", "") do %>
       <%= link_to 'Create New Community School Element', new_quality_element_path, class: "btn btn-primary" %>
     <% end %>
-    
+
     <div class="table_wrapper">
       <table class="table table-striped table-hover table-sorter quality_elements">
         <thead>
@@ -26,8 +26,12 @@
               <td><%= element.schools.count %></td>
               <td><%= element.organizations.count %></td>
               <td class="actions center">
-                <%= link_to 'view', quality_element_path(element), class: "btn btn-small btn-info" %>
-                <%= link_to 'edit', edit_quality_element_path(element), class: "btn btn-small btn-info" %>
+                <%= link_to 'view',
+                  quality_element_path(element),
+                  class: "btn btn-small btn-info" %>
+                <%= link_to 'edit',
+                  edit_quality_element_path(element),
+                  class: "btn btn-small btn-primary" %>
               </td>
             </tr>
           <% end %>

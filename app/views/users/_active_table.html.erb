@@ -36,8 +36,12 @@
 
           <td><%= user.current_sign_in_at.to_s(:date_at_time) %></td>
           <td class="center">
-            <%= link_to 'view', user_path(user), class: "btn btn-small btn-info" %>
-            <%= link_to 'edit', edit_user_path(user), class: "btn btn-small btn-info" %>
+            <%= link_to 'view',
+              user_path(user),
+              class: "btn btn-small btn-info" %>
+            <%= link_to 'edit',
+              edit_user_path(user),
+              class: "btn btn-small btn-primary" %>
           </td>
         </tr>
       <% end %>

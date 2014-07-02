@@ -15,7 +15,7 @@
             <th class="center">Schools</th>
             <th class="center">Organizations</th>
             <th class="center">Community Programs</th>
-            <th class="actions sorter-false filter-false"></th>
+            <th class="actions buttons sorter-false filter-false"></th>
           </tr>
         </thead>
 
@@ -25,12 +25,16 @@
               <tr>
                 <td><%= service_type.name %></td>
                 <td><%= quality_element.name %></td>
-                <td class="actions center">
-                  <%= link_to 'view', service_type_path(service_type), class: "btn btn-small btn-info" %>
-                  <%= link_to 'edit', edit_service_type_path(service_type), class: "btn btn-small btn-info" %>
                 <td class="center"><%= service_type.schools_for_quality_element_service_type(quality_element).count %></td>
                 <td class="center"><%= service_type.organizations_for_quality_element_service_type(quality_element).count %></td>
                 <td class="center"><%= service_type.community_programs_for_quality_element_service_type(quality_element).count %></td>
+                <td class="actions buttons center">
+                  <%= link_to 'view',
+                    service_type_path(service_type),
+                    class: "btn btn-small btn-info" %>
+                  <%= link_to 'edit',
+                    edit_service_type_path(service_type),
+                    class: "btn btn-small btn-primary" %>
                 </td>
               </tr>
             <% end %>

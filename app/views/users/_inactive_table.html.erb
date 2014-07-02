@@ -24,8 +24,12 @@
           <td><%= user.schools.map(&:name).join(', <br />').html_safe %></td>
           <td><%= invitation_status_for(user) %></td>
           <td class="center">
-            <%= link_to 'view', user_path(user), class: "btn btn-small btn-info" %>
-            <%= link_to 'edit', edit_user_path(user), class: "btn btn-small btn-info" %>
+            <%= link_to 'view',
+              user_path(user),
+              class: "btn btn-small btn-info" %>
+            <%= link_to 'edit',
+              edit_user_path(user),
+              class: "btn btn-small btn-primary" %>
           </td>
         </tr>
       <% end %>
