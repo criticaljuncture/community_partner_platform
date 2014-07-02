@@ -1,7 +1,7 @@
 class ServiceTypesController < ApplicationController
   def index
     @quality_elements = QualityElement.accessible_by(current_ability).includes(:service_types).order("service_types.name")
-    authorize! :index, @quality_elements
+    authorize! :index, QualityElement
   end
 
   def show
