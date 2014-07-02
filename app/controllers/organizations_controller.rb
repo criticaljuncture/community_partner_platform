@@ -32,12 +32,12 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
     authorize! :update, @organization
 
-    verfication = organization_params.delete(:verification)
-    @organization.last_verified_at = Time.now if verification
-
-    @organization.update_attributes(organization_params)
+    @organization.update_attributes(organization_params.except(:verification))
 
     if @organization.verification_required?
+      verification = organization_params.delete(:verification)
+      @organization.last_verified_at = Time.now if verification
+
       redirect_to new_organization_program_verification_path(@organization)
     else
       redirect_to organization_path(@organization)
