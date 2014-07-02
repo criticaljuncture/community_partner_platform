@@ -86,6 +86,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @organizations = Organization.accessible_by(current_ability, :update).select('name, id').sort_by(&:name)
+    @schools = School.accessible_by(current_ability).select('name, id').sort_by(&:name)
+    @roles = Role.accessible_by(current_ability).map{|r| [r.name, r.id, {"data-role-type" => r.identifier}]}
+
     authorize! :update, @user
   end
 
