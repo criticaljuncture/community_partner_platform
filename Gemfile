@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'webrick', '1.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.0.4'
+gem 'rails', '~> 4.1.3'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
@@ -95,8 +95,9 @@ group :development, :test do
   #gem "zeus"
 
   # replace rails console with pry
-  gem "pry", "~> 0.9.12.2"
+  gem 'pry', '~> 0.10.0'
   gem 'pry-rails'
+  gem 'pry-remote'
 
   # don't log asset loading as it's too noisy
   gem "quiet_assets"
