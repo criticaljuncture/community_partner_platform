@@ -11,7 +11,7 @@
         <%= link_to('Add Role', new_user_role_path(@user), class: "btn btn-warning") if can?(:add_role, User) %>
       </div>
     <% end %>
-    
+
     <dl class="horizontal_stack span3">
       <dt>Name</dt>
       <dd><%= @user.full_name %></dd>
@@ -19,22 +19,28 @@
       <dt>Email</dt>
       <dd><%= @user.email %></dd>
 
-      <dt>Phone Number</dt>
-      <dd><%= number_to_phone(@user.phone_number) %></dd>
-    </dl>
-
-    <dl class="horizontal_stack span3">
-      <% @user.roles.each do |role| %>
-        <%= role_view(role, @user) %>
+      <% if can? :view, :user_details %>
+        <dt>Phone Number</dt>
+        <dd><%= number_to_phone(@user.phone_number) %></dd>
       <% end %>
     </dl>
 
-    <dl class="horizontal_stack span3">
-      <dt>Active</dt>
-      <dd><%= @user.active.to_s %></dd>
+    <% if can? :view, :user_details %>
+      <dl class="horizontal_stack span3">
+        <% @user.roles.each do |role| %>
+          <%= role_view(role, @user) %>
+        <% end %>
+      </dl>
+    <% end %>
 
-      <dt>Invitation Status</dt>
-      <dd><%= invitation_status_for(@user) %></dd>
-    </dl>
+    <% if can? :manage, @user %>
+      <dl class="horizontal_stack span3">
+        <dt>Active</dt>
+        <dd><%= @user.active.to_s %></dd>
+
+        <dt>Invitation Status</dt>
+        <dd><%= invitation_status_for(@user) %></dd>
+      </dl>
+    <% end %>
   </div>
 </div>
