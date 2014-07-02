@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_out_path_for(resource_or_scope)
+    sign_in_path
+  end
+
   rescue_from CanCan::AccessDenied do |exception|
     if Rails.env.development?
       raise [current_user, current_ability, exception].inspect
