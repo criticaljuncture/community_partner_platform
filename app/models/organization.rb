@@ -55,7 +55,11 @@ class Organization < ActiveRecord::Base
   end
 
   def unverified_program_count
-    cached_community_programs.sum{|cp| cp.verification_required? ? 1 : 0}
+    sum = 0
+    cached_community_programs.each do |cp|
+      sum += (cp.verification_required? ? 1 : 0)
+    end
+    sum
   end
 
   def reported_program_count
