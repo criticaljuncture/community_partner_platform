@@ -14,7 +14,7 @@
      <table class="table table-striped">
         <thead>
           <tr>
-            <th>Community School Elements</th>
+            <th>Community School Element</th>
             <th class="center">Schools</th>
             <th class="center">Organizations</th>
             <th class="center">Community Programs</th>
@@ -28,6 +28,18 @@
             <td class="center"><%= @service_type.organizations.uniq.count %></td>
             <td class="center"><%= @service_type.community_programs.count %></td>
           </tr>
+        </tbody>
+
+        <tbody>
+          <% @service_type.quality_elements.each do |quality_element| %>
+              <tr>
+                <td><%= quality_element.name %></td>
+                <td class="center"><%= @service_type.schools_for_quality_element_service_type(quality_element).count %></td>
+                <td class="center"><%= @service_type.organizations_for_quality_element_service_type(quality_element).count %></td>
+                <td class="center"><%= @service_type.community_programs_for_quality_element_service_type(quality_element).count %></td>
+              </tr>
+            <% end %>
+          <% end %>
         </tbody>
       </table>
     </div>
