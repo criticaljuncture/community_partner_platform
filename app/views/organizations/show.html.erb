@@ -45,7 +45,7 @@
     <div class="table_wrapper">
       <h2>Programs</h2>
 
-      <% if @organization.reported_program_count > 0 %>
+      <% if @organization.reported_program_count > 0 && can?(:verify, @organization) %>
         <%= render partial: 'reported_programs',
           locals: {
             organization: @organization,
