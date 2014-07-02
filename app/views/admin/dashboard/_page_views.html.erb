@@ -6,6 +6,7 @@
         <th>Email</th>
         <th>Url</th>
         <th>Completed In</th>
+        <th>Time</th>
         <th>Status</th>
         <th>XHR</th>
         <th>User Agent</th>
@@ -23,6 +24,7 @@
           <td><%= record.user.email %></td>
           <td><%= record.url %></td>
           <td><%= record.completed_in %></td>
+          <td><%= record.created_at.to_s(:datetime_with_seconds) %></td>
           <td><%= record.status %></td>
           <td><%= record.xhr? %></td>
           <td><%= record.user_agent %></td>
