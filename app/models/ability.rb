@@ -10,6 +10,8 @@ class Ability < BaseAbility
 
     can :send_invitation, User
     can :view, :admin_dashboard
+
+    admin_page_level_abilities
   end
 
   def district_manager_abilities
@@ -30,6 +32,8 @@ class Ability < BaseAbility
     can :read, Region
 
     can :verify, CommunityProgram
+
+    admin_page_level_abilities
   end
 
   def school_manager_abilities
@@ -57,6 +61,8 @@ class Ability < BaseAbility
     can :new, CommunityProgram
     can [:create, :edit, :update], CommunityProgram, organization_id: @user.organization_id
     can :verify, CommunityProgram, organization_id: @user.organization_id
+
+    organization_member_page_level_abilities
   end
 
   def shared_abilities
@@ -80,16 +86,20 @@ class Ability < BaseAbility
     can :read, EthnicityCultureGroup
   end
 
-  def page_level_abilities
-    if user.role?(:super_admin) || user.role?(:district_admin)
-      can :view, :school_overview_scatter_plot
-      can :view, :school_overview_program_breakdown_by_region
-      can :view, :school_overview_community_school_element_breakdown
-      can :view, :school_overview_school_status
+  def admin_page_level_abilities
+    can :view, :school_overview_scatter_plot
+    can :view, :school_overview_program_breakdown_by_region
+    can :view, :school_overview_community_school_element_breakdown
+    can :view, :school_overview_school_status
 
-      can :view, :school_partnership_status_dashboard_panels
+    can :view, :school_partnership_status_dashboard_panels
 
-      can :view, :visualizations
-    end
+    can :view, :visualizations
+
+    organization_member_page_level_abilities
+  end
+
+  def organization_member_page_level_abilities
+    can :view, :user_details
   end
 end
