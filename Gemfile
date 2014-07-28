@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'webrick', '1.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.1.3'
+gem 'rails', '~> 4.1.4'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
@@ -84,6 +84,9 @@ gem "dalli", "~> 2.6.4"
 gem 'jquery-modal-rails',
     github: 'peregrinator/jquery-modal-rails',
     ref: '97bc84d7723d324876971f45f255e066fbb6ad49'
+
+# libcurl binding
+gem 'curb', '~> 0.8.5'
 
 group :development, :test do
   gem "rspec-rails", "~> 2.14.0"
