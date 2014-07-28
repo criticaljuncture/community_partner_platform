@@ -68,9 +68,11 @@ gem 'active_model_serializers'
 gem "d3_rails", "~> 3.3.7"
 
 # user signin and auth checks
-gem "devise", "~> 3.2.4"
+gem "devise", "~> 3.1.2"
 gem "devise_invitable",
-    :github => "scambra/devise_invitable"
+    github: "scambra/devise_invitable",
+    ref: 'e555f07ffb1d7751e9f84b3283fc90e1820fb681'
+
 gem "cancan", "~> 1.6.10"
 
 # error reporting
