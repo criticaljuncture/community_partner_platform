@@ -52,24 +52,27 @@
           </td>
         </tr>
       <% end %>
-      <% (reported_program_count - community_programs.count).times do %>
-        <tr>
-          <td><%= school.try(:name) %></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td class="center buttons">
-            <%= link_to 'create',
-              new_community_program_path(
-                community_program: {
-                  school_id: school.id,
-                  organization_id: organization.id
-                },
-                redirect_back: organization_path(organization)
-              ),
-              class: "btn btn-small btn-create" %>
-          </td>
-        </tr>
+
+      <% if reported_program_count %>
+        <% (reported_program_count - community_programs.count).times do %>
+          <tr>
+            <td><%= school.try(:name) %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="center buttons">
+              <%= link_to 'create',
+                new_community_program_path(
+                  community_program: {
+                    school_id: school.id,
+                    organization_id: organization.id
+                  },
+                  redirect_back: organization_path(organization)
+                ),
+                class: "btn btn-small btn-create" %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     <% end %>
     <% reported_programs.each do |key, value| %>
