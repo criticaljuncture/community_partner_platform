@@ -41,7 +41,7 @@ class Ability < BaseAbility
   end
 
   def organization_member_abilities
-    can [:edit, :update, :verification], Organization, id: @user.organization_id
+    can [:edit, :update, :verification, :verify], Organization, id: @user.organization_id
     can :read, :organization_users
 
     can :new, User
