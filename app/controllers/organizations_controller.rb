@@ -15,7 +15,7 @@ class OrganizationsController < ApplicationController
   end
 
   def create
-    @organization = Organization.new(organization_params)
+    @organization = Organization.new(organization_params.except(:verification))
     authorize! :create, @organization
 
     @organization.save
