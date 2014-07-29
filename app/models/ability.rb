@@ -10,6 +10,7 @@ class Ability < BaseAbility
 
     can :send_invitation, User
     can :view, :admin_dashboard
+    can :toggle_active, CommunityProgram
 
     admin_page_level_abilities
   end
@@ -32,6 +33,7 @@ class Ability < BaseAbility
     can :read, Region
 
     can :verify, CommunityProgram
+    can :toggle_active, CommunityProgram
 
     admin_page_level_abilities
   end
