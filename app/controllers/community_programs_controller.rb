@@ -113,6 +113,8 @@ class CommunityProgramsController < ApplicationController
       @community_program.active = true
     end
 
+    @community_program.active_changed_by = current_user.id
+    @community_program.active_changed_on = Time.now
     @community_program.save
 
     respond_to do |wants|
