@@ -7,6 +7,7 @@ class Organization < ActiveRecord::Base
   after_update :clear_associated_cache
 
   has_many :community_programs
+
   has_many :schools, through: :community_programs
   has_many :users
 
@@ -81,6 +82,10 @@ class Organization < ActiveRecord::Base
 
   def reported_school_programs
     read_attribute(:reported_school_programs) ? read_attribute(:reported_school_programs) : []
+  end
+
+  def inactive_community_programs
+    community_programs.unscoped.where(active: false).includes(:school)
   end
 
   private

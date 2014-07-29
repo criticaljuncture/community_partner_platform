@@ -5,7 +5,7 @@ class CommunityProgramsController < ApplicationController
   end
 
   def show
-    @community_program = CommunityProgram.find(params[:id])
+    @community_program = CommunityProgram.unscoped.find(params[:id])
     authorize! :show, @community_program
   end
 
@@ -101,6 +101,25 @@ class CommunityProgramsController < ApplicationController
 
     flash.now[:error] = t('errors.form_error', count: @community_program.errors.count)
     render :edit
+  end
+
+  def toggle_active
+    @community_program = CommunityProgram.unscoped.find(params[:id])
+    authorize! :toggle_active, @community_program
+
+    if @community_program.active?
+      @community_program.active = false
+    else
+      @community_program.active = true
+    end
+
+    @community_program.save
+
+    respond_to do |wants|
+      wants.json do
+        render json: {active: @community_program.active}.to_json
+      end
+    end
   end
 
   private

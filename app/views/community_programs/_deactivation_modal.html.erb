@@ -1,0 +1,27 @@
+<div id="deactivation-warning-modal" class="deactivation-warning-modal modal" role="dialog" aria-labelledby="instructionsModal" aria-hidden="true">
+  <div class="modal-header">
+    <h3>
+      <span class="icon-cpp icon-cpp-handshake"></span>
+      Deactivate Program
+    </h3>
+  </div>
+
+  <div class="modal-body">
+    <p>
+      Clicking the button below will deactivate this program.
+    </p>
+    <p>
+      Deactivated programs will not be displayed within the Community Partner Platform.
+      The program will be accessible to your organization in the
+      'Deactivated Programs' tab on your organizations page.
+    </p>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Cancel</button>
+
+    <button class="btn btn-warning deactivate-program" data-community-program-id="<%= community_program.id %>">
+      <%= community_program.active? ? 'Deactivate' : 'Activate' %>
+    </button>
+  </div>
+</div>

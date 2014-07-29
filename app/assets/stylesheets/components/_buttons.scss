@@ -55,3 +55,7 @@
 .btn-action {
   @include button_color($green, $green-dark);
 }
+
+.btn-warning {
+  @include button_color($red, $red-dark);
+}

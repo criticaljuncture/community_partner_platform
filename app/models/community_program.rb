@@ -1,6 +1,8 @@
 class CommunityProgram < ActiveRecord::Base
   include CommunityProgramAudit
 
+  default_scope { where(active: true) }
+
   after_create :clear_associated_cache
   after_update :clear_associated_cache
 

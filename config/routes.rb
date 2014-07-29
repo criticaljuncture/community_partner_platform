@@ -22,7 +22,11 @@ OusdCommunityPartners::Application.routes.draw do
     end
   end
 
-  resources :community_programs
+  resources :community_programs do
+    member do
+      put :toggle_active
+    end
+  end
 
   resources :organizations do
     resources :program_verifications,

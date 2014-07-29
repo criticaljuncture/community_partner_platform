@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404020850) do
+ActiveRecord::Schema.define(version: 20140728204859) do
 
   create_table "community_program_demographic_groups", force: true do |t|
     t.integer  "demographic_group_id"
@@ -105,8 +105,12 @@ ActiveRecord::Schema.define(version: 20140404020850) do
     t.string   "name"
     t.string   "legislative_file_number"
     t.datetime "last_verified_at"
+    t.boolean  "active",                       default: true
+    t.integer  "active_changed_by"
+    t.datetime "active_changed_on"
   end
 
+  add_index "community_programs", ["active"], name: "index_community_programs_on_active", using: :btree
   add_index "community_programs", ["organization_id"], name: "index_community_partners_on_organization_id", using: :btree
   add_index "community_programs", ["school_id"], name: "index_community_partners_on_school_id", using: :btree
   add_index "community_programs", ["school_user_id"], name: "index_community_partners_on_school_user_id", using: :btree
@@ -220,14 +224,14 @@ ActiveRecord::Schema.define(version: 20140404020850) do
     t.string   "high_grade"
     t.integer  "enrollment_k_12"
     t.integer  "free_meal_count_k_12"
-    t.float    "percent_eligible_free_k_12"
+    t.float    "percent_eligible_free_k_12",  limit: 24
     t.integer  "frpm_total_undup_count_k_12"
-    t.float    "frpm_percent_eligible_k_12"
+    t.float    "frpm_percent_eligible_k_12",  limit: 24
     t.integer  "enrollment_5_17"
     t.integer  "free_meal_count_5_17"
-    t.float    "percent_eligible_5_17"
+    t.float    "percent_eligible_5_17",       limit: 24
     t.integer  "frpm_total_undup_count_5_17"
-    t.float    "frpm_percent_eligible_5_17"
+    t.float    "frpm_percent_eligible_5_17",  limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
   end

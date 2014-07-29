@@ -41,9 +41,18 @@
 
       <% end %>
     <% end %>
+  </div>
+</div>
 
+<%= page_nav_tabs [
+  ['Active Programs', '#active-programs'],
+  ['Inactive Programs', '#inactive-programs']
+] %>
+
+<div class="tab-content">
+  <div id="active-programs" class="tab-pane active">
     <div class="table_wrapper">
-      <h2>Programs</h2>
+      <h2>Active Programs</h2>
 
       <% if @organization.reported_program_count > 0 && can?(:verify, @organization) %>
         <%= render partial: 'reported_programs',
@@ -54,10 +63,25 @@
       <% elsif @organization.community_programs.present? %>
         <%= render partial: 'programs',
           locals: {
-            organization: @organization
+            programs: @organization.cached_community_programs
         } %>
       <% else %>
         <p>There are no programs reported for this organization.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="inactive-programs" class="tab-pane">
+    <div class="table_wrapper">
+      <h2>Inctive Programs</h2>
+
+      <% if @organization.inactive_community_programs.present? %>
+        <%= render partial: 'programs',
+          locals: {
+            programs: @organization.inactive_community_programs
+        } %>
+      <% else %>
+        <p>You have no inactive programs.</p>
       <% end %>
     </div>
   </div>

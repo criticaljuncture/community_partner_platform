@@ -1,3 +1,10 @@
+.community_programs .header .btn {
+  position: relative;
+  float: right;
+  top: -35px;
+  margin-right: 10px;
+}
+
 table.community_programs {
   .program_name { width: 20%; }
   .organization { width: 20%; }
@@ -40,4 +47,12 @@ table.community_programs {
   }
   #add-org-user,
   #add-school-user { display: none; }
+}
+
+.deactivation-warning-modal.modal {
+  .modal-header .icon-cpp {
+    width: 40px;
+    top: 2px;
+    position: relative;
+  }
 }
