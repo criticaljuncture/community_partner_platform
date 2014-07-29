@@ -8,6 +8,14 @@
 
 <%= embed_ember_template 'school-program-verification-input', 'school_program_verification_input' %>
 
+<%= modal(:basic,
+          modal_id: "user-modal",
+          modal_class: "user-modal",
+          header_text: 'Add User',
+          header_icon: 'icon-cpp-users',
+          footer: false) do %>
+<% end %>
+
 <div class="row-fluid">
   <div class="span12">
     <%= page_header("#{edit_or_verify} #{@community_program.name} #{'@ ' + @community_program.school.name if @community_program.school}", "icon-cpp-handshake") %>
