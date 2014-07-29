@@ -35,7 +35,7 @@
       <% community_programs.each do |community_program| %>
         <tr>
           <td><%= link_to school.try(:name), school_path(school) %></td>
-          <td><%= community_program.name %></td>
+          <td><%= link_to community_program.name, community_program_path(community_program) %></td>
           <td><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
           <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
           <td class="center buttons">
