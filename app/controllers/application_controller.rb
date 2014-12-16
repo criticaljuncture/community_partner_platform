@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   # devise
   before_filter :authenticate_user!
+  # security
+  before_filter :set_security_headers
 
   # cancan
   check_authorization :unless => :devise_controller?
@@ -76,6 +78,11 @@ class ApplicationController < ActionController::Base
     flash[:js] = {} if flash[:js].nil?
 
     flash[:js][key] = value
+  end
+
+  def set_security_headers
+    # https://developer.mozilla.org/en/Security/HTTP_Strict_Transport_Security
+    response.headers['Strict-Transport-Security'] = "max-age=#{6.months}; includeSubDomains"
   end
 
   def track_page_speed
