@@ -90,6 +90,11 @@ gem 'jquery-modal-rails',
 # libcurl binding
 gem 'curb', '~> 0.8.5'
 
+group :deployment do
+  gem 'capistrano', '~> 2.15.5'
+  gem 'thunder_punch', '~> 0.1.2'
+end
+
 group :development, :test do
   gem "rspec-rails", "~> 2.14.0"
   gem "factory_girl_rails", "~> 4.2.1"
@@ -123,10 +128,6 @@ group :development, :test do
   #gem 'peek-rblineprof'
   #gem 'peek-dalli'
   #gem 'rack-mini-profiler'
-
-  # Deployment
-  #gem 'capistrano', "~> 2.15.5"
-  #gem 'thunder_punch', require: false
 end
 
 group :doc do
