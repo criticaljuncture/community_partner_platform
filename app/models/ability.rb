@@ -89,7 +89,7 @@ class Ability < BaseAbility
   end
 
   def admin_page_level_abilities
-    can :view, :school_overview_scatter_plot
+    cannot :view, :school_overview_scatter_plot
     can :view, :school_overview_program_breakdown_by_region
     can :view, :school_overview_community_school_element_breakdown
     can :view, :school_overview_school_status
