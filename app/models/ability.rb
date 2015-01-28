@@ -39,7 +39,7 @@ class Ability < BaseAbility
   end
 
   def school_manager_abilities
-    can :verify, CommunityProgram, school_id: @user.school_id
+    can :verify, CommunityProgram, school_id: @user.school_ids
   end
 
   def organization_member_abilities
