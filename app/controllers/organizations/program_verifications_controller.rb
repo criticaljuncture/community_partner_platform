@@ -10,8 +10,12 @@ class Organizations::ProgramVerificationsController < ApplicationController
 
     authorize! :verification, @organization
 
-    counts.update(counts){|k,v| v.to_i}
-    counts.reject!{|k,v| v <= 0 }
+    if counts
+      counts.update(counts){|k,v| v.to_i}
+      counts.reject!{|k,v| v <= 0 }
+    else
+      counts = 0
+    end
 
     @organization.reported_school_programs = counts
     @organization.save
