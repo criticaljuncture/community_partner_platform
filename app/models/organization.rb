@@ -85,7 +85,7 @@ class Organization < ActiveRecord::Base
   end
 
   def inactive_community_programs
-    community_programs.unscoped.where(active: false).includes(:school)
+    community_programs.unscoped.where(organization_id: self.id, active: false).includes(:school)
   end
 
   private
