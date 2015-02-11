@@ -34,7 +34,7 @@
     <dl>
       <% Region.accessible_by(current_ability).each do |region| %>
         <dt><%= region.name %></dt>
-        <dd><%= pluralize(region.cached_community_program_count, "program") %></dd>
+        <dd><%= pluralize(region.community_programs.count, "program") %></dd>
       <% end %>
     </dl>
   <% end %>
