@@ -4,8 +4,9 @@ class Region < ActiveRecord::Base
 
   def community_programs_by_quality_element
     community_programs.
-      map{|cp| cp.primary_quality_element}.
-      map{|pqe| pqe.quality_element}.
+      includes(primary_quality_element: :quality_element).
+      map(&:primary_quality_element).
+      map(&:quality_element).
       group_by(&:id)
   end
 end
