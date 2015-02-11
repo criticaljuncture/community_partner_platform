@@ -1,1 +1,5 @@
 .hidden { display: none; }
+
+ul {
+  &.no-bullets { list-style: none; }
+}

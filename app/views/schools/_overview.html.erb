@@ -39,12 +39,15 @@
     </dl>
   <% end %>
 
-  <% if can? :view, :school_overview_school_status %>
+  <% if can?(:view, :school_overview_school_status) &&
+       @overview_presenter.schools_without_region.count > 0 %>
     <h2>School Status</h2>
 
-    <dl>
-      <dt>Schools without a region assigned</dt>
-      <dd><%= pluralize(@overview_presenter.schools_without_region.count, "school") %></dd>
-    </dl>
+    <h5>Schools without a region assigned:</h5>
+    <ul>
+      <% @overview_presenter.schools_without_region.each do |school| %>
+        <li><%= link_to school.name, school_path(school) %></li>
+      <% end %>
+    </ul>
   <% end %>
 </div>
