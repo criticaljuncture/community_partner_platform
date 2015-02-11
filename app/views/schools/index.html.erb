@@ -6,8 +6,7 @@
       <%= link_to('Create New School', new_school_path, class: "btn btn-primary") if can? :manage, School %>
     <% end %>
 
-    <%= page_nav_tabs [['Overview', '#overview'],
-                       ['Schools', '#schools']] %>
+    <%= page_nav_tabs @overview_presenter.page_nav_tabs %>
 
     <div class="tab-content">
       <div id="overview" class="tab-pane active">
@@ -17,6 +16,21 @@
       <div id="schools" class="tab-pane">
         <%= render partial: 'table', locals: {schools_presenter: @schools_presenter} %>
       </div>
+
+      <% if can? :view, :school_overview_community_school_element_breakdown %>
+        <div id="community-program-breakdown" class="tab-pane">
+          <h4>Community School Elements </h4>
+          <div class="instructions">
+            Each program can address up to two community school elements (a primary element and a secondary element).
+            The data below represents the primary community school element assigned to each program.
+          </div>
+
+          <% @overview_presenter.regions.each do |region| %>
+            <%= render partial: "schools/overview/community_school_elements_for_region", locals: {region: region} %>
+          <% end %>
+        </div>
+      <% end %>
+
     </div>
   </div>
 </div>

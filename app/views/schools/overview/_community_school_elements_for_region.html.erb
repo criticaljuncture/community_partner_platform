@@ -1,23 +1,26 @@
 <h5><%= region.name %></h5>
 
 <dl class="quality_element_stats">
-  <% quality_elements_with_programs = [] %>
-  <% region.community_programs_by_quality_element.sort_by{|k,v| v.count}.reverse.each do |quality_element_id, quality_elements| %>
-    <% quality_elements_with_programs << quality_elements.first %>
-    <dt class="toggle" data-target="#<%= region.id %>_<%= quality_elements.first.id %>"><%= quality_elements.first.name %></dt>
+  <% region.quality_element_counts.each do |quality_element_count| %>
+    <dt class="toggle"
+        data-target="#<%= region.id %>_<%= quality_element_count[:id] %>">
+      <%= quality_element_count[:name] %>
+    </dt>
     <dd>
-      <%= pluralize(quality_elements.count, "program") %>
-      <span class="extra_info">(<%= (quality_elements.count.to_f / region.community_programs.count.to_f * 100).round %>%)</span>
+      <%= pluralize(quality_element_count[:count], "program") %>
+      <span class="extra_info">
+        (<%= region.percentage_of_programs_with_quality_element(quality_element_count[:count]) %>%)
+      </span>
 
-      <% if quality_elements.count > 0 %>
-        <div id="<%= region.id %>_<%= quality_elements.first.id %>" class="hide service_type_stats_wrapper">
-          <h6>Service Type Breakdown <span class="hint">(each program can have multiple)</span></h6>
+      <% if quality_element_count[:count] > 0 %>
+        <div id="<%= region.id %>_<%= quality_element_count[:id] %>"
+            class="hide service_type_stats_wrapper">
+          <h6>Service Types <span class="hint">(each program can have multiple)</span></h6>
 
           <dl class="service_type_stats">
-            <% ids = region.community_programs.map{|cp| cp.primary_service_types.map{|st| st}}.flatten
-               ids.inject(Hash.new(0)){|result, element| result[element] += 1; result}.sort_by{|item| item[0].name}.each do |service_type, count| %>
-              <dt><%= service_type.name %></dt>
-              <dd><%= count %></dd>
+            <% region.service_type_counts.each do |service_type_count| %>
+              <dt><%= service_type_count[:name] %></dt>
+              <dd><%= service_type_count[:count] %></dd>
             <% end %>
           </dl>
         </div>
@@ -25,8 +28,8 @@
     </dd>
   <% end %>
 
-  <% (QualityElement.accessible_by(current_ability).all - quality_elements_with_programs).each do |quality_element| %>
-    <dt><%= quality_element.name %></dt>
+  <% region.quality_elements_without_coverage.each do |quality_element_name| %>
+    <dt><%= quality_element_name %></dt>
     <dd>0 programs <span class="extra_info">(0%)</span></dd>
   <% end %>
 </dl>

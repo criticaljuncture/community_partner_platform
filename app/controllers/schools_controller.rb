@@ -1,5 +1,6 @@
 class SchoolsController < ApplicationController
   def index
+    @overview_presenter = SchoolsOverviewPresenter.new(nil, view_context)
     @schools_presenter = SchoolsListPresenter.new(
       School.accessible_by(current_ability).order(:name)
     )

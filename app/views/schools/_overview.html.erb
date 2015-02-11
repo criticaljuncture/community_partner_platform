@@ -32,23 +32,11 @@
     <h2>Program Breakdown by Region</h2>
 
     <dl>
-      <% Region.accessible_by(current_ability).each do |region| %>
+      <% @overview_presenter.regions.each do |region| %>
         <dt><%= region.name %></dt>
-        <dd><%= pluralize(region.community_programs.count, "program") %></dd>
+        <dd><%= pluralize(region.community_programs_count, "program") %></dd>
       <% end %>
     </dl>
-  <% end %>
-
-  <% if can? :view, :school_overview_community_school_element_breakdown %>
-    <h4>Community School Element Breakdown</h4>
-    <div class="instructions">
-      Each program can address up to two community school elements (a primary element and a secondary element).
-      The data below represents the primary community school element assigned to each program.
-    </div>
-
-    <% Region.accessible_by(current_ability).each do |region| %>
-      <%= render partial: "schools/overview/community_school_elements_for_region", locals: {region: region} %>
-    <% end %>
   <% end %>
 
   <% if can? :view, :school_overview_school_status %>
@@ -56,7 +44,7 @@
 
     <dl>
       <dt>Schools without a region assigned</dt>
-      <dd><%= pluralize(School.where("region_id IS NULL").count, "school") %></dd>
+      <dd><%= pluralize(@overview_presenter.schools_without_region.count, "school") %></dd>
     </dl>
   <% end %>
 </div>
