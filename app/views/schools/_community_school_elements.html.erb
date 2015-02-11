@@ -1,0 +1,23 @@
+<div class="table_wrapper span6">
+  <h2>Community School Elements</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Community School Element</th>
+        <th class="center">Community Programs</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% QualityElement.accessible_by(current_ability).sort_by(&:name).each do |element| %>
+        <tr>
+          <td><%= link_to element.name, quality_element_path(element) %></td>
+          <td class="center">
+            <%= community_program_count_for_element(element, school) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

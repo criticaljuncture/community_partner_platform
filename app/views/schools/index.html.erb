@@ -7,14 +7,14 @@
     <% end %>
 
     <%= page_nav_tabs [['Overview', '#overview'],
-                       ['Schools', '#schools-table']] %>
+                       ['Schools', '#schools']] %>
 
     <div class="tab-content">
       <div id="overview" class="tab-pane active">
         <%= render partial: 'overview', locals: {} %>
       </div>
 
-      <div id="schools-table" class="tab-pane">
+      <div id="schools" class="tab-pane">
         <%= render partial: 'table', locals: {schools: @schools} %>
       </div>
     </div>

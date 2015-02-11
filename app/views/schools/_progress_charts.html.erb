@@ -1,0 +1,31 @@
+<div class="donut_status_box_wrapper">
+  <%= completeness_donut(
+      'Community School Elements Covered',
+      school.quality_elements.count,
+      QualityElement.accessible_by(current_ability).count) %>
+
+  <%= completeness_donut(
+      'Student Populations with Partnerships',
+      school.student_populations_with_programs.count,
+      StudentPopulation.accessible_by(current_ability).for_completeness.count) %>
+
+  <%= completeness_donut(
+      'Ethnicity/Culture Groups with Partnerships',
+      school.ethnicity_culture_groups_with_programs.count,
+      EthnicityCultureGroup.accessible_by(current_ability).for_completeness.count) %>
+
+  <%= completeness_donut(
+      'Demographic Groups with Partnerships',
+      school.demographic_groups_with_programs.count,
+      DemographicGroup.accessible_by(current_ability).for_completeness.count) %>
+
+  <%= completeness_donut(
+      'Service Days Covered',
+      school.service_days_with_programs.count,
+      Day.accessible_by(current_ability).for_completeness.count) %>
+
+  <%= completeness_donut(
+      'Sevice Times Covered',
+      school.service_times_with_programs.count,
+      ServiceTime.accessible_by(current_ability).for_completeness.count) %>
+</div>

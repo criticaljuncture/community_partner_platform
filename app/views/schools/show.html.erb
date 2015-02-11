@@ -1,5 +1,5 @@
 <%= breadcrumb [
-  ['Schools', schools_path], 
+  ['Schools', schools_path],
   [@school.name, school_path(@school)]
 ] %>
 
@@ -10,37 +10,7 @@
     <% end %>
 
     <% if can? :view, :school_partnership_status_dashboard_panels %>
-      <div class="donut_status_box_wrapper">
-        <%= completeness_donut(
-            'Community School Elements Covered',
-            @school.quality_elements.count,
-            QualityElement.accessible_by(current_ability).count) %>
-
-        <%= completeness_donut(
-            'Student Populations with Partnerships',
-            @school.student_populations_with_programs.count,
-            StudentPopulation.accessible_by(current_ability).for_completeness.count) %>
-
-        <%= completeness_donut(
-            'Ethnicity/Culture Groups with Partnerships',
-            @school.ethnicity_culture_groups_with_programs.count,
-            EthnicityCultureGroup.accessible_by(current_ability).for_completeness.count) %>
-
-        <%= completeness_donut(
-            'Demographic Groups with Partnerships',
-            @school.demographic_groups_with_programs.count,
-            DemographicGroup.accessible_by(current_ability).for_completeness.count) %>
-
-        <%= completeness_donut(
-            'Service Days Covered',
-            @school.service_days_with_programs.count,
-            Day.accessible_by(current_ability).for_completeness.count) %>
-
-        <%= completeness_donut(
-            'Sevice Times Covered',
-            @school.service_times_with_programs.count,
-            ServiceTime.accessible_by(current_ability).for_completeness.count) %>
-      </div>
+      <%= render partial: 'progress_charts', locals: {school: @school} %>
     <% end %>
 
     <dl class="clear">
@@ -51,58 +21,24 @@
       <dd><%= @school.community_programs.count %></dd>
     </dl>
 
-    <div class="table_wrapper span6">
-      <h2>Community School Elements</h2>
+    <%= page_nav_tabs [
+      ['Community Programs', '#community-programs'],
+      ['Community School Elements', '#community-school-elements']
+    ] %>
 
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Community School Element</th>
-            <th class="center">Community Programs</th>
-          </tr>
-        </thead>
+    <div class="tab-content">
+      <div id="community-programs" class="tab-pane active">
+        <%= render partial: 'community_programs', locals: {
+          school: @school,
+          community_programs: @school.community_programs
+        } %>
+      </div>
 
-        <tbody>
-          <% QualityElement.accessible_by(current_ability).sort_by(&:name).each do |element| %>
-            <tr>
-              <td><%= link_to element.name, quality_element_path(element) %></td>
-              <td class="center">
-                <%= community_program_count_for_element(element, @school) %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="table_wrapper span10">
-      <h2>Community Programs</h2>
-
-      <% if @school.cached_community_programs.count > 0 %>
-        <table class="table table-striped table-sorter">
-          <thead>
-            <tr>
-              <th>Organization</th>
-              <th>Program Name</th>
-              <th class="center">Community School Elements</th>
-              <th class="">Service Types</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @school.cached_community_programs.each do |community_program| %>
-              <tr>
-                <td><%= link_to community_program.organization.try(:name), organization_path(community_program.organization) %></td>
-                <td><%= link_to community_program.name, community_program_path(community_program) %></td>
-                <td class="center"><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
-                <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <p>There are currently no community programs available for <%= @school.name %></p>
-      <% end %>
+      <div id="community-school-elements" class="tab-pane">
+        <%= render partial: 'community_school_elements', locals: {
+          school: @school
+        } %>
+      </div>
     </div>
 
   </div>
