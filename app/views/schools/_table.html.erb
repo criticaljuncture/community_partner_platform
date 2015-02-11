@@ -14,8 +14,8 @@
       <% schools.each do |school| %>
         <tr>
           <td><%= school.name %></td>
-          <td class="center"><%= school.cached_community_program_count %></td>
-          <td class="center"><%= school.cached_organizations.uniq.count %></td>
+          <td class="center"><%= school.community_programs.count %></td>
+          <td class="center"><%= school.organizations.uniq.count %></td>
           <td class="center"><%= quality_elements_coverage_display(school) %></td>
           <td class="center">
             <%= link_to('view', school_path(school), class: "btn btn-small btn-info") if can? :show, school %>
