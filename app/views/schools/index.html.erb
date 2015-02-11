@@ -11,11 +11,11 @@
 
     <div class="tab-content">
       <div id="overview" class="tab-pane active">
-        <%= render partial: 'overview', locals: {} %>
+        <%= render partial: 'overview' %>
       </div>
 
       <div id="schools" class="tab-pane">
-        <%= render partial: 'table', locals: {schools: @schools} %>
+        <%= render partial: 'table', locals: {schools_presenter: @schools_presenter} %>
       </div>
     </div>
   </div>
