@@ -7,7 +7,7 @@ class SchoolsListPresenter
 
   class SchoolListPresenter
     attr_accessor :school
-    delegate :name, to: :@school
+    delegate :name, :id, to: :@school
 
     def initialize(school)
       @school = school
