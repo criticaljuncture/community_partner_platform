@@ -11,6 +11,7 @@
 
   <tbody>
     <% programs.order("schools.id asc").group_by(&:school).each do |school, community_programs| %>
+      <% next unless school %>
       <% community_programs.each do |community_program| %>
         <tr>
           <td><%= link_to school.try(:name), school_path(school) %></td>
