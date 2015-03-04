@@ -18,8 +18,8 @@
           <td class="center"><%= school.organization_count %></td>
           <td class="center"><%= quality_elements_coverage_display(school.quality_element_count) %></td>
           <td class="center">
-            <%= link_to('view', school_path(school.id), class: "btn btn-small btn-info") if can? :show, school %>
-            <%= link_to('edit', edit_school_path(school.id), class: "btn btn-small btn-info") if can? :edit, school %>
+            <%= link_to('view', school_path(school.id), class: "btn btn-small btn-info") if can? :show, School %>
+            <%= link_to('edit', edit_school_path(school.id), class: "btn btn-small btn-info") if can? :edit, School %>
           </td>
         </tr>
       <% end %>
