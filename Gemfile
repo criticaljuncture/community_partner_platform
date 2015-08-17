@@ -1,10 +1,7 @@
 source 'https://rubygems.org'
 
-# Remove annoying messages from default webrick
-gem 'webrick', '1.3.1'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.1.4'
+gem 'rails', '~> 4.2.3'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
@@ -37,7 +34,6 @@ gem 'paper_trail', '>= 3.0.0.rc1'
 # ember
 gem 'ember-rails'
 gem 'ember-source', '1.4.0'
-#gem "handlebars-source", "~> 1.1.1"
 
 # redis
 gem 'redis', '~> 3.0.7'
@@ -68,10 +64,12 @@ gem 'active_model_serializers'
 gem "d3_rails", "~> 3.3.7"
 
 # user signin and auth checks
-gem "devise", "~> 3.1.2"
-gem "devise_invitable",
-    github: "scambra/devise_invitable",
-    ref: 'e555f07ffb1d7751e9f84b3283fc90e1820fb681'
+gem "devise", "~> 3.5.2"
+gem "devise_invitable", "~> 1.5.2 "
+#gem "devise", "~> 3.1.2"
+#gem "devise_invitable",
+#    github: "scambra/devise_invitable",
+#    ref: 'e555f07ffb1d7751e9f84b3283fc90e1820fb681'
 
 gem "cancan", "~> 1.6.10"
 
@@ -115,6 +113,9 @@ group :development, :test do
   # live reloading of css & html via chrome browser extension
   gem 'guard'
   gem 'guard-livereload'
+
+  # console on errors or using <%= console %>
+  gem 'web-console', '~> 2.0'
 
   # chrome inspector support
   #gem 'sass-rails-source-maps'

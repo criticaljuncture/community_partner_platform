@@ -43,5 +43,8 @@ module OusdCommunityPartners
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     config.time_zone = "Pacific Time (US & Canada)"
+
+    # opt into future default behavior
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end
