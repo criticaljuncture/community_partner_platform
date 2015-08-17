@@ -29,11 +29,17 @@
         <dd><%= link_to @community_program.user.full_name, user_path( @community_program.user ) %></dd>
       </dl>
       <dl class="horizontal_stack span3">
-        <dt>School</dt>
-        <dd><%= link_to @community_program.school.try(:name), school_path(@community_program.school) %></dd>
-
-        <dt>Primary School Contact</dt>
-        <dd><%= link_to(@community_program.school_user.full_name, user_path( @community_program.school_user )) if @community_program.school_user.present? %></dd>
+        <dt>Schools</dt>
+        <% @community_program.school_programs.each do |school_program| %>
+          <dd>
+            <%= link_to school_program.school.try(:name),
+              school_path(school_program.school) %>
+            <% if school_program.school_user.present? %>
+              <br />
+              Primary School Contact: <%= link_to(school_program.school_user.full_name, user_path(school_program.school_user )) %>
+            <% end %>
+          </dd>
+        <% end %>
       </dl>
       <dl class="horizontal_stack span5">
         <dt>Primary Community School Element</dt>

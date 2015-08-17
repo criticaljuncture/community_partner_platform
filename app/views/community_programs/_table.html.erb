@@ -18,7 +18,9 @@
             <%= link_to(community_program.cached_organization.name, organization_path(community_program.cached_organization)) if community_program.cached_organization.present? %>
           </td>
           <td class="school">
-            <%= link_to community_program.school.name, school_path(community_program.school) %>
+            <% community_program.schools.each do |school| %>
+              <%= link_to school.name, school_path(school) %>
+            <% end %>
           </td>
           <td class="sqisa"><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
           <td class="actions center">
