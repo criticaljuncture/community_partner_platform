@@ -18,12 +18,7 @@ module BreadcrumbHelper
 
   def crumb_element(name, path, active)
     content_tag(:li, class: active ? 'active' : '') do
-      if active
-        name
-      else
-        link_to(name, path) +
-          content_tag(:span, '/', class: 'divider')
-      end
+      active ? name : link_to(name, path)
     end
   end
 

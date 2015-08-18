@@ -1,13 +1,16 @@
 /* dimensions */
 $navbar-height: 60px;
 $navbar-dropdown-width: 240px;
+$nav-item-width: 153px;
 $nav-item-a-margin: 10px;
 $nav-active-border-height: 4px;
 $dropdown-active-border-width: 4px;
 
-$user-nav-height: 24px;
-$user-nav-vertical-padding: 8px;
+$user-nav-height: 27px;
+$user-nav-vertical-padding: 4px;
 $user-nav-border-size: 1px;
+
+$navigation-bg-fade: $white;
 
 /* colors */
 $navbar-color: $gray-2;
@@ -16,213 +19,198 @@ $nav-item-border-color: $gray-15;
 $nav-item-a-color: $gray-50;
 $nav-active-color: $green;
 
-
-/* RESET OF BOOTSTRAP STYLES AS NEEDED */
-.navbar {
-  background-image: none;
-  background-repeat: none;
-  border: none;
-
-  .navbar-inner {
-    box-shadow: none;
-    border: none;
-    background-image: none;
-
-    .nav {
-      float: none;
-
-      .nav-item {
-        &.dropdown {
-          .dropdown-menu {
-            box-shadow: none;
-            border: none;
-
-            a:hover { background-image: none; }
-
-            &:before,
-            &:after {
-              border: none !important;
-              content: "" !important;
-            }
-          }
-        }
-      }
-
-      .icon { background: none; }
-    }
-  }
-}
-
 .navbar {
   @extend .pt_sans;
-  font-weight: 700; //bold
-
+  background-color: $navbar-color;
+  font-weight: 700;
   height: $navbar-height;
-  margin-top: $user-nav-height + ($user-nav-vertical-padding * 2) + $user-nav-border-size;
+  min-height: $navbar-height; //bootstrap override
 
-  .navbar-inner {
-    @extend .row-fluid;
-    background-color: $navbar-color;
+  &.navbar-fixed-top {
+    margin-top: $user-nav-height + $user-nav-border-size;
+  }
 
-    .brand {
-      @extend .span3;
+  a {
+    color: $nav-item-a-color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $nav-active-color;
+      text-decoration: none;
+    }
+  }
+
+  .navbar-brand {
+    height: $navbar-height;
+    padding: 15px;
+
+    h1 {
       margin: 0;
-      padding: 20px 10px 10px 30px;
-      height: $navbar-height - 30px;
-      border-right: none;
+      font-size: modular-scale(3);
     }
 
-    .nav {
-      @extend .span9;
-      @extend .offset3;
+    .brand {
+      margin: 0;
+      border-right: none;
+    }
+  }
 
-      .nav-item {
-        @extend .span2;
-        text-align: left;
-        text-transform: uppercase;
-        border-left: 1px solid $nav-item-border-color;
-        height: $navbar-height;
-        position: relative;
+  .navbar-nav {
+    .nav-item {
+      text-align: left;
+      text-transform: uppercase;
+      border-left: 1px solid $nav-item-border-color;
+      height: $navbar-height;
+      min-width: $nav-item-width;
+      position: relative;
 
-        &:last-child {
-          border-right: 1px solid $nav-item-border-color;
-        }
+      &:last-child {
+        border-right: 1px solid $nav-item-border-color;
+      }
 
-        &.active,
-        &.open {
-          height: $navbar-height - $nav-active-border-height;
-          border-bottom: $nav-active-border-height solid $nav-active-color;
+      &.active,
+      &.open,
+      &:hover {
+        height: $navbar-height - $nav-active-border-height;
+        border-bottom: $nav-active-border-height solid $nav-active-color;
+        background-color: $nav-active-bgcolor;
+
+        > a {
+          box-shadow: none;
+          color: $nav-active-color;
           background-color: $nav-active-bgcolor;
+        }
+      }
 
-          > a {
-            box-shadow: none;
-            color: $nav-active-color;
-            background-color: $nav-active-bgcolor;
-          }
+      &.dropdown {
+        .dropdown-toggle {
+          .caret { margin-left: 5px; }
         }
 
-        &.dropdown {
-          .dropdown-toggle {
-            .caret { margin-left: 5px; }
-          }
+        .dropdown-menu {
+          top: $navbar-height - 2px;
+          background-color: $navbar-color;
+          @include rounded-top(0);
 
-          .dropdown-menu {
-            top: $navbar-height - 2px;
-            background-color: $navbar-color;
-            @include rounded-top(0);
+          li {
+            width: $navbar-dropdown-width;
 
-            li {
-              width: $navbar-dropdown-width;
-
-              &:hover {
-                width: $navbar-dropdown-width - 2px;
-
-                a {
-                  color: $nav-active-color;
-                  background-color: $nav-active-bgcolor;
-                  border-left: $dropdown-active-border-width solid $nav-active-color;
-                }
-              }
+            &:hover {
+              width: $navbar-dropdown-width - 2px;
 
               a {
-                height: 40px;
-                line-height: 40px;
-                margin: 0;
-                font-weight: 700; // bold
-                padding-left: 10px;
-
-                color: $nav-item-a-color;
-                background-color: $navbar-color;
-                border-left: $dropdown-active-border-width solid $navbar-color;
-
-                &:hover { background-color: $nav-active-bgcolor; }
+                color: $nav-active-color;
+                background-color: $nav-active-bgcolor;
+                border-left: $dropdown-active-border-width solid $nav-active-color;
               }
+            }
+
+            a {
+              height: 40px;
+              line-height: 40px;
+              margin: 0;
+              font-weight: 700; // bold
+              padding-left: 10px;
+
+              color: $nav-item-a-color;
+              background-color: $navbar-color;
+              border-left: $dropdown-active-border-width solid $navbar-color;
+
+              &:hover { background-color: $nav-active-bgcolor; }
             }
           }
         }
+      }
 
-        a {
-          height: $navbar-height - (2 * $nav-item-a-margin);
-          margin: $nav-item-a-margin 5px;
-          padding: 0;
-          overflow: hidden;
-          font-size: 13px;
-          color: $nav-item-a-color;
+      a {
+        height: $navbar-height - (2 * $nav-item-a-margin);
+        margin: $nav-item-a-margin 5px;
+        padding: 0;
+        font-size: 13px;
+        color: $nav-item-a-color;
 
-          &.single-line {
-            padding-top: $nav-item-a-margin;
-            height: $navbar-height - (2 * $nav-item-a-margin) - 10px - $nav-active-border-height;
-          }
+        &.single-line {
+          padding-top: $nav-item-a-margin;
+          height: $navbar-height - (2 * $nav-item-a-margin) - 10px - $nav-active-border-height;
+        }
 
-          &:hover { color: $nav-active-color; }
+        &:hover {
+          color: $nav-active-color;
+          background-color: $nav-active-bgcolor;
+        }
 
-          .icon,
-          .nav-label {
-            display: block;
-            float: left;
-          }
+        .icon,
+        .nav-label {
+          display: block;
+          float: left;
+        }
 
-          .community_partnership.nav-label,
-          .organization.nav-label {
-            width: 91px;
-          }
+        .community_partnership.nav-label,
+        .organization.nav-label {
+          width: 91px;
+        }
 
-          .icon {
-            width: 26px;
-            height: 26px;
-            font-size: 30px;
-            position: relative;
-            top: -9px;
-            margin-right: 10px;
-          }
-          .icon-cpp-school { margin-left: 18px; }
-          .icon-cpp-handshake {
-            top: 6px;
-            margin-right: 6px;
-            width: 46px;
-            font-size: 24px;
-          }
-          .icon-cpp-small-business {
-            margin-left: 6px;
-            margin-right: 7px;
-            top: 3px;
-          }
-          .icon-cpp-gears {
-            margin-left: 20px;
-            margin-right: 15px;
-          }
-          .icon-cpp-graph {
-            width: 32px;
-            margin-left: 19px;
-            top: -7px;
-            margin-right: 7px;
-          }
+        .icon {
+          width: 26px;
+          height: 26px;
+          font-size: 30px;
+          position: relative;
+          top: -9px;
+          margin-right: 10px;
+        }
+        .icon-cpp-school { margin-left: 18px; }
+        .icon-cpp-handshake {
+          top: 6px;
+          margin-right: 6px;
+          width: 46px;
+          font-size: 24px;
+        }
+        .icon-cpp-small-business {
+          margin-left: 6px;
+          margin-right: 7px;
+          top: 3px;
+        }
+        .icon-cpp-gears {
+          margin-left: 20px;
+          margin-right: 15px;
+        }
+        .icon-cpp-graph {
+          width: 32px;
+          margin-left: 19px;
+          top: -7px;
+          margin-right: 7px;
         }
       }
     }
   }
+
+  .nav-bar-fade {
+    height: 15px;
+    width: 100%;
+    background-color: $navigation-bg-fade;
+    opacity: 0.8;
+  }
 }
 
-.user-navigation {
-  @extend .span12;
-
-  position: fixed;
-  top: 0px;
+.user-nav {
   background-color: $app-background-color;
   border-bottom: 1px solid $gray-10;
   color: $nav-item-a-color;
+  font-size: modular-scale(-1);
+  position: fixed;
+  text-align: right;
+  top: 0px;
+  z-index: 1030; // same as .navbar-fixed-top
 
-  span {
-    padding: $user-nav-vertical-padding 10px;
+  .user-info {
     display: block;
     height: $user-nav-height;
-  }
+    padding: $user-nav-vertical-padding 10px;
 
-  .current-user {
-    float: left;
-    top: 2px;
-    position: relative;
+    .btn-mini {
+      position: relative;
+      top: -1px;
+    }
   }
-
-  .current-user-actions { float: right; }
 }

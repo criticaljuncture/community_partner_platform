@@ -24,8 +24,8 @@ $header-border-color: $gray-70;
     h1 { width: 100%; }
   }
 
-  h1 { 
-    @extend .span9;
+  h1 {
+    @extend .span9 !optional;
 
     .icon {
       font-size: 40px;

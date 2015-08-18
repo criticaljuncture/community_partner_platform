@@ -6,6 +6,7 @@
 <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic|Open+Sans:400italic,800italic,400,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Merriweather&text=1234567890' rel='stylesheet' type='text/css'>
 
+  <%= stylesheet_link_tag    'vendor',      media: 'all' %>
   <%= stylesheet_link_tag    "application", media: "all" %>
 
   <%= javascript_include_tag "vendor" %>
@@ -19,9 +20,9 @@
 
   <%= yield :javascripts %>
 </head>
-<body class="row-fluid">
+<body role="document">
 <% if controller.controller_name == 'schools' && controller.action_name == 'show' %>
-<script type='text/x-handlebars' data-template-name='application'>
+  <script type='text/x-handlebars' data-template-name='application'>
 <% end %>
 
   <% if defined?(Peek) && Rails.env.development? %>
@@ -30,13 +31,11 @@
   <%= render "layouts/user_navigation" %>
   <%= render "layouts/navigation" %>
 
-  <div class="page-wrapper">
-    <div id="content-wrapper">
-      <%= render "layouts/notices" %>
-      <%= render "layouts/breadcrumbs" %>
+  <div class="container" role="main">
+    <%= render "layouts/notices" %>
+    <%= render "layouts/breadcrumbs" %>
 
-      <%= yield %>
-    </div>
+    <%= yield %>
   </div>
 
   <div id="footer">

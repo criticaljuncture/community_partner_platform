@@ -1,19 +1,18 @@
-<div class="user-navigation">
-  <% if current_user.present? %>
-    <span class="current-user">
-      Signed in as <%= current_user.email %>
-    </span>
-    <span class="current-user-actions">
-      <%= link_to 'Sign Out',
+<div class="user-nav user-nav-fixed col-md-12">
+  <% if current_user %>
+    <div class="user-info">
+      signed in as <%= current_user.email %>
+
+      <%= link_to t('user_nav.sign_out'),
         destroy_user_session_path,
         method: :delete,
-        class: 'btn btn-small btn-info' %>
+        class: 'btn btn-mini btn-info' %>
 
       <% if current_user.role?(:organization_member) %>
-        <%= link_to 'View My Organization',
+        <%= link_to t('user_nav.view_org'),
           organization_path(current_user.organization),
-          class: 'btn btn-small btn-info' %>
+          class: 'btn btn-mini btn-info' %>
       <% end %>
-    </span>
+    </div>
   <% end %>
 </div>

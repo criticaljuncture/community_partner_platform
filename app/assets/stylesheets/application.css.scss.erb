@@ -1,23 +1,35 @@
+@import "variables";
+
 $tableBackgroundHover: #f5fcff;
-@import "bourbon";
-@import "bootstrap";
-@import "formtastic-bootstrap";
-@import "tablesorter.theme.bootstrap";
-@import "tipsy";
-@import "scatter_plot";
-@import "mixins";
+
+@import 'bourbon';
 @import "fonts";
+@import "mixins";
+@import "scatter_plot";
 @import "web_fonts";
-@import "components";
+
+// Font sizes based on ratios
+$em-base: 16px;
+@import 'application_fonts';
+
+@import "components/breadcrumbs";
+@import "components/buttons";
+@import "components/help_hover";
+@import "components/modal";
+@import "components/navigation";
+@import "components/page_header";
+
+@import "components/charts/donut_status_box";
+
 @import "forms";
-@import "inputs/**";
+@import "inputs/columized_checkboxes";
 @import "common";
-@import "navigation";
+
 @import "app";
 @import "community_programs";
+@import "organizations";
 @import "schools";
 @import "users";
-@import "organizations";
 
 <% if defined?(Peek) && Rails.env.development? %>
 @import "peek";

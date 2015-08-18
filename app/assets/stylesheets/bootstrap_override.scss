@@ -1,0 +1,48 @@
+
+
+/* RESET OF BOOTSTRAP STYLES AS NEEDED */
+.navbar {
+  background-image: none;
+  background-repeat: none;
+  border: none;
+
+  .navbar-brand,
+  .navbar-nav > li > a {
+    text-shadow: none;
+  }
+  
+  .nav {
+    float: none;
+
+    .nav-item {
+      &.dropdown {
+        .dropdown-menu {
+          box-shadow: none;
+          border: none;
+
+          a:hover { background-image: none; }
+
+          &:before,
+          &:after {
+            border: none !important;
+            content: "" !important;
+          }
+        }
+      }
+    }
+
+    .icon { background: none; }
+  }
+}
+
+.alert {
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.alert-warning,
+.alert-info,
+.alert-success,
+.alert-danger {
+  background-image: none;
+}

@@ -34,3 +34,9 @@ en:
         success: "%{name} has been created with role '%{role}', but not invited to the Community Partner Platform."
       update:
         success: "%{name} has been updated."
+
+  navigation:
+
+  user_nav:
+    sign_out: Sign Out
+    view_org: View My Organization

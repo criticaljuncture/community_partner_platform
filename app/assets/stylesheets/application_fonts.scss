@@ -1,0 +1,43 @@
+/*
+-----------------------------------------------
+Typesetting for CommunityPartnerPlatform.org
+16px @ 1:1.125 (major-second)
+----------------------------------------------- */
+$modular-scale-ratio: $major-second; //1.125;
+$modular-scale-base: 16px;
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: $modular-scale-base; /* Scale origin */
+  font-weight: 300;
+}
+
+body {
+  @include open_sans;
+
+  line-height: 1.3;
+
+  h1, h2, h3, h4, h5, h6, h7 {
+    @include pt_sans;
+
+    line-height: 1.3;
+    margin: 1em 0 0.5em;
+  }
+
+  h7 { display: block; } /* h7 not defined by most browsers */
+
+  h1 { font-size: modular-scale(5); }
+  h2 { font-size: modular-scale(4); }
+  h3 { font-size: modular-scale(3); }
+  h4 { font-size: modular-scale(2); }
+  h5 { font-size: modular-scale(1); }
+  h6 {
+    font-size: modular-scale(0);
+    font-weight: bold;
+  }
+
+  p {
+    font-size: modular-scale(0);
+    padding: 0;
+  }
+}
