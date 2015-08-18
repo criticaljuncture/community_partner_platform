@@ -1,18 +1,15 @@
 #= require jquery
 #= require jquery_ujs
-#= require jquery.modal
-#= require custom_modal
-#= require bootstrap-tab
-#= require bootstrap-dropdown
-#= require d3
+
+#= require bootstrap/dropdown
+#= require bootstrap/tab
 #= require colorbrewer
-#= require underscore
+#= require custom_modal
+#= require d3
+#= require handlebars
+#= require jquery.modal
+#= require jquery.parsequery.js
 #= require jquery.tablesorter.min
 #= require jquery.tablesorter.widgets.min
 #= require jquery.tipsy.svg.js
-#= require jquery.parsequery.js
-
-# Ember
-#= require handlebars
-#= require ember
-#= require ember-data
+#= require underscore

@@ -1,4 +1,3 @@
-#= require vendor
 #= require app
 #= require user
 #= require user_form
@@ -10,18 +9,4 @@
 #= require service_types
 #= require tipsy
 
-# Ember
-#= require_self
-#= require ousd_community_partners
-
 #= require verify_programs
-
-<% if defined?(PEEK) && Rails.env.development? %>
-#= require peek
-#= require peek/views/performance_bar
-#= require peek/views/rblineprof
-<% end %>
-
-
-# for more details see: http:#emberjs.com/guides/application/
-window.CommunityPartnerPlatform = Ember.Application.create();

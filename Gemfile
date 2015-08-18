@@ -30,10 +30,9 @@ gem "aws-ses", "~> 0.5.0"
 
 # record versioning
 gem 'paper_trail', '>= 3.0.0.rc1'
+# Handlebars js templates
+gem 'handlebars_assets'
 
-# ember
-gem 'ember-rails'
-gem 'ember-source', '1.4.0'
 
 # redis
 gem 'redis', '~> 3.0.7'
