@@ -6,66 +6,23 @@ gem 'rails', '~> 4.2.3'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
+# json api
+gem 'active_model_serializers'
 
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+# AWS email
+gem "aws-ses", "~> 0.5.0"
+
 # Twitter bootstrap
 gem 'bootstrap-sass', '~> 3.3.5.1'
 
 # css3 mixins, etc
 gem "bourbon", "~> 4.2.3"
 
-# Use CoffeeScript for .js.coffee assets and views
+# permissions
+gem "cancan", "~> 1.6.10"
+
+# Use CoffeeScript
 gem 'coffee-rails', '~> 4.0.0'
-
-gem "bootstrap-sass", "~> 2.3.2.0"
-gem "formtastic", git: 'git://github.com/justinfrench/formtastic.git', ref: "cd6cb88f28ea7444267802ced8e5ec0f5cfd0f90"
-gem "formtastic-bootstrap", "~> 2.1.3"
-
-# css3 mixins
-gem "bourbon", "~> 3.1.8"
-
-gem "underscore-rails"
-
-# aws email
-gem "aws-ses", "~> 0.5.0"
-
-# record versioning
-gem 'paper_trail', '>= 3.0.0.rc1'
-# Handlebars js templates
-gem 'handlebars_assets'
-
-
-# redis
-gem 'redis', '~> 3.0.7'
-gem 'redis-namespace', '~> 1.4.1'
-
-# redis analytics
-gem "minuteman-rails",
-  git: 'git@github.com:elcuervo/minuteman-rails.git',
-  ref: '473197950a5072fa60bda39f4736098958d7b9ed'
-gem "minuteman", "~> 1.0.3"
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Use SCSS for stylesheets
-gem 'sass', '~> 3.4.16'
-gem 'sass-rails', '~> 5.0.3'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-#gem 'turbolinks'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.0.1'
-
-# json api
-gem 'active_model_serializers'
-
-# graphing
-gem "d3_rails", "~> 3.3.7"
 
 # user signin and auth checks
 gem "devise", "~> 3.5.2"
@@ -75,14 +32,56 @@ gem "devise_invitable", "~> 1.5.2 "
 #    github: "scambra/devise_invitable",
 #    ref: 'e555f07ffb1d7751e9f84b3283fc90e1820fb681'
 
-gem "cancan", "~> 1.6.10"
+# graphing
+gem "d3_rails", "~> 3.3.7"
 
-# error reporting
-gem 'honeybadger'
+# env vars
 gem 'dotenv-rails'
 
 # memcached client
 gem "dalli", "~> 2.6.4"
+
+# forms
+gem 'formtastic', '~> 3.1.3'
+gem 'formtastic-bootstrap', '~> 3.1.1'
+gem 'simple_form', '~> 3.1.0'
+
+# Handlebars js templates
+gem 'handlebars_assets'
+
+# error reporting
+gem 'honeybadger'
+
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+
+# redis analytics
+gem "minuteman-rails",
+  git: 'git@github.com:elcuervo/minuteman-rails.git',
+  ref: '473197950a5072fa60bda39f4736098958d7b9ed'
+gem "minuteman", "~> 1.0.3"
+
+# record versioning
+gem 'paper_trail', '>= 3.0.0.rc1'
+
+# redis
+gem 'redis', '~> 3.0.7'
+gem 'redis-namespace', '~> 1.4.1'
+
+# Use SCSS for stylesheets
+gem 'sass', '~> 3.4.16'
+gem 'sass-rails', '~> 5.0.3'
+
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+#gem 'turbolinks'
+
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+
+# JS helper functions
+gem "underscore-rails"
+
+
 
 # modals
 gem 'jquery-modal-rails',
