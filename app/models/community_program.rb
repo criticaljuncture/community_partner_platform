@@ -68,22 +68,12 @@ class CommunityProgram < ActiveRecord::Base
       message: "must choose a primary quality element"
     }
 
-  def quality_elements
-    Rails.cache.fetch([self, "quality_elements"]) do
-      [primary_quality_element.try(:quality_element), secondary_quality_element.try(:quality_element)].flatten.compact
-    end
+  def quality_element
+    primary_quality_element.try(:quality_element)
   end
 
   def service_types
-    Rails.cache.fetch([self, "service_types"]) do
-      (primary_service_types + secondary_service_types).flatten.compact
-    end
-  end
-
-  def cached_organization
-    Rails.cache.fetch([self, "cached_organization"]) do
-      organization
-    end
+    primary_service_types
   end
 
   def verification_required?

@@ -15,21 +15,28 @@
         <tr>
           <td class="program_name"><%= community_program.name %></td>
           <td class="organization">
-            <%= link_to(community_program.cached_organization.name, organization_path(community_program.cached_organization)) if community_program.cached_organization.present? %>
+            <%= link_to(
+                community_program.organization.name,
+                organization_path(community_program.organization)
+              ) if community_program.organization.present? %>
           </td>
           <td class="school">
             <% community_program.schools.each do |school| %>
               <%= link_to school.name, school_path(school) %>
             <% end %>
           </td>
-          <td class="sqisa"><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
+          <td class="sqisa">
+            <%= community_program.quality_element.name.html_safe %>
+          </td>
           <td class="actions center">
             <%= link_to 'view',
               community_program_path(community_program),
               class: "btn btn-info btn-small" %>
-            <%= link_to( 'edit',
-              edit_community_program_path(community_program),
-              class: "btn btn-primary btn-small") if can?(:manage, community_program) %>
+            <%= link_to(
+                'edit',
+                edit_community_program_path(community_program),
+                class: "btn btn-primary btn-small"
+              ) if can?(:manage, community_program) %>
           </td>
         </tr>
       <% end %>
