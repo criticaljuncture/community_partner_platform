@@ -16,9 +16,10 @@
           footer: false) do %>
 <% end %>
 
-<div class="row-fluid">
-  <div class="span12">
-    <%= page_header("#{edit_or_verify} #{@community_program.name} #{'@ ' + @community_program.school.name if @community_program.school}", "icon-cpp-handshake") %>
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md:12 %>">
+
+    <%= page_header("#{edit_or_verify} #{@community_program.name}", "icon-cpp-handshake") %>
 
     <div class="form_wrapper">
       <% if @community_program.verification_required? %>
@@ -27,8 +28,11 @@
         <% end %>
       <% end %>
 
-      <%= semantic_form_for @community_program, method: :put, html: {class: "form-horizontal #{'errors' if @community_program.errors.present?}"} do |f| %>
-        <%= render :partial => 'form', :locals => {:f => f} %>
+      <%= simple_form_for @community_program, method: :put,
+        html: {class: "form-horizontal community-program"},
+        wrapper: :horizontal_form,
+        wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
+        <%= render partial: 'form', locals: {f: f} %>
       <% end %>
     </div>
 

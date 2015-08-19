@@ -27,28 +27,6 @@ table.community_programs {
   dl.horizontal_stack.span3 dt { width: 165px; }
 }
 
-.formtastic.form-horizontal {
-  .columized_checkboxes {
-    .controls {
-      width: 810px;
-    }
-  }
-
-  .user-add-wrapper {
-    position: relative;
-
-    .user-add {
-      position: absolute;
-      top: 1px;
-      left: 425px;
-
-      &.wrapped-input-label { top: 10px; }
-    }
-  }
-  #add-org-user,
-  #add-school-user { display: none; }
-}
-
 .deactivation-warning-modal.modal {
   .modal-header .icon-cpp {
     width: 40px;

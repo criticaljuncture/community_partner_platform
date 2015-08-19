@@ -11,7 +11,18 @@ en:
     error_notification:
       default_message: "Please review the problems below:"
     # Examples
-    # labels:
+    labels:
+      community_program:
+        days: Service days
+        demographic_groups: Target demographic groups
+        ethnicity_culture_groups: Target ethnicity/culture groups
+        grade_levels: Target grade levels
+        mou_on_file: MOU or contract on file with the District
+        name: Program name
+        organization_id: Organization
+        service_times: Service times
+        student_population: Target population
+        user_id: Primary organization contact
     #   defaults:
     #     password: 'Password'
     #   user:
@@ -19,10 +30,9 @@ en:
     #       email: 'E-mail to sign in.'
     #     edit:
     #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
+    hints:
+      community_program:
+        name: Used to differentiate programs at a school. Does not need to be an official name but should be descriptive.
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'

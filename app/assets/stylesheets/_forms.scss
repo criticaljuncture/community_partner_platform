@@ -78,3 +78,33 @@
     margin-bottom: 0;
   }
 }
+
+// SIMPLE FORM
+form.form-horizontal {
+  fieldset {
+    margin-bottom: 20px;
+
+    legend { font-weight: 700; }
+  }
+
+  textarea.form-control { height: 150px; }
+
+  .columized_checkboxes {
+    input {
+      top: -4px;
+
+      &.form-control { box-shadow: none; }
+    }
+  }
+}
+
+form.community-program {
+  .user-add-wrapper {
+    margin-top: 20px;
+
+    .user-add {
+      float: right;
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -29,16 +29,20 @@ body {
   width: 100%;
 }
 
+.clear {
+  &.both { clear: 'both'; }
+  &.left { clear: 'left'; }
+  &.right { clear: 'right'; }
+}
+
 .header h1 { width: 100%; }
 
 h2 {
-  font-size: 26px;
   border-bottom: 2px solid #333;
 }
 
 h2,
 h3 { clear: both; }
-h5, h6 { font-size: 14px; }
 h6 { color: $gray-80; }
 
 .flash-messages { padding: 0px 20px; }
