@@ -14,7 +14,7 @@ OusdCommunityPartners::Application.routes.draw do
     get '/sign_out' => 'devise/sessions#destroy'
     get '/sign_up' => 'devise/registrations#new'
   end
-  
+
 
   resources :schools do
     member do
@@ -38,7 +38,7 @@ OusdCommunityPartners::Application.routes.draw do
       get :primary_contact_input
     end
   end
-  
+
   resources :quality_elements do
     member do
       get :service_type_inputs
@@ -64,10 +64,6 @@ OusdCommunityPartners::Application.routes.draw do
 
   namespace :admin do
     resources :dashboard, only: :index
-  end
-
-  if defined?(Peek) && Rails.env.development?
-    mount Peek::Railtie => '/peek'
   end
 
   root to: "schools#index"

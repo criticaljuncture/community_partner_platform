@@ -23,6 +23,9 @@ en:
         service_times: Service times
         student_population: Target population
         user_id: Primary organization contact
+        primary_quality_element:
+          quality_element_id: Primary community schools element
+          service_type_ids: Primary service types
     #   defaults:
     #     password: 'Password'
     #   user:

@@ -39,3 +39,5 @@ $(document).ready(function() {
     $('.nav.nav-tabs').find('a').first().tab('show');
   }, 25);
 });
+
+this.CPP || (this.CPP = {});

@@ -3,9 +3,28 @@
 
   <%= f.input :service_description %>
 
+  <%= f.simple_fields_for :primary_quality_element do |element| %>
+    <%= element.input :quality_element_id,
+      as: :select,
+      collection: QualityElement.accessible_by(current_ability).sort_by(&:name),
+      input_html: {class: 'wrap'},
+      required: true %>
+
+    <%= element.input :service_type_ids,
+      as: :columized_checkboxes,
+      collection: ServiceType.accessible_by(current_ability).
+        includes(:quality_elements).
+        where(quality_elements:
+          {id: @community_program.primary_quality_element.quality_element_id}
+        ).
+        sort_by(&:name),
+      columns: 2,
+      required: true %>
+  <% end %>
+
   <%= f.input :site_agreement_on_file%>
 
-  <%= f.input :mou_on_file %>
+  <%#= f.input :mou_on_file %>
 <% end %>
 
 <%= field_set_tag "Organization Details" do %>
@@ -34,24 +53,21 @@
   </div>
 <% end %>
 
-<%= field_set_tag "School Details" do %>
+<%= field_set_tag "Schools", class: 'school-programs' do %>
+  <%= f.link_to_add :school_programs,
+    class: 'btn btn-primary btn-medium add-school',
+    data: {target: '.school-programs'} do %>
 
-  <%#= f.input :school_id,
-              as: :select,
-              collection: School.accessible_by(current_ability).where(active: true).sort_by(&:name),
-              required: true %>
+      <%= gicon 'plus' %> Add a school
+  <% end %>
 
-  <div id="school-user-wrapper" class="user-add-wrapper">
-    <%#= f.input :school_user_id,
-                as: :select,
-                collection: User.accessible_by(current_ability).includes(:schools).where(schools: {id: @community_program.school_id}).sort_by(&:full_name),
-                label: "Primary school contact",
-                required: false %>
-
-    <div id="add-school-user" class="user-add btn btn-create">
-      Create new school user
-    </div>
-  </div>
+  <%= f.fields_for :school_programs,
+    wrapper: :horizontal_form do |spf| %>
+    <%= render partial: 'school_programs/school_inputs_form', locals: {
+      f: spf,
+      parent_f: f
+    } %>
+  <% end %>
 <% end %>
 
 <%= field_set_tag "Program Details" do %>

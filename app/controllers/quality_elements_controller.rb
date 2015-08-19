@@ -39,15 +39,18 @@ class QualityElementsController < ApplicationController
   end
 
   def service_type_inputs
-    @quality_element = QualityElement.accessible_by(current_ability).includes(:service_types).find(params[:id])
+    @quality_element = QualityElement.accessible_by(current_ability).
+      includes(:service_types).find(params[:id])
     authorize! :read, @quality_element
 
-    render "/community_programs/service_type_inputs", locals: {element_type: params[:type]}, layout: false
+    render "/community_programs/service_type_inputs", locals: {
+      element_type: params[:type]
+    }, layout: false
   end
 
   private
 
-  def qtality_element_params
+  def quality_element_params
     params.require(:quality_element).permit(:name, :element_type)
   end
 end

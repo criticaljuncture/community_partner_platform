@@ -1,8 +1,7 @@
 $(document).ready ->
-  communityProgramForm = $('form.community_program')
-
+  communityProgramForm = $('form.community-program')
   if communityProgramForm.length > 0
-    new CommunityProgramFormHandler().initialize communityProgramForm
+    new CPP.CommunityProgramFormHandler communityProgramForm
 
   $('#deactivation-warning-modal')
     .on 'click', '.deactivate-program.btn', (e)->
@@ -28,4 +27,3 @@ $(document).ready ->
               .text 'Close'
         }
       )
-

@@ -18,7 +18,6 @@ class CommunityProgramsController < ApplicationController
     end
 
     @community_program.build_primary_quality_element
-    @community_program.build_secondary_quality_element
   end
 
   def create
@@ -47,7 +46,6 @@ class CommunityProgramsController < ApplicationController
     end
   rescue ActiveRecord::RecordInvalid
     @community_program.build_primary_quality_element unless @community_program.primary_quality_element
-    @community_program.build_secondary_quality_element unless @community_program.secondary_quality_element
 
     flash.now[:error] = t('errors.form_error', count: @community_program.errors.count)
     render :new
@@ -60,8 +58,6 @@ class CommunityProgramsController < ApplicationController
     if params[:redirect_back]
       session[:redirect_back] = params[:redirect_back]
     end
-
-    @community_program.build_secondary_quality_element unless @community_program.secondary_quality_element.present?
   end
 
   def update
@@ -127,34 +123,30 @@ class CommunityProgramsController < ApplicationController
   private
 
   def community_program_params
-    params.require(:community_program).permit(:mou_on_file,
-                                              :name,
-                                              :notes,
-                                              :organization_id,
-                                              :school_id,
-                                              :school_user_id,
-                                              :secondary_quality_element_id,
-                                              :service_description,
-                                              :service_time_of_day,
-                                              :site_agreement_on_file,
-                                              :student_population_id,
-                                              :target_population,
-                                              :user_id,
-                                              day_ids: [],
-                                              demographic_group_ids: [],
-                                              ethnicity_culture_group_ids: [],
-                                              grade_level_ids: [],
-                                              primary_quality_element_attributes: [
-                                                :id,
-                                                :quality_element_id,
-                                                service_type_ids: []
-                                              ],
-                                              secondary_quality_element_attributes: [
-                                                :id,
-                                                :quality_element_id,
-                                                service_type_ids: []
-                                              ],
-                                              service_time_ids: []
-                                             )
+    params.require(:community_program).permit(
+      :mou_on_file,
+      :name,
+      :notes,
+      :organization_id,
+      :school_id,
+      :school_user_id,
+      :secondary_quality_element_id,
+      :service_description,
+      :service_time_of_day,
+      :site_agreement_on_file,
+      :student_population_id,
+      :target_population,
+      :user_id,
+      day_ids: [],
+      demographic_group_ids: [],
+      ethnicity_culture_group_ids: [],
+      grade_level_ids: [],
+      primary_quality_element_attributes: [
+        :id,
+        :quality_element_id,
+        service_type_ids: []
+      ],
+      service_time_ids: []
+    )
   end
 end
