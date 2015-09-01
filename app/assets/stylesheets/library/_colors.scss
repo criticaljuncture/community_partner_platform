@@ -1,4 +1,4 @@
-/* base */
+// base
 $green: #4DAF7B;
 $green-dark: darken($green, 10);
 
@@ -20,7 +20,7 @@ $red-dark: darken($red, 10);
 
 $teal: #39A9AF;
 
-/* errors */
+// errors
 $error-red: #B94A48;
 
 $white: #FFFFFF;
@@ -41,10 +41,14 @@ $gray-5: #F1F1F1;
 $gray-2: #F9F9F9;
 
 
-/* app */
+// App
 $app-background-color: $white;
+$text-color: $gray-90;
 
-/* color classes for use via js/svg */
+// Tables
+$table-border-color: $gray-20;
+
+// color classes for use via js/svg
 .green { fill: $green; }
 .blue { fill: $blue; }
 .purple { fill: $purple; }
