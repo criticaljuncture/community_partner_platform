@@ -1,0 +1,39 @@
+.columnar-table-block {
+  > h4 { border-bottom: 1px solid $text-color; }
+
+  .columnar-table-block-header {
+    border-bottom: 1px solid $gray-30;
+    clear: both;
+    margin-bottom: 5px;
+    overflow: auto;
+
+    h5 {
+      float: left;
+      margin-bottom: 5px;
+      margin-top: 10px;
+
+      .item-info {
+        @extend %hint;
+      }
+    }
+
+    .btn {
+      float: right;
+      position: relative;
+      top: 5px;
+    }
+    .btn-info.toggle { color: $white; }
+  }
+
+  .columnar-table-block-header + table,
+  table:first-child {
+    tr:first-child td {border-top: 0;}
+  }
+
+  table.embedded {
+    margin-left: 20px;
+    font-weight: normal;
+
+    tr:first-child td {border-top: 0;}
+  }
+}

@@ -1,69 +1,66 @@
 $header-background-color: #FFFFFF;
-$header-color: $gray-70;
 $header-border-color: $gray-70;
+$header-color: $gray-70;
 
 .header {
   @extend .pt_sans;
 
-  clear: both;
   background-color: $header-background-color;
+  clear: both;
   color: $header-color;
-  padding: 10px;
-  margin-left: 10px;
+  margin-bottom: 10px;
   position: relative;
 
-  .header_outer {
-    height: 62px;
+  .header-outer {
     border-bottom: 1px solid $header-border-color;
+    height: 62px;
   }
 
-  .header_inner {
-    height: 56px;
+  .header-inner {
     border-bottom: 3px solid $header-border-color;
+    height: 56px;
+    position: relative;
 
-    h1 { width: 100%; }
+    h1 { width: 80%; }
+
+    .header-button-wrapper {
+      position: absolute;
+      right: 5px;
+      top: 15px;
+    }
   }
 
   h1 {
-    @extend .span9 !optional;
-
     .icon {
-      font-size: 40px;
-      display: inline-block;
       background: none;
+      display: inline-block;
+      font-size: 40px;
+      height: 40px;
       margin-right: 5px;
       width: 40px;
-      height: 40px;
     }
 
     .icon-cpp-school {
-      position: relative;
-      top: 4px;
       margin-left: 10px;
       margin-right: 0;
+      position: relative;
+      top: 4px;
     }
 
     .icon-cpp-handshake {
       font-size: 35px;
-      width: 64px;
-      top: 8px;
-      position: relative;
       margin-left: 10px;
+      position: relative;
+      top: 8px;
+      width: 64px;
     }
 
     .icon-cpp-small-business {
+      margin-left: 5px;
+      margin-right: 0;
       position: relative;
       top: 5px;
       width: 30px;
-      margin-right: 0;
-      margin-left: 5px;
     }
-  }
-
-
-  .btn {
-    top: 35px;
-    right: 30px;
-    position: absolute;
   }
 }

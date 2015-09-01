@@ -1,0 +1,35 @@
+.alert {
+  overflow: auto;
+
+  .glyphicon {
+    display: block;
+    float: left;
+    padding-right: 5px;
+  }
+
+  .content {
+    float: left;
+    position: relative;
+    top: -2px;
+    width: 97%;
+  }
+}
+
+.alert {
+  .color-coded-bg {
+    padding: 0 5px;
+    &.green {
+      background-color: lighten($green, 30);
+      color: $text-color;
+    }
+    &.orange {
+      background-color: lighten($orange, 30);
+      color: $text-color;
+    }
+  }
+  .color-coded-text {
+    padding: 0 5px;
+    &.green { color: $green-dark; }
+    &.orange {color: darken($orange-dark, 5);}
+  }
+}

@@ -1,9 +1,10 @@
 /* reset bootstrap */
 .btn,
-.btn-primary,
-.btn-info,
-.btn-create,
 .btn-action,
+.btn-create,
+.btn-info,
+.btn-primary,
+.btn-success,
 .btn-warning {
   text-shadow: none;
   background-image: none;
@@ -69,6 +70,7 @@
   @include button_color($orange, $orange-dark);
 }
 
+.btn-success,
 .btn-action {
   @include button_color($green, $green-dark);
 }

@@ -1,9 +1,17 @@
 .modal {
   width: 600px;
   display: none;
-  position: relative;
+  position: fixed;
+  margin: 0 auto;
 
   .modal-header {
+    @include border-top-radius(6px);
+    background-color: $gray-10;
+
+    h3 { margin: 0; }
+
+    .icon.glyphicon { font-size: 20px; }
+
     .icon-cpp {
       margin-right: 5px;
       width: 20px;
@@ -14,6 +22,12 @@
       height: 30px;
       font-size: 29px;
     }
+  }
+
+  .modal-body {
+    min-height: 100px;
+
+    form { padding: 0 15px; }
   }
 
   .close-modal {
@@ -28,4 +42,10 @@
       color: $red-dark;
     }
   }
+}
+
+.modal.school-program-modal {
+  width: 900px;
+
+  .modal-dialog { width: 900px; }
 }
