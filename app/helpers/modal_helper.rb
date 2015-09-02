@@ -1,5 +1,4 @@
 module ModalHelper
-
   def modal(type, options={}, &block)
     case type
     when :basic
@@ -20,6 +19,8 @@ module ModalHelper
         modal_header: header,
         modal_body: capture(&block),
         footer: options.fetch(:footer) { true },
+        open_on_page_load: options.fetch(:open_on_page_load) { false },
+        set_cookie: options.fetch(:set_cookie) { false },
       }
   end
 
@@ -36,6 +37,8 @@ module ModalHelper
         footer_button_class: options.fetch(:footer_button_class) { "btn-primary" },
         footer_button_text: options.fetch(:footer_button_text) { "Close" },
         footer: options.fetch(:footer) { true },
+        open_on_page_load: options.fetch(:open_on_page_load) { false },
+        set_cookie: options.fetch(:set_cookie) { false },
       }
   end
 
@@ -47,5 +50,40 @@ module ModalHelper
     header << options.fetch(:header_text) { "Generic Modal" }
 
     header.join("\n").html_safe
+  end
+
+  def link_to_modal(text, modal_id, options={})
+    link_to text, modal_id, class: "modal-link #{options.delete(:class)}"
+  end
+
+  def link_to_modal_with_icon(text, modal_id, options = {})
+    icon_class = options.delete(:icon)
+
+    raise ":icon required for link_to_modal_with_icon" unless icon_class
+
+    link_to_modal("#{icon(icon_class)} #{text}".html_safe, modal_id, options)
+  end
+
+  def link_to_modal_with_gicon(text, modal_id, options = {})
+    icon_class = options.delete(:icon)
+
+    raise ":icon required for link_to_modal_with_icon" unless icon_class
+
+    link_to_modal("#{gicon(icon_class)} #{text}".html_safe, modal_id, options)
+  end
+
+  def modal_javascript(modal_id, options={})
+    content_for :modal_javascript do
+      html = <<-HTML
+        <script type='text/javascript'>
+          var MODAL = {
+            modalTarget: '##{modal_id}',
+            setCookie: #{options.fetch(:set_cookie){false}}
+          };
+        </script>
+      HTML
+
+      html.html_safe
+    end
   end
 end

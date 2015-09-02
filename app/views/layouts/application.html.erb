@@ -18,16 +18,10 @@
 
   <%= csrf_meta_tags %>
 
+  <%= yield :modal_javascript %>
   <%= yield :javascripts %>
 </head>
 <body role="document">
-<% if controller.controller_name == 'schools' && controller.action_name == 'show' %>
-  <script type='text/x-handlebars' data-template-name='application'>
-<% end %>
-
-  <% if defined?(Peek) && Rails.env.development? %>
-    <%= render 'peek/bar' %>
-  <% end %>
   <%= render "layouts/user_navigation" %>
   <%= render "layouts/navigation" %>
 
@@ -38,10 +32,6 @@
     <%= yield %>
   </div>
 
-  <div id="footer">
-  </div>
-<% if controller.controller_name == 'schools' && controller.action_name == 'show' %>
-</script>
-<% end %>
+  <div class="footer"></div>
 </body>
 </html>
