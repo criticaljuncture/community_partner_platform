@@ -1,15 +1,17 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
+require "active_model/railtie"
 require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
+require "action_view/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env)
+Bundler.require(*Rails.groups)
 
 module OusdCommunityPartners
   class Application < Rails::Application
@@ -33,14 +35,6 @@ module OusdCommunityPartners
     # config.i18n.default_locale = :de
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
-    config.assets.precompile += %w(
-      *.png *.jpg *.jpeg *.gif
-      *.eot *.svg *.ttf *.woff
-      organization_verification.js
-      scatter_plot.js
-    )
-
-    config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     config.time_zone = "Pacific Time (US & Canada)"
 
