@@ -1,4 +1,4 @@
-module RecordDisplayHelper
+module ColumnarTableHelper
   def columnar_table_block(header, options={}, &block)
     table = options.fetch(:auto_table) { true }
 
