@@ -1,20 +1,28 @@
-<div id="<%= modal_id %>" class="<%= modal_class %> modal" role="dialog" aria-labelledby="genericModal" aria-hidden="true">
-  <a href="#close-modal" rel="modal:close" class="close-modal icon-cpp-close-x-inv"></a>
+<% modal_javascript modal_id, set_cookie: set_cookie if open_on_page_load %>
 
-  <% if header %>
-    <div class="modal-header">
-      <h3>
-        <%= modal_header %>
-      </h3>
+<div id="<%= modal_id %>" class="<%= modal_class %> modal" role="dialog"
+  aria-labelledby="genericModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <a href="#close-modal" data-dismiss="modal"
+        class="close-modal icon-cpp-close-x-inv"></a>
+
+      <% if header %>
+        <div class="modal-header">
+          <h3>
+            <%= modal_header %>
+          </h3>
+        </div>
+      <% end %>
+
+      <div class="modal-body">
+        <%= modal_body %>
+      </div>
+
+      <% if footer %>
+        <div class="modal-footer">
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <div class="modal-body">
-    <%= modal_body %>
   </div>
-
-  <% if footer %>
-    <div class="modal-footer">
-    </div>
-  <% end %>
 </div>

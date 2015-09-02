@@ -52,6 +52,9 @@ gem 'handlebars_assets'
 # error reporting
 gem 'honeybadger'
 
+# named routes in javascript
+gem 'js-routes', '~> 1.1.0'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
