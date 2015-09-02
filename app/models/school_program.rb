@@ -1,5 +1,5 @@
 class SchoolProgram < ActiveRecord::Base
-  belongs_to :school
+  include CommunityProgramAttributeRelationships
   belongs_to :community_program
 
   belongs_to :school_user,

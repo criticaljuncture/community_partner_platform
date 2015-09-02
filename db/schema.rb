@@ -11,37 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817044241) do
+ActiveRecord::Schema.define(version: 20150819211612) do
 
   create_table "community_program_demographic_groups", force: :cascade do |t|
     t.integer  "demographic_group_id", limit: 4
-    t.integer  "community_program_id", limit: 4
+    t.integer  "attributable_id",      limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "attributable_type",    limit: 255, default: "CommunityProgram"
   end
 
-  add_index "community_program_demographic_groups", ["community_program_id", "demographic_group_id"], name: "cpdg_cpid_dgid", using: :btree
-  add_index "community_program_demographic_groups", ["demographic_group_id", "community_program_id"], name: "cpdg_dgid_cpid", using: :btree
+  add_index "community_program_demographic_groups", ["attributable_id", "demographic_group_id"], name: "cpdg_cpid_dgid", using: :btree
+  add_index "community_program_demographic_groups", ["demographic_group_id", "attributable_id"], name: "cpdg_dgid_cpid", using: :btree
 
   create_table "community_program_ethnicity_culture_groups", force: :cascade do |t|
-    t.integer  "community_program_id",       limit: 4
+    t.integer  "attributable_id",            limit: 4
     t.integer  "ethnicity_culture_group_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "attributable_type",          limit: 255, default: "CommunityProgram"
   end
 
-  add_index "community_program_ethnicity_culture_groups", ["community_program_id", "ethnicity_culture_group_id"], name: "cpecg_cpid_ecgid", using: :btree
-  add_index "community_program_ethnicity_culture_groups", ["ethnicity_culture_group_id", "community_program_id"], name: "cpecg_ecgid_cpid", using: :btree
+  add_index "community_program_ethnicity_culture_groups", ["attributable_id", "ethnicity_culture_group_id"], name: "cpecg_cpid_ecgid", using: :btree
+  add_index "community_program_ethnicity_culture_groups", ["ethnicity_culture_group_id", "attributable_id"], name: "cpecg_ecgid_cpid", using: :btree
 
   create_table "community_program_grade_levels", force: :cascade do |t|
-    t.integer  "grade_level_id",       limit: 4
-    t.integer  "community_program_id", limit: 4
+    t.integer  "grade_level_id",    limit: 4
+    t.integer  "attributable_id",   limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "attributable_type", limit: 255, default: "CommunityProgram"
   end
 
-  add_index "community_program_grade_levels", ["community_program_id", "grade_level_id"], name: "cpgl_cpid_glid", using: :btree
-  add_index "community_program_grade_levels", ["grade_level_id", "community_program_id"], name: "cpgl_glid_cpid", using: :btree
+  add_index "community_program_grade_levels", ["attributable_id", "grade_level_id"], name: "cpgl_cpid_glid", using: :btree
+  add_index "community_program_grade_levels", ["grade_level_id", "attributable_id"], name: "cpgl_glid_cpid", using: :btree
 
   create_table "community_program_quality_element_service_types", force: :cascade do |t|
     t.integer  "community_program_quality_element_id", limit: 4
@@ -65,24 +68,26 @@ ActiveRecord::Schema.define(version: 20150817044241) do
   add_index "community_program_quality_elements", ["quality_element_id", "community_program_id"], name: "cpqe_qei_cpi", using: :btree
 
   create_table "community_program_service_days", force: :cascade do |t|
-    t.integer  "community_program_id", limit: 4
-    t.integer  "day_id",               limit: 4
+    t.integer  "attributable_id",   limit: 4
+    t.integer  "day_id",            limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "attributable_type", limit: 255, default: "CommunityProgram"
   end
 
-  add_index "community_program_service_days", ["community_program_id", "day_id"], name: "cpsd_cpid_did", using: :btree
-  add_index "community_program_service_days", ["day_id", "community_program_id"], name: "cpsd_did_cpid", using: :btree
+  add_index "community_program_service_days", ["attributable_id", "day_id"], name: "cpsd_cpid_did", using: :btree
+  add_index "community_program_service_days", ["day_id", "attributable_id"], name: "cpsd_did_cpid", using: :btree
 
   create_table "community_program_service_times", force: :cascade do |t|
-    t.integer  "community_program_id", limit: 4
-    t.integer  "service_time_id",      limit: 4
+    t.integer  "attributable_id",   limit: 4
+    t.integer  "service_time_id",   limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "attributable_type", limit: 255, default: "CommunityProgram"
   end
 
-  add_index "community_program_service_times", ["community_program_id", "service_time_id"], name: "cpst_cpid_stid", using: :btree
-  add_index "community_program_service_times", ["service_time_id", "community_program_id"], name: "cpst_stid_cpid", using: :btree
+  add_index "community_program_service_times", ["attributable_id", "service_time_id"], name: "cpst_cpid_stid", using: :btree
+  add_index "community_program_service_times", ["service_time_id", "attributable_id"], name: "cpst_stid_cpid", using: :btree
 
   create_table "community_programs", force: :cascade do |t|
     t.integer  "school_id",               limit: 4
@@ -234,19 +239,20 @@ ActiveRecord::Schema.define(version: 20150817044241) do
   add_index "school_free_reduced_meal_data", ["school_id"], name: "index_school_free_reduced_meal_data_on_school_id", using: :btree
 
   create_table "school_programs", force: :cascade do |t|
-    t.integer  "school_id",             limit: 4
-    t.integer  "community_program_id",  limit: 4
-    t.integer  "user_id",               limit: 4
-    t.integer  "school_user_id",        limit: 4
-    t.text     "notes",                 limit: 65535
-    t.text     "service_description",   limit: 65535
-    t.integer  "student_population_id", limit: 4
+    t.integer  "school_id",              limit: 4
+    t.integer  "community_program_id",   limit: 4
+    t.integer  "user_id",                limit: 4
+    t.integer  "school_user_id",         limit: 4
+    t.text     "notes",                  limit: 65535
+    t.text     "service_description",    limit: 65535
+    t.integer  "student_population_id",  limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "last_verified_at"
-    t.boolean  "active",                              default: true
-    t.integer  "active_changed_by",     limit: 4
+    t.boolean  "active",                               default: true
+    t.integer  "active_changed_by",      limit: 4
     t.datetime "active_changed_on"
+    t.boolean  "site_agreement_on_file"
   end
 
   add_index "school_programs", ["community_program_id", "school_id"], name: "sp_cpid_sid", using: :btree
