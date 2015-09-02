@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    @organization = Organization.find(params[:id])
+    @organization = Organization.includes(:community_programs).find(params[:id])
     authorize! :show, @organization
   end
 

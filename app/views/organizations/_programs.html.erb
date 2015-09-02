@@ -1,30 +1,95 @@
-<table class="table table-striped table-hover table-sorter">
+<%= columnar_table_block 'Active Programs',
+  auto_table: false,
+  class: 'organization community-programs',
+  columns: {xs: 12, md: 12} do %>
+
+  <% programs.sort_by(&:name).each do |community_program| %>
+    <div class="columnar-table-block-header">
+      <h5>
+        <%= link_to community_program.name,
+          community_program_path(community_program) %>
+      </h5>
+      <%= link_to_gicon 'Show Details', '#',
+        class: "btn btn-medium btn-info toggle closed",
+        icon: 'eye-open eye-close',
+        wrapper_span: {id: "organization-program-link-#{community_program.id}"},
+        "data-toggle-target" => "#organization-program-table-#{community_program.id}",
+        "data-toggle-text-node" => "#organization-program-link-#{community_program.id}",
+        "data-toggle-show-text" => "Show Details",
+        "data-toggle-hide-text" => "Hide Details"
+      %>
+    </div>
+
+    <%= columnar_table nil,
+      id: "organization-program-table-#{community_program.id}",
+      class: "hidden" do %>
+
+      <tr>
+        <td>Schools</td>
+        <td>
+          <%= community_program.school_summary %>
+        </td>
+      </tr>
+      <tr>
+        <td>Community School Element</td>
+        <td>
+          <%= community_program.quality_element.name %>
+        </td>
+      </tr>
+      <tr>
+        <td>Service Types</td>
+        <td>
+          <%= community_program.service_types.map(&:name).join(', ') %>
+        </td>
+      </tr>
+      <tr>
+        <td>Student Population</td>
+        <td>
+          <%= community_program.display.student_population %>
+        </td>
+      </tr>
+      <tr>
+        <td>Demographic Groups</td>
+        <td>
+          <%= community_program.display.demographic_groups %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+<% end %>
+
+<!-- <table class="table table-striped table-hover table-sorter">
   <thead>
     <tr>
-      <th>School</th>
       <th>Program Name</th>
-      <th>Community School Elements</th>
+      <th>Schools</th>
+      <th>Community School Element</th>
       <th>Service Types</th>
       <th class="sorter-false filter-false"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% programs.order("schools.id asc").group_by(&:school).each do |school, community_programs| %>
-      <% next unless school %>
-      <% community_programs.each do |community_program| %>
-        <tr>
-          <td><%= link_to school.try(:name), school_path(school) %></td>
-          <td><%= link_to community_program.name, community_program_path(community_program) %></td>
-          <td><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
-          <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
-          <td class="center buttons">
-            <%= link_to 'view',
-              community_program_path(community_program),
-              class: "btn btn-small btn-info" %>
-          </td>
-        </tr>
-      <% end %>
+    <% programs.sort_by(&:name).each do |community_program| %>
+      <tr>
+        <td>
+          <%= link_to community_program.name,
+            community_program_path(community_program) %>
+        </td>
+        <td><%= community_program.schools.count %></td>
+        <td>
+          <%= community_program.quality_element.name %>
+        </td>
+        <td>
+          <%= community_program.service_types.
+            map{|st| st.name}.join(', <br />').html_safe %>
+        </td>
+        <td class="center buttons">
+          <%= link_to 'view',
+            community_program_path(community_program),
+            class: "btn btn-small btn-info" %>
+        </td>
+      </tr>
     <% end %>
   </tbody>
-</table>
+</table> -->

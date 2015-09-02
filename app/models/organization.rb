@@ -13,12 +13,6 @@ class Organization < ActiveRecord::Base
 
   scope :with_users, -> { joins(:users).where("users.organization_id IS NOT NULL").group("organizations.id") }
 
-  def cached_community_programs
-    Rails.cache.fetch([self, "cached_community_programs"]) do
-      community_programs.includes(:school)
-    end
-  end
-
   def cached_schools
     Rails.cache.fetch([self, "cached_schools"]) do
       community_programs.map(&:school).uniq
@@ -57,7 +51,7 @@ class Organization < ActiveRecord::Base
 
   def unverified_program_count
     sum = 0
-    cached_community_programs.each do |cp|
+    community_programs.each do |cp|
       sum += (cp.verification_required? ? 1 : 0)
     end
     sum
