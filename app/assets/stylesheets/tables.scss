@@ -1,0 +1,15 @@
+.table {
+  tr { vertical-align: middle; }
+  .buttons {
+    text-align: right;
+
+    a {
+      float: left;
+      margin-right: 5px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
