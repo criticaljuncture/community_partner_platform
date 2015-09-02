@@ -1,4 +1,5 @@
 class CommunityProgram < ActiveRecord::Base
+  include ModelSerializable
   include CommunityProgramAudit
   include CommunityProgramAttributeRelationships
 
