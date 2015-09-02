@@ -1,5 +1,5 @@
-<div class="row-fluid">
-  <div class="span12">
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <%= page_header('Sign in', "") %>
 
     <div class="form_wrapper">
@@ -12,9 +12,9 @@
             <%= f.input :remember_me, as: :boolean, input_html: { checked: 'checked' } %>
           <% end -%>
         <% end %>
-        
+
         <%= f.actions do %>
-          <%= f.button 'Sign in', class: "btn btn-success" %>
+          <%= f.button 'Sign in', class: "btn btn-large btn-success" %>
         <% end %>
       <% end %>
 
