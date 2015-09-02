@@ -1,3 +1,3 @@
 $(document).ready( function() {
-  new UserFormHandler().initialize( $('form.user') );
+  new CPP.UserFormHandler( $('form.user') );
 });

@@ -44,7 +44,7 @@ $(document).ready(function() {
       );
       $select.val(user.id);
 
-      $.modal.close();
+      $.modal.close()
     })
     .fail(function(xhr) {
       var message = xhr.responseJSON.message,
