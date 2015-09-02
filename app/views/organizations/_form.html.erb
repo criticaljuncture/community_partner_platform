@@ -4,50 +4,44 @@
     as: :hidden,
     value: verification %>
 
-<h2>Organization Basics</h2>
-<%= f.inputs do %>
+<%= field_set_tag 'Organization Basics' do %>
   <%= f.input :name %>
 
   <%= f.input :address %>
   <%= f.input :city %>
   <%= f.input :zip_code %>
 
-  <%= f.input :phone_number, placeholder: "555-555-5555", hint: "Public phone number" %>
-  <%= f.input :url, placeholder: "http://example.com" %>
+  <%= f.input :phone_number,
+    placeholder: "555-555-5555" %>
+
+  <%= f.input :url,
+    placeholder: "http://example.com" %>
 <% end %>
 
-<h2>Organization Details</h2>
-<%= f.inputs do %>
+<%= field_set_tag 'Organization Details' do %>
   <%= f.input :legal_status_id,
-              as: :select,
-              collection: LegalStatus.for_select,
-              required: true %>
+    as: :select,
+    collection: LegalStatus.for_select,
+    required: true %>
 
-  <%= f.input :mission_statement,
-              as: :text,
-              label: "What is your organization or firm's mission statement?" %>
-  <%= f.input :services_description,
-              as: :text,
-              label: "Brief description of the services you provide to sites",
-              hint: "Please provide a brief (2-4 sentences) description (how you might describe your work to a school principal)." %>
-  <%= f.input :program_impact,
-              as: :text,
-              label: "How would you describe the impact of your program?" %>
-  <%= f.input :cost_per_student,
-              as: :text,
-              label: "What is the cost of the service(s) you provide?",
-              hint: "Be sure to list the unit of measurement, e.g. cost per student, cost per site, etc. If you provide different levels of service at different sites, please list the cost range, e.g. $100/student-$400/student." %>
+  <%= f.input :mou_on_file, as: :boolean %>
+  <%= f.input :mission_statement, as: :text %>
+  <%= f.input :services_description, as: :text %>
+  <%= f.input :program_impact, as: :text %>
+  <%= f.input :cost_per_student, as: :text %>
 <% end %>
 
 <% if can?(:manage_district_details, :organization) %>
-  <h2>District Details</h2>
-  <%= f.inputs do %>
+  <%= field_set_tag 'District Details' do %>
     <%= f.input :legislative_file_number %>
     <%= f.input :notes %>
   <% end %>
 <% end %>
 
-<%= f.actions do %>
-  <% save_label = current_user.role?(:organization_member) && @organization.verification_required? ? 'Save and Continue' : 'Save' %>
-  <%= f.button save_label, class: "btn btn-success" %>
-<% end %>
+<div class="row">
+  <div class="col-sm-3 hidden-sm"></div>
+  <div class="col-sm-9">
+    <% save_label = current_user.role?(:organization_member) && @organization.verification_required? ? 'Save and Continue' : 'Save' %>
+    <%= f.submit save_label, class: "btn btn-large btn-success" %>
+  </div>
+</div>

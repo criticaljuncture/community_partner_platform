@@ -8,6 +8,5 @@
   <dd><%= organizations.map{|o| o.community_program_ids}.flatten.uniq.count %></dd>
 
   <dt>Schools with Organizations Present</dt>
-  <dd><%= organizations.map{|o| o.community_programs.map{|cp| cp.school_id}}.flatten.uniq.count %>/<%= School.count %></dd>
+  <dd><%= organizations.map{|o| o.community_programs.map{|cp| cp.school_ids}}.flatten.uniq.count %>/<%= School.count %></dd>
 </dl>
-

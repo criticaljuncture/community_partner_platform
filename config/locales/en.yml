@@ -53,6 +53,11 @@ en:
         missing_programs:
           one: there is %{count} program that has not yet been entered into our system
           other: there are %{count} programs that have not yet been entered into our system
+    create:
+      success: Successfully created '%{name}'
+    update:
+      success: Successfully updated '%{name}'
+
   users:
     flash_messages:
       invitation:

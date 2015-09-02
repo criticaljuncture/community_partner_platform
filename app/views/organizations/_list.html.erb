@@ -15,17 +15,19 @@
       <% @organizations.each do |organization| %>
         <tr>
           <td><%= organization.try(:name) %></td>
-          <td><%= organization.quality_elements.uniq.map{|qe| qe.name}.join(', <br />').html_safe %></td>
-          <td><%= organization.service_types.uniq.map{|cp| cp.name}.join(', <br />').html_safe %></td>
-          <td class="center"><%= organization.cached_community_programs.count %></td>
-          <td class="center"><%= organization.cached_schools.count %></td>
+          <td><%= organization.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
+          <td><%= organization.service_types.map{|cp| cp.name}.join(', <br />').html_safe %></td>
+          <td class="center"><%= organization.community_programs.count %></td>
+          <td class="center"><%= organization.schools.uniq.count %></td>
           <td class="center buttons">
-            <%= link_to 'view',
+            <%= link_to_gicon 'view',
               organization_path(organization),
-              class: "btn btn-small btn-info" %>
-            <%= link_to( 'edit',
+              class: "btn btn-small btn-info",
+              icon: 'eye-open' %>
+            <%= link_to_gicon('edit',
               edit_organization_path(organization),
-              class: "btn btn-small btn-primary") if can?(:edit, organization) %>
+              class: "btn btn-small btn-primary",
+              icon: 'pencil') if can?(:edit, organization) %>
           </td>
         </tr>
       <% end %>

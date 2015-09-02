@@ -1,5 +1,6 @@
 class Organization < ActiveRecord::Base
   include OrganizationAudit
+  attr_accessor :verification
 
   serialize :reported_school_programs, JSON
 
@@ -13,28 +14,18 @@ class Organization < ActiveRecord::Base
 
   scope :with_users, -> { joins(:users).where("users.organization_id IS NOT NULL").group("organizations.id") }
 
-  def cached_schools
-    Rails.cache.fetch([self, "cached_schools"]) do
-      community_programs.map(&:school).uniq
-    end
-  end
-
-  def cached_user_count
-    Rails.cache.fetch([self, "cached_users"]) do
-      users.count
-    end
-  end
+  validates :name, presence: true
+  validates :legal_status_id, inclusion: {
+    in: LegalStatus.all.map(&:id),
+    message: 'Please choose from the list above'
+  }
 
   def quality_elements
-    Rails.cache.fetch([self, "quality_elements"]) do
-      cached_community_programs.map{|cp| cp.quality_elements}.flatten.uniq
-    end
+    @qe ||= community_programs.map{|cp| cp.quality_element}.flatten.uniq
   end
 
   def service_types
-    Rails.cache.fetch([self, "service_types"]) do
-      cached_community_programs.map{|cp| cp.service_types}.flatten.uniq
-    end
+    @st ||= community_programs.map{|cp| cp.service_types}.flatten.uniq
   end
 
   def self.needs_verification_path(organization)

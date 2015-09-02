@@ -1,29 +1,29 @@
 <%= breadcrumb [['Partner Organizations', organizations_path]] %>
 
-<div class="row-fluid">
-  <div class="span12">
-    <%= page_header("Organizations", "icon-cpp-small-business") do %>
-      <% if can? :create, Organization %>
-        <%= link_to 'Create New Organization',
-          new_organization_path,
-          class: "btn btn-primary" %>
-      <% elsif current_user.role?(:organization_member) %>
-        <%= link_to 'View My Organization',
-          organization_path(current_user.organization),
-          class: "btn btn-info" %>
-      <% end %>
-    <% end %>
+<%= page_header("Organizations", "icon-cpp-small-business") do %>
+  <%= link_to_gicon('Create New Organization',
+    new_organization_path,
+    class: "btn btn-primary",
+    icon: 'plus'
+  ) if can? :create, Organization %>
 
+  <%= link_to('View My Organization',
+    organization_path(current_user.organization),
+    class: "btn btn-info") if current_user.role?(:organization_member) %>
+<% end %>
+
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <%= page_nav_tabs [['Overview', '#overview'],
-                       ['Organizations', '#organizations-table']] %>
+                       ['Organizations', '#organizations']] %>
 
     <div class="tab-content">
       <div id="overview" class="tab-pane active">
         <%= render partial: 'overview', locals: {organizations: @organizations} %>
       </div>
 
-      <div id="organizations-table" class="tab-pane">
-        <%= render partial: 'table', locals: {organizations: @organizations} %>
+      <div id="organizations" class="tab-pane">
+        <%= render partial: 'list', locals: {organizations: @organizations} %>
       </div>
     </div>
   </div>

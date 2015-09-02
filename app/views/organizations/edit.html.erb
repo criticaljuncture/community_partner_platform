@@ -4,13 +4,16 @@
   ['Edit', ""]
 ] %>
 
-<div class="row-fluid">
-  <div class="span12">
-    <%= page_header("Edit #{@organization.name}", "icon-cpp-small-business") %>
+<%= page_header("Edit #{@organization.name}", "icon-cpp-small-business") %>
 
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <div class="form_wrapper">
-      <%= semantic_form_for @organization, method: :put, html: {class: "form-horizontal"} do |f| %>
-        <%= render partial: 'form', locals: {f: f} %>
+      <%= simple_form_for @organization, method: :put,
+        html: {class: "form-horizontal"},
+        wrapper: :horizontal_form,
+        wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
+          <%= render partial: 'form', locals: {f: f} %>
       <% end %>
     </div>
   </div>
