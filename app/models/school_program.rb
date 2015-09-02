@@ -31,4 +31,22 @@ class SchoolProgram < ActiveRecord::Base
 
     @customized_attributes
   end
+
+  # this makes it possible for a school_program to revert back to it's parent
+  # program's values at any point
+  def remove_associations_no_longer_delegating(school_program_params)
+    delegated_if_blank_methods.each do |method|
+      param = if ["student_population"].include?(method.to_s)
+        "student_population_id"
+      else
+        (method.slice(0...-1) + '_ids')
+      end
+
+      unless school_program_params.keys.include?(param)
+        self.send("#{param}=", nil)
+      end
+
+      self.save
+    end
+  end
 end
