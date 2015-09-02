@@ -18,5 +18,5 @@ class CommunityProgramQualityElement < ActiveRecord::Base
     },
     if: ->{ quality_element.present? }
 
-  delegate :name, to: :quality_element
+  delegate :name, to: :quality_element, allow_nil: true
 end

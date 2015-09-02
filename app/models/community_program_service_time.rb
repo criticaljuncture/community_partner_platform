@@ -1,4 +1,6 @@
 class CommunityProgramServiceTime < ActiveRecord::Base
-  belongs_to :community_program
+  belongs_to :attributable, polymorphic: true
   belongs_to :service_time
+
+  delegate :name, to: :service_time
 end

@@ -1,4 +1,6 @@
 class CommunityProgramGradeLevel < ActiveRecord::Base
+  belongs_to :attributable, polymorphic: true
   belongs_to :grade_level
-  belongs_to :community_program
+
+  delegate :name, to: :grade_level
 end

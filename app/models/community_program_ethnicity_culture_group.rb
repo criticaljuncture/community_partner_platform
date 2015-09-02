@@ -1,4 +1,6 @@
 class CommunityProgramEthnicityCultureGroup < ActiveRecord::Base
-  belongs_to :community_program
+  belongs_to :attributable, polymorphic: true
   belongs_to :ethnicity_culture_group
+
+  delegate :name, to: :ethnicity_culture_group
 end
