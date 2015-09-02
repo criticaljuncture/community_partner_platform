@@ -18,11 +18,18 @@ class CommunityProgramsController < ApplicationController
     end
 
     @community_program.build_primary_quality_element
+    @community_program = CommunityProgramDecorator.decorate(
+      @community_program
+    )
   end
 
   def create
-    @community_program = CommunityProgram.new(community_program_params)
+    @community_program = CommunityProgram.new(
+      community_program_params.except(:primary_quality_element)
+    )
     authorize! :create, @community_program
+
+    @community_program.primary_quality_element.service_type_ids = community_program_params[:primary_quality_element][:service_type_ids]
 
     if current_user.role?(:organization_member)
       @community_program.last_verified_at = Time.now
@@ -31,8 +38,7 @@ class CommunityProgramsController < ApplicationController
     @community_program.save!
 
     flash.notice = t('community_programs.flash_messages.create.success',
-                      name: @community_program.name,
-                      school_name: @community_program.school.name)
+                      name: @community_program.name)
 
     if session[:redirect_back]
       redirect_back = session[:redirect_back]
@@ -42,7 +48,7 @@ class CommunityProgramsController < ApplicationController
 
       redirect_to redirect_back
     else
-      redirect_to community_program_path(@community_program)
+      redirect_to community_program_build_path(@community_program.id, :add_program_details)
     end
   rescue ActiveRecord::RecordInvalid
     @community_program.build_primary_quality_element unless @community_program.primary_quality_element
@@ -58,11 +64,15 @@ class CommunityProgramsController < ApplicationController
     if params[:redirect_back]
       session[:redirect_back] = params[:redirect_back]
     end
+
+    @community_program = CommunityProgramDecorator.decorate(@community_program)
   end
 
   def update
     @community_program = CommunityProgram.find(params[:id])
     authorize! :update, @community_program
+
+    @community_program = CommunityProgramDecorator.decorate(@community_program)
 
     @community_program.update_attributes!(community_program_params)
 
@@ -73,12 +83,10 @@ class CommunityProgramsController < ApplicationController
 
     if current_user.role?(:organization_member) && previously_needed_verified
       flash.notice = t('community_programs.flash_messages.verified',
-                       name: @community_program.name,
-                       school_name: @community_program.school.name)
+                       name: @community_program.name)
     else
       flash.notice = t('community_programs.flash_messages.save.success',
-                       name: @community_program.name,
-                       school_name: @community_program.school.name)
+                       name: @community_program.name)
     end
 
     if session[:redirect_back]
@@ -93,7 +101,6 @@ class CommunityProgramsController < ApplicationController
     end
   rescue ActiveRecord::RecordInvalid
     @community_program.build_primary_quality_element unless @community_program.primary_quality_element
-    @community_program.build_secondary_quality_element unless @community_program.secondary_quality_element
 
     flash.now[:error] = t('errors.form_error', count: @community_program.errors.count)
     render :edit
@@ -132,10 +139,8 @@ class CommunityProgramsController < ApplicationController
       :school_user_id,
       :secondary_quality_element_id,
       :service_description,
-      :service_time_of_day,
       :site_agreement_on_file,
       :student_population_id,
-      :target_population,
       :user_id,
       day_ids: [],
       demographic_group_ids: [],
@@ -144,7 +149,10 @@ class CommunityProgramsController < ApplicationController
       primary_quality_element_attributes: [
         :id,
         :quality_element_id,
-        service_type_ids: []
+        service_type_ids: [],
+      ],
+      primary_quality_element: [
+        service_type_ids: [],
       ],
       service_time_ids: []
     )

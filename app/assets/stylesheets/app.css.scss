@@ -1,13 +1,17 @@
+$footer-bg-color: $gray-20;
+
 %hint {
-  font-size: 12px;
+  font-size: modular-scale(-1);
   color: $gray-40;
   font-style: italic;
 }
 
+body, html { height: 100%; }
+
 body {
   > .container {
     margin-top: 120px;
-    margin-bottom: 150px;
+    min-height: 100%;
   }
 }
 .page-wrapper {
@@ -123,4 +127,12 @@ dl.horizontal_stack {
 .toggle {
   color: $blue;
   cursor: pointer;
+}
+
+.font-bold {font-weight: bold;}
+
+.footer {
+  background-color: $footer-bg-color;
+  height: 50px;
+  margin-top: 40px;
 }

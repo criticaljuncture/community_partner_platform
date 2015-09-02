@@ -1,0 +1,24 @@
+<tr data-school-program-id="<%= school_program.id %>">
+  <td>
+    <%= school_program.school.name %>
+    <% if school_program.customized_attributes.present? %>
+      <span class="item-info">
+        (<%= pluralize(
+          school_program.customized_attributes.count,
+          'customized attribute'
+          ) %>)
+      </span>
+    <% end %>
+  </td>
+  <td class="buttons">
+    <%= link_to_gicon 'Edit', '#',
+      class: 'btn btn-medium btn-create edit-school-program',
+      data: {school_program_id: school_program.id},
+      icon: 'pencil' %>
+
+    <%= link_to_modal_with_gicon 'Remove', '#remove-school-program-modal',
+      class: 'btn btn-medium btn-danger remove-school-program',
+      data: {school_program_id: school_program.id},
+      icon: 'trash' %>
+  </td>
+</tr>

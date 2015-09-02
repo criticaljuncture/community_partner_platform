@@ -1,26 +1,37 @@
-<%= breadcrumb [
-  ['Community Programs', community_programs_path()],
-  ['Create', ""]
-] %>
+<%= modal(:basic,
+  footer: false,
+  header_icon: 'icon-cpp-users',
+  header_text: 'Add User',
+  modal_class: "ajax-modal user-modal",
+  modal_id: "user-modal") do %>
+  <div class="loader loading"></div>
+<% end %>
 
-<%= embed_ember_template 'flash-message', 'flash_message' %>
 
-<div class="row-fluid">
-  <div class="span12">
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md:12 %>">
     <%= page_header('Create New Community Program', "icon-cpp-handshake") %>
 
-    <%= modal(:basic,
-              modal_id: "user-modal",
-              modal_class: "user-modal",
-              header_text: 'Add User',
-              header_icon: 'icon-cpp-users',
-              footer: false) do %>
-    <% end %>
-
+    <div class="progress">
+      <%= progress_bar 'info', 34, 'Step 1 In Progress', striped: true %>
+      <%= progress_bar 'inactive', 33, 'Step 2 Not Started' %>
+      <%= progress_bar 'inactive', 33, 'Step 3 Not Started' %>
+    </div>
 
     <div class="form_wrapper">
-      <%= semantic_form_for @community_program, method: :post, html: {class: "form-horizontal #{'errors' if @community_program.errors.present?}"} do |f| %>
+      <%= simple_form_for @community_program, method: :post,
+        html: {class: "form-horizontal community-program"},
+        wrapper: :horizontal_form,
+        wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
+
         <%= render :partial => 'form', :locals => {:f => f} %>
+
+        <div class="row">
+          <div class="col-sm-3 hidden-sm"></div>
+          <div class="col-sm-9">
+            <%= f.submit 'Save & Continue', class: "btn btn-large btn-success" %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

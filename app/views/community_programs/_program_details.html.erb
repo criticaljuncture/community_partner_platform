@@ -1,0 +1,48 @@
+<%= columnar_table_block 'Program Details' do %>
+  <tr>
+    <td><%=I18n.t('community_programs.target_population') %></td>
+    <td>
+      <%= community_program.student_population.try(:name) %>
+    </td>
+  </tr>
+
+  <tr>
+    <td><%=I18n.t('community_programs.ethnicity_culture_groups') %></td>
+    <td>
+      <%= community_program.ethnicity_culture_groups.
+        map{|ecg| ecg.name}.join(',<br>').html_safe %>
+    </td>
+  </tr>
+
+  <tr>
+    <td><%=I18n.t('community_programs.demographic_groups') %></td>
+    <td>
+      <%= community_program.demographic_groups.
+        map{|dg| dg.name}.join(',<br>').html_safe  %>
+    </td>
+  </tr>
+
+  <tr>
+    <td><%=I18n.t('community_programs.grade_levels') %></td>
+    <td>
+      <%= community_program.grade_levels.
+        map{|g| g.name}.join(',<br>').html_safe %>
+    </td>
+  </tr>
+
+  <tr>
+    <td><%=I18n.t('community_programs.service_times') %></td>
+    <td>
+      <%= community_program.service_times.
+        map{|st| st.name}.join(',<br>').html_safe %>
+    </td>
+  </tr>
+
+  <tr>
+    <td><%=I18n.t('community_programs.service_days') %></td>
+    <td>
+      <%= community_program.days.
+        map{|d| d.name}.join(',<br>').html_safe %>
+    </td>
+  </tr>
+<% end %>

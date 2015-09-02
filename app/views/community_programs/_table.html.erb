@@ -4,8 +4,8 @@
       <tr>
         <th class="program_name">Program Name</th>
         <th class="organization">Organization</th>
-        <th class="school">School</th>
-        <th class="sqisa">Community School Elements</th>
+        <th class="school">Schools</th>
+        <th class="sqisa">Community School Element</th>
         <th class="actions sorter-false filter-false"></th>
       </tr>
     </thead>
@@ -26,16 +26,18 @@
             <% end %>
           </td>
           <td class="sqisa">
-            <%= community_program.quality_element.name.html_safe %>
+            <%= community_program.quality_element.name %>
           </td>
           <td class="actions center">
-            <%= link_to 'view',
+            <%= link_to_gicon 'view',
               community_program_path(community_program),
-              class: "btn btn-info btn-small" %>
-            <%= link_to(
+              class: "btn btn-info btn-medium",
+              icon: 'eye-open' %>
+            <%= link_to_gicon(
                 'edit',
                 edit_community_program_path(community_program),
-                class: "btn btn-primary btn-small"
+                class: "btn btn-primary btn-medium",
+                icon: 'pencil'
               ) if can?(:manage, community_program) %>
           </td>
         </tr>

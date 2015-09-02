@@ -43,12 +43,11 @@ class SchoolsController < ApplicationController
   end
 
   def primary_contact_input
-    school = School.includes(:users).find(params[:id])
-    @users = school.users.all.sort_by(&:full_name)
-
+    @collection = School.includes(:users).find(params[:id])
     authorize! :read, :primary_school_contact_input
 
-    render "/community_programs/primary_school_contact_input", layout: false
+    @form_object = :school_program
+    render "/community_programs/primary_contact_input", layout: false
   end
 
   private

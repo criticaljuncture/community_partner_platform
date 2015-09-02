@@ -1,55 +1,55 @@
-<h4>User Information</h4>
-<%= f.inputs do %>
+<%= field_set_tag "User Information" do %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
   <%= f.input :email %>
-  <%= f.input :phone_number,
-              placeholder: "(555) 555-5555"%>
+  <%= f.input :phone_number, placeholder: "(555) 555-5555" %>
 <% end %>
 
-<h4>User Access</h4>
-<%= f.inputs do %>
-  <%= f.input :primary_role,
-              as: :select,
-              collection: roles,
-              selected: f.object.primary_role.try(:id),
-              required: true,
-              label: 'Role' %>
 
-  <%= f.input :organization,
-              as: :select,
-              collection: organizations,
-              selected: current_user.organization_id.nil? ? "" : current_user.organization_id,
-              label: 'Organization',
-              required: true,
-              disabled: true,
-              wrapper_html: {class: "hidden"} %>
+<%= field_set_tag "User Access" do %>
+  <%= f.input :primary_role,
+    as: :select,
+    collection: roles,
+    selected: f.object.primary_role.try(:id),
+    required: true,
+    label: 'Role' %>
+
+  <%= f.input :organization_id,
+    as: :select,
+    collection: organizations,
+    selected: current_user.organization_id.nil? ? "" : current_user.organization_id,
+    label: 'Organization',
+    required: true,
+    disabled: true,
+    wrapper_html: {class: "hidden"} %>
 
   <% if schools %>
     <% if schools.size > 1 %>
-      <%= f.input :schools,
-                  as: :select,
-                  collection: schools,
-                  label: 'Schools',
-                  required: true,
-                  disabled: true,
-                  multiple: true,
-                  wrapper_html: {class: "hidden"} %>
+      <%= f.input :school_ids,
+        as: :select,
+        collection: schools,
+        label: 'Schools',
+        required: true,
+        disabled: true,
+        multiple: true,
+        wrapper_html: {class: "hidden"} %>
     <% else %>
-      <%= f.input :schools,
-                  as: :select,
-                  collection: schools,
-                  label: 'Schools',
-                  required: true,
-                  disabled: true,
-                  multiple: false,
-                  selected: schools.first.id,
-                  wrapper_html: {class: "hidden"} %>
+      <%= f.input :school_ids,
+        as: :select,
+        collection: schools,
+        label: 'Schools',
+        required: true,
+        multiple: false,
+        selected: schools.first.id,
+        wrapper_html: {class: "hidden"} %>
     <% end %>
   <% end %>
 <% end %>
 
-<%= f.actions do %>
-  <%= f.button f.object.new_record? ? 'Create' : 'Save', class: "btn btn-success" %>
-<% end %>
-
+<div class="row">
+  <div class="col-sm-3 hidden-sm"></div>
+  <div class="col-sm-9">
+    <%= f.submit f.object.new_record? ? 'Create' : 'Save',
+      class: "btn btn-large btn-success" %>
+  </div>
+</div>

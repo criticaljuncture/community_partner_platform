@@ -1,8 +1,9 @@
-<%= embed_javascript 'ajax_user_form' %>
+<%= simple_form_for @user, method: :post,
+  html: {class: "form-horizontal user"},
+  wrapper: :horizontal_form,
+  wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
 
-<%= semantic_form_for @user, method: :post, html: {class: "form-horizontal"} do |f| %>
-  <%= render :partial => 'form',
-    :locals => {
+  <%= render :partial => 'form', :locals => {
       f: f,
       roles: @roles,
       schools: @schools,

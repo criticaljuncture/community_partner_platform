@@ -4,7 +4,7 @@ namespace :remap do
       SchoolProgram.new(
         community_program_id: community_program.id,
         school_id: community_program.school_id,
-        school_user_id: community_program.school_user_id
+        user_id: community_program.school_user_id
       ).save
     end
   end

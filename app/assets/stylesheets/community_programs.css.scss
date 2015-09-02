@@ -13,18 +13,29 @@ table.community_programs {
   .actions { width: 147px; }
 }
 
-.detail_wrapper.community_program_details {
-  dl.horizontal_stack dt { margin-bottom: 5px; }
+.columnar-table-block {
+  .columnar-table-block-header {
+    a.toggle {
+      width: 120px;
 
-  dl.horizontal_stack.span3 dt { width: 85px; }
-  dl.horizontal_stack.span5 dt { width: 200px; }
-}
+      &.open {
+        .glyphicon-eye-open { display: none; }
+        .glyphicon-eye-close { display: inline-block; }
+      }
+      &.closed {
+        .glyphicon-eye-open { display: inline-block; }
+        .glyphicon-eye-close { display: none; }
+      }
+    }
+  }
 
-.detail_wrapper.community_program_description {
-  dl.horizontal_stack dt { margin-bottom: 5px; }
+  &.program-description {
+    td:first-child { width: 40%; }
+  }
 
-  dl.horizontal_stack.span4 dt { width: 150px; }
-  dl.horizontal_stack.span3 dt { width: 165px; }
+  &.school-programs {
+    td:first-child { width: 55%; }
+  }
 }
 
 .deactivation-warning-modal.modal {
@@ -33,4 +44,39 @@ table.community_programs {
     top: 2px;
     position: relative;
   }
+}
+
+
+
+fieldset.school-programs {
+  table {
+    tr {
+      border-bottom: 1px solid $table-border-color;
+
+      &:first-child { border-top: none; }
+      &:last-child { border-bottom: none; }
+    }
+
+    td {
+      border: none;
+
+      .item-info {
+        @extend %hint;
+      }
+
+      &.buttons { width: 15%; }
+    }
+  }
+}
+
+.form-group.inheriting {
+  border-radius: 6px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: lighten($green, 30);
+}
+
+label.parent-value,
+option.inheriting {
+  color: $green-dark;
 }

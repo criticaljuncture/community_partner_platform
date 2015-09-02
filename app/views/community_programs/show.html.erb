@@ -3,98 +3,45 @@
   [@community_program.name, community_program_path(@community_program)]
 ] %>
 
-<%= render partial: 'deactivation_modal',
-  locals: {community_program: @community_program} if can?(:toggle_active, @community_program) %>
+<%= render partial: 'deactivation_modal', locals: {
+  community_program: @community_program
+} if can?(:toggle_active, @community_program) %>
 
-<div class="row-fluid">
-  <div class="span12 community_programs">
-    <%= page_header(@community_program.name, "icon-cpp-handshake") do %>
-      <%= link_to_toggle_program_active_state @community_program if can?(:toggle_active, @community_program) %>
-      <%= link_to('Edit Program',
-        edit_community_program_path(@community_program),
-        class: "btn btn-primary") if can?(:edit, @community_program) && @community_program.active? %>
-    <% end %>
-  </div>
+<%= page_header @community_program.name, 'icon-cpp-handshake',
+  wrapper_class: 'community-programs' do %>
+
+  <%= link_to_gicon('Edit Program',
+      edit_community_program_path(@community_program),
+      class: "btn btn-primary",
+      icon: 'pencil'
+    ) if can?(:edit, @community_program) && @community_program.active? %>
+
+  <%= link_to_modal_with_gicon(
+      @community_program.active? ? 'Deactivate' : 'Activate',
+      '#deactivation-warning-modal',
+      class: "btn btn-warning",
+      icon: 'ban-circle'
+    ) if can?(:toggle_active, @community_program) %>
+<% end %>
+
+<div class="row">
+  <%= render partial: 'program_description', locals: {
+    community_program: @community_program
+  } %>
+
+  <%= render partial: 'program_details', locals: {
+    community_program: @community_program
+  } %>
 </div>
 
-<div class="row-fluid">
-  <div class="span12">
-    <div class="detail_wrapper community_programship_details">
-      <h2>Program Details</h2>
-      <dl class="horizontal_stack span3">
-        <dt>Organization</dt>
-        <dd>
-          <%= link_to @community_program.organization.name,
-            organization_path(@community_program.organization) %>
-        </dd>
+<div class="row">
+  <%= render partial: 'schools', locals: {
+    school_programs: SchoolProgramDecorator.decorate_collection(
+      @community_program.school_programs
+    )
+  } %>
 
-        <dt>Primary Organization Contact</dt>
-        <dd>
-          <%= link_to @community_program.user.full_name,
-            user_path( @community_program.user ) %>
-        </dd>
-      </dl>
-      <dl class="horizontal_stack span3">
-        <dt>Schools</dt>
-        <% @community_program.school_programs.each do |school_program| %>
-          <dd>
-            <%= link_to school_program.school.try(:name),
-              school_path(school_program.school) %>
-            <% if school_program.school_user.present? %>
-              <br />
-              Primary School Contact: <%= link_to(school_program.school_user.full_name, user_path(school_program.school_user )) %>
-            <% end %>
-          </dd>
-        <% end %>
-      </dl>
-      <dl class="horizontal_stack span5">
-        <dt>Community School Element</dt>
-        <dd><%= @community_program.quality_element.name %></dd>
-
-        <dt>Service Types</dt>
-        <dd>
-          <%= @community_program.service_types.
-            map{|st| st.name}.join(', <br />').html_safe %>
-        </dd>
-      </dl>
-    </div>
-  </div>
-</div>
-
-<div class="row-fluid">
-  <div class="span12">
-    <div class="detail_wrapper community_programship_description">
-      <h2>Program Description</h2>
-      <dl class="horizontal_stack span4">
-        <dt>Service Description</dt>
-        <dd><%= @community_program.service_description %></dd>
-      </dl>
-      <dl class="horizontal_stack span3">
-        <dt>Target Population</dt>
-        <dd><%= @community_program.student_population.try(:name) %></dd>
-
-        <dt>Target Ethnicity/Culture Groups</dt>
-        <dd><%= @community_program.ethnicity_culture_groups.map{|ecg| ecg.name}.join(', <br />').html_safe %></dd>
-
-        <dt>Target Demographic Groups</dt>
-        <dd><%= @community_program.demographic_groups.map{|dg| dg.name}.join(', <br />').html_safe %></dd>
-
-        <dt>Target Grade Levels</dt>
-        <dd><%= @community_program.grade_levels.map{|g| g.name}.join(', <br />').html_safe %></dd>
-
-        <dt>Service Times</dt>
-        <dd><%= @community_program.service_times.map{|st| st.name}.join(', <br />').html_safe %></dd>
-
-        <dt>Service Days</dt>
-        <dd><%= @community_program.days.map{|d| d.name}.join(', <br />').html_safe %></dd>
-      </dl>
-      <dl class="horizontal_stack span3">
-        <dt>Site Agreement on File</dt>
-        <dd><%=@community_program.site_agreement_on_file %></dd>
-
-        <dt>MOU or contract on file with the District</dt>
-        <dd><%=@community_program.mou_on_file %></dd>
-      </dl>
-    </div>
-  </div>
+  <%= render partial: 'organization_info', locals: {
+    community_program: @community_program
+  } %>
 </div>

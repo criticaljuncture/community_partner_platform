@@ -1,15 +1,16 @@
 <%= breadcrumb [['Community Programs', community_programs_path()]] %>
 
-<div class="row-fluid">
-  <div class="span12">
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <%= page_header("Community Programs", "icon-cpp-handshake") do %>
-      <%= link_to( 'Create New Program',
+      <%= link_to_gicon( 'Create New Program',
         new_community_program_path(
           community_program: {
             organization_id: current_user.organization
           }
         ),
-        :class => "btn btn-primary") if can?(:create, CommunityProgram) %>
+        class: "btn btn btn-primary",
+        icon: "plus") if can?(:create, CommunityProgram) %>
     <% end %>
 
 

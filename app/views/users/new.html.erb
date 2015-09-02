@@ -8,14 +8,17 @@
     <%= page_header("Create New User", "") %>
 
     <div class="form_wrapper">
-      <%= semantic_form_for @user, method: :post, html: {class: "form-horizontal"} do |f| %>
-        <%= render :partial => 'form',
-          :locals => {
-            f: f,
-            roles: @roles,
-            schools: @schools,
-            organizations: @organizations
-          } %>
+      <%= simple_form_for @user, method: :post,
+        html: {class: "form-horizontal user"},
+        wrapper: :horizontal_form,
+        wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
+
+        <%= render :partial => 'form', :locals => {
+          f: f,
+          roles: @roles,
+          schools: @schools,
+          organizations: @organizations
+        } %>
       <% end %>
     </div>
   </div>

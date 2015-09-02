@@ -26,6 +26,18 @@ en:
         primary_quality_element:
           quality_element_id: Primary community schools element
           service_type_ids: Primary service types
+
+      school_program:
+        day_ids: Service days
+        demographic_group_ids: Target demographic groups
+        ethnicity_culture_group_ids: Target ethnicity/culture groups
+        grade_level_ids: Target grade levels
+        school_id: School
+        school_user_id: Primary school contact
+        service_time_ids: Service times
+        student_population_id: Target population
+        user_id: School contact
+
     #   defaults:
     #     password: 'Password'
     #   user:
@@ -36,6 +48,11 @@ en:
     hints:
       community_program:
         name: Used to differentiate programs at a school. Does not need to be an official name but should be descriptive.
+        notes: This will only be available to this organization and OUSD internal users.
+        user_id: This is the primary organization contact for this program.
+
+      school_programs:
+        school_user_id: This is the primary contact at this school for this program.
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'

@@ -1,11 +1,16 @@
-<div class="select input optional control-group" id="community_program_user_id_input">
-  <label class="control-label" for="community_program_user_id">Primary organization contact</label>
-  <div class="controls">
-    <select id="community_program_user_id" class="wrap" name="community_program[user_id]">
-      <option value=""></option>
-      <% @organization.users.sort_by(&:full_name).each do |user| %>
-        <option value="<%= user.id %>"><%= user.full_name %></option>
-      <% end %>
-    </select>
-  </div>
-</div>
+<% form = nil %>
+<% simple_form_for @form_object, method: :put,
+  html: {class: "form-horizontal #{@form_object.to_s.gsub('_', '-')}"},
+  wrapper: :horizontal_form,
+  wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
+  <% form = f %>
+<% end %>
+
+<%= form.input :user_id,
+  as: :select,
+  collection: @collection.users.
+    accessible_by(current_ability).
+    sort_by(&:full_name),
+  label_method: :full_name,
+  required: @form_object == :community_program ? true : false,
+  wrapper_html: {class: 'clear both'} %>

@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md:12 %>">
+
+    <%= page_header("Add Program Details to '#{@community_program.name}'", "icon-cpp-handshake") %>
+
+    <div class="progress">
+      <%= progress_bar 'info', 34, 'Step 1 Complete' %>
+      <%= progress_bar 'info', 33, 'Step 2 In Progress', striped: true %>
+      <%= progress_bar 'inactive', 33, 'Step 3 Not Started' %>
+    </div>
+
+    <%= alert 'info', 'info-sign' do %>
+      Filling out the attributes below is not required but we encourage you to
+      do so to the best of your knowledge. This information will be helpful to
+      both school staff and the public in understanding your program. You will
+      have the opportunity in the next step to customize these attributes for an
+      individual school(s) if needed.
+    <% end %>
+
+    <div class="form_wrapper">
+      <%= simple_form_for @community_program,
+        url: wizard_path,
+        method: :put,
+        html: {class: "form-horizontal community-program"},
+        wrapper: :horizontal_form,
+        wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
+
+        <%= field_set_tag "Program Details", class: 'program-details' do %>
+          <%= render partial: 'community_programs/program_detail_inputs', locals: {
+            f: f,
+            inherited_object: @community_program
+          } %>
+        <% end %>
+
+        <div class="row">
+          <div class="col-sm-3 hidden-sm"></div>
+          <div class="col-sm-9">
+            <%= f.submit 'Save & Continue', class: "btn btn-large btn-success" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

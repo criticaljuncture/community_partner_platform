@@ -1,0 +1,48 @@
+<%= f.input :student_population_id,
+  as: :select,
+  collection: StudentPopulation.accessible_by(current_ability),
+  wrapper_html: {
+    data: {inherited_values: inherited_object.try(:student_population_id)}
+  } %>
+
+<%= f.input :ethnicity_culture_group_ids,
+  as: :columized_checkboxes,
+  collection: EthnicityCultureGroup.accessible_by(current_ability).
+    sort_by(&:name),
+  columns: 3,
+  wrapper_html: {
+    data: {inherited_values: inherited_object.try(:ethnicity_culture_group_ids)}
+  } %>
+
+<%= f.input :demographic_group_ids,
+  as: :columized_checkboxes,
+  collection: DemographicGroup.accessible_by(current_ability).
+    sort_by(&:name),
+  columns: 3,
+  wrapper_html: {
+    data: {inherited_values: inherited_object.try(:demographic_group_ids)}
+  } %>
+
+<%= f.input :grade_level_ids,
+  as: :columized_checkboxes,
+  collection: GradeLevel.accessible_by(current_ability),
+  columns: 4,
+  wrapper_html: {
+    data: {inherited_values: inherited_object.try(:grade_level_ids)}
+  } %>
+
+<%= f.input :service_time_ids,
+  as: :columized_checkboxes,
+  collection: ServiceTime.accessible_by(current_ability),
+  columns: 3,
+  wrapper_html: {
+    data: {inherited_values: inherited_object.try(:service_time_ids)}
+  } %>
+
+<%= f.input :day_ids,
+  as: :columized_checkboxes,
+  collection: Day.accessible_by(current_ability),
+  columns: 3,
+  wrapper_html: {
+    data: {inherited_values: inherited_object.try(:day_ids)}
+  } %>

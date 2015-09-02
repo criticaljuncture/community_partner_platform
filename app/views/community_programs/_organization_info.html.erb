@@ -1,0 +1,17 @@
+<%= columnar_table_block 'Organization Information' do %>
+  <tr>
+    <td><%= I18n.t('community_programs.organization_name') %></td>
+    <td>
+      <%= link_to community_program.organization.name,
+        organization_path(community_program.organization) %>
+    </td>
+  </tr>
+
+  <tr>
+    <td><%=I18n.t('community_programs.organization_contact') %></td>
+    <td>
+      <%= link_to community_program.organization.name,
+        organization_path(community_program.organization) %>
+    </td>
+  </tr>
+<% end %>

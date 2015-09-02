@@ -22,7 +22,13 @@ OusdCommunityPartners::Application.routes.draw do
     end
   end
 
+  resources :school_programs
+
   resources :community_programs do
+    resources :build,
+      only: [:show, :update],
+      controller: 'community_programs/build'
+
     member do
       put :toggle_active
     end

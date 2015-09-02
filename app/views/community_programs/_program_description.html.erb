@@ -1,0 +1,30 @@
+<%= columnar_table_block 'Program Information', class: 'program-description' do %>
+  <tr>
+    <td><%= I18n.t('community_programs.name') %></td>
+    <td>
+      <%= community_program.name %>
+    </td>
+  </tr>
+
+  <tr>
+    <td><%= I18n.t('community_programs.quality_element') %></td>
+    <td>
+      <%= community_program.quality_element.name %>
+    </td>
+  </tr>
+
+  <tr>
+    <td><%= I18n.t('community_programs.service_types') %></td>
+    <td>
+      <%= community_program.service_types.
+        map{|st| st.name}.join(',<br>').html_safe %>
+    </td>
+  </tr>
+
+  <tr>
+    <td><%= I18n.t('community_programs.service_description') %></td>
+    <td>
+      <%= community_program.service_description %>
+    </td>
+  </tr>
+<% end %>

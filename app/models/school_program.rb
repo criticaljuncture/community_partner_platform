@@ -3,15 +3,12 @@ class SchoolProgram < ActiveRecord::Base
   include DelegationExtensions
 
   belongs_to :community_program
+  belongs_to :school
+  belongs_to :student_population
+  belongs_to :user
 
-  belongs_to :school_user,
-    class_name: User,
-    foreign_key: :school_user_id
+  default_scope -> {where(active: true)}
 
-    validates :school_id,
-      presence: {
-        message: "must choose a school"
-      }
   delegate_if_blank :days,
     :demographic_groups,
     :ethnicity_culture_groups,
@@ -19,6 +16,12 @@ class SchoolProgram < ActiveRecord::Base
     :service_times,
     :student_population,
     to: :community_program
+
+  validates :school_id,
+    presence: {
+      message: "must choose a school"
+    }
+
   # attributes uniquely assigned to this school program as distinct from
   # parent community program
   def customized_attributes

@@ -1,0 +1,11 @@
+<div class="<%= bootstrap_col xs: 12, md: 6 %> columnar-table-block <%= wrapper_class %>">
+  <h4><%= header %></h4>
+
+  <% if table %>
+    <div class="table-responsive">
+      <%= columnar_table content %>
+    </div>
+  <% else %>
+    <%= content %>
+  <% end %>
+</div>

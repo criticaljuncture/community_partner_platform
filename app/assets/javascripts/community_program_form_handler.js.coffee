@@ -7,14 +7,11 @@ class @CPP.CommunityProgramFormHandler
 
     @qualityElementEl = @form.find('#community_program_primary_quality_element_attributes_quality_element_id')
 
-    #@schoolEl = @form.find('#community_program_school_id')
-    #@schoolUserEl = @form.find('#community_program_school_user_id_input')
-
-    @addChangeHandler()
+    @addChangeHandlers()
     @ensureFormConsistency()
-    @addAjaxButtonHandler()
+    @addAjaxButtonHandlers()
 
-  addChangeHandler: ->
+  addChangeHandlers: ->
     formHandler = this
 
     @qualityElementEl.on 'change', ()->
@@ -23,9 +20,6 @@ class @CPP.CommunityProgramFormHandler
     @organizationEl.on 'change', ()->
       formHandler.organizationChange $(this).val()
 
-    #@schoolEl.on 'change', ()->
-      #formHandler.schoolChange $(this).val()
-
   ensureFormConsistency: ->
     if @qualityElementEl.val() == ""
       @qualityElementEl.trigger 'change'
@@ -33,14 +27,9 @@ class @CPP.CommunityProgramFormHandler
     if @organizationUserEl.val() == "" && !@form.hasClass('errors')
       @organizationEl.trigger 'change'
 
-    #if @form.find('#community_program_school_user_id').val() == "" && !@form.hasClass('errors')
-      #@schoolEl.trigger 'change'
-
-    if @form.find('#community_program_organization_id').val() != ""
+    if @organizationEl.val() != ""
       @form.find('#add-org-user').show()
 
-    #if @form.find('#community_program_school_id').val() != ""
-      #@form.find('#add-school-user').show()
 
   ### QUALITY ELEMENT CHANGE METHODS ###
   qualityElementChange: (qualityElementId)->
@@ -89,82 +78,112 @@ class @CPP.CommunityProgramFormHandler
     response.done @addOrganizationRelatedHtmlToForm
 
   addOrganizationRelatedHtmlToForm: (html)->
-    addOrgUser = $('#org-user-wrapper')
-
-    addOrgUser
-      .prepend html
+    $('#org-user-wrapper')
+      .append html
       .show()
 
   removeOrganizationRelatedFields: ->
-    @organizationUserEl.remove()
-    $('#add-org-user').hide()
+    $('form .community_program_user_id').remove()
+    $('#org-user-wrapper').hide()
 
-  ### SCHOOL CHANGE METHODS ###
-  schoolChange: (schoolId)->
-    @removeSchoolRelatedFields()
-
-    if schoolId != ""
-      @addSchoolRelatedFields schoolId
-
-  addSchoolRelatedFields: (schoolId)->
-    formHandler = this
-
-    response = $.ajax({
-      url: '/schools/' + schoolId + '/primary_contact_input',
-      dataType: 'html'
-    })
-
-    response.done @addSchoolRelatedHtmlToForm
-
-  addSchoolRelatedHtmlToForm: (html)->
-    addSchoolUser = $('#add-school-user')
-
-    addSchoolUser
-      .prepend html
-      .show()
-
-  removeSchoolRelatedFields: ->
-    @schoolUserEl.remove()
 
   ### UPDATE USER METHODS ###
-  addAjaxButtonHandler: ->
+  addAjaxButtonHandlers: ->
     @addOrgUserHandler()
-    #@addSchoolUserHandler()
+    @addNewSchoolHandler()
+    @addEditSchoolHandler()
+    @addRemoveSchoolHandler()
 
   addOrgUserHandler: ->
     formHandler = this
     button = @form.find('#add-org-user')
 
-    button.on 'click', (event)->
+    button.on 'click', (event)=>
+      event.preventDefault()
+
       response = $.ajax({
         url: '/users/new',
         data: {role_id: 4},
         dataType: 'html'
       })
 
-      response.done @showNewUserModal
+      @showModal '.user-modal'
+      response.done (html)=>
+        @updateModal '.user-modal', html
 
-  addSchoolUserHandler: ->
-    formHandler = this
-    button = @form.find('#add-school-user')
+  addNewSchoolHandler: ->
+    button = @form.find('#add-school-program')
+    communityProgramId = @form.find('#community-program-id')
 
-    button.on 'click', (event)->
+    button.on 'click', (event)=>
+      event.preventDefault()
+
       response = $.ajax({
-        url: '/users/new',
+        url: '/school_programs/new',
         data: {
-          school_id: formHandler.schoolEl.val()
-          role_id: 3
+          school_program: {
+            community_program_id: if communityProgramId then communityProgramId.val() else null
+          }
         },
         dataType: 'html'
       })
 
-      response.done @showNewUserModal
+      @showModal '.school-program-modal'
+      response.done (html)=>
+        @updateModal '.school-program-modal', html
+        new CPP.SchoolProgramFormHandler $('form.school-program')
 
-  showNewUserModal: (html)->
-    $('.user-modal .modal-body').html(html);
+  addEditSchoolHandler: ->
+    formHandler = this
 
-    $('.user-modal').modal({
-      escapeClose: false,
-      clickClose: false,
-      showClose: false
-    });
+    $('fieldset.school-programs').on 'click', '.btn.edit-school-program', (event)->
+      event.preventDefault()
+
+      schoolProgramId = $(this).closest('tr').data('school-program-id')
+
+      response = $.ajax({
+        url: "/school_programs/#{schoolProgramId}/edit",
+        dataType: 'html'
+      })
+
+      formHandler.showModal '.school-program-modal'
+
+      response.done (html)=>
+        formHandler.updateModal '.school-program-modal', html
+        new CPP.SchoolProgramFormHandler $('form.school-program')
+
+  addRemoveSchoolHandler: ->
+    modal = $('#remove-school-program-modal')
+
+    $('fieldset.school-programs').on 'click', '.btn.remove-school-program', (event)->
+      event.preventDefault()
+
+      schoolProgramId = $(this).closest('tr').data('school-program-id')
+
+      modal.find('.modal-body a.remove')
+        .attr('href', Routes.school_program_path(schoolProgramId))
+
+
+    modal.find('a.remove').on 'click', (event)->
+      event.preventDefault()
+      link = $(this)
+
+      response = $.ajax({
+        url: link.attr('href'),
+        method: 'DELETE',
+        dataType: 'json'
+      })
+
+      response.success (response)=>
+        CJ.Notifier.displayNotification(response.message, 'success')
+        modal.modal 'hide'
+        table
+          .find("tbody tr[data-school-program-id='#{response.school_program_id}']")
+          .remove()
+
+
+  showModal: (modalClass)->
+    $(modalClass).modal()
+
+  updateModal: (modalClass, html)->
+    $("#{modalClass} .modal-body").html(html)

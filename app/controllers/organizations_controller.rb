@@ -50,9 +50,10 @@ class OrganizationsController < ApplicationController
   end
 
   def primary_contact_input
-    @organization = Organization.includes(:users).find(params[:id])
-    authorize! :edit, @organization
+    @collection = Organization.includes(:users).find(params[:id])
+    authorize! :edit, @collection
 
+    @form_object = :community_program
     render "/community_programs/primary_contact_input", layout: false
   end
 

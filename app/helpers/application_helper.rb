@@ -2,7 +2,7 @@ module ApplicationHelper
   def icon_link_to(name, path, options={})
     dropdown = options.delete(:dropdown)
 
-    link = content_tag(:span, "", class:"icon #{options.delete(:icon_class)}") + 
+    link = content_tag(:span, "", class:"icon #{options.delete(:icon_class)}") +
             content_tag(:span, name, class: "nav-label #{options.delete(:nav_label_class)}")
 
     link = link + content_tag(:span, "", class: "caret") if dropdown
@@ -18,34 +18,17 @@ module ApplicationHelper
     end
   end
 
-  def page_header(title, icon, &block)
-    header = <<-HTML
-      <div class="header">
-        <div class="header_outer">
-          <div class="header_inner">
-            <h1>
-              #{unless icon.blank?
-                "<span class='icon #{icon}'icon></span>"
-              end}
-              #{title}
-            </h1>
-            #{capture(&block) if block_given?}
-          </div>
-        </div>
-      </div>
-    HTML
+  def page_header(title, icon, options={}, &block)
+    wrapper_class = options.fetch(:wrapper_class){ '' }
 
-    header.html_safe
-  end
+    buttons = block_given? ? capture(&block) : ''
 
-  def message_box(type, content=nil, &block)
-    message_box = <<-HTML
-      <div class="#{type.to_s}">
-        #{content ? content : capture(&block)}
-      </div>
-    HTML
-
-    message_box.html_safe
+    render partial: 'components/page_header', locals: {
+      buttons: buttons,
+      icon: icon,
+      title: title,
+      wrapper_class: wrapper_class
+    }
   end
 
   def help_hover(options={}, &block)

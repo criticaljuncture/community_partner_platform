@@ -35,6 +35,9 @@ gem "devise_invitable", "~> 1.5.2 "
 # graphing
 gem "d3_rails", "~> 3.3.7"
 
+# decorator pattern
+gem 'draper'
+
 # env vars
 gem 'dotenv-rails'
 
@@ -83,6 +86,9 @@ gem 'uglifier', '>= 1.3.0'
 
 # JS helper functions
 gem "underscore-rails"
+
+# multi-step wizard like controllers
+gem "wicked"
 
 
 

@@ -1,4 +1,6 @@
-<%= field_set_tag "Program" do %>
+<% collapsed = (f.object.new_record? || f.object.errors) ? 'open' : 'closed' %>
+
+<%= collapsible_field_set_tag "Program", class: 'open' do %>
   <%= f.input :name, required: true %>
 
   <%= f.input :service_description %>
@@ -21,20 +23,18 @@
       columns: 2,
       required: true %>
   <% end %>
-
-  <%= f.input :site_agreement_on_file%>
-
-  <%#= f.input :mou_on_file %>
 <% end %>
 
-<%= field_set_tag "Organization Details" do %>
+<%= collapsible_field_set_tag "Organization Details", class: collapsed do %>
   <%= f.input :organization_id,
     as: :select,
     collection: Organization.accessible_by(current_ability).
       with_users.sort_by(&:name),
+    include_blank: true,
     required: true,
-    selected: current_user.role?(:organization_member) ?
-      current_user.organization_id : "" %>
+    selected: f.object.organization_id.present? ? f.object.organization_id : (
+      current_user.role?(:organization_member) ? current_user.organization_id : "")
+   %>
 
   <div id="org-user-wrapper" class="user-add-wrapper">
     <div id="add-org-user"
@@ -53,71 +53,6 @@
   </div>
 <% end %>
 
-<%= field_set_tag "Schools", class: 'school-programs' do %>
-  <%= f.link_to_add :school_programs,
-    class: 'btn btn-primary btn-medium add-school',
-    data: {target: '.school-programs'} do %>
-
-      <%= gicon 'plus' %> Add a school
-  <% end %>
-
-  <%= f.fields_for :school_programs,
-    wrapper: :horizontal_form do |spf| %>
-    <%= render partial: 'school_programs/school_inputs_form', locals: {
-      f: spf,
-      parent_f: f
-    } %>
-  <% end %>
-<% end %>
-
-<%= field_set_tag "Program Details" do %>
-  <%= f.input :student_population,
-    as: :select,
-    collection: StudentPopulation.accessible_by(current_ability) %>
-
-  <%= f.input :ethnicity_culture_groups,
-    as: :columized_checkboxes,
-    collection: EthnicityCultureGroup.accessible_by(current_ability).
-      sort_by(&:name),
-    columns: 3 %>
-
-  <%= f.input :demographic_groups,
-    as: :columized_checkboxes,
-    collection: DemographicGroup.accessible_by(current_ability).
-      sort_by(&:name),
-    columns: 3 %>
-
-  <%= f.input :grade_levels,
-    as: :columized_checkboxes,
-    collection: GradeLevel.accessible_by(current_ability),
-    columns: 4 %>
-
-  <%= f.input :service_times,
-    as: :columized_checkboxes,
-    collection: ServiceTime.accessible_by(current_ability),
-    columns: 3 %>
-
-  <%= f.input :days,
-    as: :columized_checkboxes,
-    collection: Day.accessible_by(current_ability),
-    columns: 3 %>
-<% end %>
-
-<%= field_set_tag "Internal Details" do %>
+<%= collapsible_field_set_tag "Internal Details", class: collapsed do %>
   <%= f.input :notes %>
-<% end %>
-
-
-<%= f.submit 'Save',
-  class: "btn #{f.object.verification_required? ? 'btn-primary' : 'btn-success'}"
-%>
-
-<% if f.object.verification_required? && can?(:verify, f.object) %>
-  <%= f.submit 'Save & Verify', class: "btn btn-success", type: 'verify' %>
-  <%= help_hover do %>
-    This program needs verification. If for some reason you need to
-    update a piece of data but are unable to verify the rest of the program
-    information use the 'Save' button. Note: Programs that aren't verified may not
-    show up to some users of the system.
-  <% end %>
 <% end %>

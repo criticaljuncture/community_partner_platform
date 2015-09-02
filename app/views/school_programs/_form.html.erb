@@ -1,0 +1,62 @@
+<%= field_set_tag "School Program Information" do %>
+  <%= f.input :community_program_id,
+    as: :hidden %>
+
+  <%= f.input :school_id,
+    as: :select,
+    collection: School.accessible_by(current_ability).sort_by(&:name),
+    disabled: community_program.schools.map(&:id),
+    required: true %>
+
+  <div id="school-user-wrapper" class="user-add-wrapper">
+    <div id="add-school-user" class="user-add btn btn-create">
+      <%= gicon 'plus' %> Create new school contact
+    </div>
+
+    <%= f.input :user_id,
+      as: :select,
+      collection: User.accessible_by(current_ability).
+        includes(:schools).
+        where(schools: {id: @school_program.school_id}).
+        sort_by(&:full_name),
+      label_method: :full_name,
+      required: false,
+      wrapper_html: {class: 'clear both'} %>
+  </div>
+
+  <%= f.input :site_agreement_on_file %>
+<% end %>
+
+<%= alert 'info', 'info-sign' do %>
+  While most programs will be the same at each school there may be instances
+  where certain details (time, day, etc.) about a program is for a
+  particular school. You can use the section below to update this school's
+  program details. In most cases you will not need to modify these.
+<% end %>
+
+<%= collapsible_field_set_tag "Custom School Program Attributes",
+  class: 'custom-school-inputs closed' do %>
+
+    <%= alert 'info', 'info-sign' do %>
+      Any item with a background
+      <span class="color-coded-bg green">color-coded green</span>
+      below indicates that it is inheriting its value(s) from the community program
+      that it belongs to. We've also color coded the
+      <span class="color-coded-text green">corresponding text green</span>
+      to indicate what value(s) have been set on that community program.
+    <% end %>
+
+    <%= render partial: 'community_programs/program_detail_inputs', locals: {
+      f: f,
+      inherited_object: community_program
+    } %>
+
+<% end %>
+
+<div class="row">
+  <div class="col-sm-3 hidden-sm"></div>
+  <div class="col-sm-9">
+    <%= f.submit 'Add',
+      class: "btn btn-large btn-success" %>
+  </div>
+</div>

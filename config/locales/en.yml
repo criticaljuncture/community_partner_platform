@@ -1,15 +1,40 @@
 en:
   errors:
     form_error:
-      one: "There is %{count} error below. Please correct it and click 'Save' to continue."
-      other: "There are %{count} errors below. Please correct them and click 'Save' to continue."
+      one: There is %{count} error below. Please correct it and click 'Save' to continue.
+      other: There are %{count} errors below. Please correct them and click 'Save' to continue.
   community_programs:
+    demographic_groups: Target Demographic Groups
+    ethnicity_culture_groups: Target Ethnicity/Culture Groups
+    grade_levels: Target Grade Levels
+    name: Program Name
+    organization_contact: Primary Organization Contact
+    organization_name: Name
+    quality_element: Community School Element
+    school_name: Name
+    service_description: Program Description
+    service_days: Service Days
+    service_times: Service Times
+    service_types: Service Types
+    target_population: Target Population
+
     flash_messages:
-      verified: "Thank you for verifying %{name} @ %{school_name}"
+      verified: Thank you for verifying '%{name}'
       save:
-        success: "Successfully saved %{name} @ %{school_name}"
+        success: Successfully saved '%{name}'
       create:
-        success: "Successfully created %{name} @ %{school_name}"
+        success: Successfully created '%{name}'
+  school_programs:
+    customized_attributes: Custom Site Attributes
+    site_agreement_on_file: Site Agreement on File
+    user: Primary School Contact
+
+    create:
+      success: Successfully added '%{name}' to this program
+    update:
+      success: Successfully updated '%{name}' for this program
+    remove:
+      success: Successfully removed '%{name}' from this program
   organizations:
     messages:
       uncreated_programs:

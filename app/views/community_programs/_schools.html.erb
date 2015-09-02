@@ -1,0 +1,64 @@
+<%= columnar_table_block 'Schools',
+  auto_table: false, class: 'school-programs' do %>
+
+  <% school_programs.each do |school_program| %>
+    <div class="columnar-table-block-header">
+      <h5>
+        <%= link_to school_program.school.name,
+          school_path(school_program.school) %>
+
+        <% if school_program.customized_attributes.present? %>
+          <span class="item-info">
+            (<%= pluralize(
+              school_program.customized_attributes.count,
+              'customized attribute'
+              ) %>)
+          </span>
+        <% end %>
+      </h5>
+      <%= link_to_gicon 'Show Details', '#',
+        class: "btn btn-medium btn-info toggle closed",
+        icon: 'eye-open eye-close',
+        wrapper_span: {id: "school-program-link-#{school_program.id}"},
+        "data-toggle-target" => "#school-program-table-#{school_program.id}",
+        "data-toggle-text-node" => "#school-program-link-#{school_program.id}",
+        "data-toggle-show-text" => "Show Details",
+        "data-toggle-hide-text" => "Hide Details"
+      %>
+    </div>
+
+    <%= columnar_table nil, id: "school-program-table-#{school_program.id}",
+      class: "hidden" do %>
+      <tr>
+        <td><%= I18n.t('school_programs.user') %></td>
+        <td>
+          <%= link_to(school_program.user.full_name,
+            user_path(school_program.user)) if school_program.user %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><%= I18n.t('school_programs.site_agreement_on_file') %></td>
+        <td>
+          <%= school_program.site_agreement_on_file? ? 'Yes' : 'No' %>
+        </td>
+      </tr>
+
+      <% if school_program.customized_attributes.present? %>
+        <tr>
+          <td colspan="2" class="font-bold">
+            Customized Site Attributes
+            <%= columnar_table nil, class: 'embedded' do %>
+              <% school_program.extract_customized_attributes.each do |k, v| %>
+                <tr>
+                  <td><%= k %></td>
+                  <td><%= v %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
