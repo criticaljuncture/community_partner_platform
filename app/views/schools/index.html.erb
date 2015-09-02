@@ -1,11 +1,14 @@
 <%= breadcrumb [['Schools', schools_path]] %>
 
-<div class="row-fluid">
-  <div class="span12">
-    <%= page_header("Schools", "icon-cpp-school") do %>
-      <%= link_to('Create New School', new_school_path, class: "btn btn-primary") if can? :manage, School %>
-    <% end %>
+<%= page_header("Schools", "icon-cpp-school") do %>
+  <%= link_to_gicon('Create New School',
+    new_school_path,
+    class: "btn btn-primary",
+    icon: 'plus') if can? :manage, School %>
+<% end %>
 
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <%= page_nav_tabs @overview_presenter.page_nav_tabs %>
 
     <div class="tab-content">
