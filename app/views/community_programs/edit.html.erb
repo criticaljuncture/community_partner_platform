@@ -48,12 +48,11 @@
   <% end %>
 <% end %>
 
+<%= page_header @community_program.verification_header,
+  "icon-cpp-handshake" %>
+
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md:12 %>">
-
-    <%= page_header @community_program.verification_header,
-      "icon-cpp-handshake" %>
-
     <div class="form_wrapper">
       <%= simple_form_for @community_program, method: :put,
         html: {class: "form-horizontal community-program"},

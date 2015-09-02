@@ -1,9 +1,11 @@
-<%= f.inputs do %>
-  <%= f.input :name %>
-  <%= f.input :region_id, as: :select, collection: Region.all.sort_by(&:name) %>
-  <%#= f.input :active %>
-<% end %>
+<%= f.input :name %>
+<%= f.input :region_id,
+  as: :select,
+  collection: Region.all.sort_by(&:name) %>
 
-<%= f.actions do %>
-  <%= f.button 'Save', class: "btn btn-success" %>
-<% end %>
+<div class="row">
+  <div class="col-sm-3 hidden-sm"></div>
+  <div class="col-sm-9">
+    <%= f.submit 'Save', class: "btn btn-large btn-success" %>
+  </div>
+</div>

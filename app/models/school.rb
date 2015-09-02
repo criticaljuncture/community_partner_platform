@@ -1,7 +1,8 @@
 class School < ActiveRecord::Base
   include SchoolAudit
 
-  has_many :community_programs
+  has_many :school_programs
+  has_many :community_programs, through: :school_programs
   has_many :organizations, through: :community_programs
 
   has_many :free_reduced_meal_data, class_name: FreeReducedMealData
@@ -14,7 +15,7 @@ class School < ActiveRecord::Base
   default_scope -> { where(direct_funded_charter_school: false).where(active: true) }
 
   def quality_elements
-    community_programs.map{|cp| cp.quality_elements}.flatten.uniq
+    community_programs.map{|cp| cp.quality_element}.flatten.uniq
   end
 
   def service_types

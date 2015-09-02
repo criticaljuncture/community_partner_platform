@@ -3,24 +3,32 @@
   [@school.name, school_path(@school)]
 ] %>
 
-<div class="row-fluid">
-  <div class="span12">
-    <%= page_header(@school.name, "icon-cpp-school") do %>
-      <%= link_to('Edit', edit_school_path(@school), class: "btn btn-primary") if can? :manage, @school %>
-    <% end %>
+<%= page_header @school.name, "icon-cpp-school" do %>
+  <%= link_to_gicon('Edit School',
+    edit_school_path(@school),
+    class: "btn btn-primary",
+    icon: 'pencil'
+  ) if can? :manage, @school %>
+<% end %>
 
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <% if can? :view, :school_partnership_status_dashboard_panels %>
-      <%= render partial: 'progress_charts', locals: {school: @school} %>
+      <%#= render partial: 'progress_charts', locals: {school: @school} %>
     <% end %>
 
-    <dl class="clear">
+    <dl>
       <dt>Region</dt>
       <dd><%= @school.region.try(:name) || '&nbsp;'.html_safe %></dd>
 
       <dt>Community Programs</dt>
-      <dd><%= @school.community_programs.count %></dd>
+      <dd><%= @school.school_programs.count %></dd>
     </dl>
+  </div>
+</div>
 
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <%= page_nav_tabs [
       ['Community Programs', '#community-programs'],
       ['Community School Elements', '#community-school-elements']
@@ -30,7 +38,7 @@
       <div id="community-programs" class="tab-pane active">
         <%= render partial: 'community_programs', locals: {
           school: @school,
-          community_programs: @school.community_programs
+          school_programs: @school.school_programs
         } %>
       </div>
 

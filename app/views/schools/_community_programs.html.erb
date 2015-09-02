@@ -1,29 +1,57 @@
-<div class="table_wrapper span10">
-  <h2>Community Programs</h2>
+<h2>Community Programs</h2>
 
-  <% if community_programs.count > 0 %>
-    <table class="table table-striped table-sorter">
-      <thead>
-        <tr>
-          <th>Organization</th>
-          <th>Program Name</th>
-          <th class="center">Community School Elements</th>
-          <th class="">Service Types</th>
-        </tr>
-      </thead>
+<% if school_programs.present? %>
+  <% school_programs.
+      group_by(&:quality_element).
+      sort_by{|qe, p| qe.name}.
+      each do |quality_element, school_programs| %>
 
-      <tbody>
-        <% community_programs.each do |community_program| %>
-          <tr>
-            <td><%= link_to community_program.organization.try(:name), organization_path(community_program.organization) %></td>
-            <td><%= link_to community_program.name, community_program_path(community_program) %></td>
-            <td class="center"><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
-            <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p>There are currently no community programs available for <%= school.name %></p>
+    <%= columnar_table_block quality_element.name,
+      auto_table: false,
+      class: 'school school-programs',
+      columns: {xs: 12, md: 12} do %>
+        <div class="columnar-table-block-wrapper">
+          <% school_programs.sort_by(&:name).each do |school_program| %>
+            <div class="columnar-table-block-header">
+              <h5>
+                <%= link_to school_program.name,
+                  community_program_path(school_program.community_program) %>
+
+                provided by
+
+                <%= link_to school_program.organization.name,
+                  organization_path(school_program.organization) %>
+              </h5>
+              <%= link_to_gicon 'Show Details', '#',
+                class: "btn btn-medium btn-info toggle closed",
+                icon: 'eye-open eye-close',
+                wrapper_span: {id: "school-program-link-#{school_program.id}"},
+                "data-toggle-target" => "#school-program-table-#{school_program.id}",
+                "data-toggle-text-node" => "#school-program-link-#{school_program.id}",
+                "data-toggle-show-text" => "Show Details",
+                "data-toggle-hide-text" => "Hide Details"
+              %>
+            </div>
+
+            <%= columnar_table nil, id: "school-program-table-#{school_program.id}",
+              class: "hidden" do %>
+              <tr>
+                <td>Service Types</td>
+                <td>
+                  <%= school_program.service_types.map(&:name).join(', ') %>
+                </td>
+              </tr>
+              <tr>
+                <td>Student Population</td>
+                <td><%= school_program.student_population.try(:name) %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </div> <!-- columnar-table-block-wrapper -->
+    <% end %>
   <% end %>
-</div>
+<% else %>
+  <p>
+    There are currently no community programs available for <%= school.name %>.
+  </p>
+<% end %>

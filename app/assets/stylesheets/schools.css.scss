@@ -1,10 +1,10 @@
-.graph_wrapper {
-  .instructions,
-  form,
-  .graph { padding: 10px; }
+.school.school-programs {
+  margin-bottom: 20px;
+  
+  .columnar-table-block-wrapper { padding-left: 15px; }
 
-  form.scatter_plot_items {
-    select { width: 410px; }
+  table {
+    tr td:first-child { width: 20%; }
   }
 }
 

@@ -3,15 +3,16 @@
   [truncate(@school.name, length: 20), school_path(@school)],
   ["Edit", ""]] %>
 
-<div class="row-fluid">
-  <div class="span12">
-    <%= page_header("Edit #{@school.name}", "icon-cpp-school") %>
+<%= page_header("Edit #{@school.name}", "icon-cpp-school") %>
 
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <div class="form_wrapper">
-      <%= semantic_form_for @school, method: :put, html: {class: "form-horizontal"} do |f| %>
-        <%= render :partial => 'form', :locals => {:f => f} %>
+      <%= simple_form_for @school, method: :put,
+        html: {class: "form-horizontal school"},
+        wrapper: :horizontal_form do |f| %>
+          <%= render partial: 'form', locals: {f: f} %>
       <% end %>
     </div>
   </div>
 </div>
-

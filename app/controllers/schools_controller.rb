@@ -23,9 +23,14 @@ class SchoolsController < ApplicationController
     @school = School.new(school_params)
     authorize! :create, @school
 
-    @school.save
+    @school.save!
 
+    flash.notice = t('schools.flash_messages.create.success',
+                      name: @school.name)
     redirect_to school_path(@school)
+  rescue ActiveRecord::RecordInvalid
+    flash.now[:error] = t('errors.form_error', count: @school.errors.count)
+    render :new
   end
 
   def edit
@@ -37,9 +42,15 @@ class SchoolsController < ApplicationController
     @school = School.find(params[:id])
     authorize! :update, @school
 
-    @school.update_attributes(school_params)
+    @school.update_attributes!(school_params)
+
+    flash.notice = t('schools.flash_messages.save.success',
+                     name: @school.name)
 
     redirect_to school_path(@school)
+  rescue ActiveRecord::RecordInvalid
+    flash.now[:error] = t('errors.form_error', count: @school.errors.count)
+    render :edit
   end
 
   def primary_contact_input

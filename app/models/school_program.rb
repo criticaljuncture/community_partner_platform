@@ -7,7 +7,11 @@ class SchoolProgram < ActiveRecord::Base
   belongs_to :student_population
   belongs_to :user
 
+  has_one :organization, through: :community_program
+
   default_scope -> {where(active: true)}
+
+  delegate :name, :service_types, :quality_element, to: :community_program
 
   delegate_if_blank :days,
     :demographic_groups,

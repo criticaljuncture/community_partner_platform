@@ -35,6 +35,12 @@ en:
       success: Successfully updated '%{name}' for this program
     remove:
       success: Successfully removed '%{name}' from this program
+  schools:
+    flash_messages:
+      save:
+        success: Successfully saved '%{name}'
+      create:
+        success: Successfully created '%{name}'
   organizations:
     messages:
       uncreated_programs:

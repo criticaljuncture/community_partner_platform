@@ -1,0 +1,9 @@
+.nav.nav-tabs { margin-top: 30px; }
+.tab-content {
+  min-height: 400px;
+
+  .table_wrapper,
+  .form_wrapper,
+  .graph_wrapper,
+  .detail_wrapper { padding: 0; }
+}
