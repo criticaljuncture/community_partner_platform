@@ -22,6 +22,7 @@ class Ability < BaseAbility
 
     can :read, Role, id: [2,3,4]
     can :manage, School
+    can :manage, SchoolProgram
     can :manage, CommunityProgram
 
     can :manage, Organization
@@ -63,6 +64,11 @@ class Ability < BaseAbility
     can :new, CommunityProgram
     can [:create, :edit, :update, :toggle_active], CommunityProgram, organization_id: @user.organization_id
     can :verify, CommunityProgram, organization_id: @user.organization_id
+
+    can :new, SchoolProgram
+    can [:create, :edit, :update, :toggle_active], SchoolProgram do
+      can?(:create, CommunityProgram) || can?(:edit, CommunityProgram)
+    end
 
     organization_member_page_level_abilities
   end
