@@ -4,13 +4,16 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Community School Element</th>
-        <th class="center">Community Programs</th>
+        <th><%= t('quality_element.class.name') %></th>
+        <th class="center">
+          <%= t('community_programs.class.name').pluralize %>
+        </th>
       </tr>
     </thead>
 
     <tbody>
-      <% QualityElement.accessible_by(current_ability).sort_by(&:name).each do |element| %>
+      <% QualityElement.accessible_by(current_ability).
+        programatic.sort_by(&:name).each do |element| %>
         <tr>
           <td><%= link_to element.name, quality_element_path(element) %></td>
           <td class="center">

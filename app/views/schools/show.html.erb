@@ -18,10 +18,10 @@
     <% end %>
 
     <dl>
-      <dt>Region</dt>
+      <dt><%= t('region.class.name') %></dt>
       <dd><%= @school.region.try(:name) || '&nbsp;'.html_safe %></dd>
 
-      <dt>Community Programs</dt>
+      <dt><%= t('community_programs.class.name') %></dt>
       <dd><%= @school.school_programs.count %></dd>
     </dl>
   </div>
@@ -31,7 +31,7 @@
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <%= page_nav_tabs [
       ['Community Programs', '#community-programs'],
-      ['Community School Elements', '#community-school-elements']
+      ['Community School Element Summary', '#community-school-elements']
     ] %>
 
     <div class="tab-content">

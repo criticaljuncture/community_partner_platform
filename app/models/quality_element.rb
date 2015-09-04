@@ -10,4 +10,7 @@ class QualityElement < ActiveRecord::Base
 
   validates :name, presence: true
   validates :element_type, presence: true
+
+  scope :programatic, -> { where(element_type: 'programmatic') }
+  scope :foundational, -> { where(element_type: 'foundational') }
 end

@@ -8,7 +8,8 @@
   <%= f.simple_fields_for :primary_quality_element do |element| %>
     <%= element.input :quality_element_id,
       as: :select,
-      collection: QualityElement.accessible_by(current_ability).sort_by(&:name),
+      collection: QualityElement.accessible_by(current_ability).
+        programatic.sort_by(&:name),
       input_html: {class: 'wrap'},
       required: true %>
 
