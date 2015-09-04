@@ -1,0 +1,87 @@
+id,site_code,state_cde_code,name,area_network_id,network,net_cluster,campus_name,site_type,site_type_norm,address,city,zip_code,grades_served,low_grade,high_grade,region,lat,lng
+1,101,6001630,Allendale Elementary,2,A2,A2.2,NULL,Elementary,Elementary,3670 Penniman Ave,Oakland,94619,TK-5,0,5,2,-122.205,37.7887
+2,102,6001655,Bella Vista Elementary,1,A1,A1.2,NULL,Elementary,Elementary,1025 E 28th St,Oakland,94610,TK-5,0,5,2,-122.237,37.8005
+3,103,6001663,Brookfield Village Elementary,3,A3,A3.1,NULL,Elementary,Elementary,401 Jones Ave,Oakland,94603,K-5,0,5,3,-122.189,37.7348
+4,105,6001689,Burckhalter Elementary,3,A3,A3.1,NULL,Elementary,Elementary,3994 Burckhalter Ave,Oakland,94605,K-5,0,5,3,-122.167,37.7755
+5,106,6001648,Chabot Elementary,1,A1,A1.1,NULL,Elementary,Elementary,6686 Chabot Rd,Oakland,94618,K-5,0,5,1,-122.242,37.8506
+6,107,115600,East Oakland PRIDE Elementary,3,A3,A3.1,Webster,Elementary,Elementary,8000 Birch St,Oakland,94621,K-5,0,5,3,-122.174,37.7591
+7,108,6001739,Cleveland Elementary,1,A1,A1.2,NULL,Elementary,Elementary,745 Cleveland St,Oakland,94606,K-5,0,5,1,-122.244,37.8043
+8,111,6001754,Crocker Highlands Elementary,1,A1,A1.2,NULL,Elementary,Elementary,525 Midcrest Rd,Oakland,94610,K-5,0,5,1,-122.227,37.811
+9,112,115618,Greenleaf Elementary,3,A3,A3.2,Whittier,K-8,K-8,6328 E 17th St,Oakland,94621,TK-7,0,7,3,-122.195,37.7644
+10,114,115584,Global Family School,2,A2,A2.1,Jefferson,Elementary,Elementary,2035 40th Ave,Oakland,94601,TK-5,0,5,2,-122.213,37.7794
+11,115,6001812,Emerson Elementary,1,A1,A1.2,NULL,Elementary,Elementary,4803 Lawton Ave,Oakland,94609,TK-5,0,5,1,-122.257,37.8346
+12,116,6001820,Franklin Elementary,1,A1,A1.2,NULL,Elementary,Elementary,915 Foothill Blvd,Oakland,94606,K-5,0,5,2,-122.249,37.7938
+13,117,6001838,Fruitvale Elementary,2,A2,A2.2,NULL,Elementary,Elementary,3200 Boston Ave,Oakland,94602,K-5,0,5,2,-122.214,37.7963
+14,118,6001846,Garfield Elementary,2,A2,A2.1,NULL,Elementary,Elementary,1640 22nd Ave,Oakland,94606,TK-5,0,5,2,-122.236,37.7868
+15,119,6001853,Glenview Elementary,2,A2,A2.2,NULL,Elementary,Elementary,4215 La Cresta Ave,Oakland,94602,K-5,0,5,2,-122.219,37.8053
+16,121,6096523,La Escuelita Elementary,3,A3,A3.2,NULL,Elementary,Elementary,1050 2nd Ave,Oakland,94606,TK-5,0,5,2,-122.259,37.7962
+17,122,6001879,Grass Valley Elementary,3,A3,A3.1,NULL,Elementary,Elementary,4720 Dunkirk Ave,Oakland,94605,TK-5,0,5,3,-122.125,37.753
+18,123,115576,Futures Elementary,2,A2,A2.1,Lockwood,Elementary,Elementary,6701 International Blvd,Oakland,94621,K-5,0,5,3,-122.192,37.7614
+19,125,6001903,New Highland Academy,3,A3,A3.1,Highland,Elementary,Elementary,8521 A St,Oakland,94621,K-5,0,5,3,-122.179,37.7522
+20,127,6001911,Hillcrest School (K-8),3,A3,A3.2,NULL,K-8,K-8,30 Marguerite Dr,Oakland,94618,K-8,0,8,1,-122.233,37.8405
+21,129,6001978,Lafayette Elementary,1,A1,A1.1,NULL,Elementary,Elementary,1700 Market St,Oakland,94607,K-5,0,5,1,-122.28,37.8104
+22,131,6001994,Laurel Elementary,2,A2,A2.2,NULL,Elementary,Elementary,3750 Brown Ave,Oakland,94619,K-5,0,5,2,-122.197,37.7928
+23,133,6002018,Lincoln Elementary,1,A1,A1.2,NULL,Elementary,Elementary,225 11th St,Oakland,94607,K-5,0,5,1,-122.267,37.8
+24,136,6001929,Horace Mann Elementary,3,A3,A3.2,NULL,Elementary,Elementary,5222 Ygnacio Ave,Oakland,94601,TK-5,0,5,2,-122.202,37.7736
+25,138,6002059,Markham Elementary,3,A3,A3.1,NULL,Elementary,Elementary,7220 Krause Ave,Oakland,94605,TK-5,0,5,3,-122.179,37.7654
+26,142,6001945,Joaquin Miller Elementary,1,A1,A1.1,NULL,Elementary,Elementary,5525 Ascot Dr,Oakland,94611,K-5,0,5,1,-122.202,37.8184
+27,143,6002083,Montclair Elementary,1,A1,A1.1,NULL,Elementary,Elementary,1757 Mountain Blvd,Oakland,94611,K-5,0,5,1,-122.213,37.8314
+28,144,6002091,Parker Elementary,3,A3,A3.2,NULL,Elementary,Elementary,7929 Ney Ave,Oakland,94605,TK-5,0,5,3,-122.166,37.7655
+29,145,6002109,Peralta Elementary,1,A1,A1.1,NULL,Elementary,Elementary,460 63rd St,Oakland,94609,K-5,0,5,1,-122.259,37.8491
+30,146,6002117,Piedmont Avenue Elementary,1,A1,A1.1,NULL,Elementary,Elementary,4314 Piedmont Ave,Oakland,94611,K-5,0,5,1,-122.249,37.8291
+31,148,6002141,Redwood Heights Elementary,2,A2,A2.2,NULL,Elementary,Elementary,4401 39th Ave,Oakland,94619,K-5,0,5,2,-122.187,37.7969
+32,149,115204,Community United Elementary School,2,A2,A2.1,Lockwood,Elementary,Elementary,6701 International Blvd,Oakland,94621,TK-5,0,5,3,-122.192,37.7614
+33,151,6002174,Sequoia Elementary,2,A2,A2.2,NULL,Elementary,Elementary,3730 Lincoln Ave,Oakland,94602,TK-5,0,5,1,-122.211,37.8023
+34,154,6002182,Madison Park Lower Campus,3,A3,A3.2,NULL,Elementary,Elementary,470 El Paseo Dr,Oakland,94603,K-5,0,5,3,-122.177,37.7284
+35,157,6002216,Thornhill Elementary,1,A1,A1.2,NULL,Elementary,Elementary,5880 Thornhill Dr,Oakland,94611,K-5,0,5,1,-122.211,37.8361
+36,165,6002273,ACORN Woodland Elementary,3,A3,A3.1,NULL,Elementary,Elementary,1025 81st Ave,Oakland,94621,K-5,0,5,3,-122.186,37.753
+37,166,6001713,Howard Elementary,3,A3,A3.2,NULL,Elementary,Elementary,8755 Fontaine St,Oakland,94605,K-5,0,5,3,-122.151,37.7619
+38,168,6001697,Carl Munck Elementary,1,A1,A1.2,NULL,Elementary,Elementary,11900 Campus Dr,Oakland,94619,K-5,0,5,3,-122.173,37.7947
+39,170,6057046,Hoover Elementary,1,A1,A1.1,NULL,Elementary,Elementary,890 Brockhurst St,Oakland,94608,TK-5,0,5,1,-122.275,37.8233
+40,171,6001895,Kaiser Elementary,1,A1,A1.2,NULL,Elementary,Elementary,25 South Hill Ct,Oakland,94618,K-5,0,5,1,-122.232,37.8535
+41,172,112813,Fred T. Korematsu Discovery Academy,2,A2,A2.1,Stonehurst,Elementary,Elementary,10315 E St,Oakland,94603,K-5,0,5,3,-122.174,37.7375
+42,175,110247,SEED Elementary,2,A2,A2.1,Manzanita,Elementary,Elementary,2409 E 27th St,Oakland,94601,TK-5,0,5,2,-122.225,37.7927
+43,177,6002190,Esperanza Elementary,2,A2,A2.1,Stonehurst,Elementary,Elementary,10315 E St,Oakland,94603,K-5,0,5,3,-122.174,37.7375
+44,178,6002075,Bridges At Melrose,2,A2,A2.2,Melrose,Elementary,Elementary,1325 53rd Ave,Oakland,94601,TK-5,0,5,2,-122.207,37.7674
+45,179,6002042,Manzanita Community School,2,A2,A2.1,Manzanita,Elementary,Elementary,2409 E 27th St,Oakland,94601,K-5,0,5,2,-122.225,37.7927
+46,181,102988,EnCompass Academy,3,A3,A3.1,NULL,Elementary,Elementary,1025 81st Ave,Oakland,94621,K-5,0,5,3,-122.186,37.753
+47,182,6072235,M L King Jr Elementary,1,A1,A1.1,NULL,Elementary,Elementary,960 10th St,Oakland,94607,K-5,0,5,1,-122.283,37.8059
+48,183,6002125,PLACE @ Prescott,1,A1,A1.1,Prescott,Elementary,Elementary,920 Campbell St,Oakland,94607,TK-5,0,5,1,-122.298,37.8083
+49,186,6118616,International Community School,2,A2,A2.2,Cesar Chavez,Elementary,Elementary,2825 International Blvd,Oakland,94601,K-5,0,5,2,-122.23,37.7796
+50,190,100792,Think College Now,2,A2,A2.2,Cesar Chavez,Elementary,Elementary,2825 International Blvd,Oakland,94601,K-5,0,5,2,-122.23,37.7796
+51,191,110254,Sankofa Academy,3,A3,A3.2,NULL,K-8,K-8,581 61st Street,Oakland,94609,TK-7,0,7,1,-122.264,37.8471
+52,192,110262,RISE Community School,3,A3,A3.1,Highland,Elementary,Elementary,8521 A Street,Oakland,94621,K-5,0,5,3,-122.179,37.7522
+53,193,110239,Reach Academy,3,A3,A3.1,NULL,Elementary,Elementary,9860 Sunnyside St,Oakland,94603,TK-5,0,5,3,-122.162,37.7466
+54,201,6057004,Claremont Middle School,4,MS,MS.1,NULL,Middle,Middle,5750 College Ave,Oakland,94618,8-Jun,6,8,1,-122.252,37.8458
+55,203,6057020,Frick Middle School,4,MS,MS.1,NULL,Middle,Middle,2845 64th Ave,Oakland,94605,8-Jun,6,8,3,-122.184,37.7711
+56,204,115626,West Oakland Middle School,4,MS,MS.1,NULL,Middle,Middle,991 14th St,Oakland,94607,8-Jun,6,8,1,-122.283,37.8087
+57,206,6056998,Bret Harte Middle School,4,MS,MS.1,NULL,Middle,Middle,3700 Coolidge Ave,Oakland,94602,8-Jun,6,8,2,-122.207,37.8001
+58,210,6057061,Edna M Brewer Middle School,4,MS,MS.1,NULL,Middle,Middle,3748 13th Ave,Oakland,94610,8-Jun,6,8,2,-122.23,37.8037
+59,211,6057079,Montera Middle School,4,MS,MS.1,NULL,Middle,Middle,5555 Ascot Dr,Oakland,94611,8-Jun,6,8,1,-122.201,37.819
+60,212,6057087,Roosevelt Middle School,4,MS,MS.1,NULL,Middle,Middle,1926 19th Ave,Oakland,94606,8-Jun,6,8,2,-122.237,37.7903
+61,213,6057095,Westlake Middle School,4,MS,MS.1,NULL,Middle,Middle,2629 Harrison St,Oakland,94612,8-Jun,6,8,1,-122.26,37.8143
+62,215,6066450,Madison Park Upper Campus,5,HS,HS.2,NULL,12-Jun,12-Jun,400 Capistrano Dr,Oakland,94603,9-Jun,6,9,3,-122.179,37.7279
+63,221,112789,Elmhurst Community Prep,4,MS,MS.2,Elmhurst,Middle,Middle,1800 98th Ave,Oakland,94603,8-Jun,6,8,3,-122.166,37.7463
+64,224,112771,Alliance Academy,4,MS,MS.2,Elmhurst,Middle,Middle,1800 98th Ave,Oakland,94603,8-Jun,6,8,3,-122.166,37.7463
+65,226,112805,Roots International Academy,4,MS,MS.2,Havenscourt,Middle,Middle,1390 66th Ave,Oakland,94621,8-Jun,6,8,3,-122.193,37.7619
+66,228,112763,United for Success Academy,4,MS,MS.2,Calvin Simmons,Middle,Middle,2101 35th Ave,Oakland,94601,8-Jun,6,8,2,-122.217,37.7844
+67,232,112797,Coliseum College Prep Academy,5,HS,HS.1,Havenscourt,12-Jun,12-Jun,1390 66th Ave,Oakland,94621,12-Jun,6,12,4,-122.193,37.7619
+68,235,6118640,Melrose Leadership Academy,2,A2,A2.1,MaxwellPk,K-8,K-8,4730 Fleming Ave,Oakland,94619,"K-4, 6-8",0,8,2,-122.198,37.7805
+69,236,6118657,Urban Promise Academy,4,MS,MS.1,Calvin Simmons,Middle,Middle,3031 East 18th St,Oakland,94601,8-Jun,6,8,2,-122.224,37.782
+70,269,106559,Oakland Community Day Middle,,HS,HS.3,NULL,Middle-Alt,Middle,4917 Mountain Blvd,Oakland,94619,8-Jun,6,8,4,-122.178,37.7881
+71,301,125161,Castlemont High School,5,HS,HS.1,Castlemont,Senior,Senior,8601 MacArthur Blvd,Oakland,94605,12-Sep,9,12,4,-122.163,37.7597
+72,302,125716,Fremont High School,5,HS,HS.1,Fremont,Senior,Senior,4610 Foothill Blvd,Oakland,94601,12-Sep,9,12,4,-122.209,37.7737
+73,303,110189,McClymonds HS,5,HS,HS.1,NULL,Senior,Senior,2607 Myrtle Street,Oakland,94607,12-Sep,9,12,4,-122.279,37.8179
+74,304,135905,Oakland High School,5,HS,HS.2,NULL,Senior,Senior,1023 MacArthur Blvd,Oakland,94610,12-Sep,9,12,4,-122.236,37.805
+75,305,136051,Oakland Technical High School,5,HS,HS.1,NULL,Senior,Senior,4351 Broadway,Oakland,94611,12-Sep,9,12,4,-122.254,37.8318
+76,306,137943,Skyline High School,5,HS,HS.1,NULL,Senior,Senior,12250 Skyline Blvd,Oakland,94619,12-Sep,9,12,4,-122.164,37.7983
+77,309,118653,Bunche Academy,5,HS,HS.3,NULL,Senior-Alt,Senior,1240 18th St,Oakland,94607,12-Nov,11,12,4,-122.287,37.8131
+78,310,132688,Dewey Academy,5,HS,HS.3,NULL,Senior-Alt,Senior,1111 Second Ave,Oakland,94606,12-Nov,11,12,4,-122.258,37.7968
+79,311,119859,Gateway to College,,HS,HS.3,NULL,Senior,Senior,900 Fallon St A203,Oakland,94607,NULL,9,12,4,-122.264,37.7971
+80,313,130179,Street Academy,5,HS,HS.3,NULL,Senior-Alt,Senior,417 29th St,Oakland,94609,12-Sep,9,12,4,-122.265,37.8177
+81,330,6114011,Sojourner Truth Independent Study,5,HS,HS.3,NULL,Indep Study,Senior,8251 Fontaine St,Oakland,94605,K-12,0,12,4,-122.154,37.7671
+82,333,106542,Oakland Community Day HS,,HS,HS.3,NULL,Senior-Alt,Senior,4917 Mountain Blvd,Oakland,94619,12-Sep,9,12,4,-122.178,37.7881
+83,335,130575,Life Academy,5,HS,HS.2,Calvin Simmons,12-Jun,12-Jun,2101 35th Ave,Oakland,94601,"6-7, 9-12",6,12,4,-122.217,37.7844
+84,338,100701,Met West High School,5,HS,HS.2,NULL,Senior-Alt,Senior,1100 3rd Ave,Oakland,94606,12-Sep,9,12,4,-122.257,37.7966
+85,352,130146,Rudsdale Continuation,5,HS,HS.3,NULL,Senior-Alt,Senior,8251 Fontaine St,Oakland,94605,12-Nov,10,12,4,-122.154,37.7671
+86,353,115667,Oakland International HS,5,HS,HS.2,NULL,Senior-Alt,Senior,4521 Webster St,Oakland,94609,12-Sep,9,12,4,-122.26,37.8335

@@ -1,0 +1,53 @@
+# derived from data/CSV/OUSD Schools - Schools - 2015-2016.csv
+
+schools:
+  options:
+    #where_query: 'WHERE schools.state_cde_code = csv_file_imports.state_cde_code'
+
+  columns:
+    address:
+      id: address
+      type: string
+    city:
+      id: city
+      type: string
+    grades_served:
+      id: grades_served
+      type: string
+    high_grade:
+      id: high_grade
+      type: string
+    lat:
+      id: lat
+      type: float
+    lng:
+      id: lng
+      type: float
+    low_grade:
+      id: low_grade
+      type: string
+    name:
+      id: name
+      type: string
+    network:
+      id: network
+      type: string
+    net_cluster:
+      id: net_cluster
+      type: string
+    site_code:
+      id: site_code
+      type: integer
+    site_type:
+      id: site_type
+      type: string
+    site_type_norm:
+      id: site_type_norm
+      type: string
+    state_cde_code:
+      id: 'state_cde_code'
+      type: string
+      mapping: "LPAD(@`state_cde_code`, 7, '0')"
+    zip_code:
+      id: zip_code
+      type: string

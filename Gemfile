@@ -6,8 +6,15 @@ gem 'rails', '~> 4.2.3'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
+# Memory based static tables
+gem 'active_hash'
+
 # json api
 gem 'active_model_serializers'
+
+# fast imports
+gem 'activerecord-fast-import', '~> 0.2.1'
+gem 'temping', '~> 3.2.0'
 
 # AWS email
 gem "aws-ses", "~> 0.5.0"
