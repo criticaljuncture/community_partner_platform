@@ -24,10 +24,14 @@ class ServiceType < ActiveRecord::Base
   end
 
   def schools_for_quality_element_service_type(quality_element)
-    community_programs_for_quality_element_service_type(quality_element).compact.map{|cp| cp.school}.uniq
+    community_programs_for_quality_element_service_type(quality_element).
+      compact.map{|cp|
+        cp.school_programs.map{|sp| sp.school}
+      }.flatten.uniq
   end
 
   def organizations_for_quality_element_service_type(quality_element)
-    community_programs_for_quality_element_service_type(quality_element).compact.map{|cp| cp.organization}.uniq
+    community_programs_for_quality_element_service_type(quality_element).
+      compact.map{|cp| cp.organization}.uniq
   end
 end
