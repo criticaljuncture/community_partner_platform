@@ -10,7 +10,7 @@ class School < ActiveRecord::Base
   has_many :user_schools
   has_many :users, through: :user_schools
 
-  belongs_to :region
+  belongs_to_active_hash :region
 
   default_scope -> { where(direct_funded_charter_school: false).where(active: true) }
 

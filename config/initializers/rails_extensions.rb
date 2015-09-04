@@ -3,3 +3,5 @@ class ActiveRecord::Base
     human_attribute_name(*args)
   end
 end
+
+ActiveRecord::Base.extend ActiveHash::Associations::ActiveRecordExtensions
