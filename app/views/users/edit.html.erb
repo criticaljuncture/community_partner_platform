@@ -4,12 +4,15 @@
   ['Edit', '']
 ] %>
 
-<div class="row-fluid">
-  <div class="span12">
-    <%= page_header("Edit #{@user.full_name}", "") %>
+<%= page_header("Edit #{@user.full_name}", "icon-cpp-users") %>
 
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <div class="form_wrapper">
-      <%= semantic_form_for @user, method: :put, html: {class: "form-horizontal"} do |f| %>
+      <%= simple_form_for @user, method: :put,
+        html: {class: "form-horizontal"},
+        wrapper: :horizontal_form do |f| %>
+
         <%= render :partial => 'form', :locals => {
           :f => f,
           roles: @roles,

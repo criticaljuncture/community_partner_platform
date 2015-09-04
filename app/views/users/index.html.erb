@@ -1,21 +1,30 @@
 <%= breadcrumb [['Users', users_path]] %>
 
-<div class="row-fluid">
-  <div class="span12">
-    <%= page_header("Users", "") do %>
-      <%= link_to 'Create New User', new_user_path, class: "btn btn-primary" %>
-    <% end %>
+<%= page_header("Users", "icon-cpp-users") do %>
+  <%= link_to_gicon 'Create New User',
+    new_user_path,
+    class: "btn btn-primary",
+    icon: 'plus' %>
+<% end %>
 
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <%= page_nav_tabs [['Active Users', '#active'],
                        ['Inactive Users', '#inactive']] %>
 
     <div class="tab-content">
       <div id="active" class="tab-pane active">
-        <%= render partial: 'active_table', locals: {users: @active_users} %> 
+        <%= render partial: 'table', locals: {
+          active: true,
+          users: @active_users
+        } %>
       </div>
 
       <div id="inactive" class="tab-pane">
-        <%= render partial: 'inactive_table', locals: {users: @inactive_users} %> 
+        <%= render partial: 'table', locals: {
+          active: false,
+          users: @inactive_users
+        } %>
       </div>
     </div>
   </div>

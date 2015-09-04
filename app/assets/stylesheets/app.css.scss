@@ -116,6 +116,31 @@ dl.horizontal_stack {
   cursor: pointer;
 }
 
+.toggleable {
+  &.toggle {
+    color: $text-color;
+    text-decoration: none;
+  }
+
+  &.closed {
+    .collapsible-area { display: none; }
+    .glyphicon-minus { display: none; }
+    .glyphicon-plus { display: inline-block; }
+  }
+
+  &.open {
+    .collapsible-area { display: block; }
+    .glyphicon-minus { display: inline-block; }
+    .glyphicon-plus { display: none; }
+  }
+
+  h2 .icon {
+    font-size: 80%;
+    position: relative;
+    top: -1px;
+  }
+}
+
 .font-bold {font-weight: bold;}
 
 .footer {

@@ -19,28 +19,16 @@ class CommunityProgramDecorator < Draper::Decorator
     @display ||= AttributeDisplay.new(self)
   end
 
-  class AttributeDisplay
-    attr_reader :d
-
-    def initialize(decorator)
-      @d = decorator
-    end
-
+  class AttributeDisplay < ApplicationAttributeDisplay
     def demographic_groups
       d.demographic_groups.present? ?
         d.demographic_groups.map(&:name).join(', ') :
-        not_provided
+        d.h.not_provided
 
     end
 
     def student_population
-      d.student_population.try(:name) || not_provided
-    end
-
-    private
-
-    def not_provided
-      d.h.content_tag(:span, 'not provided', class: 'hint')
+      d.student_population.try(:name) || d.h.not_provided
     end
   end
 end

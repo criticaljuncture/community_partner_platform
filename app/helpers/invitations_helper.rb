@@ -12,7 +12,9 @@ module InvitationsHelper
   end
 
   def invitation_accepted(user)
-    'Accepted <br />' + 
+    str = 'Accepted <br />'
+    str += user.invitation_sent_at < 3.months.ago ?
+      user.invitation_sent_at.to_s(:date_at_time_with_year) :
       user.invitation_sent_at.to_s(:date_at_time)
   end
 
@@ -21,8 +23,9 @@ module InvitationsHelper
 
     if can?(:send_invitation, user)
       status = status +
-                '<br />' +
-                link_to('Resend Invitation', send_invitation_user_path(user.id), method: :post)
+        '<br />' +
+        link_to('Resend Invitation', send_invitation_user_path(user.id),
+          method: :post)
     end
 
     status

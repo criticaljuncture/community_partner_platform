@@ -4,6 +4,9 @@ en:
       one: There is %{count} error below. Please correct it and click 'Save' to continue.
       other: There are %{count} errors below. Please correct them and click 'Save' to continue.
   community_programs:
+    class:
+      name: Community Program
+
     demographic_groups: Target Demographic Groups
     ethnicity_culture_groups: Target Ethnicity/Culture Groups
     grade_levels: Target Grade Levels
@@ -24,23 +27,11 @@ en:
         success: Successfully saved '%{name}'
       create:
         success: Successfully created '%{name}'
-  school_programs:
-    customized_attributes: Custom Site Attributes
-    site_agreement_on_file: Site Agreement on File
-    user: Primary School Contact
 
-    create:
-      success: Successfully added '%{name}' to this program
-    update:
-      success: Successfully updated '%{name}' for this program
-    remove:
-      success: Successfully removed '%{name}' from this program
-  schools:
-    flash_messages:
-      save:
-        success: Successfully saved '%{name}'
-      create:
-        success: Successfully created '%{name}'
+  organization:
+    class:
+      name: Organization
+
   organizations:
     messages:
       uncreated_programs:
@@ -57,6 +48,53 @@ en:
       success: Successfully created '%{name}'
     update:
       success: Successfully updated '%{name}'
+
+  quality_element:
+    class:
+      name: Community School Element
+
+  region:
+    class:
+      name: Network
+
+    elementary_area_1: Area 1 Elementary
+    elementary_area_2: Area 2 Elementary
+    elementary_area_3: Area 3 Elementary
+    middle: Middle School
+    high_school: High School
+
+  school_programs:
+    customized_attributes: Custom Site Attributes
+    site_agreement_on_file: Site Agreement on File
+    user: Primary School Contact
+
+    create:
+      success: Successfully added '%{name}' to this program
+    update:
+      success: Successfully updated '%{name}' for this program
+    remove:
+      success: Successfully removed '%{name}' from this program
+
+  school:
+    class:
+      name: School
+
+  schools:
+    flash_messages:
+      save:
+        success: Successfully saved '%{name}'
+      create:
+        success: Successfully created '%{name}'
+
+  user:
+    active: Active
+    email: Email
+    invitation_status: Invitation Status
+    last_login: Last Signed In
+    name: Name
+    phone_number: Work Phone Number
+    role: Role
+    title: Title
 
   users:
     flash_messages:

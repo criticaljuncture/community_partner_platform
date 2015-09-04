@@ -45,6 +45,9 @@ en:
         student_population_id: Target population
         user_id: School contact
 
+      user:
+        primary_role: Role
+
     #   defaults:
     #     password: 'Password'
     #   user:
@@ -65,6 +68,10 @@ en:
 
       school_programs:
         school_user_id: This is the primary contact at this school for this program.
+
+      user:
+        title: job title or role at school/organization
+        primary_role: role within the Community Partner Platform - determines what the user can access
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'

@@ -1,6 +1,7 @@
 <%= field_set_tag "User Information" do %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
+  <%= f.input :title %>
   <%= f.input :email %>
   <%= f.input :phone_number, placeholder: "(555) 555-5555" %>
 <% end %>
@@ -10,9 +11,9 @@
   <%= f.input :primary_role,
     as: :select,
     collection: roles,
+    include_blank: true,
     selected: f.object.primary_role.try(:id),
-    required: true,
-    label: 'Role' %>
+    required: true %>
 
   <%= f.input :organization_id,
     as: :select,

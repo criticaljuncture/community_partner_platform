@@ -3,44 +3,78 @@
   [truncate(@user.full_name, length: 20), user_path(@user)]
 ] %>
 
-<div class="row-fluid">
-  <div class="span12">
-    <%= page_header(@user.full_name, "") do %>
-      <div class="button_wrapper">
-        <%= link_to('Edit', edit_user_path(@user), class: "btn btn-primary") if can?(:manage, @user) %>
-        <%= link_to('Add Role', new_user_role_path(@user), class: "btn btn-warning") if can?(:add_role, User) %>
-      </div>
-    <% end %>
+<%= page_header(@user.full_name, "icon-cpp-users") do %>
+  <%= link_to_gicon('Edit',
+    edit_user_path(@user),
+    class: "btn btn-primary",
+    icon: 'pencil') if can?(:manage, @user) %>
 
-    <dl class="horizontal_stack span3">
-      <dt>Name</dt>
-      <dd><%= @user.full_name %></dd>
+  <%= link_to_gicon('Add Role',
+    new_user_role_path(@user),
+    class: "btn btn-create",
+    icon: 'lock') if can?(:add_role, User) %>
+<% end %>
 
-      <dt>Email</dt>
-      <dd><%= @user.email %></dd>
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+    <%= columnar_table_block 'User Information', class: 'user-info' do %>
+      <tr>
+        <td><%= t('user.name') %></td>
+        <td><%= @user.full_name %></td>
+      </tr>
+
+      <tr>
+        <td><%= t('user.title') %></td>
+        <td><%= @user.title %></td>
+      </tr>
+
+      <tr>
+        <td><%= t('user.email') %></td>
+        <td><%= @user.email %></td>
+      </tr>
 
       <% if can? :view, :user_details %>
-        <dt>Phone Number</dt>
-        <dd><%= number_to_phone(@user.phone_number) %></dd>
+        <tr>
+          <td><%= t('user.phone_number') %></td>
+          <td><%= @user.phone_number %></td>
+        </tr>
       <% end %>
-    </dl>
-
-    <% if can? :view, :user_details %>
-      <dl class="horizontal_stack span3">
-        <% @user.roles.each do |role| %>
-          <%= role_view(role, @user) %>
-        <% end %>
-      </dl>
     <% end %>
 
-    <% if can? :manage, @user %>
-      <dl class="horizontal_stack span3">
-        <dt>Active</dt>
-        <dd><%= @user.active.to_s %></dd>
+    <% if can? :view, :user_details %>
+      <%= columnar_table_block 'User Access', class: 'user-access',
+        auto_table: false do %>
+        <% @user.roles.each do |role| %>
+          <%= columnar_table do %>
+            <%= @user.display.role(role) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
-        <dt>Invitation Status</dt>
-        <dd><%= invitation_status_for(@user) %></dd>
-      </dl>
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+    <% if can? :manage, @user %>
+      <%= columnar_table_block 'User System Info', class: 'user-access' do %>
+        <tr>
+          <td><%= t('user.active') %></td>
+          <td><%= @user.active.to_s %></td>
+        </tr>
+
+        <tr>
+          <td><%= t('user.invitation_status') %></td>
+          <td><%= @user.invitation_status %></td>
+        </tr>
+
+        <% if @user.invitation_accepted? %>
+          <tr>
+            <td><%= t('user.last_login') %></td>
+            <td><%= @user.last_login %></td>
+          </tr>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819211612) do
+ActiveRecord::Schema.define(version: 20150903233301) do
 
   create_table "community_program_demographic_groups", force: :cascade do |t|
     t.integer  "demographic_group_id", limit: 4
@@ -167,6 +167,8 @@ ActiveRecord::Schema.define(version: 20150819211612) do
     t.text     "reported_school_programs", limit: 65535
   end
 
+  add_index "organizations", ["legal_status_id"], name: "index_organizations_on_legal_status_id", using: :btree
+
   create_table "page_views", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
     t.string   "method",       limit: 255
@@ -184,6 +186,8 @@ ActiveRecord::Schema.define(version: 20150819211612) do
     t.datetime "created_at"
   end
 
+  add_index "page_views", ["user_id"], name: "index_page_views_on_user_id", using: :btree
+
   create_table "quality_element_service_types", force: :cascade do |t|
     t.integer  "quality_element_id", limit: 4
     t.integer  "service_type_id",    limit: 4
@@ -191,12 +195,17 @@ ActiveRecord::Schema.define(version: 20150819211612) do
     t.datetime "updated_at"
   end
 
+  add_index "quality_element_service_types", ["quality_element_id", "service_type_id"], name: "qest_qe_id_st_id", using: :btree
+  add_index "quality_element_service_types", ["service_type_id", "quality_element_id"], name: "qest_st_id_qe_id", using: :btree
+
   create_table "quality_elements", force: :cascade do |t|
     t.string   "name",         limit: 255
     t.string   "element_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "quality_elements", ["element_type"], name: "index_quality_elements_on_element_type", using: :btree
 
   create_table "regions", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -242,7 +251,6 @@ ActiveRecord::Schema.define(version: 20150819211612) do
     t.integer  "school_id",              limit: 4
     t.integer  "community_program_id",   limit: 4
     t.integer  "user_id",                limit: 4
-    t.integer  "school_user_id",         limit: 4
     t.text     "notes",                  limit: 65535
     t.text     "service_description",    limit: 65535
     t.integer  "student_population_id",  limit: 4
@@ -257,8 +265,8 @@ ActiveRecord::Schema.define(version: 20150819211612) do
 
   add_index "school_programs", ["community_program_id", "school_id"], name: "sp_cpid_sid", using: :btree
   add_index "school_programs", ["school_id", "community_program_id"], name: "sp_sid_cpid", using: :btree
-  add_index "school_programs", ["school_user_id"], name: "index_school_programs_on_school_user_id", using: :btree
-  add_index "school_programs", ["user_id"], name: "index_school_programs_on_user_id", using: :btree
+  add_index "school_programs", ["student_population_id"], name: "index_school_programs_on_student_population_id", using: :btree
+  add_index "school_programs", ["user_id"], name: "school_program_user_id", using: :btree
 
   create_table "school_quality_indicator_sub_areas", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -271,13 +279,27 @@ ActiveRecord::Schema.define(version: 20150819211612) do
     t.integer  "region_id",                           limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "school_code",                         limit: 255
+    t.string   "state_cde_code",                      limit: 255
     t.boolean  "direct_funded_charter_school"
     t.string   "direct_funded_charter_school_number", limit: 255
     t.boolean  "active",                                          default: true
+    t.string   "site_code",                           limit: 255
+    t.string   "site_type",                           limit: 255
+    t.string   "site_type_norm",                      limit: 255
+    t.string   "address",                             limit: 255
+    t.string   "city",                                limit: 255
+    t.string   "zip_code",                            limit: 255
+    t.string   "grades_served",                       limit: 255
+    t.string   "low_grade",                           limit: 255
+    t.string   "high_grade",                          limit: 255
+    t.float    "lat",                                 limit: 24
+    t.float    "lng",                                 limit: 24
+    t.string   "network",                             limit: 255
+    t.string   "net_cluster",                         limit: 255
   end
 
-  add_index "schools", ["school_code"], name: "index_schools_on_school_code", using: :btree
+  add_index "schools", ["site_code"], name: "index_schools_on_site_code", unique: true, using: :btree
+  add_index "schools", ["state_cde_code"], name: "index_schools_on_state_cde_code", unique: true, using: :btree
 
   create_table "service_times", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -316,6 +338,9 @@ ActiveRecord::Schema.define(version: 20150819211612) do
     t.datetime "updated_at"
   end
 
+  add_index "user_schools", ["school_id", "user_id"], name: "us_s_id_u_id", using: :btree
+  add_index "user_schools", ["user_id", "school_id"], name: "us_u_id_s_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
@@ -342,9 +367,15 @@ ActiveRecord::Schema.define(version: 20150819211612) do
     t.integer  "invited_by_id",          limit: 4
     t.string   "invited_by_type",        limit: 255
     t.boolean  "active",                             default: false
+    t.string   "title",                  limit: 255
   end
 
+  add_index "users", ["active"], name: "index_users_on_active", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", using: :btree
+  add_index "users", ["invited_by_id", "invited_by_type"], name: "u_ib_id_ib_type", using: :btree
+  add_index "users", ["invited_by_type", "invited_by_id"], name: "u_ib_type_ib_id", using: :btree
+  add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|

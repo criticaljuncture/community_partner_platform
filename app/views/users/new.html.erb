@@ -3,15 +3,14 @@
   ['Create', '']
 ] %>
 
-<div class="row-fluid">
-  <div class="span12">
-    <%= page_header("Create New User", "") %>
+<%= page_header("Create New User", "icon-cpp-users") %>
 
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <div class="form_wrapper">
       <%= simple_form_for @user, method: :post,
         html: {class: "form-horizontal user"},
-        wrapper: :horizontal_form,
-        wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
+        wrapper: :horizontal_form do |f| %>
 
         <%= render :partial => 'form', :locals => {
           f: f,

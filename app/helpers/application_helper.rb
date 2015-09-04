@@ -44,4 +44,8 @@ module ApplicationHelper
 
     help_hover.html_safe
   end
+
+  def not_provided
+    content_tag(:span, 'not provided', class: 'hint')
+  end
 end

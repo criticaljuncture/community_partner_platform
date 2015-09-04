@@ -40,13 +40,6 @@ $header-color: $gray-70;
       width: 40px;
     }
 
-    .icon-cpp-school {
-      margin-left: 10px;
-      margin-right: 0;
-      position: relative;
-      top: 4px;
-    }
-
     .icon-cpp-handshake {
       font-size: 35px;
       margin-left: 10px;
@@ -55,12 +48,25 @@ $header-color: $gray-70;
       width: 64px;
     }
 
+    .icon-cpp-school {
+      margin-left: 10px;
+      margin-right: 0;
+      position: relative;
+      top: 4px;
+    }
+
     .icon-cpp-small-business {
       margin-left: 5px;
       margin-right: 0;
       position: relative;
       top: 5px;
       width: 30px;
+    }
+
+    .icon-cpp-users {
+      font-size: 35px;
+      position: relative;
+      top: 3px;
     }
   }
 }
