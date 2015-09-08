@@ -57,6 +57,11 @@ class CommunityProgram < ActiveRecord::Base
     !new_record? && last_verified_at.nil?
   end
 
+  def should_verify?(current_user)
+      current_user.role?(:organization_member) &&
+      verification_required?
+  end
+
   private
   def clear_associated_cache
     organization.touch

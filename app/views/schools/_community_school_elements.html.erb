@@ -1,5 +1,5 @@
 <div class="table_wrapper span6">
-  <h2>Community School Elements</h2>
+  <h2>Progammatic Community School Elements</h2>
 
   <table class="table table-striped">
     <thead>
@@ -13,7 +13,31 @@
 
     <tbody>
       <% QualityElement.accessible_by(current_ability).
-        programatic.sort_by(&:name).each do |element| %>
+        programmatic.sort_by(&:name).each do |element| %>
+        <tr>
+          <td><%= link_to element.name, quality_element_path(element) %></td>
+          <td class="center">
+            <%= community_program_count_for_element(element, school) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2>Foundational Community School Elements</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= t('quality_element.class.name') %></th>
+        <th class="center">
+          <%= t('community_programs.class.name').pluralize %>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% QualityElement.accessible_by(current_ability).
+        foundational.sort_by(&:name).each do |element| %>
         <tr>
           <td><%= link_to element.name, quality_element_path(element) %></td>
           <td class="center">

@@ -9,7 +9,7 @@
     <%= element.input :quality_element_id,
       as: :select,
       collection: QualityElement.accessible_by(current_ability).
-        programatic.sort_by(&:name),
+        programmatic.sort_by(&:name),
       input_html: {class: 'wrap'},
       required: true %>
 

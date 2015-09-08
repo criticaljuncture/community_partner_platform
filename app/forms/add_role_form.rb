@@ -6,7 +6,7 @@ class AddRoleForm
 
   validates :role, presence: true
 
-  validates :organization, presence: true, 
+  validates :organization, presence: true,
             if: -> { role?(:organization_member) }
 
   validates :schools, presence: true,
@@ -21,7 +21,7 @@ class AddRoleForm
   end
 
   def submit(params)
-    self.role = Role.find( params[:role] ) 
+    self.role = Role.find( params[:role] )
     self.organization = params[:organization]
     self.schools = params[:schools]
 
@@ -56,7 +56,7 @@ class AddRoleForm
   end
 
   def available_roles(current_ability)
-    @available_roles ||= Role.accessible_by(current_ability) - @user.roles
+    @available_roles ||= Role.accessible_by(current_ability)
   end
 
   def available_role_identifiers(current_ability)

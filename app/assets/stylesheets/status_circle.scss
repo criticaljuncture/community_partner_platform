@@ -1,0 +1,11 @@
+.status-circle {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border-radius: 6px;
+  margin-left: 5px;
+}
+
+.bad .status-circle { background-color: $red; }
+.good .status-circle { background-color: $green; }
+.satisfactory .status-circle { background-color: $golden; }

@@ -16,15 +16,17 @@
           <td><%= school.name %></td>
           <td class="center"><%= school.community_program_count %></td>
           <td class="center"><%= school.organization_count %></td>
-          <td class="center"><%= quality_elements_coverage_display(school.quality_element_count) %></td>
+          <td class="center">
+            <%= quality_elements_coverage_display(school.quality_element_count) %>
+          </td>
           <td class="center">
             <%= link_to_gicon('view',
-              school_path(school),
+              school_path(school.id),
               class: "btn btn-small btn-info",
               icon: 'eye-open') if can? :show, School %>
 
             <%= link_to_gicon('edit',
-              edit_school_path(school),
+              edit_school_path(school.id),
               class: "btn btn-small btn-primary",
               icon: 'pencil') if can? :edit, School %>
           </td>

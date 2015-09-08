@@ -21,7 +21,7 @@
       <dt><%= t('region.class.name') %></dt>
       <dd><%= @school.region.try(:name) || '&nbsp;'.html_safe %></dd>
 
-      <dt><%= t('community_programs.class.name') %></dt>
+      <dt><%= t('community_programs.class.name').pluralize %></dt>
       <dd><%= @school.school_programs.count %></dd>
     </dl>
   </div>
@@ -42,7 +42,7 @@
         } %>
       </div>
 
-      <div id="community-school-elements" class="tab-pane">
+      <div id="community-school-elements" class="tab-pane community-school-elements">
         <%= render partial: 'community_school_elements', locals: {
           school: @school
         } %>

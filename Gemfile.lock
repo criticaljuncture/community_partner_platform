@@ -84,7 +84,7 @@ GEM
       sass (~> 3.4)
       thor
     builder (3.2.2)
-    cancan (1.6.10)
+    cancancan (1.12.0)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -332,7 +332,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 3.3.5.1)
   bourbon (~> 4.2.3)
-  cancan (~> 1.6.10)
+  cancancan
   capistrano (~> 2.15.5)
   coffee-rails (~> 4.0.0)
   curb (~> 0.8.5)

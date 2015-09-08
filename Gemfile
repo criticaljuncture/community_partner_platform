@@ -26,7 +26,7 @@ gem 'bootstrap-sass', '~> 3.3.5.1'
 gem "bourbon", "~> 4.2.3"
 
 # permissions
-gem "cancan", "~> 1.6.10"
+gem "cancancan"
 
 # Use CoffeeScript
 gem 'coffee-rails', '~> 4.0.0'

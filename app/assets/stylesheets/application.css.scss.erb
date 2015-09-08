@@ -39,12 +39,6 @@ $em-base: 16px;
 @import "community_programs";
 @import "organizations";
 @import "schools";
+@import "status_circle";
 @import "tables";
 @import "users";
-
-<% if defined?(Peek) && Rails.env.development? %>
-@import "peek";
-@import "peek/views/performance_bar";
-@import "peek/views/rblineprof";
-@import "peek_changes";
-<% end %>

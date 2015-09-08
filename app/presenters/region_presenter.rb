@@ -23,6 +23,7 @@ class RegionPresenter < BasePresenter
   def quality_elements_without_coverage
     quality_elements = QualityElement.
       accessible_by(h.current_ability).
+      programmatic.
       all.
       map{|qe| qe.name}
 
@@ -32,7 +33,6 @@ class RegionPresenter < BasePresenter
   def service_types
     @sevice_types ||= model.
       community_programs.
-      includes(:primary_service_types).
       map{|cp| cp.primary_service_types}.
       flatten
   end

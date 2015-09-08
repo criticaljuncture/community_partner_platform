@@ -1,11 +1,15 @@
 .school.school-programs {
   margin-bottom: 20px;
-  
-  .columnar-table-block-wrapper { padding-left: 15px; }
+
+  .columnar-table-block-wrapper { padding-left: 20px; }
 
   table {
     tr td:first-child { width: 20%; }
   }
+}
+
+.community-school-elements table {
+  tr td:first-child { width: 70%; }
 }
 
 table.tablesorter {

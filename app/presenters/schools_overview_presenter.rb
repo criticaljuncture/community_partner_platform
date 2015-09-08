@@ -1,6 +1,6 @@
 class SchoolsOverviewPresenter < BasePresenter
   def regions
-    Region.accessible_by(h.current_ability).map{|r| RegionPresenter.new(r, h)}
+    Region.all.map{|r| RegionPresenter.new(r, h)}
   end
 
   def schools_without_region

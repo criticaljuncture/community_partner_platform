@@ -1,4 +1,4 @@
-<h2>Community Programs</h2>
+<h2>Community Programs by Community School Element</h2>
 
 <% if school_programs.present? %>
   <% school_programs.
@@ -6,9 +6,10 @@
       sort_by{|qe, p| qe.name}.
       each do |quality_element, school_programs| %>
 
-    <%= columnar_table_block quality_element.name,
+    <%= columnar_table_block "#{quality_element.name}
+      <span class='hint'>(#{pluralize school_programs.count, 'program'})</span>".html_safe,
       auto_table: false,
-      class: 'school school-programs',
+      class: 'school school-programs toggle toggleable closed',
       columns: {xs: 12, md: 12} do %>
         <div class="columnar-table-block-wrapper">
           <% school_programs.sort_by(&:name).each do |school_program| %>
