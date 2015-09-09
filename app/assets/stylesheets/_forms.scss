@@ -94,6 +94,17 @@ form.form-horizontal {
   .checkbox label.boolean { font-weight: 700; }
 
   .columized_checkboxes {
+    &.has-error {
+      margin-top: 50px;
+
+      .checkbox { color: $text-color; }
+      
+      .help-block {
+        position: absolute;
+        top: -30px;
+      }
+    }
+
     input {
       top: -4px;
 

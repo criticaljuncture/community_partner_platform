@@ -10,11 +10,17 @@ class CommunityProgramQualityElement < ActiveRecord::Base
   validates :community_program_id,
     presence: true,
     unless: ->{ new_record? }
+
   validates :quality_element_id,
     presence: true
+
   validates :service_type_ids,
     presence: {
       message: "must choose at least one"
+    },
+    length: {
+      maximum: 2,
+      message: "can not choose more than 2 service types"
     },
     if: ->{ quality_element.present? }
 
