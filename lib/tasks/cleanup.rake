@@ -12,4 +12,11 @@ namespace :cleanup do
       school.save
     end
   end
+
+  task :set_subdomain_for_current_users => :environment do
+    User.all.each do |user|
+      user.subdomain = 'ousd'
+      user.save(verify: false)
+    end
+  end
 end

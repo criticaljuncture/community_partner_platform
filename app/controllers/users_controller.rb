@@ -57,6 +57,7 @@ class UsersController < ApplicationController
 
         authorize! :create, @user
 
+        @user.subdomain = current_user.subdomain
         @user.admin_creation = can?(:create, User)
         @user.save!
 
