@@ -20,6 +20,7 @@ module OusdCommunityPartners
     # -- all .rb files in that directory are automatically loaded.
 
     config.autoload_paths += Dir[Rails.root.join('app', 'audits', '{**}')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'decorators', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'forms', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'importers', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'inputs', '{**}')]

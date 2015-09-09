@@ -12,6 +12,8 @@ class Organization < ActiveRecord::Base
   has_many :schools, through: :community_programs
   has_many :users
 
+  belongs_to :legal_status
+
   scope :with_users, -> { joins(:users).where("users.organization_id IS NOT NULL").group("organizations.id") }
 
   validates :name, presence: true
@@ -70,7 +72,8 @@ class Organization < ActiveRecord::Base
   end
 
   def inactive_community_programs
-    community_programs.unscoped.where(organization_id: self.id, active: false).includes(:school)
+    community_programs.unscoped.
+      where(organization_id: self.id, active: false)
   end
 
   private

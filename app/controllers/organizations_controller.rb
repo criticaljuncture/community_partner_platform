@@ -3,10 +3,16 @@ class OrganizationsController < ApplicationController
     @organizations = Organization.accessible_by(current_ability).
       includes(:community_programs).sort_by(&:name)
     authorize! :index, Organization
+
+    @organizations = OrganizationDecorator.decorate_collection(
+      @organizations
+    )
   end
 
   def show
-    @organization = Organization.includes(:community_programs).find(params[:id])
+    @organization = OrganizationDecorator.decorate(
+      Organization.includes(:community_programs).find(params[:id])
+    )
     authorize! :show, @organization
   end
 

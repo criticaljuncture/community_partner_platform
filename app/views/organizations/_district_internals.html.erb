@@ -1,0 +1,17 @@
+<%= columnar_table_block 'Internal Details',
+  class: 'organization-internal-details' do %>
+
+  <tr>
+    <td><%= I18n.t('organization.legal_status') %></td>
+    <td>
+      <%= organization.legal_status %>
+    </td>
+  </tr>
+
+  <tr>
+    <td><%= I18n.t('organization.cost_per_student') %></td>
+    <td>
+      <%= organization.cost_per_student %>
+    </td>
+  </tr>
+<% end %>

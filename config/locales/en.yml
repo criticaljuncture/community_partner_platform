@@ -31,6 +31,16 @@ en:
   organization:
     class:
       name: Organization
+    address: Address
+    city_state_zip: City, State ZIP
+    cost_per_student: Cost per student
+    legal_status: Legal status
+    mission_statement: Mission statement
+    name: Name
+    phone_number: Phone number
+    program_impact: Program impact
+    services_description: Service(s) description
+    url: URL
 
   organizations:
     messages:

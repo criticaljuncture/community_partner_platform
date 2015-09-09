@@ -1,0 +1,38 @@
+<%= columnar_table_block 'Organization Details',
+  class: 'organization-details' do %>
+
+    <tr>
+      <td><%= I18n.t('organization.name') %></td>
+      <td>
+        <%= organization.name %>
+      </td>
+    </tr>
+
+    <tr>
+      <td><%= I18n.t('organization.url') %></td>
+      <td>
+        <%= link_to organization.url, organization.url %>
+      </td>
+    </tr>
+
+    <tr>
+      <td><%= I18n.t('organization.phone_number') %></td>
+      <td>
+        <%= organization.phone_number %>
+      </td>
+    </tr>
+
+    <tr>
+      <td><%= I18n.t('organization.address') %></td>
+      <td>
+        <%= organization.address %>
+      </td>
+    </tr>
+
+    <tr>
+      <td><%= I18n.t('organization.city_state_zip') %></td>
+      <td>
+        <%= organization.city_state_zip %>
+      </td>
+    </tr>
+<% end %>

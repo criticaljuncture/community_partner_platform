@@ -1,6 +1,10 @@
 class UserDecorator < Draper::Decorator
   delegate_all
 
+  include AttrNotProvided
+  attr_not_provided :title
+  attr_not_provided :phone_number, method: ->(attr) {h.number_to_phone(attr)}
+
   def invitation_status
     h.invitation_status_for(model)
   end
@@ -9,15 +13,6 @@ class UserDecorator < Draper::Decorator
     current_sign_in_at < 3.months.ago ?
       current_sign_in_at.to_s(:date_at_time_with_year) :
       current_sign_in_at.to_s(:date_at_time)
-  end
-
-  def phone_number
-    model.phone_number.present? ?
-      h.number_to_phone(model.phone_number) : h.not_provided
-  end
-
-  def title
-    model.title || h.not_provided
   end
 
   def display

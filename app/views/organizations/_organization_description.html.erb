@@ -1,0 +1,24 @@
+<%= columnar_table_block 'Organization Description',
+  class: 'organization-description' do %>
+
+    <tr>
+      <td><%= I18n.t('organization.mission_statement') %></td>
+      <td>
+        <%= organization.mission_statement %>
+      </td>
+    </tr>
+
+    <tr>
+      <td><%= I18n.t('organization.services_description') %></td>
+      <td>
+        <%= organization.services_description %>
+      </td>
+    </tr>
+
+    <tr>
+      <td><%= I18n.t('organization.program_impact') %></td>
+      <td>
+        <%= organization.program_impact %>
+      </td>
+    </tr>
+<% end %>

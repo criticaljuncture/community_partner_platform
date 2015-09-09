@@ -5,6 +5,11 @@
   }
 }
 
+.organization-description,
+.organization-internal-details {
+  table tr td:first-child { width: 200px; }
+}
+
 .instruction-modal.modal {
   .modal-header {
     .icon-cpp-handshake {
