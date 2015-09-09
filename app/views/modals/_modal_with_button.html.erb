@@ -4,8 +4,10 @@
   role="dialog" aria-labelledby="genericModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <a href="#close-modal" data-dismiss="modal"
-        class="close-modal icon-cpp-close-x-inv"></a>
+      <% if header_close_button %>
+        <a href="#close-modal" data-dismiss="modal"
+          class="close-modal icon-cpp-close-x-inv"></a>
+      <% end %>
 
       <% if header %>
         <div class="modal-header">

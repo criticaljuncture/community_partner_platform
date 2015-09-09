@@ -10,7 +10,7 @@
 # require handlebars
 #= require handlebars.runtime
 #= require js-routes
-# require jquery_nested_form
+#= require jquery.cookie
 #= require jquery.parsequery.js
 #= require jquery.tablesorter.min
 #= require jquery.tablesorter.widgets.min

@@ -31,7 +31,8 @@ class Organization < ActiveRecord::Base
   end
 
   def self.needs_verification_path(organization)
-    Rails.application.routes.url_helpers.verification_organization_path(organization)
+    Rails.application.routes.url_helpers.
+      verification_organization_path(organization)
   end
 
   def verification_required?

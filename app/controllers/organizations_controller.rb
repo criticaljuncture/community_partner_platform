@@ -49,14 +49,11 @@ class OrganizationsController < ApplicationController
     if @organization.verification_required?
       verification = organization_params.delete(:verification)
       @organization.last_verified_at = Time.now if verification
-
-
-      redirect_to new_organization_program_verification_path(@organization)
-    else
-      flash.notice = t('organization.update.success',
-                       name: @organization.name)
-      redirect_to organization_path(@organization)
     end
+
+    flash.notice = t('organizations.update.success',
+                     name: @organization.name)
+    redirect_to organization_path(@organization)
   rescue ActiveRecord::RecordInvalid
     flash.now[:error] = t('errors.form_error', count: @organization.errors.count)
     render :edit

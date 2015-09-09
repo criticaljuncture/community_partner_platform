@@ -14,6 +14,7 @@ module ModalHelper
     render partial: 'modals/basic_modal',
       locals: {
         header: options.fetch(:header) { true },
+        header_close_button: options.fetch(:header_close_button) { true },
         modal_id: options.fetch(:modal_id) { "generic-modal" },
         modal_class: options.fetch(:modal_class) { "" },
         modal_header: header,
@@ -30,6 +31,7 @@ module ModalHelper
     render partial: 'modals/modal_with_button',
       locals: {
         header: options.fetch(:header) { true },
+        header_close_button: options.fetch(:header_close_button) { true },
         modal_id: options.fetch(:modal_id) { "generic-modal" },
         modal_class: options.fetch(:modal_class) { "" },
         modal_header: header,

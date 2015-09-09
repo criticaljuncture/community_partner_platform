@@ -12,7 +12,6 @@ Rails.application.config.assets.precompile += %w(
 
   vendor.css
 
-  organization_verification.js
   school_program.js
   vendor.js
 )

@@ -67,6 +67,7 @@ gem 'js-routes', '~> 1.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-cookie-rails'
 
 # redis analytics
 gem "minuteman-rails",
