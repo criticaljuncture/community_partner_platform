@@ -40,17 +40,6 @@
             you to a page where you can review and update each program.
           </p>
         <% end %>
-
-        <% if @organization.reported_program_discrepency? %>
-          <p>
-            In the verification process you reported that
-            <%= t('organizations.messages.modal.missing_programs',
-                 count: @organization.reported_program_discrepency ) %>.
-            Please use the 'Create' button on the right hand side of each row
-            to provide us with the details about each program.
-          </p>
-        <% end %>
-
       <% end %>
     <% end %>
   </div>

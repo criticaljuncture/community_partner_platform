@@ -51,25 +51,8 @@ class Organization < ActiveRecord::Base
     sum
   end
 
-  def reported_program_count
-    reported_school_programs.sum{|k,v| v}
-  end
-
-  def reported_program_discrepency
-    reported_program_count - community_programs.count
-  end
-
-  def reported_program_discrepency?
-    reported_program_discrepency > 0
-  end
-
   def show_verification_modal?(current_user)
-    current_user.role?(:organization_member) &&
-      (any_unverified_programs? || reported_program_discrepency?)
-  end
-
-  def reported_school_programs
-    read_attribute(:reported_school_programs) ? read_attribute(:reported_school_programs) : []
+    current_user.role?(:organization_member) && any_unverified_programs?
   end
 
   def inactive_community_programs
