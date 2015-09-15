@@ -31,6 +31,9 @@ gem "cancancan"
 # Use CoffeeScript
 gem 'coffee-rails', '~> 4.0.0'
 
+# Settings via settings.yml, etc.
+gem 'config', '~> 1.0.0'
+
 # user signin and auth checks
 gem "devise", "~> 3.5.2"
 gem "devise_invitable", "~> 1.5.2 "
