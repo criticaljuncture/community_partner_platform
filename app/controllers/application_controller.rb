@@ -55,23 +55,6 @@ class ApplicationController < ActionController::Base
     })
   end
 
-  # Peek
-  def peek_enabled?
-    false
-    #can?(:view, :debug_toolbar)
-  end
-
-  if defined?(Peek) && Rails.env.development?
-    Peek::ResultsController.send(:skip_authorization_check)
-  end
-
-  # Rack Mini-Profiler
-  def authorize
-    if can?(:view, :debug_toolbar)
-      Rack::MiniProfiler.authorize_request
-    end
-  end
-
   private
 
   def add_flash_js(key, value)
