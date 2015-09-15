@@ -1,0 +1,13 @@
+.count-bubble {
+  background-color: $orange;
+  border-radius: 8px;
+  color: #FFF;
+  display: inline-block;
+  font-size: modular-scale(-2);
+  min-width: 15px;
+  padding: 0px 5px;
+  position: relative;
+  text-align: center;
+
+  &.double-digit { padding: 0px 3px; }
+}

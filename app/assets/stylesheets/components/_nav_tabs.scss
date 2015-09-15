@@ -1,4 +1,9 @@
-.nav.nav-tabs { margin-top: 30px; }
+.nav.nav-tabs {
+  margin-top: 30px;
+
+  .count-bubble { top: -10px; }
+}
+
 .tab-content {
   min-height: 400px;
 
