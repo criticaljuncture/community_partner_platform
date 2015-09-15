@@ -7,6 +7,11 @@
   community_program: @community_program
 } if can?(:toggle_active, @community_program) %>
 
+<% alert_notice(
+    :warning, 'exclamation-sign',
+    t('community_program.messages.verification_needed')
+  ) if @community_program.should_verify?(current_user) %>
+
 <%= page_header @community_program.name, 'icon-cpp-handshake',
   wrapper_class: 'community-programs' do %>
 

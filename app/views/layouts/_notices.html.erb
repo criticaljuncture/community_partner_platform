@@ -1,6 +1,7 @@
 <div class="row flash-messages">
   <div class="<%= bootstrap_col xs: 12, md:12 %> alerts">
     <% flash.each do |type, message| %>
+      <% next if type == :js %>
       <%= alert_message type, message %>
     <% end %>
 

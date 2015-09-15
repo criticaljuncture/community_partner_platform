@@ -6,8 +6,10 @@ module NavigationHelper
   def page_nav_tabs(tabs, options={})
     content = []
 
-    tabs.each do |name, target|
-      content << content_tag(:li, link_to(name, target, data: {toggle: 'tab'}) )
+    tabs.each do |name, target, count|
+      text = count ? "#{name} #{count_bubble(count)}".html_safe : name
+
+      content << content_tag(:li, link_to(text, target, data: {toggle: 'tab'}) )
     end
 
     content_tag(:ul, content.join("\n").html_safe, class: "nav nav-tabs")

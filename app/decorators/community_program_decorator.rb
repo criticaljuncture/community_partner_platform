@@ -1,8 +1,24 @@
 class CommunityProgramDecorator < Draper::Decorator
   delegate_all
 
-  def verification_header
-    "#{should_verify?(h.current_user) ? 'Verify' : 'Edit'} #{name}"
+  include AttrNotProvided
+  attr_not_provided :service_description
+
+  attr_not_provided :days,
+    :demographic_groups,
+    :ethnicity_culture_groups,
+    :grade_levels,
+    :service_times,
+    :service_types,
+    :student_population,
+    method: :name, association: true
+
+  def last_verified
+    if last_verified_at.present?
+      "#{last_verified_at} by #{verifier.try(:full_name)}"
+    else
+      h.not_provided
+    end
   end
 
   def school_summary
@@ -15,20 +31,7 @@ class CommunityProgramDecorator < Draper::Decorator
     str
   end
 
-  def display
-    @display ||= AttributeDisplay.new(self)
-  end
-
-  class AttributeDisplay < ApplicationAttributeDisplay
-    def demographic_groups
-      d.demographic_groups.present? ?
-        d.demographic_groups.map(&:name).join(', ') :
-        d.h.not_provided
-
-    end
-
-    def student_population
-      d.student_population.try(:name) || d.h.not_provided
-    end
+  def verification_header
+    "#{should_verify?(h.current_user) ? 'Verify' : 'Edit'} #{name}"
   end
 end

@@ -16,8 +16,7 @@
   <tr>
     <td><%= I18n.t('community_programs.service_types') %></td>
     <td>
-      <%= community_program.service_types.
-        map{|st| st.name}.join(',<br>').html_safe %>
+      <%= community_program.service_types %>
     </td>
   </tr>
 
@@ -25,6 +24,13 @@
     <td><%= I18n.t('community_programs.service_description') %></td>
     <td>
       <%= community_program.service_description %>
+    </td>
+  </tr>
+
+  <tr>
+    <td><%= I18n.t('community_programs.last_verified') %></td>
+    <td>
+      <%= community_program.last_verified %>
     </td>
   </tr>
 <% end %>

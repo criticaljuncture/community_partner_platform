@@ -102,6 +102,7 @@ class Ability < BaseAbility
 
     can :view, :school_partnership_status_dashboard_panels
 
+    can :verify, CommunityProgram
     can :view, :visualizations
 
     organization_member_page_level_abilities

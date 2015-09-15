@@ -55,7 +55,9 @@ class CommunityProgram < ActiveRecord::Base
   end
 
   def verification_required?
-    !new_record? && last_verified_at.nil?
+    !new_record? &&
+      (last_verified_at.nil? ||
+        last_verified_at < Settings.community_program.verification_date)
   end
 
   def should_verify?(current_user)

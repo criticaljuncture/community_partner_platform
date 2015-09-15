@@ -27,7 +27,7 @@ class OrganizationsController < ApplicationController
 
     @organization.save!
 
-    flash.notice = t('organizations.create.success',
+    flash.notice = t('organizations.flash_messages.create.success',
                       name: @organization.name)
     redirect_to organization_path(@organization)
   rescue ActiveRecord::RecordInvalid
@@ -38,21 +38,33 @@ class OrganizationsController < ApplicationController
   def edit
     @organization = Organization.find(params[:id])
     authorize! :edit, @organization
+    @decorated_organization = OrganizationDecorator.decorate(@organization)
   end
 
   def update
     @organization = Organization.find(params[:id])
     authorize! :update, @organization
 
-    @organization.update_attributes!(organization_params.except(:verification))
+    @organization.update_attributes!(organization_params)
 
-    if @organization.verification_required?
-      verification = organization_params.delete(:verification)
-      @organization.last_verified_at = Time.now if verification
+    if params["commit"] == t('forms.buttons.save_verify') &&
+        can?(:verify, @organization)
+
+      previously_needed_verified = @organization.verification_required?
+      @organization.update_attributes!(
+        last_verified_at: Time.now,
+        last_verified_by: current_user.id
+      )
     end
 
-    flash.notice = t('organizations.update.success',
-                     name: @organization.name)
+    if can?(:verify, @organization) && previously_needed_verified
+      flash.notice = t('organizations.flash_messages.verified',
+                       name: @organization.name)
+    else
+      flash.notice = t('organizations.flash_messages.save.success',
+                       name: @organization.name)
+    end
+
     redirect_to organization_path(@organization)
   rescue ActiveRecord::RecordInvalid
     flash.now[:error] = t('errors.form_error', count: @organization.errors.count)
@@ -90,7 +102,6 @@ class OrganizationsController < ApplicationController
                 :program_impact,
                 :services_description,
                 :url,
-                :verification,
                 :zip_code,
         )
     end

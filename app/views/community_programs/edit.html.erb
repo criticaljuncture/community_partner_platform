@@ -4,8 +4,6 @@
   ['Edit', ""]
 ] %>
 
-<%= embed_ember_template 'school-program-verification-input', 'school_program_verification_input' %>
-
 <%= modal(:basic,
   footer: false,
   header_icon: 'icon-cpp-users',
@@ -62,7 +60,7 @@
         <%= render partial: 'form', locals: {f: f} %>
 
         <%= collapsible_field_set_tag "Program Details",
-          class: "program-details #{f.object.errors ? 'open' : 'closed'}" do %>
+          class: "program-details #{f.object.errors.present? ? 'open' : 'closed'}" do %>
           <%= alert 'info', 'info-sign' do %>
             Filling out the attributes below is not required but we encourage you to
             do so to the best of your knowledge. This information will be helpful to
@@ -119,12 +117,12 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <%= f.submit 'Save',
+            <%= f.submit t('forms.buttons.save'),
               class: "btn btn-large #{f.object.verification_required? ? 'btn-primary' : 'btn-success'}"
             %>
 
             <% if f.object.verification_required? && can?(:verify, f.object) %>
-              <%= f.submit 'Save & Verify', class: "btn btn-large btn-success", type: 'verify' %>
+              <%= f.submit t('forms.buttons.save_verify'), class: "btn btn-large btn-success" %>
               <%= help_hover do %>
                 This program needs verification. If for some reason you need to
                 update a piece of data but are unable to verify the rest of the program

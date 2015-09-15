@@ -3,10 +3,26 @@
   [@organization.name, organization_path(@organization)]
 ] %>
 
-
 <% page_specific_javascript('organization_verification') if current_user.role?(:organization_member) && @organization.any_unverified_programs? %>
 
+<% alert_notice(
+    :warning, 'exclamation-sign',
+    t('organizations.messages.unverified_organization.show').html_safe,
+  ) if @organization.organization_verifiable? %>
+
+<% alert_notice(
+    :warning, 'exclamation-sign',
+    t('organizations.messages.unverified_programs',
+      count: @organization.unverified_program_count).html_safe
+  ) if @organization.programs_verifiable? %>
+
 <%= page_header(@organization.name, "icon-cpp-small-business") do %>
+  <%= link_to_gicon('Verify Organization',
+      edit_organization_path(@organization),
+      class: "btn btn-create",
+      icon: 'exclamation-sign'
+    ) if @organization.organization_verifiable? %>
+
   <%= link_to_gicon('Edit Organization',
       edit_organization_path(@organization),
       class: "btn btn-primary",
@@ -19,12 +35,12 @@
       }),
       class: "btn btn-create",
       icon: 'plus'
-    ) if can?(:new, :community_program) %>
+    ) if can?(:new, CommunityProgram) %>
 <% end %>
 
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-    <% if @organization.show_verification_modal?(current_user) %>
+    <% if @organization.show_verification_modal? %>
       <%= modal(:with_button,
                 modal_id: "instructions",
                 modal_class: "instruction-modal",
@@ -58,22 +74,17 @@
 
   <div id="active-programs" class="tab-pane">
     <div class="table_wrapper">
-      <%# if @organization.reported_program_count > 0 && can?(:verify, @organization) %>
-        <%#= render partial: 'reported_programs',
-          locals: {
-            organization: @organization,
-            reported_programs: @organization.reported_school_programs,
-        } %>
-      <%# elsif @organization.community_programs.present? %>
+      <% if @organization.community_programs.present? %>
         <%= render partial: 'programs', locals: {
           active: true,
+          organization: @organization,
           programs: CommunityProgramDecorator.decorate_collection(
             @organization.community_programs
           )
         } %>
-      <%# else %>
-        <!-- <p>There are no programs reported for this organization.</p> -->
-      <%# end %>
+      <% else %>
+        <p>This organization has no active programs.</p>
+      <% end %>
     </div>
   </div>
 
@@ -83,6 +94,7 @@
         <%= render partial: 'programs',
           locals: {
             active: false,
+            organization: @organization,
             programs: CommunityProgramDecorator.decorate_collection(
               @organization.inactive_community_programs
             )

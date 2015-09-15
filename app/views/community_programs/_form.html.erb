@@ -1,4 +1,4 @@
-<% collapsed = (f.object.new_record? || f.object.errors) ? 'open' : 'closed' %>
+<% collapsed = (f.object.new_record? || f.object.errors.present?) ? 'open' : 'closed' %>
 
 <%= collapsible_field_set_tag "Program", class: 'open' do %>
   <%= f.input :name, required: true %>

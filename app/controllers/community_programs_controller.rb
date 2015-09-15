@@ -1,4 +1,5 @@
 class CommunityProgramsController < ApplicationController
+
   def index
     @community_programs = CommunityProgram.accessible_by(current_ability).includes(:organization).order("organizations.name")
     authorize! :index, CommunityProgram
@@ -7,6 +8,10 @@ class CommunityProgramsController < ApplicationController
   def show
     @community_program = CommunityProgram.unscoped.find(params[:id])
     authorize! :show, @community_program
+
+    @community_program = CommunityProgramDecorator.decorate(
+      @community_program
+    )
   end
 
   def new
@@ -76,12 +81,17 @@ class CommunityProgramsController < ApplicationController
 
     @community_program.update_attributes!(community_program_params)
 
-    if params[:button] == "verify" && can?(:verify, @community_program)
+    if params["commit"] == t('forms.buttons.save_verify') &&
+        can?(:verify, @community_program)
+
       previously_needed_verified = @community_program.verification_required?
-      @community_program.update_attributes!(last_verified_at: Time.now)
+      @community_program.update_attributes!(
+        last_verified_at: Time.now,
+        last_verified_by: current_user.id
+      )
     end
 
-    if current_user.role?(:organization_member) && previously_needed_verified
+    if can?(:verify, @community_program) && previously_needed_verified
       flash.notice = t('community_programs.flash_messages.verified',
                        name: @community_program.name)
     else
@@ -92,8 +102,6 @@ class CommunityProgramsController < ApplicationController
     if session[:redirect_back]
       redirect_back = session[:redirect_back]
       session[:redirect_back] = nil
-
-      add_flash_js(:open_verification_modal, false)
 
       redirect_to redirect_back
     else

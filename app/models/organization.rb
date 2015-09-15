@@ -37,7 +37,8 @@ class Organization < ActiveRecord::Base
   end
 
   def verification_required?
-    last_verified_at.nil?
+    last_verified_at.nil? ||
+      last_verified_at < Settings.organization.verification_date
   end
 
   def any_unverified_programs?
@@ -50,10 +51,6 @@ class Organization < ActiveRecord::Base
       sum += (cp.verification_required? ? 1 : 0)
     end
     sum
-  end
-
-  def show_verification_modal?(current_user)
-    current_user.role?(:organization_member) && any_unverified_programs?
   end
 
   def inactive_community_programs

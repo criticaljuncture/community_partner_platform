@@ -3,6 +3,17 @@ en:
     form_error:
       one: There is %{count} error below. Please correct it and click 'Save' to continue.
       other: There are %{count} errors below. Please correct them and click 'Save' to continue.
+
+  forms:
+    buttons:
+      save: Save
+      save_verify: Save & Verify
+
+
+  community_program:
+    messages:
+      verification_needed: This program has not been verified recently. Please edit the program and verify or update the current information.
+
   community_programs:
     class:
       name: Community Program
@@ -10,6 +21,7 @@ en:
     demographic_groups: Target Demographic Groups
     ethnicity_culture_groups: Target Ethnicity/Culture Groups
     grade_levels: Target Grade Levels
+    last_verified: Last verified
     name: Program Name
     organization_contact: Primary Organization Contact
     organization_name: Name
@@ -19,14 +31,14 @@ en:
     service_days: Service Days
     service_times: Service Times
     service_types: Service Types
-    target_population: Target Population
+    student_population: Student Population
 
     flash_messages:
-      verified: Thank you for verifying '%{name}'
-      save:
-        success: Successfully saved '%{name}'
       create:
         success: Successfully created '%{name}'
+      save:
+        success: Successfully saved '%{name}'
+      verified: Thank you for verifying '%{name}'
 
   organization:
     class:
@@ -34,6 +46,7 @@ en:
     address: Address
     city_state_zip: City, State ZIP
     cost_per_student: Cost per student
+    last_verified: Last verified
     legal_status: Legal status
     mission_statement: Mission statement
     name: Name
@@ -44,20 +57,19 @@ en:
 
   organizations:
     messages:
-      uncreated_programs:
-        one: <strong>%{count} Program Needs Creation!</strong> There is %{count} program that has been reported for this organization but has not yet been created. Please create it by using the 'create' button in the table below.
-        other: <strong>%{count} Programs Need Creation!</strong> There are %{count} programs that have been reported for this organization but have not yet been created. Please add them by using the 'create' buttons in the table below.
+      unverified_organization:
+        show: <strong>This organization needs to be verified.</strong> Please use the 'Verify Organization' button below to review this organization's details and verify thier accuracy.
+        edit: <strong>This organization needs to be verified.</strong> Please review the details, verify accuracy, and use the 'Save & Verify' button at the bottom of this page.
       unverified_programs:
-        one: <strong>%{count} Program Needs Verification!</strong> There is %{count} program that has not yet had its details reviewed and verified by your organization. Use the 'verify' button in the table below to review and verify it.
-        other: <strong>%{count} Programs Need Verification!</strong> There are %{count} programs that have not yet had their details reviewed and verified by your organization. Use the 'verify' buttons in the table below to review and verify them.
-      modal:
-        missing_programs:
-          one: there is %{count} program that has not yet been entered into our system
-          other: there are %{count} programs that have not yet been entered into our system
-    create:
-      success: Successfully created '%{name}'
-    update:
-      success: Successfully updated '%{name}'
+        one: <strong>%{count} Program Needs Verification!</strong> There is %{count} program that has not yet had its details reviewed and verified by your organization. Please review your program in the 'Active Programs' tab below and verify it.
+        other: <strong>%{count} Programs Need Verification!</strong> There are %{count} programs that have not yet had their details reviewed and verified by your organization. Please review your programs in the 'Active Programs' tab below and verify them.
+
+    flash_messages:
+      create:
+        success: Successfully created '%{name}'
+      save:
+        success: Successfully saved '%{name}'
+      verified: Thank you for verifying '%{name}'
 
   quality_element:
     class:
