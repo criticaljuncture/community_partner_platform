@@ -6,6 +6,7 @@
     clear: both;
     margin-bottom: 5px;
     overflow: auto;
+    position: relative;
 
     h5 {
       float: left;
@@ -23,6 +24,18 @@
       top: 5px;
     }
     .btn-info.toggle { color: $white; }
+
+    .header-button-wrapper {
+      @extend %header-button-wrapper;
+      top: 0px !important;
+
+      .btn {
+        margin-right: 5px;
+        float: none;
+
+        &:last-child { margin-right: 0; }
+      }
+    }
   }
 
   .columnar-table-block-header + table,

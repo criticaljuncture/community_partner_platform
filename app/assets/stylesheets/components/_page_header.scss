@@ -2,6 +2,12 @@ $header-background-color: #FFFFFF;
 $header-border-color: $gray-70;
 $header-color: $gray-70;
 
+%header-button-wrapper {
+  position: absolute;
+  right: 5px;
+  top: 15px;
+}
+
 .header {
   @extend .pt_sans;
 
@@ -24,9 +30,7 @@ $header-color: $gray-70;
     h1 { width: 80%; }
 
     .header-button-wrapper {
-      position: absolute;
-      right: 5px;
-      top: 15px;
+      @extend %header-button-wrapper;
     }
   }
 
