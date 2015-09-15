@@ -25,3 +25,7 @@ public/assets/source_maps/*
 
 # Ignore our secret keys
 .env
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
