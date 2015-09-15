@@ -13,6 +13,7 @@ class CommunityProgram < ActiveRecord::Base
   #has_many :regions, through: :schools
 
   belongs_to :organization
+  belongs_to :verifier, foreign_key: :last_verified_by, class_name: User
 
   has_one :primary_quality_element,
           ->{where type: "PrimaryQualityElement"},

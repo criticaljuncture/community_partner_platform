@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903233301) do
+ActiveRecord::Schema.define(version: 20150915164338) do
 
   create_table "community_program_demographic_groups", force: :cascade do |t|
     t.integer  "demographic_group_id", limit: 4
@@ -107,9 +107,11 @@ ActiveRecord::Schema.define(version: 20150903233301) do
     t.boolean  "active",                                default: true
     t.integer  "active_changed_by",       limit: 4
     t.datetime "active_changed_on"
+    t.integer  "last_verified_by",        limit: 4
   end
 
   add_index "community_programs", ["active"], name: "index_community_programs_on_active", using: :btree
+  add_index "community_programs", ["last_verified_by"], name: "index_community_programs_on_last_verified_by", using: :btree
   add_index "community_programs", ["organization_id"], name: "index_community_programs_on_organization_id", using: :btree
   add_index "community_programs", ["school_id"], name: "index_community_programs_on_school_id", using: :btree
   add_index "community_programs", ["school_user_id"], name: "index_community_programs_on_school_user_id", using: :btree
@@ -165,8 +167,10 @@ ActiveRecord::Schema.define(version: 20150903233301) do
     t.text     "cost_per_student",         limit: 65535
     t.integer  "legal_status_id",          limit: 4
     t.text     "reported_school_programs", limit: 65535
+    t.integer  "last_verified_by",         limit: 4
   end
 
+  add_index "organizations", ["last_verified_by"], name: "index_organizations_on_last_verified_by", using: :btree
   add_index "organizations", ["legal_status_id"], name: "index_organizations_on_legal_status_id", using: :btree
 
   create_table "page_views", force: :cascade do |t|

@@ -13,6 +13,7 @@ class Organization < ActiveRecord::Base
   has_many :users
 
   belongs_to :legal_status
+  belongs_to :verifier, foreign_key: :last_verified_by, class_name: User
 
   scope :with_users, -> { joins(:users).where("users.organization_id IS NOT NULL").group("organizations.id") }
 
