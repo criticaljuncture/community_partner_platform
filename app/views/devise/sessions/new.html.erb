@@ -1,21 +1,28 @@
-<%= page_header('Sign in', "") %>
+<%= page_header('Sign in', "icon-cpp-users") %>
 
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <div class="form_wrapper">
-      <%= semantic_form_for resource, as: resource_name, url: session_path(resource_name), html: {class: "form-horizontal"} do |f| %>
-        <%= f.inputs do %>
+      <%= simple_form_for resource,
+        as: resource_name,
+        url: session_path(resource_name),
+        html: {class: "form-horizontal sign_in"},
+        wrapper: :horizontal_form,
+        wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
+
           <%= f.input :email, as: :email, autofocus: true %>
           <%= f.input :password, as: :password %>
 
           <% if devise_mapping.rememberable? -%>
             <%= f.input :remember_me, as: :boolean, input_html: { checked: 'checked' } %>
           <% end -%>
-        <% end %>
 
-        <%= f.actions do %>
-          <%= f.button 'Sign in', class: "btn btn-large btn-success" %>
-        <% end %>
+        <div class="row">
+          <div class="col-sm-3 hidden-sm"></div>
+          <div class="col-sm-9">
+            <%= f.submit 'Sign in', class: "btn btn-large btn-success" %>
+          </div>
+        </div>
       <% end %>
 
       <%= render "devise/shared/links" %>
