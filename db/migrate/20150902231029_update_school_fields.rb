@@ -16,6 +16,9 @@ class UpdateSchoolFields < ActiveRecord::Migration
     add_column :schools, :network, :string
     add_column :schools, :net_cluster, :string
 
+    # remove old non-unique index
+    remove_index :schools, :state_cde_code
+
     add_index :schools, :site_code, unique: true
     add_index :schools, :state_cde_code, unique: true
   end
