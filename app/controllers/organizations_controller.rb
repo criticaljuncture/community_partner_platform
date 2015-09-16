@@ -14,6 +14,9 @@ class OrganizationsController < ApplicationController
       Organization.includes(:community_programs).find(params[:id])
     )
     authorize! :show, @organization
+
+    @verification_process = session[:verification_process] || false
+    session.delete(:verification_process)
   end
 
   def new
@@ -45,7 +48,9 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
     authorize! :update, @organization
 
-    @organization.update_attributes!(organization_params)
+    @organization.update_attributes!(
+      organization_params.except(:verification_process)
+    )
 
     if params["commit"] == t('forms.buttons.save_verify') &&
         can?(:verify, @organization)
@@ -65,6 +70,7 @@ class OrganizationsController < ApplicationController
                        name: @organization.name)
     end
 
+    session[:verification_process] = organization_params.fetch(:verification_process, false)
     redirect_to organization_path(@organization)
   rescue ActiveRecord::RecordInvalid
     flash.now[:error] = t('errors.form_error', count: @organization.errors.count)
@@ -102,6 +108,7 @@ class OrganizationsController < ApplicationController
                 :program_impact,
                 :services_description,
                 :url,
+                :verification_process,
                 :zip_code,
         )
     end

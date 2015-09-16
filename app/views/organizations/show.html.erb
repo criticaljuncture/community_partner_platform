@@ -3,8 +3,6 @@
   [@organization.name, organization_path(@organization)]
 ] %>
 
-<% page_specific_javascript('organization_verification') if current_user.role?(:organization_member) && @organization.any_unverified_programs? %>
-
 <% alert_notice(
     :warning, 'exclamation-sign',
     t('organizations.messages.unverified_organization.show').html_safe,
@@ -15,6 +13,46 @@
     t('organizations.messages.unverified_programs',
       count: @organization.unverified_program_count).html_safe
   ) if @organization.programs_verifiable? %>
+
+<%= modal(:with_button,
+  footer_button_text: "Continue",
+  header_icon: 'icon-cpp-small-business',
+  header_text: 'Organization Verification',
+  header_close_button: false,
+  modal_class: "org-verification-modal instruction-modal",
+  modal_id: "instructions",
+  open_on_page_load: @verification_process) do %>
+    <p>Thank you for reviewing your organizations details.</p>
+
+    <% if @organization.programs_verifiable? %>
+      <p>
+        Your organization's programs are listed under the 'Active Programs' tab
+        on this page.
+      </p>
+
+      <p>
+        Each program that requires verification has a button that will allow you
+        to review and verify it's details. Be sure to review the schools that are listed on each program and add or
+        remove any as needed.
+      </p>
+
+      <p>
+        You can also 'Deactivate' a program on the verification screen
+        if needed.
+      </p>
+    <% else %>
+      <p>
+        All of your programs have been recently created or recently verified.
+      </p>
+
+      <p>
+        Be sure to review the programs listed under the 'Active Programs' tab
+        and create any that are missing. You may also add schools to any existing
+        program by editing the program and adding schools to the list at the
+        bottom of that form.
+      </p>
+    <% end %>
+<% end %>
 
 <%= page_header(@organization.name, "icon-cpp-small-business") do %>
   <%= link_to_gicon('Verify Organization',
