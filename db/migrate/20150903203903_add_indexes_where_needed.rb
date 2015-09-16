@@ -18,6 +18,5 @@ class AddIndexesWhereNeeded < ActiveRecord::Migration
     add_index :users, :invitation_token
     add_index :users, [:invited_by_id, :invited_by_type], name: 'u_ib_id_ib_type'
     add_index :users, [:invited_by_type, :invited_by_id], name: 'u_ib_type_ib_id'
-    add_index :users, :organization_id
   end
 end
