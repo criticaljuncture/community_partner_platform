@@ -7,6 +7,8 @@ module LayoutHelper
       'success'
     when "error"
       "danger"
+    else
+      "warning"
     end
 
     content_tag(:div, class: "alert alert-#{alert_class} alert-dismissable",
