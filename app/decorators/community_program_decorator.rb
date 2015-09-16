@@ -8,8 +8,8 @@ class CommunityProgramDecorator < Draper::Decorator
     :demographic_groups,
     :ethnicity_culture_groups,
     :grade_levels,
+    :primary_service_types,
     :service_times,
-    :service_types,
     :student_population,
     method: :name, association: true
 
