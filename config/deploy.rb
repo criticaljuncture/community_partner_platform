@@ -53,11 +53,11 @@ end
 # SCM Settings
 #############################################################
 set :scm,              :git
-set :github_user_repo, 'peregrinator'
-set :github_project_repo, 'community_partners_platform'
+set :github_user_repo, 'criticaljuncture'
+set :github_project_repo, 'community_partner_platform'
 set :deploy_via,       :remote_cache
 set :repository, "git@github.com:#{github_user_repo}/#{github_project_repo}.git"
-set :github_username, 'peregrinator'
+set :github_username, 'criticaljuncture'
 
 
 #############################################################
