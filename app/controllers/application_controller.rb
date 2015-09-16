@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(user)
     if user.role?(:organization_member) && user.organization.verification_required?
-      flash[:notice] = "Welcome. Please verify and complete the information about your organization below."
       Organization.needs_verification_path(user.organization)
     elsif user.role?(:organization_member)
       organization_path(user.organization)
