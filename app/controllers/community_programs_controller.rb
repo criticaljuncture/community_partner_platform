@@ -120,8 +120,20 @@ class CommunityProgramsController < ApplicationController
 
     if @community_program.active?
       @community_program.active = false
+      @community_program.school_programs.each do |program|
+        program.active = false
+        program.active_changed_by = current_user.id
+        program.active_changed_on = Time.now
+        program.save(verify: false)
+      end
     else
       @community_program.active = true
+      @community_program.school_programs.each do |program|
+        program.active = true
+        program.active_changed_by = current_user.id
+        program.active_changed_on = Time.now
+        program.save(verify: false)
+      end
     end
 
     @community_program.active_changed_by = current_user.id

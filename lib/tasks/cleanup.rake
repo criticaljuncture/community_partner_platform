@@ -64,4 +64,15 @@ namespace :cleanup do
       SQL
     end
   end
+
+  task :deactivate_school_program_if_community_program_not_active => :environment do
+    CommunityProgram.unscoped.where(active: false).each do |community_program|
+      community_program.school_programs.each do |program|
+        program.active = false
+        program.active_changed_by = community_program.active_changed_by
+        program.active_changed_on = community_program.active_changed_on
+        program.save(verify: false)
+      end
+    end
+  end
 end
