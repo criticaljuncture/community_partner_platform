@@ -14,7 +14,7 @@
         wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
           <%= render partial: 'form', locals: {
             f: f,
-            decorated_organzation: OrganizationDecorator.decorate(@organization)
+            decorated_organization: OrganizationDecorator.decorate(@organization)
           } %>
       <% end %>
     </div>
