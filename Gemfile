@@ -117,6 +117,8 @@ group :deployment do
 end
 
 group :development, :test do
+  gem 'spring', '~> 1.4.0'
+  
   gem "rspec-rails", "~> 2.14.0"
   gem "factory_girl_rails", "~> 4.2.1"
   gem "database_cleaner", "~> 1.1.1"
@@ -134,7 +136,7 @@ group :development, :test do
   gem "quiet_assets"
 
   # live reloading of css & html via chrome browser extension
-  gem 'guard'
+  gem 'guard', '~> 2.13.0'
   gem 'guard-livereload'
 
   # console on errors or using <%= console %>
