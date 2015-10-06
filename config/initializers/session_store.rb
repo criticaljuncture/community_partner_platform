@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-OusdCommunityPartners::Application.config.session_store :cookie_store,
+Rails.application.config.session_store :cookie_store,
   key: '_ousd_community_partners_session',
   # Only send cookie over SSL when in production mode
   secure: Rails.env.production? ? true : false,
