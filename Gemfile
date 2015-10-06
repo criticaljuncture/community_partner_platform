@@ -108,9 +108,6 @@ gem 'jquery-modal-rails',
     github: 'peregrinator/jquery-modal-rails',
     ref: '97bc84d7723d324876971f45f255e066fbb6ad49'
 
-# libcurl binding
-gem 'curb', '~> 0.8.5'
-
 group :deployment do
   gem 'capistrano', '~> 2.15.5'
   gem 'thunder_punch', '~> 0.1.2'
@@ -118,7 +115,7 @@ end
 
 group :development, :test do
   gem 'spring', '~> 1.4.0'
-  
+
   gem "rspec-rails", "~> 2.14.0"
   gem "factory_girl_rails", "~> 4.2.1"
   gem "database_cleaner", "~> 1.1.1"
