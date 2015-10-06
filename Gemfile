@@ -110,7 +110,7 @@ gem 'jquery-modal-rails',
 
 group :deployment do
   gem 'capistrano', '~> 2.15.5'
-  gem 'thunder_punch', '~> 0.1.2'
+  gem 'thunder_punch', '~> 0.1.6'
 end
 
 group :development, :test do
@@ -134,7 +134,6 @@ group :development, :test do
 
   # live reloading of css & html via chrome browser extension
   gem 'guard', '~> 2.13.0'
-  gem 'guard-livereload'
 
   # console on errors or using <%= console %>
   gem 'web-console', '~> 2.0'
