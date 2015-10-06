@@ -38,6 +38,11 @@ $(document).ready(function() {
     /* select first tab on page load */
     $('.nav.nav-tabs').find('a').first().tab('show');
   }, 25);
+
+  var sortableTable = $("table.table-sorter");
+  if(sortableTable.length > 0) {
+    new CJ.Tablesorter(sortableTable);
+  }
 });
 
 $(document).on({
