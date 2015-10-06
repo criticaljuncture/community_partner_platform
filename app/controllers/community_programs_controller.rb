@@ -1,7 +1,7 @@
 class CommunityProgramsController < ApplicationController
 
   def index
-    @community_programs = CommunityProgram.accessible_by(current_ability).includes(:organization).order("organizations.name")
+    @community_programs = CommunityProgram.accessible_by(current_ability)
     authorize! :index, CommunityProgram
   end
 
@@ -145,6 +145,15 @@ class CommunityProgramsController < ApplicationController
         render json: {active: @community_program.active}.to_json
       end
     end
+  end
+
+  def table
+    @community_programs = CommunityProgram.accessible_by(current_ability).
+      includes(:organization, :school_programs, :schools, :quality_element).
+      order("organizations.name")
+    authorize! :index, CommunityProgram
+
+    render layout: false
   end
 
   private

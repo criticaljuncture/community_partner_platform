@@ -29,6 +29,10 @@ OusdCommunityPartners::Application.routes.draw do
       only: [:show, :update],
       controller: 'community_programs/build'
 
+    collection do
+      get :table
+    end
+
     member do
       put :toggle_active
     end

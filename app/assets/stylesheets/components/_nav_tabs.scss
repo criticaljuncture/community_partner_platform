@@ -11,4 +11,15 @@
   .form_wrapper,
   .graph_wrapper,
   .detail_wrapper { padding: 0; }
+
+  .table_wrapper {
+    margin-top: 30px;
+
+    .table-bordered > thead:first-child > tr:first-child > th {
+      //override bootstrap
+      border-top: 1px solid #ddd;
+    }
+  }
+
+  .loader.loading { margin-top: 50px; }
 }
