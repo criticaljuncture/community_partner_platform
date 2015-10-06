@@ -5,9 +5,6 @@ class CommunityProgram < ActiveRecord::Base
 
   default_scope { where(active: true) }
 
-  after_create :clear_associated_cache
-  after_update :clear_associated_cache
-
   has_many :school_programs
   has_many :schools, through: :school_programs
   #has_many :regions, through: :schools
@@ -18,6 +15,8 @@ class CommunityProgram < ActiveRecord::Base
   has_one :primary_quality_element,
           ->{where type: "PrimaryQualityElement"},
           class_name: CommunityProgramQualityElement
+  has_one :quality_element, through: :primary_quality_element
+
   has_many :primary_service_types,
            through: :primary_quality_element,
            source: :service_types
@@ -46,10 +45,6 @@ class CommunityProgram < ActiveRecord::Base
       message: "must choose a primary quality element"
     }
 
-  def quality_element
-    primary_quality_element.try(:quality_element)
-  end
-
   def service_types
     primary_service_types
   end
@@ -63,10 +58,5 @@ class CommunityProgram < ActiveRecord::Base
   def should_verify?(current_user)
       current_user.role?(:organization_member) &&
       verification_required?
-  end
-
-  private
-  def clear_associated_cache
-    organization.touch
   end
 end
