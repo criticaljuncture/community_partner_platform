@@ -15,15 +15,15 @@
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <%= page_nav_tabs [['Overview', '#overview'],
-                       ['Organizations', '#organizations']] %>
+                       ['Organizations', '#organizations-table']] %>
 
     <div class="tab-content">
       <div id="overview" class="tab-pane active">
         <%= render partial: 'overview', locals: {organizations: @organizations} %>
       </div>
 
-      <div id="organizations" class="tab-pane">
-        <%= render partial: 'list', locals: {organizations: @organizations} %>
+      <div id="organizations-table" class="tab-pane">
+        <div class="loader loading"></div>
       </div>
     </div>
   </div>

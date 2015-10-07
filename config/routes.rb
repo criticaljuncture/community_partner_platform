@@ -43,6 +43,10 @@ OusdCommunityPartners::Application.routes.draw do
   end
 
   resources :organizations do
+    collection do
+      get :table
+    end
+
     member do
       get :verification
       get :primary_contact_input

@@ -1,7 +1,11 @@
 class OrganizationsController < ApplicationController
   def index
     @organizations = Organization.accessible_by(current_ability).
-      includes(:community_programs).sort_by(&:name)
+      includes(
+        {:community_programs => [:quality_element, :primary_service_types, :schools]},
+        :schools
+      ).
+      sort_by(&:name)
     authorize! :index, Organization
 
     @organizations = OrganizationDecorator.decorate_collection(
@@ -88,6 +92,20 @@ class OrganizationsController < ApplicationController
 
     @form_object = :community_program
     render "/community_programs/primary_contact_input", layout: false
+  end
+
+  def table
+    @organizations = Organization.accessible_by(current_ability).
+      includes(
+        {:community_programs => [:quality_element, :primary_service_types, :schools]},
+        :schools
+      ).
+      sort_by(&:name)
+    authorize! :index, Organization
+
+    @organizations = OrganizationDecorator.decorate_collection(
+      @organizations
+    )
   end
 
   private

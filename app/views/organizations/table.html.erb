@@ -15,10 +15,18 @@
       <% @organizations.each do |organization| %>
         <tr>
           <td><%= organization.try(:name) %></td>
-          <td><%= organization.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
-          <td><%= organization.service_types.map{|cp| cp.name}.join(', <br />').html_safe %></td>
-          <td class="center"><%= organization.community_programs.count %></td>
-          <td class="center"><%= organization.schools.uniq.count %></td>
+          <td>
+            <%= organization.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %>
+          </td>
+          <td>
+            <%= organization.service_types.map{|cp| cp.name}.join(', <br />').html_safe %>
+          </td>
+          <td class="center">
+            <%= organization.schools.uniq.count %>
+          </td>
+          <td class="center">
+            <%= organization.community_programs.count %>
+          </td>
           <td class="center buttons">
             <%= link_to_gicon 'view',
               organization_path(organization),
