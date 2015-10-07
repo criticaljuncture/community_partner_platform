@@ -11,7 +11,7 @@
     </thead>
 
     <tbody>
-      <% schools_presenter.schools.each do |school| %>
+      <% @schools_presenter.schools.each do |school| %>
         <tr>
           <td><%= school.name %></td>
           <td class="center"><%= school.community_program_count %></td>

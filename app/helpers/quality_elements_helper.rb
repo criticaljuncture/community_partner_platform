@@ -1,6 +1,9 @@
 module QualityElementsHelper
   def quality_elements_coverage_display(quality_element_count)
-    sub_area_count = QualityElement.programmatic.accessible_by(current_ability).count
+    sub_area_count = QualityElement.
+      programmatic.
+      accessible_by(current_ability).
+      count
 
     ratio = quality_element_count.to_f / sub_area_count.to_f
 
@@ -13,7 +16,10 @@ module QualityElementsHelper
   end
 
   def community_program_count_for_element(quality_element, school)
-    count = school.community_programs.select{|cp| cp.quality_element.id == quality_element.id}.count
+    count = school.community_programs.
+      includes(:quality_element).
+      select{|cp| cp.quality_element.id == quality_element.id}
+      .count
 
     content_tag(:span, count, class: count > 0 ? 'satisfactory' : 'bad')
   end

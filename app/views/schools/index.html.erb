@@ -16,10 +16,8 @@
         <%= render partial: 'overview' %>
       </div>
 
-      <div id="schools" class="tab-pane">
-        <%= render partial: 'table', locals: {
-          schools_presenter: @schools_presenter
-        } %>
+      <div id="schools-table" class="tab-pane">
+        <div class="loader loading"></div>
       </div>
 
       <% if can? :view, :school_overview_community_school_element_breakdown %>

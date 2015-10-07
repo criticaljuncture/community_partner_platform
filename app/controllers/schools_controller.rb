@@ -1,12 +1,13 @@
 class SchoolsController < ApplicationController
   def index
-    @overview_presenter = SchoolsOverviewPresenter.new(nil, view_context)
-    @schools_presenter = SchoolsListPresenter.new(
-      School.accessible_by(current_ability).order(:name)
+    @overview_presenter = SchoolsOverviewPresenter.new(
+      nil, view_context
     )
     authorize! :index, School
 
-    @quality_elements = QualityElement.accessible_by(current_ability).order(:name)
+    @quality_elements = QualityElement.
+      accessible_by(current_ability).
+      order(:name)
   end
 
   def show
@@ -59,6 +60,19 @@ class SchoolsController < ApplicationController
 
     @form_object = :school_program
     render "/community_programs/primary_contact_input", layout: false
+  end
+
+  def table
+    @schools_presenter = SchoolsListPresenter.new(
+      School.
+      includes(
+        {:community_programs => :quality_element},
+        :organizations
+      ).
+      accessible_by(current_ability).
+      order(:name)
+    )
+    authorize! :index, School
   end
 
   private

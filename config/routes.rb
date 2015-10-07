@@ -17,6 +17,10 @@ OusdCommunityPartners::Application.routes.draw do
 
 
   resources :schools do
+    collection do
+      get :table
+    end
+
     member do
       get :primary_contact_input
     end

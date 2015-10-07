@@ -19,10 +19,15 @@ class Region < ActiveHash::Base
   end
 
   def schools
-    @schools ||= School.where(region_id: id)
+    @schools ||= School.
+      includes(:community_programs).
+      where(region_id: id)
   end
 
   def community_programs
-    @community_programs ||= schools.map{|s| s.community_programs}.flatten.uniq
+    @community_programs ||= schools.map do |s|
+      s.community_programs.
+        includes(:quality_element, :primary_service_types)
+    end.flatten.uniq
   end
 end
