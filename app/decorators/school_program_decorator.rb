@@ -7,7 +7,7 @@ class SchoolProgramDecorator < Draper::Decorator
     model.customized_attributes.each do |attribute|
       name = extract_name(attribute)
       objects = model.send(attribute)
-      values = objects.map{|o| o.name }
+      values = Array(objects).map{|o| o.name }
 
       attrs[name] = values.join(', ')
     end
