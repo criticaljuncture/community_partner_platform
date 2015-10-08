@@ -13,7 +13,6 @@ class Region < ActiveHash::Base
 
   def community_programs_by_quality_element
     community_programs.
-      map(&:primary_quality_element).
       map(&:quality_element).
       group_by(&:id)
   end

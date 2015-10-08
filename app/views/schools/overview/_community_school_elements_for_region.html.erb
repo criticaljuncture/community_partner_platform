@@ -1,35 +1,49 @@
-<h5><%= region.name %></h5>
+<h4><%= region.name %></h4>
 
-<dl class="quality_element_stats">
+<table class="table table-striped table-condensed quality-element-stats-wrapper">
   <% region.quality_element_counts.each do |quality_element_count| %>
-    <dt class="toggle"
-        data-target="#<%= region.id %>_<%= quality_element_count[:id] %>">
-      <%= quality_element_count[:name] %>
-    </dt>
-    <dd>
-      <%= pluralize(quality_element_count[:count], "program") %>
-      <span class="extra_info">
-        (<%= region.percentage_of_programs_with_quality_element(quality_element_count[:count]) %>%)
-      </span>
+    <tbody>
+      <tr class="quality-element-stat">
+        <td class="toggle"
+            data-toggle-target="#<%= region.id %>_<%= quality_element_count[:id] %>">
+          <%= quality_element_count[:name] %>
+        </td>
+        <td>
+          <%= pluralize(quality_element_count[:count], "program") %>
+          <span class="extra_info">
+            (<%= region.percentage_of_programs_with_quality_element(quality_element_count[:count]) %>%)
+          </span>
+        </td>
+      </tr>
+    </tbody>
 
-      <% if quality_element_count[:count] > 0 %>
-        <div id="<%= region.id %>_<%= quality_element_count[:id] %>"
-            class="hide service_type_stats_wrapper">
-          <h6>Service Types <span class="hint">(each program can have multiple)</span></h6>
+    <% if quality_element_count[:count] > 0 %>
+      <tbody id="<%= region.id %>_<%= quality_element_count[:id] %>"
+        class="hidden service-type-stats-wrapper">
 
-          <dl class="service_type_stats">
-            <% region.service_type_counts.each do |service_type_count| %>
-              <dt><%= service_type_count[:name] %></dt>
-              <dd><%= service_type_count[:count] %></dd>
-            <% end %>
-          </dl>
-        </div>
-      <% end %>
-    </dd>
+        <tr class="service-type-label">
+          <td colspan="2">
+            Service Types
+            <span class="hint">(each program can have multiple)</span>
+          </td>
+        </tr>
+
+        <% region.service_type_counts.each do |service_type_count| %>
+          <tr class="service-type">
+            <td><%= service_type_count[:name] %></td>
+            <td><%= service_type_count[:count] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
   <% end %>
 
-  <% region.quality_elements_without_coverage.each do |quality_element_name| %>
-    <dt><%= quality_element_name %></dt>
-    <dd>0 programs <span class="extra_info">(0%)</span></dd>
-  <% end %>
-</dl>
+  <tbody>
+    <% region.quality_elements_without_coverage.each do |quality_element_name| %>
+      <tr class="quality-element-stat">
+        <td><%= quality_element_name %></td>
+        <td>0 programs <span class="extra_info">(0%)</span></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

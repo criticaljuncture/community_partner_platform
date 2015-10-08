@@ -6,10 +6,10 @@ class RegionPresenter < BasePresenter
   def quality_element_counts
     @qe_counts ||= model.
       community_programs_by_quality_element.
-      map{|qe| {
-        id: qe[0],
-        name: qe[1].first.name,
-        count: qe[1].count
+      map{|id, qe| {
+        id: id,
+        name: qe.first.name,
+        count: qe.count
         }
       }.
       sort_by{|k| k[:count]}.
@@ -40,9 +40,9 @@ class RegionPresenter < BasePresenter
   def service_type_counts
     service_types.
       group_by(&:id).
-      map{|st| {
-        name: st[1].first.name,
-        count: st[1].count
+      map{|id, st| {
+        name: st.first.name,
+        count: st.count
         }
       }.
       sort_by{|k| k[:count]}.

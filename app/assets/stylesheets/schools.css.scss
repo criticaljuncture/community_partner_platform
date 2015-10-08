@@ -21,12 +21,40 @@ table.tablesorter {
   input:disabled { display: none; }
 }
 
-dl.quality_element_stats {
-  dt { width: 300px; }
+table.quality-element-stats-wrapper {
+  width: 60%;
 
-  .extra_info { color: $gray-30; }
+  tbody.service-type-stats-wrapper {
+    tr:last-child td:last-child {
+      padding-bottom: 35px;
+    }
+  }
 
-  dl.service_type_stats {
-    dt { width: 500px; }
+  tr.quality-element-stat {
+    background-color: $white;
+
+    td:last-child {
+      text-align: right;
+      width: 175px;
+    }
+  }
+
+  tr.service-type-label {
+    background-color: $white;
+    font-weight: bold;
+
+    .hint { font-weight: normal; }
+
+    td { border-top: 0; }
+
+    td:first-child { padding-left: 20px; }
+  }
+
+  tr.service-type {
+    td:first-child { padding-left: 40px; }
+    td:last-child {
+      text-align: right;
+      width: 50px;
+    }
   }
 }
