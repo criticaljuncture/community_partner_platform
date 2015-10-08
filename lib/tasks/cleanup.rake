@@ -75,4 +75,13 @@ namespace :cleanup do
       end
     end
   end
+
+  task :convert_ousd_users_email_addresses => :environment do
+    users = User.where('email like "%ousd.k12.ca.us"').where(subdomain: 'ousd')
+
+    users.each do |user|
+      user.email = user.email.gsub('ousd.k12.ca.us', 'ousd.org')
+      user.save(verify: false)
+    end
+  end
 end
