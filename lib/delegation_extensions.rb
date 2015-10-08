@@ -18,7 +18,7 @@ module DelegationExtensions
 
         method_def = [
           "def #{method}_with_delegation",
-          "  self.send('#{method}_without_delegation').to_a.blank? ? self.send('#{to}').send('#{method}') : self.send('#{method}_without_delegation')",
+          "  Array(self.send('#{method}_without_delegation')).blank? ? self.send('#{to}').send('#{method}') : self.send('#{method}_without_delegation')",
           "end",
           "alias_method('#{method}_without_delegation', '#{method}')",
           "alias_method('#{method}', '#{method}_with_delegation')",
