@@ -14,21 +14,33 @@ class CommunityProgramDecorator < Draper::Decorator
     method: :name, association: true
 
   def last_verified
-    if last_verified_at.present?
+    if last_verified_at.present? && verifier.present?
       "#{last_verified_at} by #{verifier.try(:full_name)}"
     else
-      h.not_provided
+      nil
     end
   end
 
   def school_summary
-    str = schools[0..2].map(&:name).join(', ')
+    schls = schools.sort_by(&:name)
 
-    if schools.count > 2
-      str += " (and #{h.pluralize schools.count-2, 'other'})"
+    h.content_tag(:ul, class: 'no-bullets') do
+      schls.to_a[0..1].each do |school|
+        h.concat h.content_tag(:li, school.name)
+      end
+
+      if schls.count > 2
+        schls[2..-1].each do |school|
+          h.concat h.content_tag(:li, school.name, class: 'hidden overflow')
+        end
+
+        h.concat(
+          h.content_tag(:li, class: 'toggler') do
+            h.concat h.content_tag(:a, "view #{h.pluralize schools.count-2, 'other'}")
+          end
+        )
+      end
     end
-
-    str
   end
 
   def verification_header

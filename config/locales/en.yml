@@ -18,6 +18,7 @@ en:
     class:
       name: Community Program
 
+    days: Service Days
     demographic_groups: Target Demographic Groups
     ethnicity_culture_groups: Target Ethnicity/Culture Groups
     grade_levels: Target Grade Levels
