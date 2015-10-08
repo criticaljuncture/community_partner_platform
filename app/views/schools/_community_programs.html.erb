@@ -9,7 +9,7 @@
     <%= columnar_table_block "#{quality_element.name}
       <span class='hint'>(#{pluralize school_programs.count, 'program'})</span>".html_safe,
       auto_table: false,
-      class: 'school school-programs toggle toggleable closed',
+      class: 'school school-programs',
       columns: {xs: 12, md: 12} do %>
         <div class="columnar-table-block-wrapper">
           <% school_programs.sort_by(&:name).each do |school_program| %>
