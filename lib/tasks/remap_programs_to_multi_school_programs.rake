@@ -14,61 +14,32 @@ namespace :remap do
   # program with multiple school programs. The criteria for similar is defined
   # in the collapsible? method.
   task :similar_community_programs_to_single_program => :environment do
-    #Organization.unscoped.includes(:community_programs).all.each do |organization|
-      organization = Organization.includes(:community_programs).find(5)
+    Organization.unscoped.includes(:community_programs).all.each do |organization|
+      program_names = SimilarProgramClassifier.normalize_program_names(
+        organization.community_programs.map(&:name).uniq
+      )
 
-      program_names = organization.community_programs.map(&:name).uniq
-
-      program_names.each do |name|
-        programs = organization.community_programs.where(name: name).to_a
-        master_program = programs.shift
+      program_names.each do |normalized_name, original_names|
+        programs = organization.community_programs.where(name: original_names).to_a
+        #master_program = programs.shift
+        master_programs = programs.dup
 
         programs.each do |program|
-          if collapsible?(master_program, program)
-            program.school_programs.each do |collapsible_program|
-              collapsible_program.community_program_id = master_program.id
+          master_programs.each do |master_program|
+            next if master_program == program
 
-              collapsible_program.delegated_if_blank_methods.each do |method|
-                # create customized attributes where the collapsible_program
-                # differs from the master_program
-                unless collapsible_program.send(method) == master_program.send(method)
-                  collapsible_program.send(
-                    "#{method}=",
-                    collapsible_program.send(method)
-                  )
-                end
-              end
+            classifier = SimilarProgramClassifier.new(
+              master_program: master_program,
+              program: program
+            )
 
-              collapsible_program.save
+            if classifier.collapsible?
+              SimilarProgramCollapser.perform(master_program, program)
+              master_programs -= [program]
             end
-
-            program.destroy
           end
         end
       end
-    #end
-  end
-
-  # programs are collapsible if they have similar community program values
-  # (defined below) and similar descriptions. Otherwise they are collapsible
-  # if their descriptions are different but the community program values and
-  # select school program values are similar. 
-  def collapsible?(master_program, program)
-    community_program_values_similar = [:quality_element, :service_types].all? do |method|
-      program.send(method).blank? || master_program.send(method) == program.send(method)
-    end
-
-    method = :service_description
-    description_similar = program.send(method).blank? || master_program.send(method) == program.send(method)
-
-    if community_program_values_similar && description_similar
-      true
-    else
-      school_program_values_similar = [:student_population, :demographic_groups].all? do |method|
-        program.send(method).blank? || master_program.send(method) == program.send(method)
-      end
-
-      community_program_values_similar && school_program_values_similar
     end
   end
 end
