@@ -8,14 +8,11 @@
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <div class="form_wrapper">
-      <%= simple_form_for @organization, method: :post,
+      <%= simple_form_for @organization.model, method: :post,
         html: {class: "form-horizontal organization"},
         wrapper: :horizontal_form,
         wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
-          <%= render partial: 'form', locals: {
-            f: f,
-            decorated_organization: OrganizationDecorator.decorate(@organization)
-          } %>
+          <%= render partial: 'form', locals: {f: f} %>
       <% end %>
     </div>
   </div>

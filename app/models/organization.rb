@@ -37,8 +37,9 @@ class Organization < ActiveRecord::Base
   end
 
   def verification_required?
-    last_verified_at.nil? ||
-      last_verified_at < Settings.organization.verification_date
+    !new_record? &&
+      (last_verified_at.nil? ||
+        last_verified_at < Settings.organization.verification_date)
   end
 
   def any_unverified_programs?

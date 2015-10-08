@@ -36,9 +36,9 @@
   <div class="col-sm-3 hidden-sm"></div>
   <div class="col-sm-9">
     <%= f.submit t('forms.buttons.save'),
-      class: "btn btn-large #{decorated_organization.organization_verifiable? ? 'btn-primary' : 'btn-success'}" %>
+      class: "btn btn-large #{@organization.organization_verifiable? ? 'btn-primary' : 'btn-success'}" %>
 
-    <% if decorated_organization.organization_verifiable? %>
+    <% if @organization.organization_verifiable? %>
       <%= f.submit t('forms.buttons.save_verify'),
         class: "btn btn-large btn-success" %>
       <%= help_hover do %>

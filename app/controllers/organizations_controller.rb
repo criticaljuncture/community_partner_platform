@@ -26,6 +26,7 @@ class OrganizationsController < ApplicationController
   def new
     @organization = Organization.new
     authorize! :new, @organization
+    @organization = OrganizationDecorator.decorate(@organization)
   end
 
   def create
@@ -39,13 +40,14 @@ class OrganizationsController < ApplicationController
     redirect_to organization_path(@organization)
   rescue ActiveRecord::RecordInvalid
     flash.now[:error] = t('errors.form_error', count: @organization.errors.count)
+    @organization = OrganizationDecorator.decorate(@organization)
     render :new
   end
 
   def edit
     @organization = Organization.find(params[:id])
     authorize! :edit, @organization
-    @decorated_organization = OrganizationDecorator.decorate(@organization)
+    @organization = OrganizationDecorator.decorate(@organization)
   end
 
   def update
@@ -78,6 +80,7 @@ class OrganizationsController < ApplicationController
     redirect_to organization_path(@organization)
   rescue ActiveRecord::RecordInvalid
     flash.now[:error] = t('errors.form_error', count: @organization.errors.count)
+    @organization = OrganizationDecorator.decorate(@organization)
     render :edit
   end
 
