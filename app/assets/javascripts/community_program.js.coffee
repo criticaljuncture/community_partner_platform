@@ -42,3 +42,8 @@ $(document).ready ->
               .text 'Close'
         }
       )
+
+  $('#merge-program-modal')
+    .on 'click', '.merge-program.btn', (e)->
+      e.preventDefault()
+      $('form.merge-community-program').submit()

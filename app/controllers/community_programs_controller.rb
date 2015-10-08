@@ -156,10 +156,28 @@ class CommunityProgramsController < ApplicationController
     render layout: false
   end
 
+  def merge
+    community_program = CommunityProgram.find(params[:id])
+    authorize! :merge_program, community_program
+
+    master_program = CommunityProgram.find(community_program_params[:merge_target])
+
+    flash.notice = t('community_programs.flash_messages.merge.success',
+                     name: community_program.name,
+                     merged_name: master_program.name)
+
+    if can?(:edit, master_program)
+      SimilarProgramCollapser.perform(master_program, community_program)
+    end
+
+    redirect_to community_program_path(master_program)
+  end
+
   private
 
   def community_program_params
     params.require(:community_program).permit(
+      :merge_target,
       :mou_on_file,
       :name,
       :notes,

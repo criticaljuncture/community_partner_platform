@@ -3,6 +3,8 @@ class CommunityProgram < ActiveRecord::Base
   include CommunityProgramAudit
   include CommunityProgramAttributeRelationships
 
+  attr_accessor :merge_target #for merging similar programs
+
   default_scope { where(active: true) }
 
   has_many :school_programs

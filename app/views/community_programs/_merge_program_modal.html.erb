@@ -1,0 +1,28 @@
+<%= modal(:with_button,
+    modal_id: "merge-program-modal",
+    header_icon: 'icon-cpp-handshake',
+    header_text: "Merge this program into another".html_safe,
+    footer_button_class: 'btn-medium btn-danger merge-program',
+    footer_button_icon: 'transfer',
+    footer_button_text: 'Merge program',
+    footer_include_cancel_button: true
+  ) do %>
+    <p>Merging a program into another program can not be undone!</p>
+
+    <p>Choose the program you would like to merge this program into below.</p>
+
+    <%= simple_form_for community_program,
+      url: merge_community_program_path(community_program),
+      html: {class: "form-horizontal merge-community-program"},
+      method: :put,
+      wrapper: :horizontal_form do |f| %>
+
+      <%= f.input :merge_target,
+        as: :select,
+        collection: CommunityProgramDecorator.decorate_collection(
+          community_program.organization.community_programs
+        ),
+        input_html: { class: 'wrap' },
+        label_method: :summary_for_select %>
+    <% end %>
+<% end %>

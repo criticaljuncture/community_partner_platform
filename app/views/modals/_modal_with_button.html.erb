@@ -23,8 +23,18 @@
 
       <% if footer %>
         <div class="modal-footer">
+          <% if footer_include_cancel_button %>
+            <%= link_to 'Cancel', "#close-modal",
+              rel: "modal:close", "data-dismiss" => "modal" %>
+          <% end %>
+          
           <button class="btn <%= footer_button_class %>" data-dismiss="modal"
-            aria-hidden="true"><%= footer_button_text %></button>
+            aria-hidden="true">
+            <% if footer_button_icon %>
+              <span class="icon glyphicon glyphicon-<%= footer_button_icon %>"></span>
+            <% end %>
+            <%= footer_button_text %>
+          </button>
         </div>
       <% end %>
     </div>

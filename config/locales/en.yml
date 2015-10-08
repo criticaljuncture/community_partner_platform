@@ -36,6 +36,8 @@ en:
     flash_messages:
       create:
         success: Successfully created '%{name}'
+      merge:
+        success: Successfully merged '%{name}' into '%{merged_name}'
       save:
         success: Successfully saved '%{name}'
       verified: Thank you for verifying '%{name}'

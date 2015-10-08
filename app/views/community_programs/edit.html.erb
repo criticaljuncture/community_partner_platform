@@ -46,12 +46,23 @@
   <% end %>
 <% end %>
 
+<%= render partial: 'merge_program_modal', locals: {
+  community_program: @community_program
+} if can?(:merge_program, @community_program) %>
+
 <%= render partial: 'deactivation_modal', locals: {
   community_program: @community_program
 } if can?(:toggle_active, @community_program) %>
 
 <%= page_header @community_program.verification_header,
   "icon-cpp-handshake" do %>
+
+  <%= link_to_modal_with_gicon(
+      'Merge Program',
+      '#merge-program-modal',
+      class: "btn btn-warning",
+      icon: 'transfer'
+    ) if can?(:merge_program, @community_program) %>
 
   <%= link_to_modal_with_gicon(
       @community_program.active? ? 'Deactivate' : 'Activate',
@@ -64,7 +75,7 @@
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md:12 %>">
     <div class="form_wrapper">
-      <%= simple_form_for @community_program, method: :put,
+      <%= simple_form_for @community_program.model, method: :put,
         html: {class: "form-horizontal community-program"},
         wrapper: :horizontal_form,
         wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>

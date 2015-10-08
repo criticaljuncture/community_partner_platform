@@ -38,6 +38,7 @@ OusdCommunityPartners::Application.routes.draw do
     end
 
     member do
+      put :merge
       put :toggle_active
     end
   end

@@ -10,7 +10,6 @@ class Ability < BaseAbility
 
     can :send_invitation, User
     can :view, :admin_dashboard
-    can :toggle_active, CommunityProgram
 
     admin_page_level_abilities
   end
@@ -32,9 +31,6 @@ class Ability < BaseAbility
     can :manage, ServiceType
     can :read, :organization_users
     can :read, Region
-
-    can :verify, CommunityProgram
-    can :toggle_active, CommunityProgram
 
     admin_page_level_abilities
   end
@@ -64,6 +60,7 @@ class Ability < BaseAbility
     can :new, CommunityProgram
     can [:create, :edit, :update, :toggle_active], CommunityProgram, organization_id: @user.organization_id
     can :verify, CommunityProgram, organization_id: @user.organization_id
+    can :merge_program, CommunityProgram, organization_id: @user.organization_id
 
     can :new, SchoolProgram
     can [:create, :edit, :update, :toggle_active], SchoolProgram do
@@ -102,7 +99,10 @@ class Ability < BaseAbility
 
     can :view, :school_partnership_status_dashboard_panels
 
+    can :merge_program, CommunityProgram
     can :verify, CommunityProgram
+    can :toggle_active, CommunityProgram
+
     can :view, :visualizations
 
     organization_member_page_level_abilities

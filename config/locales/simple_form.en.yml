@@ -17,6 +17,7 @@ en:
         demographic_groups: Target demographic groups
         ethnicity_culture_groups: Target ethnicity/culture groups
         grade_levels: Target grade levels
+        merge_target: Program to merge into
         mou_on_file: MOU or contract on file with the District
         name: Program name
         organization_id: Organization
