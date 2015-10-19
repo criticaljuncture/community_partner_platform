@@ -14,6 +14,7 @@ class Region < ActiveHash::Base
   def community_programs_by_quality_element
     community_programs.
       map(&:quality_element).
+      compact.
       group_by(&:id)
   end
 

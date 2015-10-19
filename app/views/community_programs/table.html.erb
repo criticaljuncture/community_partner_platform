@@ -26,7 +26,7 @@
             <% end %>
           </td>
           <td class="sqisa">
-            <%= community_program.quality_element.name %>
+            <%= community_program.quality_element.try(:name) %>
           </td>
           <td class="actions center">
             <%= link_to_gicon 'view',

@@ -16,7 +16,7 @@
         <tr>
           <td><%= organization.try(:name) %></td>
           <td>
-            <%= organization.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %>
+            <%= organization.quality_elements.compact.map{|qe| qe.name}.join(', <br />').html_safe %>
           </td>
           <td>
             <%= organization.service_types.map{|cp| cp.name}.join(', <br />').html_safe %>
