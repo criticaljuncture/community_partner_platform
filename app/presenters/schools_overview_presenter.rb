@@ -1,10 +1,10 @@
 class SchoolsOverviewPresenter < BasePresenter
   def regions
-    Region.all.map{|r| RegionPresenter.new(r, h)}
+    @regions ||= Region.all.map{|r| RegionPresenter.new(r, h)}
   end
 
   def schools_without_region
-    School.where("region_id IS NULL")
+    @missing_regions ||= School.where("region_id IS NULL")
   end
 
   def page_nav_tabs
