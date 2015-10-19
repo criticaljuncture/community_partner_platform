@@ -9,7 +9,7 @@
   <tr>
     <td><%= I18n.t('community_programs.quality_element') %></td>
     <td>
-      <%= community_program.quality_element.name %>
+      <%= community_program.quality_element.try(:name) %>
     </td>
   </tr>
 
