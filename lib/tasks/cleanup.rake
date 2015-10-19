@@ -31,13 +31,13 @@ namespace :cleanup do
     # quality_element_id => [service_type_ids]
     mappings_to_remove = {
       # Academic & Social Emotional Learning
-      1 => [1, 2, 4, 5, 6, 7, 9, 12, 13, 16, 24, 25, 26, 27, 28, 29, 30, 31, 33, 36, 37, 41, 44, 45],
+      1 => [1, 2, 4, 5, 6, 7, 9, 12, 13, 16, 20, 24, 25, 26, 27, 28, 29, 30, 31, 33, 36, 37, 41, 43, 44, 45],
       3 => [2, 34, 35, 45],
       5 => [1, 2, 15, 17, 30, 32, 35, 39, 45],
       6 => [1, 3, 5, 6, 7, 9, 11, 13, 16, 20, 21, 26, 30, 31, 33, 34, 37, 41, 43, 44, 45],
       7 => [1, 2, 3, 10, 15, 17, 24, 25, 32, 34, 35, 36],
       8 => [2, 4, 11, 12, 21, 24, 25, 36, 41, 44],
-      # remove 9 entirely and add new one
+      9 => [2,5,8,10,15,17,18,21,24,25,27,28,29,32,34,38,39,44,45],
       10 => [1, 2, 6, 18, 27, 28, 29, 34, 35, 43, 45],
       11 => [2, 10, 14, 15, 16, 17, 19, 21, 23, 30, 32, 39, 40, 42],
       12 => [2, 5, 6, 9, 14, 23, 24, 25, 30, 36, 41, 42, 44]
@@ -63,6 +63,29 @@ namespace :cleanup do
           AND quality_element_service_types.service_type_id IN (#{service_type_ids.join(',')})
       SQL
     end
+  end
+
+  task :remove_quality_elements_and_cleanup => :environment do
+    quality_element_ids = [9]
+
+    quality_element_ids.each do |id|
+      associated_elements = CommunityProgramQualityElement.where(quality_element_id: id)
+      associated_service_types = CommunityProgramQualityElementServiceType.where(community_program_quality_element_id: associated_elements.map(&:id))
+
+      associated_service_types.each {|st| st.destroy}
+      associated_elements.each {|qe| qe.destroy}
+      QualityElement.find(id).destroy
+    end
+  end
+
+  task :remove_orphaned_service_types => :environment do
+    ServiceType.connection.execute(<<-SQL)
+      DELETE service_types
+      FROM service_types
+      LEFT OUTER JOIN quality_element_service_types
+        ON service_types.id = quality_element_service_types.service_type_id
+      WHERE quality_element_service_types.id IS NULL
+    SQL
   end
 
   task :deactivate_school_program_if_community_program_not_active => :environment do
