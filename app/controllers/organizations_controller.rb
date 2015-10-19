@@ -87,6 +87,8 @@ class OrganizationsController < ApplicationController
   def verification
     @organization = Organization.find(params[:id])
     authorize! :verification, @organization
+
+    @organization = OrganizationDecorator.decorate(@organization)
   end
 
   def primary_contact_input
