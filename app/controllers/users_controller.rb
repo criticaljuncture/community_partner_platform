@@ -21,22 +21,32 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user = User.new(user_params)
     authorize! :new, @user
 
-    @organizations = Organization.accessible_by(current_ability, :update).select('name, id').sort_by(&:name)
-
     if request.xhr?
+      if user_params[:organization_id]
+        @organizations = Array(Organization.find(user_params[:organization_id]))
+      else
+        @organizations = []
+      end
+
       @schools = if params[:school_id]
-                   School.accessible_by(current_ability).where(id: params[:school_id])
-                 else
-                   nil
-                 end
-      role = Role.accessible_by(current_ability).where(id: params[:role_id])
+          Array(
+            School.accessible_by(current_ability).
+            where(id: params[:school_id])
+          )
+        else
+          []
+        end
+
+      role = Role.accessible_by(current_ability).
+        where(id: params[:role_id])
       @roles = role.map{|r| [r.name, r.id, {"data-role-type" => r.identifier}]}
       @user.primary_role = role.first
       render :ajax_new, layout: false
     else
+      @organizations = Organization.accessible_by(current_ability, :update).select('name, id').sort_by(&:name)
       @schools = School.accessible_by(current_ability).select('name, id').sort_by(&:name)
       @roles = Role.accessible_by(current_ability).map{|r| [r.name, r.id, {"data-role-type" => r.identifier}]}
       render :new
@@ -82,6 +92,10 @@ class UsersController < ApplicationController
 
       respond_to do |format|
         format.html {
+          @organizations = Organization.accessible_by(current_ability, :update).select('name, id').sort_by(&:name)
+          @schools = School.accessible_by(current_ability).select('name, id').sort_by(&:name)
+          @roles = Role.accessible_by(current_ability).map{|r| [r.name, r.id, {"data-role-type" => r.identifier}]}
+
           flash.now[:notice] = message
           render action: :new
         }

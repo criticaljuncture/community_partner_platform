@@ -95,21 +95,27 @@ class @CPP.CommunityProgramFormHandler
     @addRemoveSchoolHandler()
 
   addOrgUserHandler: ->
-    formHandler = this
     button = @form.find('#add-org-user')
+    organizationId = @form.find('#community_program_organization_id').val()
 
     button.on 'click', (event)=>
       event.preventDefault()
 
       response = $.ajax({
         url: '/users/new',
-        data: {role_id: 4},
+        data: {
+          role_id: 4,
+          user: {
+            organization_id: organizationId
+          }
+        },
         dataType: 'html'
       })
 
       @showModal '.user-modal'
       response.done (html)=>
         @updateModal '.user-modal', html
+        new CPP.UserModalFormHandler $('form.modal-user')
 
   addNewSchoolHandler: ->
     button = @form.find('#add-school-program')

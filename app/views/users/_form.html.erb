@@ -2,7 +2,7 @@
   <%= f.input :first_name %>
   <%= f.input :last_name %>
   <%= f.input :title %>
-  <%= f.input :email %>
+  <%= f.input :email, required: true %>
   <%= f.input :phone_number, placeholder: "(555) 555-5555" %>
 <% end %>
 
@@ -18,13 +18,14 @@
   <%= f.input :organization_id,
     as: :select,
     collection: organizations,
-    selected: current_user.organization_id.nil? ? "" : current_user.organization_id,
+    selected: f.object.organization_id.present? ? f.object.organization_id : (current_user.organization_id.nil? ? "" : current_user.organization_id),
     label: 'Organization',
     required: true,
     disabled: true,
+    include_blank: true,
     wrapper_html: {class: "hidden"} %>
 
-  <% if schools %>
+  <% if schools.present? %>
     <% if schools.size > 1 %>
       <%= f.input :school_ids,
         as: :select,
@@ -32,7 +33,7 @@
         label: 'Schools',
         required: true,
         disabled: true,
-        multiple: true,
+        input_html: {multiple: true},
         wrapper_html: {class: "hidden"} %>
     <% else %>
       <%= f.input :school_ids,
@@ -40,8 +41,7 @@
         collection: schools,
         label: 'Schools',
         required: true,
-        multiple: false,
-        selected: schools.first.id,
+        selected: schools.first.try(:id),
         wrapper_html: {class: "hidden"} %>
     <% end %>
   <% end %>

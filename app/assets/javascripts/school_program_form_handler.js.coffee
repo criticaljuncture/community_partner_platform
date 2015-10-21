@@ -134,7 +134,8 @@ class @CPP.SchoolProgramFormHandler
       response = $.ajax({
         url: '/users/new',
         data: {
-          school_id: formHandler.schoolEl.val()
+          user: {first_name: ""}, #stub to pass strong params
+          school_id: formHandler.schoolEl.find(':selected').val(),
           role_id: 3
         },
         dataType: 'html'
@@ -143,7 +144,7 @@ class @CPP.SchoolProgramFormHandler
       @showModal '.user-modal'
       response.done (html)=>
         @updateModal '.user-modal', html
-        new CPP.UserFormHandler $('form.user')
+        new CPP.UserModalFormHandler $('form.modal-user')
 
   showModal: (modalClass)->
     $(modalClass).modal()
