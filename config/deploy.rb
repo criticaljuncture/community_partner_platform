@@ -1,7 +1,7 @@
 #############################################################
 # Set Basics
 #############################################################
-set :application, "community_partners_platform"
+set :application, "community_partner_platform"
 set :user, "deploy"
 set :current_path, "/var/www/apps/#{application}"
 
@@ -75,6 +75,16 @@ set :honeybadger_user, `git config --global github.user`.chomp
 
 
 #############################################################
+# Recipe role setup
+#############################################################
+
+set :deploy_roles, [:app]
+set :bundler_roles, [:app]
+set :db_migration_roles, [:db]
+set :asset_roles, [:app]
+
+
+#############################################################
 # Run Order
 #############################################################
 
@@ -83,7 +93,7 @@ after "deploy:update_code",           "bundler:bundle"
 after "bundler:bundle",               "deploy:migrate"
 after "deploy:migrate",               "assets:precompile"
 after "assets:precompile",            "passenger:restart"
-after "passenger:restart",            "honeybadger:notify_deploy"
+after "passenger:restart",            "honeybadger_cli:dotenv:notify_deploy"
 
 
 #############################################################
