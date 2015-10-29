@@ -96,10 +96,10 @@ class @CPP.CommunityProgramFormHandler
 
   addOrgUserHandler: ->
     button = @form.find('#add-org-user')
-    organizationId = @form.find('#community_program_organization_id').val()
 
     button.on 'click', (event)=>
       event.preventDefault()
+      organizationId = @form.find('#community_program_organization_id').val()
 
       response = $.ajax({
         url: '/users/new',
