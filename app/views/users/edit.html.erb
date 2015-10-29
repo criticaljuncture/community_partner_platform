@@ -10,7 +10,7 @@
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <div class="form_wrapper">
       <%= simple_form_for @user, method: :put,
-        html: {class: "form-horizontal"},
+        html: {class: "form-horizontal user"},
         wrapper: :horizontal_form do |f| %>
 
         <%= render :partial => 'form', :locals => {
