@@ -184,7 +184,7 @@ class @CPP.SchoolProgramFormHandler
     currentRow = table
       .find("tbody tr[data-school-program-id='#{response.school_program_id}']")
 
-    if _.isEqual currentRow, []
+    if currentRow.length == 0
       table.find('tbody').append response.html
     else
       currentRow.replaceWith response.html

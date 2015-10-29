@@ -14,14 +14,19 @@ en:
     labels:
       community_program:
         days: Service days
+        day_ids: Service days
         demographic_groups: Target demographic groups
+        demographic_group_ids: Target demographic groups
         ethnicity_culture_groups: Target ethnicity/culture groups
+        ethnicity_culture_group_ids: Target ethnicity/culture groups
         grade_levels: Target grade levels
+        grade_level_ids: Target grade levels
         merge_target: Program to merge into
         mou_on_file: MOU or contract on file with the District
         name: Program name
         organization_id: Organization
         service_times: Service times
+        service_time_ids: Service times
         student_population: Target population
         user_id: Primary organization contact
         primary_quality_element:
