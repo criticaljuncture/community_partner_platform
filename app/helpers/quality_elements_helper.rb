@@ -18,6 +18,7 @@ module QualityElementsHelper
   def community_program_count_for_element(quality_element, school)
     count = school.community_programs.
       includes(:quality_element).
+      reject{|cp| cp.quality_element.nil?}.
       select{|cp| cp.quality_element.id == quality_element.id}
       .count
 

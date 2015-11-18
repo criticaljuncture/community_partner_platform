@@ -2,6 +2,7 @@
 
 <% if school_programs.present? %>
   <% school_programs.
+      reject{|sp| sp.quality_element.nil?}.
       group_by(&:quality_element).
       sort_by{|qe, p| qe.name}.
       each do |quality_element, school_programs| %>
