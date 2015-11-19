@@ -11,7 +11,10 @@ class SchoolProgram < ActiveRecord::Base
 
   default_scope -> {where(active: true)}
 
-  delegate :name, :service_types, :quality_element, to: :community_program
+  delegate :name,
+           :service_types,
+           :quality_element,
+           to: :community_program
 
   delegate_if_blank :days,
     :demographic_groups,

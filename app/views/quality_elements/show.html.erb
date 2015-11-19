@@ -28,7 +28,7 @@
     </div>
 
     <div class="table_wrapper">
-      <% @quality_element.community_programs.group_by(&:school).each do |school, community_programs| %>
+      <% @quality_element.school_programs.group_by(&:school).each do |school, school_programs| %>
         <h2><%= link_to school.try(:name), school_path(school) %></h2>
 
         <table class="table table-striped">
@@ -41,11 +41,11 @@
           </thead>
 
           <tbody>
-            <% community_programs.each do |community_program| %>
+            <% school_programs.each do |school_program| %>
               <tr>
-                <td><%= link_to community_program.organization.try(:name), community_program_path(community_program) %></td>
-                <td><%= community_program.quality_elements.map{|qe| qe.name}.join(', <br />').html_safe %></td>
-                <td><%= community_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
+                <td><%= link_to school_program.organization.try(:name), community_program_path(school_program.community_program) %></td>
+                <td><%= school_program.quality_element.try(:name) %></td>
+                <td><%= school_program.service_types.map{|st| st.name}.join(', <br />').html_safe %></td>
               </tr>
             <% end %>
           </tbody>
