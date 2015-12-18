@@ -7,7 +7,10 @@
         as: resource_name,
         url: password_path(resource_name),
         html: {class: "form-horizontal change-password"},
+        method: :put,
         wrapper: :horizontal_form do |f| %>
+
+        <%= devise_error_messages! %>
 
     	  <%= f.input :password, as: :password, autofocus: true %>
     	  <%= f.input :password_confirmation, as: :password, required: true %>
