@@ -1,4 +1,11 @@
 en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            reset_password_token:
+              invalid: "is expired or not valid. Please request a new password reset email."
   errors:
     form_error:
       one: There is %{count} error below. Please correct it and click 'Save' to continue.
@@ -8,7 +15,6 @@ en:
     buttons:
       save: Save
       save_verify: Save & Verify
-
 
   community_program:
     messages:

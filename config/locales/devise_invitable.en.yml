@@ -2,7 +2,7 @@ en:
   devise:
     invitations:
       send_instructions: 'An invitation email has been sent to %{email}.'
-      invitation_token_invalid: 'The invitation token provided is not valid!'
+      invitation_token_invalid: 'The invitation token provided is expired or not valid. Please ask your Community Partner Platform administrator to resend your invitation.'
       updated: 'Your password was set successfully. You are now signed in.'
       no_invitations_remaining: "No invitations remaining"
       invitation_removed: 'Your invitation was removed.'
