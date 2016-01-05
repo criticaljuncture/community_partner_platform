@@ -59,6 +59,8 @@ class CommunityProgramsController < ApplicationController
     @community_program.build_primary_quality_element unless @community_program.primary_quality_element
 
     flash.now[:error] = t('errors.form_error', count: @community_program.errors.count)
+
+    @community_program = CommunityProgramDecorator.decorate(@community_program)
     render :new
   end
 
@@ -111,6 +113,8 @@ class CommunityProgramsController < ApplicationController
     @community_program.build_primary_quality_element unless @community_program.primary_quality_element
 
     flash.now[:error] = t('errors.form_error', count: @community_program.errors.count)
+
+    @community_program = CommunityProgramDecorator.decorate(@community_program)
     render :edit
   end
 
