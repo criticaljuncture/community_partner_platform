@@ -7,7 +7,7 @@ class CommunityProgram < ActiveRecord::Base
 
   default_scope { where(active: true) }
 
-  has_many :school_programs
+  has_many :school_programs, dependent: :destroy
   has_many :schools, through: :school_programs
   #has_many :regions, through: :schools
 
