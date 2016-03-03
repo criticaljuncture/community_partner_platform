@@ -6,11 +6,13 @@ class UsersController < ApplicationController
 
     @active_users = UserDecorator.decorate_collection(
       User.accessible_by(current_ability, :update).
+        includes(:roles, :organization, :schools).
         active.sort_by(&:last_name).sort_by(&:first_name)
     )
 
     @inactive_users = UserDecorator.decorate_collection(
       User.accessible_by(current_ability, :update).
+        includes(:roles, :organization, :schools).
         inactive.sort_by(&:last_name).sort_by(&:first_name)
     )
   end
