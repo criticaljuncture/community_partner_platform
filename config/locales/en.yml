@@ -85,6 +85,12 @@ en:
         success: Successfully saved '%{name}'
       verified: Thank you for verifying '%{name}'
 
+
+  orientation_type:
+    sample_orientation_type_1: Sample Orientation Type 1
+    sample_orientation_type_2: Sample Orientation Type 2
+
+
   quality_element:
     class:
       name: Community School Element

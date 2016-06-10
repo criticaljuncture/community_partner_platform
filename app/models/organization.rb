@@ -46,6 +46,10 @@ class Organization < ActiveRecord::Base
     unverified_program_count > 0
   end
 
+  def any_users_attended_orientation?
+    users.any? {|user| user.attended_orientation_at}
+  end
+
   def unverified_program_count
     sum = 0
     community_programs.each do |cp|

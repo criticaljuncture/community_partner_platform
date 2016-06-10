@@ -189,11 +189,10 @@ class UsersController < ApplicationController
                                  :organization_id,
                                  :title,
                                  :active,
+                                 :orientation_type_id,
+                                 :attended_orientation_at,
                                  school_ids: []).tap do |u_params|
-
       u_params.delete(:active) unless can? :manage, User
     end
-
-
   end
 end

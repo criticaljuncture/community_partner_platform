@@ -28,6 +28,18 @@
     include_blank: true,
     wrapper_html: {class: "hidden"} %>
 
+  <%= f.input :orientation_type_id,
+    label: "Orientation Type",
+    collection: OrientationType.all.map{|ot| [ot.name, ot.id]},
+    disabled: true,
+    wrapper_html: {class: "hidden"} %>
+
+  <%= f.input :attended_orientation_at,
+    as: :bootstrap_datepicker,
+    label: "Orientation Date",
+    disabled: true,
+    input_html: { class: "datepicker" } %>
+
   <% if schools.present? %>
     <% if schools.size > 1 %>
       <%= f.input :school_ids,
