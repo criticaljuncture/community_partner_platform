@@ -103,6 +103,8 @@ gem "underscore-rails"
 # multi-step wizard like controllers
 gem "wicked"
 
+# date picker component
+gem 'bootstrap-datepicker-rails', '~> 1.4.0'
 
 
 # modals
