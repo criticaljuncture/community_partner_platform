@@ -175,6 +175,8 @@ class UsersController < ApplicationController
                                  :primary_role,
                                  :organization_id,
                                  :title,
+                                 :orientation_type_id,
+                                 :attended_orientation_at,
                                  school_ids: [])
   end
 end
