@@ -6,7 +6,8 @@
 
     <%= page_nav_tabs [['Page Views', '#page-views'],
                        ['API Hits', '#api-hits'],
-                       ['Analytics', '#analytics']] %>
+                       ['Analytics', '#analytics'],
+                       ['Program Completion Rates', '#program-completion-rates']] %>
 
     <div class="tab-content">
       <div id="page-views" class="tab-pane active">
@@ -19,6 +20,10 @@
 
       <div id="analytics" class="tab-pane">
         <%#= render partial: 'analytics', locals: {analytics: @analytics} %>
+      </div>
+
+      <div id="program-completion-rates" class="tab-pane">
+        <%= render partial: 'program_completions', locals: {program_completions: @program_completions} %>
       </div>
     </div>
   </div>

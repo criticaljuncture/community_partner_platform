@@ -32,6 +32,7 @@ en:
     name: Program Name
     organization_contact: Primary Organization Contact
     organization_name: Name
+    program_completion_rate: Program Completion Rate
     quality_element: Community School Element
     school_name: Name
     service_description: Program Description
@@ -69,6 +70,7 @@ en:
     mission_statement: Mission statement
     name: Name
     phone_number: Phone number
+    program_completion_rate: Program Completion Rate
     program_impact: Program impact
     services_description: Service(s) description
     url: URL
