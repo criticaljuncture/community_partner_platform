@@ -35,4 +35,14 @@
         <%= organization.city_state_zip %>
       </td>
     </tr>
+
+    <% if organization.any_users_attended_orientation? %>
+    <tr>
+      <td><%= I18n.t('organization.program_completion_rate') %></td>
+      <td>
+        <%= organization.completion_rate %>
+      </td>
+    </tr>
+    <% end %>
+
 <% end %>

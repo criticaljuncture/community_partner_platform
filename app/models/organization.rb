@@ -23,6 +23,10 @@ class Organization < ActiveRecord::Base
     message: 'Please choose from the list above'
   }
 
+  COMPLETION_WEIGHTS = {
+    "1.0" => [:name, :services_description],
+  }
+
   def quality_elements
     @qe ||= community_programs.map{|cp| cp.quality_element}.flatten.uniq
   end
@@ -61,6 +65,13 @@ class Organization < ActiveRecord::Base
   def inactive_community_programs
     community_programs.unscoped.
       where(organization_id: self.id, active: false)
+  end
+
+  def completion_rate
+    ProgramCompletionRateCalculator.new(
+      self,
+      COMPLETION_WEIGHTS
+    ).completion_rate
   end
 
   private

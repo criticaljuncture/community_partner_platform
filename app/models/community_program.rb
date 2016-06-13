@@ -47,6 +47,10 @@ class CommunityProgram < ActiveRecord::Base
       message: "must choose a primary quality element"
     }
 
+  COMPLETION_WEIGHTS = {
+    "1.0" => [:name],
+  }
+
   def service_types
     primary_service_types
   end
@@ -61,4 +65,12 @@ class CommunityProgram < ActiveRecord::Base
       current_user.role?(:organization_member) &&
       verification_required?
   end
+
+  def completion_rate
+    ProgramCompletionRateCalculator.new(
+      self,
+      COMPLETION_WEIGHTS
+    ).completion_rate
+  end
+
 end
