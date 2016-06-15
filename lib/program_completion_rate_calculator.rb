@@ -6,9 +6,9 @@ class ProgramCompletionRateCalculator
   end
 
   def completion_rate
-    weights.inject(0) do |total_sum, allocation|
-      weight     = allocation.first[0]
-      attributes = allocation.first[1]
+    rate = weights.inject(0) do |total_sum, allocation|
+      weight     = allocation[0]
+      attributes = allocation[1]
 
       attribute_weighting = weight.to_f / attributes.size
 
@@ -20,6 +20,8 @@ class ProgramCompletionRateCalculator
 
       total_sum
     end
+
+    rate * 100
   end
 
   private

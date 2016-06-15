@@ -2,6 +2,8 @@ class SchoolProgram < ActiveRecord::Base
   include CommunityProgramAttributeRelationships
   include DelegationExtensions
 
+  after_save :update_program_completion_rate
+
   belongs_to :community_program
   belongs_to :school
   belongs_to :student_population
@@ -28,6 +30,10 @@ class SchoolProgram < ActiveRecord::Base
     presence: {
       message: "must choose a school"
     }
+
+  COMPLETION_WEIGHTS = [
+    [1.0, [:name, :service_description]],
+  ]
 
   # attributes uniquely assigned to this school program as distinct from
   # parent community program
@@ -58,5 +64,14 @@ class SchoolProgram < ActiveRecord::Base
 
       self.save
     end
+  end
+
+  def update_program_completion_rate
+    update_column(
+      :program_completion_rate, ProgramCompletionRateCalculator.new(
+        self,
+        COMPLETION_WEIGHTS
+      ).completion_rate
+    )
   end
 end
