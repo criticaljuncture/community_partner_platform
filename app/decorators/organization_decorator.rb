@@ -28,6 +28,10 @@ class OrganizationDecorator < Draper::Decorator
     h.can?(:verify, organization) && any_unverified_programs?
   end
 
+  def last_sign_in
+    users.map(&:last_sign_in_at).compact.sort.last
+  end
+
   def last_verified
     if last_verified_at.present?
       "#{last_verified_at} by #{verifier.try(:full_name)}"
