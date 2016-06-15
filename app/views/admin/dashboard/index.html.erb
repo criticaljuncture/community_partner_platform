@@ -7,7 +7,9 @@
     <%= page_nav_tabs [['Page Views', '#page-views'],
                        ['API Hits', '#api-hits'],
                        ['Analytics', '#analytics'],
-                       ['Program Completion Rates', '#program-completion-rates']] %>
+                       ['Organizations', '#organization-completion-rates'],
+                       ['Programs', '#community-program-completion-rates']
+                       ] %>
 
     <div class="tab-content">
       <div id="page-views" class="tab-pane active">
@@ -22,9 +24,18 @@
         <%#= render partial: 'analytics', locals: {analytics: @analytics} %>
       </div>
 
-      <div id="program-completion-rates" class="tab-pane">
-        <%= render partial: 'program_completions', locals: {program_completions: @program_completions} %>
+      <% if can? :manage, Organization %>
+      <div id="organization-completion-rates" class="tab-pane">
+        <%= render partial: 'organization_completeness', locals: {organizations: @organizations} %>
       </div>
+      <% end %>
+
+      <% if can? :manage, CommunityProgram %>
+      <div id="community-program-completion-rates" class="tab-pane">
+        <%= render partial: 'community_program_completeness', locals: {community_programs: @community_programs} %>
+      </div>
+      <% end %>
+
     </div>
   </div>
 </div>
