@@ -6,6 +6,7 @@ class Organization < ActiveRecord::Base
 
   after_create :clear_associated_cache
   after_update :clear_associated_cache
+  after_save :update_program_completion_rate
 
   has_many :community_programs
 
@@ -23,9 +24,9 @@ class Organization < ActiveRecord::Base
     message: 'Please choose from the list above'
   }
 
-  COMPLETION_WEIGHTS = {
-    "1.0" => [:name, :services_description],
-  }
+  COMPLETION_WEIGHTS = [
+    [1.0, [:name, :services_description]],
+  ]
 
   def quality_elements
     @qe ||= community_programs.map{|cp| cp.quality_element}.flatten.uniq
@@ -67,11 +68,13 @@ class Organization < ActiveRecord::Base
       where(organization_id: self.id, active: false)
   end
 
-  def completion_rate
-    ProgramCompletionRateCalculator.new(
-      self,
-      COMPLETION_WEIGHTS
-    ).completion_rate
+  def update_program_completion_rate
+    update_column(
+      :program_completion_rate, ProgramCompletionRateCalculator.new(
+        self,
+        COMPLETION_WEIGHTS
+      ).completion_rate
+    )
   end
 
   private

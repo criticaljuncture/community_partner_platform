@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610165724) do
+ActiveRecord::Schema.define(version: 20160613213904) do
 
   create_table "community_program_demographic_groups", force: :cascade do |t|
     t.integer  "demographic_group_id", limit: 4
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20160610165724) do
     t.integer  "active_changed_by",       limit: 4
     t.datetime "active_changed_on"
     t.integer  "last_verified_by",        limit: 4
+    t.float    "program_completion_rate", limit: 24
   end
 
   add_index "community_programs", ["active"], name: "index_community_programs_on_active", using: :btree
@@ -168,6 +169,7 @@ ActiveRecord::Schema.define(version: 20160610165724) do
     t.integer  "legal_status_id",          limit: 4
     t.text     "reported_school_programs", limit: 65535
     t.integer  "last_verified_by",         limit: 4
+    t.float    "program_completion_rate",  limit: 24
   end
 
   add_index "organizations", ["last_verified_by"], name: "index_organizations_on_last_verified_by", using: :btree
@@ -252,25 +254,26 @@ ActiveRecord::Schema.define(version: 20160610165724) do
   add_index "school_free_reduced_meal_data", ["school_id"], name: "index_school_free_reduced_meal_data_on_school_id", using: :btree
 
   create_table "school_programs", force: :cascade do |t|
-    t.integer  "school_id",              limit: 4
-    t.integer  "community_program_id",   limit: 4
-    t.integer  "user_id",                limit: 4
-    t.text     "notes",                  limit: 65535
-    t.text     "service_description",    limit: 65535
-    t.integer  "student_population_id",  limit: 4
+    t.integer  "school_id",               limit: 4
+    t.integer  "community_program_id",    limit: 4
+    t.integer  "user_id",                 limit: 4
+    t.text     "notes",                   limit: 65535
+    t.text     "service_description",     limit: 65535
+    t.integer  "student_population_id",   limit: 4
+    t.boolean  "site_agreement_on_file"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "last_verified_at"
-    t.boolean  "active",                               default: true
-    t.integer  "active_changed_by",      limit: 4
+    t.boolean  "active",                                default: true
+    t.integer  "active_changed_by",       limit: 4
     t.datetime "active_changed_on"
-    t.boolean  "site_agreement_on_file"
+    t.float    "program_completion_rate", limit: 24
   end
 
   add_index "school_programs", ["community_program_id", "school_id"], name: "sp_cpid_sid", using: :btree
   add_index "school_programs", ["school_id", "community_program_id"], name: "sp_sid_cpid", using: :btree
   add_index "school_programs", ["student_population_id"], name: "index_school_programs_on_student_population_id", using: :btree
-  add_index "school_programs", ["user_id"], name: "school_program_user_id", using: :btree
+  add_index "school_programs", ["user_id"], name: "index_school_programs_on_user_id", using: :btree
 
   create_table "school_quality_indicator_sub_areas", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -381,16 +384,15 @@ ActiveRecord::Schema.define(version: 20160610165724) do
   add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", using: :btree
   add_index "users", ["invited_by_id", "invited_by_type"], name: "u_ib_id_ib_type", using: :btree
   add_index "users", ["invited_by_type", "invited_by_id"], name: "u_ib_type_ib_id", using: :btree
-  add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|
-    t.string   "item_type",       limit: 255,      null: false
-    t.integer  "item_id",         limit: 4,        null: false
-    t.string   "event",           limit: 255,      null: false
+    t.string   "item_type",       limit: 255,   null: false
+    t.integer  "item_id",         limit: 4,     null: false
+    t.string   "event",           limit: 255,   null: false
     t.string   "whodunnit",       limit: 255
-    t.text     "object",          limit: 16777215
-    t.text     "associations",    limit: 16777215
+    t.text     "object",          limit: 65535
+    t.text     "associations",    limit: 65535
     t.integer  "current_user_id", limit: 4
     t.datetime "created_at"
   end
