@@ -11,7 +11,7 @@ describe Organization do
 
       result = organization.program_completion_rate
 
-      expect(result).to eq(0.5)
+      expect(result).to eq(50.0)
     end
   end
 

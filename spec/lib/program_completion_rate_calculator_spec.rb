@@ -16,7 +16,7 @@ describe "ProgramCompletionRateCalculator" do
         ]
       )
 
-      expect(calculator.completion_rate).to eq(0.5)
+      expect(calculator.completion_rate).to eq(50.0)
     end
 
     it "calculates multiple rates correctly when two rates are the same" do
@@ -34,7 +34,7 @@ describe "ProgramCompletionRateCalculator" do
         ]
       )
 
-      expect(calculator.completion_rate).to eq(0.25)
+      expect(calculator.completion_rate).to eq(25.0)
     end
   end
 end
