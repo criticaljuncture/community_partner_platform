@@ -18,9 +18,10 @@ class ProgressBarPresenter
     @special_complete_color = options.fetch(:special_complete_color){ false }
     @color_ranges           = options.fetch(:color_ranges) do
       {
-        0..20  => "low",
-        20..50  => "medium",
-        50..100 => "high"
+        0..20    => "low",
+        20..50   => "medium",
+        50...100 => "high",
+        100..100 => "complete",
       }
     end
   end
