@@ -7,7 +7,7 @@ module NavigationHelper
     content = []
 
     tabs.each do |name, target, count|
-      text = count ? "#{name} #{count_bubble(count)}".html_safe : name
+      text = count ? "#{name} #{exclamation_bubble(count)}".html_safe : name
 
       content << content_tag(:li, link_to(text, target, data: {toggle: 'tab'}) )
     end
