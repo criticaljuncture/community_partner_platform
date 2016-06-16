@@ -99,8 +99,6 @@
   </div>
 </div>
 
-<% if @organization.any_users_attended_orientation? %>
-
 <div class="row">
   <%= content_tag(
         :span,
@@ -116,8 +114,6 @@
       class: bootstrap_col(md: 1, xs: 1) + " text-center"
   ) %>
 </div>
-
-<% end %>
 
 <%= page_nav_tabs [
   ['Organization Info', '#org-info'],
