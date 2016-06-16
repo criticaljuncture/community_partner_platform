@@ -14,6 +14,7 @@ class ProgressBarPresenter
     @striped                = options.fetch(:striped){ false }
     @min                    = options.fetch(:min){ 0 }
     @max                    = options.fetch(:max){ 100 }
+    @partial_progress_bar   = options.fetch(:partial_progress_bar){ false }
     @explanation            = options.fetch(:explanation){ nil }
     @special_complete_color = options.fetch(:special_complete_color){ false }
     @color_ranges           = options.fetch(:color_ranges) do
@@ -31,21 +32,27 @@ class ProgressBarPresenter
     classes << ["progress-bar-striped"] if striped
     classes << [custom_color_class]
 
-    #TODO: Handle the use of the second content_tag
-    content_tag(
-      :div,
-      content_tag(:div, text, class: classes.join(' '),
-        style: "width: #{percentage}%", role: "progressbar",
-        aria: {valuenow: percentage, valuemin: min, valuemax: max}
-      ),
-      class: "progress"
+    inner_progress_bar = content_tag(:div, text, class: classes.join(' '),
+      style: "width: #{percentage}%", role: "progressbar",
+      aria: {valuenow: percentage, valuemin: min, valuemax: max}
     )
+
+    if partial_progress_bar
+      inner_progress_bar
+    else
+      content_tag(
+        :div,
+        inner_progress_bar,
+        class: "progress"
+      )
+    end
+
   end
 
   private
 
   attr_reader :percentage, :type, :striped, :color_ranges, :text, :min, :max,
-              :special_complete_color
+              :special_complete_color, :partial_progress_bar
 
   def custom_color_class
     if percentage == 100 && special_complete_color
