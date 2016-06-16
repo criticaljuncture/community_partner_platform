@@ -25,7 +25,12 @@ class Organization < ActiveRecord::Base
   }
 
   COMPLETION_WEIGHTS = [
-    [1.0, [:name, :services_description]],
+    [
+      1.0,
+      [:name, :address, :city, :zip_code, :phone_number, :url, :legal_status,
+       :mou_on_file, :mission_statement, :services_description, :program_impact,
+       :cost_per_student]
+    ],
   ]
 
   def quality_elements

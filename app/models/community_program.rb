@@ -50,7 +50,20 @@ class CommunityProgram < ActiveRecord::Base
     }
 
   COMPLETION_WEIGHTS = [
-    ["1.0", [:name]]
+    [
+      0.30,
+      [:name, :service_description, :primary_quality_element,
+       :primary_service_types, :organization, :user]
+    ],
+    [
+      0.35,
+      [:student_population_id, :ethnicity_culture_group_ids, :demographic_group_ids,
+       :grade_level_ids, :service_time_ids, :day_ids]
+    ],
+    [
+      0.35,
+      [:school_programs]
+    ]
   ]
 
   def service_types
