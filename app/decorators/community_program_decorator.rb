@@ -33,13 +33,13 @@ class CommunityProgramDecorator < Draper::Decorator
       schools_with_differing_completion_rates.to_a[0..1].each do |school_program|
         h.concat h.content_tag(
           :li,
-          "#{school_program.school.name} (#{school_program.program_completion_rate})"
+          "#{school_program.school.name} (#{h.number_to_percentage(school_program.program_completion_rate, precision: 0)})"
         )
       end
 
       if schools_with_differing_completion_rates.count > 2
         schools_with_differing_completion_rates[2..-1].each do |school_program|
-          h.concat h.content_tag(:li, "#{school_program.school.name} (#{school_program.program_completion_rate})", class: 'hidden overflow')
+          h.concat h.content_tag(:li, "#{school_program.school.name} (#{h.number_to_percentage(school_program.program_completion_rate, precision: 0)})", class: 'hidden overflow')
         end
 
         h.concat(

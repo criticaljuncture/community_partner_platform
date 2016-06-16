@@ -28,7 +28,9 @@
             <% end %>
           </td>
           <td class="text-right">
-            <%= community_program.program_completion_rate %>
+            <%= number_to_percentage(
+                  community_program.program_completion_rate,
+                  precision: 0) %>
           </td>
         </tr>
       <% end %>

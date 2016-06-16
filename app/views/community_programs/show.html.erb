@@ -34,7 +34,10 @@
     :span,
     ProgressBarPresenter.perform(
       percentage: @community_program.program_completion_rate,
-      text: "#{@community_program.program_completion_rate}%",
+      text: number_to_percentage(
+              @community_program.program_completion_rate,
+              precision: 0
+            ),
       options: {special_complete_color: @community_program.verification_required?}),
     class: bootstrap_col(md: 11, xs: 11)) %>
   <%= content_tag(
