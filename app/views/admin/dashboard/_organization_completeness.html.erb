@@ -26,7 +26,9 @@
             <% end %>
           </td>
           <td class="text-right">
-            <%= organization.program_completion_rate %>
+            <%= number_to_percentage(
+                  organization.program_completion_rate,
+                  precision: 0 ) %>
           </td>
         </tr>
       <% end %>
