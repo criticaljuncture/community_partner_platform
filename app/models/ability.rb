@@ -72,7 +72,12 @@ class Ability < BaseAbility
 
   def shared_abilities
     can :manage, :application do
-      can?(:manage, QualityElement) || can?(:manage, ServiceType) || can?(:index, User) || can?(:view, :admin_dashboard)
+      can?(:manage, QualityElement) ||
+      can?(:manage, ServiceType) ||
+      can?(:index, User) ||
+      can?(:view, :admin_dashboard) ||
+      can?(:manage, Organization) ||
+      can?(:manage, CommunityProgram)
     end
   end
 

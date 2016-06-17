@@ -34,6 +34,11 @@
             <th>Schools</th>
           <% end %>
 
+          <% if [:organization_member].include?(role.identifier.to_sym) %>
+            <th>Orientation Type</th>
+            <th>Orientation Date</th>
+          <% end %>
+
           <% if active %>
             <th class="sorter-false filter-false">
               <%= t('user.last_login') %>
@@ -68,6 +73,11 @@
 
             <% if [:school_manager].include?(role.identifier.to_sym) %>
               <td><%= user.schools.map(&:name).join(', <br />').html_safe %></td>
+            <% end %>
+
+            <% if [:organization_member].include?(role.identifier.to_sym) %>
+              <td><%= user.orientation_type.try(:name) %></td>
+              <td><%= user.attended_orientation_at %></td>
             <% end %>
 
             <% if user.invitation_accepted? %>
