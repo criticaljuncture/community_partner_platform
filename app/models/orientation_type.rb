@@ -4,8 +4,7 @@ class OrientationType < ActiveHash::Base
   i18n_accessor :name
 
   self.data = [
-    {id: 1, identifier: :sample_orientation_type_1},
-    {id: 2, identifier: :sample_orientation_type_2},
+    {id: 1, identifier: :completed_orientation_agreement},
   ]
 
 end

@@ -70,6 +70,8 @@ class UsersController < ApplicationController
           @user.primary_role = @user.roles.first
         end
 
+        set_orientation_fields
+
         authorize! :create, @user
 
         @user.subdomain = current_user.subdomain
@@ -136,7 +138,11 @@ class UsersController < ApplicationController
 
         @user.admin_creation = can?(:update, User)
 
-        @user.update_attributes!(user_params.except(:primary_role))
+        @user.attributes = user_params.except(:primary_role)
+
+        set_orientation_fields
+
+        @user.save!
 
         flash.notice = t('users.flash_messages.update.success',
                          name: @user.full_name)
@@ -166,6 +172,15 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_orientation_fields
+    if @user.orientation_type_id_changed? &&
+       @user.orientation_type_id.present? &&
+       @user.attended_orientation_at.blank?
+
+      @user.attended_orientation_at = Date.current
+    end
+  end
 
   def user_params
     params.require(:user).permit(:first_name,
