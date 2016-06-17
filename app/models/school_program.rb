@@ -44,7 +44,7 @@ class SchoolProgram < ActiveRecord::Base
     ],
     [
       0.35,
-      [:id]
+      [:community_program]
     ]
   ]
 
