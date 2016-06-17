@@ -57,8 +57,8 @@ class CommunityProgram < ActiveRecord::Base
     ],
     [
       0.35,
-      [:student_population_id, :ethnicity_culture_group_ids, :demographic_group_ids,
-       :grade_level_ids, :service_time_ids, :day_ids]
+      [:student_population, :ethnicity_culture_groups, :demographic_groups,
+       :grade_levels, :service_times, :days]
     ],
     [
       0.35,
