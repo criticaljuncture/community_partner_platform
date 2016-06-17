@@ -14,6 +14,7 @@ class ProgramCompletionRateCalculator
 
       attributes.each do |attribute|
         if entity.send(attribute).present?
+          # puts "#{entity.name}: #{attribute_weighting}"
           total_sum += attribute_weighting
         end
       end
@@ -21,6 +22,7 @@ class ProgramCompletionRateCalculator
       total_sum
     end
 
+    # puts "#{entity.name} Total Sum: #{rate * 100}"
     rate * 100
   end
 

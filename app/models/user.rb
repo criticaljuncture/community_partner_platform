@@ -41,6 +41,8 @@ class User < ActiveRecord::Base
   validates :roles, presence: true
   validates :primary_role, presence: true
 
+  validate :valid_attended_orientation_at
+
   validates :organization_id, presence: true,
             if: -> { role?(:organization_member) }
 
@@ -57,6 +59,11 @@ class User < ActiveRecord::Base
   scope :active,  -> { where(active: true) }
 
   scope :inactive, -> { where(active: false) }
+
+  def valid_attended_orientation_at
+    if read_attribute_before_type_cast('attended_orientation_at')
+    end
+  end
 
   def role?(role)
     roles.map{|r| r.identifier.to_sym}.include?(role)
