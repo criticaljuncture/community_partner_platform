@@ -47,6 +47,9 @@ class User < ActiveRecord::Base
   validates :schools, presence: true,
             if: -> { role?(:school_manager) }
 
+  validates :orientation_type_id, presence: true,
+            if: Proc.new { |u| u.attended_orientation_at }
+
   after_validation :remove_improper_associations_based_on_role
 
   after_invitation_accepted :activate_user

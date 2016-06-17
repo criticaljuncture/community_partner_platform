@@ -14,6 +14,17 @@ class @CPP.UserFormHandler
         $(this).find(":selected").data('role-type')
       )
 
+    @_handleEmptyOrientationDate()
+
+  _handleEmptyOrientationDate: ->
+    $('#user_attended_orientation_at').on 'change', () =>
+      if $('#user_attended_orientation_at').val().length == 0
+        @form.find('#attended_orientation_at_hidden')
+          .prop 'disabled', true
+      else
+        @form.find('#attended_orientation_at_hidden')
+          .prop 'disabled', false
+
   ensureFormConsistency: ()->
     @userEl.trigger('change');
 

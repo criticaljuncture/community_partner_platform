@@ -96,8 +96,7 @@ en:
 
 
   orientation_type:
-    sample_orientation_type_1: Sample Orientation Type 1
-    sample_orientation_type_2: Sample Orientation Type 2
+    completed_orientation_agreement: Completed Orientation Agreement
 
 
   quality_element:

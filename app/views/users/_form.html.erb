@@ -29,14 +29,14 @@
     wrapper_html: {class: "hidden"} %>
 
   <%= f.input :orientation_type_id,
-    label: "Orientation Type",
+    label: "Orientation Agreement",
     collection: OrientationType.all.map{|ot| [ot.name, ot.id]},
     disabled: true,
     wrapper_html: {class: "hidden"} %>
 
   <%= f.input :attended_orientation_at,
     as: :bootstrap_datepicker,
-    label: "Orientation Date",
+    label: "Orientation Agreement Date",
     disabled: true,
     input_html: { class: "datepicker" } %>
 
