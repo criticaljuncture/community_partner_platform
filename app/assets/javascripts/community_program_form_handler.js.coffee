@@ -160,6 +160,7 @@ class @CPP.CommunityProgramFormHandler
 
   addRemoveSchoolHandler: ->
     modal = $('#remove-school-program-modal')
+    table = $('.school-programs')
 
     $('fieldset.school-programs').on 'click', '.btn.remove-school-program', (event)->
       event.preventDefault()
