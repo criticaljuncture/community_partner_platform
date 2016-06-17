@@ -33,15 +33,19 @@ class SchoolProgram < ActiveRecord::Base
 
   COMPLETION_WEIGHTS = [
     [
-      0.43,
+      0.3,
       [:name, :service_description, :quality_element,
        :service_types, :organization, :user]
     ],
     [
-      0.57,
-      [:student_population_id, :ethnicity_culture_group_ids, :demographic_group_ids,
-       :grade_level_ids, :service_time_ids, :day_ids]
+      0.35,
+      [:student_population, :ethnicity_culture_groups, :demographic_groups,
+       :grade_levels, :service_times, :days]
     ],
+    [
+      0.35,
+      [:id]
+    ]
   ]
 
   # attributes uniquely assigned to this school program as distinct from
