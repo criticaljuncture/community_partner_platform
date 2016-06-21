@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915164338) do
+ActiveRecord::Schema.define(version: 20160621211442) do
 
   create_table "community_program_demographic_groups", force: :cascade do |t|
     t.integer  "demographic_group_id", limit: 4
@@ -90,24 +90,26 @@ ActiveRecord::Schema.define(version: 20150915164338) do
   add_index "community_program_service_times", ["service_time_id", "attributable_id"], name: "cpst_stid_cpid", using: :btree
 
   create_table "community_programs", force: :cascade do |t|
-    t.integer  "school_id",               limit: 4
-    t.integer  "organization_id",         limit: 4
+    t.integer  "school_id",                 limit: 4
+    t.integer  "organization_id",           limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "notes",                   limit: 65535
-    t.integer  "user_id",                 limit: 4
-    t.integer  "school_user_id",          limit: 4
-    t.text     "service_description",     limit: 65535
+    t.text     "notes",                     limit: 65535
+    t.integer  "user_id",                   limit: 4
+    t.integer  "school_user_id",            limit: 4
+    t.text     "service_description",       limit: 65535
     t.boolean  "site_agreement_on_file"
     t.boolean  "mou_on_file"
-    t.integer  "student_population_id",   limit: 4
-    t.string   "name",                    limit: 255
-    t.string   "legislative_file_number", limit: 255
+    t.integer  "student_population_id",     limit: 4
+    t.string   "name",                      limit: 255
+    t.string   "legislative_file_number",   limit: 255
     t.datetime "last_verified_at"
-    t.boolean  "active",                                default: true
-    t.integer  "active_changed_by",       limit: 4
+    t.boolean  "active",                                  default: true
+    t.integer  "active_changed_by",         limit: 4
     t.datetime "active_changed_on"
-    t.integer  "last_verified_by",        limit: 4
+    t.integer  "last_verified_by",          limit: 4
+    t.float    "program_completion_rate",   limit: 24
+    t.boolean  "receives_district_funding"
   end
 
   add_index "community_programs", ["active"], name: "index_community_programs_on_active", using: :btree
@@ -149,25 +151,29 @@ ActiveRecord::Schema.define(version: 20150915164338) do
   end
 
   create_table "organizations", force: :cascade do |t|
-    t.string   "name",                     limit: 255
+    t.string   "name",                           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "url",                      limit: 255
-    t.string   "address",                  limit: 255
-    t.string   "city",                     limit: 255
-    t.string   "zip_code",                 limit: 255
-    t.string   "phone_number",             limit: 255
-    t.text     "notes",                    limit: 65535
+    t.string   "url",                            limit: 255
+    t.string   "address",                        limit: 255
+    t.string   "city",                           limit: 255
+    t.string   "zip_code",                       limit: 255
+    t.string   "phone_number",                   limit: 255
+    t.text     "notes",                          limit: 65535
     t.boolean  "mou_on_file"
-    t.string   "legislative_file_number",  limit: 255
+    t.string   "legislative_file_number",        limit: 255
     t.datetime "last_verified_at"
-    t.text     "mission_statement",        limit: 65535
-    t.text     "services_description",     limit: 65535
-    t.text     "program_impact",           limit: 65535
-    t.text     "cost_per_student",         limit: 65535
-    t.integer  "legal_status_id",          limit: 4
-    t.text     "reported_school_programs", limit: 65535
-    t.integer  "last_verified_by",         limit: 4
+    t.text     "mission_statement",              limit: 65535
+    t.text     "services_description",           limit: 65535
+    t.text     "program_impact",                 limit: 65535
+    t.text     "cost_per_student",               limit: 65535
+    t.integer  "legal_status_id",                limit: 4
+    t.text     "reported_school_programs",       limit: 65535
+    t.integer  "last_verified_by",               limit: 4
+    t.float    "program_completion_rate",        limit: 24
+    t.integer  "user_id",                        limit: 4
+    t.boolean  "receives_district_funding"
+    t.boolean  "subcontractor_with_lead_agency"
   end
 
   add_index "organizations", ["last_verified_by"], name: "index_organizations_on_last_verified_by", using: :btree
@@ -252,19 +258,20 @@ ActiveRecord::Schema.define(version: 20150915164338) do
   add_index "school_free_reduced_meal_data", ["school_id"], name: "index_school_free_reduced_meal_data_on_school_id", using: :btree
 
   create_table "school_programs", force: :cascade do |t|
-    t.integer  "school_id",              limit: 4
-    t.integer  "community_program_id",   limit: 4
-    t.integer  "user_id",                limit: 4
-    t.text     "notes",                  limit: 65535
-    t.text     "service_description",    limit: 65535
-    t.integer  "student_population_id",  limit: 4
+    t.integer  "school_id",               limit: 4
+    t.integer  "community_program_id",    limit: 4
+    t.integer  "user_id",                 limit: 4
+    t.text     "notes",                   limit: 65535
+    t.text     "service_description",     limit: 65535
+    t.integer  "student_population_id",   limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "last_verified_at"
-    t.boolean  "active",                               default: true
-    t.integer  "active_changed_by",      limit: 4
+    t.boolean  "active",                                default: true
+    t.integer  "active_changed_by",       limit: 4
     t.datetime "active_changed_on"
     t.boolean  "site_agreement_on_file"
+    t.float    "program_completion_rate", limit: 24
   end
 
   add_index "school_programs", ["community_program_id", "school_id"], name: "sp_cpid_sid", using: :btree
@@ -346,32 +353,34 @@ ActiveRecord::Schema.define(version: 20150915164338) do
   add_index "user_schools", ["user_id", "school_id"], name: "us_u_id_s_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",             limit: 255
-    t.string   "last_name",              limit: 255
-    t.string   "subdomain",              limit: 255
+    t.string   "first_name",              limit: 255
+    t.string   "last_name",               limit: 255
+    t.string   "subdomain",               limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  limit: 255, default: "",    null: false
-    t.string   "encrypted_password",     limit: 255, default: ""
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                   limit: 255, default: "",    null: false
+    t.string   "encrypted_password",      limit: 255, default: ""
+    t.string   "reset_password_token",    limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0
+    t.integer  "sign_in_count",           limit: 4,   default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.string   "phone_number",           limit: 255
-    t.integer  "organization_id",        limit: 4
-    t.string   "invitation_token",       limit: 255
+    t.string   "current_sign_in_ip",      limit: 255
+    t.string   "last_sign_in_ip",         limit: 255
+    t.string   "phone_number",            limit: 255
+    t.integer  "organization_id",         limit: 4
+    t.string   "invitation_token",        limit: 255
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
-    t.integer  "invitation_limit",       limit: 4
-    t.integer  "invited_by_id",          limit: 4
-    t.string   "invited_by_type",        limit: 255
-    t.boolean  "active",                             default: false
-    t.string   "title",                  limit: 255
+    t.integer  "invitation_limit",        limit: 4
+    t.integer  "invited_by_id",           limit: 4
+    t.string   "invited_by_type",         limit: 255
+    t.boolean  "active",                              default: false
+    t.string   "title",                   limit: 255
+    t.date     "attended_orientation_at"
+    t.integer  "orientation_type_id",     limit: 4
   end
 
   add_index "users", ["active"], name: "index_users_on_active", using: :btree

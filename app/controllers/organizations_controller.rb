@@ -130,6 +130,7 @@ class OrganizationsController < ApplicationController
                 :phone_number,
                 :program_impact,
                 :services_description,
+                :subcontractor_with_lead_agency,
                 :url,
                 :verification_process,
                 :zip_code,
