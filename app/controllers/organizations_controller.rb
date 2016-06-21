@@ -131,6 +131,7 @@ class OrganizationsController < ApplicationController
                 :notes,
                 :phone_number,
                 :program_impact,
+                :receives_district_funding,
                 :services_description,
                 :subcontractor_with_lead_agency,
                 :url,

@@ -92,26 +92,27 @@ ActiveRecord::Schema.define(version: 20160829205954) do
   add_index "community_program_service_times", ["service_time_id", "attributable_id"], name: "cpst_stid_cpid", using: :btree
 
   create_table "community_programs", force: :cascade do |t|
-    t.integer  "school_id",               limit: 4
-    t.integer  "organization_id",         limit: 4
+    t.integer  "school_id",                 limit: 4
+    t.integer  "organization_id",           limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "notes",                   limit: 65535
-    t.integer  "user_id",                 limit: 4
-    t.integer  "school_user_id",          limit: 4
-    t.text     "service_description",     limit: 65535
+    t.text     "notes",                     limit: 65535
+    t.integer  "user_id",                   limit: 4
+    t.integer  "school_user_id",            limit: 4
+    t.text     "service_description",       limit: 65535
     t.boolean  "site_agreement_on_file"
     t.boolean  "mou_on_file"
-    t.integer  "student_population_id",   limit: 4
-    t.string   "name",                    limit: 255
-    t.string   "legislative_file_number", limit: 255
+    t.integer  "student_population_id",     limit: 4
+    t.string   "name",                      limit: 255
+    t.string   "legislative_file_number",   limit: 255
     t.datetime "last_verified_at"
-    t.boolean  "active",                                default: true
-    t.integer  "active_changed_by",       limit: 4
+    t.boolean  "active",                                  default: true
+    t.integer  "active_changed_by",         limit: 4
     t.datetime "active_changed_on"
-    t.integer  "last_verified_by",        limit: 4
-    t.float    "completion_rate",         limit: 24,    default: 0.0
-    t.text     "missing_fields",          limit: 65535
+    t.integer  "last_verified_by",          limit: 4
+    t.float    "completion_rate",           limit: 24,    default: 0.0
+    t.text     "missing_fields",            limit: 65535
+    t.boolean  "receives_district_funding"
   end
 
   add_index "community_programs", ["active"], name: "index_community_programs_on_active", using: :btree
@@ -175,6 +176,7 @@ ActiveRecord::Schema.define(version: 20160829205954) do
     t.float    "completion_rate",                limit: 24,    default: 0.0
     t.boolean  "subcontractor_with_lead_agency",               default: false
     t.text     "missing_fields",                 limit: 65535
+    t.boolean  "receives_district_funding"
   end
 
   add_index "organizations", ["last_verified_by"], name: "index_organizations_on_last_verified_by", using: :btree

@@ -26,6 +26,7 @@ en:
         name: Program name
         organization: Organization
         organization_id: Organization
+        receives_district_funding: Receives District Funding?
         school_programs: School programs
         service_description: Service description
         service_times: Service times
@@ -44,6 +45,7 @@ en:
         mission_statement: What is your organization or firm's mission statement?
         mou_on_file: MOU on file with District?
         program_impact: How would you describe the impact of your program?
+        receives_district_funding: Receives District Funding?
         services_description: Brief description of the services you provide to sites
         subcontractor_with_lead_agency: Subcontractor with a lead agency
 
