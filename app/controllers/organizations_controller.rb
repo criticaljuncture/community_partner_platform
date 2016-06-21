@@ -129,6 +129,7 @@ class OrganizationsController < ApplicationController
                 :notes,
                 :phone_number,
                 :program_impact,
+                :receives_district_funding,
                 :services_description,
                 :url,
                 :verification_process,
