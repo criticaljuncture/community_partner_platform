@@ -1,6 +1,6 @@
 class Organization < ActiveRecord::Base
   include OrganizationAudit
-  attr_accessor :verification
+  attr_accessor :verification, :user_ids_to_assign
 
   serialize :reported_school_programs, JSON
 
@@ -17,6 +17,7 @@ class Organization < ActiveRecord::Base
   has_many :users
 
   belongs_to :legal_status
+  belongs_to :user
   belongs_to :verifier, foreign_key: :last_verified_by, class_name: User
 
   scope :ousd, -> { where("organizations.name LIKE 'OUSD%'") }

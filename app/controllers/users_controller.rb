@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     authorize! :new, @user
 
     if request.xhr?
-      if user_params[:organization_id]
+      if user_params[:organization_id].present?
         @organizations = Array(Organization.find(user_params[:organization_id]))
       else
         @organizations = []
@@ -151,8 +151,7 @@ class UsersController < ApplicationController
 
         @user.admin_creation = can?(:update, User)
 
-        @user.attributes = user_params.except(:primary_role)
-
+        @user.attributes = user_params.except(:primary_role, :new_org_creation)
         set_orientation_fields
 
         @user.save!
@@ -203,11 +202,16 @@ class UsersController < ApplicationController
                                  :primary_role,
                                  :organization_id,
                                  :title,
+<<<<<<< HEAD
                                  :active,
                                  :orientation_type_id,
                                  :attended_orientation_at,
                                  school_ids: []).tap do |u_params|
       u_params.delete(:active) unless can? :manage, User
     end
+=======
+                                 :new_org_creation,
+                                 school_ids: [])
+>>>>>>> Implement initial working logic for organization#new and organization#edit primary organization user option: - db schema change - new organization handler - modifications to user modal form handler - controller logic modifications - view changes -css changes -
   end
 end

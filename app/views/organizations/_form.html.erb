@@ -13,6 +13,21 @@
 <% end %>
 
 <%= field_set_tag 'Organization Details' do %>
+  <div id="org-user-wrapper" class="user-add-wrapper">
+    <div id="add-org-user"
+      class="user-add btn btn-medium btn-create pull-right">
+      <%= gicon 'plus' %> Create new organization user
+    </div>
+    <%= f.input :user_id,
+      label: 'Primary Contact',
+      as: :select,
+      collection: User.accessible_by(current_ability).
+        where(organization_id: @organization.id).
+        sort_by(&:full_name),
+      label_method: :full_name,
+      wrapper_html: {class: 'clear both'} %>
+  </div>
+
   <%= f.input :legal_status_id,
     as: :select,
     collection: LegalStatus.for_select,
@@ -25,6 +40,16 @@
   <%= f.input :services_description, as: :text %>
   <%= f.input :program_impact, as: :text %>
   <%= f.input :cost_per_student, as: :text %>
+  <% if new_org %>
+    <%= select_tag :user_ids_to_assign,
+          options_for_select(
+            @organization.user_ids_to_assign,
+            @organization.user_ids_to_assign
+          ),
+          multiple: true,
+          class: "hidden" %>
+  <% end %>
+
 <% end %>
 
 <% if can?(:manage_district_details, :organization) %>

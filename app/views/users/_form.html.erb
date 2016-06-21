@@ -13,6 +13,7 @@
 
 
 <%= field_set_tag "User Access" do %>
+  <%= f.hidden_field :new_org_creation %>
   <%= f.input :primary_role,
     as: :select,
     collection: roles,
