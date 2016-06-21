@@ -186,6 +186,7 @@ class CommunityProgramsController < ApplicationController
       :name,
       :notes,
       :organization_id,
+      :receives_district_funding,
       :school_id,
       :school_user_id,
       :secondary_quality_element_id,

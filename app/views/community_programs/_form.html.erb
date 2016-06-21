@@ -55,5 +55,6 @@
 <% end %>
 
 <%= collapsible_field_set_tag "Internal Details", class: collapsed do %>
+  <%= f.input :receives_district_funding, as: :boolean  %>
   <%= f.input :notes %>
 <% end %>

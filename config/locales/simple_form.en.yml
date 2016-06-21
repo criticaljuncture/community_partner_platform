@@ -25,6 +25,7 @@ en:
         mou_on_file: MOU or contract on file with the District
         name: Program name
         organization_id: Organization
+        receives_district_funding: Receives District Funding?
         service_times: Service times
         service_time_ids: Service times
         student_population: Target population
@@ -38,6 +39,7 @@ en:
         mission_statement: What is your organization or firm's mission statement?
         mou_on_file: MOU on file with District?
         program_impact: How would you describe the impact of your program?
+        receives_district_funding: Receives District Funding?
         services_description: Brief description of the services you provide to sites
 
       school_program:
