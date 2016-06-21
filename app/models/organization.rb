@@ -17,7 +17,7 @@ class Organization < ActiveRecord::Base
   has_many :users
 
   belongs_to :legal_status
-  belongs_to :user
+  belongs_to :primary_contact, foreign_key: :user_id, class_name: User
   belongs_to :verifier, foreign_key: :last_verified_by, class_name: User
 
   scope :ousd, -> { where("organizations.name LIKE 'OUSD%'") }
