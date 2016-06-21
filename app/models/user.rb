@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   has_many :page_views
 
-  attr_accessor :primary_role, :admin_creation, :school_ids_were
+  attr_accessor :primary_role, :admin_creation, :school_ids_were, :new_org_creation
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   validates :primary_role, presence: true
 
   validates :organization_id, presence: true,
-            if: -> { role?(:organization_member) }
+            if: -> { role?(:organization_member) && new_org_creation.blank?}
 
   validates :schools, presence: true,
             if: -> { role?(:school_manager) }

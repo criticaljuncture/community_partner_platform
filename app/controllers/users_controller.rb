@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     authorize! :new, @user
 
     if request.xhr?
-      if user_params[:organization_id]
+      if user_params[:organization_id].present?
         @organizations = Array(Organization.find(user_params[:organization_id]))
       else
         @organizations = []
@@ -136,7 +136,7 @@ class UsersController < ApplicationController
 
         @user.admin_creation = can?(:update, User)
 
-        @user.update_attributes!(user_params.except(:primary_role))
+        @user.update_attributes!(user_params.except(:primary_role, :new_org_creation))
 
         flash.notice = t('users.flash_messages.update.success',
                          name: @user.full_name)
@@ -175,6 +175,7 @@ class UsersController < ApplicationController
                                  :primary_role,
                                  :organization_id,
                                  :title,
+                                 :new_org_creation,
                                  school_ids: [])
   end
 end
