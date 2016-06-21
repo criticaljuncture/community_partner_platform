@@ -48,6 +48,7 @@ en:
         receives_district_funding: Receives District Funding?
         services_description: Brief description of the services you provide to sites
         subcontractor_with_lead_agency: Subcontractor with a lead agency
+        user_id: Primary Contact
 
       school_program:
         day_ids: Service days

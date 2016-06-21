@@ -19,7 +19,6 @@
       <%= gicon 'plus' %> Create new organization user
     </div>
     <%= f.input :user_id,
-      label: 'Primary Contact',
       as: :select,
       collection: User.accessible_by(current_ability).
         where(organization_id: @organization.id).
