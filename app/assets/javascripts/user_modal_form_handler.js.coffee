@@ -44,7 +44,8 @@ class @CPP.UserModalFormHandler
     user = response.user
 
     if user.role_id == 4
-      select = $('#community_program_user_id')
+      select = @_organizationMemberSelectTagEl()
+
     else if user.role_id == 3
       select = $('#school_program_user_id')
 
@@ -52,6 +53,11 @@ class @CPP.UserModalFormHandler
       $('<option>').attr('value', user.id).text(user.name)
     )
     select.val(user.id)
+
+    if @_isOrganizationPage()
+      $('#user_ids_to_assign').append(
+        "<option selected='selected' value='#{user.id}'>#{user.id}</option>"
+      )
 
     $('#user-modal')
       .modal('hide')
@@ -91,3 +97,12 @@ class @CPP.UserModalFormHandler
       .removeClass('has-error')
       .find('.help-block')
       .remove()
+
+  _organizationMemberSelectTagEl: ->
+    if @_isOrganizationPage()
+      $('#organization_user_id')
+    else
+      $('#community_program_user_id')
+
+  _isOrganizationPage: ->
+    $('.organization-page').length > 0

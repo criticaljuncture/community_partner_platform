@@ -39,6 +39,7 @@ en:
         mou_on_file: MOU on file with District?
         program_impact: How would you describe the impact of your program?
         services_description: Brief description of the services you provide to sites
+        user_id: Primary Contact
 
       school_program:
         day_ids: Service days
