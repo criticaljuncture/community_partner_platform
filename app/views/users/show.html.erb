@@ -81,18 +81,22 @@
 
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-    <% entries = SchoolProgram.where(user_id: @user.id).group(:community_program_id) %>
-    <% if entries.present? %>
-      <%= columnar_table_block 'Programs As Primary School Contact', class: 'user-access' do %>
-        <% entries.each do |school_program| %>
+    <% if @school_programs_by_community_program.present? %>
+      <%= columnar_table_block 'Programs As Primary School Contact',
+                                class: 'user-access' do %>
+        <% @school_programs_by_community_program.each do |community_program, school_programs| %>
             <tr>
               <td>Program</td>
-              <td><%= link_to school_program.community_program.name, community_program_path(school_program.community_program) %></td>
+              <td>
+                <%= link_to(
+                      community_program.name,
+                      community_program_path(community_program) )%>
+              </td>
             </tr>
             <tr>
               <td>Schools</td>
               <td>
-                <%= "#{school_program.school.name} #{"and #{school_program.community_program.school_programs.size - 1} others" if school_program.community_program.school_programs.size > 1} " %>
+                <%= school_summary(school_programs.map(&:school)) %>
               </td>
             </tr>
         <% end %>
@@ -100,15 +104,22 @@
     <% end %>
 
     <% if @user.community_programs_as_organization_contact.present? %>
-      <%= columnar_table_block 'Programs As Primary Organization Contact', class: 'user-access' do %>
+      <%= columnar_table_block 'Programs As Primary Organization Contact',
+                               class: 'user-access' do %>
         <% @user.community_programs_as_organization_contact.each do |community_program| %>
             <tr>
               <td>Program</td>
-              <td><%= link_to community_program.name, community_program_path(community_program) %></td>
+              <td>
+                <%= link_to(
+                      community_program.name,
+                      community_program_path(community_program) )%>
+              </td>
             </tr>
             <tr>
               <td>Schools</td>
-              <td><%= "#{community_program.school_programs.first.school.name} #{"and #{community_program.school_programs.size - 1} others" if community_program.school_programs.size > 1} " %></td>
+              <td>
+                <%= school_summary(community_program.schools) %>
+              </td>
             </tr>
         <% end %>
       <% end %>

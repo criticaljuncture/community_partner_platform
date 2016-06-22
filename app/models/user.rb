@@ -78,6 +78,10 @@ class User < ActiveRecord::Base
     self.save(validate: false)
   end
 
+  def school_programs_as_primary_school_contact
+    SchoolProgram.where(user_id: id)
+  end
+
   protected
 
   def password_required?
