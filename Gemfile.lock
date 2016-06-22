@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/elcuervo/minuteman-rails.git
+  revision: 473197950a5072fa60bda39f4736098958d7b9ed
+  ref: 473197950a5072fa60bda39f4736098958d7b9ed
+  specs:
+    minuteman-rails (0.1.1)
+      minuteman (~> 1.0.3)
+      rails (> 3.0)
+
+GIT
   remote: git://github.com/peregrinator/jquery-modal-rails.git
   revision: 97bc84d7723d324876971f45f255e066fbb6ad49
   ref: 97bc84d7723d324876971f45f255e066fbb6ad49
@@ -8,15 +17,6 @@ GIT
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
       uuidtools
-
-GIT
-  remote: git@github.com:elcuervo/minuteman-rails.git
-  revision: 473197950a5072fa60bda39f4736098958d7b9ed
-  ref: 473197950a5072fa60bda39f4736098958d7b9ed
-  specs:
-    minuteman-rails (0.1.1)
-      minuteman (~> 1.0.3)
-      rails (> 3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -409,3 +409,6 @@ DEPENDENCIES
   underscore-rails
   web-console (~> 2.0)
   wicked
+
+BUNDLED WITH
+   1.11.2
