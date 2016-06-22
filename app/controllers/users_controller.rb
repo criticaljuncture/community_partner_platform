@@ -20,6 +20,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id]).decorate
     authorize! :show, @user
+    @school_programs_by_community_program = @user.
+      school_programs_as_primary_school_contact.
+      group_by{ |school_program| school_program.community_program }.
+      sort_by{|community_program, school_program| community_program.name}.
+      to_h
   end
 
   def new

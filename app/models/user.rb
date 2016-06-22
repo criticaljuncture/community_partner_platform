@@ -86,6 +86,10 @@ class User < ActiveRecord::Base
     I18n.t('users.flash_messages.inactive')
   end
 
+  def school_programs_as_primary_school_contact
+    SchoolProgram.where(user_id: id)
+  end
+
   protected
 
   def password_required?
