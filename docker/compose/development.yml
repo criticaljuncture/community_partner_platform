@@ -29,6 +29,9 @@ services:
     build: '../../'
     ports:
       - "4000:3000"
+    links:
+      - mysql
+      - rsync
     environment:
       RAILS_ENV: development
       PASSENGER_MIN_INSTANCES: 1
