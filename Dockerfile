@@ -7,7 +7,8 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C3173AA6 &&\
   apt-get clean &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN apt-get update && apt-get install -y build-essential git &&\
+# libsqlite3-dev is dependency of the fast import gem
+RUN apt-get update && apt-get install -y build-essential git libmysqlclient-dev libsqlite3-dev nodejs &&\
   apt-get clean &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
 
@@ -21,26 +22,15 @@ RUN gem install bundler
 COPY docker/web/service/web/run /etc/service/web/run
 COPY docker/web/my_init.d /etc/my_init.d
 
-
 RUN adduser app -uid 1000 --system
 
 RUN gem install bundler
-
-RUN chown -R app /home/app
-WORKDIR /home/app
-
-RUN apt-get update && apt-get install -y libmysqlclient-dev libsqlite3-dev nodejs
-
 WORKDIR /tmp
 COPY Gemfile /tmp/Gemfile
 COPY Gemfile.lock /tmp/Gemfile.lock
 RUN bundle install --system
 
 COPY . /home/app/
-RUN chown -R app /home/app
-
-
-USER app
-RUN bundle install --deployment --without development test
-
-USER root
+RUN cp config/secrets.yml.sample config/secrets.yml &&\
+  RAILS_ENV=production rake assets:precompile &&\
+  chown -R app /home/app

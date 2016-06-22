@@ -1,10 +1,10 @@
 .git/*
 
-/tmp
-/docker
-/log
+tmp
+docker
+log
 
-/.bundle
+.bundle
 
 # Ignore our secret keys
 .env
