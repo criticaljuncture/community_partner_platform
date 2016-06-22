@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "20000:3306"
+    expose:
+      - "3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_PORT_3306_TCP_DATABASE: community_partner_platform
+    volumes:
+      - "../mysql/init_db.sh:/docker-entrypoint-initdb.d/init_db.sh"
+      - "~/Dropbox/CJ\ Resources/CPP/current.sql.gz:/current.sql.gz"
+
+  rsync:
+    image: nabeken/docker-volume-container-rsync
+    environment:
+      VOLUME: /home/app
+      OWNER: 1000
+      GROUP: 1000
+    volumes:
+      - web_app:/home/app/
+    ports:
+      - "873:873"
+
+  web:
+    build: '../../'
+    ports:
+      - "4000:3000"
+    environment:
+      RAILS_ENV: development
+      PASSENGER_MIN_INSTANCES: 1
+      WEB_PORT: 3000
+      MYSQL_PORT_3306_TCP_DATABASE: community_partner_platform
+      MYSQL_PORT_3306_TCP_PORT: 3306
+      MYSQL_PORT_3306_TCP_ADDR: mysql
+      SECRET_KEY_BASE: 73053fff09e31c8f82656e2a5a0c568cde9a679b1580c302e7f02c1b0ce635ae7f5c6d6accda08a7bf0984efe83642d815a4a31b12537cb121a48d4663a7aff2
+    volumes:
+      - web_app:/home/app/
+    restart: on-failure
+
+volumes:
+  mysql:
+    driver: local
+  web_app:
+    driver: local
