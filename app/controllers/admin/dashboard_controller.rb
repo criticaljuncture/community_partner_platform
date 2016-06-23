@@ -7,6 +7,8 @@ class Admin::DashboardController < Admin::ApplicationController
       includes(:users).
       order('name').
       map{|organization| OrganizationDecorator.decorate(organization)}
+    @all_organizations_program_count  = Organization.with_community_programs.size
+    @ousd_organizations_program_count = Organization.ousd.with_community_programs.size
     @community_programs = CommunityProgram.
       includes(:school_programs).
       order('name').

@@ -26,7 +26,11 @@
 
       <% if can? :manage, Organization %>
       <div id="organization-completion-rates" class="tab-pane">
-        <%= render partial: 'organization_completeness', locals: {organizations: @organizations} %>
+        <%= render partial: 'organization_completeness', locals: {
+              organizations: @organizations,
+              all_organizations_program_count: @all_organizations_program_count,
+              ousd_organizations_program_count: @ousd_organizations_program_count
+        } %>
       </div>
       <% end %>
 
