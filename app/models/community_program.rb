@@ -8,8 +8,8 @@ class CommunityProgram < ActiveRecord::Base
   default_scope { where(active: true) }
 
   after_save :update_program_completion_rate
+  has_many :school_programs, dependent: :destroy
 
-  has_many :school_programs
   has_many :schools, through: :school_programs
   #has_many :regions, through: :schools
 
