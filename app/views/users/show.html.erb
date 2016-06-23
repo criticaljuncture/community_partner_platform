@@ -96,7 +96,9 @@
             <tr>
               <td>Schools</td>
               <td>
-                <%= school_summary(school_programs.map(&:school)) %>
+                <%= partially_hidden_list(school_programs.map(&:school)) do |school|
+                      school.name
+                    end %>
               </td>
             </tr>
         <% end %>
@@ -118,7 +120,9 @@
             <tr>
               <td>Schools</td>
               <td>
-                <%= school_summary(community_program.schools) %>
+                <%= partially_hidden_list(community_program.schools) do |school|
+                      school.name
+                    end %>
               </td>
             </tr>
         <% end %>
