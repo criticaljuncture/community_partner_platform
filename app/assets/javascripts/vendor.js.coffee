@@ -5,6 +5,8 @@
 #= require bootstrap/dropdown
 #= require bootstrap/modal
 #= require bootstrap/tab
+#= require bootstrap-datepicker/core
+#= require bootstrap-datepicker-rails
 #= require colorbrewer
 #= require d3
 # require handlebars

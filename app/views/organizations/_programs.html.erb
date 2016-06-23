@@ -5,12 +5,31 @@
 
   <% programs.sort_by(&:name).each do |community_program| %>
     <div class="columnar-table-block-header">
-      <h5>
+      <h5 class="col-md-2 col-xs-12">
         <%= link_to community_program.name,
           community_program_path(community_program) %>
       </h5>
 
-      <div class="header-button-wrapper">
+      <% if active %>
+      <span class="col-md-6 col-xs-12">
+        <div class="row progress-bar-container">
+          <span class='col-md-11 col-xs-11' >
+            <%= ProgressBarPresenter.perform(
+              percentage: community_program.program_completion_rate,
+              text: number_to_percentage(
+                      community_program.program_completion_rate,
+                      precision: 0),
+              options: {special_complete_color: community_program.verification_required?}
+            ) %>
+          </span>
+          <span class="col-md-1 col-xs-1 pull-left">
+            <%= help("This shows the completeness of the school program's provided information.") %>
+          </span>
+        </div>
+      </span>
+      <% end %>
+
+      <div class="header-button-wrapper col-md-4 col-xs-12">
         <% if active %>
           <%= link_to_gicon('Verification Needed',
             edit_community_program_path(
@@ -40,7 +59,9 @@
       <tr>
         <td>Schools</td>
         <td>
-          <%= community_program.school_summary %>
+          <%= partially_hidden_list(community_program.schools) do |school|
+            school.name
+          end %>
         </td>
       </tr>
       <tr>

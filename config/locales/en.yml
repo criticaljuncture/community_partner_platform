@@ -49,6 +49,15 @@ en:
         success: Successfully saved '%{name}'
       verified: Thank you for verifying '%{name}'
 
+  date:
+    datepicker:
+      default: "mm/dd/yyyy"
+      long: "MM dd, yyyy"
+    formats:
+      default: "%m/%d/%Y"
+      long: '%B %d, %Y'
+
+
   organization:
     class:
       name: Organization
@@ -79,6 +88,11 @@ en:
       save:
         success: Successfully saved '%{name}'
       verified: Thank you for verifying '%{name}'
+
+
+  orientation_type:
+    completed_orientation_agreement: Completed Orientation Agreement
+
 
   quality_element:
     class:

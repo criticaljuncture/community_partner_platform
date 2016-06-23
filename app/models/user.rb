@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  extend ActiveHash::Associations::ActiveRecordExtensions
   include UserAudit
 
   after_create :clear_associated_cache
@@ -9,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :roles, through: :user_roles
 
   belongs_to :organization
+  belongs_to :orientation_type
 
   has_many :user_schools
   has_many :schools, through: :user_schools
@@ -44,6 +46,9 @@ class User < ActiveRecord::Base
 
   validates :schools, presence: true,
             if: -> { role?(:school_manager) }
+
+  validates :orientation_type_id, presence: true,
+            if: Proc.new { |u| u.attended_orientation_at }
 
   after_validation :remove_improper_associations_based_on_role
 

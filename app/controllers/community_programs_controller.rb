@@ -34,7 +34,9 @@ class CommunityProgramsController < ApplicationController
     )
     authorize! :create, @community_program
 
-    @community_program.primary_quality_element.service_type_ids = community_program_params[:primary_quality_element][:service_type_ids]
+    if @community_program.primary_quality_element
+      @community_program.primary_quality_element.service_type_ids = community_program_params[:primary_quality_element_attributes][:service_type_ids]
+    end
 
     if current_user.role?(:organization_member)
       @community_program.last_verified_at = Time.now

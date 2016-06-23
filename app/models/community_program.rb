@@ -7,7 +7,9 @@ class CommunityProgram < ActiveRecord::Base
 
   default_scope { where(active: true) }
 
+  after_save :update_program_completion_rate
   has_many :school_programs, dependent: :destroy
+
   has_many :schools, through: :school_programs
   #has_many :regions, through: :schools
 
@@ -47,6 +49,23 @@ class CommunityProgram < ActiveRecord::Base
       message: "must choose a primary quality element"
     }
 
+  COMPLETION_WEIGHTS = [
+    [
+      0.30,
+      [:name, :service_description, :primary_quality_element,
+       :primary_service_types, :organization, :user]
+    ],
+    [
+      0.35,
+      [:student_population, :ethnicity_culture_groups, :demographic_groups,
+       :grade_levels, :service_times, :days]
+    ],
+    [
+      0.35,
+      [:school_programs]
+    ]
+  ]
+
   def service_types
     primary_service_types
   end
@@ -61,4 +80,14 @@ class CommunityProgram < ActiveRecord::Base
       current_user.role?(:organization_member) &&
       verification_required?
   end
+
+  def update_program_completion_rate
+    update_column(
+      :program_completion_rate, ProgramCompletionRateCalculator.new(
+        self,
+        COMPLETION_WEIGHTS
+      ).completion_rate
+    )
+  end
+
 end
