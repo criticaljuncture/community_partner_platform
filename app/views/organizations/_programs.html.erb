@@ -40,7 +40,9 @@
       <tr>
         <td>Schools</td>
         <td>
-          <%= community_program.school_summary %>
+          <%= partially_hidden_list(community_program.schools) do |school|
+            school.name
+          end %>
         </td>
       </tr>
       <tr>

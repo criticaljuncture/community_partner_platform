@@ -78,3 +78,55 @@
     <% end %>
   </div>
 </div>
+
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+    <% if @school_programs_by_community_program.present? %>
+      <%= columnar_table_block 'Programs As Primary School Contact',
+                                class: 'user-access' do %>
+        <% @school_programs_by_community_program.each do |community_program, school_programs| %>
+            <tr>
+              <td>Program</td>
+              <td>
+                <%= link_to(
+                      community_program.name,
+                      community_program_path(community_program) )%>
+              </td>
+            </tr>
+            <tr>
+              <td>Schools</td>
+              <td>
+                <%= partially_hidden_list(school_programs.map(&:school)) do |school|
+                      school.name
+                    end %>
+              </td>
+            </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% if @user.community_programs_as_organization_contact.present? %>
+      <%= columnar_table_block 'Programs As Primary Organization Contact',
+                               class: 'user-access' do %>
+        <% @user.community_programs_as_organization_contact.each do |community_program| %>
+            <tr>
+              <td>Program</td>
+              <td>
+                <%= link_to(
+                      community_program.name,
+                      community_program_path(community_program) )%>
+              </td>
+            </tr>
+            <tr>
+              <td>Schools</td>
+              <td>
+                <%= partially_hidden_list(community_program.schools) do |school|
+                      school.name
+                    end %>
+              </td>
+            </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
