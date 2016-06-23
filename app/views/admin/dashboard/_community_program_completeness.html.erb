@@ -24,7 +24,13 @@
           </td>
           <td>
             <% if community_program.schools_with_differing_completion_rates.present? %>
-              <%= community_program.school_program_summary %>
+              <%= partially_hidden_list(
+                    community_program.
+                    decorate.
+                    schools_with_differing_completion_rates
+                  ) do |school_program|
+                      "#{school_program.school.name} (#{number_to_percentage(school_program.program_completion_rate, precision: 0)})"
+                    end %>
             <% end %>
           </td>
           <td class="text-right">
