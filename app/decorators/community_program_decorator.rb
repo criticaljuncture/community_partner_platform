@@ -51,28 +51,6 @@ class CommunityProgramDecorator < Draper::Decorator
     end
   end
 
-  def school_summary
-    schls = schools.sort_by(&:name)
-
-    h.content_tag(:ul, class: 'no-bullets') do
-      schls.to_a[0..1].each do |school|
-        h.concat h.content_tag(:li, school.name)
-      end
-
-      if schls.count > 2
-        schls[2..-1].each do |school|
-          h.concat h.content_tag(:li, school.name, class: 'hidden overflow')
-        end
-
-        h.concat(
-          h.content_tag(:li, class: 'toggler') do
-            h.concat h.content_tag(:a, "view #{h.pluralize schools.count-2, 'other'}")
-          end
-        )
-      end
-    end
-  end
-
   def verification_header
     "#{should_verify?(h.current_user) ? 'Verify' : 'Edit'} #{name}"
   end
