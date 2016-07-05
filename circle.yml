@@ -1,0 +1,10 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - ~/cache/
+  pre:
+    - curl -fsSL https://pilot.criticaljuncture.org/bootstrap.sh | bash
+    - pilot build community_partner_platform-web .

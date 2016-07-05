@@ -76,7 +76,7 @@ gem 'jquery-cookie-rails'
 
 # redis analytics
 gem "minuteman-rails",
-  git: 'git@github.com:elcuervo/minuteman-rails.git',
+  github: 'elcuervo/minuteman-rails',
   ref: '473197950a5072fa60bda39f4736098958d7b9ed'
 gem "minuteman", "~> 1.0.3"
 
