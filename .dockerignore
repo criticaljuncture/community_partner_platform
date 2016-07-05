@@ -1,7 +1,6 @@
 .git/*
 
 tmp
-docker
 log
 
 .bundle

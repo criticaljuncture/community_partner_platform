@@ -30,7 +30,11 @@ COPY Gemfile /tmp/Gemfile
 COPY Gemfile.lock /tmp/Gemfile.lock
 RUN bundle install --system
 
+ENV DEVISE_SECRET_KEY XXXXXXXXX
+
 COPY . /home/app/
-RUN cp config/secrets.yml.sample config/secrets.yml &&\
-  RAILS_ENV=production rake assets:precompile &&\
+
+WORKDIR /home/app
+COPY config/secrets.yml config/secrets.yml
+RUN RAILS_ENV=production rake assets:precompile &&\
   chown -R app /home/app
