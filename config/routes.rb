@@ -81,5 +81,9 @@ OusdCommunityPartners::Application.routes.draw do
     resources :dashboard, only: :index
   end
 
+  namespace :public do
+    resources :schools, only: [:index, :show]
+  end
+
   root to: "schools#index"
 end

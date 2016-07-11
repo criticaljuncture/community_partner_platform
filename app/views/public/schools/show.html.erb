@@ -1,26 +1,13 @@
 <%= breadcrumb [
-  ['Schools', schools_path],
-  [@school.name, school_path(@school)]
+  ['Schools', public_schools_path],
+  [@school.name, public_school_path(@school)]
 ] %>
 
-<%= page_header @school.name, "icon-cpp-school" do %>
-  <%= link_to_gicon('Edit School',
-    edit_school_path(@school),
-    class: "btn btn-primary",
-    icon: 'pencil'
-  ) if can? :manage, @school %>
-<% end %>
+<%= page_header @school.name, "icon-cpp-school" %>
 
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-    <% if can? :view, :school_partnership_status_dashboard_panels %>
-      <%#= render partial: 'progress_charts', locals: {school: @school} %>
-    <% end %>
-
     <dl>
-      <dt><%= t('region.class.name') %></dt>
-      <dd><%= @school.region.try(:name) || '&nbsp;'.html_safe %></dd>
-
       <dt><%= t('community_programs.class.name').pluralize %></dt>
       <dd><%= @school.school_programs.count %></dd>
     </dl>
@@ -36,17 +23,17 @@
 
     <div class="tab-content">
       <div id="community-programs" class="tab-pane active">
-        <%= render partial: 'community_programs', locals: {
+        <%= render partial: 'schools/community_programs', locals: {
           school: @school,
           school_programs: @school.school_programs,
-          title: "Community Programs by Community School Element",
+          title: "Community Programs at #{@school.name}",
         } %>
       </div>
 
       <div id="community-school-elements" class="tab-pane community-school-elements">
-        <%= render partial: 'community_school_elements', locals: {
+        <%= render partial: 'schools/community_school_elements', locals: {
           school: @school,
-          hide_foundational_elements: false
+          hide_foundational_elements: true
         } %>
       </div>
     </div>
