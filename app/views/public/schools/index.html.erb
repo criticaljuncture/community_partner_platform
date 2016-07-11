@@ -1,0 +1,26 @@
+<%= breadcrumb [
+  ['Schools', public_schools_path],
+] %>
+
+<%= page_header "Choose a School", "icon-cpp-school" %>
+
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+
+    <div class="form_wrapper">
+      <%= simple_form_for @school,
+        url: '',
+        method: :get,
+        html: {class: "form-horizontal school-selection"},
+        wrapper: :horizontal_form do |f| %>
+
+        <%= f.input :name,
+          label: false,
+          as: :select,
+          collection: School.all,
+          prompt: "Please Select a School" %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
