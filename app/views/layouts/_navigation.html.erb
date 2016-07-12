@@ -21,6 +21,7 @@
 
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+        <% if current_user %>
         <li class="nav-item <%= active_for_controller('schools') %>">
           <%= icon_link_to 'Schools',
             schools_path,
@@ -39,6 +40,7 @@
             icon_class: "icon-cpp-small-business",
             nav_label_class: "organization" %>
         </li>
+        <% end %>
 
         <% if can? :manage, :application %>
         <li class="nav-item dropdown">
