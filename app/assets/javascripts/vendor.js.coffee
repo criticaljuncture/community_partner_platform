@@ -17,4 +17,5 @@
 #= require jquery.tablesorter.min
 #= require jquery.tablesorter.widgets.min
 #= require jquery.tipsy.svg.js
+#= require mapbox-gl-v0.20.1.js
 #= require underscore
