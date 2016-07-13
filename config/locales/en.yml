@@ -183,5 +183,6 @@ en:
   navigation:
 
   user_nav:
+    sign_in: Sign In
     sign_out: Sign Out
     view_org: View My Organization

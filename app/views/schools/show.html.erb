@@ -36,10 +36,10 @@
 
     <div class="tab-content">
       <div id="community-programs" class="tab-pane active">
+        <h2><%= "Community Programs by Community School Element" %></h2>
         <%= render partial: 'community_programs', locals: {
           school: @school,
-          school_programs: @school.school_programs,
-          title: "Community Programs by Community School Element",
+          school_programs: @school.school_programs
         } %>
       </div>
 

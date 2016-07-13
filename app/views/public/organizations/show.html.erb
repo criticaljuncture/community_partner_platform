@@ -1,0 +1,15 @@
+<%= breadcrumb [
+  [@organization.name, organization_path(@organization)]
+] %>
+
+<%= page_header(@organization.name, "icon-cpp-small-business") %>
+
+<div class="row">
+  <%= render partial: 'organizations/organization_details', locals: {
+    organization: @organization
+  } %>
+
+  <%= render partial: 'organizations/organization_description', locals: {
+    organization: @organization
+  } %>
+</div>

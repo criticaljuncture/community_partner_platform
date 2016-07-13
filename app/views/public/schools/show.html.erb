@@ -16,26 +16,12 @@
 
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-    <%= page_nav_tabs [
-      ['Community Programs', '#community-programs'],
-      ['Community School Element Summary', '#community-school-elements']
-    ] %>
 
-    <div class="tab-content">
-      <div id="community-programs" class="tab-pane active">
-        <%= render partial: 'schools/community_programs', locals: {
-          school: @school,
-          school_programs: @school.school_programs,
-          title: "Community Programs at #{@school.name}",
-        } %>
-      </div>
-
-      <div id="community-school-elements" class="tab-pane community-school-elements">
-        <%= render partial: 'schools/community_school_elements', locals: {
-          school: @school,
-          hide_foundational_elements: true
-        } %>
-      </div>
+    <div id="community-programs" class="tab-pane active">
+      <%= render partial: 'schools/community_programs', locals: {
+        school: @school,
+        school_programs: @school.school_programs
+      } %>
     </div>
 
   </div>

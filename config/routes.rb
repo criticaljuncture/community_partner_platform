@@ -82,8 +82,9 @@ OusdCommunityPartners::Application.routes.draw do
   end
 
   namespace :public do
-    resources :schools, only: [:index, :show]
+    resources :schools, only: [:show]
+    resources :organizations, only: [:show]
   end
 
-  root to: "schools#index"
+  root "public/special#home"
 end

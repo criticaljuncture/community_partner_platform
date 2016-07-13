@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     elsif user.role?(:organization_member)
       organization_path(user.organization)
     else
-      root_path
+      schools_path
     end
   end
 

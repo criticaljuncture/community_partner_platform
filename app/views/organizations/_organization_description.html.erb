@@ -16,10 +16,12 @@
       </td>
     </tr>
 
+    <% if current_user %>
     <tr>
       <td><%= I18n.t('organization.program_impact') %></td>
       <td>
         <%= organization.program_impact %>
       </td>
     </tr>
+    <% end %>
 <% end %>

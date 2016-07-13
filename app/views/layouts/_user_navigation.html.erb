@@ -14,5 +14,9 @@
           class: 'btn btn-mini btn-info' %>
       <% end %>
     </div>
+  <% else %>
+    <%= link_to t('user_nav.sign_in'),
+      new_user_session_path,
+      class: 'btn btn-mini btn-info' %>
   <% end %>
 </div>

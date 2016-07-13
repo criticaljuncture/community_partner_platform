@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+
+  <div id="community-programs-map" class="homepage-map"></div>
+<!--   <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYnJhbmRvbmNlZSIsImEiOiJjaXFpcGRwZTEwNzA3ZnRuZTcyeHNrMnRpIn0.B8B6usgI5KdE2DiaIsSzXA';
+    var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
+        center: [-122.2697222, 37.8044444], // starting position
+        zoom: 13 // starting zoom
+    });
+  </script>
+ -->
+  </div>
+</div>
+
+<%= page_header "Choose a School", "icon-cpp-school" %>
+
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+
+    <div class="form_wrapper">
+      <%= simple_form_for @school,
+        url: '',
+        method: :get,
+        html: {
+          class: "form-horizontal goto-selection",
+          :"data-named-route" => 'public_school_path'
+        },
+        wrapper: :vertical_form do |f| %>
+
+        <%= f.input :name,
+          label: false,
+          as: :select,
+          collection: School.all,
+          prompt: "Please Select a School" %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<%= page_header "Choose an Organization", "icon-cpp-small-business" %>
+
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+
+    <div class="form_wrapper">
+      <%= simple_form_for @organization,
+        url: '',
+        method: :get,
+        html: {
+          class: "form-horizontal goto-selection",
+          :"data-named-route" => 'public_organization_path'
+        },
+        wrapper: :vertical_form do |f| %>
+
+        <%= f.input :name,
+          label: false,
+          as: :select,
+          collection: Organization.all,
+          prompt: "Please Select an Organization" %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+

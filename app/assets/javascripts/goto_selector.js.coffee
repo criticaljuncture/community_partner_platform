@@ -1,11 +1,19 @@
 $(document).ready ->
-  if $('form.school-selection').length > 0
-    new CPP.SchoolSelector($('form.school-selection #school_name'))
+  goto_forms = $('form.goto-selection')
+  if goto_forms.length > 0
+    goto_forms.each (index, element) ->
+      new CPP.GotoSelector($(element))
 
-class @CPP.SchoolSelector
-  constructor: (@selectTag) ->
+class @CPP.GotoSelector
+  constructor: (@form) ->
     @addListener()
 
   addListener: () ->
-    @selectTag.change =>
-      window.location.href = Routes.public_school_path(@selectTag.val())
+    @_selectTag().change =>
+      window.location.href = Routes[@_namedRoute()](@_selectTag().val())
+
+  _selectTag: () ->
+    @form.find('select')
+
+  _namedRoute: () ->
+    @form.data('named-route')
