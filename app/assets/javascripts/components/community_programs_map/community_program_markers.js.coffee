@@ -12,7 +12,7 @@ class @CPP.CommunityProgramMarkers
   @addCommunityProgramSource: (map, site_type_norm)->
     map.addSource("community-program-markers-#{site_type_norm}", {
       type: "geojson",
-      data: "/api/school_community_program_markers/#{site_type_norm}",
+      data: "/api/community_program_markers/#{site_type_norm}",
       cluster: false,
       clusterMaxZoom: 14,
       clusterRadius: 50
