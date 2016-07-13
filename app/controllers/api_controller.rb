@@ -2,6 +2,31 @@ class ApiController < ApplicationController
   skip_before_filter :authenticate_user!
   skip_authorization_check
 
+  def school_community_program_markers
+    @schools = School.where(
+      active: true,
+      site_type_norm: params[:site_type_norm]
+    )
+    json = {
+      "type": "FeatureCollection",
+      features: @schools.map do |school|
+        {
+          "type": "Feature",
+          "properties": {
+            "programCount": school.school_programs.size,
+            "url": "http://www.google.com"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [school.lat, school.lng]
+          },
+        }
+      end
+    }
+
+    render :json => json
+  end
+
   def community_programs
     @community_programs = CommunityProgram.active.accessible_by(current_ability).includes(:school, :organization).all
 

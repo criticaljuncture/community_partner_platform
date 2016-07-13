@@ -1,51 +1,50 @@
 class @CPP.CommunityProgramMarkers
-  @layers: [
-    [150, '#f28cb1', '#f4a3c0'],
-    [20, '#f1f075', '#f6f6ac'],
-    [0, '#51bbd6', '#73c8de']
-  ]
+  @layers:
+    "Elementary": [30, '#f28cb1', '#f4a3c0'],
+    "Middle": [15, '#f1f075', '#f6f6ac'],
+    "Senior": [0, '#51bbd6', '#73c8de']
 
-  @add: (map)->
-    @addCommunityProgramSource(map)
-    @addCommunutyProgramMarkers(map)
-    @addCommunutyProgramMarkerClustering(map)
+  @add: (map, site_type_norm)->
+    @addCommunityProgramSource(map, site_type_norm)
+    @addCommunutyProgramMarkers(map, site_type_norm)
+    @addCommunutyProgramMarkerClustering(map, site_type_norm)
 
-  @addCommunityProgramSource: (map)->
-    map.addSource("earthquakes", {
+  @addCommunityProgramSource: (map, site_type_norm)->
+    map.addSource("community-program-markers-#{site_type_norm}", {
       type: "geojson",
-      data: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson",
-      cluster: true,
+      data: "/api/school_community_program_markers/#{site_type_norm}",
+      cluster: false,
       clusterMaxZoom: 14,
       clusterRadius: 50
     })
 
-  @addCommunutyProgramMarkers: (map)->
+  @addCommunutyProgramMarkers: (map, site_type_norm)->
     map.addLayer({
-        "id": "non-cluster-markers-blur",
+        "id": "non-cluster-markers-blur-#{site_type_norm}",
         "type": "circle",
-        "source": "earthquakes",
+        "source": "community-program-markers-#{site_type_norm}",
         "paint": {
-            "circle-color": @layers[2][2],
+            "circle-color": @layers[site_type_norm][2],
             "circle-radius": 22
         }
     });
 
     map.addLayer({
-        "id": "non-cluster-markers",
+        "id": "non-cluster-markers-#{site_type_norm}",
         "type": "circle",
-        "source": "earthquakes",
+        "source": "community-program-markers-#{site_type_norm}",
         "paint": {
-            "circle-color": @layers[2][1],
+            "circle-color": @layers[site_type_norm][1],
             "circle-radius": 18
         }
     });
 
     map.addLayer({
-        "id": "magnitude-label",
+        "id": "program-count-label-#{site_type_norm}",
         "type": "symbol",
-        "source": "earthquakes",
+        "source": "community-program-markers-#{site_type_norm}",
         "layout": {
-            "text-field": "{mag}",
+            "text-field": "{programCount}",
             "text-font": [
                     "DIN Offc Pro Medium",
                     "Arial Unicode MS Bold"
@@ -54,45 +53,17 @@ class @CPP.CommunityProgramMarkers
         }
     });
 
-  @addCommunutyProgramMarkerClustering: (map)->
+
+  @addCommunutyProgramMarkerClustering: (map, site_type_norm)->
     cppMarkers = this
-
-    _.each @layers, (layer, index)->
-      map.addLayer({
-        "id": "non-cluster-markers-blur-" + index,
-        "type": "circle",
-        "source": "earthquakes",
-        "paint": {
-          "circle-color": layer[2],
-          "circle-radius": 22
-        },
-        "filter": if index == 0 then [">=", "point_count", layer[0]] else
-            ["all",
-              [">=", "point_count", layer[0]],
-              ["<", "point_count", cppMarkers.layers[index - 1][0]]]
-      })
-
-      map.addLayer({
-          "id": "cluster-" + index,
-          "type": "circle",
-          "source": "earthquakes",
-          "paint": {
-              "circle-color": layer[1],
-              "circle-radius": 18
-          },
-          "filter": if index == 0 then [">=", "point_count", layer[0]] else
-              ["all",
-                  [">=", "point_count", layer[0]],
-                  ["<", "point_count", cppMarkers.layers[index - 1][0]]]
-      })
 
     #Add a layer for the clusters' count labels
     map.addLayer({
-      "id": "cluster-count",
+      "id": "cluster-count-#{site_type_norm}",
       "type": "symbol",
-      "source": "earthquakes",
+      "source": "community-program-markers-#{site_type_norm}",
       "layout": {
-        "text-field": "{point_count}",
+        "text-field": "{programCount}",
         "text-font": [
           "DIN Offc Pro Medium",
           "Arial Unicode MS Bold"

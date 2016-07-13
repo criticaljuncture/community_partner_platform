@@ -68,6 +68,7 @@ OusdCommunityPartners::Application.routes.draw do
       get :school_hierarchy
       get :schools
       get :school_sub_areas
+      get 'school_community_program_markers/:site_type_norm' => 'api#school_community_program_markers'
     end
   end
 
