@@ -8,7 +8,8 @@ class CommunityProgramMarkerSerializer < ActiveModel::Serializer
   def properties
     {
       "programCount": object.school_programs.size,
-      "url": "http://www.google.com"
+      "url": "http://www.google.com",
+      "description": object.name,
     }
   end
 

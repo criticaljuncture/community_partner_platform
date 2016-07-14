@@ -9,6 +9,37 @@ class @CPP.CommunityProgramMarkers
     @addCommunutyProgramMarkers(map, site_type_norm)
     @addCommunutyProgramMarkerClustering(map, site_type_norm)
     @addTooltips(map, site_type_norm)
+    @addLegend(map, site_type_norm)
+
+  @addLegend: (map, site_type_norm) ->
+    link = document.createElement('a')
+    link.href = '#'
+    link.className = 'active'
+    link.textContent = site_type_norm
+
+    link.onclick = (e) ->
+      e.preventDefault()
+      e.stopPropagation()
+      _.each [
+        "non-cluster-markers-blur-"
+        "non-cluster-markers-"
+        "program-count-label-"
+        "cluster-count-"
+      ], (layerType) ->
+        layer = layerType + site_type_norm
+        visibility = map.getLayoutProperty(layer, 'visibility')
+        if visibility == 'visible'
+          map.setLayoutProperty layer, 'visibility', 'none'
+          @className = ''
+        else
+          @className = 'active'
+          map.setLayoutProperty layer, 'visibility', 'visible'
+        return
+      return
+
+    layers = document.getElementById('menu')
+    layers.appendChild link
+    return
 
   @addCommunityProgramSource: (map, site_type_norm)->
     map.addSource("community-program-markers-#{site_type_norm}", {
@@ -27,6 +58,9 @@ class @CPP.CommunityProgramMarkers
         "paint": {
             "circle-color": @layers[site_type_norm][2],
             "circle-radius": 22
+        },
+        "layout": {
+          "visibility": "visible"
         }
     });
 
@@ -37,7 +71,11 @@ class @CPP.CommunityProgramMarkers
         "paint": {
             "circle-color": @layers[site_type_norm][1],
             "circle-radius": 18
+        },
+        "layout": {
+          "visibility": "visible"
         }
+
     });
 
     map.addLayer({
@@ -50,7 +88,8 @@ class @CPP.CommunityProgramMarkers
                     "DIN Offc Pro Medium",
                     "Arial Unicode MS Bold"
                 ],
-            "text-size": 12
+            "text-size": 12,
+            "visibility": "visible"
         }
     });
 
@@ -69,7 +108,8 @@ class @CPP.CommunityProgramMarkers
           "DIN Offc Pro Medium",
           "Arial Unicode MS Bold"
         ],
-        "text-size": 12
+        "text-size": 12,
+        "visibility": "visible"
       }
     })
 
