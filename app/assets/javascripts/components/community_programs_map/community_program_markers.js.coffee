@@ -8,6 +8,7 @@ class @CPP.CommunityProgramMarkers
     @addCommunityProgramSource(map, site_type_norm)
     @addCommunutyProgramMarkers(map, site_type_norm)
     @addCommunutyProgramMarkerClustering(map, site_type_norm)
+    @addTooltips(map, site_type_norm)
 
   @addCommunityProgramSource: (map, site_type_norm)->
     map.addSource("community-program-markers-#{site_type_norm}", {
@@ -71,3 +72,33 @@ class @CPP.CommunityProgramMarkers
         "text-size": 12
       }
     })
+
+  @addTooltips: (map, site_type_norm)->
+    # Add layer of transparent points at school locations for tooltip hover event
+    # to utilize.
+    map.addLayer
+      'id': "invisible-tooltip-locations-#{site_type_norm}",
+      'type': 'circle',
+      'source': "community-program-markers-#{site_type_norm}",
+      'paint':
+        'circle-opacity': 0.000000001
+        'circle-radius': 22
+
+    popup = new (mapboxgl.Popup)(
+      closeButton: false
+      closeOnClick: false)
+
+    map.on 'mousemove', (e) ->
+      features = map.queryRenderedFeatures(e.point, layers: [ "invisible-tooltip-locations-#{site_type_norm}" ])
+      # Change the cursor style as a UI indicator.
+
+      map.getCanvas().style.cursor = if features.length then 'pointer' else ''
+      if !features.length
+        popup.remove()
+        return
+      feature = features[0]
+
+      # Populate the popup and set its coordinates
+      # based on the feature found.
+      popup.setLngLat(feature.geometry.coordinates).setHTML(feature.properties.description).addTo map
+      return
