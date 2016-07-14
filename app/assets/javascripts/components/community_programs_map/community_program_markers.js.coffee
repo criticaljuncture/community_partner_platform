@@ -12,12 +12,18 @@ class @CPP.CommunityProgramMarkers
     @addLegend(map, site_type_norm)
 
   @addLegend: (map, site_type_norm) ->
-    link = document.createElement('a')
-    link.href = '#'
-    link.className = 'active'
-    link.textContent = site_type_norm
+    link = $(
+      "<li>
+        <span class='legend-circle-wrapper'>
+          <div class='outer-circle #{site_type_norm.toLowerCase()}'></div>
+          <div class='inner-circle #{site_type_norm.toLowerCase()}'></div>
+        </span>
+        <a href='#' class='active'>
+        #{site_type_norm}
+        </a>
+      </li>").appendTo('#menu ul')
 
-    link.onclick = (e) ->
+    link.on "click", (e) ->
       e.preventDefault()
       e.stopPropagation()
       _.each [
@@ -34,12 +40,6 @@ class @CPP.CommunityProgramMarkers
         else
           @className = 'active'
           map.setLayoutProperty layer, 'visibility', 'visible'
-        return
-      return
-
-    layers = document.getElementById('menu')
-    layers.appendChild link
-    return
 
   @addCommunityProgramSource: (map, site_type_norm)->
     map.addSource("community-program-markers-#{site_type_norm}", {
