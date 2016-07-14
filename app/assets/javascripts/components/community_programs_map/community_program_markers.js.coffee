@@ -74,22 +74,15 @@ class @CPP.CommunityProgramMarkers
     })
 
   @addTooltips: (map, site_type_norm)->
-    # Add layer of transparent points at school locations for tooltip hover event
-    # to utilize.
-    map.addLayer
-      'id': "invisible-tooltip-locations-#{site_type_norm}",
-      'type': 'circle',
-      'source': "community-program-markers-#{site_type_norm}",
-      'paint':
-        'circle-opacity': 0.000000001
-        'circle-radius': 22
-
     popup = new (mapboxgl.Popup)(
       closeButton: false
       closeOnClick: false)
 
     map.on 'mousemove', (e) ->
-      features = map.queryRenderedFeatures(e.point, layers: [ "invisible-tooltip-locations-#{site_type_norm}" ])
+      features = map.queryRenderedFeatures(
+        e.point,
+        layers: [ "non-cluster-markers-blur-#{site_type_norm}" ] )
+
       # Change the cursor style as a UI indicator.
 
       map.getCanvas().style.cursor = if features.length then 'pointer' else ''
