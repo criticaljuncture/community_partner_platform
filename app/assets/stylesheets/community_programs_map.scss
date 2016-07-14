@@ -9,9 +9,20 @@
     top: 10px;
     right: 25px;
     border-radius: 3px;
-    width: 120px;
+    width: 387px;
     border: 1px solid rgba(0,0,0,0.4);
     font-family: 'Open Sans', sans-serif;
+}
+
+#menu ul {
+    margin-bottom: 0px;
+}
+
+#menu li {
+    list-style: none;
+    display: inline-block;
+    width: 130px;
+    padding: 0px;
 }
 
 #menu a {
@@ -19,11 +30,10 @@
     color: #404040;
     display: block;
     margin: 0;
-    padding: 0;
     padding: 10px;
+    padding-left: 40px;
     text-decoration: none;
     border-bottom: 1px solid rgba(0,0,0,0.25);
-    text-align: center;
 }
 
 #menu a:last-child {
@@ -44,3 +54,45 @@
     background: #3074a4;
 }
 
+.legend-circle-wrapper {
+    position: absolute;
+    padding-left: 7px;
+    top: 6px;
+
+    .inner-circle{
+        border-radius: 50%;
+        bottom: 21px;
+        height: 18px;
+        left: 3px;
+        position: relative;
+        width: 18px;
+        z-index: 1;
+
+        &.elementary{
+            background-color: #f28cb1;
+        }
+        &.middle{
+            background-color: #f1f075;
+        }
+        &.senior{
+            background-color: #51bbd6;
+        }
+    }
+
+    .outer-circle{
+        border-radius: 50%;
+        height: 24px;
+        position: relative;
+        width: 24px;
+
+        &.elementary{
+            background-color: #f4a3c0;
+        }
+        &.middle{
+            background-color: #f6f6ac;
+        }
+        &.senior{
+            background-color: #73c8de;
+        }
+    }
+}
