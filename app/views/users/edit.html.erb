@@ -17,7 +17,8 @@
           :f => f,
           roles: @roles,
           schools: @schools,
-          organizations: @organizations } %>
+          organizations: @organizations,
+          display_active_attribute: can?(:manage, User) } %>
       <% end %>
     </div>
   </div>

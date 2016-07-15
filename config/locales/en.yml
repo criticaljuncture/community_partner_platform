@@ -129,6 +129,8 @@ en:
 
   users:
     flash_messages:
+      inactive:
+        Your account has been deactivated.  Please contact your OUSD administrator.
       invitation:
         sent: Sent invitation to %{name} (%{email}).
       save:

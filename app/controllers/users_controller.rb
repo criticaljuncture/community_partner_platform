@@ -177,6 +177,12 @@ class UsersController < ApplicationController
                                  :primary_role,
                                  :organization_id,
                                  :title,
-                                 school_ids: [])
+                                 :active,
+                                 school_ids: []).tap do |u_params|
+
+      u_params.delete(:active) unless can? :manage, User
+    end
+
+
   end
 end

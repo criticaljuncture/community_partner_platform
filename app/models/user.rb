@@ -74,6 +74,14 @@ class User < ActiveRecord::Base
     self.save(validate: false)
   end
 
+  def active_for_authentication?
+    super && active?
+  end
+
+  def inactive_message
+    I18n.t('users.flash_messages.inactive')
+  end
+
   protected
 
   def password_required?
