@@ -7,14 +7,10 @@ class CommunityProgramMarkerSerializer < ActiveModel::Serializer
 
   def properties
     {
+      "schoolName": object.name,
       "programCount": object.school_programs.size,
       "url": "http://www.google.com",
-      "description": "<h1>#{object.name}</h1>
-        <dl>
-          <dt>Total Program Count</dt>
-          <dd>#{object.school_programs.size}</dd>
-          #{school_programs_by_element}
-        </dl>"
+      "schoolProgramsByElement": school_programs_by_element,
     }
   end
 
