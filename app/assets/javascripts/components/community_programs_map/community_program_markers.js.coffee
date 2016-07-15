@@ -12,18 +12,16 @@ class @CPP.CommunityProgramMarkers
     @addLegend(map, site_type_norm)
 
   @addLegend: (map, site_type_norm) ->
-    link = $(
-      "<li>
-        <span class='legend-circle-wrapper'>
-          <div class='outer-circle #{site_type_norm.toLowerCase()}'></div>
-          <div class='inner-circle #{site_type_norm.toLowerCase()}'></div>
-        </span>
-        <a href='#' class='active'>
-        #{site_type_norm}
-        </a>
-      </li>").appendTo('#menu ul')
+    legend_item_link = $(
+      HandlebarsTemplates['legend_item']({
+        "school-type-class": site_type_norm.toLowerCase(),
+        "site_type_norm": site_type_norm
+      })
+    )
 
-    link.on "click", (e) ->
+    legend_item_link.appendTo('#menu ul')
+
+    legend_item_link.on "click", (e) ->
       e.preventDefault()
       e.stopPropagation()
       _.each [
