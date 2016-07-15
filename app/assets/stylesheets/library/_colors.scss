@@ -58,3 +58,11 @@ $table-border-color: $gray-20;
 .red { fill: $red; }
 .teal { fill: $teal; }
 .gray-30 { fill: $gray-30; }
+
+// Map colors
+$map-circle-elementary: #f4a3c0;
+$map-circle-elementary-dark: darken($map-circle-elementary, 10);
+$map-circle-middle: #f6f6ac;
+$map-circle-middle-dark: darken($map-circle-middle, 10);
+$map-circle-high: #73c8de;
+$map-circle-high-dark: darken($map-circle-high, 10);

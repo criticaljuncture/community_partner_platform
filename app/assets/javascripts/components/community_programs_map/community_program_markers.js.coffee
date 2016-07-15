@@ -1,8 +1,8 @@
 class @CPP.CommunityProgramMarkers
   @layers:
-    "Elementary": [30, '#f28cb1', '#f4a3c0'],
-    "Middle": [15, '#f1f075', '#f6f6ac'],
-    "Senior": [0, '#51bbd6', '#73c8de']
+    "Elementary": [30, '#ef75a1', '#f4a3c0'],
+    "Middle": [15, '#f1f17e', '#f6f6ac'],
+    "Senior": [0, '#4ab8d4', '#73c8de']
 
   @add: (map, site_type_norm)->
     @addCommunityProgramSource(map, site_type_norm)
