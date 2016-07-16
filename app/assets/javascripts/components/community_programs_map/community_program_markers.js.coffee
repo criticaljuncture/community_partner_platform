@@ -4,6 +4,11 @@ class @CPP.CommunityProgramMarkers
     "Middle": [15, '#f1f17e', '#f6f6ac'],
     "Senior": [0, '#4ab8d4', '#73c8de']
 
+  @siteTypeLabels:
+    "Elementary": "Elemetary Schools",
+    "Middle": "Middle Schools",
+    "Senior": "High Schools"
+
   @add: (map, site_type_norm)->
     @addCommunityProgramSource(map, site_type_norm)
     @addCommunutyProgramMarkers(map, site_type_norm)
@@ -15,7 +20,7 @@ class @CPP.CommunityProgramMarkers
     legend_item_link = $(
       HandlebarsTemplates['legend_item']({
         "school-type-class": site_type_norm.toLowerCase(),
-        "site_type_norm": site_type_norm
+        "label": @siteTypeLabels[site_type_norm]
       })
     )
 

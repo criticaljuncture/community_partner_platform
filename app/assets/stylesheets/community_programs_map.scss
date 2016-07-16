@@ -3,56 +3,56 @@ $map-menu-link-bg-dark: darken($map-menu-link-bg, 10);
 
 .homepage-map { height: 400px; }
 
-.map-menu {
-  background: $white;
-  border: 1px solid $gray-40;
-  border-radius: 3px;
-  font-family: 'Open Sans', sans-serif;
+.map-wrapper { position: relative; }
+
+.map-menu-bg {
+  background: $black;
+  height: 30px;
+  opacity: 0.6;
   position: absolute;
-  right: 25px;
+  width: 100%;
+}
+
+.map-menu {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  position: absolute;
   top: 10px;
-  width: 387px;
+  width: 100%;
   z-index: 1;
 
-  ul { margin-bottom: 0; }
+  ul {
+    margin-bottom: 0;
+    padding: 0;
+  }
 
   li {
-    display: inline-block;
     list-style: none;
     padding: 0;
-    width: 130px;
+    text-align: center;
   }
 
   a {
-    border-bottom: 1px solid $gray-20;
-    color: $gray-70;
+    color: $white;
     display: block;
     font-size: modular-scale(-1);
     margin: 0;
-    padding: 10px;
-    padding-left: 40px;
+    padding: 7px 0 5px 26px;
     text-decoration: none;
 
     &:last-child { border: 0; }
 
     &:hover {
-      background-color: $gray-10;
-      color: $gray-70;
-    }
-
-    &.active {
-      background-color: $map-menu-link-bg;
-      color: $white;
-
-      &:hover { background: $map-menu-link-bg-dark; }
+      background-color: transparentize($gray-40, 0.3);
+      color: white;
     }
   }
 }
 
 .legend-circle-wrapper {
-  padding-left: 7px;
+  margin-left: -29px;
   position: absolute;
-  top: 6px;
+  top: 3px;
 
   .inner-circle,
   .outer-circle {

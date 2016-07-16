@@ -63,6 +63,10 @@ $table-border-color: $gray-20;
 $map-circle-elementary: #f4a3c0;
 $map-circle-elementary-dark: darken($map-circle-elementary, 10);
 $map-circle-middle: #f6f6ac;
-$map-circle-middle-dark: darken($map-circle-middle, 10);
+$map-circle-middle-dark: darken($map-circle-middle, 20);
 $map-circle-high: #73c8de;
 $map-circle-high-dark: darken($map-circle-high, 10);
+
+.a {color: $map-circle-elementary-dark;}
+.b {color: $map-circle-middle-dark;}
+.c {color: $map-circle-high-dark;}
