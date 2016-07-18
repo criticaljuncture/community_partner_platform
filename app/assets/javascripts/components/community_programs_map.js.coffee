@@ -15,6 +15,7 @@ class @CPP.CommunityProgramsMap
     @mapSettings = _.extend(@mapDefaults, options || {})
 
     @createMap()
+    @addMapControls()
 
     cppMap = this
     @map.on 'load', ->
@@ -29,6 +30,11 @@ class @CPP.CommunityProgramsMap
     cppMap = this
     @map = new mapboxgl.Map(
       _.extend(@mapSettings, {container: cppMap.mapEl.get(0)})
+    )
+
+  addMapControls: ->
+    @map.addControl(
+      new mapboxgl.Navigation({position: 'bottom-right'})
     )
 
   logEvents: ->
