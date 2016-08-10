@@ -1,20 +1,22 @@
-development:
+shared: &shared
   adapter: mysql2
+  database: <%= ENV["MYSQL_PORT_3306_TCP_DATABASE"] || 'cpp_platform_production' %>
+  username: <%= ENV["MYSQL_PORT_3306_TCP_USERNAME"] || 'root' %>
+  password: <%= ENV["MYSQL_PORT_3306_TCP_PASSWORD"] %>
+  port: <%= ENV["MYSQL_PORT_3306_TCP_PORT"] || 3306 %>
+  host: '<%= ENV["MYSQL_PORT_3306_TCP_ADDR"] || '127.0.0.1' %>'
   encoding: utf8
-  database: community_partner_platform_development
   pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+development:
+  <<: *shared
+
 test:
-  adapter: mysql2
-  encoding: utf8
-  database: community_partner_platform_test
-  pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  <<: *shared
+  database: <%= ENV["MYSQL_PORT_3306_TCP_DATABASE"] || 'cpp_platform_test' %>
+
+staging:
+  <<: *shared
+
+production:
+  <<: *shared
