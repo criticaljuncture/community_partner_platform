@@ -86,19 +86,6 @@ service_types.each do |name|
   st.save(validate: false)
 end
 
-regions = [
-  "Region 1",
-  "Region 2",
-  "Region 3",
-  "High School"
-]
-
-Region.truncate
-regions.each do |name|
-  r = Region.new(name: name)
-  r.save
-end
-
 days = [
   "Monday",
   "Tuesday",
