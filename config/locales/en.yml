@@ -129,8 +129,7 @@ en:
 
   users:
     flash_messages:
-      inactive:
-        Your account has been deactivated.  Please contact your OUSD administrator.
+      inactive: Your account has been deactivated. Please contact your Community Partner Platform administrator.
       invitation:
         sent: Sent invitation to %{name} (%{email}).
       save:
