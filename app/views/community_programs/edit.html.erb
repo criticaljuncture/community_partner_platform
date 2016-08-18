@@ -48,7 +48,7 @@
 
 <%= render partial: 'merge_program_modal', locals: {
   community_program: @community_program
-} if can?(:merge_program, @community_program) %>
+} if @community_program.organization && can?(:merge_program, @community_program) %>
 
 <%= render partial: 'deactivation_modal', locals: {
   community_program: @community_program
