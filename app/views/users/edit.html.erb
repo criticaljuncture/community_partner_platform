@@ -11,13 +11,15 @@
     <div class="form_wrapper">
       <%= simple_form_for @user, method: :put,
         html: {class: "form-horizontal user"},
-        wrapper: :horizontal_form do |f| %>
+        wrapper: :horizontal_form,
+        wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
 
         <%= render :partial => 'form', :locals => {
           :f => f,
           roles: @roles,
           schools: @schools,
-          organizations: @organizations } %>
+          organizations: @organizations,
+          display_active_attribute: can?(:manage, User) } %>
       <% end %>
     </div>
   </div>

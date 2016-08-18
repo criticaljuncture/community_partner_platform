@@ -20,7 +20,7 @@
 
     <div class="form_wrapper">
       <%= simple_form_for @community_program.object, method: :post,
-        html: {class: "form-horizontal community-program"},
+        html: {class: "form-horizontal community-program #{@community_program.errors.present? ? 'errors' : ''}"},
         wrapper: :horizontal_form,
         wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
 

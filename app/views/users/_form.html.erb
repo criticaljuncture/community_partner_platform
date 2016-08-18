@@ -4,6 +4,9 @@
   <%= f.input :title %>
   <%= f.input :email, required: true %>
   <%= f.input :phone_number, placeholder: "(555) 555-5555" %>
+  <% if local_assigns[:display_active_attribute] %>
+  <%= f.input :active, as: :boolean %>
+  <% end %>
 <% end %>
 
 

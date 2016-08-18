@@ -7,3 +7,6 @@ log
 
 # Ignore our secret keys
 .env
+
+# Ignore documentation
+doc/

@@ -27,8 +27,8 @@ services:
 
   web:
     build: '../../'
-    ports:
-      - "4000:3000"
+    expose:
+      - "3000"
     environment:
       RAILS_ENV: development
       PASSENGER_MIN_INSTANCES: 1
@@ -45,9 +45,18 @@ services:
     volumes:
       - web_app:/home/app/
     restart: on-failure
+    networks:
+      - shared
+      - default
+    tty: true
+    stdin_open: true
 
 volumes:
   mysql:
     driver: local
   web_app:
     driver: local
+
+networks:
+  default:
+  shared:
