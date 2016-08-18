@@ -76,7 +76,7 @@
   <div class="<%= bootstrap_col xs: 12, md:12 %>">
     <div class="form_wrapper">
       <%= simple_form_for @community_program.model, method: :put,
-        html: {class: "form-horizontal community-program"},
+        html: {class: "form-horizontal community-program #{@community_program.errors.present? ? 'errors' : ''}"},
         wrapper: :horizontal_form,
         wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
 
