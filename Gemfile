@@ -89,7 +89,7 @@ gem 'redis-namespace', '~> 1.4.1'
 
 # Use SCSS for stylesheets
 gem 'sass', '~> 3.4.16'
-gem 'sass-rails', '~> 5.0.3'
+gem 'sass-rails', '~> 5.0.6'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 #gem 'turbolinks'
