@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
            class_name: CommunityProgram,
            foreign_key: :user_id
 
+  has_many :school_programs_as_school_contact,
+           class_name: SchoolProgram,
            foreign_key: :user_id
 
   has_many :page_views
@@ -78,10 +80,6 @@ class User < ActiveRecord::Base
 
   def inactive_message
     I18n.t('users.flash_messages.inactive')
-  end
-
-  def school_programs_as_primary_school_contact
-    SchoolProgram.where(user_id: id)
   end
 
   protected

@@ -120,9 +120,7 @@
             <tr>
               <td>Schools</td>
               <td>
-                <%= partially_hidden_list(community_program.schools) do |school|
-                      school.name
-                    end %>
+                Present at <%= pluralize(community_program.schools.count, 'school') %>
               </td>
             </tr>
         <% end %>
