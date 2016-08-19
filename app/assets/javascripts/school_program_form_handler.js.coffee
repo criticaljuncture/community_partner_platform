@@ -175,12 +175,6 @@ class @CPP.SchoolProgramFormHandler
       request.done (response)=>
         @formSubmitDone response
 
-        removeSchoolLink = $("tr[data-school-program-id='#{response.school_program_id}'] .modal-link")
-        removeSchoolLink.on 'click', (e)->
-          e.preventDefault()
-
-          $( $(this).attr('href') ).modal()
-
       request.fail (response)=>
         @formSubmitFail response
 
@@ -194,7 +188,6 @@ class @CPP.SchoolProgramFormHandler
       table.find('tbody').append response.html
     else
       currentRow.replaceWith response.html
-
 
     CJ.Notifier.displayNotification(response.message, 'success')
     $("#school-program-modal").modal 'hide'
