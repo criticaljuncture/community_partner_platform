@@ -3,7 +3,7 @@ FROM quay.io/criticaljuncture/baseimage
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C3173AA6 &&\
   echo deb http://ppa.launchpad.net/brightbox/ruby-ng/ubuntu trusty main > /etc/apt/sources.list.d/brightbox.list &&\
   apt-get update &&\
-  apt-get install -y ruby2.2 ruby2.2-dev &&\
+  apt-get install -y ruby2.3 ruby2.3-dev &&\
   apt-get clean &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y build-essential git libmysqlclient-dev 
   apt-get clean &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
 
-RUN gem install passenger --version 5.0.28
+RUN gem install passenger --version 5.0.30
 RUN passenger start --runtime-check-only
 
 RUN ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
