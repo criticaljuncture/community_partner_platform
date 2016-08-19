@@ -96,7 +96,7 @@
             <tr>
               <td>Schools</td>
               <td>
-                <%= partially_hidden_list(school_programs.map(&:school)) do |school|
+                <%= view_more_toggle_list(school_programs.map(&:school)) do |school|
                       school.name
                     end %>
               </td>
