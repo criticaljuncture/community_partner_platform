@@ -8,6 +8,15 @@
     </td>
   </tr>
 
+  <% if organization.subcontractor_with_lead_agency? %>
+  <tr>
+    <td><%= I18n.t('organization.subcontractor_with_lead_agency') %></td>
+    <td>
+      <%= organization.subcontractor_with_lead_agency? ? t('app.yes') : t('app.no') %>
+    </td>
+  </tr>
+  <% end %>
+
   <tr>
     <td><%= I18n.t('organization.cost_per_student') %></td>
     <td>

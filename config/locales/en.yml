@@ -11,6 +11,10 @@ en:
       one: There is %{count} error below. Please correct it and click 'Save' to continue.
       other: There are %{count} errors below. Please correct them and click 'Save' to continue.
 
+  app:
+    yes: Yes
+    no: No
+    
   forms:
     buttons:
       save: Save
@@ -63,6 +67,7 @@ en:
     program_impact: Program impact
     services_description: Service(s) description
     url: URL
+    subcontractor_with_lead_agency: Subcontractor with a lead agency
 
   organizations:
     messages:
