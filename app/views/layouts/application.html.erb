@@ -14,10 +14,6 @@
   <%= javascript_include_tag "vendor" %>
   <%= javascript_include_tag "application" %>
 
-  <!--[if lte IE 7]>
-    <script src="<%= asset_path('ie7.js') %>"></script>
-  <![endif]-->
-
   <%= csrf_meta_tags %>
 
   <%= yield :modal_javascript %>
