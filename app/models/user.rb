@@ -13,16 +13,10 @@ class User < ActiveRecord::Base
   has_many :user_schools
   has_many :schools, through: :user_schools
 
-  has_many :community_programs_as_school_contact_ids,
-           class_name: CommunityProgram,
-           foreign_key: :school_user_id
-
-  has_many :community_programs_as_organization_contact_ids,
+  has_many :community_programs_as_organization_contact,
            class_name: CommunityProgram,
            foreign_key: :user_id
 
-  has_many :community_programs_as_organization_contact,
-           class_name: CommunityProgram,
            foreign_key: :user_id
 
   has_many :page_views
