@@ -6,14 +6,14 @@ module ListDisplayHelper
         concat content_tag(:li, yield(obj))
       end
 
-      if objects.count > threshold
+      if objects.size > threshold
         objects[threshold..-1].each do |obj|
           concat content_tag(:li, yield(obj), class: 'hidden overflow')
         end
 
         concat(
           content_tag(:li, class: 'toggler') do
-            concat content_tag(:a, "view #{objects.count-2} more")
+            concat content_tag(:a, "view #{objects.size-2} more")
           end
         )
       end
