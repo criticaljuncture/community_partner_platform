@@ -3,36 +3,34 @@ class ProgressBarPresenter
   include ContextualHelpHelper
   include IconHelper
 
-  def self.perform(percentage:, text:, options: {})
-    new(percentage: percentage, text: text, options: options).perform
+  attr_private :options, :percentage, :color_ranges, :min, :max,
+    :verification_required, :partial_progress_bar
+
+  def self.perform(percentage:, options: {})
+    new(percentage: percentage, options: options).perform
   end
 
-  def initialize(percentage:, text:, options: {})
+  def initialize(percentage:, options: {})
     @percentage             = percentage
-    @text                   = text
-    @type                   = options.fetch(:type){ nil }
-    @striped                = options.fetch(:striped){ false }
     @min                    = options.fetch(:min){ 0 }
     @max                    = options.fetch(:max){ 100 }
     @partial_progress_bar   = options.fetch(:partial_progress_bar){ false }
-    @explanation            = options.fetch(:explanation){ nil }
-    @special_complete_color = options.fetch(:special_complete_color){ false }
+    @verification_required  = options.fetch(:verification_required){ false }
     @color_ranges           = options.fetch(:color_ranges) do
       {
         0..20    => "low",
-        20..50   => "medium",
-        50...100 => "high",
+        21..50   => "medium",
+        51..99   => "high",
         100..100 => "complete",
       }
     end
+
+    @options = options
   end
 
   def perform
-    classes = ["progress-bar", "progress-bar-#{type}"]
-    classes << ["progress-bar-striped"] if striped
-    classes << [custom_color_class]
-
-    inner_progress_bar = content_tag(:div, text, class: classes.join(' '),
+    inner_progress_bar = content_tag(:div, text,
+      class: progressbar_css_classes.join(' '),
       style: "width: #{percentage}%", role: "progressbar",
       aria: {valuenow: percentage, valuemin: min, valuemax: max}
     )
@@ -46,31 +44,59 @@ class ProgressBarPresenter
         class: "progress"
       )
     end
-
   end
 
   private
 
-  attr_reader :percentage, :type, :striped, :color_ranges, :text, :min, :max,
-              :special_complete_color, :partial_progress_bar
+  def progressbar_css_classes
+    classes = ["progress-bar"]
+    types.each do |type|
+      classes << "progress-bar-#{type}"
+    end
+    classes << color_class
+  end
 
-  def custom_color_class
-    if percentage == 100 && special_complete_color
+  def types
+   types = options[:type] ? Array(options[:type]) : []
+
+   if complete? && verification_required?
+     types << "striped"
+   end
+
+   types.uniq
+ end
+
+  def text
+    return options[:text] if options[:text]
+
+    text = number_to_percentage(
+      percentage,
+      precision: 0
+    )
+
+    if complete? && verification_required?
+      text = "#{text} (verfication needed)"
+    end
+
+    text
+  end
+
+  def complete?
+    percentage == 100
+  end
+
+  def verification_required?
+    verification_required == true
+  end
+
+  def color_class
+    if complete? && verification_required?
       return "complete-needing-verification"
     end
 
-    css_class = ""
-
-    catch :done do
-      color_ranges.each do |color_range, css_color_class|
-        if color_range.include? percentage
-          css_class = css_color_class
-          throw :done
-        end
-      end
-    end
-
-    css_class
+    color_ranges.
+      select{|color_range, css_color_class| color_range.include? percentage}.
+      values.first
   end
 
 end
