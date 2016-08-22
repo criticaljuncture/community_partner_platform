@@ -29,22 +29,18 @@
     ) if can?(:toggle_active, @community_program) %>
 <% end %>
 
-<div class="row">
-  <%= content_tag(
-    :span,
-    ProgressBarPresenter.perform(
+<div class="row completeness">
+  <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+    <h7>
+      <%= help t('help.community_program.completeness'), class: 'completeness-tooltip' %>
+      Data Completeness:
+    </h7>
+
+    <%= ProgressBarPresenter.perform(
       percentage: @community_program.program_completion_rate,
-      text: number_to_percentage(
-              @community_program.program_completion_rate,
-              precision: 0
-            ),
-      options: {special_complete_color: @community_program.verification_required?}),
-    class: bootstrap_col(md: 11, xs: 11)) %>
-  <%= content_tag(
-      :span,
-      help("This shows the completeness of the community program's provided information."),
-      class: bootstrap_col(md: 1, xs: 1) + " text-center"
+      options: {verification_required: @community_program.verification_required?}
     ) %>
+  </div>
 </div>
 
 <div class="row">

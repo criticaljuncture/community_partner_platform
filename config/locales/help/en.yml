@@ -1,5 +1,7 @@
 en:
   help:
+    community_program:
+      completeness: Community program data completeness is calculated based on the number of complete fields in your program's data.
     organization:
       completeness: Organization data completeness is calculated based on the number of complete fields in your organization's data.
     school_program:
