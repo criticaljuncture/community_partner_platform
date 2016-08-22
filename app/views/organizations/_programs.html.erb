@@ -5,51 +5,53 @@
 
   <% programs.sort_by(&:name).each do |community_program| %>
     <div class="columnar-table-block-header">
-      <h5 class="col-md-2 col-xs-12">
-        <%= link_to community_program.name,
-          community_program_path(community_program) %>
-      </h5>
+      <div class="row">
+        <h5 class="col-md-8 col-xs-12">
+          <%= link_to community_program.name,
+            community_program_path(community_program) %>
+        </h5>
+
+        <div class="header-button-wrapper col-md-4 col-xs-12">
+          <% if active %>
+            <%= link_to_gicon('Verification Needed',
+              edit_community_program_path(
+                community_program,
+                redirect_back: organization_path(organization)
+              ),
+              class: "btn btn-medium btn-create",
+              icon: 'exclamation-sign') if community_program.verification_required? %>
+          <% end %>
+
+          <%= link_to_gicon 'Show Details', '#',
+            class: "btn btn-medium btn-info toggle closed",
+            icon: 'eye-open eye-close',
+            wrapper_span: {id: "organization-program-link-#{community_program.id}"},
+            "data-toggle-target" => "#organization-program-table-#{community_program.id}",
+            "data-toggle-text-node" => "#organization-program-link-#{community_program.id}",
+            "data-toggle-show-text" => "Show Details",
+            "data-toggle-hide-text" => "Hide Details"
+          %>
+        </div>
+      </div>
 
       <% if active %>
-      <span class="col-md-6 col-xs-12">
-        <div class="row progress-bar-container">
-          <span class='col-md-11 col-xs-11' >
-            <%= ProgressBarPresenter.perform(
-              percentage: community_program.program_completion_rate,
-              text: number_to_percentage(
-                      community_program.program_completion_rate,
-                      precision: 0),
-              options: {special_complete_color: community_program.verification_required?}
-            ) %>
-          </span>
-          <span class="col-md-1 col-xs-1 pull-left">
-            <%= help("This shows the completeness of the school program's provided information.") %>
-          </span>
+      <div class="row completeness">
+        <div class="<%= bootstrap_col(xs: 12, md: 7) %>">
+          <h7>
+            <%= help t('help.school_program.completeness'),
+              class: 'completeness-tooltip' %>
+            Data Completeness:
+          </h7>
+
+          <%= ProgressBarPresenter.perform(
+            percentage: community_program.program_completion_rate,
+            options: {
+              verification_required: community_program.verification_required?
+            }
+          ) %>
         </div>
-      </span>
-      <% end %>
-
-      <div class="header-button-wrapper col-md-4 col-xs-12">
-        <% if active %>
-          <%= link_to_gicon('Verification Needed',
-            edit_community_program_path(
-              community_program,
-              redirect_back: organization_path(organization)
-            ),
-            class: "btn btn-medium btn-create",
-            icon: 'exclamation-sign') if community_program.verification_required? %>
-        <% end %>
-
-        <%= link_to_gicon 'Show Details', '#',
-          class: "btn btn-medium btn-info toggle closed",
-          icon: 'eye-open eye-close',
-          wrapper_span: {id: "organization-program-link-#{community_program.id}"},
-          "data-toggle-target" => "#organization-program-table-#{community_program.id}",
-          "data-toggle-text-node" => "#organization-program-link-#{community_program.id}",
-          "data-toggle-show-text" => "Show Details",
-          "data-toggle-hide-text" => "Hide Details"
-        %>
       </div>
+      <% end %>
     </div>
 
     <%= columnar_table nil,

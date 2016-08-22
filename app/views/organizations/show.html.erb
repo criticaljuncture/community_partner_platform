@@ -99,20 +99,18 @@
   </div>
 </div>
 
-<div class="row">
-  <%= content_tag(
-        :span,
-        ProgressBarPresenter.perform(
-          percentage: @organization.program_completion_rate,
-          text: number_to_percentage(@organization.program_completion_rate, precision: 0),
-          options: {special_complete_color: @organization.verification_required?}),
-        class: bootstrap_col(md: 11, xs: 11)
-  ) %>
-  <%= content_tag(
-      :span,
-      help("This shows the completeness of the organization's provided information."),
-      class: bootstrap_col(md: 1, xs: 1) + " text-center"
-  ) %>
+<div class="row completeness">
+  <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+    <h7>
+      <%= help t('help.organization.completeness'), class: 'completeness-tooltip' %>
+      Data Completeness:
+    </h7>
+
+    <%= ProgressBarPresenter.perform(
+      percentage: @organization.program_completion_rate,
+      options: {verification_required: @organization.verification_required?}
+    ) %>
+  </div>
 </div>
 
 <%= page_nav_tabs [

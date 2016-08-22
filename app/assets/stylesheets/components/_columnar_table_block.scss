@@ -39,6 +39,11 @@
         float: none;
 
         &:last-child { margin-right: 0; }
+
+        &.btn.btn-medium {
+          position: relative;
+          top: 7px;
+        }
       }
     }
   }

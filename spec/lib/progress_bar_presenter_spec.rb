@@ -16,7 +16,7 @@ describe ProgressBarPresenter do
       result = ProgressBarPresenter.perform(
         percentage: 100.0,
         text: nil,
-        options: {special_complete_color: false}
+        options: {verification_required: false}
       )
 
       expect(result).to eq("<div class=\"progress\"><div class=\"progress-bar progress-bar- complete\" style=\"width: 100.0%\" role=\"progressbar\" aria-valuenow=\"100.0\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div></div>")
