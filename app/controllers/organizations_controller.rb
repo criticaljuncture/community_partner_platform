@@ -15,7 +15,9 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = OrganizationDecorator.decorate(
-      Organization.includes(:community_programs).find(params[:id])
+      Organization.includes(
+        {community_programs: [:quality_element, :primary_service_types, :schools]}
+      ).find(params[:id])
     )
     authorize! :show, @organization
 

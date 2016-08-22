@@ -6,7 +6,9 @@ class CommunityProgramsController < ApplicationController
   end
 
   def show
-    @community_program = CommunityProgram.unscoped.find(params[:id])
+    @community_program = CommunityProgram.unscoped.
+      includes(school_programs: [:school, :user, :days, :demographic_groups, :ethnicity_culture_groups, :grade_levels, :service_times, :student_population]).
+      find(params[:id])
     authorize! :show, @community_program
 
     @community_program = CommunityProgramDecorator.decorate(
