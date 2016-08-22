@@ -106,6 +106,8 @@ gem "wicked"
 # date picker component
 gem 'bootstrap-datepicker-rails', '~> 1.4.0'
 
+# makes small classes easier to cleanup and define without resorting to structs, etc.
+gem 'attr_extras'
 
 # modals
 gem 'jquery-modal-rails',
@@ -142,6 +144,8 @@ group :development, :test do
   # console on errors or using <%= console %>
   gem 'web-console', '~> 2.0'
 
+  gem 'rack-mini-profiler'
+  
   # chrome inspector support
   #gem 'sass-rails-source-maps'
 
