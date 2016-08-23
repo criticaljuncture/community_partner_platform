@@ -6,7 +6,7 @@ class Organization < ActiveRecord::Base
 
   after_create :clear_associated_cache
   after_update :clear_associated_cache
-  after_save :update_program_completion_rate
+  after_save :update_completion_rate
 
   has_many :community_programs
 
@@ -73,9 +73,9 @@ class Organization < ActiveRecord::Base
       where(organization_id: self.id, active: false)
   end
 
-  def update_program_completion_rate
+  def update_completion_rate
     update_column(
-      :program_completion_rate, ProgramCompletionRateCalculator.new(
+      :completion_rate, CompletionRateCalculator.new(
         self,
         COMPLETION_WEIGHTS
       ).completion_rate

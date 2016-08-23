@@ -7,7 +7,7 @@ class CommunityProgram < ActiveRecord::Base
 
   default_scope { where(active: true) }
 
-  after_save :update_program_completion_rate
+  after_save :update_completion_rate
 
   has_many :school_programs, dependent: :destroy
   has_many :schools, through: :school_programs
@@ -81,9 +81,9 @@ class CommunityProgram < ActiveRecord::Base
       verification_required?
   end
 
-  def update_program_completion_rate
+  def update_completion_rate
     update_column(
-      :program_completion_rate, ProgramCompletionRateCalculator.new(
+      :completion_rate, CompletionRateCalculator.new(
         self,
         COMPLETION_WEIGHTS
       ).completion_rate

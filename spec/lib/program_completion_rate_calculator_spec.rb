@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "ProgramCompletionRateCalculator" do
+describe "CompletionRateCalculator" do
 
   describe "#completion_rate" do
 
@@ -9,7 +9,7 @@ describe "ProgramCompletionRateCalculator" do
       organization.stub(:name).and_return("Test Org")
       organization.stub(:location)
 
-      calculator = ProgramCompletionRateCalculator.new(
+      calculator = CompletionRateCalculator.new(
         organization,
         [
           [1.0, [:name, :location]],
@@ -26,7 +26,7 @@ describe "ProgramCompletionRateCalculator" do
       organization.stub(:location)
       organization.stub(:address)
 
-      calculator = ProgramCompletionRateCalculator.new(
+      calculator = CompletionRateCalculator.new(
         organization,
         [
           [0.5, [:name, :location]],
@@ -45,7 +45,7 @@ describe "ProgramCompletionRateCalculator" do
       community_program.stub(:student_population).and_return([1])
       community_program.stub(:school_programs).and_return([1])
 
-      community_program_completion_rate = ProgramCompletionRateCalculator.new(
+      community_program_completion_rate = CompletionRateCalculator.new(
         community_program,
         CommunityProgram::COMPLETION_WEIGHTS
       ).completion_rate
@@ -57,7 +57,7 @@ describe "ProgramCompletionRateCalculator" do
       school_program.stub(:student_population).and_return([1])
       school_program.stub(:community_program).and_return([1])
 
-      school_program_completion_rate = ProgramCompletionRateCalculator.new(
+      school_program_completion_rate = CompletionRateCalculator.new(
         school_program,
         SchoolProgram::COMPLETION_WEIGHTS
       ).completion_rate

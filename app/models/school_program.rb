@@ -2,7 +2,7 @@ class SchoolProgram < ActiveRecord::Base
   include CommunityProgramAttributeRelationships
   include DelegationExtensions
 
-  after_save :update_program_completion_rate
+  after_save :update_completion_rate
 
   belongs_to :community_program
   belongs_to :school
@@ -79,9 +79,9 @@ class SchoolProgram < ActiveRecord::Base
     end
   end
 
-  def update_program_completion_rate
+  def update_completion_rate
     update_column(
-      :program_completion_rate, ProgramCompletionRateCalculator.new(
+      :completion_rate, CompletionRateCalculator.new(
         self,
         COMPLETION_WEIGHTS
       ).completion_rate

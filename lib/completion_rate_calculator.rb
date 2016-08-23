@@ -1,7 +1,8 @@
-class ProgramCompletionRateCalculator
+class CompletionRateCalculator
+  attr_private :object, :weights
 
-  def initialize(entity, weights)
-    @entity  = entity
+  def initialize(object, weights)
+    @object  = object
     @weights = weights
   end
 
@@ -13,7 +14,7 @@ class ProgramCompletionRateCalculator
       attribute_weighting = weight.to_f / attributes.size
 
       attributes.each do |attribute|
-        if entity.send(attribute).present?
+        if object.send(attribute).present?
           total_sum += attribute_weighting
         end
       end
@@ -23,9 +24,4 @@ class ProgramCompletionRateCalculator
 
     rate * 100
   end
-
-  private
-
-  attr_reader :entity, :weights
-
 end
