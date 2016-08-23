@@ -82,6 +82,10 @@ class Organization < ActiveRecord::Base
     )
   end
 
+  def last_sign_in
+    users.map(&:last_sign_in_at).compact.sort.last
+  end
+
   private
   def clear_associated_cache
     schools.each{|s| s.touch}
