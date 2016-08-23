@@ -9,7 +9,7 @@ class Ability < BaseAbility
     can :manage, :all
 
     can :send_invitation, User
-    can :view, :admin_dashboard
+    can :view, :super_admin_dashboard_items
 
     admin_page_level_abilities
   end
@@ -109,6 +109,7 @@ class Ability < BaseAbility
     can :toggle_active, CommunityProgram
 
     can :view, :visualizations
+    can :view, :admin_dashboard
 
     organization_member_page_level_abilities
   end
