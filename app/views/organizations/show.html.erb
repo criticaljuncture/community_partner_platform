@@ -107,7 +107,7 @@
     </h7>
 
     <%= ProgressBarPresenter.perform(
-      percentage: @organization.program_completion_rate,
+      percentage: @organization.completion_rate,
       options: {verification_required: @organization.verification_required?}
     ) %>
   </div>

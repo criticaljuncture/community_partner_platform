@@ -10,7 +10,7 @@ describe Organization do
         legal_status_id: 1
       )
 
-      result = organization.program_completion_rate
+      result = organization.completion_rate
 
       expect(result).to eq(25.0)
     end

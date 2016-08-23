@@ -23,7 +23,7 @@ class CommunityProgramDecorator < Draper::Decorator
 
   def schools_with_differing_completion_rates
     @schls ||= school_programs.select do |school_program|
-      program_completion_rate != school_program.program_completion_rate
+      program_completion_rate != school_program.completion_rate
     end.sort_by{|s| s.school.name}
   end
 
