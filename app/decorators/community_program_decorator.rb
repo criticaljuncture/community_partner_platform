@@ -21,12 +21,6 @@ class CommunityProgramDecorator < Draper::Decorator
     end
   end
 
-  def schools_with_differing_completion_rates
-    @schls ||= school_programs.select do |school_program|
-      program_completion_rate != school_program.completion_rate
-    end.sort_by{|s| s.school.name}
-  end
-
   def verification_header
     "#{should_verify?(h.current_user) ? 'Verify' : 'Edit'} #{name}"
   end

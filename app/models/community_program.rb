@@ -90,4 +90,9 @@ class CommunityProgram < ActiveRecord::Base
     )
   end
 
+  def schools_with_differing_completion_rates
+    @schools_with_differing_completion_rates ||= school_programs.select do |school_program|
+      completion_rate != school_program.completion_rate
+    end.sort_by{|s| s.school.name}
+  end
 end
