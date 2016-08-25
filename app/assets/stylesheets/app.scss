@@ -147,3 +147,10 @@ dl.horizontal_stack {
 
 // devise shared links
 .row.shared-links { margin-top: 30px; }
+
+
+// generic icons like check and remove
+.icon.glyphicon {
+  &.positive { color: $green-dark; }
+  &.negative { color: $error-red; }
+}
