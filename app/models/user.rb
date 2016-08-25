@@ -58,6 +58,9 @@ class User < ActiveRecord::Base
 
   scope :inactive, -> { where(active: false) }
 
+  scope :as_contact, -> { where('invitation_sent_at IS NULL') }
+  scope :as_invited_contact, -> { where('invitation_sent_at IS NOT NULL') }
+
   def role?(role)
     roles.map{|r| r.identifier.to_sym}.include?(role)
   end

@@ -4,5 +4,9 @@ en:
       completeness: Community program data completeness is calculated based on the number of complete fields in your program's data.
     organization:
       completeness: Organization data completeness is calculated based on the number of complete fields in your organization's data.
+      users:
+        active: Users are individuals who have been invited to participate the Community Partner Platform as part of your organization.
+        contact: Contacts are individuals who have been added as a part of your organization but are not active users of the Community Partner Platform.
+        inactive: Inactive users are individuals who were once active members of your organizations account but are now deactivated.
     school_program:
       completeness: School program data completeness is calculated based on the number of complete fields in your program's data.

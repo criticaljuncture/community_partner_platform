@@ -30,4 +30,9 @@ module ColumnarTableHelper
       content_tag(:tbody, content)
     end
   end
+
+  def columnar_table_body(content=nil, options={}, &block)
+    content = content.nil? ? capture(&block) : content
+    content_tag(:tbody, content)
+  end
 end

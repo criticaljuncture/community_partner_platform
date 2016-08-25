@@ -4,6 +4,7 @@ class UserDecorator < Draper::Decorator
   include AttrNotProvided
   attr_not_provided :title
   attr_not_provided :phone_number, method: ->(attr) {h.number_to_phone(attr)}
+  attr_not_provided :attended_orientation_at, text: h.hint_tag(h.t('app.never_attended'))
 
   def invitation_status
     h.invitation_status_for(model)

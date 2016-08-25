@@ -1,0 +1,39 @@
+<%= columnar_table_block "Users #{help(t('help.organization.users.active')).html_safe}".html_safe,
+  class: 'active-users' do %>
+
+  <% users.each do |user| %>
+    <%= columnar_table_body nil do %>
+      <tr>
+        <td><%= I18n.t('user.name') %></td>
+        <td>
+          <%= link_to user.full_name, user_path(user) %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><%= I18n.t('user.title') %></td>
+        <td>
+          <%= user.title %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><%= I18n.t('user.attended_orientation_at') %></td>
+        <td>
+          <%= user.attended_orientation_at %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><%= I18n.t('user.invitation_status') %></td>
+        <td>
+          <%= user.invitation_status %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+
+  <% unless users.present? %>
+    There are no active users for this organization.
+  <% end %>
+<% end %>

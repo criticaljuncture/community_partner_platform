@@ -116,7 +116,8 @@
 <%= page_nav_tabs [
   ['Organization Info', '#org-info'],
   ['Active Programs', '#active-programs',  @organization.unverified_program_count],
-  ['Inactive Programs', '#inactive-programs']
+  ['Inactive Programs', '#inactive-programs'],
+  ['Users', '#user-info'],
 ] %>
 
 <div class="tab-content">
@@ -154,6 +155,24 @@
       <% else %>
         <p>This organization has no inactive programs.</p>
       <% end %>
+    </div>
+  </div>
+
+  <div id="user-info" class="tab-pane active">
+    <div class="row">
+      <%= render partial: 'active_users', locals: {
+        users: UserDecorator.decorate_collection(@organization.users.active | @organization.users.as_invited_contact)
+      } %>
+
+      <%= render partial: 'contacts', locals: {
+        users: UserDecorator.decorate_collection(@organization.users.as_contact)
+      } %>
+    </div>
+
+    <div class="row">
+      <%= render partial: 'inactive_users', locals: {
+        users: UserDecorator.decorate_collection(@organization.users.inactive - @organization.users.as_contact)
+      } %>
     </div>
   </div>
 </div>

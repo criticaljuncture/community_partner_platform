@@ -65,4 +65,32 @@
 
     .toggler { font-size: modular-scale(-1); }
   }
+
+  tbody + tbody {
+    border-top: 0;
+
+    &::before {
+      content: '';
+      display: block;
+      margin-top: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .columnar-table-block {
+    .table-responsive { border: 0; }
+
+    tbody {
+      $border: 1px solid $gray-20;
+
+      tr {
+        border-left: $border;
+        border-right: $border;
+
+        &:first-child { border-top: $border; }
+        &:last-child { border-bottom: $border; }
+      }
+    }
+  }
 }
