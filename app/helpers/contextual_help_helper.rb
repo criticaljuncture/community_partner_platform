@@ -1,7 +1,7 @@
 module ContextualHelpHelper
   def help(description, options={})
     content_tag :div,
-      class: "contextual-help cj-tooltip",
+      class: "contextual-help cj-fancy-tooltip",
       data: {
         tooltip: description,
         'tooltip-classname': options.delete(:class)

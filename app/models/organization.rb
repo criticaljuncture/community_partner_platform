@@ -57,7 +57,13 @@ class Organization < ActiveRecord::Base
   end
 
   def any_users_attended_orientation?
-    users.any? {|user| user.attended_orientation_at}
+    @orientation_attended ||= users.any? {|user| user.attended_orientation_at}
+  end
+
+  def user_last_orientation_attended
+    if any_users_attended_orientation?
+      users.where("orientation_attended_at IS NOT NULL").order("DESC").first
+    end
   end
 
   def unverified_program_count
@@ -80,6 +86,16 @@ class Organization < ActiveRecord::Base
         COMPLETION_WEIGHTS
       ).completion_rate
     )
+  end
+
+  def average_program_completion_rate
+    return 0 unless community_programs.present?
+
+    sum = community_programs.inject(0) do |sum, program|
+      sum += program.completion_rate
+    end
+
+    sum / community_programs.size
   end
 
   def last_sign_in

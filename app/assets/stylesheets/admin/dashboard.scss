@@ -1,0 +1,31 @@
+.admin-table {
+  th { text-align: center; }
+
+  td ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  .with-progress-bar {
+    min-width: 185px;
+  }
+
+  .progress { margin-bottom: 0; }
+
+  &.community-program-status {
+    th {
+      &.programs { width: 350px; }
+      &.school-count { width: 75px; }
+      &.last-updated { min-width: 200px; }
+    }
+  }
+
+  &.organization-status {
+    th {
+      &.organizations { width: 350px; }
+      &.school-count,
+      &.orientation-attended { width: 75px; }
+      &.last-updated { min-width: 200px; }
+    }
+  }
+}

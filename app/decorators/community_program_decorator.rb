@@ -25,7 +25,6 @@ class CommunityProgramDecorator < Draper::Decorator
     "#{should_verify?(h.current_user) ? 'Verify' : 'Edit'} #{name}"
   end
 
-
   def summary_for_select
     "#{name} (#{h.pluralize(schools.count, 'school')}), id: #{id}"
   end

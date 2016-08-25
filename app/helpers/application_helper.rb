@@ -31,7 +31,7 @@ module ApplicationHelper
     }
   end
 
-  def not_provided
-    content_tag(:span, 'not provided', class: 'hint')
+  def hint_tag(text)
+    content_tag(:span, text, class: 'hint')
   end
 end

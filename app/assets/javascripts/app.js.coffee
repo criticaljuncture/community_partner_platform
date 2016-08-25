@@ -42,8 +42,18 @@ $(document).ready ->
     new CJ.Tablesorter(sortableTable)
 
 
-  CJ.Tooltip.addFancyTooltip(
+  CJ.Tooltip.addTooltip(
     '.cj-tooltip',
+    {
+      opacity: 1
+      delay: 0.2
+      fade: true
+      offset: 5
+    }
+  )
+
+  CJ.Tooltip.addFancyTooltip(
+    '.cj-fancy-tooltip',
     {
       opacity: 1
       delay: 0.2

@@ -14,6 +14,8 @@ class SchoolProgram < ActiveRecord::Base
   default_scope -> {where(active: true)}
 
   delegate :name,
+           :organization,
+           :service_description,
            :service_types,
            :quality_element,
            to: :community_program
@@ -31,23 +33,13 @@ class SchoolProgram < ActiveRecord::Base
       message: "must choose a school"
     }
 
-  COMPLETION_WEIGHTS = [
-    [
-      0.3,
-      [:name, :service_description, :quality_element,
-       :service_types, :organization, :user]
-    ],
-    [
-      0.35,
-      [:student_population, :ethnicity_culture_groups, :demographic_groups,
-       :grade_levels, :service_times, :days]
-    ],
-    [
-      0.35,
-      [:community_program]
-    ]
-  ]
+  validates :community_program_id,
+    presence: {
+      message: "must choose a community_program"
+    }
 
+  COMPLETION_WEIGHTS = CommunityProgram::COMPLETION_WEIGHTS
+  
   # attributes uniquely assigned to this school program as distinct from
   # parent community program
   def customized_attributes
@@ -86,5 +78,13 @@ class SchoolProgram < ActiveRecord::Base
         COMPLETION_WEIGHTS
       ).completion_rate
     )
+  end
+
+  private
+
+  # this is a stub method to allow us to calculate the school program
+  # completion_rate the same way as it's parent community_program
+  def school_programs
+    community_program.school_programs
   end
 end

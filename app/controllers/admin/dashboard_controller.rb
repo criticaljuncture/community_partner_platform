@@ -10,7 +10,7 @@ class Admin::DashboardController < Admin::ApplicationController
       decorate
 
     @community_programs = CommunityProgram.
-      includes(:school_programs).
+      includes(school_programs: :school).
       order('name').
       decorate
 

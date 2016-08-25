@@ -1,0 +1,48 @@
+<div class="table_wrapper">
+  <table class="table table-striped table-hover table-sorter admin-table community-program-status">
+    <thead>
+      <tr>
+        <th class="programs">Program Name</th>
+        <th class="last-updated">Program Last Changed</th>
+        <th class="school-count">School Count</th>
+        <th class="with-progress-bar">Program Completion Rate</th>
+        <th>School Programs with Differing Completion Rates</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% community_programs.each do |community_program| %>
+        <tr>
+          <td>
+            <%= link_to community_program.name, community_program_path(community_program) %>
+          </td>
+          <td>
+            <%= community_program.updated_at %>
+          </td>
+          <td class="text-center">
+            <%= community_program.school_programs.size %>
+          </td>
+          <td>
+            <%= ProgressBarPresenter.perform(
+              percentage: community_program.completion_rate,
+              options: {
+                verification_required: community_program.verification_required?
+              }
+            ) %>
+          </td>
+          <td>
+            <% if community_program.schools_with_differing_completion_rates.present? %>
+              <%= view_more_toggle_list(
+                    community_program.
+                    decorate.
+                    schools_with_differing_completion_rates
+                  ) do |school_program|
+                      "#{school_program.school.name} (#{number_to_percentage(school_program.completion_rate, precision: 0)})"
+                    end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -14,7 +14,10 @@ en:
   app:
     yes: Yes
     no: No
-    
+    never_verified: never verified
+    never_attended: never attended
+    not_provided: not provided
+
   forms:
     buttons:
       save: Save
@@ -138,10 +141,12 @@ en:
 
   user:
     active: Active
+    attended_orientation_at: Orientation Attended
     email: Email
     invitation_status: Invitation Status
     last_login: Last Signed In
     name: Name
+    orientation_never_attended: Orientation never attended
     phone_number: Work Phone Number
     role: Role
     title: Title

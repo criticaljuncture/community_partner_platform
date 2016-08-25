@@ -13,7 +13,7 @@ class OrganizationDecorator < Draper::Decorator
 
   def city_state_zip
     (city.present? && zip_code.present?) ?
-      "#{city}, CA #{zip_code}" : h.not_provided
+      "#{city}, CA #{zip_code}" : h.hint_tag(h.t('app.not_provided'))
   end
 
   def show_verification_modal?
@@ -32,7 +32,24 @@ class OrganizationDecorator < Draper::Decorator
     if last_verified_at.present?
       "#{last_verified_at} by #{verifier.try(:full_name)}"
     else
-      h.not_provided
+      h.hint_tag(h.t('app.not_provided'))
+    end
+  end
+
+  def last_verified_tooltip
+    if last_verified_at.present?
+      "Last verified at #{last_verified}"
+    else
+      h.t('app.never_verified')
+    end
+  end
+
+  def last_orientation_attended_tooltip
+    if any_users_attended_orientation?
+      user = user_last_orientation_attended
+      "Last orientation attended at #{user.orientation_attended_at} by #{user.try(:full_name)}"
+    else
+      h.t('user.orientation_never_attended')
     end
   end
 end
