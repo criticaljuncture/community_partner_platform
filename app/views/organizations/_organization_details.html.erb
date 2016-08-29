@@ -11,7 +11,7 @@
     <tr>
       <td><%= I18n.t('organization.url') %></td>
       <td>
-        <%= link_to organization.url, h(organization.url) %>
+        <%= auto_link organization.url, html: {target: "_blank"} %>
       </td>
     </tr>
 

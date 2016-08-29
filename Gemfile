@@ -114,6 +114,10 @@ gem 'jquery-modal-rails',
     github: 'peregrinator/jquery-modal-rails',
     ref: '97bc84d7723d324876971f45f255e066fbb6ad49'
 
+# auto linking user input (like organization url)
+gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
+
+
 group :deployment do
   gem 'capistrano', '~> 2.15.5'
   gem 'thunder_punch', '~> 0.1.6'
@@ -145,7 +149,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 
   gem 'rack-mini-profiler'
-  
+
   # chrome inspector support
   #gem 'sass-rails-source-maps'
 
