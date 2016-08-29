@@ -4,7 +4,7 @@ class ProgressBarPresenter
   include IconHelper
 
   attr_private :options, :percentage, :color_ranges, :min, :max,
-    :verification_required, :partial_progress_bar
+    :verification_required, :partial_progress_bar, :tooltip
 
   def self.perform(percentage:, options: {})
     new(percentage: percentage, options: options).perform
@@ -15,6 +15,7 @@ class ProgressBarPresenter
     @min                    = options.fetch(:min){ 0 }
     @max                    = options.fetch(:max){ 100 }
     @partial_progress_bar   = options.fetch(:partial_progress_bar){ false }
+    @tooltip                = options.delete(:tooltip)
     @verification_required  = options.fetch(:verification_required){ false }
     @color_ranges           = options.fetch(:color_ranges) do
       {
@@ -29,11 +30,18 @@ class ProgressBarPresenter
   end
 
   def perform
-    inner_progress_bar = content_tag(:div, text,
-      class: progressbar_css_classes.join(' '),
-      style: "width: #{percentage}%", role: "progressbar",
+    options = {
+      class: progressbar_css_classes,
+      style: "width: #{percentage}%",
+      role: "progressbar",
       aria: {valuenow: percentage, valuemin: min, valuemax: max}
-    )
+    }
+
+    options.merge!({
+      data: {tooltip: tooltip}
+    }) if tooltip.present?
+
+    inner_progress_bar = content_tag(:div, text, options)
 
     if partial_progress_bar
       inner_progress_bar
@@ -54,6 +62,9 @@ class ProgressBarPresenter
       classes << "progress-bar-#{type}"
     end
     classes << color_class
+    classes << 'cj-fancy-tooltip' if tooltip.present?
+
+    classes.join(' ')
   end
 
   def types
