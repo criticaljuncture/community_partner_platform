@@ -66,6 +66,38 @@ $(document).ready ->
     }
   )
 
+  # admin dashboard, community_program and organization show pages
+  CJ.Tooltip.addFancyTooltip(
+    '.cj-org-progress-tooltip',
+    {
+      opacity: 1
+      delay: 0.2
+      fade: true
+      html: true
+      className: 'organization-status-tooltip tooltip'
+    },
+    {
+      position: 'centerTop'
+      verticalOffset: -13
+      horizontalOffset: -6
+    }
+  )
+
+  CJ.Tooltip.addFancyTooltip(
+    '.cj-cp-progress-tooltip',
+    {
+      opacity: 1
+      delay: 0.2
+      fade: true
+      html: true
+      className: 'community-program-status-tooltip tooltip'
+    },
+    {
+      position: 'centerTop'
+      verticalOffset: -13
+      horizontalOffset: -6
+    }
+  )
 
 $(document).on(
   {

@@ -40,7 +40,9 @@
             <%= ProgressBarPresenter.perform(
               percentage: organization.completion_rate,
               options: {
-                verification_required: organization.verification_required?
+                verification_required: organization.verification_required?,
+                tooltip: organization.completion_rate_tooltip,
+                tooltip_class: 'cj-org-progress-tooltip'
               }
             ) %>
           </td>

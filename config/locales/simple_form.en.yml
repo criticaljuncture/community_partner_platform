@@ -24,14 +24,20 @@ en:
         merge_target: Program to merge into
         mou_on_file: MOU or contract on file with the District
         name: Program name
+        organization: Organization
         organization_id: Organization
+        school_programs: School programs
+        service_description: Service description
         service_times: Service times
         service_time_ids: Service times
+        service_types: Service types
         student_population: Target population
+        user: Primary organization contact
         user_id: Primary organization contact
         primary_quality_element:
           quality_element_id: Primary community schools element
           service_type_ids: Primary service types
+        quality_element: Community schools element
 
       organization:
         cost_per_student: What is the cost of the service(s) you provide?

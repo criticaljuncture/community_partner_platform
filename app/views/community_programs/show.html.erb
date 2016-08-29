@@ -38,7 +38,11 @@
 
     <%= ProgressBarPresenter.perform(
       percentage: @community_program.completion_rate,
-      options: {verification_required: @community_program.verification_required?}
+      options: {
+        verification_required: @community_program.verification_required?,
+        tooltip: @community_program.completion_rate_tooltip,
+        tooltip_class: 'cj-cp-progress-tooltip'
+      }
     ) %>
   </div>
 </div>

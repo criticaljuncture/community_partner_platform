@@ -154,3 +154,13 @@ dl.horizontal_stack {
   &.positive { color: $green-dark; }
   &.negative { color: $error-red; }
 }
+
+
+// used on admin dashboard, org and community program page for progress bar tooltips
+.community-program-status-tooltip,
+.organization-status-tooltip {
+  .tipsy-inner {
+    max-width: 400px;
+    text-align: left;
+  }
+}

@@ -52,4 +52,16 @@ class OrganizationDecorator < Draper::Decorator
       h.t('user.orientation_never_attended')
     end
   end
+
+  def completion_rate_tooltip
+    if completion_rate != 100
+      fields = missing_fields.map do |f|
+        h.t("simple_form.labels.organization.#{f.to_s}")
+      end
+
+      "Missing the following fields: <ul><li>#{fields.join('</li><li> ')}</li></ul>"
+    else
+      ""
+    end
+  end
 end

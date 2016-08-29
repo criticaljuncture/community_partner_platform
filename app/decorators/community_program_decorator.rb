@@ -28,4 +28,16 @@ class CommunityProgramDecorator < Draper::Decorator
   def summary_for_select
     "#{name} (#{h.pluralize(schools.count, 'school')}), id: #{id}"
   end
+
+  def completion_rate_tooltip
+    if completion_rate != 100
+      fields = missing_fields.map do |f|
+        h.t("simple_form.labels.community_program.#{f.to_s}")
+      end
+
+      "Missing the following fields: <ul><li>#{fields.join('</li><li> ')}</li></ul>"
+    else
+      ""
+    end
+  end
 end
