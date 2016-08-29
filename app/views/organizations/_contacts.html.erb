@@ -14,6 +14,15 @@
           <%= user.title %>
         </td>
       </tr>
+
+      <% if can? :send_invitation, user %>
+      <tr>
+        <td><%= I18n.t('user.invitation_status') %></td>
+        <td>
+          <%= user.invitation_status %>
+        </td>
+      </tr>
+      <% end %>
     <% end %>
   <% end %>
 

@@ -64,6 +64,12 @@ en:
       default: "%m/%d/%Y"
       long: '%B %d, %Y'
 
+  invitations:
+    accepted: 'Accepted <br>'
+    sent: 'Sent %{sent_at} <br>'
+    not_sent: 'Not Sent <br>'
+    resend: 'Resend Invitation'
+    send: 'Invite to CPP'
 
   organization:
     class:
