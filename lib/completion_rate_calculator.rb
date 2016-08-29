@@ -11,11 +11,9 @@ class CompletionRateCalculator
       weight     = allocation[0]
       attributes = allocation[1]
 
-      attribute_weighting = weight.to_f / attributes.size
-
       attributes.each do |attribute|
-        if object.send(attribute).present?
-          total_sum += attribute_weighting
+        if has_value?(attribute)
+          total_sum += attribute_weighting(weight, attributes)
         end
       end
 
@@ -23,5 +21,23 @@ class CompletionRateCalculator
     end
 
     rate * 100
+  end
+
+  def missing_fields
+    weights.map do |weight, attributes|
+      attributes.reject do |attribute|
+        has_value?(attribute)
+      end
+    end.flatten
+  end
+
+  private
+
+  def attribute_weighting(weight, attributes)
+    weight.to_f / attributes.size
+  end
+
+  def has_value?(attribute)
+    object.send(attribute).present?
   end
 end
