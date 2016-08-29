@@ -5,6 +5,9 @@ class Organization < ActiveRecord::Base
   serialize :reported_school_programs, JSON
 
   before_save :update_completion_rate
+  serialize :missing_fields, JSON
+  before_save :update_missing_fields
+
   after_create :clear_associated_cache
   after_update :clear_associated_cache
 
@@ -82,6 +85,9 @@ class Organization < ActiveRecord::Base
   def update_completion_rate
     self.completion_rate = completion_rate_calculator.completion_rate
   end
+
+  def update_missing_fields
+    self.missing_fields = completion_rate_calculator.missing_fields
   end
 
   def average_program_completion_rate

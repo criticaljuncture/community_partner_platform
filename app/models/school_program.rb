@@ -3,6 +3,8 @@ class SchoolProgram < ActiveRecord::Base
   include DelegationExtensions
 
   before_save :update_completion_rate
+  serialize :missing_fields, JSON
+  before_save :update_missing_fields
 
   belongs_to :community_program
   belongs_to :school
@@ -74,6 +76,9 @@ class SchoolProgram < ActiveRecord::Base
   def update_completion_rate
     self.completion_rate = completion_rate_calculator.completion_rate
   end
+
+  def update_missing_fields
+    self.missing_fields = completion_rate_calculator.missing_fields
   end
 
   private
