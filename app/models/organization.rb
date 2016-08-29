@@ -4,9 +4,9 @@ class Organization < ActiveRecord::Base
 
   serialize :reported_school_programs, JSON
 
+  before_save :update_completion_rate
   after_create :clear_associated_cache
   after_update :clear_associated_cache
-  after_save :update_completion_rate
 
   has_many :community_programs
 
@@ -80,12 +80,8 @@ class Organization < ActiveRecord::Base
   end
 
   def update_completion_rate
-    update_column(
-      :completion_rate, CompletionRateCalculator.new(
-        self,
-        COMPLETION_WEIGHTS
-      ).completion_rate
-    )
+    self.completion_rate = completion_rate_calculator.completion_rate
+  end
   end
 
   def average_program_completion_rate
@@ -103,6 +99,14 @@ class Organization < ActiveRecord::Base
   end
 
   private
+
+  def completion_rate_calculator
+    @completion_rate_calculator ||= CompletionRateCalculator.new(
+      self,
+      COMPLETION_WEIGHTS
+    )
+  end
+
   def clear_associated_cache
     schools.each{|s| s.touch}
     community_programs.each{|cp| cp.touch}

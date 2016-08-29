@@ -14,7 +14,6 @@ describe Organization do
 
       organization.zip_code = "12345"
       organization.save(validate: false)
-      organization.reload
 
       expect(organization.completion_rate).to eq(33.3333)
     end

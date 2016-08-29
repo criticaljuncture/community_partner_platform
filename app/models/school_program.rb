@@ -2,7 +2,7 @@ class SchoolProgram < ActiveRecord::Base
   include CommunityProgramAttributeRelationships
   include DelegationExtensions
 
-  after_save :update_completion_rate
+  before_save :update_completion_rate
 
   belongs_to :community_program
   belongs_to :school
@@ -39,7 +39,7 @@ class SchoolProgram < ActiveRecord::Base
     }
 
   COMPLETION_WEIGHTS = CommunityProgram::COMPLETION_WEIGHTS
-  
+
   # attributes uniquely assigned to this school program as distinct from
   # parent community program
   def customized_attributes
@@ -72,15 +72,18 @@ class SchoolProgram < ActiveRecord::Base
   end
 
   def update_completion_rate
-    update_column(
-      :completion_rate, CompletionRateCalculator.new(
-        self,
-        COMPLETION_WEIGHTS
-      ).completion_rate
-    )
+    self.completion_rate = completion_rate_calculator.completion_rate
+  end
   end
 
   private
+
+  def completion_rate_calculator
+    @completion_rate_calculator ||= CompletionRateCalculator.new(
+      self,
+      COMPLETION_WEIGHTS
+    )
+  end
 
   # this is a stub method to allow us to calculate the school program
   # completion_rate the same way as it's parent community_program

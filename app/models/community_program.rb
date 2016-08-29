@@ -7,7 +7,7 @@ class CommunityProgram < ActiveRecord::Base
 
   default_scope { where(active: true) }
 
-  after_save :update_completion_rate
+  before_save :update_completion_rate
 
   has_many :school_programs, dependent: :destroy
   has_many :schools, through: :school_programs
@@ -82,17 +82,22 @@ class CommunityProgram < ActiveRecord::Base
   end
 
   def update_completion_rate
-    update_column(
-      :completion_rate, CompletionRateCalculator.new(
-        self,
-        COMPLETION_WEIGHTS
-      ).completion_rate
-    )
+    self.completion_rate = completion_rate_calculator.completion_rate
+  end
   end
 
   def schools_with_differing_completion_rates
     @schools_with_differing_completion_rates ||= school_programs.select do |school_program|
       completion_rate != school_program.completion_rate
     end.sort_by{|s| s.school.name}
+  end
+
+  private
+
+  def completion_rate_calculator
+    @completion_rate_calculator ||= CompletionRateCalculator.new(
+      self,
+      COMPLETION_WEIGHTS
+    )
   end
 end
