@@ -1,19 +1,20 @@
 shared: &shared
   adapter: mysql2
-  database: <%= ENV["MYSQL_PORT_3306_TCP_DATABASE"] || 'cpp_platform_production' %>
+  database: <%= ENV["MYSQL_PORT_3306_TCP_DATABASE"] || 'community_partner_platform' %>
   username: <%= ENV["MYSQL_PORT_3306_TCP_USERNAME"] || 'root' %>
   password: <%= ENV["MYSQL_PORT_3306_TCP_PASSWORD"] %>
   port: <%= ENV["MYSQL_PORT_3306_TCP_PORT"] || 3306 %>
   host: '<%= ENV["MYSQL_PORT_3306_TCP_ADDR"] || '127.0.0.1' %>'
+  reconnect: true
   encoding: utf8
-  pool: 5
+  local_infile: true
 
 development:
   <<: *shared
 
 test:
   <<: *shared
-  database: <%= ENV["MYSQL_PORT_3306_TCP_DATABASE"] || 'cpp_platform_test' %>
+  database: community_partner_platform_test
 
 staging:
   <<: *shared

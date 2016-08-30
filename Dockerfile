@@ -36,6 +36,5 @@ COPY . /home/app/
 
 WORKDIR /home/app
 COPY config/secrets.yml config/secrets.yml
-RUN RAILS_ENV=production cp config/database.yml.sample config/database.yml &&\
-  rake assets:precompile &&\
+RUN RAILS_ENV=production rake assets:precompile &&\
   chown -R app /home/app
