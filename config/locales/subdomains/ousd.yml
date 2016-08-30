@@ -1,7 +1,12 @@
+ousd: &ousd
+  app:
+    title: 'OUSD Community Partner Platform'
+  district:
+    name: 'Oakland Unified School District'
+    abbreviation: 'OUSD'
+
 en:
   ousd:
-    app:
-      title: 'OUSD Community Partner Platform'
-    district:
-      name: 'Oakland Unified School District'
-      abbreviation: 'OUSD'
+    <<: *ousd
+  ousd-staging:
+    <<: *ousd
