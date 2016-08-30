@@ -18,7 +18,7 @@ describe Organization do
 
       expect(organization.completion_rate).to eq(33.33333333333333)
       organization.reload
-      expect(organization.completion_rate).to eq(33.33)
+      expect(organization.completion_rate).to eq(33.3333)
     end
   end
 
