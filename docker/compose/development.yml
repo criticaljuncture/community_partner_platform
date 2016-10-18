@@ -46,7 +46,7 @@ services:
       - web_app:/home/app/
     restart: on-failure
     networks:
-      - shared
+      - director_shared
       - default
     tty: true
     stdin_open: true
@@ -59,4 +59,5 @@ volumes:
 
 networks:
   default:
-  shared:
+  director_shared:
+    external: true

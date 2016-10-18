@@ -1,12 +1,12 @@
-.git/*
+/.git
 
-tmp
-log
+/tmp
+/log
 
-.bundle
+/.bundle
 
 # Ignore our secret keys
-.env
+/.env
 
 # Ignore documentation
-doc/
+/doc
