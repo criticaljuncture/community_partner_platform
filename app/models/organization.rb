@@ -19,7 +19,19 @@ class Organization < ActiveRecord::Base
   belongs_to :legal_status
   belongs_to :verifier, foreign_key: :last_verified_by, class_name: User
 
-  scope :with_users, -> { joins(:users).where("users.organization_id IS NOT NULL").group("organizations.id") }
+  scope :ousd, -> { where("organizations.name LIKE 'OUSD%'") }
+  scope :non_ousd, -> { where("organizations.name NOT LIKE 'OUSD%'") }
+
+  scope :with_users, -> {
+    joins(:users).where("users.organization_id IS NOT NULL").group("organizations.id")
+  }
+
+  scope :with_community_programs, -> {
+    joins(
+      'LEFT OUTER JOIN community_programs ON organizations.id = community_programs.organization_id'
+    ).
+    where(:community_programs => {active: true})
+  }
 
   validates :name, presence: true
   validates :legal_status_id, inclusion: {
