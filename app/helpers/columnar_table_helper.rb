@@ -20,6 +20,7 @@ module ColumnarTableHelper
   end
 
   def columnar_table(content=nil, options={}, &block)
+    return "" unless content || block_given?
     content = content.nil? ? capture(&block) : content
 
     table_class = options.fetch(:class){ '' }

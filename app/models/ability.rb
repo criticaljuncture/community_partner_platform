@@ -8,10 +8,9 @@ class Ability < BaseAbility
 
     can :manage, :all
 
-    can :send_invitation, User
     can :view, :super_admin_dashboard_items
 
-    admin_page_level_abilities
+    district_manager_abilities
   end
 
   def district_manager_abilities
@@ -22,10 +21,13 @@ class Ability < BaseAbility
     can :read, Role, id: [2,3,4]
     can :manage, School
     can :manage, SchoolProgram
+
     can :manage, CommunityProgram
+    can :view_district_internals, CommunityProgram
 
     can :manage, Organization
     can :manage_district_details, Organization
+    can :view_district_internals, Organization
 
     can :manage, QualityElement
     can :manage, ServiceType
@@ -37,11 +39,13 @@ class Ability < BaseAbility
 
   def school_manager_abilities
     can :verify, CommunityProgram, school_id: @user.school_ids
+    can :view_district_internals, CommunityProgram, school_id: @user.school_ids
   end
 
   def organization_member_abilities
     can [:edit, :update, :verification, :verify], Organization, id: @user.organization_id
     can :read, :organization_users
+    can :view_district_internals, Organization, id: @user.organization_id
 
     can :new, User
     can [:index, :show, :create, :update], User, organization_id: @user.organization_id
@@ -61,6 +65,7 @@ class Ability < BaseAbility
     can [:create, :edit, :update, :toggle_active], CommunityProgram, organization_id: @user.organization_id
     can :verify, CommunityProgram, organization_id: @user.organization_id
     can :merge_program, CommunityProgram, organization_id: @user.organization_id
+    can :view_district_internals, CommunityProgram, organization_id: @user.organization_id
 
     can :new, SchoolProgram
     can [:create, :edit, :update, :toggle_active], SchoolProgram do

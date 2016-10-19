@@ -40,4 +40,8 @@ class CommunityProgramDecorator < Draper::Decorator
       ""
     end
   end
+
+  def internal_details_present?
+    receives_district_funding? || notes.present?
+  end
 end

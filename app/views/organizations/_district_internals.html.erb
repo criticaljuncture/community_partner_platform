@@ -8,11 +8,29 @@
     </td>
   </tr>
 
+  <% if organization.mou_on_file? %>
+  <tr>
+    <td><%= I18n.t('organization.mou_on_file') %></td>
+    <td>
+      <%= organization.mou_on_file? ? t('app.yes') : t('app.no') %>
+    </td>
+  </tr>
+  <% end %>
+
   <% if organization.subcontractor_with_lead_agency? %>
   <tr>
     <td><%= I18n.t('organization.subcontractor_with_lead_agency') %></td>
     <td>
       <%= organization.subcontractor_with_lead_agency? ? t('app.yes') : t('app.no') %>
+    </td>
+  </tr>
+  <% end %>
+
+  <% if organization.receives_district_funding? %>
+  <tr>
+    <td><%= I18n.t('organization.receives_district_funding') %></td>
+    <td>
+      <%= organization.receives_district_funding? ? t('app.yes') : t('app.no') %>
     </td>
   </tr>
   <% end %>

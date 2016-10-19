@@ -68,3 +68,11 @@
     community_program: @community_program
   } %>
 </div>
+
+<% if can?(:view_district_internals, @community_program) && @community_program.internal_details_present? %>
+  <div class="row">
+    <%= render partial: 'internal_details', locals: {
+      community_program: @community_program
+    } %>
+  </div>
+<% end %>

@@ -3,9 +3,11 @@
     organization: organization
   } %>
 
-  <%= render partial: 'district_internals', locals: {
-    organization: organization
-  } %>
+  <% if can?(:view_district_internals, organization) %>
+    <%= render partial: 'district_internals', locals: {
+      organization: organization
+    } %>
+  <% end %>
 </div>
 
 <div class="row">

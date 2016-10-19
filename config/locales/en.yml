@@ -37,9 +37,11 @@ en:
     grade_levels: Target Grade Levels
     last_verified: Last verified
     name: Program Name
+    notes: Notes
     organization_contact: Primary Organization Contact
     organization_name: Name
     quality_element: Community School Element
+    receives_district_funding: Receives District Funding
     school_name: Name
     service_description: Program Description
     service_days: Service Days
@@ -80,12 +82,14 @@ en:
     last_verified: Last verified
     legal_status: Legal status
     mission_statement: Mission statement
+    mou_on_file: MOU on file with District
     name: Name
     phone_number: Phone number
     program_impact: Program impact
+    receives_district_funding: Receives district funding
+    subcontractor_with_lead_agency: Subcontractor with a lead agency
     services_description: Service(s) description
     url: URL
-    subcontractor_with_lead_agency: Subcontractor with a lead agency
 
   organizations:
     messages:
