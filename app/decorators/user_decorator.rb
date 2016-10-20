@@ -35,7 +35,13 @@ class UserDecorator < Draper::Decorator
           when :school_manager
             role_school_display(model.schools)
           when :organization_member
-            role_organization_display(model.organization)
+            role_organization_display(model.organization) +
+              if model.organization.primary_contact == model
+                content_tag(:tr) do
+                  content_tag(:td, t('organization.primary_contact')) +
+                    content_tag(:td, t('app.yes'))
+                end
+              end
           end
         )
       end

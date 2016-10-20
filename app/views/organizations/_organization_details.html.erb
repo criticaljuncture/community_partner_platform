@@ -36,4 +36,12 @@
       </td>
     </tr>
 
+    <% if organization.primary_contact %>
+      <tr>
+        <td><%= I18n.t('organization.primary_contact') %></td>
+        <td>
+          <%= link_to organization.primary_contact.full_name, user_path(organization.primary_contact)  %>
+        </td>
+      </tr>
+    <% end %>
 <% end %>

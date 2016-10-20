@@ -1,6 +1,6 @@
 <%= columnar_table_block "Inactive Users #{help(t('help.organization.users.inactive')).html_safe}".html_safe, class: 'inactive-users' do %>
   <% users.each do |user| %>
-    <%= columnar_table_body nil do %>
+    <%= columnar_table_body do %>
       <tr>
         <td><%= I18n.t('user.name') %></td>
         <td>

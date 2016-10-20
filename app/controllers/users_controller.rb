@@ -195,23 +195,21 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name,
-                                 :last_name,
-                                 :email,
-                                 :phone_number,
-                                 :primary_role,
-                                 :organization_id,
-                                 :title,
-<<<<<<< HEAD
-                                 :active,
-                                 :orientation_type_id,
-                                 :attended_orientation_at,
-                                 school_ids: []).tap do |u_params|
+    params.require(:user).permit(
+      :active,
+      :attended_orientation_at,
+      :email,
+      :first_name,
+      :last_name,
+      :new_org_creation,
+      :organization_id,
+      :orientation_type_id,
+      :phone_number,
+      :primary_role,
+      :title,
+      school_ids: []
+    ).tap do |u_params|
       u_params.delete(:active) unless can? :manage, User
     end
-=======
-                                 :new_org_creation,
-                                 school_ids: [])
->>>>>>> Implement initial working logic for organization#new and organization#edit primary organization user option: - db schema change - new organization handler - modifications to user modal form handler - controller logic modifications - view changes -css changes -
   end
 end

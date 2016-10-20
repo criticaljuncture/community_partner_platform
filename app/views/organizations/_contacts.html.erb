@@ -15,6 +15,13 @@
         </td>
       </tr>
 
+      <% if user == organization.primary_contact %>
+        <tr>
+          <td><%= I18n.t('organization.primary_contact') %></td>
+          <td><%= I18n.t('app.yes') %></td>
+        </tr>
+      <% end %>
+
       <% if can? :send_invitation, user %>
       <tr>
         <td><%= I18n.t('user.invitation_status') %></td>

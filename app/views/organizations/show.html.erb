@@ -165,11 +165,13 @@
   <div id="user-info" class="tab-pane active">
     <div class="row">
       <%= render partial: 'active_users', locals: {
-        users: UserDecorator.decorate_collection(@organization.users.active | @organization.users.as_invited_contact)
+        users: UserDecorator.decorate_collection(@organization.users.active | @organization.users.as_invited_contact),
+        organization: @organization
       } %>
 
       <%= render partial: 'contacts', locals: {
-        users: UserDecorator.decorate_collection(@organization.users.as_contact)
+        users: UserDecorator.decorate_collection(@organization.users.as_contact),
+        organization: @organization
       } %>
     </div>
 
