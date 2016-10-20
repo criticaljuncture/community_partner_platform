@@ -44,11 +44,13 @@
     <% if can? :view, :user_details %>
       <%= columnar_table_block 'User Access', class: 'user-access',
         auto_table: false do %>
-        <% @user.roles.each do |role| %>
-          <%= columnar_table do %>
-            <%= @user.display.role(role) %>
+        <table class="table table-condensed table-multi-tbody">
+          <% @user.roles.each do |role| %>
+            <%= columnar_table_body do %>
+              <%= @user.display.role(role) %>
+            <% end %>
           <% end %>
-        <% end %>
+        </table>
       <% end %>
     <% end %>
   </div>
