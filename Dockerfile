@@ -17,7 +17,6 @@ RUN passenger start --runtime-check-only
 
 RUN ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 
-RUN gem install bundler
 
 COPY docker/web/service/web/run /etc/service/web/run
 COPY docker/web/my_init.d /etc/my_init.d

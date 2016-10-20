@@ -12,7 +12,7 @@ services:
       MYSQL_PORT_3306_TCP_DATABASE: community_partner_platform
     volumes:
       - "../mysql/init_db.sh:/docker-entrypoint-initdb.d/init_db.sh"
-      - "~/Dropbox/CJ\ Resources/CPP/current.sql.gz:/current.sql.gz"
+      - "~/Dropbox/CJ\ Resources/CPP/current.sql.gz:/community_partner_platform_current.sql.gz"
 
   rsync:
     image: nabeken/docker-volume-container-rsync

@@ -60,7 +60,7 @@
       <%= columnar_table_block 'District Details', class: 'district-details' do %>
         <tr>
           <td><%= t('user.orientation_type') %></td>
-          <td><%= @user.orientation_type.name %></td>
+          <td><%= @user.orientation_type.try(:name) %></td>
         </tr>
 
         <tr>
