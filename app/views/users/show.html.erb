@@ -56,6 +56,20 @@
 
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+    <% if can? :view, :user_details %>
+      <%= columnar_table_block 'District Details', class: 'district-details' do %>
+        <tr>
+          <td><%= t('user.orientation_type') %></td>
+          <td><%= @user.orientation_type.name %></td>
+        </tr>
+
+        <tr>
+          <td><%= t('user.attended_orientation_at') %></td>
+          <td><%= @user.attended_orientation_at %></td>
+        </tr>
+      <% end %>
+    <% end %>
+
     <% if can? :manage, @user %>
       <%= columnar_table_block 'User System Info', class: 'user-access' do %>
         <tr>

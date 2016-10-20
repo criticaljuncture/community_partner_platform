@@ -1,3 +1,5 @@
+<% modal = defined?(modal) ? modal : false %>
+
 <%= field_set_tag "User Information" do %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
@@ -22,50 +24,49 @@
     as: :select,
     collection: organizations,
     selected: f.object.organization_id.present? ? f.object.organization_id : (current_user.organization_id.nil? ? "" : current_user.organization_id),
-    label: 'Organization',
     required: true,
     disabled: true,
     include_blank: true,
     wrapper_html: {class: "hidden"} %>
 
-  <%= f.input :orientation_type_id,
-    label: "Orientation Agreement",
-    collection: OrientationType.all.map{|ot| [ot.name, ot.id]},
-    disabled: true,
-    wrapper_html: {class: "hidden"} %>
-
-  <%= f.input :attended_orientation_at,
-    as: :bootstrap_datepicker,
-    label: "Orientation Agreement Date",
-    disabled: true,
-    input_html: { class: "datepicker" } %>
-
-  <% if schools.present? %>
-    <% if schools.size > 1 %>
-      <%= f.input :school_ids,
-        as: :select,
-        collection: schools,
-        label: 'Schools',
-        required: true,
-        disabled: true,
-        input_html: {multiple: true},
-        wrapper_html: {class: "hidden"} %>
-    <% else %>
-      <%= f.input :school_ids,
-        as: :select,
-        collection: schools,
-        label: 'Schools',
-        required: true,
-        selected: schools.first.try(:id),
-        wrapper_html: {class: "hidden"} %>
+    <% if schools.present? %>
+      <% if schools.size > 1 %>
+        <%= f.input :school_ids,
+          as: :select,
+          collection: schools,
+          required: true,
+          disabled: true,
+          input_html: {multiple: true},
+          wrapper_html: {class: "hidden"} %>
+      <% else %>
+        <%= f.input :school_ids,
+          as: :select,
+          collection: schools,
+          required: true,
+          selected: schools.first.try(:id),
+          wrapper_html: {class: "hidden"} %>
+      <% end %>
     <% end %>
+<% end %>
+
+<% if can?(:edit_district_details, f.object) && !modal %>
+  <%= field_set_tag "District Details", id: 'district-details' do %>
+    <%= f.input :orientation_type_id,
+      collection: OrientationType.all.map{|ot| [ot.name, ot.id]} %>
+
+    <%= f.input :attended_orientation_at,
+      as: :bootstrap_datepicker,
+      input_html: {data: {
+        "date-orientation" => "top",
+        "date-container" => ".user_attended_orientation_at"
+        }} %>
   <% end %>
 <% end %>
 
 <div class="row">
   <div class="col-sm-3 hidden-sm"></div>
   <div class="col-sm-9">
-    <%= f.submit f.object.new_record? ? 'Create' : 'Save',
+    <%= f.submit f.object.new_record? ? t('forms.buttons.create') : t('forms.buttons.save'),
       class: "btn btn-large btn-success" %>
   </div>
 </div>

@@ -77,7 +77,7 @@ class Organization < ActiveRecord::Base
 
   def user_last_orientation_attended
     if any_users_attended_orientation?
-      users.where("orientation_attended_at IS NOT NULL").order("DESC").first
+      users.where("attended_orientation_at IS NOT NULL").order("attended_orientation_at DESC").first
     end
   end
 

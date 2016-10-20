@@ -17,6 +17,7 @@ class Ability < BaseAbility
     can :manage, User
     can :add_role, User
     can :send_invitation, User
+    can :edit_district_details, User
 
     can :read, Role, id: [2,3,4]
     can :manage, School

@@ -20,6 +20,7 @@ en:
 
   forms:
     buttons:
+      create: Create
       save: Save
       save_verify: Save & Verify
 
@@ -151,11 +152,12 @@ en:
 
   user:
     active: Active
-    attended_orientation_at: Orientation Attended
+    attended_orientation_at: Orientation Date
     email: Email
     invitation_status: Invitation Status
     last_login: Last Signed In
     name: Name
+    orientation_type: Orientation Type
     orientation_never_attended: Orientation never attended
     phone_number: Work Phone Number
     role: Role

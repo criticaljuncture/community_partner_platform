@@ -12,34 +12,12 @@ class @CPP.UserModalFormHandler
 
     if role == 'organization_member'
       hiddenEl = @form.find('#user_organization_id')
-      @_enableOrientationFields()
     else if role == 'school_manager'
       hiddenEl = @form.find('#user_school_ids')
-      @_disableOrientationFields()
 
     if hiddenEl.length > 0
       hiddenEl
         .prop 'disabled', false
-
-  _enableOrientationFields: () ->
-    @form.find('.form-group.user_orientation_type_id')
-    .show()
-    .removeClass('hidden')
-    @form.find('#user_orientation_type_id')
-      .prop 'disabled', false
-
-    @form.find('#user_attended_orientation_at').prop 'disabled', false
-
-  _disableOrientationFields: () ->
-    @form.find('.form-group.user_orientation_type_id').hide()
-    @form.find('#user_orientation_type_id')
-      .prop 'disabled', true
-
-    @form.find('.form-group.user_attended_orientation_at').hide()
-    @form.find('#user_attended_orientation_at')
-      .prop 'disabled', true
-    @form.find('#attended_orientation_at_hidden')
-      .prop 'disabled', true
 
   addFormSubmissionEvents: ()->
     @form.on 'submit', @form, (event)=>

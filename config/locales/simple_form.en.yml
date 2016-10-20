@@ -61,7 +61,11 @@ en:
         user_id: School contact
 
       user:
+        attended_orientation_at: Orientation date
+        organization_id: Organization
+        orientation_type_id: Orientation type
         primary_role: Role
+        school_ids: Schools
 
     #   defaults:
     #     password: 'Password'

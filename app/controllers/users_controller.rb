@@ -98,7 +98,7 @@ class UsersController < ApplicationController
         respond_to do |format|
           format.html {
             flash.notice = message
-            redirect_to users_path(active_tab: 'inactive')
+            redirect_to user_path(@user)
           }
 
           format.json {
@@ -160,7 +160,7 @@ class UsersController < ApplicationController
         flash.notice = t('users.flash_messages.update.success',
                          name: @user.full_name)
 
-        redirect_to action: :index
+        redirect_to user_path(@user)
       end
     rescue ActiveRecord::RecordInvalid
       flash.now[:notice] = t('users.flash_messages.save.failure',

@@ -188,7 +188,6 @@ class @CPP.CommunityProgramFormHandler
           .find("tbody tr[data-school-program-id='#{response.school_program_id}']")
           .remove()
 
-
   showModal: (modalClass)->
     $(modalClass).modal()
 
