@@ -104,7 +104,7 @@ gem "underscore-rails"
 gem "wicked"
 
 # date picker component
-gem 'bootstrap-datepicker-rails', '~> 1.4.0'
+gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
 
 # makes small classes easier to cleanup and define without resorting to structs, etc.
 gem 'attr_extras'
