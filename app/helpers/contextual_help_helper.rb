@@ -4,7 +4,7 @@ module ContextualHelpHelper
       class: "contextual-help cj-fancy-tooltip",
       data: {
         tooltip: description,
-        'tooltip-classname': options.delete(:class)
+        :'tooltip-classname' => options.delete(:class)
       } do
       gicon 'question-sign'
     end
