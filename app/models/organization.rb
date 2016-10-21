@@ -35,7 +35,7 @@ class Organization < ActiveRecord::Base
   }
 
   validates :name, presence: true
-  validates :legal_status, presence: {
+  validates :legal_status_id, presence: {
     message: 'Please choose from the list above'
   }
 
