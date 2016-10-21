@@ -35,8 +35,7 @@ class Organization < ActiveRecord::Base
   }
 
   validates :name, presence: true
-  validates :legal_status_id, inclusion: {
-    in: LegalStatus.all.map(&:id),
+  validates :legal_status, presence: {
     message: 'Please choose from the list above'
   }
 
