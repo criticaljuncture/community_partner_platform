@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Organization do
   let(:organization) do
-    Organization.create(
+    Organization.create!(
       name: "Foo Organization",
       address: "123 Street",
       legal_status_id: 1
