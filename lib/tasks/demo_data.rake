@@ -42,7 +42,7 @@ namespace :demo do
         zip_code:     zip_code,
         phone_number: phone_number
       )
-      organization.save
+      organization.save(validate: false)
       organizations << organization
     end
 
@@ -64,7 +64,7 @@ namespace :demo do
       names << name
 
       school = School.new(name:   name, region: region)
-      school.save
+      school.save(validate: false)
       schools << school
     end
 
@@ -112,7 +112,7 @@ namespace :demo do
       )
 
       user.admin_creation = true
-      user.save
+      user.save(validate: false)
       users << user
     end
 
@@ -187,7 +187,7 @@ namespace :demo do
         )
       end
 
-      community_program.save
+      community_program.save(validate: false)
 
       partnerships << community_program
     end
@@ -203,7 +203,7 @@ namespace :demo do
       position = rand(school_codes.length)
 
       school.school_code = school_codes[position]
-      school.save
+      school.save(validate: false)
 
       school_codes.delete_at(position)
     end
