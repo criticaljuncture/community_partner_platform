@@ -126,9 +126,9 @@ end
 group :development, :test do
   gem 'spring', '~> 1.4.0'
 
-  gem "rspec-rails", "~> 2.14.0"
-  gem "factory_girl_rails", "~> 4.2.1"
-  gem "database_cleaner", "~> 1.1.1"
+  gem "rspec-rails", "~> 3.5.2"
+  gem "factory_girl_rails", "~> 4.8.0"
+  gem "database_cleaner", "~> 1.5.3"
 
   gem "better_errors"
   gem "binding_of_caller"
