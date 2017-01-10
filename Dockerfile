@@ -1,4 +1,4 @@
-FROM quay.io/criticaljuncture/baseimage
+FROM quay.io/criticaljuncture/baseimage:16.04
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C3173AA6 &&\
   echo deb http://ppa.launchpad.net/brightbox/ruby-ng/ubuntu trusty main > /etc/apt/sources.list.d/brightbox.list &&\
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y build-essential git libmysqlclient-dev 
   apt-get clean &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
 
-RUN gem install passenger --version 5.0.30
+RUN gem install passenger --version 5.1.1
 RUN passenger start --runtime-check-only
 
 RUN ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
