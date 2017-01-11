@@ -5,6 +5,7 @@ namespace :demo do
     generate_schools(50)
     generate_users(20, type: :school_manager)
     generate_users(40, type: :organization_member)
+    generate_admins
     generate_partnerships(200)
   end
 
@@ -12,6 +13,7 @@ namespace :demo do
     Organization.truncate
     School.truncate
     User.truncate
+    UserRole.truncate
     CommunityProgram.truncate
     SchoolProgram.truncate
   end
@@ -63,7 +65,7 @@ namespace :demo do
       next if names.include?(name)
       names << name
 
-      school = School.new(name:   name, region: region)
+      school = School.new(name: name, region: region)
       school.save(validate: false)
       schools << school
     end
@@ -71,12 +73,25 @@ namespace :demo do
     schools
   end
 
+  def generate_admins
+    user = User.new(
+      first_name:   'Bob',
+      last_name:    'Burbach',
+      email:        'bob@criticaljuncture.org',
+      roles:        Array(Role.find_by_identifier(:super_admin)),
+      subdomain:    'demo',
+      active:       true
+    )
+
+    user.admin_creation = true
+    user.save(validate: false)
+  end
+
   def generate_users(count, args)
     type = args[:type]
     data_generator = DemoDataGenerator::User.new(type)
 
     users = []
-    emails = []
 
     count.times do
       first_name = data_generator.first_name
@@ -86,8 +101,7 @@ namespace :demo do
       subdomain = 'demo'
 
       # prevent duplicate users
-      next if emails.include?(email)
-      emails << email
+      next if User.find_by_email(email)
 
       # set up base state
       schools = []
@@ -120,7 +134,7 @@ namespace :demo do
   end
 
   def generate_partnerships(count)
-    data_generator = DemoDataGenerator::CommunityPartner.new
+    data_generator = DemoDataGenerator::CommunityProgram.new
 
     partnerships = []
     count.times do
@@ -153,13 +167,13 @@ namespace :demo do
       days = [groups.first, groups.last]
 
       quality_element = QualityElement.order("RAND()").first
-      primary_quality_element = CommunityPartnerQualityElement.new(
+      primary_quality_element = CommunityProgramQualityElement.new(
         quality_element: quality_element,
         type: 'PrimaryQualityElement'
       )
 
-      service_types = ServiceType.includes(:quality_elements).where(quality_elements: {id: quality_element.id}).order("RAND()")
-      primary_quality_element.service_types = [service_types.first, service_types.last]
+      #service_types = ServiceType.includes(:quality_elements).where(quality_elements: {id: quality_element.id}).order("RAND()")
+      #primary_quality_element.service_types = [service_types.first, service_types.last]
 
       # generate program
       community_program = CommunityProgram.new(
