@@ -189,7 +189,6 @@ class @CPP.SchoolProgramFormHandler
     else
       currentRow.replaceWith response.html
 
-
     CJ.Notifier.displayNotification(response.message, 'success')
     $("#school-program-modal").modal 'hide'
 

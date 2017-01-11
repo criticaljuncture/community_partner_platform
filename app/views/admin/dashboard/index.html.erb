@@ -6,20 +6,42 @@
 
     <%= page_nav_tabs [['Page Views', '#page-views'],
                        ['API Hits', '#api-hits'],
-                       ['Analytics', '#analytics']] %>
+                       ['Analytics', '#analytics'],
+                       ['Organizations', '#organization-status'],
+                       ['Community Programs', '#community-program-status']
+                       ] %>
 
     <div class="tab-content">
-      <div id="page-views" class="tab-pane active">
-        <%= render partial: 'page_views', locals: {records: @page_views} %>
-      </div>
+      <% if can? :view, :super_admin_dashboard_items %>
+        <div id="page-views" class="tab-pane active">
+          <%= render partial: 'page_views', locals: {records: @page_views} %>
+        </div>
 
-      <div id="api-hits" class="tab-pane active">
-        <%= render partial: 'page_views', locals: {records: @api_hits} %>
-      </div>
+        <div id="api-hits" class="tab-pane active">
+          <%= render partial: 'page_views', locals: {records: @api_hits} %>
+        </div>
 
-      <div id="analytics" class="tab-pane">
-        <%#= render partial: 'analytics', locals: {analytics: @analytics} %>
+        <div id="analytics" class="tab-pane">
+          <%#= render partial: 'analytics', locals: {analytics: @analytics} %>
+        </div>
+      <% end %>
+
+      <% if can? :manage, Organization %>
+      <div id="organization-status" class="tab-pane">
+        <%= render partial: 'organization_status', locals: {
+          organizations: @organizations
+        } %>
       </div>
+      <% end %>
+
+      <% if can? :manage, CommunityProgram %>
+      <div id="community-program-status" class="tab-pane">
+        <%= render partial: 'community_program_status', locals: {
+          community_programs: @community_programs
+        } %>
+      </div>
+      <% end %>
+
     </div>
   </div>
 </div>

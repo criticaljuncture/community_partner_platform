@@ -4,6 +4,7 @@ class UserDecorator < Draper::Decorator
   include AttrNotProvided
   attr_not_provided :title
   attr_not_provided :phone_number, method: ->(attr) {h.number_to_phone(attr)}
+  attr_not_provided :attended_orientation_at, text: h.hint_tag(h.t('app.never_attended'))
 
   def invitation_status
     h.invitation_status_for(model)
@@ -34,7 +35,13 @@ class UserDecorator < Draper::Decorator
           when :school_manager
             role_school_display(model.schools)
           when :organization_member
-            role_organization_display(model.organization)
+            role_organization_display(model.organization) +
+              if model.organization.primary_contact == model
+                content_tag(:tr) do
+                  content_tag(:td, t('organization.primary_contact')) +
+                    content_tag(:td, t('app.yes'))
+                end
+              end
           end
         )
       end

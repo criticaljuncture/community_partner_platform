@@ -11,7 +11,6 @@ $tableBackgroundHover: #f5fcff;
 
 @import "mixins/rounded";
 
-@import "scatter_plot";
 @import "web_fonts";
 
 // Font sizes based on ratios
@@ -22,6 +21,7 @@ $em-base: 16px;
 @import "components/breadcrumbs";
 @import "components/buttons";
 @import "components/columnar_table_block";
+@import "components/completeness";
 @import "components/count_bubble";
 @import "components/help_hover";
 @import "components/loader";
@@ -38,8 +38,11 @@ $em-base: 16px;
 
 @import "app";
 @import "community_programs";
+@import "contextual_help";
 @import "organizations";
 @import "schools";
 @import "status_circle";
 @import "tables";
 @import "users";
+
+@import "admin/dashboard";

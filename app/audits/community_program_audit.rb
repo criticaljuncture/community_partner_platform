@@ -4,7 +4,7 @@ module CommunityProgramAudit
 
   def associations_for_audit
     {
-      primary_quality_element_id: primary_quality_element.id,
+      primary_quality_element_id: primary_quality_element.try(:id),
       primary_service_type_ids: primary_service_type_ids,
       ethnicity_culture_group_ids: ethnicity_culture_groups.map(&:id),
       demographic_group_ids: demographic_groups.map(&:id),

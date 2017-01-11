@@ -11,7 +11,10 @@ class SchoolsController < ApplicationController
   end
 
   def show
-    @school = School.includes(:community_programs).find(params[:id])
+    @school = School.includes(
+      community_programs: [:quality_element, :organization, :primary_service_types, :student_population],
+      school_programs: :organization
+    ).find(params[:id])
     authorize! :show, @school
   end
 

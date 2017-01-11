@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.4'
+gem 'rails', '~> 4.2.7.1'
 
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.20'
@@ -76,7 +76,7 @@ gem 'jquery-cookie-rails'
 
 # redis analytics
 gem "minuteman-rails",
-  git: 'git@github.com:elcuervo/minuteman-rails.git',
+  github: 'elcuervo/minuteman-rails',
   ref: '473197950a5072fa60bda39f4736098958d7b9ed'
 gem "minuteman", "~> 1.0.3"
 
@@ -89,7 +89,7 @@ gem 'redis-namespace', '~> 1.4.1'
 
 # Use SCSS for stylesheets
 gem 'sass', '~> 3.4.16'
-gem 'sass-rails', '~> 5.0.3'
+gem 'sass-rails', '~> 5.0.6'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 #gem 'turbolinks'
@@ -103,12 +103,20 @@ gem "underscore-rails"
 # multi-step wizard like controllers
 gem "wicked"
 
+# date picker component
+gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
 
+# makes small classes easier to cleanup and define without resorting to structs, etc.
+gem 'attr_extras'
 
 # modals
 gem 'jquery-modal-rails',
     github: 'peregrinator/jquery-modal-rails',
     ref: '97bc84d7723d324876971f45f255e066fbb6ad49'
+
+# auto linking user input (like organization url)
+gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
+
 
 group :deployment do
   gem 'capistrano', '~> 2.15.5'
@@ -118,9 +126,9 @@ end
 group :development, :test do
   gem 'spring', '~> 1.4.0'
 
-  gem "rspec-rails", "~> 2.14.0"
-  gem "factory_girl_rails", "~> 4.2.1"
-  gem "database_cleaner", "~> 1.1.1"
+  gem "rspec-rails", "~> 3.5.2"
+  gem "factory_girl_rails", "~> 4.8.0"
+  gem "database_cleaner", "~> 1.5.3"
 
   gem "better_errors"
   gem "binding_of_caller"
@@ -139,6 +147,8 @@ group :development, :test do
 
   # console on errors or using <%= console %>
   gem 'web-console', '~> 2.0'
+
+  gem 'rack-mini-profiler'
 
   # chrome inspector support
   #gem 'sass-rails-source-maps'

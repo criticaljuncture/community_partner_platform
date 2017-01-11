@@ -1,3 +1,12 @@
+<%= modal(:basic,
+  footer: false,
+  header_icon: 'icon-cpp-users',
+  header_text: 'Add User',
+  modal_class: "ajax-modal user-modal",
+  modal_id: "user-modal") do %>
+  <div class="loader loading"></div>
+<% end %>
+
 <%= breadcrumb [
   ['Partner Organizations', organizations_path],
   ['Create', ""]
@@ -5,14 +14,14 @@
 
 <%= page_header("Create New Organization", "icon-cpp-small-business") %>
 
-<div class="row">
+<div class="row organization-page">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <div class="form_wrapper">
       <%= simple_form_for @organization.model, method: :post,
         html: {class: "form-horizontal organization"},
         wrapper: :horizontal_form,
         wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
-          <%= render partial: 'form', locals: {f: f} %>
+          <%= render partial: 'form', locals: {f: f, new_org: true} %>
       <% end %>
     </div>
   </div>

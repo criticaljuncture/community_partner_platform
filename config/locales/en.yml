@@ -11,8 +11,16 @@ en:
       one: There is %{count} error below. Please correct it and click 'Save' to continue.
       other: There are %{count} errors below. Please correct them and click 'Save' to continue.
 
+  app:
+    yes: Yes
+    no: No
+    never_verified: never verified
+    never_attended: never attended
+    not_provided: not provided
+
   forms:
     buttons:
+      create: Create
       save: Save
       save_verify: Save & Verify
 
@@ -30,9 +38,11 @@ en:
     grade_levels: Target Grade Levels
     last_verified: Last verified
     name: Program Name
+    notes: Notes
     organization_contact: Primary Organization Contact
     organization_name: Name
     quality_element: Community School Element
+    receives_district_funding: Receives District Funding
     school_name: Name
     service_description: Program Description
     service_days: Service Days
@@ -49,6 +59,21 @@ en:
         success: Successfully saved '%{name}'
       verified: Thank you for verifying '%{name}'
 
+  date:
+    datepicker:
+      default: "mm/dd/yyyy"
+      long: "MM dd, yyyy"
+    formats:
+      default: "%m/%d/%Y"
+      long: '%B %d, %Y'
+
+  invitations:
+    accepted: 'Accepted <br>'
+    sent: 'Sent %{sent_at} <br>'
+    not_sent: 'Not Sent <br>'
+    resend: 'Resend Invitation'
+    send: 'Invite to CPP'
+
   organization:
     class:
       name: Organization
@@ -58,9 +83,13 @@ en:
     last_verified: Last verified
     legal_status: Legal status
     mission_statement: Mission statement
+    mou_on_file: MOU on file with District
     name: Name
     phone_number: Phone number
+    primary_contact: Primary contact
     program_impact: Program impact
+    receives_district_funding: Receives district funding
+    subcontractor_with_lead_agency: Subcontractor with a lead agency
     services_description: Service(s) description
     url: URL
 
@@ -79,6 +108,11 @@ en:
       save:
         success: Successfully saved '%{name}'
       verified: Thank you for verifying '%{name}'
+
+
+  orientation_type:
+    completed_orientation_agreement: Completed Orientation Agreement
+
 
   quality_element:
     class:
@@ -119,16 +153,20 @@ en:
 
   user:
     active: Active
+    attended_orientation_at: Orientation Date
     email: Email
     invitation_status: Invitation Status
     last_login: Last Signed In
     name: Name
+    orientation_type: Orientation Type
+    orientation_never_attended: Orientation never attended
     phone_number: Work Phone Number
     role: Role
     title: Title
 
   users:
     flash_messages:
+      inactive: Your account has been deactivated. Please contact your Community Partner Platform administrator.
       invitation:
         sent: Sent invitation to %{name} (%{email}).
       save:

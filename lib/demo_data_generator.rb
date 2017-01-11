@@ -1,5 +1,5 @@
 class DemoDataGenerator
-  CITIES = ['Oakland', 'Berkeley', 'San Francisco', 'Washington, DC', 'Chicago', 'Los Angeles']
+  CITIES = ['Oakland', 'Berkeley', 'San Francisco', 'Washington, DC', 'Chicago', 'Los Angeles', 'Seattle']
 
   def url(name)
     "http://www.#{name.split(' ').join.downcase}.com"
@@ -45,7 +45,97 @@ end
 class DemoDataGenerator::School < DemoDataGenerator
   REGION_IDS = [1,2,3,4]
 
-  NAMES = %w(alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau upsilon phi chi psi omega)
+  NAMES = [
+    'Henry Hudson',
+    'Amerigo Vespucci',
+    'John Smith',
+    'Giovanni da Verrazzano',
+    'John Muir',
+    'Meriwether Lewis and William Clark',
+    'Sacagawea',
+    'Kit Carson',
+    'Neil Armstrong',
+    'John Wesley Powell',
+    'Martin Luther King Jr.',
+    'Robert E. Lee',
+    'Thomas Paine',
+    'John Brown',
+    'Frederick Douglass',
+    'Susan B. Anthony',
+    'W.E.B. Du Bois',
+    'Tecumseh',
+    'Sitting Bull',
+    'Elizabeth Cady Stanton',
+    'Malcolm X',
+    'Abraham Lincoln',
+    'George Washington',
+    'Thomas Jefferson',
+    'Theodore Roosevelt',
+    'Ulysses S. Grant',
+    'Ronald W. Reagan',
+    'George W. Bush',
+    'Franklin Delano Roosevelt',
+    'Woodrow Wilson',
+    'James Madison',
+    'Andrew Jackson',
+    'Pocahontas',
+    'Eleanor Roosevelt',
+    'Martha Washington',
+    'Hellen Keller',
+    'Sojourner Truth',
+    'Jane Addams',
+    'Edith Wharton',
+    'Bette Davis',
+    'Jesse James',
+    'Lucky Luciano',
+    'Frank Lloyd Wright',
+    'Andy Warhol',
+    'Frederick Law Olmsted',
+    'James Abbott MacNeill Whistler',
+    'Jackson Pollock',
+    'John James Audubon',
+    'Georgia O’Keeffe',
+    'Thomas Eakins',
+    'Thomas Nast',
+    'Alfred Stieglitz',
+    'Ansel Adams',
+    'Joseph Smith Jr.',
+    'William Penn',
+    'Brigham Young',
+    'Roger Williams',
+    'Anne Hutchinson',
+    'Jonathan Edwards',
+    'Ellen G. White',
+    'Cotton Mather',
+    'Mary Baker Eddy',
+    'Billy Graham',
+    'Mark Twain',
+    'Charlie Chaplin',
+    'Marilyn Monroe',
+    'Frank Sinatra',
+    'Louis Armstrong',
+    'Mary Pickford',
+    'Andrew Carnegie',
+    'Henry Ford',
+    'John D. Rockefeller',
+    'J.P. Morgan',
+    'Walt Disney',
+    'Thomas Alva Edison',
+    'William Randolph Hearst',
+    'Howard Hughes',
+    'Bill Gates',
+    'Cornelius Vanderbilt',
+    'Steve Jobs',
+    'Babe Ruth',
+    'Muhammad Ali',
+    'Jackie Robinson',
+    'James Naismith',
+    'Ty Cobb',
+    'Michael Jordan',
+    'Jim Thorpe',
+    'Billie Jean King',
+  ]
+
   POSTFIXES = [
     'Elementary School',
     'Middle School',
@@ -57,7 +147,7 @@ class DemoDataGenerator::School < DemoDataGenerator
 
   def name
     [
-      NAMES[rand(NAMES.length)].capitalize,
+      NAMES[rand(NAMES.length)],
       POSTFIXES[rand(POSTFIXES.length)]
     ].join(' ')
   end
@@ -89,7 +179,7 @@ class DemoDataGenerator::User < DemoDataGenerator
   end
 end
 
-class DemoDataGenerator::CommunityPartner < DemoDataGenerator
+class DemoDataGenerator::CommunityProgram < DemoDataGenerator
   PREFIXES = [
     '180',
     '360',

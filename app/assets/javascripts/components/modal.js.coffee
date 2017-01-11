@@ -18,7 +18,7 @@ $(document).ready ->
       if window['MODAL'].setCookie
         $.cookie window['MODAL'].modalTarget, 'shown', {path: '/'}
 
-  $('.modal-link').on 'click', (e)->
+  $('body').on 'click', '.modal-link', (e)->
     e.preventDefault()
 
     $( $(this).attr('href') ).modal()

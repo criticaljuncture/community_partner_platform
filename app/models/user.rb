@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  extend ActiveHash::Associations::ActiveRecordExtensions
   include UserAudit
 
   after_create :clear_associated_cache
@@ -9,21 +10,22 @@ class User < ActiveRecord::Base
   has_many :roles, through: :user_roles
 
   belongs_to :organization
+  belongs_to :orientation_type
 
   has_many :user_schools
   has_many :schools, through: :user_schools
 
-  has_many :community_programs_as_school_contact_ids,
+  has_many :community_programs_as_organization_contact,
            class_name: CommunityProgram,
-           foreign_key: :school_user_id
+           foreign_key: :user_id
 
-  has_many :community_programs_as_organization_contact_ids,
-           class_name: CommunityProgram,
+  has_many :school_programs_as_school_contact,
+           class_name: SchoolProgram,
            foreign_key: :user_id
 
   has_many :page_views
 
-  attr_accessor :primary_role, :admin_creation, :school_ids_were
+  attr_accessor :primary_role, :admin_creation, :school_ids_were, :new_org_creation
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -40,10 +42,13 @@ class User < ActiveRecord::Base
   validates :primary_role, presence: true
 
   validates :organization_id, presence: true,
-            if: -> { role?(:organization_member) }
+            if: -> { role?(:organization_member) && new_org_creation.blank?}
 
   validates :schools, presence: true,
             if: -> { role?(:school_manager) }
+
+  validates :orientation_type_id, presence: true,
+            if: Proc.new { |u| u.attended_orientation_at }
 
   after_validation :remove_improper_associations_based_on_role
 
@@ -52,6 +57,9 @@ class User < ActiveRecord::Base
   scope :active,  -> { where(active: true) }
 
   scope :inactive, -> { where(active: false) }
+
+  scope :as_contact, -> { where('invitation_sent_at IS NULL') }
+  scope :as_invited_contact, -> { where('invitation_sent_at IS NOT NULL') }
 
   def role?(role)
     roles.map{|r| r.identifier.to_sym}.include?(role)
@@ -72,6 +80,14 @@ class User < ActiveRecord::Base
   def activate_user
     self.active = true
     self.save(validate: false)
+  end
+
+  def active_for_authentication?
+    super && active?
+  end
+
+  def inactive_message
+    I18n.t('users.flash_messages.inactive')
   end
 
   protected

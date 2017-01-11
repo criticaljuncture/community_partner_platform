@@ -12,11 +12,13 @@ module AttrNotProvided
 
       if options.is_a?(Hash)
         attrs.pop
-        method = options.delete(:method)
+        method = options.fetch(:method, nil)
         association = options.fetch(:association) { false }
         seperator = options.fetch(:seperator) { ', ' }
+        text = options.fetch(:text, h.hint_tag(h.t('app.not_provided')))
       else
         method = nil
+        text = h.hint_tag(h.t('app.not_provided'))
       end
 
       attrs.each do |attr|
@@ -34,7 +36,7 @@ module AttrNotProvided
               model.send(attr)
             end
           else
-            h.not_provided
+            text
           end
         end
       end

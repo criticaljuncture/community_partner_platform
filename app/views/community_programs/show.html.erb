@@ -29,6 +29,24 @@
     ) if can?(:toggle_active, @community_program) %>
 <% end %>
 
+<div class="row completeness">
+  <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+    <h7>
+      <%= help t('help.community_program.completeness'), class: 'completeness-tooltip' %>
+      Data Completeness:
+    </h7>
+
+    <%= ProgressBarPresenter.perform(
+      percentage: @community_program.completion_rate,
+      options: {
+        verification_required: @community_program.verification_required?,
+        tooltip: @community_program.completion_rate_tooltip,
+        tooltip_class: 'cj-cp-progress-tooltip'
+      }
+    ) %>
+  </div>
+</div>
+
 <div class="row">
   <%= render partial: 'program_description', locals: {
     community_program: @community_program
@@ -50,3 +68,11 @@
     community_program: @community_program
   } %>
 </div>
+
+<% if can?(:view_district_internals, @community_program) && @community_program.internal_details_present? %>
+  <div class="row">
+    <%= render partial: 'internal_details', locals: {
+      community_program: @community_program
+    } %>
+  </div>
+<% end %>

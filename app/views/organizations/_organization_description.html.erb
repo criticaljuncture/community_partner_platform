@@ -1,5 +1,6 @@
 <%= columnar_table_block 'Organization Description',
-  class: 'organization-description' do %>
+  class: 'organization-description',
+  columns: {xs: 12, md: 12} do %>
 
     <tr>
       <td><%= I18n.t('organization.mission_statement') %></td>

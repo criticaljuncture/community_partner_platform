@@ -12,19 +12,19 @@ module InvitationsHelper
   end
 
   def invitation_accepted(user)
-    str = 'Accepted <br />'
+    str = I18n.t('invitations.accepted')
     str += user.invitation_sent_at < 3.months.ago ?
       user.invitation_sent_at.to_s(:date_at_time_with_year) :
       user.invitation_sent_at.to_s(:date_at_time)
   end
 
   def invited(user)
-    status = 'Sent ' + user.invitation_sent_at.to_s(:date_at_time)
+    status = I18n.t('invitations.sent', sent_at: user.invitation_sent_at.to_s(:date_at_time))
 
     if can?(:send_invitation, user)
       status = status +
         '<br />' +
-        link_to('Resend Invitation', send_invitation_user_path(user.id),
+        link_to(I18n.t('invitations.resend'), send_invitation_user_path(user.id),
           method: :post)
     end
 
@@ -32,10 +32,10 @@ module InvitationsHelper
   end
 
   def not_invited(user)
-    status = 'Not Sent <br />'
+    status = I18n.t('invitations.not_sent')
 
     if can?(:send_invitation, user)
-      status = status + link_to('Send Invitation', send_invitation_user_path(user.id), method: :post)
+      status = status + link_to(I18n.t('invitations.send'), send_invitation_user_path(user.id), method: :post)
     end
 
     status

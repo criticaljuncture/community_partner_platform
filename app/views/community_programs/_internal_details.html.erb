@@ -1,0 +1,19 @@
+<%= columnar_table_block 'Internal Details' do %>
+  <% if community_program.receives_district_funding? %>
+    <tr>
+      <td><%= I18n.t('community_program.receives_district_funding') %></td>
+      <td>
+        <%= community_program.receives_district_funding? ? t('app.yes') : t('app.no') %>
+      </td>
+    </tr>
+  <% end %>
+
+  <% if community_program.notes.present? %>
+    <tr>
+      <td><%= I18n.t('community_program.notes') %></td>
+      <td>
+        <%= community_program.notes %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

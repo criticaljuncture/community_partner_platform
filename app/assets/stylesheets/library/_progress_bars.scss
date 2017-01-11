@@ -14,3 +14,26 @@
     color: $gray-30;
   }
 }
+
+.progress-bar {
+  &.low {
+    background-color: $red;
+  }
+
+  &.medium {
+    background-color: $golden;
+  }
+
+  &.high {
+    background-color: $teal;
+  }
+
+  &.complete-needing-verification {
+    background-color: $orange;
+  }
+
+  &.complete{
+    background-color: $green;
+  }
+}
+

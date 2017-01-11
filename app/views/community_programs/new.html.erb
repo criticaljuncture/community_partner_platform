@@ -13,14 +13,44 @@
     <%= page_header('Create New Community Program', "icon-cpp-handshake") %>
 
     <div class="progress">
-      <%= progress_bar 'info', 34, 'Step 1 In Progress', striped: true %>
-      <%= progress_bar 'inactive', 33, 'Step 2 Not Started' %>
-      <%= progress_bar 'inactive', 33, 'Step 3 Not Started' %>
+      <%= ProgressBarPresenter.perform(
+        percentage: 34,
+        options: {
+          color_ranges: {
+            0..100 => nil
+          },
+          partial_progress_bar: true,
+          striped: true,
+          text: 'Step 1 In Progress',
+          type: "info",
+        } ) %>
+      <%= ProgressBarPresenter.perform(
+        percentage: 33,
+        options: {
+          color_ranges: {
+            0..100 => nil
+          },
+          partial_progress_bar: true,
+          text: 'Step 2 Not Started',
+          type: "inactive",
+        }
+      ) %>
+      <%= ProgressBarPresenter.perform(
+        percentage: 33,
+        options: {
+          color_ranges: {
+            0..100 => nil
+          },
+          partial_progress_bar: true,
+          text: 'Step 3 Not Started',
+          type: "inactive",
+        }
+      ) %>
     </div>
 
     <div class="form_wrapper">
       <%= simple_form_for @community_program.object, method: :post,
-        html: {class: "form-horizontal community-program"},
+        html: {class: "form-horizontal community-program #{@community_program.errors.present? ? 'errors' : ''}"},
         wrapper: :horizontal_form,
         wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
 

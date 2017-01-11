@@ -8,24 +8,27 @@ class Ability < BaseAbility
 
     can :manage, :all
 
-    can :send_invitation, User
-    can :view, :admin_dashboard
+    can :view, :super_admin_dashboard_items
 
-    admin_page_level_abilities
+    district_manager_abilities
   end
 
   def district_manager_abilities
     can :manage, User
     can :add_role, User
     can :send_invitation, User
+    can :edit_district_details, User
 
     can :read, Role, id: [2,3,4]
     can :manage, School
     can :manage, SchoolProgram
+
     can :manage, CommunityProgram
+    can :view_district_internals, CommunityProgram
 
     can :manage, Organization
     can :manage_district_details, Organization
+    can :view_district_internals, Organization
 
     can :manage, QualityElement
     can :manage, ServiceType
@@ -37,11 +40,13 @@ class Ability < BaseAbility
 
   def school_manager_abilities
     can :verify, CommunityProgram, school_id: @user.school_ids
+    can :view_district_internals, CommunityProgram, school_id: @user.school_ids
   end
 
   def organization_member_abilities
     can [:edit, :update, :verification, :verify], Organization, id: @user.organization_id
     can :read, :organization_users
+    can :view_district_internals, Organization, id: @user.organization_id
 
     can :new, User
     can [:index, :show, :create, :update], User, organization_id: @user.organization_id
@@ -61,6 +66,7 @@ class Ability < BaseAbility
     can [:create, :edit, :update, :toggle_active], CommunityProgram, organization_id: @user.organization_id
     can :verify, CommunityProgram, organization_id: @user.organization_id
     can :merge_program, CommunityProgram, organization_id: @user.organization_id
+    can :view_district_internals, CommunityProgram, organization_id: @user.organization_id
 
     can :new, SchoolProgram
     can [:create, :edit, :update, :toggle_active], SchoolProgram do
@@ -72,7 +78,12 @@ class Ability < BaseAbility
 
   def shared_abilities
     can :manage, :application do
-      can?(:manage, QualityElement) || can?(:manage, ServiceType) || can?(:index, User) || can?(:view, :admin_dashboard)
+      can?(:manage, QualityElement) ||
+      can?(:manage, ServiceType) ||
+      can?(:index, User) ||
+      can?(:view, :admin_dashboard) ||
+      can?(:manage, Organization) ||
+      can?(:manage, CommunityProgram)
     end
   end
 
@@ -92,7 +103,6 @@ class Ability < BaseAbility
   end
 
   def admin_page_level_abilities
-    cannot :view, :school_overview_scatter_plot
     can :view, :school_overview_program_breakdown_by_region
     can :view, :school_overview_community_school_element_breakdown
     can :view, :school_overview_school_status
@@ -104,6 +114,7 @@ class Ability < BaseAbility
     can :toggle_active, CommunityProgram
 
     can :view, :visualizations
+    can :view, :admin_dashboard
 
     organization_member_page_level_abilities
   end

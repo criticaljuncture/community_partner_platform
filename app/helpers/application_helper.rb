@@ -31,21 +31,7 @@ module ApplicationHelper
     }
   end
 
-  def help_hover(options={}, &block)
-    gravity   = options.fetch(:gravity) { 's' }
-    classname = options.fetch(:classname) { 'help-hover-tooltip' }
-
-    help_hover = <<-HTML
-      <span class="help-hover icon-cpp-help"
-        data-tooltip-content="#{capture(&block)}"
-        data-tooltip-gravity="#{gravity}"
-        data-tooltip-classname="#{classname}"></span>
-    HTML
-
-    help_hover.html_safe
-  end
-
-  def not_provided
-    content_tag(:span, 'not provided', class: 'hint')
+  def hint_tag(text)
+    content_tag(:span, text, class: 'hint')
   end
 end

@@ -1,0 +1,12 @@
+/.git
+
+/tmp
+/log
+
+/.bundle
+
+# Ignore our secret keys
+/.env
+
+# Ignore documentation
+/doc

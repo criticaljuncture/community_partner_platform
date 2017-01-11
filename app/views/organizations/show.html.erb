@@ -99,10 +99,29 @@
   </div>
 </div>
 
+<div class="row completeness">
+  <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+    <h7>
+      <%= help t('help.organization.completeness'), class: 'completeness-tooltip' %>
+      Data Completeness:
+    </h7>
+
+    <%= ProgressBarPresenter.perform(
+      percentage: @organization.completion_rate,
+      options: {
+        verification_required: @organization.verification_required?,
+        tooltip: @organization.completion_rate_tooltip,
+        tooltip_class: 'cj-org-progress-tooltip'
+      }
+    ) %>
+  </div>
+</div>
+
 <%= page_nav_tabs [
   ['Organization Info', '#org-info'],
   ['Active Programs', '#active-programs',  @organization.unverified_program_count],
-  ['Inactive Programs', '#inactive-programs']
+  ['Inactive Programs', '#inactive-programs'],
+  ['Users', '#user-info'],
 ] %>
 
 <div class="tab-content">
@@ -140,6 +159,26 @@
       <% else %>
         <p>This organization has no inactive programs.</p>
       <% end %>
+    </div>
+  </div>
+
+  <div id="user-info" class="tab-pane active">
+    <div class="row">
+      <%= render partial: 'active_users', locals: {
+        users: UserDecorator.decorate_collection(@organization.users.active | @organization.users.as_invited_contact),
+        organization: @organization
+      } %>
+
+      <%= render partial: 'contacts', locals: {
+        users: UserDecorator.decorate_collection(@organization.users.as_contact),
+        organization: @organization
+      } %>
+    </div>
+
+    <div class="row">
+      <%= render partial: 'inactive_users', locals: {
+        users: UserDecorator.decorate_collection(@organization.users.inactive - @organization.users.as_contact)
+      } %>
     </div>
   </div>
 </div>

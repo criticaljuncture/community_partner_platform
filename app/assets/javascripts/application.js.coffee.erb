@@ -1,19 +1,26 @@
-#= require app
+#= require namespace
 #= require components/modal
 #= require components/notifier
 #= require components/tablesorter
 #= require components/toggle
+#= require components/tooltips
+
+#= require_tree ./templates
+
+#= require app
 
 #= require add_role_form
 #= require community_program
 #= require community_program_form_handler
+#= require organization
+#= require organization_form_handler
 #= require organizations
 #= require schools
 #= require school_program_form_handler
 #= require service_types
-#= require tipsy
-#= require_tree ./templates
 #= require user
 #= require user_form_handler
 #= require user_modal_form_handler
 #= require verify_programs
+
+#= require admin/dashboard

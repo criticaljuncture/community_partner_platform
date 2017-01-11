@@ -4,6 +4,18 @@ class @CJ.Tablesorter
     @config = {
       theme : "bootstrap"
 
+      textExtraction: (node)->
+        # nodes are <td> here
+        attr = $(node).attr('data-sort-value')
+        if typeof attr != 'undefined'
+          attr
+        else # look for an item in this td with a sort value
+          attr = $(node).find('[data-sort-value]')
+          if typeof attr != 'undefined'
+            attr.first().attr('data-sort-value')
+          else # do the default and sort by text of tc
+            $(node).text()
+
       widthFixed: false
 
       # new in v2.7. Needed to add the bootstrap icon!

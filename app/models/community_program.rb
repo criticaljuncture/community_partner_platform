@@ -7,6 +7,11 @@ class CommunityProgram < ActiveRecord::Base
 
   default_scope { where(active: true) }
 
+  before_save :update_completion_rate
+
+  serialize :missing_fields, JSON
+  before_save :update_missing_fields
+
   has_many :school_programs, dependent: :destroy
   has_many :schools, through: :school_programs
   #has_many :regions, through: :schools
@@ -47,6 +52,23 @@ class CommunityProgram < ActiveRecord::Base
       message: "must choose a primary quality element"
     }
 
+  COMPLETION_WEIGHTS = [
+    [
+      0.30,
+      [:name, :service_description, :quality_element,
+       :service_types, :organization]
+    ],
+    [
+      0.35,
+      [:user, :student_population, :ethnicity_culture_groups, :demographic_groups,
+       :grade_levels, :service_times, :days]
+    ],
+    [
+      0.35,
+      [:school_programs]
+    ]
+  ]
+
   def service_types
     primary_service_types
   end
@@ -60,5 +82,28 @@ class CommunityProgram < ActiveRecord::Base
   def should_verify?(current_user)
       current_user.role?(:organization_member) &&
       verification_required?
+  end
+
+  def update_completion_rate
+    self.completion_rate = completion_rate_calculator.completion_rate
+  end
+
+  def update_missing_fields
+    self.missing_fields = completion_rate_calculator.missing_fields
+  end
+
+  def schools_with_differing_completion_rates
+    @schools_with_differing_completion_rates ||= school_programs.select do |school_program|
+      completion_rate != school_program.completion_rate
+    end.sort_by{|s| s.school.name}
+  end
+
+  private
+
+  def completion_rate_calculator
+    @completion_rate_calculator ||= CompletionRateCalculator.new(
+      self,
+      COMPLETION_WEIGHTS
+    )
   end
 end

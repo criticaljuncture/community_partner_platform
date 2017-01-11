@@ -41,9 +41,39 @@
     <%= page_header("Add Schools to '#{@community_program.name}'", "icon-cpp-handshake") %>
 
     <div class="progress">
-      <%= progress_bar 'info', 34, 'Step 1 Complete' %>
-      <%= progress_bar 'info', 33, 'Step 2 Complete' %>
-      <%= progress_bar 'info', 33, 'Step 3 In Progress', striped: true %>
+      <%= ProgressBarPresenter.perform(
+        percentage: 34,
+        text: 'Step 1 Complete',
+        options: {
+          type: "info",
+          partial_progress_bar: true,
+          color_ranges: {
+            0..100 => nil
+          }
+        } ) %>
+      <%= ProgressBarPresenter.perform(
+        percentage: 33,
+        text: 'Step 2 Complete',
+        options: {
+          type: "info",
+          partial_progress_bar: true,
+          color_ranges: {
+            0..100 => nil
+          }
+        }
+      ) %>
+      <%= ProgressBarPresenter.perform(
+        percentage: 33,
+        text: 'Step 3 In Progress',
+        options: {
+          type: "info",
+          striped: true,
+          partial_progress_bar: true,
+          color_ranges: {
+            0..100 => nil
+          }
+        }
+      ) %>
     </div>
 
     <div class="form_wrapper">

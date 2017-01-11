@@ -18,8 +18,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id]).decorate
+    @user = User.where(id: params[:id]).
+      includes(
+        :school_programs_as_school_contact,
+        :community_programs_as_organization_contact
+      ).
+      first.decorate
     authorize! :show, @user
+
+    @school_programs_by_community_program = @user.
+      school_programs_as_school_contact.
+      group_by(&:community_program).
+      sort_by{|community_program, school_program| community_program.name}.
+      to_h
   end
 
   def new
@@ -32,7 +43,7 @@ class UsersController < ApplicationController
     authorize! :new, @user
 
     if request.xhr?
-      if user_params[:organization_id]
+      if user_params[:organization_id].present?
         @organizations = Array(Organization.find(user_params[:organization_id]))
       else
         @organizations = []
@@ -72,6 +83,8 @@ class UsersController < ApplicationController
           @user.primary_role = @user.roles.first
         end
 
+        set_orientation_fields
+
         authorize! :create, @user
 
         @user.subdomain = current_user.subdomain
@@ -85,7 +98,7 @@ class UsersController < ApplicationController
         respond_to do |format|
           format.html {
             flash.notice = message
-            redirect_to users_path(active_tab: 'inactive')
+            redirect_to user_path(@user)
           }
 
           format.json {
@@ -138,12 +151,15 @@ class UsersController < ApplicationController
 
         @user.admin_creation = can?(:update, User)
 
-        @user.update_attributes!(user_params.except(:primary_role))
+        @user.attributes = user_params.except(:primary_role, :new_org_creation)
+        set_orientation_fields
+
+        @user.save!
 
         flash.notice = t('users.flash_messages.update.success',
                          name: @user.full_name)
 
-        redirect_to action: :index
+        redirect_to user_path(@user)
       end
     rescue ActiveRecord::RecordInvalid
       flash.now[:notice] = t('users.flash_messages.save.failure',
@@ -169,14 +185,31 @@ class UsersController < ApplicationController
 
   private
 
+  def set_orientation_fields
+    if @user.orientation_type_id_changed? &&
+       @user.orientation_type_id.present? &&
+       @user.attended_orientation_at.blank?
+
+      @user.attended_orientation_at = Date.current
+    end
+  end
+
   def user_params
-    params.require(:user).permit(:first_name,
-                                 :last_name,
-                                 :email,
-                                 :phone_number,
-                                 :primary_role,
-                                 :organization_id,
-                                 :title,
-                                 school_ids: [])
+    params.require(:user).permit(
+      :active,
+      :attended_orientation_at,
+      :email,
+      :first_name,
+      :last_name,
+      :new_org_creation,
+      :organization_id,
+      :orientation_type_id,
+      :phone_number,
+      :primary_role,
+      :title,
+      school_ids: []
+    ).tap do |u_params|
+      u_params.delete(:active) unless can? :manage, User
+    end
   end
 end

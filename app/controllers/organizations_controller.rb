@@ -15,7 +15,9 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = OrganizationDecorator.decorate(
-      Organization.includes(:community_programs).find(params[:id])
+      Organization.includes(
+        {community_programs: [:quality_element, :primary_service_types, :schools]}
+      ).find(params[:id])
     )
     authorize! :show, @organization
 
@@ -25,6 +27,7 @@ class OrganizationsController < ApplicationController
 
   def new
     @organization = Organization.new
+    @organization.user_ids_to_assign = []
     authorize! :new, @organization
     @organization = OrganizationDecorator.decorate(@organization)
   end
@@ -33,15 +36,26 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(organization_params.except(:verification))
     authorize! :create, @organization
 
-    @organization.save!
+    @organization.user_ids_to_assign = users_to_assign.map(&:id)
 
-    flash.notice = t('organizations.flash_messages.create.success',
-                      name: @organization.name)
-    redirect_to organization_path(@organization)
-  rescue ActiveRecord::RecordInvalid
-    flash.now[:error] = t('errors.form_error', count: @organization.errors.count)
-    @organization = OrganizationDecorator.decorate(@organization)
-    render :new
+    ActiveRecord::Base.transaction do
+      begin
+      @organization.save!
+
+      users_to_assign.each do |user|
+        user.update!(organization_id: @organization.id, active: true)
+      end
+
+      flash.notice = t('organizations.flash_messages.create.success',
+                        name: @organization.name)
+      redirect_to organization_path(@organization)
+
+      rescue ActiveRecord::RecordInvalid
+        flash.now[:error] = t('errors.form_error', count: @organization.errors.count)
+        @organization = OrganizationDecorator.decorate(@organization)
+        render :new
+      end
+    end
   end
 
   def edit
@@ -129,10 +143,19 @@ class OrganizationsController < ApplicationController
                 :notes,
                 :phone_number,
                 :program_impact,
+                :receives_district_funding,
                 :services_description,
+                :subcontractor_with_lead_agency,
                 :url,
+                :user_id,
                 :verification_process,
-                :zip_code,
+                :zip_code
         )
+    end
+
+    def users_to_assign
+      @users_to_assign ||= Array.wrap(params["user_ids_to_assign"]).
+        reject{|user_id| user_id.empty?}.
+        map{|user_id| User.find(user_id)}
     end
 end

@@ -1,5 +1,6 @@
 .table {
   tr { vertical-align: middle; }
+
   .buttons {
     text-align: right;
 
@@ -12,4 +13,8 @@
       }
     }
   }
+}
+
+.table-multi-tbody {
+  tbody tr:first-child td { border-top: 0; }
 }

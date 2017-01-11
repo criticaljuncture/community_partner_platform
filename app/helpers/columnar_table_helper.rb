@@ -20,6 +20,7 @@ module ColumnarTableHelper
   end
 
   def columnar_table(content=nil, options={}, &block)
+    return "" unless content || block_given?
     content = content.nil? ? capture(&block) : content
 
     table_class = options.fetch(:class){ '' }
@@ -29,5 +30,10 @@ module ColumnarTableHelper
       class: "table table-condensed #{table_class}") do
       content_tag(:tbody, content)
     end
+  end
+
+  def columnar_table_body(content=nil, options={}, &block)
+    content = content.nil? ? capture(&block) : content
+    content_tag(:tbody, content)
   end
 end

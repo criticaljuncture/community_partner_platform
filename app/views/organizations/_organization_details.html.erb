@@ -11,7 +11,7 @@
     <tr>
       <td><%= I18n.t('organization.url') %></td>
       <td>
-        <%= link_to organization.url, h(organization.url) %>
+        <%= auto_link organization.url, html: {target: "_blank"} %>
       </td>
     </tr>
 
@@ -35,4 +35,13 @@
         <%= organization.city_state_zip %>
       </td>
     </tr>
+
+    <% if organization.primary_contact %>
+      <tr>
+        <td><%= I18n.t('organization.primary_contact') %></td>
+        <td>
+          <%= link_to organization.primary_contact.full_name, user_path(organization.primary_contact)  %>
+        </td>
+      </tr>
+    <% end %>
 <% end %>

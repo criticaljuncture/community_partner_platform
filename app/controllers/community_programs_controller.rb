@@ -6,7 +6,9 @@ class CommunityProgramsController < ApplicationController
   end
 
   def show
-    @community_program = CommunityProgram.unscoped.find(params[:id])
+    @community_program = CommunityProgram.unscoped.
+      includes(school_programs: [:school, :user, :days, :demographic_groups, :ethnicity_culture_groups, :grade_levels, :service_times, :student_population]).
+      find(params[:id])
     authorize! :show, @community_program
 
     @community_program = CommunityProgramDecorator.decorate(
@@ -34,7 +36,9 @@ class CommunityProgramsController < ApplicationController
     )
     authorize! :create, @community_program
 
-    @community_program.primary_quality_element.service_type_ids = community_program_params[:primary_quality_element][:service_type_ids]
+    if @community_program.primary_quality_element
+      @community_program.primary_quality_element.service_type_ids = community_program_params[:primary_quality_element_attributes][:service_type_ids]
+    end
 
     if current_user.role?(:organization_member)
       @community_program.last_verified_at = Time.now
@@ -186,6 +190,7 @@ class CommunityProgramsController < ApplicationController
       :name,
       :notes,
       :organization_id,
+      :receives_district_funding,
       :school_id,
       :school_user_id,
       :secondary_quality_element_id,

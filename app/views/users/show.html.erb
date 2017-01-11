@@ -44,11 +44,13 @@
     <% if can? :view, :user_details %>
       <%= columnar_table_block 'User Access', class: 'user-access',
         auto_table: false do %>
-        <% @user.roles.each do |role| %>
-          <%= columnar_table do %>
-            <%= @user.display.role(role) %>
+        <table class="table table-condensed table-multi-tbody">
+          <% @user.roles.each do |role| %>
+            <%= columnar_table_body do %>
+              <%= @user.display.role(role) %>
+            <% end %>
           <% end %>
-        <% end %>
+        </table>
       <% end %>
     <% end %>
   </div>
@@ -56,6 +58,20 @@
 
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+    <% if can? :view, :user_details %>
+      <%= columnar_table_block 'District Details', class: 'district-details' do %>
+        <tr>
+          <td><%= t('user.orientation_type') %></td>
+          <td><%= @user.orientation_type.try(:name) %></td>
+        </tr>
+
+        <tr>
+          <td><%= t('user.attended_orientation_at') %></td>
+          <td><%= @user.attended_orientation_at %></td>
+        </tr>
+      <% end %>
+    <% end %>
+
     <% if can? :manage, @user %>
       <%= columnar_table_block 'User System Info', class: 'user-access' do %>
         <tr>
@@ -74,6 +90,64 @@
             <td><%= @user.last_login %></td>
           </tr>
         <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+    <% if @school_programs_by_community_program.present? %>
+      <%= columnar_table_block 'Programs As Primary School Contact',
+        class: 'user-access', auto_table: false do %>
+        <table class="table table-condensed table-multi-tbody">
+          <% @school_programs_by_community_program.each do |community_program, school_programs| %>
+            <%= columnar_table_body do %>
+              <tr>
+                <td>Program</td>
+                <td>
+                  <%= link_to(
+                        community_program.name,
+                        community_program_path(community_program) )%>
+                </td>
+              </tr>
+              <tr>
+                <td>Schools</td>
+                <td>
+                  <%= view_more_toggle_list(school_programs.map(&:school)) do |school|
+                        school.name
+                      end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      <% end %>
+    <% end %>
+
+    <% if @user.community_programs_as_organization_contact.present? %>
+      <%= columnar_table_block 'Programs As Primary Organization Contact',
+        class: 'user-access', auto_table: false do %>
+        <table class="table table-condensed table-multi-tbody">
+          <% @user.community_programs_as_organization_contact.each do |community_program| %>
+            <%= columnar_table_body do %>
+              <tr>
+                <td>Program</td>
+                <td>
+                  <%= link_to(
+                        community_program.name,
+                        community_program_path(community_program) )%>
+                </td>
+              </tr>
+              <tr>
+                <td>Schools</td>
+                <td>
+                  Present at <%= pluralize(community_program.schools.count, 'school') %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
       <% end %>
     <% end %>
   </div>
