@@ -175,6 +175,12 @@ class @CPP.SchoolProgramFormHandler
       request.done (response)=>
         @formSubmitDone response
 
+        removeSchoolLink = $("tr[data-school-program-id='#{response.school_program_id}'] .modal-link")
+        removeSchoolLink.on 'click', (e)->
+          e.preventDefault()
+
+          $( $(this).attr('href') ).modal()
+
       request.fail (response)=>
         @formSubmitFail response
 
