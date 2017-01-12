@@ -1,6 +1,10 @@
 <p>Hello <%= @resource.full_name %>!</p>
 
-<p>You have been invited to the OUSD Community Partner Platform. You can accept the invitation through the link below.</p>
+<p>
+  You have been invited to the
+  <%= I18n.translate("#{@resource.subdomain}.district.name") %> Community Partner Platform.
+  You can accept the invitation through the link below.
+</p>
 
 <p><%= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @token) %></p>
 
