@@ -76,16 +76,16 @@ gem 'jquery-cookie-rails'
 
 # redis analytics
 gem "minuteman-rails",
-  github: 'elcuervo/minuteman-rails',
-  ref: '473197950a5072fa60bda39f4736098958d7b9ed'
-gem "minuteman", "~> 1.0.3"
+  github: 'lulezi/minuteman-rails',
+  ref: '6894bca123e4a89a76102b4ffa42127a6f1238ce'
+gem "minuteman", "~> 2.0.0"
 
 # record versioning
 gem 'paper_trail', '>= 3.0.0.rc1'
 
 # redis
-gem 'redis', '~> 3.0.7'
-gem 'redis-namespace', '~> 1.4.1'
+gem 'redis', '~> 3.3.2'
+gem 'redis-namespace', '~> 1.5.2'
 
 # Use SCSS for stylesheets
 gem 'sass', '~> 3.4.16'

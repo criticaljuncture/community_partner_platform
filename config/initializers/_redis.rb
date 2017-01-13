@@ -5,13 +5,3 @@ REDIS_CONNECTION_SETTINGS = {
 }
 
 $redis = Redis.new(REDIS_CONNECTION_SETTINGS)
-
-if defined?(PhusionPassenger)
-  PhusionPassenger.on_event(:starting_worker_process) do |forked|
-    # We're in smart spawning mode.
-    if forked
-      $redis.client.disconnect
-      $redis = Redis.new(REDIS_CONNECTION_SETTINGS)
-    end
-  end
-end
