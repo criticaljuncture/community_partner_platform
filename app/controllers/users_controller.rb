@@ -175,8 +175,6 @@ class UsersController < ApplicationController
 
     @user.invite!(current_user)
 
-    track("users:send_invitation", @user.id)
-
     flash.notice = t('users.flash_messages.invitation.sent',
                      name: @user.full_name,
                      email: @user.email)

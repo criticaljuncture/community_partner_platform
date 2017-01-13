@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/lulezi/minuteman-rails.git
-  revision: 6894bca123e4a89a76102b4ffa42127a6f1238ce
-  ref: 6894bca123e4a89a76102b4ffa42127a6f1238ce
-  specs:
-    minuteman-rails (0.1.1)
-      minuteman
-      rails
-
-GIT
   remote: git://github.com/peregrinator/jquery-modal-rails.git
   revision: 97bc84d7723d324876971f45f255e066fbb6ad49
   ref: 97bc84d7723d324876971f45f255e066fbb6ad49
@@ -418,7 +409,6 @@ DEPENDENCIES
   jquery-rails
   js-routes (~> 1.1.0)
   minuteman (~> 2.0.0)
-  minuteman-rails!
   mysql2 (~> 0.3.20)
   paper_trail (>= 3.0.0.rc1)
   pry (~> 0.10.0)

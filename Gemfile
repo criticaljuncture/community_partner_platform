@@ -75,9 +75,6 @@ gem 'jquery-rails'
 gem 'jquery-cookie-rails'
 
 # redis analytics
-gem "minuteman-rails",
-  github: 'lulezi/minuteman-rails',
-  ref: '6894bca123e4a89a76102b4ffa42127a6f1238ce'
 gem "minuteman", "~> 2.0.0"
 
 # record versioning
