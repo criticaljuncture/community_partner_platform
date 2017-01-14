@@ -39,6 +39,7 @@
   <%= f.input :services_description, as: :text %>
   <%= f.input :program_impact, as: :text %>
   <%= f.input :cost_per_student, as: :text %>
+
   <% if new_org %>
     <%= select_tag :user_ids_to_assign,
           options_for_select(
