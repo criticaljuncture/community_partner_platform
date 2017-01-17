@@ -100,6 +100,7 @@ class OrganizationsController < ApplicationController
 
   def verification
     @organization = Organization.find(params[:id])
+    @organization.user_ids_to_assign = []
     authorize! :verification, @organization
 
     @organization = OrganizationDecorator.decorate(@organization)
