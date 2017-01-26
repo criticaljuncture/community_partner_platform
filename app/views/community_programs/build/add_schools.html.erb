@@ -43,35 +43,35 @@
     <div class="progress">
       <%= ProgressBarPresenter.perform(
         percentage: 34,
-        text: 'Step 1 Complete',
         options: {
-          type: "info",
-          partial_progress_bar: true,
           color_ranges: {
             0..100 => nil
-          }
+          },
+          partial_progress_bar: true,
+          text: 'Step 1 Complete',
+          type: "info",
         } ) %>
       <%= ProgressBarPresenter.perform(
         percentage: 33,
-        text: 'Step 2 Complete',
         options: {
-          type: "info",
-          partial_progress_bar: true,
           color_ranges: {
             0..100 => nil
-          }
+          },
+          partial_progress_bar: true,
+          text: 'Step 2 Complete',
+          type: "info",
         }
       ) %>
       <%= ProgressBarPresenter.perform(
         percentage: 33,
-        text: 'Step 3 In Progress',
         options: {
-          type: "info",
-          striped: true,
-          partial_progress_bar: true,
           color_ranges: {
             0..100 => nil
-          }
+          },
+          partial_progress_bar: true,
+          striped: true,
+          text: 'Step 3 In Progress',
+          type: "info",
         }
       ) %>
     </div>
