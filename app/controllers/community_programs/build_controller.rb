@@ -4,7 +4,9 @@ class CommunityPrograms::BuildController < ApplicationController
   steps :add_program_details, :add_schools
 
   def show
-    @community_program = CommunityProgram.find(params[:community_program_id])
+    @community_program = CommunityProgram.unscoped
+      .includes(school_programs: [:school, :user, :days, :demographic_groups, :ethnicity_culture_groups, :grade_levels, :service_times, :student_population])
+      .find(params[:community_program_id])
     authorize! :edit, @community_program
 
     render_wizard
