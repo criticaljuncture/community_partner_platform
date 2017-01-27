@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829205954) do
+ActiveRecord::Schema.define(version: 20170127035628) do
 
   create_table "community_program_demographic_groups", force: :cascade do |t|
     t.integer  "demographic_group_id", limit: 4
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20160829205954) do
     t.integer  "last_verified_by",          limit: 4
     t.float    "completion_rate",           limit: 24,    default: 0.0
     t.boolean  "receives_district_funding"
-    t.text     "missing_fields",            limit: 65535
+    t.string   "missing_fields",            limit: 15000, default: "[]"
   end
 
   add_index "community_programs", ["active"], name: "index_community_programs_on_active", using: :btree
@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 20160829205954) do
     t.float    "completion_rate",                limit: 24,    default: 0.0
     t.boolean  "receives_district_funding"
     t.boolean  "subcontractor_with_lead_agency",               default: false
-    t.text     "missing_fields",                 limit: 65535
+    t.string   "missing_fields",                 limit: 15000, default: "[]"
     t.integer  "user_id",                        limit: 4
   end
 
@@ -275,7 +275,7 @@ ActiveRecord::Schema.define(version: 20160829205954) do
     t.datetime "active_changed_on"
     t.boolean  "site_agreement_on_file"
     t.float    "completion_rate",        limit: 24,    default: 0.0
-    t.text     "missing_fields",         limit: 65535
+    t.string   "missing_fields",         limit: 15000, default: "[]"
   end
 
   add_index "school_programs", ["active", "community_program_id"], name: "index_school_programs_on_active_and_community_program_id", using: :btree
