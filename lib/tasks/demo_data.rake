@@ -14,7 +14,16 @@ namespace :demo do
     School.truncate
     User.truncate
     UserRole.truncate
+
     CommunityProgram.truncate
+    CommunityProgramDemographicGroup.truncate
+    CommunityProgramEthnicityCultureGroup.truncate
+    CommunityProgramGradeLevel.truncate
+    CommunityProgramQualityElement.truncate
+    CommunityProgramQualityElementServiceType.truncate
+    CommunityProgramServiceDay.truncate
+    CommunityProgramServiceTime.truncate
+
     SchoolProgram.truncate
   end
 
