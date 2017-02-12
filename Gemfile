@@ -22,6 +22,9 @@ gem "aws-ses", "~> 0.5.0"
 # Twitter bootstrap
 gem 'bootstrap-sass', '~> 3.3.5.1'
 
+# Check if point exists in kml boundary
+gem 'border_patrol', github: 'square/border_patrol'
+
 # css3 mixins, etc
 gem "bourbon", "~> 4.2.3"
 

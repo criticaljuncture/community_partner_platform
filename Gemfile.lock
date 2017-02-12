@@ -9,6 +9,13 @@ GIT
       thor (~> 0.14)
       uuidtools
 
+GIT
+  remote: git://github.com/square/border_patrol.git
+  revision: 72c50ea17c89f7fa89fbaed25ad3db3fa1d8eeb1
+  specs:
+    border_patrol (0.2.1)
+      nokogiri
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -384,6 +391,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-datepicker-rails (~> 1.6.4.1)
   bootstrap-sass (~> 3.3.5.1)
+  border_patrol!
   bourbon (~> 4.2.3)
   cancancan
   capistrano (~> 2.15.5)
@@ -434,4 +442,4 @@ DEPENDENCIES
   wicked
 
 BUNDLED WITH
-   1.13.6
+   1.14.3

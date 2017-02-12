@@ -31,3 +31,6 @@ config/environments/*.local.yml
 
 # Ignore local development items
 dev
+
+# Ignore KML files by default
+data/kml/*

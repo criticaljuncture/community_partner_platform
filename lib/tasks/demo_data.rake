@@ -61,12 +61,13 @@ namespace :demo do
   end
 
   def generate_schools(count)
-    data_generator = DemoDataGenerator::School.new
+    data_generator = DemoDataGenerator::School.new;0
 
     schools = []
     names = []
 
     count.times do
+      data_generator.regenerate
       name = data_generator.name
       region = Region.find(data_generator.region)
 
@@ -74,7 +75,13 @@ namespace :demo do
       next if names.include?(name)
       names << name
 
-      school = School.new(name: name, region: region)
+      school = School.new(
+        name: name,
+        region: region,
+        site_type_norm: data_generator.site_type_norm,
+        lat: data_generator.lat,
+        lng: data_generator.lng
+      )
       school.save(validate: false)
       schools << school
     end
