@@ -1,5 +1,5 @@
 $(document).ready ->
-  if $('#community-programs-map')
+  if $('#community-programs-map').length > 0
     new CPP.CommunityProgramsMap(
       $('#community-programs-map'),
       {
