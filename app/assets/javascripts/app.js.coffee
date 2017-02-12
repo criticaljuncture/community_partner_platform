@@ -99,6 +99,13 @@ $(document).ready ->
     }
   )
 
+  # change page on selection
+  $(document).ready ->
+    goto_forms = $('form.goto-selection')
+    if goto_forms.length > 0
+      goto_forms.each (index, element) ->
+        new CPP.GotoSelector($(element))
+
 $(document).on(
   {
     'show.bs.modal': ()->
