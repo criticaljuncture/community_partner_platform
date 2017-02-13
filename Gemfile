@@ -10,7 +10,7 @@ gem 'mysql2', '~> 0.3.20'
 gem 'active_hash'
 
 # json api
-gem 'active_model_serializers'
+gem 'active_model_serializers' #0.8.1
 
 # fast imports
 gem 'activerecord-fast-import', '~> 0.2.1'
