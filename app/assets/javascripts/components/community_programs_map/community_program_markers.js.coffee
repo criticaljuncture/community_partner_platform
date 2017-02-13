@@ -127,8 +127,8 @@ class @CPP.CommunityProgramMarkers
         layers: [ "non-cluster-markers-blur-#{site_type_norm}" ] )
 
       # Change the cursor style as a UI indicator.
-
       map.getCanvas().style.cursor = if features.length then 'pointer' else ''
+
       if !features.length
         popup.remove()
         return
@@ -139,7 +139,9 @@ class @CPP.CommunityProgramMarkers
       tooltip = HandlebarsTemplates['community_program_marker_tooltip']({
         "schoolName": feature.properties.schoolName,
         "programCount": feature.properties.programCount,
-        "schoolProgramsByElement": feature.properties.schoolProgramsByElement,
+        "schoolProgramsByElement": JSON.parse(
+          feature.properties.schoolProgramsByElement
+        ),
       })
 
       popup.setLngLat(feature.geometry.coordinates).setHTML(tooltip).addTo map

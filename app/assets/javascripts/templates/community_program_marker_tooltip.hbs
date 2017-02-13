@@ -1,6 +1,11 @@
-<h1>{{schoolName}}</h1>
-<dl>
-  <dt>Total Program Count</dt>
-  <dd>{{programCount}}</dd>
-  {{{schoolProgramsByElement}}}
-</dl>
+<div class="community-programs-map-popup">
+  <h1>{{schoolName}}</h1>
+  <dl>
+    <dt>Total Program Count</dt>
+    <dd>{{programCount}}</dd>
+    {{#each schoolProgramsByElement}}
+      <dt>{{this.name}}</dt>
+      <dd>{{this.count}}</dd>
+    {{/each}}
+  </dl>
+</div>

@@ -24,16 +24,14 @@ class CommunityProgramMarkerSerializer < ActiveModel::Serializer
   private
 
   def school_programs_by_element
-    object.
-      school_programs.
-      reject{|sp| sp.quality_element.nil?}.
-      group_by(&:quality_element).
-      sort_by{|qe, p| qe.name}.map do |quality_element, school_programs|
-        "<dt>#{quality_element.name}</dt>
-         <dd>#{school_programs.count}</dd>
-        "
-      end.
-      join
+    object
+      .school_programs
+      .reject{|sp| sp.quality_element.nil?}
+      .group_by(&:quality_element)
+      .sort_by{|qe, p| qe.name}
+      .map do |quality_element, school_programs|
+        {name: quality_element.name, count: school_programs.count}
+      end
   end
 
 end
