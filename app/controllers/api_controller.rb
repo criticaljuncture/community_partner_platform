@@ -6,7 +6,7 @@ class ApiController < ApplicationController
     @schools = School.where(
       active: true,
       site_type_norm: params[:site_type_norm]
-    )
+    ).includes(school_programs: {community_program: :quality_element})
 
     render json: GeoJsonSerializer.new(@schools, {serializer: CommunityProgramMarkerSerializer})
   end
