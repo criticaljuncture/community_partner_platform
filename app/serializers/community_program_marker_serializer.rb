@@ -1,4 +1,5 @@
 class CommunityProgramMarkerSerializer < BaseSerializer
+  cache key: 'community_program_markers'
   attributes :type, :properties, :geometry
 
   def type
