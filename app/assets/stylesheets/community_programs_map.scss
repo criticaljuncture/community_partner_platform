@@ -84,3 +84,21 @@ $map-menu-link-bg-dark: darken($map-menu-link-bg, 10);
     &.senior { background-color: $map-circle-high; }
   }
 }
+
+.mapboxgl-popup-content .community-programs-map-popup {
+  width: 310px;
+  
+  h1 {
+    border-bottom: 1px solid $text-color;
+    font-size: modular-scale(2);
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  dl {
+    font-size: modular-scale(-1);
+    font-weight: normal;
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }
+}
