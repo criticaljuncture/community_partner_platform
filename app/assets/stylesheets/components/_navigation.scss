@@ -28,6 +28,7 @@ $nav-active-color: $green;
 
   &.navbar-fixed-top {
     margin-top: $user-nav-height + $user-nav-border-size;
+    z-index: 2;
   }
 
   a {
