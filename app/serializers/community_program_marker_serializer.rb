@@ -1,4 +1,4 @@
-class CommunityProgramMarkerSerializer < ActiveModel::Serializer
+class CommunityProgramMarkerSerializer < BaseSerializer
   attributes :type, :properties, :geometry
 
   def type
@@ -9,7 +9,7 @@ class CommunityProgramMarkerSerializer < ActiveModel::Serializer
     {
       "schoolName": object.name,
       "programCount": object.school_programs.size,
-      "url": "http://www.google.com",
+      "schoolUrl": school_url(object),
       "schoolProgramsByElement": school_programs_by_element,
     }
   end
@@ -30,7 +30,10 @@ class CommunityProgramMarkerSerializer < ActiveModel::Serializer
       .group_by(&:quality_element)
       .sort_by{|qe, p| qe.name}
       .map do |quality_element, school_programs|
-        {name: quality_element.name, count: school_programs.count}
+        {
+          name: quality_element.name,
+          count: school_programs.count
+        }
       end
   end
 

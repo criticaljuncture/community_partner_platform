@@ -86,8 +86,10 @@ $map-menu-link-bg-dark: darken($map-menu-link-bg, 10);
 }
 
 .mapboxgl-popup-content .community-programs-map-popup {
+  max-height: 200px;
+  overflow-y: auto;
   width: 310px;
-  
+
   h1 {
     border-bottom: 1px solid $text-color;
     font-size: modular-scale(2);
