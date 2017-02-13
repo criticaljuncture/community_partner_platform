@@ -62,7 +62,7 @@ gem "dalli", "~> 2.6.4"
 # forms
 gem 'formtastic', '~> 3.1.3'
 gem 'formtastic-bootstrap', '~> 3.1.1'
-gem 'simple_form', '~> 3.1.0'
+gem 'simple_form', '~> 3.4.0'
 
 # Handlebars js templates
 gem 'handlebars_assets'
