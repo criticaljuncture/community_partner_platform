@@ -3,3 +3,6 @@ community_program:
 
 organization:
   verification_date: '2016-06-20'
+
+application:
+  canonical_hostname: 'https://ousd.communitypartnerplatform.org'

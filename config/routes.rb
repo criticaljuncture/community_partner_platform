@@ -1,3 +1,5 @@
+Rails.application.routes.default_url_options[:host] = Settings.application.canonical_hostname
+
 OusdCommunityPartners::Application.routes.draw do
   devise_for :users, path: "auth", class_name: 'User', controllers: { registrations: "users/registrations" }
 
