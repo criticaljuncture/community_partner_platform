@@ -1,8 +1,5 @@
 class Public::SpecialController < Public::ApplicationController
-
   def home
-    @school = School.new
-    @organization = Organization.new
+    @presenter = Public::HomePagePresenter.new
   end
-
 end

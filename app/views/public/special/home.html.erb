@@ -16,7 +16,7 @@
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
 
     <div class="form_wrapper">
-      <%= simple_form_for @school,
+      <%= simple_form_for :school,
         url: '',
         method: :get,
         html: {
@@ -25,11 +25,13 @@
         },
         wrapper: :vertical_form do |f| %>
 
-        <%= f.input :name,
+        <%= f.input :school_id,
+          as: :grouped_select,
+          collection: @presenter.schools,
+          group_method: :last,
           label: false,
-          as: :select,
-          collection: School.all,
-          prompt: "Please Select a School" %>
+          prompt: "Please Select a School",
+          required: false %>
       <% end %>
     </div>
 
@@ -42,7 +44,7 @@
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
 
     <div class="form_wrapper">
-      <%= simple_form_for @organization,
+      <%= simple_form_for :organization,
         url: '',
         method: :get,
         html: {
@@ -51,10 +53,12 @@
         },
         wrapper: :vertical_form do |f| %>
 
-        <%= f.input :name,
+        <%= f.input :organization_id,
           label: false,
-          as: :select,
-          collection: Organization.all,
+          as: :grouped_select,
+          collection: @presenter.organizations,
+          group_method: :last,
+          label_method: :name,
           prompt: "Please Select an Organization" %>
       <% end %>
     </div>
