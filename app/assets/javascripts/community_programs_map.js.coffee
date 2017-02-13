@@ -9,6 +9,6 @@ $(document).ready ->
           [-122.39955550642291, 37.67451729486625], # Southwest coordinates
           [-122.02715595408341, 37.92691743936612]  # Northeast coordinates
         ],
-        zoom: 11.34
+        zoom: 11
       }
     )

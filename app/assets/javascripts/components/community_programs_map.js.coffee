@@ -34,7 +34,8 @@ class @CPP.CommunityProgramsMap
 
   addMapControls: ->
     @map.addControl(
-      new mapboxgl.NavigationControl({position: 'bottom-right'})
+      new mapboxgl.NavigationControl(),
+      'bottom-right'
     )
 
   logEvents: ->
