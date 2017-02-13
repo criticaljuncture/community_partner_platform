@@ -8,16 +8,7 @@ class ApiController < ApplicationController
       site_type_norm: params[:site_type_norm]
     )
 
-    json = {
-      "type": "FeatureCollection",
-    }.merge(
-      features: ActiveModel::ArraySerializer.new(
-        @schools,
-        each_serializer: CommunityProgramMarkerSerializer
-      )
-    )
-
-    render :json => json
+    render json: GeoJsonSerializer.new(@schools, {serializer: CommunityProgramMarkerSerializer})
   end
 
   def community_programs
