@@ -35,6 +35,8 @@
           as: :grouped_select,
           collection: @presenter.schools,
           group_method: :last,
+          label_method: :name,
+          value_method: :id,
           label: false,
           prompt: "Please Select a School",
           required: false %>

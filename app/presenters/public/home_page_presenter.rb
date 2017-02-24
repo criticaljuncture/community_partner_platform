@@ -1,8 +1,10 @@
 class Public::HomePagePresenter
   def schools
-    @schools ||= School.select(
-      :name, :id, :site_type_norm
-    ).order(:site_type_norm, :name).group_by(&:site_type_norm)
+    @schools ||= SchoolDecorator.decorate_collection(
+      School.select(
+        :name, :id, :site_type_norm
+      ).order(:site_type_norm, :name)
+    ).group_by(&:human_site_type)
   end
 
   def organizations
