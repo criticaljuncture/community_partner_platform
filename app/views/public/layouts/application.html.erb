@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>
+  <%= "#{t("#{request.subdomain}.app.title")}#{('::' + content_for(:page_title)) if content_for :page_title}" %>
+</title>
+
+<link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic|Open+Sans:400italic,800italic,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Merriweather&text=1234567890' rel='stylesheet' type='text/css'>
+
+  <%= stylesheet_link_tag    'vendor', media: 'all' %>
+  <%= stylesheet_link_tag    "public", media: "all" %>
+
+  <%= javascript_include_tag "vendor" %>
+  <%= javascript_include_tag "public" %>
+
+  <%= csrf_meta_tags %>
+
+  <%= yield :modal_javascript %>
+  <%= yield :javascripts %>
+</head>
+<body role="document">
+  <%= render "layouts/user_navigation" %>
+  <%= render "layouts/navigation" %>
+
+  <div class="container" role="main">
+    <%= render "layouts/notices" %>
+    <%= render "layouts/breadcrumbs" %>
+
+    <%= yield %>
+  </div>
+
+  <div class="footer"></div>
+</body>
+</html>

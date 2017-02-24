@@ -46,6 +46,19 @@
         }
       }
     }
+
+    a.toggle {
+      width: 120px;
+
+      &.open {
+        .glyphicon-eye-open { display: none; }
+        .glyphicon-eye-close { display: inline-block; }
+      }
+      &.closed {
+        .glyphicon-eye-open { display: inline-block; }
+        .glyphicon-eye-close { display: none; }
+      }
+    }
   }
 
   .columnar-table-block-header + table,

@@ -1,45 +1,9 @@
-@import "variables";
-
-$tableBackgroundHover: #f5fcff;
-
-@import 'bourbon';
-@import "fonts";
-
-@import "library/colors";
-@import "library/progress_bars";
-@import "library/zindex";
-
-@import "mixins/rounded";
-
-@import "web_fonts";
-
-// Font sizes based on ratios
-$em-base: 16px;
-@import 'application_fonts';
-
-@import "components/alerts";
-@import "components/breadcrumbs";
-@import "components/buttons";
-@import "components/columnar_table_block";
-@import "components/completeness";
-@import "components/count_bubble";
-@import "components/help_hover";
-@import "components/loader";
-@import "components/modal";
-@import "components/nav_tabs";
-@import "components/navigation";
-@import "components/page_header";
-
-@import "components/charts/donut_status_box";
+@import "essential";
 
 @import "forms";
 @import "inputs/columized_checkboxes";
-@import "common";
 
-@import "app";
 @import "community_programs";
-@import "community_programs_map";
-@import "contextual_help";
 @import "organizations";
 @import "schools";
 @import "status_circle";

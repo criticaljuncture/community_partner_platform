@@ -14,4 +14,7 @@ Rails.application.config.assets.precompile += %w(
 
   school_program.js
   vendor.js
+
+  public.css
+  public.js
 )

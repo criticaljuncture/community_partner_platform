@@ -14,21 +14,6 @@ table.community_programs {
 }
 
 .columnar-table-block {
-  .columnar-table-block-header {
-    a.toggle {
-      width: 120px;
-
-      &.open {
-        .glyphicon-eye-open { display: none; }
-        .glyphicon-eye-close { display: inline-block; }
-      }
-      &.closed {
-        .glyphicon-eye-open { display: inline-block; }
-        .glyphicon-eye-close { display: none; }
-      }
-    }
-  }
-
   &.program-description {
     td:first-child { width: 40%; }
   }

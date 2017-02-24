@@ -3,6 +3,8 @@ class Public::ApplicationController < ApplicationController
   skip_before_filter :authenticate_user!
   before_filter :redirect_if_no_authentication
 
+  layout 'public/layouts/application.html.erb'
+
   def redirect_if_no_authentication
     if current_user
       flash[:alert] = I18n.t("devise.failure.already_authenticated")
