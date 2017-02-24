@@ -1,13 +1,19 @@
 <div class="map-wrapper">
-  <!-- <div class="<%= bootstrap_col xs: 12, md: 12 %>"> -->
-    <nav id="menu" class="map-menu">
-      <div class="map-menu-bg"></div>
-      <ul class=""></ul>
-    </nav>
-    <div class="">
-      <div id="community-programs-map" class="homepage-map"></div>
-    </div>
-  <!-- </div> -->
+  <nav id="menu" class="map-menu">
+    <div class="map-menu-bg"></div>
+    <ul class=""></ul>
+  </nav>
+  <div class="">
+    <div id="community-programs-map" class="homepage-map"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %> home-page-description">
+    <%= simple_format I18n.translate(
+      "#{request.subdomain}.public.home_page.description"
+    ) %>
+  </div>
 </div>
 
 <%= page_header "Choose a School", "icon-cpp-school" %>
