@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SchoolProgram do
   # Moved from completion rate calculator spec as it relates to school

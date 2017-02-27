@@ -34,3 +34,6 @@ dev
 
 # Ignore KML files by default
 data/kml/*
+
+# Ignore rspec report files
+spec/examples.txt
