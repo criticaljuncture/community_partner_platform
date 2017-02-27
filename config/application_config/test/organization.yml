@@ -1,0 +1,15 @@
+app_config:
+  organization:
+    public_policy:
+      percentage_complete: 0.25
+
+    required_fields:
+      -
+        attribute: :name
+        options:
+          presence: true
+      -
+        attribute: :legal_status_id
+        options:
+          presence:
+            message: Please choose from the list above

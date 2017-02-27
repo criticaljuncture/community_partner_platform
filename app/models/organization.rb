@@ -1,7 +1,7 @@
 class Organization < ActiveRecord::Base
   include OrganizationAudit
-  attr_accessor :verification, :user_ids_to_assign
 
+  attr_accessor :verification, :user_ids_to_assign
 
   before_save :update_completion_rate
   serialize :missing_fields, JSON
@@ -33,15 +33,18 @@ class Organization < ActiveRecord::Base
     where(:community_programs => {active: true})
   }
 
-  validates :name, presence: true
-  validates :legal_status_id, presence: {
-    message: 'Please choose from the list above'
-  }
+  Settings.app_config.organization.required_fields.each do |config|
+    validates config.attribute, config.options.to_hash
+  end
 
   COMPLETION_WEIGHTS = [
     [
-      1.0,
-      [:name, :address, :city, :zip_code, :phone_number, :url, :legal_status,
+      0.25,
+      Settings.app_config.organization.required_fields.map(&:attribute)
+    ],
+    [
+      0.75,
+      [:address, :city, :zip_code, :phone_number, :url,
        :mou_on_file, :mission_statement, :services_description, :program_impact,
        :cost_per_student]
     ],
