@@ -1,12 +1,7 @@
 require 'rails_helper'
 
-describe Organization do
-  let(:organization) do
-    Organization.create!(
-      name: "Foo Organization",
-      address: "123 Street",
-      legal_status_id: 1
-    )
+RSpec.describe Organization do
+  let(:organization) { create(:organization) }
   end
 
   context "#update_completion_rate" do
@@ -16,20 +11,24 @@ describe Organization do
       organization.zip_code = "12345"
       organization.save(validate: false)
 
-      expect(organization.completion_rate).to eq(33.33333333333333)
+      expect(organization.completion_rate).to eq(32.5)
       organization.reload
-      expect(organization.completion_rate).to eq(33.3333)
+      expect(organization.completion_rate).to eq(32.5)
     end
   end
 
   context "#update_missing_fields" do
     it "calculates correctly (on save)" do
-      expect(organization.missing_fields).to eq(["city", "zip_code", "phone_number", "url", "mou_on_file", "mission_statement", "services_description", "program_impact", "cost_per_student"])
+      fields = ["address", "city", "zip_code", "phone_number", "url",
+        "mou_on_file", "mission_statement", "services_description",
+        "program_impact", "cost_per_student"]
+
+      expect(organization.missing_fields).to eq(fields)
 
       organization.zip_code = "12345"
       organization.save(validate: false)
 
-      expect(organization.missing_fields).to eq(["city", "phone_number", "url", "mou_on_file", "mission_statement", "services_description", "program_impact", "cost_per_student"])
+      expect(organization.missing_fields).to eq(fields-["zip_code"])
     end
   end
 end
