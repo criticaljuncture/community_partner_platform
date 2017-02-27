@@ -2,7 +2,6 @@ class Organization < ActiveRecord::Base
   include OrganizationAudit
   attr_accessor :verification, :user_ids_to_assign
 
-  serialize :reported_school_programs, JSON
 
   before_save :update_completion_rate
   serialize :missing_fields, JSON
