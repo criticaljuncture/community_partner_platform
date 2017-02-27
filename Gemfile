@@ -124,7 +124,8 @@ group :deployment do
 end
 
 group :development, :test do
-  gem 'spring', '~> 1.4.0'
+  gem 'spring'
+  gem 'spring-commands-rspec'
 
   gem "rspec-rails", "~> 3.5.2"
   gem "factory_girl_rails", "~> 4.8.0"
