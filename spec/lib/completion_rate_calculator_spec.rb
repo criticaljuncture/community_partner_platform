@@ -1,12 +1,7 @@
 require 'rails_helper'
 
-  let(:organization) { double }
-  before(:each) do
-    organization.stub(:name).and_return("Test Org")
-    organization.stub(:url)
-    organization.stub(:addresses).and_return([])
-  end
 RSpec.describe "CompletionRateCalculator" do
+  let(:organization) { build(:organization) }
 
   describe "#completion_rate" do
     it "calculates rates correctly with a single rate" do
@@ -25,7 +20,7 @@ RSpec.describe "CompletionRateCalculator" do
         organization,
         [
           [0.5, [:name, :url]],
-          [0.5, [:addresses]],
+          [0.5, [:address]],
         ]
       )
 
@@ -37,7 +32,7 @@ RSpec.describe "CompletionRateCalculator" do
         organization,
         [
           [0.6, [:name, :url]],
-          [0.4, [:addresses]],
+          [0.4, [:address]],
         ]
       )
 
@@ -51,11 +46,11 @@ RSpec.describe "CompletionRateCalculator" do
         organization,
         [
           [0.6, [:name, :url]],
-          [0.4, [:addresses]],
+          [0.4, [:address]],
         ]
       )
 
-      expect(calculator.missing_fields).to eq([:url, :addresses])
+      expect(calculator.missing_fields).to eq([:url, :address])
     end
   end
 end
