@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe "User" do
+RSpec.describe "User" do
   describe "organization member abilities" do
     subject(:ability){ Ability.new(user) }
     let(:user) { build :organization_member }

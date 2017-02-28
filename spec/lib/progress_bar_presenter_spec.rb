@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ProgressBarPresenter do
+RSpec.describe ProgressBarPresenter do
 
   context "#perform" do
     it "generates expected HTML" do

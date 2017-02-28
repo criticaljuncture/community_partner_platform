@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe SchoolProgram do
+RSpec.describe SchoolProgram do
   # Moved from completion rate calculator spec as it relates to school
   # programs and inheritance rather than the calculator.
   # Needs some love to make delegation work in the spec.

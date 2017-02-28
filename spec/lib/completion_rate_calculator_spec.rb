@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe "CompletionRateCalculator" do
   let(:organization) { double }
   before(:each) do
     organization.stub(:name).and_return("Test Org")
     organization.stub(:url)
     organization.stub(:addresses).and_return([])
   end
+RSpec.describe "CompletionRateCalculator" do
 
   describe "#completion_rate" do
     it "calculates rates correctly with a single rate" do

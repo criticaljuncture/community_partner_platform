@@ -57,26 +57,22 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  config.treat_symbols_as_metadata_keys_with_true_values = true
-
   config.before(:suite) do
-    # Do truncation once per suite
-    DatabaseCleaner.clean_with :truncation
-
     # Normally do transactions-based cleanup
     DatabaseCleaner.strategy = :transaction
 
-    Rails.application.load_seed
+    # Do truncation once per suite
+    DatabaseCleaner.clean_with :truncation
   end
 
-  config.around(:each) do |spec|
-    if spec.metadata[:js]
-      spec.run
+  config.around(:each) do |example|
+    if example.metadata[:js]
+      example.run
       DatabaseCleaner.clean_with :deletion
     else
-      DatabaseCleaner.start
-      spec.run
-      DatabaseCleaner.clean
+      DatabaseCleaner.cleaning do
+        example.run
+      end
     end
   end
 end
