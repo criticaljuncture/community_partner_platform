@@ -18,6 +18,7 @@ module CommunityPartnerPlatform
     config.autoload_paths += Dir[Rails.root.join('app', 'importers', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'inputs', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'policies', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'presenters', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('lib')]
 

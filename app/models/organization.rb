@@ -4,9 +4,8 @@ class Organization < ActiveRecord::Base
 
   attr_accessor :verification, :user_ids_to_assign
 
-  before_save :update_completion_rate
+  before_save CompletionPolicy::OrganizationPolicy.new
   serialize :missing_fields, JSON
-  before_save :update_missing_fields
 
   after_create :clear_associated_cache
   after_update :clear_associated_cache
@@ -33,20 +32,6 @@ class Organization < ActiveRecord::Base
     ).
     where(:community_programs => {active: true})
   }
-
-
-  COMPLETION_WEIGHTS = [
-    [
-      0.25,
-      Settings.app_config.organization.required_fields.map(&:attribute)
-    ],
-    [
-      0.75,
-      [:address, :city, :zip_code, :phone_number, :url,
-       :mou_on_file, :mission_statement, :services_description, :program_impact,
-       :cost_per_student]
-    ],
-  ]
 
   def quality_elements
     @qe ||= community_programs.map{|cp| cp.quality_element}.flatten.uniq
@@ -94,14 +79,6 @@ class Organization < ActiveRecord::Base
       where(organization_id: self.id, active: false)
   end
 
-  def update_completion_rate
-    self.completion_rate = completion_rate_calculator.completion_rate
-  end
-
-  def update_missing_fields
-    self.missing_fields = completion_rate_calculator.missing_fields
-  end
-
   def average_program_completion_rate
     return 0 unless community_programs.present?
 
@@ -116,14 +93,14 @@ class Organization < ActiveRecord::Base
     users.map(&:last_sign_in_at).compact.sort.last
   end
 
-  private
 
-  def completion_rate_calculator
-    @completion_rate_calculator ||= CompletionRateCalculator.new(
-      self,
-      COMPLETION_WEIGHTS
-    )
   end
+
+  def completion_policy
+    @completion_policy ||= CompletionPolicy::OrganizationPolicy.new(self)
+  end
+
+  private
 
   def clear_associated_cache
     schools.each{|s| s.touch}
