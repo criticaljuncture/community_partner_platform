@@ -1,7 +1,5 @@
 app_config:
   organization:
-    public_policy:
-      percentage_complete: 0.25
 
     validations:
       -

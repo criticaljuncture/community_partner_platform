@@ -1,4 +1,5 @@
 class Organization < ActiveRecord::Base
+  include ApplicationConfig::Validations
   include OrganizationAudit
 
   attr_accessor :verification, :user_ids_to_assign
@@ -33,9 +34,6 @@ class Organization < ActiveRecord::Base
     where(:community_programs => {active: true})
   }
 
-  Settings.app_config.organization.required_fields.each do |config|
-    validates config.attribute, config.options.to_hash
-  end
 
   COMPLETION_WEIGHTS = [
     [
