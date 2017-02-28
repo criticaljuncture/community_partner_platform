@@ -30,7 +30,7 @@ config/settings/*.local.yml
 config/environments/*.local.yml
 
 # Ignore local development items
-dev
+docker/dev
 
 # Ignore KML files by default
 data/kml/*
