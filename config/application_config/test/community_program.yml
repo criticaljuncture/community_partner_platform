@@ -1,0 +1,25 @@
+app_config:
+  community_program:
+    completion_policy:
+      weights:
+        -
+          value: 0.25
+          fields:
+            - :required_fields
+        -
+          value: 0.75
+          fields:
+            - :demographic_groups
+            - :student_population
+            - :user
+
+    validations:
+      -
+        attribute: :name
+        options:
+          presence: true
+      -
+        attribute: :organization_id
+        options:
+          presence:
+            message: must choose an organization

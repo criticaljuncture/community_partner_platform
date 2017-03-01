@@ -1,4 +1,6 @@
 class CommunityProgram < ActiveRecord::Base
+  include ApplicationConfig::Validations
+
   include ModelSerializable
   include CommunityProgramAudit
   include CommunityProgramAttributeRelationships
@@ -8,10 +10,8 @@ class CommunityProgram < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
 
-  before_save :update_completion_rate
-
+  before_save CompletionPolicy::CommunityProgramPolicy.new
   serialize :missing_fields, JSON
-  before_save :update_missing_fields
 
   has_many :school_programs, dependent: :destroy
   has_many :schools, through: :school_programs
@@ -36,60 +36,6 @@ class CommunityProgram < ActiveRecord::Base
   # view CommunityProgramAttributeRelationships for more (shared) relationships and validations
   #############################################
 
-  validates :name,
-    presence: {
-      message: "must choose a program name"
-    }
-
-  validates :organization_id,
-    presence: {
-      message: "must choose an organization"
-    }
-
-  validates :user_id,
-    presence: {
-      message: "must choose an organization contact"
-    }
-
-  validates :primary_quality_element,
-    presence: {
-      message: "must choose a primary community schools element"
-    }
-
-  validates :service_description, presence: true
-
-  validates :day_ids,
-    :demographic_group_ids,
-    :ethnicity_culture_group_ids,
-    :grade_level_ids,
-    :service_time_ids,
-    presence: {
-      message: "must choose at least one"
-    },
-    if: Proc.new{|r| r.active? || r.wizard_step == :add_program_details}
-
-  validates :student_population_id,
-    presence: {
-      message: "must select a student population"
-    },
-    if: Proc.new{|r| r.active? || r.wizard_step == :add_program_details}
-
-  COMPLETION_WEIGHTS = [
-    [
-      0.30,
-      [:name, :service_description, :quality_element,
-       :service_types, :organization]
-    ],
-    [
-      0.35,
-      [:user, :student_population, :ethnicity_culture_groups, :demographic_groups,
-       :grade_levels, :service_times, :days]
-    ],
-    [
-      0.35,
-      [:school_programs]
-    ]
-  ]
 
   def service_types
     primary_service_types
@@ -106,26 +52,13 @@ class CommunityProgram < ActiveRecord::Base
       verification_required?
   end
 
-  def update_completion_rate
-    self.completion_rate = completion_rate_calculator.completion_rate
-  end
-
-  def update_missing_fields
-    self.missing_fields = completion_rate_calculator.missing_fields
-  end
-
   def schools_with_differing_completion_rates
     @schools_with_differing_completion_rates ||= school_programs.select do |school_program|
       completion_rate != school_program.completion_rate
     end.sort_by{|s| s.school.name}
   end
 
-  private
-
-  def completion_rate_calculator
-    @completion_rate_calculator ||= CompletionRateCalculator.new(
-      self,
-      COMPLETION_WEIGHTS
-    )
+  def completion_policy
+    @completion_policy ||= CompletionPolicy::CommunityProgramPolicy.new(self)
   end
 end
