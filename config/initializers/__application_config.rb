@@ -1,7 +1,7 @@
-subdomain = ENV['subdomain']
+subdomain = ENV['SUBDOMAIN']
 
 unless subdomain
-  raise "ENV['subdomain'] required" unless Rails.env.development? || Rails.env.test?
+  raise "ENV['SUBDOMAIN'] required" unless Rails.env.development? || Rails.env.test?
 
   subdomain = 'dev' if Rails.env.development?
   subdomain = 'test' if Rails.env.test?

@@ -36,4 +36,6 @@ Rails.application.configure do
 
   # opt into future behavior
   config.active_support.test_order = :random
+
+  ENV['SUBDOMAIN']='test'
 end
