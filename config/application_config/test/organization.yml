@@ -4,7 +4,8 @@ app_config:
       weights:
         -
           value: 0.25
-          fields: :required_fields
+          fields:
+            - :required_fields
         -
           value: 0.75
           fields:

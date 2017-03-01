@@ -12,7 +12,7 @@ class CompletionPolicy::Base
   def completion_weights
     app_config.completion_policy.weights.map do |weight|
       value, fields = weight.value, weight.fields
-      fields = fields == :required_fields ? model.required_fields : fields
+      fields = fields.first == :required_fields ? model.required_fields : fields
 
       [value, fields]
     end
