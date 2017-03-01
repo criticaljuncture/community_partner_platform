@@ -6,7 +6,7 @@ RSpec.describe Organization do
       .to include(ApplicationConfig::Validations)
   end
 
-  context "saving an organization" do
+  context "before_save callbacks" do
     let(:organization) { build(:organization) }
 
     it "calls the completion_policy #before_save method" do
@@ -14,7 +14,7 @@ RSpec.describe Organization do
         CompletionPolicy::OrganizationPolicy
       ).to receive(:before_save).with(organization)
 
-      organization.save(validate: false)
+      organization.run_callbacks(:save){ false } #onlt run before callbacls
     end
   end
 end
