@@ -51,6 +51,9 @@ gem "d3_rails", "~> 3.3.7"
 # decorator pattern
 gem 'draper'
 
+# define application_config schemas
+gem 'dry-validation'
+
 # env vars
 gem 'dotenv', '= 0.11.1'
 gem 'dotenv-rails', '= 0.11.1'
