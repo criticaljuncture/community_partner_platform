@@ -40,8 +40,6 @@ class SchoolProgram < ActiveRecord::Base
       message: "must choose a community_program"
     }
 
-  COMPLETION_WEIGHTS = CommunityProgram::COMPLETION_WEIGHTS
-
   # attributes uniquely assigned to this school program as distinct from
   # parent community program
   def customized_attributes
@@ -86,7 +84,7 @@ class SchoolProgram < ActiveRecord::Base
   def completion_rate_calculator
     @completion_rate_calculator ||= CompletionRateCalculator.new(
       self,
-      COMPLETION_WEIGHTS
+      community_program.completion_policy.completion_weights
     )
   end
 
