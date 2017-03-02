@@ -8,11 +8,6 @@ RSpec.describe "CompletionPolicy::Base" do
     it "accepts a model and sets a reader for it" do
       expect(policy.model).to be(model)
     end
-
-    # used for before_save callback
-    it "allows new with no arguments" do
-      expect(CompletionPolicy::Base.new.model).to be nil
-    end
   end
 
   it "responds to methods that were delegated" do
@@ -26,31 +21,32 @@ RSpec.describe "CompletionPolicy::Base" do
     )
   end
 
-  context "#before_save" do
-    let(:record) { build(:organization) }
-    let(:policy) { CompletionPolicy::Base.new }
+  it ".before_save calls new with the given record" do
+    model = build(:organization)
 
-    it "sets model to the record" do
-      expect(policy.model).to be nil
-      policy.before_save(record)
-      expect(policy.model).to be(record)
-    end
+    expect(CompletionPolicy::Base).to receive(:new).with(model).and_call_original
+    CompletionPolicy::Base.before_save(model)
+  end
+
+  context "#before_save" do
+    let(:model) { build(:organization) }
+    let(:policy) { CompletionPolicy::Base.new(model) }
 
     it "updates the completion rate" do
-      policy.before_save(model)
+      policy.before_save
 
       model.zip_code = "94107"
       expect{
-        policy.before_save(model)
+        policy.before_save
       }.to change{ model.completion_rate }
     end
 
     it "updates the missing_fields" do
-      policy.before_save(model)
+      policy.before_save
       fields = model.missing_fields
 
       model.zip_code = "94107"
-      policy.before_save(model)
+      policy.before_save
       expect(model.missing_fields).to eq(fields - ["zip_code"])
     end
   end

@@ -10,7 +10,7 @@ RSpec.describe CommunityProgram do
     let(:community_program) { build(:community_program) }
 
     it "calls the completion_policy #before_save method" do
-      expect_any_instance_of(
+      expect(
         CompletionPolicy::CommunityProgramPolicy
       ).to receive(:before_save).with(community_program)
 

@@ -5,7 +5,7 @@ class CompletionPolicy::Base
     :missing_fields,
     to: :model
 
-  def initialize(model=nil)
+  def initialize(model)
     @model = model
   end
 
@@ -18,12 +18,13 @@ class CompletionPolicy::Base
     end
   end
 
-  def before_save(record)
-    # set the model that was passed as nil (callback is created in a class context)
-    @model = record
+  def self.before_save(record)
+    new(record).before_save
+  end
 
-    update_completion_rate(record)
-    update_missing_fields(record)
+  def before_save
+    update_completion_rate
+    update_missing_fields
   end
 
   private
@@ -35,12 +36,12 @@ class CompletionPolicy::Base
     )
   end
 
-  def update_completion_rate(record)
-    record.completion_rate = completion_rate_calculator.completion_rate
+  def update_completion_rate
+    model.completion_rate = completion_rate_calculator.completion_rate
   end
 
-  def update_missing_fields(record)
-    record.missing_fields = completion_rate_calculator.missing_fields
+  def update_missing_fields
+    model.missing_fields = completion_rate_calculator.missing_fields
   end
 
   def app_config

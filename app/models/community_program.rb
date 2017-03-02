@@ -10,7 +10,7 @@ class CommunityProgram < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
 
-  before_save CompletionPolicy::CommunityProgramPolicy.new
+  before_save CompletionPolicy::CommunityProgramPolicy
   serialize :missing_fields, JSON
 
   has_many :school_programs, dependent: :destroy

@@ -10,7 +10,7 @@ RSpec.describe Organization do
     let(:organization) { build(:organization) }
 
     it "calls the completion_policy #before_save method" do
-      expect_any_instance_of(
+      expect(
         CompletionPolicy::OrganizationPolicy
       ).to receive(:before_save).with(organization)
 

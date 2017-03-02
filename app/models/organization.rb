@@ -4,7 +4,7 @@ class Organization < ActiveRecord::Base
 
   attr_accessor :verification, :user_ids_to_assign
 
-  before_save CompletionPolicy::OrganizationPolicy.new
+  before_save CompletionPolicy::OrganizationPolicy
   serialize :missing_fields, JSON
 
   after_create :clear_associated_cache

@@ -1,0 +1,12 @@
+app_config:
+  application_config/validation_test:
+    validations:
+      -
+        attribute: :name
+        options:
+          presence: true
+      -
+        attribute: :favorite_color
+        options:
+          presence:
+            message: Please choose from the list above
