@@ -1,0 +1,12 @@
+app_config:
+  school_program:
+    validations:
+      -
+        attribute: :school_id
+        options:
+          presence: true
+      -
+        attribute: :community_program_id
+        options:
+          presence:
+            message: must choose a community program

@@ -1,10 +1,11 @@
 class SchoolProgram < ActiveRecord::Base
+  include ApplicationConfig::Validations
+
   include CommunityProgramAttributeRelationships
   include DelegationExtensions
 
-  before_save :update_completion_rate
+  before_save CompletionPolicy::SchoolProgramPolicy
   serialize :missing_fields, JSON
-  before_save :update_missing_fields
 
   belongs_to :community_program
   belongs_to :school
@@ -29,16 +30,6 @@ class SchoolProgram < ActiveRecord::Base
     :service_times,
     :student_population,
     to: :community_program
-
-  validates :school_id,
-    presence: {
-      message: "must choose a school"
-    }
-
-  validates :community_program_id,
-    presence: {
-      message: "must choose a community_program"
-    }
 
   # attributes uniquely assigned to this school program as distinct from
   # parent community program
@@ -71,22 +62,11 @@ class SchoolProgram < ActiveRecord::Base
     end
   end
 
-  def update_completion_rate
-    self.completion_rate = completion_rate_calculator.completion_rate
-  end
-
-  def update_missing_fields
-    self.missing_fields = completion_rate_calculator.missing_fields
+  def completion_policy
+    @completion_policy ||= CompletionPolicy::SchoolProgramPolicy.new(self)
   end
 
   private
-
-  def completion_rate_calculator
-    @completion_rate_calculator ||= CompletionRateCalculator.new(
-      self,
-      community_program.completion_policy.completion_weights
-    )
-  end
 
   # this is a stub method to allow us to calculate the school program
   # completion_rate the same way as it's parent community_program
