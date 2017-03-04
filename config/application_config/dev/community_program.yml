@@ -1,28 +1,29 @@
 app_config:
   community_program:
-    weights:
-      -
-        value: 0.30
-        fields:
-          - :name
-          - :service_description
-          - :quality_element
-          - :service_types
-          - :organization
-      -
-        value: 0.35
-        fields:
-          - :days
-          - :demographic_groups
-          - :ethnicity_culture_groups
-          - :grade_levels
-          - :service_times
-          - :student_population
-          - :user
-      -
-        value: 0.35
-        fields:
-          - :school_programs
+    completion_policy:
+      weights:
+        -
+          value: 0.30
+          fields:
+            - :name
+            - :service_description
+            - :quality_element
+            - :service_types
+            - :organization
+        -
+          value: 0.35
+          fields:
+            - :days
+            - :demographic_groups
+            - :ethnicity_culture_groups
+            - :grade_levels
+            - :service_times
+            - :student_population
+            - :user
+        -
+          value: 0.35
+          fields:
+            - :school_programs
 
     validations:
       -
