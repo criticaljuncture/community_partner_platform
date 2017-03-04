@@ -93,6 +93,10 @@ class Organization < ActiveRecord::Base
     users.map(&:last_sign_in_at).compact.sort.last
   end
 
+  def public_policy
+    @public_policy ||= PublicPolicy::OrganizationPolicy.new(self)
+  end
+
   def completion_policy
     @completion_policy ||= CompletionPolicy::OrganizationPolicy.new(self)
   end

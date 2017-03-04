@@ -112,6 +112,9 @@ ActiveRecord::Schema.define(version: 20170424003414) do
     t.float    "completion_rate",           limit: 24,    default: 0.0
     t.boolean  "receives_district_funding"
     t.string   "missing_fields",            limit: 15000, default: "[]"
+    t.boolean  "approved_for_public",                     default: false
+    t.datetime "approved_for_public_on"
+    t.integer  "approved_for_public_by",    limit: 4
   end
 
   add_index "community_programs", ["active"], name: "index_community_programs_on_active", using: :btree

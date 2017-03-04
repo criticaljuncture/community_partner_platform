@@ -10,6 +10,10 @@ class ApplicationConfig::Schemas::OrganizationSchema < ApplicationConfig::Schema
           end
         end
 
+        required("public_policy").schema do
+          required("percentage_complete").value(:float?)
+        end
+
         required("validations").each do
           required("attribute").value(:symbol?)
           required("options").schema do
