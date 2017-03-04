@@ -127,6 +127,9 @@ group :deployment do
 end
 
 group :development, :test do
+  # ascii table values - test multiple cases via tables for clarity
+  gem 'atv'
+
   gem 'spring'
   gem 'spring-commands-rspec'
 
