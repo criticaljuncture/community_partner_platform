@@ -22,6 +22,7 @@ app_config:
 
     public_policy:
       percentage_complete: 0.25
+      required_attributes: []
 
     validations:
       -
