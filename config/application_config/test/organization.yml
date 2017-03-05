@@ -14,6 +14,11 @@ app_config:
 
     public_policy:
       percentage_complete: 0.25
+
+      public_attributes:
+        - :name
+        - :mission_statement
+
       required_attributes:
         - :name
         - :mou_on_file

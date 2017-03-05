@@ -12,6 +12,7 @@ class ApplicationConfig::Schemas::OrganizationSchema < ApplicationConfig::Schema
 
         required("public_policy").schema do
           required("percentage_complete").value(:float?)
+          required("public_attributes").each(:symbol?)
           required("required_attributes").each(:symbol?)
         end
 

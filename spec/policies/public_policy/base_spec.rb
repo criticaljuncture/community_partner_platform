@@ -23,6 +23,14 @@ RSpec.describe "PublicPolicy::Base" do
     expect(policy).to respond_to(:approved_for_public_on)
   end
 
+  it "#public_attributes returns the attributes that will be shown in the public view" do
+    model = build(:organization)
+    policy = PublicPolicy::Base.new(model)
+    policy.class.policy_for :organization
+
+    expect(policy.public_attributes).to eq([:name, :mission_statement])
+  end
+
   it "#required_attributes returns the attributes required to be public from the application config" do
     model = build(:organization)
     policy = PublicPolicy::Base.new(model)

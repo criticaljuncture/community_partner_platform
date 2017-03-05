@@ -39,9 +39,13 @@ class PublicPolicy::Base
     policy_config.percentage_complete
   end
 
+  def public_attributes
+    policy_config.public_attributes
+  end
+
   private
 
   def policy_config
-    Settings.app_config.send(self.class.policy_model).public_policy
+    @policy_config ||= Settings.app_config.send(self.class.policy_model).public_policy
   end
 end
