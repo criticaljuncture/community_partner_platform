@@ -3,7 +3,9 @@
 $tableBackgroundHover: #f5fcff;
 
 @import 'bourbon';
-@import "fonts";
+
+@import "fonts/icon-cpp-variables";
+@import "fonts/fonts";
 
 @import "library/colors";
 @import "library/progress_bars";

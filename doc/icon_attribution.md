@@ -8,7 +8,7 @@
 * Store
   - http://thenounproject.com/noun/store/#icon-No3278
   - Joris Hoogendoorn, from The Noun Project
-  - <a href="http://thenounproject.com/noun/school/#icon-No10119" target="_blank">School</a> designed by <a href="http://thenounproject.com/axoplasm" target="_blank">Paul Souders</a> from The Noun Project 
+  - <a href="http://thenounproject.com/noun/school/#icon-No10119" target="_blank">School</a> designed by <a href="http://thenounproject.com/axoplasm" target="_blank">Paul Souders</a> from The Noun Project
   - CC3 Attribution
   - Subsequently modified by Bob Burbach to create Small Business (small_business.svg)
 * Handshake
@@ -39,3 +39,8 @@
   - Melvin Poppelaars (http://thenounproject.com/melvin.poppelaars)
   - CC3 Attribution
   - Subsequently modified by Bob Burbach to create Users (users.svg)
+* Globe
+  - https://thenounproject.com/rshashank19/collection/globe/?oq=globe&cidx=0&i=861097
+  - Shashank Singh (https://thenounproject.com/rshashank19/)
+  - CC3 Attribution
+  - Globe by shashank singh from the Noun Project
