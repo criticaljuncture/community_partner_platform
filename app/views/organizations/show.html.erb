@@ -14,6 +14,11 @@
       count: @organization.unverified_program_count).html_safe
   ) if @organization.programs_verifiable? %>
 
+<% alert_notice(
+    :warning, 'exclamation-sign',
+    t('organizations.messages.no_community_programs.show').html_safe
+  ) unless @organization.community_programs.count > 0 %>
+
 <%= modal(:with_button,
   footer_button_text: "Continue",
   header_icon: 'icon-cpp-small-business',
