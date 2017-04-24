@@ -1,6 +1,6 @@
 namespace :cleanup do
   task :strip_whitespace_in_community_program_names => :environment do
-    CommunityProgram.unscoped.all.each do |program|
+    CommunityProgram.all.each do |program|
       program.name = program.name.strip
       program.save(validate: false)
     end
@@ -89,7 +89,7 @@ namespace :cleanup do
   end
 
   task :deactivate_school_program_if_community_program_not_active => :environment do
-    CommunityProgram.unscoped.where(active: false).each do |community_program|
+    CommunityProgram.where(active: false).each do |community_program|
       community_program.school_programs.each do |program|
         program.active = false
         program.active_changed_by = community_program.active_changed_by

@@ -3,7 +3,7 @@ class ApiController < ApplicationController
   skip_authorization_check
 
   def community_programs
-    @community_programs = CommunityProgram.accessible_by(current_ability).includes(:school, :organization).all
+    @community_programs = CommunityProgram.active.accessible_by(current_ability).includes(:school, :organization).all
 
     render :json => @community_programs, :root => "community_programs"
   end

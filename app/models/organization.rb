@@ -90,7 +90,7 @@ class Organization < ActiveRecord::Base
   end
 
   def inactive_community_programs
-    community_programs.unscoped.
+    community_programs.
       where(organization_id: self.id, active: false)
   end
 

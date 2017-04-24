@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170127035628) do
+ActiveRecord::Schema.define(version: 20170424003414) do
 
   create_table "community_program_demographic_groups", force: :cascade do |t|
     t.integer  "demographic_group_id", limit: 4
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20170127035628) do
     t.string   "name",                      limit: 255
     t.string   "legislative_file_number",   limit: 255
     t.datetime "last_verified_at"
-    t.boolean  "active",                                  default: true
+    t.boolean  "active",                                  default: false
     t.integer  "active_changed_by",         limit: 4
     t.datetime "active_changed_on"
     t.integer  "last_verified_by",          limit: 4

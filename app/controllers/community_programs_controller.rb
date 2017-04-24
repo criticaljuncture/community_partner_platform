@@ -1,12 +1,12 @@
 class CommunityProgramsController < ApplicationController
 
   def index
-    @community_programs = CommunityProgram.accessible_by(current_ability)
+    @community_programs = CommunityProgram.active.accessible_by(current_ability)
     authorize! :index, CommunityProgram
   end
 
   def show
-    @community_program = CommunityProgram.unscoped.
+    @community_program = CommunityProgram.
       includes(school_programs: [:school, :user, :days, :demographic_groups, :ethnicity_culture_groups, :grade_levels, :service_times, :student_population]).
       find(params[:id])
     authorize! :show, @community_program
@@ -127,7 +127,7 @@ class CommunityProgramsController < ApplicationController
   end
 
   def toggle_active
-    @community_program = CommunityProgram.unscoped.find(params[:id])
+    @community_program = CommunityProgram.find(params[:id])
     authorize! :toggle_active, @community_program
 
     if @community_program.active?
@@ -160,7 +160,7 @@ class CommunityProgramsController < ApplicationController
   end
 
   def table
-    @community_programs = CommunityProgram.accessible_by(current_ability).
+    @community_programs = CommunityProgram.active.accessible_by(current_ability).
       includes(:organization, :school_programs, :schools, :quality_element).
       order("organizations.name")
     authorize! :index, CommunityProgram
@@ -169,7 +169,7 @@ class CommunityProgramsController < ApplicationController
   end
 
   def merge
-    community_program = CommunityProgram.find(params[:id])
+    community_program = CommunityProgram.active.find(params[:id])
     authorize! :merge_program, community_program
 
     master_program = CommunityProgram.find(community_program_params[:merge_target])

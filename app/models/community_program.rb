@@ -5,7 +5,7 @@ class CommunityProgram < ActiveRecord::Base
 
   attr_accessor :merge_target #for merging similar programs
 
-  default_scope { where(active: true) }
+  scope :active, -> { where(active: true) }
 
   before_save :update_completion_rate
 

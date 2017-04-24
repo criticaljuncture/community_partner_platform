@@ -187,6 +187,7 @@ namespace :demo do
       # generate program
       community_program = CommunityProgram.new(
         name:                      name,
+        active:                    true,
         organization:              organization,
         user:                      organization_user,
         primary_quality_element:   primary_quality_element,
