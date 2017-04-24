@@ -11,7 +11,7 @@
       collection: QualityElement.accessible_by(current_ability).
         programmatic.sort_by(&:name),
       input_html: {class: 'wrap'},
-      wrapper_html: {class: "#{f.object.errors.present? && f.object.errors[:primary_quality_element] ? 'has-error' : ''}"},
+      wrapper_html: {class: "#{f.object.errors.present? && f.object.errors[:primary_quality_element].present? ? 'has-error' : ''}"},
       required: true %>
 
     <%= element.input :service_type_ids,

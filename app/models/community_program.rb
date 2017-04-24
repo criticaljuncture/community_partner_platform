@@ -4,6 +4,7 @@ class CommunityProgram < ActiveRecord::Base
   include CommunityProgramAttributeRelationships
 
   attr_accessor :merge_target #for merging similar programs
+  attr_accessor :wizard_step
 
   scope :active, -> { where(active: true) }
 
@@ -14,7 +15,6 @@ class CommunityProgram < ActiveRecord::Base
 
   has_many :school_programs, dependent: :destroy
   has_many :schools, through: :school_programs
-  #has_many :regions, through: :schools
 
   belongs_to :organization
   belongs_to :verifier, foreign_key: :last_verified_by, class_name: User
@@ -31,6 +31,10 @@ class CommunityProgram < ActiveRecord::Base
   accepts_nested_attributes_for :primary_quality_element, reject_if: proc {|attr| attr['quality_element_id'].blank? }
 
   belongs_to :user
+
+  #############################################
+  # view CommunityProgramAttributeRelationships for more (shared) relationships and validations
+  #############################################
 
   validates :name,
     presence: {
@@ -49,8 +53,26 @@ class CommunityProgram < ActiveRecord::Base
 
   validates :primary_quality_element,
     presence: {
-      message: "must choose a primary quality element"
+      message: "must choose a primary community schools element"
     }
+
+  validates :service_description, presence: true
+
+  validates :day_ids,
+    :demographic_group_ids,
+    :ethnicity_culture_group_ids,
+    :grade_level_ids,
+    :service_time_ids,
+    presence: {
+      message: "must choose at least one"
+    },
+    if: Proc.new{|r| r.active? || r.wizard_step == :add_program_details}
+
+  validates :student_population_id,
+    presence: {
+      message: "must select a student population"
+    },
+    if: Proc.new{|r| r.active? || r.wizard_step == :add_program_details}
 
   COMPLETION_WEIGHTS = [
     [

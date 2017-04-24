@@ -80,13 +80,13 @@
       <%= simple_form_for @community_program,
         url: wizard_path,
         method: :put,
+        as: :community_program,
         html: {class: "form-horizontal community-program"},
         wrapper: :horizontal_form,
         wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
 
         <%= f.input :id,
           as: :hidden,
-          disabled: true,
           input_html: {id: 'community-program-id'} %>
 
         <%= field_set_tag "Schools", class: 'school-programs' do %>
@@ -125,9 +125,10 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <%= link_to 'Save & View Program',
+            <%#= link_to 'Save & View Program',
               community_program_path(@community_program),
               class: "btn btn-large btn-success" %>
+            <%= f.submit 'Save & View Program', class: "btn btn-large btn-success" %>
           </div>
         </div>
       <% end %>
