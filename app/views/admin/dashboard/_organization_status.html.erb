@@ -47,7 +47,7 @@
           <td class="text-center">
             <%= boolean_checkmark_gicon(
               !organization.verification_required?,
-              {data: {tooltip: organization.last_verified_tooltip}}
+              {data: {tooltip: last_verified_tooltip(organization)}}
             ) %>
           </td>
           <td class="text-center">

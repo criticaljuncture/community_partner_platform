@@ -5,6 +5,7 @@
         <th class="programs">Program Name</th>
         <th class="last-updated">Program Last Changed</th>
         <th class="school-count">School Count</th>
+        <th class="last-verfied">Verfied</th>
         <th class="with-progress-bar">Program Completion Rate</th>
         <th>School Programs with Differing Completion Rates</th>
         <th class="public-status">Public</th>
@@ -22,6 +23,12 @@
           </td>
           <td class="text-center">
             <%= community_program.school_programs.size %>
+          </td>
+          <td class="text-center">
+            <%= boolean_checkmark_gicon(
+              !community_program.verification_required?,
+              {data: {tooltip: last_verified_tooltip(community_program)}}
+            ) %>
           </td>
           <td>
             <%= ProgressBarPresenter.perform(
