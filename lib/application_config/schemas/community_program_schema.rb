@@ -10,6 +10,12 @@ class ApplicationConfig::Schemas::CommunityProgramSchema < ApplicationConfig::Sc
           end
         end
 
+        required("public_policy").schema do
+          required("percentage_complete").value(:float?)
+          required("public_attributes").each(:symbol?)
+          required("required_attributes").each(:symbol?)
+        end
+        
         required("validations").each do
           required("attribute").value(:symbol?)
           required("options").schema do
