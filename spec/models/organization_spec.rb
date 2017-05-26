@@ -20,4 +20,9 @@ RSpec.describe Organization do
     expect(organization.completion_policy)
       .to be_an_instance_of CompletionPolicy::OrganizationPolicy
   end
+
+  it "#public_policy returns an instance of the proper public_policy" do
+    expect(organization.public_policy)
+      .to be_an_instance_of PublicPolicy::OrganizationPolicy
+  end
 end

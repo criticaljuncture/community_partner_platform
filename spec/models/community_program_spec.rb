@@ -20,4 +20,9 @@ RSpec.describe CommunityProgram do
     expect(community_program.completion_policy)
       .to be_an_instance_of CompletionPolicy::CommunityProgramPolicy
   end
+
+  it "#public_policy returns an instance of the proper public_policy" do
+    expect(community_program.public_policy)
+      .to be_an_instance_of PublicPolicy::CommunityProgramPolicy
+  end
 end
