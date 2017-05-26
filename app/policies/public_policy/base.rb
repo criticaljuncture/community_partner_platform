@@ -28,14 +28,14 @@ class PublicPolicy::Base
   end
 
   def minimally_complete?
-    model.completion_rate >= minumum_completion_percentage
+     completion_percentage >= minimum_completion_percentage
   end
 
   def required_attributes
     policy_config.required_attributes
   end
 
-  def minumum_completion_percentage
+  def minimum_completion_percentage
     policy_config.percentage_complete
   end
 
@@ -47,5 +47,9 @@ class PublicPolicy::Base
 
   def policy_config
     @policy_config ||= Settings.app_config.send(self.class.policy_model).public_policy
+  end
+
+  def completion_percentage
+    model.completion_rate.to_f / 100
   end
 end

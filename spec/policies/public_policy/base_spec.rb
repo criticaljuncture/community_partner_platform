@@ -62,22 +62,22 @@ RSpec.describe "PublicPolicy::Base" do
 
   describe "#minumum_completion_percentage" do
     before(:each) {
-      allow(policy).to receive(:minumum_completion_percentage)
+      allow(policy).to receive(:minimum_completion_percentage)
         .and_return(0.25)
     }
 
     it "returns true if model completion is greater than the minimum" do
-      allow(model).to receive(:completion_rate).and_return(0.75)
+      allow(model).to receive(:completion_rate).and_return(75)
       expect(policy.minimally_complete?).to be(true)
     end
 
     it "returns true if model completion is equal to the minimum" do
-      allow(model).to receive(:completion_rate).and_return(0.25)
+      allow(model).to receive(:completion_rate).and_return(25)
       expect(policy.minimally_complete?).to be(true)
     end
 
     it "returns fals if model completion is less than the minimum" do
-      allow(model).to receive(:completion_rate).and_return(0.15)
+      allow(model).to receive(:completion_rate).and_return(15)
       expect(policy.minimally_complete?).to be(false)
     end
   end
@@ -85,6 +85,7 @@ RSpec.describe "PublicPolicy::Base" do
   describe "#can_be_made_public?" do
     # we convert NAT to true and NAF to false in the tests
     # but use these when we are not explicitely testing that condition
+    # eg. it's a precondition for what we want to actually test
     possible_states = <<-TEXT
       |---------------------+-----------------------------+--------------------+--------------------|
       | approved_for_public | required_attributes_present | minimally_complete | can_be_made_public |
