@@ -112,9 +112,12 @@ class Ability < BaseAbility
     can :merge_program, CommunityProgram
     can :verify, CommunityProgram
     can :toggle_active, CommunityProgram
+    can :publish, CommunityProgram
 
     can :view, :visualizations
     can :view, :admin_dashboard
+
+    can :publish, Organization
 
     organization_member_page_level_abilities
   end

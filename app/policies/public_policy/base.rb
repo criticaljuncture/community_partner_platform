@@ -43,6 +43,29 @@ class PublicPolicy::Base
     policy_config.public_attributes
   end
 
+  def public_attribute?(attribute)
+    public_attributes.include?(attribute)
+  end
+
+  def missing_requirements
+    missing_requirements = []
+
+    unless required_attributes_present?
+      missing_requirements << I18n.t(
+        'public_policy.missing_requirements.required_attributes'
+      )
+    end
+
+    unless minimally_complete?
+      missing_requirements << I18n.t(
+        'public_policy.missing_requirements.minimally_complete',
+        percentage: minimum_completion_percentage * 100
+      )
+    end
+
+    missing_requirements
+  end
+
   private
 
   def policy_config

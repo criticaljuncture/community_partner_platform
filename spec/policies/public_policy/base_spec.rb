@@ -76,7 +76,7 @@ RSpec.describe "PublicPolicy::Base" do
       expect(policy.minimally_complete?).to be(true)
     end
 
-    it "returns fals if model completion is less than the minimum" do
+    it "returns false if model completion is less than the minimum" do
       allow(model).to receive(:completion_rate).and_return(15)
       expect(policy.minimally_complete?).to be(false)
     end
@@ -112,6 +112,30 @@ RSpec.describe "PublicPolicy::Base" do
 
         expect(policy.can_be_made_public?).to be(state['can_be_made_public'])
       end
+    end
+  end
+  describe '#missing_requirements' do
+    it "includes the proper messsage when required_attributes are missing" do
+      allow(policy).to receive(:required_attributes_present?).and_return(false)
+      allow(policy).to receive(:minimally_complete?).and_return(true)
+
+      message = I18n.t(
+        'public_policy.missing_requirements.required_attributes'
+      )
+
+      expect(policy.missing_requirements).to include(message)
+    end
+
+    it "includes the proper messsage when the record is not minimally_complete" do
+      allow(policy).to receive(:required_attributes_present?).and_return(true)
+      allow(policy).to receive(:minimally_complete?).and_return(false)
+
+      message = I18n.t(
+        'public_policy.missing_requirements.minimally_complete',
+        percentage: policy.minimum_completion_percentage * 100
+      )
+
+      expect(policy.missing_requirements).to include(message)
     end
   end
 end

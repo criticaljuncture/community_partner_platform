@@ -158,7 +158,8 @@ dl.horizontal_stack {
 
 // used on admin dashboard, org and community program page for progress bar tooltips
 .community-program-status-tooltip,
-.organization-status-tooltip {
+.organization-status-tooltip,
+.public-policy-missing-requirements-tooltip {
   .tipsy-inner {
     max-width: 400px;
     text-align: left;

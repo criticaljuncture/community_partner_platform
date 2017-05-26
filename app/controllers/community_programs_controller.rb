@@ -185,6 +185,33 @@ class CommunityProgramsController < ApplicationController
     redirect_to community_program_path(master_program)
   end
 
+  def publish
+    @community_program = CommunityProgram.find(params[:id])
+    authorize! :publish, @community_program
+
+    if params[:publish] == "1"
+      @community_program.update_attributes!(
+        approved_for_public: true,
+        approved_for_public_on: Time.now,
+        approved_for_public_by: current_user.id
+      )
+
+      flash.notice = t('community_programs.flash_messages.made_public',
+        name: @community_program.name)
+    else
+      @community_program.update_attributes!(
+        approved_for_public: false,
+        approved_for_public_on: nil,
+        approved_for_public_by: nil
+      )
+
+      flash.notice = t('community_programs.flash_messages.made_private',
+        name: @community_program.name)
+    end
+
+    redirect_to admin_dashboard_index_path
+  end
+
   private
 
   def community_program_params

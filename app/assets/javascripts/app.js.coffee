@@ -116,6 +116,22 @@ $(document).ready ->
     }
   )
 
+  CJ.Tooltip.addFancyTooltip(
+    '.cj-public-policy-missing-requirements-tooltip',
+    {
+      opacity: 1
+      delay: 0.2
+      fade: true
+      html: true
+      className: 'public-policy-missing-requirements-tooltip tooltip'
+    },
+    {
+      position: 'centerTop'
+      verticalOffset: -13
+      horizontalOffset: -6
+    }
+  )
+
   # change page on selection
   $(document).ready ->
     goto_forms = $('form.goto-selection')

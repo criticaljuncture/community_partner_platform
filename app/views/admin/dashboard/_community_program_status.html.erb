@@ -7,6 +7,7 @@
         <th class="school-count">School Count</th>
         <th class="with-progress-bar">Program Completion Rate</th>
         <th>School Programs with Differing Completion Rates</th>
+        <th class="public-status">Public</th>
       </tr>
     </thead>
 
@@ -41,6 +42,28 @@
                   ) do |school_program|
                       "#{school_program.school.name} (#{number_to_percentage(school_program.completion_rate, precision: 0)})"
                     end %>
+            <% end %>
+          </td>
+          <td class="text-center">
+            <% if community_program.approved_for_public? %>
+              <%= link_to t('admin.make_private'),
+                publish_community_program_path(community_program, publish: 0),
+                method: :post,
+                class: 'btn btn-small btn-warning' %>
+            <% elsif community_program.public_policy.can_be_made_public? %>
+              <%= link_to t('admin.approve_for_public'),
+                publish_community_program_path(community_program, publish: 1),
+                method: :post,
+                class: 'btn btn-small btn-action' %>
+            <% else %>
+              <%= boolean_checkmark_gicon(false,
+                class: 'cj-public-policy-missing-requirements-tooltip',
+                custom_tooltip: true,
+                data: {
+                  tooltip: missing_requirements_tooltip(community_program),
+                  tooltip_class: 'public-policy-missing-requirements-tooltip'
+                }
+              ) %>
             <% end %>
           </td>
         </tr>

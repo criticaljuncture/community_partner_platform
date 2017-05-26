@@ -42,6 +42,7 @@ CommunityPartnerPlatform::Application.routes.draw do
     member do
       put :merge
       put :toggle_active
+      post :publish
     end
   end
 
@@ -53,6 +54,7 @@ CommunityPartnerPlatform::Application.routes.draw do
     member do
       get :verification
       get :primary_contact_input
+      post :publish
     end
   end
 

@@ -36,14 +36,6 @@ class OrganizationDecorator < Draper::Decorator
     end
   end
 
-  def last_verified_tooltip
-    if last_verified_at.present?
-      "Last verified on #{last_verified}"
-    else
-      h.t('app.never_verified')
-    end
-  end
-
   def last_orientation_attended_tooltip
     if any_users_attended_orientation?
       user = user_last_orientation_attended
