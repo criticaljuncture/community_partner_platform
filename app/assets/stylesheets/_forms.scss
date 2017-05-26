@@ -199,3 +199,22 @@ fieldset.collapsible-fieldset {
     .glyphicon-plus { display: none; }
   }
 }
+
+.form-group {
+  .icon-cpp-globe {
+    color: $orange-dark;
+    font-size: 24px;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    z-index: 100;
+  }
+
+  &.select .icon-cpp-globe { right: 30px; }
+}
+
+
+.form-group.required abbr {
+  border-bottom: 0;
+  color: $orange-dark;
+}
