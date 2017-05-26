@@ -80,7 +80,10 @@
         wrapper: :horizontal_form,
         wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
 
-        <%= render partial: 'form', locals: {f: f} %>
+        <%= render partial: 'form', locals: {
+          f: f,
+          policy: @community_program.public_policy
+        } %>
 
         <%= collapsible_field_set_tag "Program Details",
           class: "program-details #{f.object.errors.present? ? 'open' : 'closed'}" do %>
@@ -94,7 +97,8 @@
 
           <%= render partial: 'community_programs/program_detail_inputs', locals: {
             f: f,
-            inherited_object: @community_program
+            inherited_object: @community_program,
+            policy: @community_program.public_policy
           } %>
         <% end %>
 

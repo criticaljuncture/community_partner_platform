@@ -1,6 +1,7 @@
 <%= f.input :student_population_id,
   as: :select,
   collection: StudentPopulation.accessible_by(current_ability),
+  public: policy.public_attribute?(:student_population_id),
   wrapper_html: {
     data: {inherited_values: inherited_object.try(:student_population_id)}
   } %>
@@ -10,6 +11,7 @@
   collection: EthnicityCultureGroup.accessible_by(current_ability).
     sort_by(&:name),
   columns: 3,
+  public: policy.public_attribute?(:ethnicity_culture_group_ids),
   wrapper_html: {
     data: {inherited_values: inherited_object.try(:ethnicity_culture_group_ids)}
   } %>
@@ -19,6 +21,7 @@
   collection: DemographicGroup.accessible_by(current_ability).
     sort_by(&:name),
   columns: 3,
+  public: policy.public_attribute?(:demographic_group_ids),
   wrapper_html: {
     data: {inherited_values: inherited_object.try(:demographic_group_ids)}
   } %>
@@ -27,6 +30,7 @@
   as: :columized_checkboxes,
   collection: GradeLevel.accessible_by(current_ability),
   columns: 4,
+  public: policy.public_attribute?(:grade_level_ids),
   wrapper_html: {
     data: {inherited_values: inherited_object.try(:grade_level_ids)}
   } %>
@@ -35,6 +39,7 @@
   as: :columized_checkboxes,
   collection: ServiceTime.accessible_by(current_ability),
   columns: 3,
+  public: policy.public_attribute?(:service_time_ids),
   wrapper_html: {
     data: {inherited_values: inherited_object.try(:service_time_ids)}
   } %>
@@ -43,6 +48,7 @@
   as: :columized_checkboxes,
   collection: Day.accessible_by(current_ability),
   columns: 3,
+  public: policy.public_attribute?(:day_ids),
   wrapper_html: {
     data: {inherited_values: inherited_object.try(:day_ids)}
   } %>

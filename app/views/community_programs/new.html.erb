@@ -54,7 +54,10 @@
         wrapper: :horizontal_form,
         wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
 
-        <%= render :partial => 'form', :locals => {:f => f} %>
+        <%= render partial: 'form', locals: {
+          f: f,
+          policy: @community_program.public_policy
+        } %>
 
         <div class="row">
           <div class="col-sm-3 hidden-sm"></div>

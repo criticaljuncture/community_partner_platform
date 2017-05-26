@@ -5,6 +5,7 @@
 
   <%= render :partial => 'form', :locals => {
     f: f,
-    community_program: @school_program.community_program
+    community_program: @school_program.community_program,
+    policy: @school_program.community_program.public_policy
   } %>
 <% end %>

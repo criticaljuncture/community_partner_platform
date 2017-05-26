@@ -1,15 +1,23 @@
 <%= field_set_tag 'Organization Basics' do %>
-  <%= f.input :name %>
+  <%= f.input :name,
+    public: policy.public_attribute?(:name) %>
 
-  <%= f.input :address %>
-  <%= f.input :city %>
-  <%= f.input :zip_code %>
+  <%= f.input :address,
+    public: policy.public_attribute?(:address) %>
+
+  <%= f.input :city,
+    public: policy.public_attribute?(:city) %>
+
+  <%= f.input :zip_code,
+    public: policy.public_attribute?(:zip_code) %>
 
   <%= f.input :phone_number,
-    placeholder: "555-555-5555" %>
+    placeholder: "555-555-5555",
+    public: policy.public_attribute?(:phone_number) %>
 
   <%= f.input :url,
-    placeholder: "http://example.com" %>
+    placeholder: "http://example.com",
+    public: policy.public_attribute?(:placeholder) %>
 <% end %>
 
 <%= field_set_tag 'Organization Details' do %>
@@ -24,21 +32,36 @@
         where(organization_id: @organization.id).
         sort_by(&:full_name),
       label_method: :full_name,
-      wrapper_html: {class: 'clear both'} %>
+      wrapper_html: {class: 'clear both'},
+      public: policy.public_attribute?(:user_id) %>
   </div>
 
   <%= f.input :legal_status_id,
     as: :select,
     collection: LegalStatus.for_select,
-    required: true %>
+    required: true,
+    public: policy.public_attribute?(:legal_status_id) %>
 
-  <%= f.input :mou_on_file, as: :boolean %>
-  <%= f.input :subcontractor_with_lead_agency, as: :boolean %>
-  <%= f.input :receives_district_funding, as: :boolean %>
-  <%= f.input :mission_statement, as: :text %>
-  <%= f.input :services_description, as: :text %>
-  <%= f.input :program_impact, as: :text %>
-  <%= f.input :cost_per_student, as: :text %>
+  <%= f.input :mou_on_file, as: :boolean,
+    public: policy.public_attribute?(:mou_on_file) %>
+
+  <%= f.input :subcontractor_with_lead_agency, as: :boolean,
+    public: policy.public_attribute?(:subcontractor_with_lead_agency) %>
+
+  <%= f.input :receives_district_funding, as: :boolean,
+    public: policy.public_attribute?(:receives_district_funding) %>
+
+  <%= f.input :mission_statement, as: :text,
+    public: policy.public_attribute?(:mission_statement) %>
+
+  <%= f.input :services_description, as: :text,
+    public: policy.public_attribute?(:services_description) %>
+
+  <%= f.input :program_impact, as: :text,
+    public: policy.public_attribute?(:program_impact) %>
+
+  <%= f.input :cost_per_student, as: :text,
+    public: policy.public_attribute?(:cost_per_student) %>
 
   <% if new_org %>
     <%= select_tag :user_ids_to_assign,
