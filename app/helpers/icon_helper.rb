@@ -31,12 +31,16 @@ module IconHelper
 
   def boolean_checkmark_gicon(bool, options={})
     data = options.fetch(:data, {})
-    additional_class_name = 'cj-tooltip' if data[:tooltip]
+
+    css_class = options.delete(:class) || ""
+    unless options[:custom_tooltip]
+      css_class += ' cj-tooltip' if data[:tooltip]
+    end
 
     if bool
-      gicon('ok', class_name: "positive #{additional_class_name}", data: data.merge(sort_value: true))
+      gicon('ok', class_name: "positive #{css_class}", data: data.merge(sort_value: true))
     else
-      gicon('remove', class_name: "negative #{additional_class_name}", data: data.merge(sort_value: false))
+      gicon('remove', class_name: "negative #{css_class}", data: data.merge(sort_value: false))
     end
   end
 end
