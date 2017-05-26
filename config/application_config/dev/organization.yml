@@ -21,9 +21,12 @@ app_config:
             - :zip_code
 
     public_policy:
-      percentage_complete: 0.25
+      percentage_complete: 0.75
       required_attributes: []
-      public_attributes: []
+      public_attributes:
+        - :name
+        - :cost_per_student
+        - :user_id
 
     validations:
       -

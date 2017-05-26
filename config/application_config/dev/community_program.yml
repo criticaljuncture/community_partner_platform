@@ -25,6 +25,14 @@ app_config:
           fields:
             - :school_programs
 
+    public_policy:
+      percentage_complete: 0.30
+      required_attributes: []
+      public_attributes:
+        - :name
+        - :service_description
+        - :grade_level_ids
+
     validations:
       -
         attribute: :name

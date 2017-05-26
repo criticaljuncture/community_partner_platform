@@ -1,6 +1,5 @@
 app_config:
   school_program:
-
     validations:
       -
         attribute: :school_id

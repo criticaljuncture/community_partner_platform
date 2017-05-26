@@ -13,6 +13,13 @@ app_config:
             - :student_population
             - :user
 
+    public_policy:
+      percentage_complete: 0.25
+      required_attributes: []
+      public_attributes:
+        - :name
+        - :service_description
+
     validations:
       -
         attribute: :name
