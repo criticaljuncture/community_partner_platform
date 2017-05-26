@@ -61,4 +61,8 @@ class CommunityProgram < ActiveRecord::Base
   def completion_policy
     @completion_policy ||= CompletionPolicy::CommunityProgramPolicy.new(self)
   end
+
+  def public_policy
+    @public_policy ||= PublicPolicy::CommunityProgramPolicy.new(self)
+  end
 end
