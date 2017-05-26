@@ -66,6 +66,23 @@ $(document).ready ->
     }
   )
 
+  CJ.Tooltip.addTooltip(
+    '.form-group .icon-cpp-globe',
+    {
+      offset: 5,
+      title: ->
+        'This field will be viewable by the public.'
+    }
+  )
+
+  CJ.Tooltip.addTooltip(
+    '.form-group .control-label.required abbr',
+    {
+      title: ->
+        'This field is required.'
+    }
+  )
+
   # admin dashboard, community_program and organization show pages
   CJ.Tooltip.addFancyTooltip(
     '.cj-org-progress-tooltip',
