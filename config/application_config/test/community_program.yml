@@ -19,6 +19,7 @@ app_config:
       public_attributes:
         - :name
         - :service_description
+      verification_required: true
 
     validations:
       -

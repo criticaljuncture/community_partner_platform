@@ -2,11 +2,6 @@ class PublicPolicy::Base
   attr_reader :model
   cattr_reader :policy_model
 
-  delegate :approved_for_public?,
-    :approved_for_public_by,
-    :approved_for_public_on,
-    to: :model
-
   def self.policy_for(type)
     @@policy_model = type.to_s
   end
@@ -18,7 +13,8 @@ class PublicPolicy::Base
   def can_be_made_public?
     !model.approved_for_public? &&
       required_attributes_present? &&
-      minimally_complete?
+      minimally_complete? &&
+      !verification_required?
   end
 
   def required_attributes_present?
@@ -29,6 +25,10 @@ class PublicPolicy::Base
 
   def minimally_complete?
      completion_percentage >= minimum_completion_percentage
+  end
+
+  def verification_required?
+    policy_config.verification_required && model.verification_required?
   end
 
   def required_attributes

@@ -5,7 +5,7 @@ class ApplicationConfig::Schemas::SchoolProgramSchema < ApplicationConfig::Schem
         required("validations").each do
           required("attribute").value(:symbol?)
           required("options").schema do
-            required("presence").value(:bool_or_hash?)
+            required("presence").value(:boolean_or_hash?)
           end
         end
       end

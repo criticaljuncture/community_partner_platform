@@ -32,6 +32,7 @@ app_config:
         - :name
         - :service_description
         - :grade_level_ids
+      verification_required: true
 
     validations:
       -

@@ -23,6 +23,8 @@ app_config:
         - :name
         - :mou_on_file
 
+      verification_required: true
+
     validations:
       -
         attribute: :name

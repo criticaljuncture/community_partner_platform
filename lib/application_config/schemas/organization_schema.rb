@@ -14,12 +14,13 @@ class ApplicationConfig::Schemas::OrganizationSchema < ApplicationConfig::Schema
           required("percentage_complete").value(:float?)
           required("public_attributes").each(:symbol?)
           required("required_attributes").each(:symbol?)
+          required("verification_required").value(:boolean?)
         end
 
         required("validations").each do
           required("attribute").value(:symbol?)
           required("options").schema do
-            required("presence").value(:bool_or_hash?)
+            required("presence").value(:boolean_or_hash?)
           end
         end
       end

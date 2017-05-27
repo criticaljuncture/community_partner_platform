@@ -3,7 +3,7 @@ module VerificationHelper
     if model.last_verified_at.present?
       "Last verified on #{model.last_verified}"
     else
-      h.t('app.never_verified')
+      I18n.t('app.never_verified')
     end
   end
 end

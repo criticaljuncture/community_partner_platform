@@ -17,12 +17,6 @@ RSpec.describe "PublicPolicy::Base" do
     end
   end
 
-  it "responds to methods that were delegated" do
-    expect(policy).to respond_to(:approved_for_public?)
-    expect(policy).to respond_to(:approved_for_public_by)
-    expect(policy).to respond_to(:approved_for_public_on)
-  end
-
   it "#public_attributes returns the attributes that will be shown in the public view" do
     model = build(:organization)
     policy = PublicPolicy::Base.new(model)
@@ -60,7 +54,7 @@ RSpec.describe "PublicPolicy::Base" do
     end
   end
 
-  describe "#minumum_completion_percentage" do
+  describe "#minimally_complete?" do
     before(:each) {
       allow(policy).to receive(:minimum_completion_percentage)
         .and_return(0.25)
@@ -82,21 +76,52 @@ RSpec.describe "PublicPolicy::Base" do
     end
   end
 
+  describe "#verification_required?" do
+    context "verification is configured as required" do
+      before(:each) do
+        allow(policy).to receive(:policy_config).and_return(
+          OpenStruct.new(verification_required: true)
+        )
+      end
+
+      it "returns true if the model needs verification" do
+        allow(model).to receive(:verification_required?).and_return(true)
+        expect(policy.verification_required?).to be(true)
+      end
+
+      it "returns false if the model has been verified" do
+        allow(model).to receive(:verification_required?).and_return(false)
+        expect(policy.verification_required?).to be(false)
+      end
+    end
+
+    context "verification is not configured as required" do
+      it "returns false" do
+        allow(policy).to receive(:policy_config).and_return(
+          OpenStruct.new(verification_required: false)
+        )
+        expect(policy.verification_required?).to be(false)
+      end
+    end
+  end
+
   describe "#can_be_made_public?" do
     # we convert NAT to true and NAF to false in the tests
     # but use these when we are not explicitely testing that condition
     # eg. it's a precondition for what we want to actually test
     possible_states = <<-TEXT
-      |---------------------+-----------------------------+--------------------+--------------------|
-      | approved_for_public | required_attributes_present | minimally_complete | can_be_made_public |
-      |---------------------+-----------------------------+--------------------+--------------------|
-      |        true         |            NAT              |        NAT         |        false       |
-      |        false        |            NAT              |        NAT         |        true        |
-      |        NAF          |            true             |        NAT         |        true        |
-      |        NAF          |            false            |        NAT         |        false       |
-      |        NAF          |            NAT              |        true        |        true        |
-      |        NAF          |            NAT              |        false       |        false       |
-      |---------------------+-----------------------------+--------------------+--------------------|
+      |---------------------+-----------------------------+--------------------+-----------------------+--------------------|
+      | approved_for_public | required_attributes_present | minimally_complete | verification_required | can_be_made_public |
+      |---------------------+-----------------------------+--------------------+-----------------------+--------------------|
+      |        true         |            NAT              |        NAT         |          NAF          |        false       |
+      |        false        |            NAT              |        NAT         |          NAF          |        true        |
+      |        NAF          |            true             |        NAT         |          NAF          |        true        |
+      |        NAF          |            false            |        NAT         |          NAF          |        false       |
+      |        NAF          |            NAT              |        true        |          NAF          |        true        |
+      |        NAF          |            NAT              |        false       |          NAF          |        false       |
+      |        NAF          |            NAT              |        NAT         |          true         |        false       |
+      |        NAF          |            NAT              |        NAT         |          false        |        true        |
+      |---------------------+-----------------------------+--------------------+-----------------------+--------------------|
     TEXT
 
     # dynamically generate a test for each possible state our model/policy can be in
@@ -105,15 +130,18 @@ RSpec.describe "PublicPolicy::Base" do
 
       it "returns #{state['can_be_made_public']} when approved_for_public? is #{state['approved_for_public']} \
       and required_attributes_present? is #{state['required_attributes_present']} \
-      and minimally_complete? is #{state['minimally_complete']}" do
+      and minimally_complete? is #{state['minimally_complete']}\
+      and verification_required? is #{state['verification_required']}" do
         allow(model).to receive(:approved_for_public?).and_return(state['approved_for_public'])
         allow(policy).to receive(:required_attributes_present?).and_return(state['required_attributes_present'])
         allow(policy).to receive(:minimally_complete?).and_return(state['minimally_complete'])
+        allow(policy).to receive(:verification_required?).and_return(state['verification_required'])
 
         expect(policy.can_be_made_public?).to be(state['can_be_made_public'])
       end
     end
   end
+
   describe '#missing_requirements' do
     it "includes the proper messsage when required_attributes are missing" do
       allow(policy).to receive(:required_attributes_present?).and_return(false)
