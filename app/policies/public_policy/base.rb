@@ -63,6 +63,12 @@ class PublicPolicy::Base
       )
     end
 
+    if verification_required?
+      missing_requirements << I18n.t(
+        'public_policy.missing_requirements.verification_required'
+      )
+    end
+
     missing_requirements
   end
 

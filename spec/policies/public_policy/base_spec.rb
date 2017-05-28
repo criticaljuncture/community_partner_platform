@@ -146,6 +146,7 @@ RSpec.describe "PublicPolicy::Base" do
     it "includes the proper messsage when required_attributes are missing" do
       allow(policy).to receive(:required_attributes_present?).and_return(false)
       allow(policy).to receive(:minimally_complete?).and_return(true)
+      allow(policy).to receive(:verification_required?).and_return(false)
 
       message = I18n.t(
         'public_policy.missing_requirements.required_attributes'
@@ -157,10 +158,23 @@ RSpec.describe "PublicPolicy::Base" do
     it "includes the proper messsage when the record is not minimally_complete" do
       allow(policy).to receive(:required_attributes_present?).and_return(true)
       allow(policy).to receive(:minimally_complete?).and_return(false)
+      allow(policy).to receive(:verification_required?).and_return(false)
 
       message = I18n.t(
         'public_policy.missing_requirements.minimally_complete',
         percentage: policy.minimum_completion_percentage * 100
+      )
+
+      expect(policy.missing_requirements).to include(message)
+    end
+
+    it "includes the proper messsage when the record is not verified" do
+      allow(policy).to receive(:required_attributes_present?).and_return(true)
+      allow(policy).to receive(:minimally_complete?).and_return(true)
+      allow(policy).to receive(:verification_required?).and_return(true)
+
+      message = I18n.t(
+        'public_policy.missing_requirements.verification_required'
       )
 
       expect(policy.missing_requirements).to include(message)
