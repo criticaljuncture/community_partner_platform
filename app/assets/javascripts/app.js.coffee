@@ -127,8 +127,8 @@ $(document).ready ->
     },
     {
       position: 'centerTop'
-      verticalOffset: -13
-      horizontalOffset: -6
+      verticalOffset: 3
+      horizontalOffset: -20
     }
   )
 
