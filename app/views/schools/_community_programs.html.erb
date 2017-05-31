@@ -14,18 +14,13 @@
           <% school_programs.sort_by(&:name).each do |school_program| %>
             <div class="columnar-table-block-header">
               <h5>
-                <%= link_to_if current_user,
-                  school_program.name,
+                <%= link_to school_program.name,
                   community_program_path(school_program.community_program) %>
 
                 provided by
 
-                <% if current_user %>
                 <%= link_to school_program.organization.name,
                   organization_path(school_program.organization) %>
-                <% else %>
-                <%= link_to school_program.organization.name, public_organization_path(school_program.organization) %>
-                <% end %>
               </h5>
               <%= link_to_gicon 'Show Details', '#',
                 class: "btn btn-medium btn-info toggle closed",
@@ -39,7 +34,7 @@
             </div>
 
             <%= columnar_table nil, id: "school-program-table-#{school_program.id}",
-              class: "hidden" do %>
+              class: "hidden embedded" do %>
               <tr>
                 <td>Service Types</td>
                 <td>

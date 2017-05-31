@@ -19,18 +19,20 @@
   .progress { margin-bottom: 0; }
 
   &.community-program-status {
+    table { overflow: visible; }
     th {
-      &.programs { width: 350px; }
-      &.school-count { width: 75px; }
+      &.programs { min-width: 350px; }
+      &.school-count { min-width: 75px; }
       &.last-updated { min-width: 200px; }
+      &.school-program-completion { min-width: 300px}
     }
   }
 
   &.organization-status {
     th {
-      &.organizations { width: 350px; }
+      &.organizations { min-width: 350px; }
       &.school-count,
-      &.orientation-attended { width: 75px; }
+      &.orientation-attended { min-width: 75px; }
       &.last-updated { min-width: 200px; }
     }
   }
