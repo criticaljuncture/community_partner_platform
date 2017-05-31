@@ -31,6 +31,8 @@ app_config:
       public_attributes:
         - :name
         - :service_description
+        - :quality_element
+        - :service_types
         - :grade_level_ids
       verification_required: true
 

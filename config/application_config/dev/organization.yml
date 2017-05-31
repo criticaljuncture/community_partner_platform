@@ -26,6 +26,7 @@ app_config:
       public_attributes:
         - :name
         - :cost_per_student
+        - :url
         - :user_id
       verification_required: true
 
