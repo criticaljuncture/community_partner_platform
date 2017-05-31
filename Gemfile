@@ -90,6 +90,9 @@ gem 'paper_trail', '>= 3.0.0.rc1'
 gem 'redis', '~> 3.3.2'
 gem 'redis-namespace', '~> 1.5.2'
 
+# prevent target blank fishing attack vector
+gem 'safe_target_blank'
+
 # Use SCSS for stylesheets
 gem 'sass', '~> 3.4.16'
 gem 'sass-rails', '~> 5.0.6'
