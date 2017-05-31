@@ -48,13 +48,21 @@
 </div>
 
 <div class="row">
-  <%= render partial: 'program_description', locals: {
-    community_program: @community_program
-  } %>
+  <%= columnar_attributes_display(
+    header: 'Program Information',
+    model: @community_program,
+    attrs: %i(name quality_element service_types service_description last_verified),
+    only_public_attrs: false,
+    options: {class: 'program-description'},
+  ) %>
 
-  <%= render partial: 'program_details', locals: {
-    community_program: @community_program
-  } %>
+  <%= columnar_attributes_display(
+    header: 'Program Details',
+    model: @community_program,
+    attrs: %i(student_population ethnicity_culture_groups demographic_groups grade_levels service_times days),
+    only_public_attrs: false,
+    options: {class: 'program-details'},
+  ) %>
 </div>
 
 <div class="row">

@@ -1,17 +1,29 @@
 <div class="row">
-  <%= render partial: 'organizations/organization_details', locals: {
-    organization: organization
-  } %>
+  <%= columnar_attributes_display(
+    header: 'Organization Details',
+    model: @organization,
+    attrs: %i(name url phone_number address city_state_zip primary_contact),
+    only_public_attrs: false,
+    options: {class: 'organization-details'},
+  ) %>
 
   <% if can?(:view_district_internals, organization) %>
-    <%= render partial: 'district_internals', locals: {
-      organization: organization
-    } %>
+    <%= columnar_attributes_display(
+      header: 'Internal Details',
+      model: @organization,
+      attrs: %i(legal_status mou_on_file? subcontractor_with_lead_agency? receives_district_funding? cost_per_student last_verified),
+      only_public_attrs: false,
+      options: {class: 'organization-internal-details'},
+    ) %>
   <% end %>
 </div>
 
 <div class="row">
-  <%= render partial: 'organizations/organization_description', locals: {
-    organization: organization
-  } %>
+  <%= columnar_attributes_display(
+    header: 'Organization Description',
+    model: @organization,
+    attrs: %i(mission_statement services_description program_impact),
+    only_public_attrs: false,
+    options: {class: 'organization-description'},
+  ) %>
 </div>
