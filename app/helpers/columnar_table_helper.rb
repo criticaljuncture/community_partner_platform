@@ -1,4 +1,27 @@
 module ColumnarTableHelper
+  def columnar_attributes_display(header:, model:, attrs:, only_public_attrs:, options:{})
+    attrs = only_public_attrs ? attrs.select{|attr| model.send(:public_attribute?, attr) } : attrs
+
+    return '' unless attrs.present?
+
+    columnar_table_block(header, options) do
+      attrs.each do |attr|
+        concat columnar_attribute_display(model, attr)
+      end
+    end
+  end
+
+  def columnar_attribute_display(model, attr)
+    content_tag(:tr) do
+      content_tag(:td) do
+        I18n.t("#{model.class.table_name}.#{attr.to_s.gsub('?', '')}")
+      end +
+      content_tag(:td) do
+        default_value_for(model, attr)
+      end
+    end
+  end
+
   def columnar_table_block(header, options={}, &block)
     table = options.fetch(:auto_table) { true }
 
