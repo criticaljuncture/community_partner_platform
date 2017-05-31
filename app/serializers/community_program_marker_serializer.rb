@@ -9,7 +9,7 @@ class CommunityProgramMarkerSerializer < BaseSerializer
   def properties
     {
       "schoolName": object.name,
-      "programCount": object.school_programs.size,
+      "programCount": school_programs.size,
       "schoolUrl": school_url(object),
       "schoolProgramsByElement": school_programs_by_element,
     }
@@ -24,10 +24,15 @@ class CommunityProgramMarkerSerializer < BaseSerializer
 
   private
 
-  def school_programs_by_element
+  def school_programs
     object
       .school_programs
       .reject{|sp| sp.quality_element.nil?}
+      .select{|sp| sp.approved_for_public?}
+  end
+
+  def school_programs_by_element
+    school_programs
       .group_by(&:quality_element)
       .sort_by{|qe, p| qe.name}
       .map do |quality_element, school_programs|

@@ -8,7 +8,8 @@ class Public::HomePagePresenter
   end
 
   def organizations
-    @organizations ||= Organization.select(:name, :id).order(:name)
+    @organizations ||= Organization.publicly_accessible
+      .select(:name, :id).order(:name)
       .group_by{|o| o.name.chars.first}
   end
 end

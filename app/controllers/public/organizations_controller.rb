@@ -1,7 +1,5 @@
 class Public::OrganizationsController < Public::ApplicationController
-
   def show
-    @organization = Organization.find(params[:id])
+    @organization = Organization.publicly_accessible.find(params[:id])
   end
-
 end
