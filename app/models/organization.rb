@@ -30,7 +30,11 @@ class Organization < ActiveRecord::Base
     joins(
       'LEFT OUTER JOIN community_programs ON organizations.id = community_programs.organization_id'
     ).
-    where(:community_programs => {active: true})
+    where(community_programs: {active: true})
+  }
+
+  scope :publicly_accessible, -> {
+    where(approved_for_public: true)
   }
 
   def quality_elements
@@ -93,6 +97,8 @@ class Organization < ActiveRecord::Base
     users.map(&:last_sign_in_at).compact.sort.last
   end
 
+  delegate :public_attribute?, to: :public_policy
+  
   def public_policy
     @public_policy ||= PublicPolicy::OrganizationPolicy.new(self)
   end

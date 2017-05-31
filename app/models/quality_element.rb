@@ -15,4 +15,11 @@ class QualityElement < ActiveRecord::Base
 
   scope :programmatic, -> { where(element_type: 'programmatic') }
   scope :foundational, -> { where(element_type: 'foundational') }
+  def foundational?
+    element_type == 'foundational'
+  end
+
+  def programmatic?
+    element_type == 'programmatic'
+  end
 end

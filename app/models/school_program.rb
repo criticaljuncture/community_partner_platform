@@ -21,6 +21,9 @@ class SchoolProgram < ActiveRecord::Base
            :service_description,
            :service_types,
            :quality_element,
+           :programmatic?,
+           :foundational?,
+           :approved_for_public?,
            to: :community_program
 
   delegate_if_blank :days,

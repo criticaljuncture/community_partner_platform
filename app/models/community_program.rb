@@ -36,6 +36,11 @@ class CommunityProgram < ActiveRecord::Base
   # view CommunityProgramAttributeRelationships for more (shared) relationships and validations
   #############################################
 
+  delegate :programmatic?, :foundational?, to: :primary_quality_element
+
+  scope :publicly_accessible, -> {
+    where(approved_for_public: true)
+  }
 
   def service_types
     primary_service_types
@@ -61,6 +66,8 @@ class CommunityProgram < ActiveRecord::Base
   def completion_policy
     @completion_policy ||= CompletionPolicy::CommunityProgramPolicy.new(self)
   end
+
+  delegate :public_attribute?, to: :public_policy
 
   def public_policy
     @public_policy ||= PublicPolicy::CommunityProgramPolicy.new(self)

@@ -7,6 +7,8 @@ class CommunityProgramQualityElement < ActiveRecord::Base
 
   accepts_nested_attributes_for :service_types
 
+  delegate :programmatic?, :foundational?, to: :quality_element
+
   validates :community_program_id,
     presence: true,
     unless: ->{ new_record? }
