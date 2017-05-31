@@ -132,12 +132,32 @@ $(document).ready ->
     }
   )
 
-  # change page on selection
-  $(document).ready ->
-    goto_forms = $('form.goto-selection')
-    if goto_forms.length > 0
-      goto_forms.each (index, element) ->
-        new CPP.GotoSelector($(element))
+  #bind toggler
+  $('.view-more-list').on 'click', 'li.toggler a', (e)->
+    e.preventDefault()
+
+    link = $(this)
+    el = link.closest('li')
+    listEls = el.siblings('li.overflow')
+
+    if listEls.hasClass('hidden')
+      listEls
+      .removeClass('hidden')
+      .show()
+    else
+      listEls.toggle()
+
+    if listEls.first().is(":visible")
+      link.text link.text().replace('view', 'hide')
+    else
+      link.text link.text().replace('hide', 'view')
+
+
+  # change page on selection (public home)
+  goto_forms = $('form.goto-selection')
+  if goto_forms.length > 0
+    goto_forms.each (index, element) ->
+      new CPP.GotoSelector($(element))
 
 $(document).on(
   {
