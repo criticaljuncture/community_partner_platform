@@ -6,7 +6,7 @@ namespace :demo do
     generate_users(20, type: :school_manager)
     generate_users(40, type: :organization_member)
     generate_admins
-    generate_partnerships(200)
+    generate_programs(200)
   end
 
   def reset_db
@@ -149,7 +149,7 @@ namespace :demo do
     users
   end
 
-  def generate_partnerships(count)
+  def generate_programs(count)
     data_generator = DemoDataGenerator::CommunityProgram.new
 
     partnerships = []
@@ -158,14 +158,14 @@ namespace :demo do
       organization = Organization.order("RAND()").limit(1).first
 
       # generate random user that match this organization
-      organization_users = User.where(organization_id: organization.id)
-      organization_user = organization_users[rand(organization_users.count)]
+      organization_user = User.where(organization_id: organization.id).order("RAND()").limit(1).first
 
       # org users are required
       next unless organization_user
 
       # generate random attributes
       student_population = StudentPopulation.order("RAND()").first
+      legal_status = LegalStatus.order("RAND()").first
 
       groups = EthnicityCultureGroup.order("RAND()").limit(2)
       ethnicity_culture_groups = [groups.first, groups.last]
@@ -188,8 +188,10 @@ namespace :demo do
         type: 'PrimaryQualityElement'
       )
 
-      #service_types = ServiceType.includes(:quality_elements).where(quality_elements: {id: quality_element.id}).order("RAND()")
-      #primary_quality_element.service_types = [service_types.first, service_types.last]
+      service_types = ServiceType.includes(:quality_elements)
+        .where(quality_elements: {id: quality_element.id})
+        .order("RAND()")
+      primary_quality_element.service_types = [service_types.first, service_types.last]
 
       # generate program
       community_program = CommunityProgram.new(
@@ -199,6 +201,7 @@ namespace :demo do
         user:                      organization_user,
         primary_quality_element:   primary_quality_element,
         student_population:        student_population,
+        legal_status:              legal_status,
         ethnicity_culture_groups:  ethnicity_culture_groups,
         demographic_groups:        demographic_groups,
         grade_levels:              grade_levels,
@@ -209,8 +212,10 @@ namespace :demo do
       # add a random number of schools (1-10) to this program
       schools = School.order("RAND()").limit(rand(10)+1)
       schools.each do |school|
-        school_users = User.includes(:schools).where(schools: {id: school.id})
-        school_user  = school_users[rand(school_users.count)]
+        school_user = User.includes(:schools)
+          .where(schools: {id: school.id})
+          .order("RAND()")
+          .limit(1).first
 
         community_program.school_programs << SchoolProgram.new(
           school: school,

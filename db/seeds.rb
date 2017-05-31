@@ -20,7 +20,6 @@ quality_elements = [
   ["Expanded Learning", "programmatic"],
   ["Family Engagement & Support", "programmatic"],
   ["Health & Wellness", "programmatic"],
-  ["Resource Development", "foundational"],
   ["School Culture & Climate", "programmatic"],
   ["School Readiness & Transitions",  "programmatic"],
   ["Youth leadership", "programmatic"]
