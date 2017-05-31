@@ -38,7 +38,7 @@ class UserDecorator < Draper::Decorator
             role_organization_display(model.organization) +
               if model.organization.primary_contact == model
                 content_tag(:tr) do
-                  content_tag(:td, t('organization.primary_contact')) +
+                  content_tag(:td, t('organizations.primary_contact')) +
                     content_tag(:td, t('app.yes'))
                 end
               end
@@ -61,7 +61,7 @@ class UserDecorator < Draper::Decorator
 
     def role_organization_display(org)
       content_tag(:tr) do
-        concat content_tag(:td, t('organization.class.name'))
+        concat content_tag(:td, t('organizations.class.name'))
         concat content_tag(
           :td,
           h.link_to(org.name, h.organization_path(org))

@@ -80,7 +80,7 @@ en:
     resend: 'Resend Invitation'
     send: 'Invite to CPP'
 
-  organization:
+  organizations:
     class:
       name: Organization
     address: Address
@@ -99,7 +99,7 @@ en:
     services_description: Service(s) description
     url: URL
 
-  organizations:
+  organization:
     messages:
       no_community_programs:
         show: <strong>This organization has no active community programs.</strong> Your organization is not complete without at least one community program. Use the 'Add a Community Program' button below to enter a new program.

@@ -15,7 +15,7 @@
 
 <% alert_notice(
     :warning, 'exclamation-sign',
-    t('organizations.messages.unverified_organization.edit').html_safe,
+    t('organization.messages.unverified_organization.edit').html_safe,
   ) if @organization.organization_verifiable? %>
 
 <%= page_header("Edit #{@organization.name}", "icon-cpp-small-business") %>

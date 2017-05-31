@@ -5,12 +5,12 @@
 
 <% alert_notice(
     :warning, 'exclamation-sign',
-    t('organizations.messages.unverified_organization.show').html_safe,
+    t('organization.messages.unverified_organization.show').html_safe,
   ) if @organization.organization_verifiable? %>
 
 <% alert_notice(
     :warning, 'exclamation-sign',
-    t('organizations.messages.unverified_programs',
+    t('organization.messages.unverified_programs',
       count: @organization.unverified_program_count).html_safe
   ) if @organization.programs_verifiable? %>
 
