@@ -9,6 +9,10 @@ class ServiceType < ActiveRecord::Base
   validates :name, presence: true
   validates :quality_elements, presence: true
 
+  def default_display
+    self.name
+  end
+
   def quality_element_groups
     community_program_quality_elements.group_by(&:quality_element_id)
   end
