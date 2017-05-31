@@ -1,15 +1,58 @@
 <%= breadcrumb [
-  [@organization.name, organization_path(@organization)]
+  [@organization.name, public_organization_path(@organization)]
 ] %>
 
 <%= page_header(@organization.name, "icon-cpp-small-business") %>
 
-<div class="row">
-  <%= render partial: 'organizations/organization_details', locals: {
-    organization: @organization
-  } %>
+<%= page_nav_tabs [
+  ['Organization Info', '#org-info'],
+  ['Community Programs', '#community-programs']
+] %>
 
-  <%= render partial: 'organizations/organization_description', locals: {
-    organization: @organization
-  } %>
+<div class="tab-content">
+  <div id="org-info" class="tab-pane active">
+    <div class="row">
+      <%= columnar_attributes_display(
+        header: 'Organization Details',
+        model: @organization,
+        attrs: %i(name url phone_number address city_state_zip primary_contact),
+        only_public_attrs: true,
+        options: {class: 'organization-details'},
+      ) %>
+    </div>
+
+    <div class="row">
+      <%= columnar_attributes_display(
+        header: 'Organization Description',
+        model: @organization,
+        attrs: %i(mission_statement services_description program_impact),
+        only_public_attrs: true,
+        options: {class: 'organization-description'},
+      ) %>
+    </div>
+  </div>
+
+  <div id="community-programs" class="tab-pane">
+    <div class="row">
+      <div class="<%= bootstrap_col xs:12, md:12 %> tab-description">
+        <p>
+          Community programs are organized into categories known as Community
+          School Elements. All community programs associated with
+          <%= @organization.name %> are listed below and each program may be provided at
+          1 or more schools. You can use the 'Show Details' buttons to learn more
+          about each program.
+        </p>
+      </div>
+    </div>
+
+    <div class="table_wrapper">
+      <% if @organization.community_programs.publicly_accessible.present? %>
+        <%= render partial: 'community_programs', locals: {
+          programs: @organization.community_programs.publicly_accessible
+        } %>
+      <% else %>
+        <p>This organization has no active community programs at this time. Please check back later.</p>
+      <% end %>
+    </div>
+  </div>
 </div>

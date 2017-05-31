@@ -1,6 +1,12 @@
 .columnar-table-block {
   > h4 { border-bottom: 1px solid $text-color; }
 
+  &.community-programs .columnar-table-block-wrapper {
+    margin-left: 10px;
+
+    td:first-child { width: 20%; }
+  }
+
   .columnar-table-block-header {
     border-bottom: 1px solid $gray-30;
     clear: both;

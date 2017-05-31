@@ -1,0 +1,56 @@
+<% programs.
+    reject{|sp| sp.quality_element.nil?}.
+    group_by(&:quality_element).
+    sort_by{|qe, p| qe.name}.
+    each do |quality_element, programs| %>
+
+  <%= columnar_table_block "#{quality_element.name}
+    <span class='hint'>(#{pluralize programs.count, 'program'})</span>".html_safe,
+    auto_table: false,
+    class: 'community-programs',
+    columns: {xs: 12, md: 12} do %>
+      <div class="columnar-table-block-wrapper">
+        <% programs.sort_by(&:name).each do |program| %>
+          <div class="columnar-table-block-header">
+            <h5>
+              <%= link_to program.name,
+                public_community_program_path(program) %>
+            </h5>
+            <%= link_to_gicon 'Show Details', '#',
+              class: "btn btn-medium btn-info toggle closed",
+              icon: 'eye-open eye-close',
+              wrapper_span: {id: "community-program-link-#{program.id}"},
+              "data-toggle-target" => "#community-program-table-#{program.id}",
+              "data-toggle-text-node" => "#community-program-link-#{program.id}",
+              "data-toggle-show-text" => "Show Details",
+              "data-toggle-hide-text" => "Hide Details"
+            %>
+          </div>
+
+          <%= columnar_table nil, id: "community-program-table-#{program.id}",
+            class: "hidden embedded" do %>
+            <tr>
+              <td>Service Types</td>
+              <td>
+                <%= program.service_types.map(&:name).join(', ') %>
+              </td>
+            </tr>
+            <tr>
+              <td>Student Population</td>
+              <td><%= program.student_population.try(:name) %></td>
+            </tr>
+            <tr>
+              <td>Schools</td>
+              <td>
+                <ul class="no-bullets">
+                  <% program.schools.sort_by(&:name).each do |school| %>
+                    <li><%= link_to school.name, public_school_path(school) %></li>
+                  <% end %>
+                </ul>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </div> <!-- columnar-table-block-wrapper -->
+  <% end %>
+<% end %>

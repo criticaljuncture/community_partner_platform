@@ -89,6 +89,7 @@ CommunityPartnerPlatform::Application.routes.draw do
   namespace :public do
     resources :schools, only: [:show]
     resources :organizations, only: [:show]
+    resources :community_programs, only: [:show]
   end
 
   root "public/special#home"

@@ -1,0 +1,49 @@
+<%= breadcrumb [
+  [@community_program.name, public_community_program_path(@community_program)]
+] %>
+
+<%= page_header(@community_program.name, "icon-cpp-handshake") %>
+
+<div class="row">
+  <%= columnar_attributes_display(
+    header: 'Program Information',
+    model: @community_program,
+    attrs: %i(name quality_element service_types service_description),
+    only_public_attrs: true,
+    options: {class: 'program-description'},
+  ) %>
+
+  <%= columnar_attributes_display(
+    header: 'Program Details',
+    model: @community_program,
+    attrs: %i(student_population ethnicity_culture_groups demographic_groups grade_levels service_times days),
+    only_public_attrs: true,
+    options: {class: 'program-details'},
+  ) %>
+</div>
+
+<div class="row">
+  <%= columnar_table_block 'Schools',
+    class: 'school-programs' do %>
+    <% SchoolProgramDecorator.decorate_collection(
+      @community_program.school_programs
+    ).each do |school_program| %>
+      <tr>
+        <td>
+          <%= link_to school_program.school.name,
+            public_school_path(school_program.school) %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+
+  <%= columnar_table_block 'Organization Information' do %>
+    <tr>
+      <td><%= I18n.t('community_programs.organization_name') %></td>
+      <td>
+        <%= link_to @community_program.organization.name,
+          public_organization_path(@community_program.organization) %>
+      </td>
+    </tr>
+  <% end %>
+</div

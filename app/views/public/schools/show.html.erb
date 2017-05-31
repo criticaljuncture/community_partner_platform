@@ -8,20 +8,21 @@
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <dl>
       <dt><%= t('community_programs.class.name').pluralize %></dt>
-      <dd><%= @school.school_programs.count %></dd>
+      <dd><%= @school_programs.count %></dd>
     </dl>
   </div>
 </div>
 
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-
-    <div id="community-programs" class="tab-pane active">
-      <%= render partial: 'schools/community_programs', locals: {
-        school: @school,
-        school_programs: @school.school_programs
-      } %>
-    </div>
-
+    <% if @school_programs.present? %>
+      <div id="community-programs" class="tab-pane active">
+        <%= render partial: 'school_programs', locals: {
+          programs: @school_programs
+        } %>
+      </div>
+    <% else %>
+      <p>This school has no active community programs assigned at this time. Please check back later.</p>
+    <% end %>
   </div>
 </div>
