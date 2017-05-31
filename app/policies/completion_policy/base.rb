@@ -45,6 +45,9 @@ class CompletionPolicy::Base
   end
 
   def app_config
-    @app_config ||= Settings.app_config.send(model.class.name.underscore)
+    return @app_config if @app_config
+
+    model_name = model.is_a?(SchoolProgram) ? 'community_program' : model.class.name.underscore
+    @app_config = Settings.app_config.send(model_name)
   end
 end
