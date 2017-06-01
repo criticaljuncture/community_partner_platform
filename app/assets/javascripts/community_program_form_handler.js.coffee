@@ -8,6 +8,7 @@ class @CPP.CommunityProgramFormHandler
     @qualityElementEl = @form.find('#community_program_primary_quality_element_attributes_quality_element_id')
 
     @addChangeHandlers()
+    @addClickHandlers()
     @ensureFormConsistency()
     @addAjaxButtonHandlers()
 
@@ -19,6 +20,11 @@ class @CPP.CommunityProgramFormHandler
 
     @organizationEl.on 'change', ()->
       formHandler.organizationChange $(this).val()
+
+  addClickHandlers: ->
+    $('#show-quality-element-description').on 'click', (e)->
+      e.preventDefault()
+      $('#quality-element-description-modal').modal()
 
   ensureFormConsistency: ->
     if @qualityElementEl.val() == ""

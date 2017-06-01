@@ -44,8 +44,14 @@
   }
 }
 
+.modal.modal-wide,
 .modal.school-program-modal {
   width: 900px;
 
   .modal-dialog { width: 900px; }
+}
+
+.modal.quality-element-description-modal {
+  h4 { border-bottom: 1px solid $text-color; }
+  dd { margin-bottom: 10px; }
 }

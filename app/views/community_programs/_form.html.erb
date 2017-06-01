@@ -1,11 +1,32 @@
 <% collapsed = (f.object.new_record? || f.object.errors.present?) ? 'open' : 'closed' %>
 
+<%= modal(:basic,
+  footer: false,
+  header_icon: 'icon-cpp-handshake',
+  header_text: 'Quality Element Descriptions',
+  modal_class: "modal-wide quality-element-description-modal",
+  modal_id: "quality-element-description-modal") do %>
+  <% QualityElement.all.group_by(&:element_type).each do |type, quality_elements| %>
+    <h4><%= type.capitalize %></h4>
+    <p><%= t("quality_elements.descriptions.#{type}") %></p>
+
+    <dl>
+      <% quality_elements.sort_by(&:name).each do |quality_element| %>
+        <dt><%= quality_element.name %></dt>
+        <dd><%= quality_element.description %></dd>
+      <% end %>
+    </dl>
+  <% end %>
+<% end %>
+
 <%= collapsible_field_set_tag "Program", class: 'open' do %>
   <%= f.input :name,
     public: policy.public_attribute?(:name) %>
 
   <%= f.input :service_description,
     public: policy.public_attribute?(:service_description) %>
+
+  <%= link_to_gicon 'View quality element descriptions', '#', icon: 'question-sign', id: 'show-quality-element-description' %>
 
   <%= f.simple_fields_for :primary_quality_element do |element| %>
     <%= element.input :quality_element_id,
