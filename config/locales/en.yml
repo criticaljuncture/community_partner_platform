@@ -133,6 +133,23 @@ en:
     class:
       name: Community School Element
 
+  quality_elements:
+    descriptions:
+      collaborative_leadership: 'Programs to assist central office and school sites in forming mutually beneficial relationships; working together in creating a united culture: acting with integrity, fighting for equity, and putting students first.'
+      continuous_improvement: 'Programs to assist each school community to hold itself accountable for continuous improvement of student achievement through evaluation and learning in order to achieve their vision of a full service community school according to their assets and needs.'
+      coordination: 'Programs to help bridge central office and school communities, building communication, coordination, assessment, and development capacity for community-based organizations, district-based programs, school staff and students & families.'
+      equity_diversity: 'Programs to assist in fullfilling our goal of building a Full Service Community District focused on high academic achievement, while serving the whole child, eliminating inequity, and providing each child with excellent teachers, every day.'
+      expanded_learning: 'Programs that provide additional opportunities to practice the skills students are learning in the classroom and to cultivate the study habits and mindset needed to succeed in school.'
+      family_engagement_support: 'Programs that help bridge OUSD staff with the communities they serve, incorporating the experiences of all families, such that all stakeholders become authentic co-owners of our schools.'
+      health_wellness: 'Programs that help students to be in school and ready to learn, and to reach our goal of engaging the entire community in improving individual and community health.'
+      school_culture_climate: 'Programs for students and families that address barriers to student achievement.'
+      school_readiness_transitions: 'Programs that provide additional support during uncertain periods in student lives, such as foster youth, refugee & asylee students, unaccompanied minors, students with unstable housing, and students transitioning from one program to another.'
+      social_emotional_learning: 'Programs to help bolster academic learning with SEL skills and competencies: self-awareness, self-management, social awareness, relationship skills, and responsible decision making.'
+      youth_leadership: 'Programs to help cultivate civically engaged communities in which students have power to inform, influence, and shape policy that reflects their perspective.'
+
+      foundational: 'Foundational type programs are focused on building an equitable, district-wide implementation of the Full Service Community School model.'
+      programmatic: 'Programmatic type programs are focused providing on holistic support to students, families and the community as a whole.'
+
   region:
     class:
       name: Network

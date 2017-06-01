@@ -12,23 +12,70 @@ roles.each do |name, identifier|
 end
 
 quality_elements = [
-  ["Academic & Social Emotional Learning", "programmatic"],
-  ["Collaborative Leadership", "foundational"],
-  ["Continuous Improvement", "foundational"],
-  ["Coordination", "foundational"],
-  ["Equity", "foundational"],
-  ["Expanded Learning", "programmatic"],
-  ["Family Engagement & Support", "programmatic"],
-  ["Health & Wellness", "programmatic"],
-  ["School Culture & Climate", "programmatic"],
-  ["School Readiness & Transitions",  "programmatic"],
-  ["Youth leadership", "programmatic"]
+  {
+    identifier: "social_emotional_learning",
+		name: "Academic & Social Emotional Learning",
+		type: "programmatic"
+	},
+  {
+    identifier: "collaborative_leadership",
+		name: "Collaborative Leadership",
+		type: "foundational"
+	},
+  {
+    identifier: "continuous_improvement",
+		name: "Continuous Improvement",
+		type: "foundational"
+	},
+  {
+    identifier: "coordination",
+		name: "Partnerships and Coordination",
+		type: "foundational"
+	},
+  {
+    identifier: "equity_diversity",
+		name: "Equity and Diversity",
+		type: "foundational"
+	},
+  {
+    identifier: "expanded_learning",
+		name: "Expanded Learning",
+		type: "programmatic"
+	},
+  {
+    identifier: "family_engagement_support",
+		name: "Family Engagement & Support",
+		type: "programmatic"
+	},
+  {
+    identifier: "health_wellness",
+		name: "Health & Wellness",
+		type: "programmatic"
+	},
+  {
+    identifier: "school_culture_climate",
+		name: "School Culture & Climate",
+		type: "programmatic"
+	},
+  {
+    identifier: "school_readiness_transitions",
+		name: "School Readiness & Transitions",
+		type:  "programmatic"
+	},
+  {
+    identifier: "youth_leadership",
+		name: "Youth leadership",
+		type: "programmatic"
+	},
 ]
 
 QualityElement.truncate
-quality_elements.each do |name, type|
-  qe = QualityElement.new(name: name, element_type: type)
-  qe.save
+quality_elements.each do |quality_element|
+  QualityElement.create(
+    identifier: quality_element[:identifier],
+    name: quality_element[:name],
+    element_type: quality_element[:type]
+  )
 end
 
 service_types = [

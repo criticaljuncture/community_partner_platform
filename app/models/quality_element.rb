@@ -27,4 +27,12 @@ class QualityElement < ActiveRecord::Base
   def programmatic?
     element_type == 'programmatic'
   end
+
+  def identifier
+    self['identifier'].to_sym
+  end
+
+  def description
+    I18n.t("quality_elements.descriptions.#{identifier}")
+  end
 end

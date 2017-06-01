@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424003414) do
+
+ActiveRecord::Schema.define(version: 20170601170153) do
+
   create_table "community_program_demographic_groups", force: :cascade do |t|
     t.integer  "demographic_group_id", limit: 4
     t.integer  "attributable_id",      limit: 4
@@ -222,6 +224,7 @@ ActiveRecord::Schema.define(version: 20170424003414) do
     t.string   "element_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "identifier",   limit: 255
   end
 
   add_index "quality_elements", ["element_type"], name: "index_quality_elements_on_element_type", using: :btree
