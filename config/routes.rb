@@ -72,7 +72,10 @@ CommunityPartnerPlatform::Application.routes.draw do
       get :school_hierarchy
       get :schools
       get :school_sub_areas
-      get 'community_program_markers/:site_type_norm' => 'api#community_program_markers'
+
+      if Settings.application.public_view_enabled
+        get 'community_program_markers/:site_type_norm' => 'api#community_program_markers'
+      end
     end
   end
 
@@ -86,11 +89,15 @@ CommunityPartnerPlatform::Application.routes.draw do
     resources :dashboard, only: :index
   end
 
-  namespace :public do
-    resources :schools, only: [:show]
-    resources :organizations, only: [:show]
-    resources :community_programs, only: [:show]
-  end
+  if Settings.application.public_view_enabled
+    namespace :public do
+      resources :schools, only: [:show]
+      resources :organizations, only: [:show]
+      resources :community_programs, only: [:show]
+    end
 
-  root "public/special#home"
+    root to: "public/special#home"
+  else
+    root to: "schools#index"
+  end
 end
