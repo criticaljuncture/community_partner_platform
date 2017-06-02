@@ -8,9 +8,15 @@
 } if can?(:toggle_active, @community_program) %>
 
 <% alert_notice(
+    :danger, 'exclamation-sign',
+    @community_program.public_policy.expiration_notice.html_safe
+  ) if can?(:verfify, @community_program) && @community_program.public_policy.expiration_notice %>
+
+<% alert_notice(
     :warning, 'exclamation-sign',
-    t('community_program.messages.verification_needed')
-  ) if @community_program.verification_required? && can?(:verify, @community_program) %>
+    @community_program.public_policy.public_criteria_notice.html_safe
+  ) if  can?(:verfify, @community_program) && @community_program.public_policy.public_criteria_notice %>
+
 <% alert_notice(
     :warning, 'exclamation-sign',
     t('community_program.messages.verification_needed').html_safe

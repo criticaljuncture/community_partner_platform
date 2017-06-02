@@ -46,10 +46,13 @@ class CommunityProgram < ActiveRecord::Base
     primary_service_types
   end
 
+  # TODO: BB move to verification policy
   def verification_required?
     !new_record? &&
-      (last_verified_at.nil? ||
-        last_verified_at < Settings.community_program.verification_date)
+      (
+        last_verified_at.nil? ||
+        last_verified_at < Date.parse(Settings.app_config.organization.verification_policy.verification_date)
+      )
   end
 
   def schools_with_differing_completion_rates
