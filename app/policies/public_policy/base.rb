@@ -2,6 +2,8 @@ class PublicPolicy::Base
   attr_reader :model
   cattr_reader :policy_model
 
+  include PublicPolicyHelper
+
   def self.policy_for(type)
     @@policy_model = type.to_s
   end
@@ -96,6 +98,21 @@ class PublicPolicy::Base
   # TODO: BB move to verification policy
   def verification_date
     Date.parse(verification_config.verification_date)
+  end
+
+  def public_criteria_notice
+    return nil if eligible_to_be_made_public?
+
+    I18n.t("#{self.class.policy_model}.public_policy.messages.public_criteria_not_met",
+      missing_requirements: missing_requirements_list(missing_requirements))
+  end
+
+  def expiration_notice
+    return nil unless in_grace_period?
+    return nil unless model.approved_for_public? && !eligible_to_be_made_public?
+
+    I18n.t("#{self.class.policy_model}.public_policy.messages.expiration_pending",
+      date: grace_period_end_date)
   end
 
   private

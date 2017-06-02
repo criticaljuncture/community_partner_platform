@@ -31,6 +31,10 @@ en:
   community_program:
     messages:
       verification_needed: <strong>This program has not been verified recently.</strong> Please edit the program and verify or update the current information.
+    public_policy:
+      messages:
+        public_criteria_not_met: <strong>This program does not meet the criteria to be viewable by the public</strong>. %{missing_requirements}
+        expiration_pending: <strong>This program will no longer be viewable by the public</strong> after %{date} unless it is updated to meet all criteria and verified.
 
   community_programs:
     class:
@@ -109,8 +113,10 @@ en:
       unverified_programs:
         one: <strong>%{count} Program Needs Verification!</strong> There is %{count} program that has not yet had its details reviewed and verified by your organization. Please review your program in the 'Active Programs' tab below and verify it.
         other: <strong>%{count} Programs Need Verification!</strong> There are %{count} programs that have not yet had their details reviewed and verified by your organization. Please review your programs in the 'Active Programs' tab below and verify them.
-      public_criteria_not_met: <strong>This organization does not meet the criteria to be viewable by the public</strong>. %{missing_requirements}
-      expiration_pending: <strong>This organization will no longer be viewable by the public</strong> after %{date} unless it is updated to meet all criteria and verified.
+    public_policy:
+      messages:
+        public_criteria_not_met: <strong>This organization does not meet the criteria to be viewable by the public</strong>. %{missing_requirements}
+        expiration_pending: <strong>This organization will no longer be viewable by the public</strong> after %{date} unless it is updated to meet all criteria and verified.
 
     flash_messages:
       create:
