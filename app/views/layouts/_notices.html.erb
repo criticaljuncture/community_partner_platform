@@ -5,8 +5,6 @@
       <%= alert_message type, message %>
     <% end %>
 
-    <%= yield :alert_notices %>
-
     <% if flash[:js].present? %>
       <script type='text/javascript'>
         <% flash[:js].each do |key, value| %>
@@ -14,5 +12,11 @@
         <% end %>
       </script>
     <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md:12 %> alerts">
+    <%= yield :alert_notices %>
   </div>
 </div>
