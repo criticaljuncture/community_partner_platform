@@ -40,3 +40,7 @@ app_config:
         options:
           presence:
             message: Please choose from the list above
+
+    verification_policy:
+      verification_date: '2017-06-01'
+      grace_period_end_date: '2017-08-01'

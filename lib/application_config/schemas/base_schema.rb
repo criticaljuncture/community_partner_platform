@@ -21,5 +21,9 @@ class ApplicationConfig::Schemas::BaseSchema < Dry::Validation::Schema
     def symbol?(value)
       value.is_a?(Symbol)
     end
+
+    def iso_date?(value)
+      value.match(/\d{4}-\d{2}-\d{2}/)
+    end
   end
 end

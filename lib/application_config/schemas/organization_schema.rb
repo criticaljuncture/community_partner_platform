@@ -23,6 +23,11 @@ class ApplicationConfig::Schemas::OrganizationSchema < ApplicationConfig::Schema
             required("presence").value(:boolean_or_hash?)
           end
         end
+
+        required("verification_policy").schema do
+          required("verification_date").value(:iso_date?)
+          required("grace_period_end_date").value(:iso_date?)
+        end
       end
     end
   end
