@@ -174,7 +174,8 @@ RSpec.describe "PublicPolicy::Base" do
       allow(policy).to receive(:verification_required?).and_return(true)
 
       message = I18n.t(
-        'public_policy.missing_requirements.verification_required'
+        'public_policy.missing_requirements.verification_required',
+        date: policy.verification_date - 1.day
       )
 
       expect(policy.missing_requirements).to include(message)

@@ -127,7 +127,7 @@ en:
     missing_requirements:
       required_attributes: Missing required_attributes.
       minimally_complete: Does not meet minimum completion percentage (%{percentage}%).
-      verification_required: Has not been recently verified.
+      verification_required: Has not been verified after %{date}.
 
   quality_element:
     class:
