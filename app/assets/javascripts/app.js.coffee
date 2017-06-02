@@ -67,6 +67,13 @@ $(document).ready ->
   )
 
   CJ.Tooltip.addTooltip(
+    '.icon-cpp-globe.with-tooltip',
+    {
+      offset: 5,
+    }
+  )
+
+  CJ.Tooltip.addTooltip(
     '.form-group .icon-cpp-globe',
     {
       offset: 5,

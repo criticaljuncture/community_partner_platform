@@ -47,8 +47,8 @@
 
       <p>
         Each program that requires verification has a button that will allow you
-        to review and verify it's details. Be sure to review the schools that are listed on each program and add or
-        remove any as needed.
+        to review and verify it's details. Be sure to review the schools that are
+        listed on each program and add or remove any as needed.
       </p>
 
       <p>
@@ -69,7 +69,7 @@
     <% end %>
 <% end %>
 
-<%= page_header(@organization.name, "icon-cpp-small-business") do %>
+<%= page_header(@organization.page_header, "icon-cpp-small-business") do %>
   <%= link_to_gicon('Verify Organization',
       edit_organization_path(@organization),
       class: "btn btn-create",

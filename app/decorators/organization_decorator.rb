@@ -56,4 +56,17 @@ class OrganizationDecorator < Draper::Decorator
       ""
     end
   end
+
+  def page_header
+    if approved_for_public?
+      icon = h.content_tag(:span, '',
+        class: 'icon-cpp icon-cpp-globe with-tooltip',
+        data: {tooltip: 'This organization is publicly viewable'}
+      )
+
+      "#{name} #{icon}".html_safe
+    else
+      name
+    end
+  end
 end

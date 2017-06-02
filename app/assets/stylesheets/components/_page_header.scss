@@ -28,7 +28,16 @@ $header-color: $gray-70;
     height: 56px;
     position: relative;
 
-    h1 { width: 80%; }
+    h1 {
+      width: 80%;
+
+      .icon-cpp-globe {
+        color: $orange-dark;
+        font-size: modular-scale(3);
+        position: relative;
+        top: -10px;
+      }
+    }
 
     .header-button-wrapper {
       @extend %header-button-wrapper;

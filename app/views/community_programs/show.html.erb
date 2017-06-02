@@ -1,5 +1,5 @@
 <%= breadcrumb [
-  ['Community Programs', community_programs_path()],
+  ['Community Programs', community_programs_path],
   [@community_program.name, community_program_path(@community_program)]
 ] %>
 
@@ -22,7 +22,7 @@
     t('community_program.messages.verification_needed.show').html_safe
   ) if @community_program.verifiable? %>
 
-<%= page_header @community_program.name, 'icon-cpp-handshake',
+<%= page_header @community_program.page_header, 'icon-cpp-handshake',
   wrapper_class: 'community-programs' do %>
 
   <%= link_to_gicon('Verify Program',

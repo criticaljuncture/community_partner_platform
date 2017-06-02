@@ -50,4 +50,17 @@ class CommunityProgramDecorator < Draper::Decorator
   def internal_details_present?
     receives_district_funding? || notes.present?
   end
+
+  def page_header
+    if approved_for_public?
+      icon = h.content_tag(:span, '',
+        class: 'icon-cpp icon-cpp-globe with-tooltip',
+        data: {tooltip: 'This community program is publicly viewable'}
+      )
+
+      "#{name} #{icon}".html_safe
+    else
+      name
+    end
+  end
 end
