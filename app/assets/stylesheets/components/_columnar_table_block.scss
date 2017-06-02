@@ -1,5 +1,14 @@
 .columnar-table-block {
-  > h4 { border-bottom: 1px solid $text-color; }
+  > h4 {
+    border-bottom: 1px solid $text-color;
+
+    .btn {
+      position: absolute;
+      right: 20px;
+      text-align: right;
+      top: 12px;
+    }
+  }
 
   &.community-programs .columnar-table-block-wrapper {
     margin-left: 10px;

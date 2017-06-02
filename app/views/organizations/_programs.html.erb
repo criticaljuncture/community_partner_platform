@@ -1,4 +1,21 @@
-<%= columnar_table_block "#{active ? 'Active' : 'Inactive'} Programs",
+<%
+  header = "#{active ? 'Active' : 'Inactive'} Programs"
+
+  if active && can?(:new, CommunityProgram)
+    link = link_to_gicon(
+      'Add a Community Program',
+      new_community_program_path(community_program: {
+        organization_id: @organization.id
+      }),
+      class: "btn btn-create",
+      icon: 'plus'
+    )
+
+    header = "#{header} #{link}".html_safe
+  end
+%>
+
+<%= columnar_table_block header,
   auto_table: false,
   class: 'organization community-programs',
   columns: {xs: 12, md: 12} do %>

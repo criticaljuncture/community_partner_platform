@@ -71,14 +71,6 @@
       class: "btn btn-primary",
       icon: 'pencil'
     ) if can?(:update, @organization) %>
-
-  <%= link_to_gicon('Add a Community Program',
-      new_community_program_path(community_program: {
-        organization_id: @organization.id
-      }),
-      class: "btn btn-create",
-      icon: 'plus'
-    ) if can?(:new, CommunityProgram) %>
 <% end %>
 
 <div class="row">
