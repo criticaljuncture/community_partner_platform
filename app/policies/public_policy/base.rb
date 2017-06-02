@@ -12,9 +12,13 @@ class PublicPolicy::Base
 
   def can_be_made_public?
     !model.approved_for_public? &&
-      required_attributes_present? &&
+      eligible_to_be_made_public?
+  end
+
+  def eligible_to_be_made_public?
+    required_attributes_present? &&
       minimally_complete? &&
-      !verification_required?
+        !verification_required?
   end
 
   def required_attributes_present?
@@ -65,17 +69,44 @@ class PublicPolicy::Base
 
     if verification_required?
       missing_requirements << I18n.t(
-        'public_policy.missing_requirements.verification_required'
+        'public_policy.missing_requirements.verification_required',
+        date: verification_date - 1.day
       )
     end
 
     missing_requirements
   end
 
+  # TODO: BB move to verification policy
+  def in_grace_period?
+    in_verification_period? &&
+       grace_period_end_date >= Date.current
+  end
+
+  # TODO: BB move to verification policy
+  def in_verification_period?
+     verification_date <= Date.current
+  end
+
+  # TODO: BB move to verification policy
+  def grace_period_end_date
+    Date.parse(verification_config.grace_period_end_date)
+  end
+
+  # TODO: BB move to verification policy
+  def verification_date
+    Date.parse(verification_config.verification_date)
+  end
+
   private
 
   def policy_config
     @policy_config ||= Settings.app_config.send(self.class.policy_model).public_policy
+  end
+
+  # TODO: BB move to verification policy
+  def verification_config
+    @verification_config ||= Settings.app_config.send(self.class.policy_model).verification_policy
   end
 
   def completion_percentage

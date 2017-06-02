@@ -181,4 +181,42 @@ RSpec.describe "PublicPolicy::Base" do
       expect(policy.missing_requirements).to include(message)
     end
   end
+
+  # TODO: BB move to verification policy
+  context "validation policy" do
+    describe "#in_verification_period?" do
+      it "returns true when verification_date is <= to the current date" do
+        allow(policy).to receive(:verification_date).and_return(Date.current - 1.week)
+        expect(policy.in_verification_period?).to be true
+      end
+
+      it "returns false when verification_date is > to the current date" do
+        allow(policy).to receive(:verification_date).and_return(Date.current + 1.day)
+        expect(policy.in_verification_period?).to be false
+      end
+    end
+
+    describe "#in_grace_period?" do
+      it "returns true when in_verification_period? is true and the current date is <= grace_period_end_date" do
+        allow(policy).to receive(:in_verification_period?).and_return(true)
+        allow(policy).to receive(:grace_period_end_date).and_return(Date.current + 1.week)
+
+        expect(policy.in_grace_period?).to be true
+      end
+
+      it "returns false when in_verification_period? is true and the current date is > grace_period_end_date" do
+        allow(policy).to receive(:in_verification_period?).and_return(true)
+        allow(policy).to receive(:grace_period_end_date).and_return(Date.current - 1.week)
+
+        expect(policy.in_grace_period?).to be false
+      end
+
+      it "returns false when in_verification_period? is false" do
+        allow(policy).to receive(:in_verification_period?).and_return(false)
+        allow(policy).to receive(:grace_period_end_date).and_return(Date.current + 1.week)
+
+        expect(policy.in_grace_period?).to be false
+      end
+    end
+  end
 end

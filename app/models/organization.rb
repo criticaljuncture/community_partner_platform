@@ -50,10 +50,13 @@ class Organization < ActiveRecord::Base
       verification_organization_path(organization)
   end
 
+  # TODO: BB move to verification policy
   def verification_required?
     !new_record? &&
-      (last_verified_at.nil? ||
-        last_verified_at < Settings.organization.verification_date)
+      (
+        last_verified_at.nil? ||
+        last_verified_at < Date.parse(Settings.app_config.organization.verification_policy.verification_date)
+      )
   end
 
   def any_unverified_programs?
@@ -98,7 +101,7 @@ class Organization < ActiveRecord::Base
   end
 
   delegate :public_attribute?, to: :public_policy
-  
+
   def public_policy
     @public_policy ||= PublicPolicy::OrganizationPolicy.new(self)
   end
