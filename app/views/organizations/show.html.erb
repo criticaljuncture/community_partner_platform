@@ -18,8 +18,6 @@
     t('organization.messages.unverified_organization.show').html_safe,
   ) if @organization.verifiable? %>
 
-
-
 <% alert_notice(
     :warning, 'exclamation-sign',
     t('organization.messages.unverified_programs',

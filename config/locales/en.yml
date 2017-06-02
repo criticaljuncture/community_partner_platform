@@ -30,7 +30,9 @@ en:
 
   community_program:
     messages:
-      verification_needed: <strong>This program has not been verified recently.</strong> Please edit the program and verify or update the current information.
+      verification_needed:
+        show: <strong>This program needs to be verified.</strong> Please use the 'Verify Program' button below to review this program's details and verify their accuracy.
+        edit: <strong>This program needs to be verified.</strong> Please review the details, verify their accuracy, and use the 'Save & Verify' button at the bottom of this page.
     public_policy:
       messages:
         public_criteria_not_met: <strong>This program does not meet the criteria to be viewable by the public</strong>. %{missing_requirements}

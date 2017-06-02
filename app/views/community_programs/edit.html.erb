@@ -40,11 +40,10 @@
     </p>
 <% end %>
 
-<% if @community_program.verification_required? %>
-  <%= alert_notice :warning, 'exclamation-sign' do %>
-    This program needs verification. Please check the information below and use the 'Save & Verify' button below.
-  <% end %>
-<% end %>
+<% alert_notice(
+    :warning, 'exclamation-sign',
+    t('community_program.messages.verification_needed.edit').html_safe,
+  ) if @community_program.verifiable? %>
 
 <%= render partial: 'merge_program_modal', locals: {
   community_program: @community_program
@@ -145,10 +144,10 @@
         <div class="row">
           <div class="col-sm-12">
             <%= f.submit t('forms.buttons.save'),
-              class: "btn btn-large #{f.object.verification_required? ? 'btn-primary' : 'btn-success'}"
+              class: "btn btn-large #{@community_program.verifiable? ? 'btn-primary' : 'btn-success'}"
             %>
 
-            <% if f.object.verification_required? && can?(:verify, f.object) %>
+            <% if @community_program.verifiable? %>
               <%= f.submit t('forms.buttons.save_verify'), class: "btn btn-large btn-success" %>
               <%= help_hover do %>
                 This program needs verification. If for some reason you need to
