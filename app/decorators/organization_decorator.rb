@@ -20,7 +20,7 @@ class OrganizationDecorator < Draper::Decorator
     h.can?(:verify, organization) && any_unverified_programs?
   end
 
-  def organization_verifiable?
+  def verifiable?
     h.can?(:verify, organization) && verification_required?
   end
 

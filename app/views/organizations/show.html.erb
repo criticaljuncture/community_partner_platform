@@ -16,7 +16,7 @@
 <% alert_notice(
     :warning, 'exclamation-sign',
     t('organization.messages.unverified_organization.show').html_safe,
-  ) if @organization.organization_verifiable? %>
+  ) if @organization.verifiable? %>
 
 
 
@@ -76,7 +76,7 @@
       edit_organization_path(@organization),
       class: "btn btn-create",
       icon: 'exclamation-sign'
-    ) if @organization.organization_verifiable? %>
+    ) if @organization.verifiable? %>
 
   <%= link_to_gicon('Edit Organization',
       edit_organization_path(@organization),
