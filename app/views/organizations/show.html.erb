@@ -4,9 +4,21 @@
 ] %>
 
 <% alert_notice(
+    :danger, 'exclamation-sign',
+    @organization.public_policy.expiration_notice.html_safe
+  ) if @organization.public_policy.expiration_notice %>
+
+<% alert_notice(
+    :warning, 'exclamation-sign',
+    @organization.public_policy.public_criteria_notice.html_safe
+  ) if @organization.public_policy.public_criteria_notice %>
+
+<% alert_notice(
     :warning, 'exclamation-sign',
     t('organization.messages.unverified_organization.show').html_safe,
   ) if @organization.organization_verifiable? %>
+
+
 
 <% alert_notice(
     :warning, 'exclamation-sign',
