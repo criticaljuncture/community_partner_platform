@@ -25,6 +25,12 @@
 <%= page_header @community_program.name, 'icon-cpp-handshake',
   wrapper_class: 'community-programs' do %>
 
+  <%= link_to_gicon('Verify Program',
+      edit_community_program_path(@community_program),
+      class: "btn btn-create",
+      icon: 'exclamation-sign'
+    ) if @community_program.verifiable? %>
+
   <%= link_to_gicon('Edit Program',
       edit_community_program_path(@community_program),
       class: "btn btn-primary",
