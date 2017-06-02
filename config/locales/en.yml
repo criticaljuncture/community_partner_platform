@@ -30,7 +30,7 @@ en:
 
   community_program:
     messages:
-      verification_needed: This program has not been verified recently. Please edit the program and verify or update the current information.
+      verification_needed: <strong>This program has not been verified recently.</strong> Please edit the program and verify or update the current information.
 
   community_programs:
     class:

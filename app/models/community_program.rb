@@ -52,11 +52,6 @@ class CommunityProgram < ActiveRecord::Base
         last_verified_at < Settings.community_program.verification_date)
   end
 
-  def should_verify?(current_user)
-      current_user.role?(:organization_member) &&
-      verification_required?
-  end
-
   def schools_with_differing_completion_rates
     @schools_with_differing_completion_rates ||= school_programs.select do |school_program|
       completion_rate != school_program.completion_rate

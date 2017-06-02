@@ -21,8 +21,14 @@ class CommunityProgramDecorator < Draper::Decorator
     end
   end
 
+  def verifiable?
+    h.can?(:verify, community_program) && verification_required?
+  end
+
   def verification_header
-    "#{should_verify?(h.current_user) ? 'Verify' : 'Edit'} #{name}"
+    txt =  verifiable? ? 'Verify' : 'Edit'
+
+    "#{txt} #{name}"
   end
 
   def summary_for_select
