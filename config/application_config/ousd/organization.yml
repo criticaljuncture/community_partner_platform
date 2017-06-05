@@ -1,0 +1,49 @@
+app_config:
+  organization:
+    completion_policy:
+      weights:
+        -
+          value: 0.25
+          fields:
+            - :required_fields
+        -
+          value: 0.75
+          fields:
+            - :address
+            - :city
+            - :cost_per_student
+            #- :board_approved_contract
+            - :mission_statement
+            - :mou_on_file
+            - :phone_number
+            - :program_impact
+            - :services_description
+            - :url
+            - :zip_code
+
+    public_policy:
+      percentage_complete: 0.75
+      required_attributes: []
+        #- :board_approved_contract
+      public_attributes:
+        - :name
+        - :phone_number
+        - :program_impact
+        - :services_description
+        - :url
+      verification_required: true
+
+    validations:
+      -
+        attribute: :name
+        options:
+          presence: true
+      -
+        attribute: :legal_status_id
+        options:
+          presence:
+            message: Please choose from the list above
+
+    verification_policy:
+      verification_date: '2017-06-01'
+      grace_period_end_date: '2017-08-01'
