@@ -46,7 +46,7 @@ class OrganizationsController < ApplicationController
         user.update!(organization_id: @organization.id, active: true)
       end
 
-      flash.notice = t('organizations.flash_messages.create.success',
+      flash.notice = t('organization.flash_messages.create.success',
                         name: @organization.name)
       redirect_to organization_path(@organization)
 
@@ -83,10 +83,10 @@ class OrganizationsController < ApplicationController
     end
 
     if can?(:verify, @organization) && previously_needed_verified
-      flash.notice = t('organizations.flash_messages.verified',
+      flash.notice = t('organization.flash_messages.verified',
                        name: @organization.name)
     else
-      flash.notice = t('organizations.flash_messages.save.success',
+      flash.notice = t('organization.flash_messages.save.success',
                        name: @organization.name)
     end
 
@@ -139,7 +139,7 @@ class OrganizationsController < ApplicationController
         approved_for_public_by: current_user.id
       )
 
-      flash.notice = t('organizations.flash_messages.made_public',
+      flash.notice = t('organization.flash_messages.made_public',
         name: @organization.name)
     else
       @organization.update_attributes!(
@@ -148,7 +148,7 @@ class OrganizationsController < ApplicationController
         approved_for_public_by: nil
       )
 
-      flash.notice = t('organizations.flash_messages.made_private',
+      flash.notice = t('organization.flash_messages.made_private',
         name: @organization.name)
     end
 

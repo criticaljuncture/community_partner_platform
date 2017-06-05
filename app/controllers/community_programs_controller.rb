@@ -50,7 +50,7 @@ class CommunityProgramsController < ApplicationController
 
     @community_program.save!
 
-    flash.notice = t('community_programs.flash_messages.create.success',
+    flash.notice = t('community_program.flash_messages.create.success',
                       name: @community_program.name)
 
     if session[:redirect_back]
@@ -102,10 +102,10 @@ class CommunityProgramsController < ApplicationController
     end
 
     if can?(:verify, @community_program) && previously_needed_verified
-      flash.notice = t('community_programs.flash_messages.verified',
+      flash.notice = t('community_program.flash_messages.verified',
                        name: @community_program.name)
     else
-      flash.notice = t('community_programs.flash_messages.save.success',
+      flash.notice = t('community_program.flash_messages.save.success',
                        name: @community_program.name)
     end
 
@@ -174,7 +174,7 @@ class CommunityProgramsController < ApplicationController
 
     master_program = CommunityProgram.find(community_program_params[:merge_target])
 
-    flash.notice = t('community_programs.flash_messages.merge.success',
+    flash.notice = t('community_program.flash_messages.merge.success',
                      name: community_program.name,
                      merged_name: master_program.name)
 
@@ -196,7 +196,7 @@ class CommunityProgramsController < ApplicationController
         approved_for_public_by: current_user.id
       )
 
-      flash.notice = t('community_programs.flash_messages.made_public',
+      flash.notice = t('community_program.flash_messages.made_public',
         name: @community_program.name)
     else
       @community_program.update_attributes!(
@@ -205,7 +205,7 @@ class CommunityProgramsController < ApplicationController
         approved_for_public_by: nil
       )
 
-      flash.notice = t('community_programs.flash_messages.made_private',
+      flash.notice = t('community_program.flash_messages.made_private',
         name: @community_program.name)
     end
 

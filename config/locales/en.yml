@@ -38,6 +38,17 @@ en:
         public_criteria_not_met: <strong>This program does not meet the criteria to be viewable by the public</strong>. %{missing_requirements}
         expiration_pending: <strong>This program will no longer be viewable by the public</strong> after %{date} unless it is updated to meet all criteria and verified.
 
+    flash_messages:
+      create:
+        success: Successfully created '%{name}'
+      merge:
+        success: Successfully merged '%{name}' into '%{merged_name}'
+      save:
+        success: Successfully saved '%{name}'
+      verified: Thank you for verifying '%{name}'
+      made_public: Successfully made '%{name} publicly accessible.
+      made_private: Successfully made '%{name}' private.
+
   community_programs:
     class:
       name: Community Program
@@ -59,17 +70,6 @@ en:
     service_times: Service Times
     service_types: Service Types
     student_population: Student Population
-
-    flash_messages:
-      create:
-        success: Successfully created '%{name}'
-      merge:
-        success: Successfully merged '%{name}' into '%{merged_name}'
-      save:
-        success: Successfully saved '%{name}'
-      verified: Thank you for verifying '%{name}'
-      made_public: Successfully made '%{name} publicly accessible.
-      made_private: Successfully made '%{name}' private.
 
   date:
     datepicker:
@@ -136,7 +136,7 @@ en:
   public_policy:
     missing_requirements:
       required_attributes: Missing required_attributes.
-      minimally_complete: Does not meet minimum completion percentage (%{percentage}%).
+      minimally_complete: Does not meet minimum completion percentage of %{percentage}%.
       verification_required: Has not been verified after %{date}.
 
   quality_element:
