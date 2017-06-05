@@ -26,6 +26,11 @@
         <h5 class="col-md-8 col-xs-12">
           <%= link_to community_program.name,
             community_program_path(community_program) %>
+            
+          <% if community_program.active && community_program.approved_for_public? %>
+            <span class='icon-cpp icon-cpp-globe with-tooltip'
+              data-tooltip='This community program is publicly viewable'></span>
+          <% end %>
         </h5>
 
         <div class="header-button-wrapper col-md-4 col-xs-12">
