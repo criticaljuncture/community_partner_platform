@@ -12,8 +12,8 @@ en:
       other: There are %{count} errors below. Please correct them and click 'Save' to continue.
 
   app:
-    yes: Yes
-    no: No
+    'yes': 'Yes'
+    'no': 'No'
     never_verified: never verified
     never_attended: never attended
     not_provided: not provided
