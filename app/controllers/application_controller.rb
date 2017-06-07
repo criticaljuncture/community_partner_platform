@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
   # security
   before_filter :set_security_headers
 
+  # make current user accesible in policies, etc.
+  before_filter :set_current_user
+
   # cancan
   check_authorization :unless => :devise_controller?
 
@@ -65,6 +68,11 @@ class ApplicationController < ActionController::Base
   def set_security_headers
     # https://developer.mozilla.org/en/Security/HTTP_Strict_Transport_Security
     response.headers['Strict-Transport-Security'] = "max-age=#{6.months}; includeSubDomains"
+  end
+
+  # make current_user available outside of normal controller view context
+  def set_current_user
+    User.current = current_user
   end
 
   def track_page_speed

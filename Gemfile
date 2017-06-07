@@ -90,6 +90,9 @@ gem 'paper_trail', '>= 3.0.0.rc1'
 gem 'redis', '~> 3.3.2'
 gem 'redis-namespace', '~> 1.5.2'
 
+# threadsafe per-request global storage
+gem 'request_store'
+
 # prevent target blank fishing attack vector
 gem 'safe_target_blank'
 

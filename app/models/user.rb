@@ -61,6 +61,20 @@ class User < ActiveRecord::Base
   scope :as_contact, -> { where('invitation_sent_at IS NULL') }
   scope :as_invited_contact, -> { where('invitation_sent_at IS NOT NULL') }
 
+  def self.current=(user)
+    RequestStore.store[:current_user] = user
+  end
+
+  def self.current
+    RequestStore.store[:current_user]
+  end
+
+  def ability
+    @ability ||= Ability.new(self)
+  end
+  delegate :can?, :cannot?, :to => :ability
+
+
   def role?(role)
     roles.map{|r| r.identifier.to_sym}.include?(role)
   end

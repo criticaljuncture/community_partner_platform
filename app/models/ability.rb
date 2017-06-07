@@ -25,10 +25,12 @@ class Ability < BaseAbility
 
     can :manage, CommunityProgram
     can :view_district_internals, CommunityProgram
+    can :make_public, CommunityProgram
 
     can :manage, Organization
     can :manage_district_details, Organization
     can :view_district_internals, Organization
+    can :make_public, Organization
 
     can :manage, QualityElement
     can :manage, ServiceType
