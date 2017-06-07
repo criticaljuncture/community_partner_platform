@@ -52,7 +52,9 @@
         html: {class: "form-horizontal organization"},
         wrapper: :horizontal_form,
         wrapper_mappings: {boolean: :horizontal_boolean} do |f| %>
-          <%= render partial: 'form', locals: {f: f, new_org: true} %>
+          <%= render partial: 'form', locals: {
+            f: f, new_org: true, policy: @organization.public_policy
+          } %>
 
           <%= hidden_field_tag "organization[verification_process]", value: true %>
       <% end %>
