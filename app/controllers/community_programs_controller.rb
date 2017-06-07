@@ -217,7 +217,7 @@ class CommunityProgramsController < ApplicationController
   def community_program_params
     params.require(:community_program).permit(
       :merge_target,
-      :mou_on_file,
+      :board_approved_contract,
       :name,
       :notes,
       :organization_id,

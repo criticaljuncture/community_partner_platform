@@ -11,9 +11,9 @@ app_config:
           fields:
             - :address
             - :city
-            - :cost_per_student
+            - :total_cost
             - :mission_statement
-            - :mou_on_file
+            - :board_approved_contract
             - :phone_number
             - :program_impact
             - :services_description
@@ -25,7 +25,7 @@ app_config:
       required_attributes: []
       public_attributes:
         - :name
-        - :cost_per_student
+        - :total_cost
         - :url
         - :user_id
       verification_required: true

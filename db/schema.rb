@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20170601170153) do
+ActiveRecord::Schema.define(version: 20170607001626) do
 
   create_table "community_program_demographic_groups", force: :cascade do |t|
     t.integer  "demographic_group_id", limit: 4
@@ -167,13 +166,13 @@ ActiveRecord::Schema.define(version: 20170601170153) do
     t.string   "zip_code",                       limit: 255
     t.string   "phone_number",                   limit: 255
     t.text     "notes",                          limit: 65535
-    t.boolean  "mou_on_file"
+    t.boolean  "board_approved_contract"
     t.string   "legislative_file_number",        limit: 255
     t.datetime "last_verified_at"
     t.text     "mission_statement",              limit: 65535
     t.text     "services_description",           limit: 65535
     t.text     "program_impact",                 limit: 65535
-    t.text     "cost_per_student",               limit: 65535
+    t.text     "total_cost",                     limit: 65535
     t.integer  "legal_status_id",                limit: 4
     t.integer  "last_verified_by",               limit: 4
     t.float    "completion_rate",                limit: 24,    default: 0.0

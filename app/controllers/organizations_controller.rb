@@ -162,11 +162,11 @@ class OrganizationsController < ApplicationController
         .permit(
                 :address,
                 :city,
-                :cost_per_student,
+                :total_cost,
                 :legal_status_id,
                 :legislative_file_number,
                 :mission_statement,
-                :mou_on_file,
+                :board_approved_contract,
                 :name,
                 :notes,
                 :phone_number,

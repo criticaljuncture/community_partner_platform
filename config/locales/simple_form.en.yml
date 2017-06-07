@@ -22,7 +22,7 @@ en:
         grade_levels: Target grade levels
         grade_level_ids: Target grade levels
         merge_target: Program to merge into
-        mou_on_file: MOU or contract on file with the District
+        board_approved_contract: MOU or contract on file with the District
         name: Program name
         organization: Organization
         organization_id: Organization
@@ -41,9 +41,9 @@ en:
         quality_element: Community schools element
 
       organization:
-        cost_per_student: What is the cost of the service(s) you provide?
+        total_cost: What is the cost of the service(s) you provide?
         mission_statement: What is your organization or firm's mission statement?
-        mou_on_file: MOU on file with District?
+        board_approved_contract: MOU on file with District?
         program_impact: How would you describe the impact of your program?
         receives_district_funding: Receives District Funding?
         services_description: Brief description of the services you provide to sites
@@ -82,7 +82,7 @@ en:
         user_id: This is the primary organization contact for this program.
 
       organization:
-        cost_per_student: Be sure to list the unit of measurement, e.g. cost per student, cost per site, etc. If you provide different levels of service at different sites, please list the cost range, e.g. $100/student-$400/student.
+        total_cost: Be sure to list the unit of measurement, e.g. cost per student, cost per site, etc. If you provide different levels of service at different sites, please list the cost range, e.g. $100/student-$400/student.
         phone_number: Public phone number
         services_description: Please provide a brief (2-4 sentences) description (how you might describe your work to a school principal).
 

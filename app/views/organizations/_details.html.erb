@@ -11,7 +11,7 @@
     <%= columnar_attributes_display(
       header: 'Internal Details',
       model: @organization,
-      attrs: %i(legal_status mou_on_file? subcontractor_with_lead_agency? receives_district_funding? cost_per_student last_verified),
+      attrs: %i(legal_status board_approved_contract? subcontractor_with_lead_agency? receives_district_funding? total_cost last_verified),
       only_public_attrs: false,
       options: {class: 'organization-internal-details'},
     ) %>

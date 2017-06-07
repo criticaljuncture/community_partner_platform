@@ -10,21 +10,20 @@ app_config:
           value: 0.75
           fields:
             - :address
+            - :board_approved_contract
             - :city
-            - :cost_per_student
-            #- :board_approved_contract
             - :mission_statement
-            - :mou_on_file
             - :phone_number
             - :program_impact
             - :services_description
+            - :total_cost
             - :url
             - :zip_code
 
     public_policy:
       percentage_complete: 0.75
       required_attributes: []
-        #- :board_approved_contract
+        - :board_approved_contract
       public_attributes:
         - :name
         - :phone_number

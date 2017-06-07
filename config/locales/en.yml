@@ -90,19 +90,19 @@ en:
     class:
       name: Organization
     address: Address
+    board_approved_contract: Board approved contract
     city_state_zip: City, State ZIP
-    cost_per_student: Cost per student
     last_verified: Last verified
     legal_status: Legal status
     mission_statement: Mission statement
-    mou_on_file: MOU on file with District
     name: Name
     phone_number: Phone number
     primary_contact: Primary contact
     program_impact: Program impact
     receives_district_funding: Receives district funding
-    subcontractor_with_lead_agency: Subcontractor with a lead agency
     services_description: Service(s) description
+    subcontractor_with_lead_agency: Subcontractor with a lead agency
+    total_cost: Total cost
     url: URL
 
   organization:

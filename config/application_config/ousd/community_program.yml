@@ -5,7 +5,6 @@ app_config:
         -
           value: 0.30
           fields:
-            #- :board_approved_contract
             - :name
             - :organization
             - :quality_element
@@ -29,7 +28,6 @@ app_config:
     public_policy:
       percentage_complete: 0.75
         required_attributes: []
-        #- :board_approved_contract
       public_attributes:
         - :grade_level_ids
         - :name

@@ -21,7 +21,7 @@ app_config:
 
       required_attributes:
         - :name
-        - :mou_on_file
+        - :board_approved_contract
 
       verification_required: true
 

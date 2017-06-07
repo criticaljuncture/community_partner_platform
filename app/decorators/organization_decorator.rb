@@ -3,7 +3,7 @@ class OrganizationDecorator < Draper::Decorator
 
   include AttrNotProvided
   attr_not_provided :address,
-    :cost_per_student,
+    :total_cost,
     :mission_statement,
     :program_impact,
     :services_description

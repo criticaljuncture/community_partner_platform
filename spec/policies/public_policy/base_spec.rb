@@ -30,25 +30,25 @@ RSpec.describe "PublicPolicy::Base" do
     policy = PublicPolicy::Base.new(model)
     policy.class.policy_for :organization
 
-    expect(policy.required_attributes).to eq([:name, :mou_on_file])
+    expect(policy.required_attributes).to eq([:name, :board_approved_contract])
   end
 
   describe "#required_attributes_present?" do
     before(:each) {
       allow(policy).to receive(:required_attributes)
-        .and_return([:name, :mou_on_file])
+        .and_return([:name, :board_approved_contract])
     }
 
     it "returns true if all required attributes are present" do
       allow(model).to receive(:name).and_return('Organization 1')
-      allow(model).to receive(:mou_on_file).and_return(true)
+      allow(model).to receive(:board_approved_contract).and_return(true)
 
       expect(policy.required_attributes_present?).to be(true)
     end
 
     it "returns false if any required attributes is not present" do
       allow(model).to receive(:name).and_return('Organization 1')
-      allow(model).to receive(:mou_on_file).and_return(nil)
+      allow(model).to receive(:board_approved_contract).and_return(nil)
 
       expect(policy.required_attributes_present?).to be(false)
     end
