@@ -7,6 +7,8 @@ class SchoolDecorator < Draper::Decorator
       "Grades #{model.site_type_norm}"
     when 'Senior'
       'High Schools'
+    when nil
+      nil
     else
       "#{model.site_type_norm} Schools"
     end

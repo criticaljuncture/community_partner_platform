@@ -8,6 +8,7 @@ class Public::HomePagePresenter
       ).order(:site_type_norm, :name)
     )
     .group_by(&:human_site_type)
+    .compact
     .sort do |site_type_1, site_type_2|
       ordered_site_types.index(site_type_1[0]) <=> ordered_site_types.index(site_type_2[0])
     end
