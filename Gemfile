@@ -23,7 +23,7 @@ gem "aws-ses", "~> 0.5.0"
 gem 'bootstrap-sass', '~> 3.3.5.1'
 
 # Check if point exists in kml boundary
-gem 'border_patrol', github: 'square/border_patrol'
+gem 'border_patrol', git: 'https://github.com/square/border_patrol'
 
 # css3 mixins, etc
 gem "bourbon", "~> 4.2.3"
@@ -123,7 +123,7 @@ gem 'attr_extras'
 
 # modals
 gem 'jquery-modal-rails',
-    github: 'peregrinator/jquery-modal-rails',
+    git: 'https://github.com/peregrinator/jquery-modal-rails',
     ref: '97bc84d7723d324876971f45f255e066fbb6ad49'
 
 # auto linking user input (like organization url)

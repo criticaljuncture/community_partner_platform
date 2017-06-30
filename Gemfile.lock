@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/peregrinator/jquery-modal-rails.git
+  remote: https://github.com/peregrinator/jquery-modal-rails
   revision: 97bc84d7723d324876971f45f255e066fbb6ad49
   ref: 97bc84d7723d324876971f45f255e066fbb6ad49
   specs:
@@ -10,7 +10,7 @@ GIT
       uuidtools
 
 GIT
-  remote: git://github.com/square/border_patrol.git
+  remote: https://github.com/square/border_patrol
   revision: 72c50ea17c89f7fa89fbaed25ad3db3fa1d8eeb1
   specs:
     border_patrol (0.2.1)
