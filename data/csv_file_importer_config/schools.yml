@@ -11,6 +11,9 @@ schools:
     city:
       id: city
       type: string
+    direct_funded_charter_school:
+      id: direct_funded_charter_school
+      type: integer
     grades_served:
       id: grades_served
       type: string
@@ -35,6 +38,9 @@ schools:
     net_cluster:
       id: net_cluster
       type: string
+    region_id:
+      id: region
+      type: integer
     site_code:
       id: site_code
       type: integer

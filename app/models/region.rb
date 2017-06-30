@@ -4,11 +4,12 @@ class Region < ActiveHash::Base
   i18n_accessor :name
 
   self.data = [
-    {id: 1, identifier: :elementary_area_1, network: 'A1'},
-    {id: 2, identifier: :elementary_area_2, network: 'A2'},
-    {id: 3, identifier: :elementary_area_3, network: 'A3'},
-    {id: 4, identifier: :middle,            network: 'MS'},
-    {id: 5, identifier: :high_school,       network: 'HS'},
+    {id: 1, identifier: :elementary_area_1,            network: 'A1'},
+    {id: 2, identifier: :elementary_area_2,            network: 'A2'},
+    {id: 3, identifier: :elementary_area_3,            network: 'A3'},
+    {id: 4, identifier: :middle,                       network: 'MS'},
+    {id: 5, identifier: :high_school,                  network: 'HS'},
+    {id: 6, identifier: :childhood_development_center, network: 'CDC'},
   ]
 
   def community_programs_by_quality_element
