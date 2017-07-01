@@ -9,6 +9,7 @@ class Public::HomePagePresenter
     )
     .group_by(&:human_site_type)
     .compact
+    .reject{|site_type, schools| site_type.blank?}
     .sort do |site_type_1, site_type_2|
       ordered_site_types.index(site_type_1[0]) <=> ordered_site_types.index(site_type_2[0])
     end
