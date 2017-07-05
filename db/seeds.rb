@@ -69,10 +69,12 @@ quality_elements = [
 	},
 ]
 
-QualityElement.truncate
 quality_elements.each do |quality_element|
-  QualityElement.create(
-    identifier: quality_element[:identifier],
+  ql = QualityElement.find_or_create_by(
+    identifier: quality_element[:identifier]
+  )
+
+  ql.update_attributes(
     name: quality_element[:name],
     element_type: quality_element[:type]
   )
