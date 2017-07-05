@@ -6,6 +6,7 @@ class Organization < ActiveRecord::Base
 
   before_save CompletionPolicy::OrganizationPolicy
   serialize :missing_fields, JSON
+  after_initialize :set_default_missing_fields
 
   after_create :clear_associated_cache
   after_update :clear_associated_cache
@@ -115,5 +116,9 @@ class Organization < ActiveRecord::Base
   def clear_associated_cache
     schools.each{|s| s.touch}
     community_programs.each{|cp| cp.touch}
+  end
+
+  def set_default_missing_fields
+    self.missing_fields ||= []
   end
 end
