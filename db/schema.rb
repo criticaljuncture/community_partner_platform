@@ -176,10 +176,10 @@ ActiveRecord::Schema.define(version: 20170607001626) do
     t.integer  "legal_status_id",                limit: 4
     t.integer  "last_verified_by",               limit: 4
     t.float    "completion_rate",                limit: 24,    default: 0.0
+    t.integer  "user_id",                        limit: 4
     t.boolean  "receives_district_funding"
     t.boolean  "subcontractor_with_lead_agency",               default: false
     t.string   "missing_fields",                 limit: 15000, default: "[]"
-    t.integer  "user_id",                        limit: 4
     t.boolean  "approved_for_public",                          default: false
     t.datetime "approved_for_public_on"
     t.integer  "approved_for_public_by",         limit: 4
@@ -273,13 +273,13 @@ ActiveRecord::Schema.define(version: 20170607001626) do
     t.integer  "community_program_id",   limit: 4
     t.integer  "user_id",                limit: 4
     t.integer  "student_population_id",  limit: 4
+    t.boolean  "site_agreement_on_file"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "last_verified_at"
     t.boolean  "active",                               default: true
     t.integer  "active_changed_by",      limit: 4
     t.datetime "active_changed_on"
-    t.boolean  "site_agreement_on_file"
     t.float    "completion_rate",        limit: 24,    default: 0.0
     t.string   "missing_fields",         limit: 15000, default: "[]"
   end
@@ -289,7 +289,7 @@ ActiveRecord::Schema.define(version: 20170607001626) do
   add_index "school_programs", ["community_program_id", "school_id"], name: "sp_cpid_sid", using: :btree
   add_index "school_programs", ["school_id", "community_program_id"], name: "sp_sid_cpid", using: :btree
   add_index "school_programs", ["student_population_id"], name: "index_school_programs_on_student_population_id", using: :btree
-  add_index "school_programs", ["user_id"], name: "school_program_user_id", using: :btree
+  add_index "school_programs", ["user_id"], name: "index_school_programs_on_user_id", using: :btree
 
   create_table "school_quality_indicator_sub_areas", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -363,7 +363,9 @@ ActiveRecord::Schema.define(version: 20170607001626) do
     t.datetime "updated_at"
   end
 
+  add_index "user_schools", ["school_id", "user_id"], name: "index_school_id_user_id", using: :btree
   add_index "user_schools", ["school_id", "user_id"], name: "us_s_id_u_id", using: :btree
+  add_index "user_schools", ["user_id", "school_id"], name: "index_user_id_school_id", using: :btree
   add_index "user_schools", ["user_id", "school_id"], name: "us_u_id_s_id", using: :btree
 
   create_table "users", force: :cascade do |t|
