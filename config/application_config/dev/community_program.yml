@@ -6,10 +6,10 @@ app_config:
           value: 0.30
           fields:
             - :name
-            - :service_description
-            - :quality_element
-            - :service_types
             - :organization
+            - :quality_element
+            - :service_description
+            - :service_typesn
         -
           value: 0.35
           fields:
@@ -29,11 +29,11 @@ app_config:
       percentage_complete: 0.30
       required_attributes: []
       public_attributes:
-        - :name
-        - :service_description
-        - :quality_element
-        - :service_types
         - :grade_level_ids
+        - :name
+        - :quality_element
+        - :service_description
+        - :service_types
       verification_required: true
 
     validations:

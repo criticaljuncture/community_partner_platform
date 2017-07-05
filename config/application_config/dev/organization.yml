@@ -26,9 +26,10 @@ app_config:
         - :board_approved_contract
       public_attributes:
         - :name
-        - :total_cost
+        - :phone_number
+        - :program_impact
+        - :services_description
         - :url
-        - :user_id
       verification_required: true
 
     validations:
