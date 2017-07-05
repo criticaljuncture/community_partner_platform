@@ -1,11 +1,11 @@
 class PublicPolicy::Base
   attr_reader :model
-  cattr_reader :policy_model
+  class_attribute :policy_model
 
   include PublicPolicyHelper
 
   def self.policy_for(type)
-    @@policy_model = type.to_s
+    self.policy_model = type.to_s
   end
 
   def initialize(model)
