@@ -37,13 +37,6 @@
         </td>
       </tr>
 
-      <tr>
-        <td><%= I18n.t('school_programs.site_agreement_on_file') %></td>
-        <td>
-          <%= school_program.site_agreement_on_file? ? 'Yes' : 'No' %>
-        </td>
-      </tr>
-
       <% if school_program.customized_attributes.present? %>
         <tr>
           <td colspan="2" class="font-bold">

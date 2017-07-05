@@ -226,7 +226,6 @@ class CommunityProgramsController < ApplicationController
       :school_user_id,
       :secondary_quality_element_id,
       :service_description,
-      :site_agreement_on_file,
       :student_population_id,
       :user_id,
       day_ids: [],

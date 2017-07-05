@@ -24,9 +24,6 @@
       public: policy.public_attribute?(:user_id),
       wrapper_html: {class: 'clear both'} %>
   </div>
-
-  <%= f.input :site_agreement_on_file,
-    public: policy.public_attribute?(:site_agreement_on_file) %>
 <% end %>
 
 <%= alert 'info', 'info-sign' do %>
