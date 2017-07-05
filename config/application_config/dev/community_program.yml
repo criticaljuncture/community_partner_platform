@@ -9,7 +9,7 @@ app_config:
             - :organization
             - :quality_element
             - :service_description
-            - :service_typesn
+            - :service_types
         -
           value: 0.35
           fields:

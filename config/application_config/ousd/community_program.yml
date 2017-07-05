@@ -27,7 +27,7 @@ app_config:
 
     public_policy:
       percentage_complete: 0.75
-        required_attributes: []
+      required_attributes: []
       public_attributes:
         - :grade_level_ids
         - :name
