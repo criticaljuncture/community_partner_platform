@@ -6,7 +6,6 @@ class SchoolProgram < ActiveRecord::Base
 
   before_save CompletionPolicy::SchoolProgramPolicy
   serialize :missing_fields, JSON
-  after_initialize :set_default_missing_fields
 
   belongs_to :community_program
   belongs_to :school
@@ -76,9 +75,5 @@ class SchoolProgram < ActiveRecord::Base
   # completion_rate the same way as it's parent community_program
   def school_programs
     community_program.school_programs
-  end
-
-  def set_default_missing_fields
-    self.missing_fields ||= []
   end
 end

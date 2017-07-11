@@ -12,7 +12,6 @@ class CommunityProgram < ActiveRecord::Base
 
   before_save CompletionPolicy::CommunityProgramPolicy
   serialize :missing_fields, JSON
-  after_initialize :set_default_missing_fields
 
   has_many :school_programs, dependent: :destroy
   has_many :schools, through: :school_programs
@@ -70,11 +69,5 @@ class CommunityProgram < ActiveRecord::Base
 
   def public_policy
     @public_policy ||= PublicPolicy::CommunityProgramPolicy.new(self)
-  end
-
-  private
-
-  def set_default_missing_fields
-    self.missing_fields ||= []
   end
 end
