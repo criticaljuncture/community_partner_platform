@@ -17,6 +17,11 @@
       <%= Organization.non_ousd.count %>
       (<%= pluralize(Organization.non_ousd.with_community_programs.size, 'programs') %>)
     </dd>
+
+    <dt>Publicly Viewable Organizations</dt>
+    <dd>
+      <%= Organization.publicly_accessible.count %>
+    </dd>
   </dl>
 </div>
 
@@ -101,7 +106,8 @@
                   custom_tooltip: true,
                   data: {
                     tooltip: missing_requirements_tooltip(organization),
-                    tooltip_class: 'public-policy-missing-requirements-tooltip'
+                    tooltip_class: 'public-policy-missing-requirements-tooltip',
+                    "tooltip-gravity" => 'e'
                   }
                 ) %>
               <% end %>

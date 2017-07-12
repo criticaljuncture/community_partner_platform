@@ -133,9 +133,9 @@ $(document).ready ->
       className: 'public-policy-missing-requirements-tooltip tooltip'
     },
     {
-      position: 'centerTop'
-      verticalOffset: 3
-      horizontalOffset: -20
+      position: 'centerLeft'
+      verticalOffset: -6
+      horizontalOffset: -15
     }
   )
 

@@ -165,5 +165,6 @@ dl.horizontal_stack {
   .tipsy-inner {
     max-width: 400px;
     text-align: left;
+    width: 400px; //needs to be set in addition to max-width
   }
 }
