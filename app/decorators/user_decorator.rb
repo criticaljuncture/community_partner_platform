@@ -11,6 +11,8 @@ class UserDecorator < Draper::Decorator
   end
 
   def last_login
+    return nil unless current_sign_in_at.present?
+    
     current_sign_in_at < 3.months.ago ?
       current_sign_in_at.to_s(:date_at_time_with_year) :
       current_sign_in_at.to_s(:date_at_time)
