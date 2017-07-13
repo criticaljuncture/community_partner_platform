@@ -137,6 +137,7 @@ class @CPP.CommunityProgramMarkers
       # Populate the popup and set its coordinates
       # based on the feature found.
       tooltip = HandlebarsTemplates['community_program_marker_tooltip']({
+        "schoolUrl": feature.properties.schoolUrl,
         "schoolName": feature.properties.schoolName,
         "programCount": feature.properties.programCount,
         "schoolProgramsByElement": JSON.parse(

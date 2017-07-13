@@ -102,5 +102,7 @@ $map-menu-link-bg-dark: darken($map-menu-link-bg, 10);
     font-weight: normal;
     margin-bottom: 5px;
     margin-left: 10px;
+
+    dt.total-count { margin-bottom: 10px; }
   }
 }

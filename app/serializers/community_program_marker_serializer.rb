@@ -10,7 +10,7 @@ class CommunityProgramMarkerSerializer < BaseSerializer
     {
       "schoolName": object.name,
       "programCount": school_programs.size,
-      "schoolUrl": school_url(object),
+      "schoolUrl": public_school_url(object),
       "schoolProgramsByElement": school_programs_by_element,
     }
   end
