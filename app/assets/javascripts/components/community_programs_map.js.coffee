@@ -19,6 +19,7 @@ class @CPP.CommunityProgramsMap
 
     cppMap = this
     @map.on 'load', ->
+      CPP.CommunityProgramMarkers.add(cppMap.map, "CDC")
       CPP.CommunityProgramMarkers.add(cppMap.map, "Elementary")
       CPP.CommunityProgramMarkers.add(cppMap.map, "Middle")
       CPP.CommunityProgramMarkers.add(cppMap.map, "Senior")

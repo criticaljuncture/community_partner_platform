@@ -3,9 +3,20 @@ class ApiController < ApplicationController
   skip_authorization_check
 
   def community_program_markers
+    unless %w(CDC Elementary Middle Senior).include?(params[:site_type_norm])
+      render text: nil and return
+    end
+
+    site_type_norm = params[:site_type_norm]
+    if site_type_norm == 'Elementary'
+      site_type_norm = ['Elementary', 'K-8']
+    elsif site_type_norm == 'Senior'
+      site_type_norm = ['Senior', '6-12']
+    end
+
     @schools = School.where(
       active: true,
-      site_type_norm: params[:site_type_norm]
+      site_type_norm: site_type_norm
     ).includes(school_programs: {community_program: :quality_element})
 
     render json: GeoJsonSerializer.new(@schools, {serializer: CommunityProgramMarkerSerializer})

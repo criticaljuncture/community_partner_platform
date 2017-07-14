@@ -1,13 +1,15 @@
 class @CPP.CommunityProgramMarkers
   @layers:
-    "Elementary": [30, '#ef75a1', '#f4a3c0'],
-    "Middle": [15, '#f1f17e', '#f6f6ac'],
+    "CDC": [75, '#d975ef', '#e6a4f5'],
+    "Elementary": [60, '#ef75a1', '#f4a3c0'],
+    "Middle": [30, '#f1f17e', '#f6f6ac'],
     "Senior": [0, '#4ab8d4', '#73c8de']
 
   @siteTypeLabels:
-    "Elementary": "Elemetary Schools",
+    "CDC": "Childhood Development Centers",
+    "Elementary": "Elementary Schools & Grade K-8 Schools",
     "Middle": "Middle Schools",
-    "Senior": "High Schools"
+    "Senior": "High Schools & Grade 6-12 Schools"
 
   @add: (map, site_type_norm)->
     @addCommunityProgramSource(map, site_type_norm)

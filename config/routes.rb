@@ -74,7 +74,8 @@ CommunityPartnerPlatform::Application.routes.draw do
       get :school_sub_areas
 
       if Settings.application.public_view_enabled
-        get 'community_program_markers/:site_type_norm' => 'api#community_program_markers'
+        get 'community_program_markers/:site_type_norm',
+          to: 'api#community_program_markers'
       end
     end
   end

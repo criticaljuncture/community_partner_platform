@@ -22,13 +22,17 @@ $map-menu-link-bg-dark: darken($map-menu-link-bg, 10);
   z-index: 1;
 
   ul {
-    margin-bottom: 0;
+    margin: 0 auto;
     padding: 0;
+    width: 1085px;
   }
 
   li {
+    display: inline-block;
     list-style: none;
+    margin: 0 20px;
     padding: 0;
+    position: relative;
     text-align: center;
   }
 
@@ -70,6 +74,7 @@ $map-menu-link-bg-dark: darken($map-menu-link-bg, 10);
     width: $inner-circle-size;
     z-index: 1;
 
+    &.cdc { background-color: $map-circle-cdc-dark; }
     &.elementary { background-color: $map-circle-elementary-dark; }
     &.middle { background-color: $map-circle-middle-dark; }
     &.senior { background-color: $map-circle-high-dark; }
@@ -79,6 +84,7 @@ $map-menu-link-bg-dark: darken($map-menu-link-bg, 10);
     height: $outer-circle-size;
     width: $outer-circle-size;
 
+    &.cdc { background-color: $map-circle-cdc; }
     &.elementary { background-color: $map-circle-elementary; }
     &.middle { background-color: $map-circle-middle; }
     &.senior { background-color: $map-circle-high; }
