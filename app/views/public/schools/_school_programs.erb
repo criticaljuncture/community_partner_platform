@@ -10,13 +10,13 @@
     class: 'community-programs',
     columns: {xs: 12, md: 12} do %>
       <p><%= quality_element.description %></p>
-      
+
       <div class="columnar-table-block-wrapper">
         <% programs.sort_by(&:name).each do |program| %>
           <div class="columnar-table-block-header">
             <h5>
               <%= link_to program.name,
-                public_community_program_path(program) %>
+                public_community_program_path(program.community_program) %>
 
               provided by
 
