@@ -1,3 +1,3 @@
 module ApplicationConfig
-  SUBDOMAINS = ['dev', 'test']
+  SUBDOMAINS = ['dev', 'test', 'ousd', 'ousd-staging']
 end
