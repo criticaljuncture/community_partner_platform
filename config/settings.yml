@@ -6,4 +6,4 @@ organization:
 
 application:
   canonical_hostname: 'https://ousd.communitypartnerplatform.org'
-  public_view_enabled: false
+  public_view_enabled: true
