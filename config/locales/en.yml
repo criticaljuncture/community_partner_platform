@@ -108,7 +108,7 @@ en:
   organization:
     messages:
       no_community_programs:
-        show: <strong>This organization has no active community programs.</strong> Your organization is not complete without at least one community program. Use the 'Add a Community Program' button below to enter a new program.
+        show: <strong>This organization has no active community programs.</strong> Your organization is not complete without at least one community program. Use the 'Add a Community Program' button in the 'Active Programs' tab below to create a new program.
       unverified_organization:
         show: <strong>This organization needs to be verified.</strong> Please use the 'Verify Organization' button below to review this organization's details and verify thier accuracy.
         edit: <strong>This organization needs to be verified.</strong> Please review the details, verify accuracy, and use the 'Save & Verify' button at the bottom of this page.

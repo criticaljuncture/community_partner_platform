@@ -26,7 +26,7 @@
 
 <% alert_notice(
     :warning, 'exclamation-sign',
-    t('organizations.messages.no_community_programs.show').html_safe
+    t('organization.messages.no_community_programs.show').html_safe
   ) unless @organization.community_programs.count > 0 %>
 
 <%= modal(:with_button,
