@@ -12,6 +12,8 @@ en:
       other: There are %{count} errors below. Please correct them and click 'Save' to continue.
 
   app:
+    activate: activate
+    deactivate: deactivate
     'yes': 'Yes'
     'no': 'No'
     never_verified: never verified

@@ -15,12 +15,12 @@
 
       <div class="modal-body">
         <p>
-          Clicking the button below will deactivate this program.
+          Clicking the button below will <%= community_program.active? ? t('app.deactivate') : t('app.activate') %> this program.
         </p>
         <p>
           Deactivated programs will not be displayed within the Community Partner Platform.
-          The program will be accessible to your organization in the
-          'Deactivated Programs' tab on your organizations page.
+          The program will be continue to be accessible to your organization in the
+          'Deactivated Programs' tab on your organization page.
         </p>
       </div>
 
@@ -31,8 +31,8 @@
 
         <button class="btn btn-warning deactivate-program"
           data-community-program-id="<%= community_program.id %>">
-          <%= gicon 'ban-circle' %>
-          <%= community_program.active? ? 'Deactivate' : 'Activate' %>
+          <%= gicon('ban-circle') if community_program.active? %>
+          <%= community_program.active? ? t('app.deactivate').capitalize : t('app.activate').capitalize %>
         </button>
       </div>
     </div>
