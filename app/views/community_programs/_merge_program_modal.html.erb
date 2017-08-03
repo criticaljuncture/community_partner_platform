@@ -20,7 +20,7 @@
       <%= f.input :merge_target,
         as: :select,
         collection: CommunityProgramDecorator.decorate_collection(
-          community_program.organization.community_programs
+          community_program.organization.community_programs.active
         ),
         input_html: { class: 'wrap' },
         label_method: :summary_for_select %>
