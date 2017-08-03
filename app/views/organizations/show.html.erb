@@ -143,7 +143,7 @@
           active: true,
           organization: @organization,
           programs: CommunityProgramDecorator.decorate_collection(
-            @organization.community_programs
+            @organization.community_programs.active
           )
         } %>
       <%# else %>
