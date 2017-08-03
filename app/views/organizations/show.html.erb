@@ -138,7 +138,7 @@
 
   <div id="active-programs" class="tab-pane">
     <div class="table_wrapper">
-      <% if @organization.community_programs.present? %>
+      <%# if @organization.community_programs.present? %>
         <%= render partial: 'programs', locals: {
           active: true,
           organization: @organization,
@@ -146,15 +146,15 @@
             @organization.community_programs
           )
         } %>
-      <% else %>
-        <p>This organization has no active programs.</p>
-      <% end %>
+      <%# else %>
+        <!-- <p>This organization has no active programs.</p> -->
+      <%# end %>
     </div>
   </div>
 
   <div id="inactive-programs" class="tab-pane">
     <div class="table_wrapper">
-      <% if @organization.inactive_community_programs.present? %>
+      <%# if @organization.inactive_community_programs.present? %>
         <%= render partial: 'programs',
           locals: {
             active: false,
@@ -163,9 +163,9 @@
               @organization.inactive_community_programs
             )
         } %>
-      <% else %>
-        <p>This organization has no inactive programs.</p>
-      <% end %>
+      <%# else %>
+        <!-- <p>This organization has no inactive programs.</p> -->
+      <%# end %>
     </div>
   </div>
 

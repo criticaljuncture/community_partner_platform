@@ -20,100 +20,104 @@
   class: 'organization community-programs',
   columns: {xs: 12, md: 12} do %>
 
-  <% programs.sort_by(&:name).each do |community_program| %>
-    <div class="columnar-table-block-header">
-      <div class="row">
-        <h5 class="col-md-8 col-xs-12">
-          <%= link_to community_program.name,
-            community_program_path(community_program) %>
-            
-          <% if community_program.active && community_program.approved_for_public? %>
-            <span class='icon-cpp icon-cpp-globe with-tooltip'
-              data-tooltip='This community program is publicly viewable'></span>
-          <% end %>
-        </h5>
+  <% if programs.present? %>
+    <% programs.sort_by(&:name).each do |community_program| %>
+      <div class="columnar-table-block-header">
+        <div class="row">
+          <h5 class="col-md-8 col-xs-12">
+            <%= link_to community_program.name,
+              community_program_path(community_program) %>
 
-        <div class="header-button-wrapper col-md-4 col-xs-12">
-          <% if active %>
-            <%= link_to_gicon('Verification Needed',
-              edit_community_program_path(
-                community_program,
-                redirect_back: organization_path(organization)
-              ),
-              class: "btn btn-medium btn-create",
-              icon: 'exclamation-sign') if community_program.verification_required? %>
-          <% end %>
+            <% if community_program.active && community_program.approved_for_public? %>
+              <span class='icon-cpp icon-cpp-globe with-tooltip'
+                data-tooltip='This community program is publicly viewable'></span>
+            <% end %>
+          </h5>
 
-          <%= link_to_gicon 'Show Details', '#',
-            class: "btn btn-medium btn-info toggle closed",
-            icon: 'eye-open eye-close',
-            wrapper_span: {id: "organization-program-link-#{community_program.id}"},
-            "data-toggle-target" => "#organization-program-table-#{community_program.id}",
-            "data-toggle-text-node" => "#organization-program-link-#{community_program.id}",
-            "data-toggle-show-text" => "Show Details",
-            "data-toggle-hide-text" => "Hide Details"
-          %>
+          <div class="header-button-wrapper col-md-4 col-xs-12">
+            <% if active %>
+              <%= link_to_gicon('Verification Needed',
+                edit_community_program_path(
+                  community_program,
+                  redirect_back: organization_path(organization)
+                ),
+                class: "btn btn-medium btn-create",
+                icon: 'exclamation-sign') if community_program.verification_required? %>
+            <% end %>
+
+            <%= link_to_gicon 'Show Details', '#',
+              class: "btn btn-medium btn-info toggle closed",
+              icon: 'eye-open eye-close',
+              wrapper_span: {id: "organization-program-link-#{community_program.id}"},
+              "data-toggle-target" => "#organization-program-table-#{community_program.id}",
+              "data-toggle-text-node" => "#organization-program-link-#{community_program.id}",
+              "data-toggle-show-text" => "Show Details",
+              "data-toggle-hide-text" => "Hide Details"
+            %>
+          </div>
         </div>
+
+        <% if active %>
+        <div class="row completeness">
+          <div class="<%= bootstrap_col(xs: 12, md: 7) %>">
+            <h7>
+              <%= help t('help.school_program.completeness'),
+                class: 'completeness-tooltip' %>
+              Data Completeness:
+            </h7>
+
+            <%= ProgressBarPresenter.perform(
+              percentage: community_program.completion_rate,
+              options: {
+                verification_required: community_program.verification_required?,
+                tooltip: community_program.completion_rate_tooltip,
+                tooltip_class: 'cj-cp-progress-tooltip'
+              }
+            ) %>
+          </div>
+        </div>
+        <% end %>
       </div>
 
-      <% if active %>
-      <div class="row completeness">
-        <div class="<%= bootstrap_col(xs: 12, md: 7) %>">
-          <h7>
-            <%= help t('help.school_program.completeness'),
-              class: 'completeness-tooltip' %>
-            Data Completeness:
-          </h7>
+      <%= columnar_table nil,
+        id: "organization-program-table-#{community_program.id}",
+        class: "hidden" do %>
 
-          <%= ProgressBarPresenter.perform(
-            percentage: community_program.completion_rate,
-            options: {
-              verification_required: community_program.verification_required?,
-              tooltip: community_program.completion_rate_tooltip,
-              tooltip_class: 'cj-cp-progress-tooltip'
-            }
-          ) %>
-        </div>
-      </div>
+        <tr>
+          <td>Schools</td>
+          <td>
+            <%= view_more_toggle_list(community_program.schools) do |school|
+              school.name
+            end %>
+          </td>
+        </tr>
+        <tr>
+          <td>Community School Element</td>
+          <td>
+            <%= community_program.quality_element.try(:name) %>
+          </td>
+        </tr>
+        <tr>
+          <td>Service Types</td>
+          <td>
+            <%= community_program.primary_service_types %>
+          </td>
+        </tr>
+        <tr>
+          <td>Student Population</td>
+          <td>
+            <%= community_program.student_population %>
+          </td>
+        </tr>
+        <tr>
+          <td>Demographic Groups</td>
+          <td>
+            <%= community_program.demographic_groups %>
+          </td>
+        </tr>
       <% end %>
-    </div>
-
-    <%= columnar_table nil,
-      id: "organization-program-table-#{community_program.id}",
-      class: "hidden" do %>
-
-      <tr>
-        <td>Schools</td>
-        <td>
-          <%= view_more_toggle_list(community_program.schools) do |school|
-            school.name
-          end %>
-        </td>
-      </tr>
-      <tr>
-        <td>Community School Element</td>
-        <td>
-          <%= community_program.quality_element.try(:name) %>
-        </td>
-      </tr>
-      <tr>
-        <td>Service Types</td>
-        <td>
-          <%= community_program.primary_service_types %>
-        </td>
-      </tr>
-      <tr>
-        <td>Student Population</td>
-        <td>
-          <%= community_program.student_population %>
-        </td>
-      </tr>
-      <tr>
-        <td>Demographic Groups</td>
-        <td>
-          <%= community_program.demographic_groups %>
-        </td>
-      </tr>
     <% end %>
+  <% else %>
+    <p>This organization has no <%= active ? 'active' : 'inactive' %> programs.</p>
   <% end %>
 <% end %>
