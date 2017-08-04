@@ -58,7 +58,8 @@
         <%= field_set_tag "Program Details", class: 'program-details' do %>
           <%= render partial: 'community_programs/program_detail_inputs', locals: {
             f: f,
-            inherited_object: @community_program
+            inherited_object: @community_program,
+            policy: @community_program.public_policy
           } %>
         <% end %>
 
