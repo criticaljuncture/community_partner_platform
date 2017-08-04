@@ -30,7 +30,7 @@ class CommunityPrograms::BuildController < ApplicationController
   end
 
   def finish_wizard_path(params={})
-    flash.notice = t('community_programs.flash_messages.save.success',
+    flash.notice = t('community_program.flash_messages.save.success',
                      name: @community_program.name)
     community_program_path(@community_program)
   end
