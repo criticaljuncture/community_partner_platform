@@ -138,34 +138,25 @@
 
   <div id="active-programs" class="tab-pane">
     <div class="table_wrapper">
-      <%# if @organization.community_programs.present? %>
-        <%= render partial: 'programs', locals: {
-          active: true,
-          organization: @organization,
-          programs: CommunityProgramDecorator.decorate_collection(
-            @organization.community_programs.active
-          )
-        } %>
-      <%# else %>
-        <!-- <p>This organization has no active programs.</p> -->
-      <%# end %>
+      <%= render partial: 'programs', locals: {
+        active: true,
+        organization: @organization,
+        programs: CommunityProgramDecorator.decorate_collection(
+          @organization.community_programs.active
+        )
+      } %>
     </div>
   </div>
 
   <div id="inactive-programs" class="tab-pane">
     <div class="table_wrapper">
-      <%# if @organization.inactive_community_programs.present? %>
-        <%= render partial: 'programs',
-          locals: {
-            active: false,
-            organization: @organization,
-            programs: CommunityProgramDecorator.decorate_collection(
-              @organization.inactive_community_programs
-            )
-        } %>
-      <%# else %>
-        <!-- <p>This organization has no inactive programs.</p> -->
-      <%# end %>
+      <%= render partial: 'programs', locals: {
+        active: false,
+        organization: @organization,
+        programs: CommunityProgramDecorator.decorate_collection(
+          @organization.inactive_community_programs
+        )
+      } %>
     </div>
   </div>
 
