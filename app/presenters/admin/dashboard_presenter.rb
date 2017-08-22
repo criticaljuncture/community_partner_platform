@@ -36,6 +36,7 @@ class Admin::DashboardPresenter
 
   def community_programs
     @community_programs ||= CommunityProgram.
+      active.
       includes(school_programs: :school).
       order('name').
       decorate
