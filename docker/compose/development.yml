@@ -12,7 +12,7 @@ services:
       MYSQL_PORT_3306_TCP_DATABASE: community_partner_platform
     volumes:
       - "../mysql/init_db.sh:/docker-entrypoint-initdb.d/init_db.sh"
-      - "~/Dropbox/CJ\ Resources/CPP/current.sql.gz:/community_partner_platform_current.sql.gz"
+      - "../../../tmp/current.sql.gz:/community_partner_platform_current.sql.gz"
 
   rsync:
     image: nabeken/docker-volume-container-rsync
@@ -27,6 +27,8 @@ services:
 
   web:
     build: '../../'
+    ports:
+      - "3000:3000"
     expose:
       - "3000"
     environment:
@@ -44,10 +46,11 @@ services:
       DEVISE_SECRET_KEY: 113299c9801dbbab6d2fffe71c067196fca8d99697deeceb8eed822716276a0ee48b08d199b2deda1747fa1458ae064fda9a9c4ab7cae8b829a67a849523495e
     volumes:
       - web_app:/home/app/
+    links:
+      - mysql
+    depends_on:
+      - mysql
     restart: on-failure
-    networks:
-      - director_shared
-      - default
     tty: true
     stdin_open: true
 
@@ -56,8 +59,3 @@ volumes:
     driver: local
   web_app:
     driver: local
-
-networks:
-  default:
-  director_shared:
-    external: true
