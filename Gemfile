@@ -6,6 +6,9 @@ gem 'rails', '~> 4.2.7.1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.20'
 
+# production app server
+gem 'passenger', '5.1.12'
+
 # Memory based static tables
 gem 'active_hash'
 
