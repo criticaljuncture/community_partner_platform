@@ -84,7 +84,7 @@ GEM
       sass (~> 3.4)
       thor
     builder (3.2.3)
-    cancancan (1.12.0)
+    cancancan (2.1.3)
     case_transform (0.2)
       activesupport
     coderay (1.1.1)
