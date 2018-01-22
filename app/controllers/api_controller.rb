@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  skip_before_filter :authenticate_user!
+  skip_before_action :authenticate_user!
   skip_authorization_check
 
   def community_program_markers

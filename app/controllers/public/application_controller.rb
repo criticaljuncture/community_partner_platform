@@ -1,7 +1,7 @@
 class Public::ApplicationController < ApplicationController
   skip_authorization_check
-  skip_before_filter :authenticate_user!
-  before_filter :redirect_if_no_authentication
+  skip_before_action :authenticate_user!
+  before_action :redirect_if_no_authentication
 
   layout 'public/layouts/application.html.erb'
 

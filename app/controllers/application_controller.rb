@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # devise
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   # security
-  before_filter :set_security_headers
+  before_action :set_security_headers
 
   # make current user accesible in policies, etc.
-  before_filter :set_current_user
+  before_action :set_current_user
 
   # cancan
   check_authorization :unless => :devise_controller?
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   serialization_scope :current_user
 
   # page views and speed tracking
-  around_filter :track_page_speed
+  around_action :track_page_speed
 
   def after_sign_in_path_for(user)
     if user.role?(:organization_member) && user.organization.verification_required?
@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
     { current_user_id: current_user.try(:id) }
   end
 
-  before_filter do
+  before_action do
     Honeybadger.context({
       :user_id => current_user.id,
       :user_email => current_user.email
