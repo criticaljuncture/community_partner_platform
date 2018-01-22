@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.10'
+gem 'rails', '~> 5.0.6'
 
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.20'
@@ -35,18 +35,14 @@ gem "bourbon", "~> 4.2.3"
 gem "cancancan"
 
 # Use CoffeeScript
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 
 # Settings via settings.yml, etc.
 gem 'config', '~> 1.0.0'
 
 # user signin and auth checks
-gem "devise", "~> 3.5.2"
-gem "devise_invitable", "~> 1.5.2 "
-#gem "devise", "~> 3.1.2"
-#gem "devise_invitable",
-#    github: "scambra/devise_invitable",
-#    ref: 'e555f07ffb1d7751e9f84b3283fc90e1820fb681'
+gem "devise", "~> 4.4.0"
+gem "devise_invitable", "~> 1.7.2"
 
 # graphing
 gem "d3_rails", "~> 3.3.7"
@@ -81,13 +77,15 @@ gem 'js-routes', '~> 1.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-cookie-rails'
+
+# Easy cookie access from JS
+gem 'js_cookie_rails'
 
 # redis analytics
 gem "minuteman", "~> 2.0.0"
 
 # record versioning
-gem 'paper_trail', '>= 3.0.0.rc1'
+gem 'paper_trail', '8.1.2'
 
 # redis
 gem 'redis', '~> 3.3.2'
@@ -125,9 +123,7 @@ gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
 gem 'attr_extras'
 
 # modals
-gem 'jquery-modal-rails',
-    git: 'https://github.com/peregrinator/jquery-modal-rails',
-    ref: '97bc84d7723d324876971f45f255e066fbb6ad49'
+gem 'jquery-modal-rails-assets'
 
 # auto linking user input (like organization url)
 gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
@@ -152,14 +148,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-remote'
 
-  # don't log asset loading as it's too noisy
-  gem "quiet_assets"
-
   # live reloading of css & html via chrome browser extension
   gem 'guard', '~> 2.13.0'
-
-  # console on errors or using <%= console %>
-  gem 'web-console', '~> 2.0'
 
   gem 'rack-mini-profiler'
 
