@@ -12,7 +12,7 @@
 # require handlebars
 #= require handlebars.runtime
 #= require js-routes
-#= require jquery.cookie
+#= require js.cookie
 #= require jquery.parsequery.js
 #= require jquery.tablesorter.min
 #= require jquery.tablesorter.widgets.min

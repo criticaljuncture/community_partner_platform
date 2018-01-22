@@ -10,13 +10,13 @@ $(document).ready ->
 
   if window['MODAL']?
     if ! window['MODAL'].setCookie
-      $.removeCookie window['MODAL'].modalTarget
+      Cookies.remove window['MODAL'].modalTarget, {path: '/'}
       $(window['MODAL'].modalTarget).modal()
-    else if ! $.cookie(window['MODAL'].modalTarget)?
+    else if ! Cookies.get(window['MODAL'].modalTarget)?
       $(window['MODAL'].modalTarget).modal()
 
       if window['MODAL'].setCookie
-        $.cookie window['MODAL'].modalTarget, 'shown', {path: '/'}
+        Cookies.set window['MODAL'].modalTarget, 'shown', {path: '/'}
 
   $('body').on 'click', '.modal-link', (e)->
     e.preventDefault()
