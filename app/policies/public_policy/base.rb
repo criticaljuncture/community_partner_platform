@@ -58,7 +58,10 @@ class PublicPolicy::Base
 
     unless required_attributes_present?
       missing_requirements << I18n.t(
-        'public_policy.missing_requirements.required_attributes'
+        'public_policy.missing_requirements.required_attributes',
+        required_attributes: policy_config.required_attributes.map do |attr|
+          "'#{attr.to_s.gsub('_',' ')}'"
+        end.join(', ')
       )
     end
 
