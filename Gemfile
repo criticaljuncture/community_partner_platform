@@ -73,7 +73,7 @@ gem 'handlebars_assets'
 gem 'honeybadger'
 
 # named routes in javascript
-gem 'js-routes', '~> 1.1.0'
+gem 'js-routes'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
