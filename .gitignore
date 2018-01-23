@@ -37,3 +37,11 @@ data/kml/*
 
 # Ignore rspec report files
 spec/examples.txt
+
+.passenger/native_support/*.*
+
+passenger.3000.pid
+
+passenger.3000.pid.lock
+
+.pry_history
