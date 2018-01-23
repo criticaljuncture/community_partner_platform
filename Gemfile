@@ -89,6 +89,9 @@ gem "minuteman", "~> 2.0.0"
 # record versioning
 gem 'paper_trail', '>= 3.0.0.rc1'
 
+# Simple database search
+gem 'ransack'
+
 # redis
 gem 'redis', '~> 3.3.2'
 gem 'redis-namespace', '~> 1.5.2'
