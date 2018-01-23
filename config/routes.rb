@@ -88,6 +88,7 @@ CommunityPartnerPlatform::Application.routes.draw do
 
   namespace :admin do
     resources :dashboard, only: :index
+    resources :search, only: :index
   end
 
   if Settings.application.public_view_enabled
