@@ -240,9 +240,6 @@ GEM
       redic (~> 1.5.0)
       stal
     orm_adapter (0.5.0)
-    paper_trail (3.0.1)
-      activerecord (>= 3.0, < 5.0)
-      activesupport (>= 3.0, < 5.0)
     paper_trail (8.1.2)
       activerecord (>= 4.2, < 5.2)
       request_store (~> 1.1)
@@ -417,7 +414,6 @@ DEPENDENCIES
   js_cookie_rails
   minuteman (~> 2.0.0)
   mysql2 (~> 0.3.20)
-  paper_trail (>= 3.0.0.rc1)
   paper_trail (= 8.1.2)
   passenger (= 5.3.3)
   pry (~> 0.10.0)

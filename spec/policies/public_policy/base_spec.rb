@@ -149,10 +149,11 @@ RSpec.describe "PublicPolicy::Base" do
       allow(policy).to receive(:verification_required?).and_return(false)
 
       message = I18n.t(
-        'public_policy.missing_requirements.required_attributes'
+        'public_policy.missing_requirements.required_attributes',
+        required_attributes: nil
       )
 
-      expect(policy.missing_requirements).to include(message)
+      expect(policy.missing_requirements.first).to include(message)
     end
 
     it "includes the proper messsage when the record is not minimally_complete" do
