@@ -246,7 +246,7 @@ GEM
     paper_trail (3.0.1)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
-    passenger (5.1.12)
+    passenger (5.3.3)
       rack
       rake (>= 0.8.1)
     pry (0.10.4)
@@ -422,7 +422,7 @@ DEPENDENCIES
   minuteman (~> 2.0.0)
   mysql2 (~> 0.3.20)
   paper_trail (>= 3.0.0.rc1)
-  passenger (= 5.1.12)
+  passenger (= 5.3.3)
   pry (~> 0.10.0)
   pry-rails
   pry-remote
@@ -449,4 +449,4 @@ DEPENDENCIES
   wicked
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

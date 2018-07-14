@@ -7,7 +7,7 @@ gem 'rails', '~> 4.2.10'
 gem 'mysql2', '~> 0.3.20'
 
 # production app server
-gem 'passenger', '5.1.12'
+gem 'passenger', '5.3.3'
 
 # Memory based static tables
 gem 'active_hash'
