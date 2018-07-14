@@ -81,9 +81,6 @@ gem 'jquery-rails'
 # Easy cookie access from JS
 gem 'js_cookie_rails'
 
-# redis analytics
-gem "minuteman", "~> 2.0.0"
-
 # record versioning
 gem 'paper_trail', '8.1.2'
 
