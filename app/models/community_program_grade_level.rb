@@ -1,4 +1,4 @@
-class CommunityProgramGradeLevel < ActiveRecord::Base
+class CommunityProgramGradeLevel < ApplicationRecord
   belongs_to :attributable, polymorphic: true
   belongs_to :grade_level
 

@@ -1,4 +1,4 @@
-class CommunityProgramServiceDay < ActiveRecord::Base
+class CommunityProgramServiceDay < ApplicationRecord
   belongs_to :attributable, polymorphic: true
   belongs_to :day
 

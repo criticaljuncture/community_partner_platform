@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   include UserAudit
 

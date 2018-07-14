@@ -1,4 +1,4 @@
-class CommunityProgram < ActiveRecord::Base
+class CommunityProgram < ApplicationRecord
   include ApplicationConfig::Validations
 
   include ModelSerializable

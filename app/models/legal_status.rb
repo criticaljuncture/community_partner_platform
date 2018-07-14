@@ -1,4 +1,4 @@
-class LegalStatus < ActiveRecord::Base
+class LegalStatus < ApplicationRecord
   has_many :organizations
 
   def self.for_select

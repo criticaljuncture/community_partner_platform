@@ -1,4 +1,4 @@
-class Day < ActiveRecord::Base
+class Day < ApplicationRecord
   has_many :community_program_service_days
   has_many :community_programs, through: :community_program_service_days
 

@@ -1,3 +1,3 @@
-class School::FreeReducedMealData < ActiveRecord::Base
+class School::FreeReducedMealData < ApplicationRecord
   belongs_to :school
 end

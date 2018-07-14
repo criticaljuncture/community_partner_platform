@@ -1,4 +1,4 @@
-class CommunityProgramQualityElement < ActiveRecord::Base
+class CommunityProgramQualityElement < ApplicationRecord
   belongs_to :community_program
   belongs_to :quality_element
 

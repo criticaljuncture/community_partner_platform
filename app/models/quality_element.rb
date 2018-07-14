@@ -1,4 +1,4 @@
-class QualityElement < ActiveRecord::Base
+class QualityElement < ApplicationRecord
   has_many :quality_element_service_types
   has_many :service_types, through: :quality_element_service_types
 

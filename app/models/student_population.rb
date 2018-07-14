@@ -1,4 +1,4 @@
-class StudentPopulation < ActiveRecord::Base
+class StudentPopulation < ApplicationRecord
   has_many :community_programs
 
   def self.for_completeness

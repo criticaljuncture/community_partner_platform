@@ -1,4 +1,4 @@
-class SchoolProgram < ActiveRecord::Base
+class SchoolProgram < ApplicationRecord
   include ApplicationConfig::Validations
 
   include CommunityProgramAttributeRelationships

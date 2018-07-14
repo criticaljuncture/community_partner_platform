@@ -1,4 +1,4 @@
-class Organization < ActiveRecord::Base
+class Organization < ApplicationRecord
   include ApplicationConfig::Validations
   include OrganizationAudit
 

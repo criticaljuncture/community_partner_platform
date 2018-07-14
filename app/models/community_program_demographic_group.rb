@@ -1,4 +1,4 @@
-class CommunityProgramDemographicGroup < ActiveRecord::Base
+class CommunityProgramDemographicGroup < ApplicationRecord
   belongs_to :attributable, polymorphic: true
   belongs_to :demographic_group
 

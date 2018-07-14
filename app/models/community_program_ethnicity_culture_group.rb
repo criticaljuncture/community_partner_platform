@@ -1,4 +1,4 @@
-class CommunityProgramEthnicityCultureGroup < ActiveRecord::Base
+class CommunityProgramEthnicityCultureGroup < ApplicationRecord
   belongs_to :attributable, polymorphic: true
   belongs_to :ethnicity_culture_group
 

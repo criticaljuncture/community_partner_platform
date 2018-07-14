@@ -1,4 +1,4 @@
-class School < ActiveRecord::Base
+class School < ApplicationRecord
   include SchoolAudit
 
   has_many :school_programs

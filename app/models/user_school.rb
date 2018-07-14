@@ -1,4 +1,4 @@
-class UserSchool < ActiveRecord::Base
+class UserSchool < ApplicationRecord
   belongs_to :school
   belongs_to :user
 end
