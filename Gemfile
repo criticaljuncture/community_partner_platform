@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0.6'
 
 # Use mysql as the database for Active Record
-gem 'mysql2', '~> 0.3.20'
+gem 'mysql2', '0.4.10'
 
 # production app server
 gem 'passenger', '5.3.3'
@@ -133,7 +133,6 @@ group :development, :test do
 
   gem "better_errors"
   gem "binding_of_caller"
-  #gem "zeus"
 
   # replace rails console with pry
   gem 'pry', '~> 0.10.0'
@@ -157,9 +156,4 @@ group :development, :test do
   #gem 'peek-rblineprof'
   #gem 'peek-dalli'
   #gem 'rack-mini-profiler'
-end
-
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
 end
