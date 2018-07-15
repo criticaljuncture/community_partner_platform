@@ -96,16 +96,17 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
-    config (1.0.0)
+    config (1.7.0)
       activesupport (>= 3.0)
-      deep_merge (~> 1.0.0)
+      deep_merge (~> 1.2.1)
+      dry-validation (>= 0.10.4)
     crass (1.0.4)
     d3_rails (3.3.13)
       railties (>= 3.1.0)
     dalli (2.6.4)
     database_cleaner (1.5.3)
     debug_inspector (0.0.3)
-    deep_merge (1.0.1)
+    deep_merge (1.2.1)
     devise (4.4.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -363,7 +364,7 @@ DEPENDENCIES
   bourbon (~> 4.2.3)
   cancancan
   coffee-rails
-  config (~> 1.0.0)
+  config
   d3_rails (~> 3.3.7)
   dalli (~> 2.6.4)
   database_cleaner (~> 1.5.3)

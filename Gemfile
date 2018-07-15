@@ -38,7 +38,7 @@ gem "cancancan"
 gem 'coffee-rails'
 
 # Settings via settings.yml, etc.
-gem 'config', '~> 1.0.0'
+gem 'config'
 
 # user signin and auth checks
 gem "devise"
