@@ -41,8 +41,8 @@ gem 'coffee-rails'
 gem 'config', '~> 1.0.0'
 
 # user signin and auth checks
-gem "devise", "~> 4.4.0"
-gem "devise_invitable", "~> 1.7.2"
+gem "devise"
+gem "devise_invitable"
 
 # graphing
 gem "d3_rails", "~> 3.3.7"
