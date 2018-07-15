@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.6'
+gem 'rails', '5.1.6'
 
 # Use mysql as the database for Active Record
-gem 'mysql2', '0.4.10'
+gem 'mysql2'
 
 # production app server
 gem 'passenger', '5.3.3'
