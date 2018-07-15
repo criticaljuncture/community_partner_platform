@@ -16,11 +16,11 @@ class User < ApplicationRecord
   has_many :schools, through: :user_schools
 
   has_many :community_programs_as_organization_contact,
-           class_name: CommunityProgram,
+           class_name: 'CommunityProgram',
            foreign_key: :user_id
 
   has_many :school_programs_as_school_contact,
-           class_name: SchoolProgram,
+           class_name: 'SchoolProgram',
            foreign_key: :user_id
 
   has_many :page_views

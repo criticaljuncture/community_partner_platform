@@ -17,11 +17,11 @@ class CommunityProgram < ApplicationRecord
   has_many :schools, through: :school_programs
 
   belongs_to :organization
-  belongs_to :verifier, foreign_key: :last_verified_by, class_name: User
+  belongs_to :verifier, foreign_key: :last_verified_by, class_name: 'User'
 
   has_one :primary_quality_element,
           ->{where type: "PrimaryQualityElement"},
-          class_name: CommunityProgramQualityElement
+          class_name: 'CommunityProgramQualityElement'
   has_one :quality_element, through: :primary_quality_element
 
   has_many :primary_service_types,

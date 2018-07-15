@@ -5,7 +5,7 @@ class School < ApplicationRecord
   has_many :community_programs, through: :school_programs
   has_many :organizations, through: :community_programs
 
-  has_many :free_reduced_meal_data, class_name: FreeReducedMealData
+  has_many :free_reduced_meal_data, class_name: 'FreeReducedMealData'
 
   has_many :user_schools
   has_many :users, through: :user_schools
