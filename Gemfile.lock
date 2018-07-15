@@ -304,9 +304,9 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
     shellany (0.0.1)
-    simple_form (3.4.0)
-      actionpack (> 4, < 5.1)
-      activemodel (> 4, < 5.1)
+    simple_form (3.5.1)
+      actionpack (> 4, < 5.2)
+      activemodel (> 4, < 5.2)
     slop (3.6.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -394,7 +394,7 @@ DEPENDENCIES
   safe_target_blank
   sass (~> 3.4.16)
   sass-rails (~> 5.0.6)
-  simple_form (~> 3.4.0)
+  simple_form (~> 3.5.1)
   spring
   spring-commands-rspec
   temping (~> 3.2.0)
