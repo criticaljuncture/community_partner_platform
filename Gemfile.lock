@@ -116,11 +116,6 @@ GEM
       actionmailer (>= 4.1.0)
       devise (>= 4.0.0)
     diff-lcs (1.2.5)
-    dotenv (0.11.1)
-      dotenv-deployment (~> 0.0.2)
-    dotenv-deployment (0.0.2)
-    dotenv-rails (0.11.1)
-      dotenv (= 0.11.1)
     draper (3.0.1)
       actionpack (~> 5.0)
       activemodel (~> 5.0)
@@ -382,9 +377,6 @@ DEPENDENCIES
   database_cleaner (~> 1.5.3)
   devise
   devise_invitable
-  dotenv (= 0.11.1)
-  dotenv-deployment (= 0.0.2)
-  dotenv-rails (= 0.11.1)
   draper
   dry-validation
   factory_girl_rails (~> 4.8.0)
