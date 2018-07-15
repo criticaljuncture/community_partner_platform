@@ -1,5 +1,5 @@
 <%= breadcrumb [
-  ['Service Types', service_types_path], 
+  ['Service Types', service_types_path],
   ["Create", ""]
 ] %>
 
@@ -8,10 +8,9 @@
     <%= page_header("Create New Service Type", "") %>
 
     <div class="form_wrapper">
-      <%= semantic_form_for @service_type, method: :post, html: {class: "form-horizontal"} do |f| %>
+      <%= simple_form_for @service_type, method: :post, html: {class: "form-horizontal"} do |f| %>
         <%= render :partial => 'form', :locals => {:f => f} %>
       <% end %>
     </div>
   </div>
 </div>
-

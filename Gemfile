@@ -57,9 +57,7 @@ gem 'dry-validation'
 gem "dalli", "~> 2.6.4"
 
 # forms
-gem 'formtastic'
-gem 'formtastic-bootstrap'
-gem 'simple_form', '~> 3.4.0'
+gem 'simple_form', '~> 3.5.1'
 
 # Handlebars js templates
 gem 'handlebars_assets'

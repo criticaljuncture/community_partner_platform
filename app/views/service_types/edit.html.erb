@@ -8,11 +8,9 @@
     <%= page_header("Edit '#{@service_type.name}'", "") %>
 
     <div class="form_wrapper">
-      <%= semantic_form_for @service_type, method: :put, html: {class: "form-horizontal"} do |f| %>
+      <%= simple_form_for @service_type, method: :put, html: {class: "form-horizontal"} do |f| %>
         <%= render :partial => 'form', :locals => {:f => f} %>
       <% end %>
     </div>
   </div>
 </div>
-
-

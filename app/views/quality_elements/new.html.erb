@@ -8,12 +8,9 @@
     <%= page_header("Create New Community School Element", "") %>
 
     <div class="form_wrapper">
-      <%= semantic_form_for @quality_element, method: :post, html: {class: "form-horizontal"} do |f| %>
+      <%= simple_form_for @quality_element, method: :post, html: {class: "form-horizontal"} do |f| %>
         <%= render :partial => 'form', :locals => {:f => f} %>
       <% end %>
     </div>
   </div>
 </div>
-
-
-
