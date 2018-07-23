@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.1.6'
+gem 'rails', '5.2'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
@@ -21,6 +21,9 @@ gem 'temping', '~> 3.2.0'
 
 # AWS email
 gem "aws-ses", "~> 0.5.0"
+
+# fast application loading
+gem 'bootsnap'
 
 # Twitter bootstrap
 gem 'bootstrap-sass', '~> 3.3.5.1'
@@ -57,7 +60,7 @@ gem 'dry-validation'
 gem "dalli", "~> 2.6.4"
 
 # forms
-gem 'simple_form', '~> 3.5.1'
+gem 'simple_form'
 
 # Handlebars js templates
 gem 'handlebars_assets'
@@ -75,7 +78,7 @@ gem 'jquery-rails'
 gem 'js_cookie_rails'
 
 # record versioning
-gem 'paper_trail', '8.1.2'
+gem 'paper_trail'
 
 # redis
 gem 'redis', '~> 3.3.2'
@@ -122,12 +125,9 @@ group :development, :test do
   # ascii table values - test multiple cases via tables for clarity
   gem 'atv'
 
-  gem 'spring'
-  gem 'spring-commands-rspec'
-
-  gem "rspec-rails", "~> 3.5.2"
+  gem "rspec-rails"
   gem "factory_girl_rails", "~> 4.8.0"
-  gem "database_cleaner", "~> 1.5.3"
+  gem "database_cleaner"
 
   gem "better_errors"
   gem "binding_of_caller"

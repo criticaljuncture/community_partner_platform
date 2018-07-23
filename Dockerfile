@@ -71,7 +71,7 @@ COPY --chown=1000:1000 . /home/app/
 
 WORKDIR /home/app
 
-RUN SUBDOMAIN=dev DEVISE_SECRET_KEY=XXXXXXXXX RAILS_ENV=production rake assets:precompile &&\
+RUN SUBDOMAIN=dev SECRET_KEY_BASE=XXX DEVISE_SECRET_KEY=XXXXXXXXX RAILS_ENV=production rake assets:precompile &&\
   chown -R app /home/app/public
 
 
