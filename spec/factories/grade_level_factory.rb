@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :grade_level do
     sequence(:name) {|i| "Grade Level #{i}"}
   end

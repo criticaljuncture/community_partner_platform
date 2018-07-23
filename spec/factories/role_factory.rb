@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :role do
     sequence(:name) {|i| "Role #{i}"}
     sequence(:identifier) {|i| "role_#{i}".to_sym}

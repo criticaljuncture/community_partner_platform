@@ -126,7 +126,7 @@ group :development, :test do
   gem 'atv'
 
   gem "rspec-rails"
-  gem "factory_girl_rails", "~> 4.8.0"
+  gem "factory_bot_rails"
   gem "database_cleaner"
 
   gem "better_errors"

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :community_program_quality_element do
     type 'PrimaryQualityElement'
 
