@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  skip_before_action :require_no_authentication
-
   def index
     authorize! :index, User
 
