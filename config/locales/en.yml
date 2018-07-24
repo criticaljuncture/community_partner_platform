@@ -138,7 +138,7 @@ en:
   public_policy:
     missing_requirements:
       minimally_complete: Does not meet minimum completion percentage of %{percentage}%.
-      organization_not_public: The organization this program is run by must be public first.
+      organization_not_public: The organization that provides this program must be public first.
       required_attributes: "Missing pre-requisite data fields: %{required_attributes}"
       verification_required: Has not been verified after %{date}.
 
