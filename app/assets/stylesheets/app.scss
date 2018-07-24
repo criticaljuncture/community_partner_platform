@@ -72,7 +72,7 @@ h6 { color: $gray-80; }
   margin-top: 0;
 }
 
-.table_wrapper { overflow-x: scroll; }
+.table_wrapper { overflow-x: auto; }
 
 table .center { text-align: center; }
 table .buttons { width: 129px; }
