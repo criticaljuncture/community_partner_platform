@@ -3,18 +3,18 @@ web:
     file: shared.yml
     service: web
   environment:
-    - RAILS_ENV=development
+    - RAILS_ENV=test
+    - MYSQL_DATABASE=community_partner_platform
+  links:
+    - mariadb
+    - redis
 
 mariadb:
   extends:
     file: shared.yml
     service: mariadb
-  ports:
-    - "3306:3306"
 
 redis:
   extends:
     file: shared.yml
     service: redis
-  ports:
-    - "6379:6379"

@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y ruby2.5 ruby2.5-dev
 ##################
 
 # libsqlite3-dev is dependency of the fast import gem
-RUN apt-get update && apt-get install -y build-essential git libmysqlclient-dev libsqlite3-dev nodejs &&\
+RUN apt-get update && apt-get install -y build-essential git mysql-client libmysqlclient-dev libsqlite3-dev nodejs &&\
   apt-get clean &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
 
