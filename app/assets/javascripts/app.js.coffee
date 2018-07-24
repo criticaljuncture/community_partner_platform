@@ -11,7 +11,7 @@ $(document).ready ->
   # make the active tab/pane visible
   activePane = $('.tab-content .tab-pane.active').attr('id')
   $('.nav.nav-tabs a')
-    .filter("[href=##{activePane}]")
+    .filter("[href='##{activePane}']")
     .tab('show')
 
   #allow for direct navigation to a particular tab on a page
