@@ -1,7 +1,7 @@
 class @CPP.UserFormHandler
   constructor: (form)->
     @form = form
-    @userEl = @form.find('#user_primary_role')
+    @userRoleEl = @form.find('#user_primary_role')
 
     @addChangeHandlers()
     @ensureFormConsistency()
@@ -9,7 +9,7 @@ class @CPP.UserFormHandler
   addChangeHandlers: ->
     formHandler = this
 
-    @userEl.on 'change', ()->
+    @userRoleEl.on 'change', ()->
       formHandler.roleChange(
         $(this).find(":selected").data('role-type')
       )
@@ -26,7 +26,7 @@ class @CPP.UserFormHandler
           .prop 'disabled', false
 
   ensureFormConsistency: ()->
-    @userEl.trigger('change');
+    @userRoleEl.trigger('change');
 
   roleChange: (role)->
     @hideRoleRelatedFields role
@@ -42,6 +42,8 @@ class @CPP.UserFormHandler
     @form.find('.form-group.user_school_ids').hide()
     @form.find('#user_school_ids')
       .prop 'disabled', true
+
+    @form.find('#district-details').hide()
 
     @form.find('.form-group.user_orientation_type_id').hide()
     @form.find('#user_orientation_type_id')
@@ -62,6 +64,8 @@ class @CPP.UserFormHandler
 
       @form.find('#user_organization_id')
         .prop 'disabled', false
+
+      @form.find('#district-details').show()
 
       @form.find('.form-group.user_orientation_type_id')
       .show()
