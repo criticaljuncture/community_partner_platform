@@ -1,8 +1,8 @@
 .modal {
-  width: 600px;
   display: none;
-  position: fixed;
   margin: 0 auto;
+  position: fixed;
+  width: 600px;
 
   .modal-header {
     @include border-top-radius(6px);
@@ -18,9 +18,9 @@
     }
 
     .icon-cpp-users {
-      width: 42px;
-      height: 30px;
       font-size: 29px;
+      height: 30px;
+      width: 42px;
     }
   }
 
@@ -31,15 +31,15 @@
   }
 
   .close-modal {
-    position: absolute;
-    top: 13px;
-    right: 13px;
-    font-size: 25px;
     color: $red;
+    font-size: 25px;
+    position: absolute;
+    right: 13px;
+    top: 13px;
 
     &:hover {
-      text-decoration: none;
       color: $red-dark;
+      text-decoration: none;
     }
   }
 }
