@@ -181,6 +181,10 @@ class @CPP.SchoolProgramFormHandler
   formSubmitDone: (response)->
     table = $("fieldset table.school-programs")
 
+    noProgramsRow = table.find("tbody tr#no-school-programs")
+    if noProgramsRow.length > 0
+      noProgramsRow.remove()
+
     currentRow = table
       .find("tbody tr[data-school-program-id='#{response.school_program_id}']")
 
