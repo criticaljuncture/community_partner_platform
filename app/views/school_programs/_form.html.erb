@@ -7,23 +7,6 @@
     collection: School.accessible_by(current_ability).sort_by(&:name),
     disabled: community_program.schools.map(&:id),
     required: true %>
-
-  <div id="school-user-wrapper" class="user-add-wrapper">
-    <div id="add-school-user" class="user-add btn btn-create">
-      <%= gicon 'plus' %> Create new school contact
-    </div>
-
-    <%= f.input :user_id,
-      as: :select,
-      collection: User.accessible_by(current_ability).
-        includes(:schools).
-        where(schools: {id: @school_program.school_id}).
-        sort_by(&:full_name),
-      label_method: :full_name,
-      required: false,
-      public: policy.public_attribute?(:user_id),
-      wrapper_html: {class: 'clear both'} %>
-  </div>
 <% end %>
 
 <%= alert 'info', 'info-sign' do %>

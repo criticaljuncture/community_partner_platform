@@ -9,7 +9,6 @@ class @CPP.SchoolProgramFormHandler
     @ensureFormConsistency()
     @addInheritedValueBehavior()
 
-    @addAjaxButtonHandlers()
     @addFormSubmissionEvents()
     @addToggleBehavior()
 
@@ -121,37 +120,6 @@ class @CPP.SchoolProgramFormHandler
   removeSchoolRelatedFields: ->
     $('form .school_program_user_id').remove()
     $('#school-user-wrapper').hide()
-
-  ### UPDATE USER METHODS ###
-  addAjaxButtonHandlers: ->
-    @addSchoolUserHandler()
-
-  addSchoolUserHandler: ->
-    formHandler = this
-    button = @form.find('#add-school-user')
-
-    button.on 'click', (event)=>
-      response = $.ajax({
-        url: '/users/new',
-        data: {
-          user: {first_name: ""}, #stub to pass strong params
-          school_id: formHandler.schoolEl.find(':selected').val(),
-          role_id: 3
-        },
-        dataType: 'html'
-      })
-
-      @showModal '.user-modal'
-      response.done (html)=>
-        @updateModal '.user-modal', html
-        new CPP.UserModalFormHandler $('form.modal-user')
-
-  showModal: (modalClass)->
-    $(modalClass).modal()
-
-  updateModal: (modalClass, html)->
-    $("#{modalClass} .modal-body").html(html)
-
 
   ### FORM SUBMISSION & errors ###
   addFormSubmissionEvents: ()->

@@ -16,42 +16,38 @@
           </span>
         <% end %>
       </h5>
-      <%= link_to_gicon 'Show Details', '#',
-        class: "btn btn-medium btn-info toggle closed",
-        icon: 'eye-open eye-close',
-        wrapper_span: {id: "school-program-link-#{school_program.id}"},
-        "data-toggle-target" => "#school-program-table-#{school_program.id}",
-        "data-toggle-text-node" => "#school-program-link-#{school_program.id}",
-        "data-toggle-show-text" => "Show Details",
-        "data-toggle-hide-text" => "Hide Details"
-      %>
-    </div>
-
-    <%= columnar_table nil, id: "school-program-table-#{school_program.id}",
-      class: "hidden" do %>
-      <tr>
-        <td><%= I18n.t('school_programs.user') %></td>
-        <td>
-          <%= link_to(school_program.user.full_name,
-            user_path(school_program.user)) if school_program.user %>
-        </td>
-      </tr>
 
       <% if school_program.customized_attributes.present? %>
-        <tr>
-          <td colspan="2" class="font-bold">
-            Customized Site Attributes
-            <%= columnar_table nil, class: 'embedded' do %>
-              <% school_program.extract_customized_attributes.each do |k, v| %>
-                <tr>
-                  <td><%= k %></td>
-                  <td><%= v %></td>
-                </tr>
+        <%= link_to_gicon 'Show Details', '#',
+          class: "btn btn-medium btn-info toggle closed",
+          icon: 'eye-open eye-close',
+          wrapper_span: {id: "school-program-link-#{school_program.id}"},
+          "data-toggle-target" => "#school-program-table-#{school_program.id}",
+          "data-toggle-text-node" => "#school-program-link-#{school_program.id}",
+          "data-toggle-show-text" => "Show Details",
+          "data-toggle-hide-text" => "Hide Details"
+        %>
+      <% end %>
+
+
+    <% if school_program.customized_attributes.present? %>
+      <%= columnar_table nil, id: "school-program-table-#{school_program.id}",
+        class: "hidden" do %>
+          <tr>
+            <td colspan="2" class="font-bold">
+              Custom Site Attributes <%= help(t('help.organization.users.active')).html_safe %>
+              <%= columnar_table nil, class: 'embedded' do %>
+                <% school_program.extract_customized_attributes.each do |k, v| %>
+                  <tr>
+                    <td><%= k %></td>
+                    <td><%= v %></td>
+                  </tr>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-        </tr>
+            </td>
+          </tr>
       <% end %>
     <% end %>
+    </div>
   <% end %>
 <% end %>

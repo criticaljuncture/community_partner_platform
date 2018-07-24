@@ -23,6 +23,8 @@
     overflow: auto;
     position: relative;
 
+    &:last-child { border-bottom: 0; }
+
     h5 {
       float: left;
       margin-bottom: 5px;
@@ -77,8 +79,14 @@
   }
 
   .columnar-table-block-header + table,
+  .columnar-table-block-header table,
   table:first-child {
     tr:first-child td {border-top: 0;}
+  }
+
+  .columnar-table-block-header table {
+    margin-bottom: 0;
+    width: 98%;
   }
 
   table.embedded {
