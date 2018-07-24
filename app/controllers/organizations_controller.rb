@@ -40,16 +40,15 @@ class OrganizationsController < ApplicationController
 
     ActiveRecord::Base.transaction do
       begin
-      @organization.save!
+        @organization.save!
 
-      users_to_assign.each do |user|
-        user.update!(organization_id: @organization.id, active: true)
-      end
+        users_to_assign.each do |user|
+          user.update!(organization_id: @organization.id, active: true)
+        end
 
-      flash.notice = t('organization.flash_messages.create.success',
-                        name: @organization.name)
-      redirect_to organization_path(@organization)
-
+        flash.notice = t('organization.flash_messages.create.success',
+                          name: @organization.name)
+        redirect_to organization_path(@organization)
       rescue ActiveRecord::RecordInvalid
         flash.now[:error] = t('errors.form_error', count: @organization.errors.count)
         @organization = OrganizationDecorator.decorate(@organization)
