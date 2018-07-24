@@ -23,7 +23,7 @@ gem 'temping', '~> 3.2.0'
 gem "aws-ses", "~> 0.5.0"
 
 # fast application loading
-gem 'bootsnap'
+gem 'bootsnap', require: false
 
 # Twitter bootstrap
 gem 'bootstrap-sass', '~> 3.3.5.1'
