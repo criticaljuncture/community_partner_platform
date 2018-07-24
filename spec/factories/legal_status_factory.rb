@@ -2,5 +2,6 @@
 
 FactoryBot.define do
   factory :legal_status do
+    name 'Legal Status 1'
   end
 end

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :organization do
     sequence(:name) {|i| "Organization #{i}"}
-    legal_status_id 1
+    legal_status { create(:legal_status) }
 
     trait :approved_for_public do
       approved_for_public true
