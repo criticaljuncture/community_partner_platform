@@ -187,7 +187,7 @@ class @CPP.CommunityProgramFormHandler
         dataType: 'json'
       })
 
-      response.success (response)=>
+      response.done (response)=>
         CJ.Notifier.displayNotification(response.message, 'success')
         modal.modal 'hide'
         table
