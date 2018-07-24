@@ -1,4 +1,4 @@
-class UpdateSchoolFields < ActiveRecord::Migration
+class UpdateSchoolFields < ActiveRecord::Migration[4.2]
   def change
     rename_column :schools, :school_code, :state_cde_code
 

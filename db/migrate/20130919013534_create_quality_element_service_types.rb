@@ -1,4 +1,4 @@
-class CreateQualityElementServiceTypes < ActiveRecord::Migration
+class CreateQualityElementServiceTypes < ActiveRecord::Migration[4.2]
   def change
     create_table :quality_element_service_types do |t|
       t.integer :quality_element_id

@@ -1,4 +1,4 @@
-class MakeProgramAttrbibutesPolymorphic < ActiveRecord::Migration
+class MakeProgramAttrbibutesPolymorphic < ActiveRecord::Migration[4.2]
   def change
     add_column :community_program_ethnicity_culture_groups, :attributable_type, :string, default: 'CommunityProgram'
     rename_column :community_program_ethnicity_culture_groups, :community_program_id, :attributable_id

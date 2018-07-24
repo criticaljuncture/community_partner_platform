@@ -1,4 +1,4 @@
-class CreateCommunityPartners < ActiveRecord::Migration
+class CreateCommunityPartners < ActiveRecord::Migration[4.2]
   def change
     create_table :community_partners do |t|
       t.integer :school_id

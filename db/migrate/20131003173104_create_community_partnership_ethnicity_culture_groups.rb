@@ -1,4 +1,4 @@
-class CreateCommunityPartnershipEthnicityCultureGroups < ActiveRecord::Migration
+class CreateCommunityPartnershipEthnicityCultureGroups < ActiveRecord::Migration[4.2]
   def change
     create_table :community_partnership_ethnicity_culture_groups do |t|
       t.integer :community_partner_id

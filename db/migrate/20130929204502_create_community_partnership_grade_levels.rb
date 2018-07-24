@@ -1,4 +1,4 @@
-class CreateCommunityPartnershipGradeLevels < ActiveRecord::Migration
+class CreateCommunityPartnershipGradeLevels < ActiveRecord::Migration[4.2]
   def change
     create_table :community_partnership_grade_levels do |t|
       t.integer :grade_level_id

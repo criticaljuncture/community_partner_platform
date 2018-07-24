@@ -1,4 +1,4 @@
-class AddIndexesWhereNeeded < ActiveRecord::Migration
+class AddIndexesWhereNeeded < ActiveRecord::Migration[4.2]
   def change
     add_index :page_views, :user_id
 

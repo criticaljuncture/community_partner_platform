@@ -1,4 +1,4 @@
-class RenameCommunityPartnerColumnsToCommunityProgram < ActiveRecord::Migration
+class RenameCommunityPartnerColumnsToCommunityProgram < ActiveRecord::Migration[4.2]
   def change
     rename_column :community_program_quality_elements, :community_partner_id, :community_program_id
     rename_column :community_program_demographic_groups, :community_partner_id, :community_program_id

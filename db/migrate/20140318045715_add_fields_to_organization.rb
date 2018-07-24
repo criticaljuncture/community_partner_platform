@@ -1,4 +1,4 @@
-class AddFieldsToOrganization < ActiveRecord::Migration
+class AddFieldsToOrganization < ActiveRecord::Migration[4.2]
   def change
     add_column :organizations, :mission_statement, :text
     add_column :organizations, :services_description, :text

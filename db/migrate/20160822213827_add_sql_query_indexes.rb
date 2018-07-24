@@ -1,4 +1,4 @@
-class AddSqlQueryIndexes < ActiveRecord::Migration
+class AddSqlQueryIndexes < ActiveRecord::Migration[4.2]
   def change
     add_index :schools, [:active, :direct_funded_charter_school]
     add_index :schools, [:direct_funded_charter_school, :active]

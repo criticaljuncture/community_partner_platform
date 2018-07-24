@@ -1,4 +1,4 @@
-class AddFieldsToCommunityPartner < ActiveRecord::Migration
+class AddFieldsToCommunityPartner < ActiveRecord::Migration[4.2]
   def change
     add_column :community_partners, :school_user_id, :integer
     add_column :community_partners, :service_description, :text

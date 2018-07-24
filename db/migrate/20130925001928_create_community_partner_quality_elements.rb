@@ -1,4 +1,4 @@
-class CreateCommunityPartnerQualityElements < ActiveRecord::Migration
+class CreateCommunityPartnerQualityElements < ActiveRecord::Migration[4.2]
   def change
     create_table :community_partner_quality_elements do |t|
       t.integer :community_partner_id

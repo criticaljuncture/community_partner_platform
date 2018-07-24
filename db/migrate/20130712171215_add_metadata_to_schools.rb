@@ -1,4 +1,4 @@
-class AddMetadataToSchools < ActiveRecord::Migration
+class AddMetadataToSchools < ActiveRecord::Migration[4.2]
   def change
     add_column :schools, :school_code, :string
    

@@ -1,4 +1,4 @@
-class CreateFreeReducedMealData < ActiveRecord::Migration
+class CreateFreeReducedMealData < ActiveRecord::Migration[4.2]
   def change
     create_table :school_free_reduced_meal_data do |t|
       t.integer   :school_id

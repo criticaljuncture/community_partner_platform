@@ -1,4 +1,4 @@
-class CreateQualityElements < ActiveRecord::Migration
+class CreateQualityElements < ActiveRecord::Migration[4.2]
   def change
     create_table :quality_elements do |t|
       t.string :name

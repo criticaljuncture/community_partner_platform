@@ -1,4 +1,4 @@
-class CreateDemographicGroups < ActiveRecord::Migration
+class CreateDemographicGroups < ActiveRecord::Migration[4.2]
   def change
     create_table :demographic_groups do |t|
       t.string :name

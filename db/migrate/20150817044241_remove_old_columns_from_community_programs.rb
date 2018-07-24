@@ -1,4 +1,4 @@
-class RemoveOldColumnsFromCommunityPrograms < ActiveRecord::Migration
+class RemoveOldColumnsFromCommunityPrograms < ActiveRecord::Migration[4.2]
   def change
     remove_column :community_programs, :target_population
     remove_column :community_programs, :service_time_of_day

@@ -1,4 +1,4 @@
-class CreateCommunityPartnershipDemographicGroups < ActiveRecord::Migration
+class CreateCommunityPartnershipDemographicGroups < ActiveRecord::Migration[4.2]
   def change
     create_table :community_partnership_demographic_groups do |t|
       t.integer :demographic_group_id

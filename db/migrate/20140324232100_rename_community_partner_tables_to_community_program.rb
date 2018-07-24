@@ -1,4 +1,4 @@
-class RenameCommunityPartnerTablesToCommunityProgram < ActiveRecord::Migration
+class RenameCommunityPartnerTablesToCommunityProgram < ActiveRecord::Migration[4.2]
   def change
     rename_table :community_partners, :community_programs
     rename_table :community_partner_quality_elements, :community_program_quality_elements

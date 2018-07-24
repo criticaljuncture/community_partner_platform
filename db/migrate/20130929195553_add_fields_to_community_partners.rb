@@ -1,4 +1,4 @@
-class AddFieldsToCommunityPartners < ActiveRecord::Migration
+class AddFieldsToCommunityPartners < ActiveRecord::Migration[4.2]
   def change
     add_column :community_partners, :mou_on_file, :boolean
     add_column :community_partners, :student_population_id, :integer

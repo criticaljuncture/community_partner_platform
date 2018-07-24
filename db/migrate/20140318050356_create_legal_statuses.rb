@@ -1,4 +1,4 @@
-class CreateLegalStatuses < ActiveRecord::Migration
+class CreateLegalStatuses < ActiveRecord::Migration[4.2]
   def change
     create_table :legal_statuses do |t|
       t.string :name

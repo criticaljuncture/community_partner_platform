@@ -1,4 +1,4 @@
-class CreateCommunityPartnershipServiceDays < ActiveRecord::Migration
+class CreateCommunityPartnershipServiceDays < ActiveRecord::Migration[4.2]
   def change
     create_table :community_partnership_service_days do |t|
       t.integer :community_partner_id
