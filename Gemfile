@@ -19,11 +19,17 @@ gem 'active_model_serializers' #0.8.1
 gem 'activerecord-fast-import', '~> 0.2.1'
 gem 'temping', '~> 3.2.0'
 
+# makes small classes easier to cleanup and define without resorting to structs, etc.
+gem 'attr_extras'
+
 # AWS email
 gem "aws-ses", "~> 0.5.0"
 
 # fast application loading
 gem 'bootsnap', require: false
+
+# date picker component
+gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
 
 # Twitter bootstrap
 gem 'bootstrap-sass', '~> 3.3.5.1'
@@ -68,17 +74,23 @@ gem 'handlebars_assets'
 # error reporting
 gem 'honeybadger'
 
+# Easy cookie access from JS
+gem 'js_cookie_rails'
+
 # named routes in javascript
 gem 'js-routes'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-# Easy cookie access from JS
-gem 'js_cookie_rails'
+# modals
+gem 'jquery-modal-rails-assets'
 
 # record versioning
 gem 'paper_trail'
+
+# auto linking user input (like organization url)
+gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
 
 # redis
 gem 'redis', '~> 3.3.2'
@@ -109,17 +121,6 @@ gem "underscore-rails"
 # multi-step wizard like controllers
 gem "wicked"
 
-# date picker component
-gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
-
-# makes small classes easier to cleanup and define without resorting to structs, etc.
-gem 'attr_extras'
-
-# modals
-gem 'jquery-modal-rails-assets'
-
-# auto linking user input (like organization url)
-gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
 
 group :development, :test do
   # ascii table values - test multiple cases via tables for clarity
