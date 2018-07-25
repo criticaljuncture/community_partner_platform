@@ -44,5 +44,5 @@ app_config:
             message: Please choose from the list above
 
     verification_policy:
-      verification_date: '2017-06-01'
-      grace_period_end_date: '2017-08-01'
+      verification_date: '2018-07-25'
+      grace_period_end_date: '2018-08-01'
