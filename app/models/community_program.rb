@@ -51,7 +51,7 @@ class CommunityProgram < ApplicationRecord
     !new_record? &&
       (
         last_verified_at.nil? ||
-        last_verified_at < Date.parse(Settings.app_config.organization.verification_policy.verification_date)
+        last_verified_at < Date.parse(Settings.app_config.community_program.verification_policy.verification_date)
       )
   end
 
