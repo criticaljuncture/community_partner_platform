@@ -57,7 +57,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id, :subdomain ]
 
   # Use a different cache store in production.
-  config.cache_store = :dalli_store, 'localhost', { :namespace => ENV['APP_SUBDOMAIN'], :compress => true }
+  config.cache_store = :dalli_store, 'localhost', { :namespace => ENV['SUBDOMAIN'], :compress => true }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
@@ -90,7 +90,7 @@ Rails.application.configure do
   end
 
   config.action_mailer.delivery_method = :ses
-  config.action_mailer.default_url_options = { :host => "https://#{ENV['APP_SUBDOMAIN']}.communitypartnerplatform.org" }
+  config.action_mailer.default_url_options = { :host => "https://#{ENV['SUBDOMAIN']}.communitypartnerplatform.org" }
 
   config.force_ssl = true
 

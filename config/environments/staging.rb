@@ -52,7 +52,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production.
-  config.cache_store = :dalli_store, 'localhost', { :namespace => ENV['APP_SUBDOMAIN'], :compress => true }
+  config.cache_store = :dalli_store, 'localhost', { :namespace => ENV['SUBDOMAIN'], :compress => true }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -79,7 +79,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.delivery_method = :ses
-  config.action_mailer.default_url_options = { :host => "#{ENV['APP_SUBDOMAIN']}.communitypartnerplatform.org" }
+  config.action_mailer.default_url_options = { :host => "#{ENV['SUBDOMAIN']}.communitypartnerplatform.org" }
 
   config.force_ssl = true
 end
