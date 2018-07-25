@@ -134,7 +134,7 @@ group :development, :test do
   gem "binding_of_caller"
 
   # replace rails console with pry
-  gem 'pry', '~> 0.10.0'
+  gem 'pry'
   gem 'pry-rails'
   gem 'pry-remote'
 
