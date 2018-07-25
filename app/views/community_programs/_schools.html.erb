@@ -35,7 +35,7 @@
         class: "hidden" do %>
           <tr>
             <td colspan="2" class="font-bold">
-              Custom Site Attributes <%= help(t('help.organization.users.active')).html_safe %>
+              Custom Site Attributes <%= help(t('help.school_program.custom_site_attributes')).html_safe %>
               <%= columnar_table nil, class: 'embedded' do %>
                 <% school_program.extract_customized_attributes.each do |k, v| %>
                   <tr>
