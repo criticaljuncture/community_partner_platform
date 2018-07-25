@@ -27,9 +27,6 @@ class User < ApplicationRecord
 
   attr_accessor :primary_role, :admin_creation, :school_ids_were, :new_org_creation
 
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :invitable
