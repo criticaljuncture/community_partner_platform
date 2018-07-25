@@ -8,18 +8,24 @@ $(document).ready ->
     event.preventDefault()
     $(this).find('a').tab('show')
 
-  # make the active tab/pane visible
-  activePane = $('.tab-content .tab-pane.active').attr('id')
-  $('.nav.nav-tabs a')
-    .filter("[href='##{activePane}']")
-    .tab('show')
+
+  #set active tab pane in url
+  $("a[data-toggle='tab']").on 'click', ->
+    history.replaceState {}, '', $(this).attr('href')
 
   #allow for direct navigation to a particular tab on a page
-  queryKeys = $.parsequery(location.search).keys
-  activeTab = queryKeys["active_tab"]
+  activeTab = window.location.hash
 
-  if activeTab
-    $("a[data-toggle='tab'][href='##{active_tab}']").trigger('click')
+  if activeTab != ""
+    $("a[data-toggle='tab'][href='#{activeTab}']").tab('show')
+    history.replaceState {}, '', activeTab
+  else
+    # make the active tab/pane visible
+    activePane = $('.tab-content .tab-pane.active').attr('id')
+    $('.nav.nav-tabs a')
+      .filter("[href='##{activePane}']")
+      .tab('show')
+
 
   # remove error state when an input is changed
   $('form.formtastic div.input.required.error').on 'change', 'input, select', ()->
@@ -27,15 +33,6 @@ $(document).ready ->
 
     if el.val() != ""
       el.closest('div.input.required').removeClass('error')
-
-
-  # show first tab
-  setTimeout(
-    ()->
-      # select first tab on page load
-      $('.nav.nav-tabs').find('a').first().tab('show')
-    , 25
-  )
 
   sortableTable = $("table.table-sorter");
   if sortableTable.length > 0

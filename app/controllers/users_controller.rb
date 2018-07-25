@@ -176,7 +176,7 @@ class UsersController < ApplicationController
     flash.notice = t('users.flash_messages.invitation.sent',
                      name: @user.full_name,
                      email: @user.email)
-    redirect_to users_path(active_tab: 'inactive')
+    redirect_to users_path(anchor: 'inactive')
   end
 
   private
