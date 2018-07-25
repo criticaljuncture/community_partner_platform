@@ -16,15 +16,14 @@ module CommunityPartnerPlatform
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.autoload_paths += Dir[Rails.root.join('app', 'audits', '{**}')]
-    config.autoload_paths += Dir[Rails.root.join('app', 'decorators', '{**}')]
-    config.autoload_paths += Dir[Rails.root.join('app', 'forms', '{**}')]
-    config.autoload_paths += Dir[Rails.root.join('app', 'importers', '{**}')]
-    config.autoload_paths += Dir[Rails.root.join('app', 'inputs', '{**}')]
-    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
-    config.autoload_paths += Dir[Rails.root.join('app', 'policies', '{**}')]
-    config.autoload_paths += Dir[Rails.root.join('app', 'presenters', '{**}')]
-    config.autoload_paths += Dir[Rails.root.join('lib')]
+    %w(
+      lib
+      app/models/community_program_quality_element
+      app/models/school
+    ).each do |path|
+      config.autoload_paths << Rails.root.join(path)
+      config.eager_load_paths << Rails.root.join(path)
+    end
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
