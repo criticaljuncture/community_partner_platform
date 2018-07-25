@@ -1,7 +1,10 @@
 /.git
 
 /tmp
+!tmp/.gitkeep
+
 /log
+!log/.gitkeep
 
 /.bundle
 
