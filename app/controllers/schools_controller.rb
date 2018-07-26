@@ -76,6 +76,8 @@ class SchoolsController < ApplicationController
       order(:name)
     )
     authorize! :index, School
+
+    render layout: false
   end
 
   private

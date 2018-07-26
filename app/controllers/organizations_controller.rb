@@ -125,6 +125,8 @@ class OrganizationsController < ApplicationController
     @organizations = OrganizationDecorator.decorate_collection(
       @organizations
     )
+
+    render layout: false
   end
 
   def publish
