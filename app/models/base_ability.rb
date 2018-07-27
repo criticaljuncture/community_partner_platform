@@ -1,5 +1,7 @@
 class BaseAbility
   include CanCan::Ability
+  prepend Draper::CanCanCan
+  
   attr_reader :user
 
   def initialize(user)

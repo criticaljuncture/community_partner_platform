@@ -42,6 +42,7 @@ gem "bourbon", "~> 4.2.3"
 
 # permissions
 gem "cancancan"
+gem 'draper-cancancan'
 
 # Use CoffeeScript
 gem 'coffee-rails'
