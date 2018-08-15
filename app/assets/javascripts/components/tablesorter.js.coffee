@@ -1,6 +1,7 @@
 class @CJ.Tablesorter
   constructor: (el)->
     @el = $(el)
+
     @config = {
       theme : "bootstrap"
 
@@ -11,12 +12,12 @@ class @CJ.Tablesorter
           attr
         else # look for an item in this td with a sort value
           attr = $(node).find('[data-sort-value]')
-          if typeof attr != 'undefined'
+          if typeof(attr) != 'undefined' && attr.length > 0
             attr.first().attr('data-sort-value')
-          else # do the default and sort by text of tc
+          else # do the default and sort by text of td
             $(node).text()
 
-      widthFixed: false
+      widthFixed: true
 
       # new in v2.7. Needed to add the bootstrap icon!
       headerTemplate : '{content} {icon}'

@@ -14,8 +14,7 @@
 #= require js-routes
 #= require js.cookie
 #= require jquery.parsequery.js
-#= require jquery.tablesorter.min
-#= require jquery.tablesorter.widgets.min
+#= require jquery-tablesorter
 #= require jquery.tipsy.svg.js
 #= require mapbox-gl-v0.32.1.js
 #= require underscore

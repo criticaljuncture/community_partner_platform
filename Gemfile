@@ -87,6 +87,9 @@ gem 'jquery-rails'
 # modals
 gem 'jquery-modal-rails-assets'
 
+# sortable tables
+gem 'jquery-tablesorter'
+
 # record versioning
 gem 'paper_trail'
 

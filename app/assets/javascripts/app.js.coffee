@@ -36,7 +36,8 @@ $(document).ready ->
 
   sortableTable = $("table.table-sorter");
   if sortableTable.length > 0
-    new CJ.Tablesorter(sortableTable)
+    $.each sortableTable, ->
+      new CJ.Tablesorter $(this)
 
 
   CJ.Tooltip.addTooltip(
