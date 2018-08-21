@@ -16,6 +16,8 @@ class CommunityProgramDecorator < Draper::Decorator
   def last_verified
     if last_verified_at.present? && verifier.present?
       "#{last_verified_at} by #{verifier.try(:full_name)}"
+    elsif last_verified_at.present?
+      last_verified_at
     else
       nil
     end

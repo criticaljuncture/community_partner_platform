@@ -13,6 +13,11 @@
   ) if can?(:verify, @community_program) && @community_program.public_policy.expiration_notice %>
 
 <% alert_notice(
+    :success, 'wrench',
+    @community_program.public_policy.eligible_to_be_made_public_notice.html_safe
+  ) if @community_program.public_policy.eligible_to_be_made_public? && can?(:manage, :public_authorizations) %>
+
+<% alert_notice(
     :warning, 'exclamation-sign',
     @community_program.public_policy.public_criteria_notice.html_safe
   ) if can?(:verify, @community_program) && @community_program.public_policy.public_criteria_notice %>
@@ -63,40 +68,56 @@
   </div>
 </div>
 
-<div class="row">
-  <%= columnar_attributes_display(
-    header: 'Program Information',
-    model: @community_program,
-    attrs: %i(name quality_element service_types service_description last_verified),
-    only_public_attrs: false,
-    options: {class: 'program-description'},
-  ) %>
+<%= page_nav_tabs [
+  ['Program Info', '#program-info'],
+  ['Schools', '#schools'],
+  ['Enrollment', '#enrollment'],
+] %>
 
-  <%= columnar_attributes_display(
-    header: 'Program Details',
-    model: @community_program,
-    attrs: %i(student_population ethnicity_culture_groups demographic_groups grade_levels service_times days),
-    only_public_attrs: false,
-    options: {class: 'program-details'},
-  ) %>
-</div>
+<div class="tab-content">
+  <div id="program-info" class="tab-pane active">
+    <div class="row">
+      <%= columnar_attributes_display(
+        header: 'Program Information',
+        model: @community_program,
+        attrs: %i(name quality_element service_types service_description last_verified),
+        only_public_attrs: false,
+        options: {class: 'program-description'},
+      ) %>
 
-<div class="row">
-  <%= render partial: 'schools', locals: {
-    school_programs: SchoolProgramDecorator.decorate_collection(
-      @community_program.school_programs
-    )
-  } %>
+      <%= columnar_attributes_display(
+        header: 'Program Details',
+        model: @community_program,
+        attrs: %i(student_population ethnicity_culture_groups demographic_groups grade_levels service_times days),
+        only_public_attrs: false,
+        options: {class: 'program-details'},
+      ) %>
+    </div>
 
-  <%= render partial: 'organization_info', locals: {
-    community_program: @community_program
-  } %>
-</div>
+    <div class="row">
+      <%= render partial: 'organization_info', locals: {
+        community_program: @community_program
+      } %>
+    </div>
 
-<% if can?(:view_district_internals, @community_program) && @community_program.internal_details_present? %>
-  <div class="row">
-    <%= render partial: 'internal_details', locals: {
-      community_program: @community_program
+    <% if can?(:view_district_internals, @community_program) && @community_program.internal_details_present? %>
+      <div class="row">
+        <%= render partial: 'internal_details', locals: {
+          community_program: @community_program
+        } %>
+      </div>
+    <% end %>
+  </div>
+
+  <div id="schools" class="tab-pane active">
+    <%= render partial: 'schools', locals: {
+      school_programs: SchoolProgramDecorator.decorate_collection(
+        @community_program.school_programs
+      )
     } %>
   </div>
-<% end %>
+
+  <div id="enrollment" class="tab-pane active">
+    <%= render partial: 'enrollment' %>
+  </div>
+</div>

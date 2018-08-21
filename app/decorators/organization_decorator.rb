@@ -36,6 +36,12 @@ class OrganizationDecorator < Draper::Decorator
     end
   end
 
+  def public_authorization_details
+    if approved_for_public_on.present?
+      "#{approved_for_public_on} by #{public_authorizer.try(:full_name)}"
+    end
+  end
+
   def last_orientation_attended_tooltip
     if any_users_attended_orientation?
       user = user_last_orientation_attended
@@ -60,7 +66,7 @@ class OrganizationDecorator < Draper::Decorator
   def page_header
     if approved_for_public?
       icon = h.content_tag(:span, '',
-        class: 'icon-cpp icon-cpp-globe with-tooltip',
+        class: 'icon-cpp icon-cpp-globe icon-secondary with-tooltip',
         data: {tooltip: 'This organization is publicly viewable'}
       )
 

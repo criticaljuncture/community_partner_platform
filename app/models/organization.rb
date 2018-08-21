@@ -18,6 +18,7 @@ class Organization < ApplicationRecord
   belongs_to :legal_status
   belongs_to :primary_contact, foreign_key: :user_id, class_name: 'User'
   belongs_to :verifier, foreign_key: :last_verified_by, class_name: 'User'
+  belongs_to :public_authorizer, foreign_key: :approved_for_public_by, class_name: 'User'
 
   scope :ousd, -> { where("organizations.name LIKE 'OUSD%'") }
   scope :non_ousd, -> { where("organizations.name NOT LIKE 'OUSD%'") }
@@ -86,6 +87,12 @@ class Organization < ApplicationRecord
       where(organization_id: self.id, active: false)
   end
 
+  def eligible_programs
+    @programs ||= community_programs.active.select do |cp|
+      !cp.approved_for_public? && cp.eligible_to_be_made_public?(org_check: false)
+    end
+  end
+
   def average_program_completion_rate
     return 0 unless community_programs.present?
 
@@ -100,7 +107,9 @@ class Organization < ApplicationRecord
     users.map(&:last_sign_in_at).compact.sort.last
   end
 
-  delegate :public_attribute?, to: :public_policy
+  delegate :public_attribute?,
+    :can_be_made_public?,
+    to: :public_policy
 
   def public_policy
     @public_policy ||= PublicPolicy::OrganizationPolicy.new(self)

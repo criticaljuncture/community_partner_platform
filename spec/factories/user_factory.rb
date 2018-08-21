@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    first_name 'John'
+    first_name {|i| "John#{i}"}
     last_name 'Doe'
     email { "#{first_name}.#{last_name}@example.com".downcase }
 

@@ -1,6 +1,6 @@
 module VerificationHelper
   def last_verified_tooltip(model)
-    if model.last_verified_at.present?
+    if model.last_verified.present?
       "Last verified on #{model.last_verified}"
     else
       I18n.t('app.never_verified')

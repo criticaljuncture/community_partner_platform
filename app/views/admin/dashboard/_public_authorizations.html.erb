@@ -1,0 +1,47 @@
+<div class="table_wrapper">
+  <table class="table table-striped table-hover table-sorter admin-table public-authorizations">
+    <thead>
+      <tr>
+        <th class="organizations">Organization</th>
+        <th class="status filter-select filter-exact" data-placeholder="All">Public</th>
+        <th class="eligible filter-select filter-exact" data-placeholder="All">Eligible</th>
+        <th class="programs-eligible filter-select filter-exact" data-placeholder="All">Eligible Programs</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% organizations.each do |organization| %>
+        <tr>
+          <td>
+            <%= link_to organization.name, organization_path(organization) %>
+          </td>
+          <td class="text-center">
+            <%= boolean_checkmark_gicon(
+              organization.approved_for_public?,
+              data: {sort_value: t("admin.public_bool.#{organization.approved_for_public?}")}
+            ) %>
+          </td>
+          <td class="text-center">
+            <%= boolean_checkmark_gicon(
+              organization.can_be_made_public?,
+              data: {sort_value: t("admin.eligible_bool.#{organization.can_be_made_public?}")}
+            ) unless organization.approved_for_public? %>
+          </td>
+          <td class="text-center">
+            <%= boolean_checkmark_gicon(
+              organization.eligible_programs.count > 0,
+              data: {sort_value: t("admin.eligible_bool.#{organization.eligible_programs.count > 0}")}
+            ) unless organization.community_programs.active.all?{|cp| cp.approved_for_public?} %>
+          </td>
+          <td class="text-center">
+            <%= link_to_gicon('manage',
+              admin_public_authorization_path(organization),
+              class: "btn btn-small btn-primary",
+              icon: 'wrench') %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

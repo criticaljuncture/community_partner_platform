@@ -1,0 +1,7 @@
+{{#with data}}
+  {{#if public}}
+    <a class="btn btn-small btn-danger authorize" rel="nofollow" data-method="post" href="/admin/public_authorizations/community_program.json?authorization%5Bid%5D={{id}}&amp;authorization%5Bmake_public%5D=0">Make Private</a>
+  {{else}}
+    <a class="btn btn-small btn-action authorize" rel="nofollow" data-method="post" href="/admin/public_authorizations/community_program.json?authorization%5Bid%5D={{id}}&amp;authorization%5Bmake_public%5D=1">Make Public</a>
+  {{/if}}
+{{/with}}

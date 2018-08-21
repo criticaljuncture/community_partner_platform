@@ -17,9 +17,6 @@
         <th class="last-verfied">Verfied</th>
         <th class="with-progress-bar">Program Completion Rate</th>
         <th class="school-program-completion">School Programs with Differing Completion Rates</th>
-        <% if can?(:make_public, CommunityProgram) %>
-          <th class="public-status">Public</th>
-        <% end %>
       </tr>
     </thead>
 
@@ -62,31 +59,6 @@
                     end %>
             <% end %>
           </td>
-          <% if can?(:make_public, CommunityProgram) %>
-            <td class="text-center">
-              <% if community_program.approved_for_public? %>
-                <%= link_to t('admin.make_private'),
-                  publish_community_program_path(community_program, publish: 0),
-                  method: :post,
-                  class: 'btn btn-small btn-warning' %>
-              <% elsif community_program.public_policy.can_be_made_public? %>
-                <%= link_to t('admin.approve_for_public'),
-                  publish_community_program_path(community_program, publish: 1),
-                  method: :post,
-                  class: 'btn btn-small btn-action' %>
-              <% else %>
-                <%= boolean_checkmark_gicon(false,
-                  class: 'cj-public-policy-missing-requirements-tooltip',
-                  custom_tooltip: true,
-                  data: {
-                    tooltip: missing_requirements_tooltip(community_program),
-                    tooltip_class: 'public-policy-missing-requirements-tooltip',
-                    "tooltip-gravity" => 'e'
-                  }
-                ) %>
-              <% end %>
-            </td>
-          <% end %>
         </tr>
       <% end %>
     </tbody>

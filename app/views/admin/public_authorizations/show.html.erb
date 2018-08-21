@@ -1,0 +1,211 @@
+<%= breadcrumb [
+  ['Dashboard', admin_dashboard_index_path],
+  ['Public Authorizations', admin_dashboard_index_path(anchor: 'public-authorizations')],
+  [@organization.name, organization_path(@organization)]
+] %>
+
+<% alert_notice(
+    :danger, 'exclamation-sign',
+    @organization.public_policy.expiration_notice.html_safe
+  ) if @organization.public_policy.expiration_notice %>
+
+<% alert_notice(
+    :warning, 'exclamation-sign',
+    @organization.public_policy.public_criteria_notice.html_safe
+  ) if @organization.public_policy.public_criteria_notice %>
+
+<%= modal(:basic,
+  footer: false,
+  header_icon: 'icon-cpp-globe',
+  header_text: 'Public Authorization',
+  header_close_button: true,
+  modal_class: "authorization-modal",
+  modal_id: "public-authorization") do %>
+
+
+    <%= simple_form_for :authorization, url: organization_admin_public_authorizations_path do |f| %>
+      <%= f.input :id, as: :hidden, input_html: {value: @organization.id} %>
+      <%= f.input :make_public, as: :hidden, input_html: {value: 1} %>
+
+      <p>
+        Authorizing this organization will allow it to be publicly seen by
+        all visitors to the Community Partner Platform.
+      </p>
+      <p>
+        <%= f.submit "Authorize Organization", class: "btn btn-large btn-success" %>
+      </p>
+
+      <hr />
+
+      <% if @organization.eligible_programs.present? %>
+        <p>
+          Optionally you can also make all eligible programs provided by this
+          public at the same time.
+        </p>
+        <p>
+          <%= button_tag "Authorize Organization & #{@organization.eligible_programs.count} Eligible Programs",
+            type: :submit,
+            class: "btn btn-large btn-success",
+            name: 'authorization[include_eligible_programs]',
+            value: 1 %>
+        </p>
+      <% end %>
+    <% end %>
+
+<% end %>
+
+<%= modal(:custom_modal_with_header,
+  header_icon: 'icon-cpp-globe',
+  header_text: 'Public Authorization',
+  header_close_button: false,
+  modal_class: "authorization-modal",
+  modal_id: "public-deauthorization") do %>
+
+  <div class="modal-body">
+    <p>
+      <%= @organization.name %> is currently viewable by the public. It was made
+      publicly viewable on <%= @organization.public_authorization_details %>.
+    </p>
+
+    <p>
+      <strong class="danger"><%= gicon('alert') %> Warning:</strong>
+      Removing the public authorization for an organization will also remove all
+      public authorizations for it programs.
+    </p>
+  </div>
+
+  <div class="modal-footer">
+    <%= simple_form_for :authorization, url: organization_admin_public_authorizations_path do |f| %>
+      <%= f.input :id, as: :hidden, input_html: {value: @organization.id} %>
+      <%= f.input :make_public, as: :hidden, input_html: {value: 0} %>
+
+      <%= link_to 'Cancel', "#close-modal",
+        rel: "modal:close", data: {dismiss: "modal"},
+        class: "btn btn-large btn-default" %>
+
+      <%= f.submit "Remove Authorizations", class: "btn btn-large btn-danger" %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= page_header("Public Authorization for #{@organization.name}".html_safe, "icon-cpp-globe") do %>
+  <%= link_to_modal_with_gicon('Make Public',
+      '#public-authorization',
+      class: "btn btn-create",
+      icon: 'ok-sign'
+    ) if !@organization.approved_for_public? && @organization.public_policy.can_be_made_public? %>
+
+  <%= link_to_modal_with_gicon('Make Private',
+      '#public-deauthorization',
+      class: "btn btn-danger",
+      icon: 'remove-sign'
+    ) if @organization.approved_for_public? %>
+
+    <%= link_to_gicon('Edit Organization',
+        edit_organization_path(@organization),
+        class: "btn btn-primary",
+        icon: 'pencil'
+      ) if can?(:update, @organization) %>
+<% end %>
+
+<div class="row completeness">
+  <div class="<%= bootstrap_col(xs: 12, md: 12) %>">
+    <h7>
+      <%= help t('help.organization.completeness'), class: 'completeness-tooltip' %>
+      Data Completeness:
+    </h7>
+
+    <%= ProgressBarPresenter.perform(
+      percentage: @organization.completion_rate,
+      options: {
+        verification_required: @organization.verification_required?,
+        tooltip: @organization.completion_rate_tooltip,
+        tooltip_class: 'cj-org-progress-tooltip'
+      }
+    ) %>
+  </div>
+</div>
+
+<div class="row">
+  <%= columnar_table_block 'Community Programs',
+    auto_table: false,
+    class: 'community-programs',
+    columns: {xs: 12, md: 12} do %>
+
+    <table class="table table-striped table-hover admin-table community-program-public-authorizations">
+      <thead>
+        <tr>
+          <th class="program-name"></th>
+          <th class="last-verfied">Verfied</th>
+          <th class="with-progress-bar">Program Completion Rate</th>
+          <% if can?(:make_public, CommunityProgram) %>
+            <th class="public-status">Public</th>
+            <th class="eligible-status">Eligible</th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% CommunityProgramDecorator.decorate_collection(
+          @organization.community_programs.active
+        ).sort_by(&:name).each do |community_program| %>
+          <tr>
+            <td>
+              <%= link_to community_program.name, community_program_path(community_program) %>
+            </td>
+
+            <td class="text-center">
+              <%= boolean_checkmark_gicon(
+                !community_program.verification_required?,
+                {data: {tooltip: last_verified_tooltip(community_program)}}
+              ) %>
+            </td>
+
+            <td>
+              <%= ProgressBarPresenter.perform(
+                percentage: community_program.completion_rate,
+                options: {
+                  verification_required: community_program.verification_required?,
+                  tooltip: community_program.completion_rate_tooltip,
+                  tooltip_class: 'cj-cp-progress-tooltip'
+                }
+              ) %>
+            </td>
+
+            <% if can?(:make_public, CommunityProgram) %>
+              <td class="text-center">
+                <% if community_program.approved_for_public? %>
+                  <%= link_to t('admin.make_private'),
+                    community_program_admin_public_authorizations_path(:json, authorization: {make_public: 0, id: community_program.id}),
+                    method: :post,
+                    class: 'btn btn-small btn-danger authorize' %>
+                <% elsif community_program.public_policy.can_be_made_public? %>
+                  <%= link_to t('admin.approve_for_public'),
+                    community_program_admin_public_authorizations_path(:json, authorization: {make_public: 1, id: community_program.id}),
+                    method: :post,
+                    class: 'btn btn-small btn-action authorize' %>
+                <% else %>
+                  <%= boolean_checkmark_gicon(false) %>
+                <% end %>
+              </td>
+
+              <td class="text-center">
+                <% tooltip = missing_requirements_tooltip(community_program, org_check: false) %>
+                <%= boolean_checkmark_gicon(
+                  community_program.eligible_to_be_made_public?(org_check: false),
+                  class: "#{tooltip.present? ? 'cj-public-policy-missing-requirements-tooltip' : ''}",
+                  custom_tooltip: true,
+                  data: {
+                    tooltip: tooltip,
+                    tooltip_class: 'public-policy-missing-requirements-tooltip',
+                    "tooltip-gravity" => 'e'
+                  }
+                ) %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

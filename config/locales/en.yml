@@ -22,7 +22,13 @@ en:
 
   admin:
     approve_for_public: 'Make Public'
+    eligible_bool:
+      'true': 'Eligible'
+      'false': 'Not Eligible'
     make_private: 'Make Private'
+    public_bool:
+      'true': 'Public'
+      'false': 'Not Public'
 
   forms:
     buttons:
@@ -39,6 +45,7 @@ en:
       messages:
         public_criteria_not_met: <strong>This program does not meet the criteria to be viewable by the public</strong>. %{missing_requirements}
         expiration_pending: <strong>This program will no longer be viewable by the public</strong> after %{date} unless it is updated to meet all criteria and verified.
+        eligible_to_be_made_public: <strong>This program is eligible to be made public. Manage authorizations <a href="%{url}">here</a>.
 
     flash_messages:
       create:
@@ -48,7 +55,7 @@ en:
       save:
         success: Successfully saved '%{name}'
       verified: Thank you for verifying '%{name}'
-      made_public: Successfully made '%{name} publicly accessible.
+      made_public: Successfully made '%{name}' publicly accessible.
       made_private: Successfully made '%{name}' private.
 
   community_programs:
@@ -121,6 +128,7 @@ en:
       messages:
         public_criteria_not_met: <strong>This organization does not meet the criteria to be viewable by the public</strong>. %{missing_requirements}
         expiration_pending: <strong>This organization will no longer be viewable by the public</strong> after %{date} unless it is updated to meet all criteria and verified.
+        eligible_to_be_made_public: <strong>This organization is eligible to be made public. Manage authorizations <a href="%{url}">here</a>.
 
     flash_messages:
       create:
@@ -128,7 +136,7 @@ en:
       save:
         success: Successfully saved '%{name}'
       verified: Thank you for verifying '%{name}'
-      made_public: Successfully made '%{name} publicly accessible.
+      made_public: Successfully made '%{name}' publicly accessible.
       made_private: Successfully made '%{name}' private.
 
 

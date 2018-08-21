@@ -38,9 +38,9 @@ module IconHelper
     end
 
     if bool
-      gicon('ok', class_name: "positive #{css_class}", data: data.merge(sort_value: true))
+      gicon('ok', class_name: "positive #{css_class}", data: {sort_value: true}.merge(data))
     else
-      gicon('remove', class_name: "negative #{css_class}", data: data.merge(sort_value: false))
+      gicon('remove', class_name: "negative #{css_class}", data: {sort_value: false}.merge(data))
     end
   end
 end

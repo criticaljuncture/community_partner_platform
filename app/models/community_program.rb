@@ -65,7 +65,10 @@ class CommunityProgram < ApplicationRecord
     @completion_policy ||= CompletionPolicy::CommunityProgramPolicy.new(self)
   end
 
-  delegate :public_attribute?, to: :public_policy
+  delegate :public_attribute?,
+    :can_be_made_public?,
+    :eligible_to_be_made_public?,
+    to: :public_policy
 
   def public_policy
     @public_policy ||= PublicPolicy::CommunityProgramPolicy.new(self)

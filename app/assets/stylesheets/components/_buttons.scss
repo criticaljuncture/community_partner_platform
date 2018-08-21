@@ -78,3 +78,7 @@
 .btn-warning {
   @include button-color($red, $red-dark);
 }
+
+.btn-default {
+  @include button-color($gray-10, $gray-20, $text-color)
+}

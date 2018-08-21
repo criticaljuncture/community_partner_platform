@@ -37,9 +37,9 @@ body {
 }
 
 .clear {
-  &.both { clear: 'both'; }
-  &.left { clear: 'left'; }
-  &.right { clear: 'right'; }
+  &.both { clear: both; }
+  &.left { clear: left; }
+  &.right { clear: right; }
 }
 
 .header h1 { width: 100%; }
@@ -100,9 +100,8 @@ dl.horizontal_stack {
   }
 }
 
+.danger { color: $red-dark; }
 
-
-.clear { clear: both; }
 .hide { display: none; }
 .hint {
   @extend %hint;

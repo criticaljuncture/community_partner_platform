@@ -42,7 +42,6 @@ Rails.application.routes.draw do
     member do
       put :merge
       put :toggle_active
-      post :publish
     end
   end
 
@@ -54,7 +53,6 @@ Rails.application.routes.draw do
     member do
       get :verification
       get :primary_contact_input
-      post :publish
     end
   end
 
@@ -88,6 +86,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dashboard, only: :index
+    resources :public_authorizations, only: [:show] do
+      collection do
+        post :community_program
+        post :organization
+      end
+    end
   end
 
   if Settings.application.public_view_enabled

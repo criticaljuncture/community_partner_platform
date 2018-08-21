@@ -31,7 +31,7 @@ $header-color: $gray-70;
     h1 {
       width: 80%;
 
-      .icon-cpp-globe {
+      .icon-cpp-globe.icon-secondary {
         color: $orange-dark;
         font-size: modular-scale(3);
         position: relative;
@@ -81,6 +81,13 @@ $header-color: $gray-70;
       font-size: 35px;
       position: relative;
       top: 3px;
+    }
+
+    .icon-cpp-globe.icon-primary {
+      font-weight: bold;
+      left: 8px;
+      position: relative;
+      top: 7px;
     }
   }
 }

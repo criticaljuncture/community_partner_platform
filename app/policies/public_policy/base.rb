@@ -53,7 +53,7 @@ class PublicPolicy::Base
     public_attributes.include?(attribute)
   end
 
-  def missing_requirements
+  def missing_requirements(options={})
     missing_requirements = []
 
     unless required_attributes_present?
@@ -116,6 +116,14 @@ class PublicPolicy::Base
 
     I18n.t("#{self.class.policy_model}.public_policy.messages.expiration_pending",
       date: grace_period_end_date)
+  end
+
+  def eligible_to_be_made_public_notice
+    return nil unless eligible_to_be_made_public?
+
+    I18n.t("#{self.class.policy_model}.public_policy.messages.eligible_to_be_made_public",
+      url: "/admin/public_authorizations/#{model.id}"
+    )
   end
 
   private

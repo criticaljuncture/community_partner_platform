@@ -16,6 +16,10 @@ class Admin::DashboardPresenter
       tabs << ['Community Programs', '#community-program-status']
     end
 
+    if User.current.can? :manage, :public_authorizations
+      tabs << ['Public Authorizations', '#public-authorizations']
+    end
+
     tabs
   end
 

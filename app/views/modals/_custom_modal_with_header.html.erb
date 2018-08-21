@@ -1,0 +1,23 @@
+<% modal_javascript modal_id, set_cookie: set_cookie if open_on_page_load %>
+
+<div id="<%= modal_id %>" class="<%= modal_class %> modal" tab-index="-1"
+  role="dialog" aria-labelledby="genericModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <% if header_close_button %>
+        <a href="#close-modal" data-dismiss="modal"
+          class="close-modal icon-cpp-close-x-inv"></a>
+      <% end %>
+
+      <% if header %>
+        <div class="modal-header">
+          <h3>
+            <%= modal_header %>
+          </h3>
+        </div>
+      <% end %>
+
+      <%= modal %>
+    </div>
+  </div>
+</div>

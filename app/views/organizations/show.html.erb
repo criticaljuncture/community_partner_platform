@@ -9,6 +9,11 @@
   ) if @organization.public_policy.expiration_notice %>
 
 <% alert_notice(
+    :success, 'wrench',
+    @organization.public_policy.eligible_to_be_made_public_notice.html_safe
+  ) if @organization.public_policy.eligible_to_be_made_public? && can?(:manage, :public_authorizations) %>
+
+<% alert_notice(
     :warning, 'exclamation-sign',
     @organization.public_policy.public_criteria_notice.html_safe
   ) if @organization.public_policy.public_criteria_notice %>

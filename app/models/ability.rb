@@ -117,7 +117,9 @@ class Ability < BaseAbility
     can :publish, CommunityProgram
 
     can :view, :visualizations
+
     can :view, :admin_dashboard
+    can :manage, :public_authorizations
 
     can :publish, Organization
 

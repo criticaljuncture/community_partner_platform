@@ -22,21 +22,28 @@
       <% end %>
 
       <% if can? :manage, Organization %>
-      <div id="organization-status" class="tab-pane">
-        <%= render partial: 'organization_status', locals: {
-          organizations: @presenter.organizations
-        } %>
-      </div>
+        <div id="organization-status" class="tab-pane">
+          <%= render partial: 'organization_status', locals: {
+            organizations: @presenter.organizations
+          } %>
+        </div>
       <% end %>
 
       <% if can? :manage, CommunityProgram %>
-      <div id="community-program-status" class="tab-pane">
-        <%= render partial: 'community_program_status', locals: {
-          community_programs: @presenter.community_programs
-        } %>
-      </div>
+        <div id="community-program-status" class="tab-pane">
+          <%= render partial: 'community_program_status', locals: {
+            community_programs: @presenter.community_programs
+          } %>
+        </div>
       <% end %>
 
+      <% if can? :manage, :public_authorizations %>
+        <div id="public-authorizations" class="tab-pane">
+          <%= render partial: 'public_authorizations', locals: {
+            organizations: @presenter.organizations
+          } %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

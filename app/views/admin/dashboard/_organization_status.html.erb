@@ -36,9 +36,6 @@
         <th class="program-count">Program Count</th>
         <th class="with-progress-bar">Organization Data Completion</th>
         <th class="with-progress-bar">Average Program Data Completion</th>
-        <% if can?(:make_public, Organization) %>
-          <th class="public-status">Public</th>
-        <% end %>
       </tr>
     </thead>
 
@@ -88,31 +85,6 @@
               NA
             <% end %>
           </td>
-          <% if can?(:make_public, Organization) %>
-            <td class="text-center">
-              <% if organization.approved_for_public? %>
-                <%= link_to t('admin.make_private'),
-                  publish_organization_path(organization, publish: 0),
-                  method: :post,
-                  class: 'btn btn-small btn-warning' %>
-              <% elsif organization.public_policy.can_be_made_public? %>
-                <%= link_to t('admin.approve_for_public'),
-                  publish_organization_path(organization, publish: 1),
-                  method: :post,
-                  class: 'btn btn-small btn-action' %>
-              <% else %>
-                <%= boolean_checkmark_gicon(false,
-                  class: 'cj-public-policy-missing-requirements-tooltip',
-                  custom_tooltip: true,
-                  data: {
-                    tooltip: missing_requirements_tooltip(organization),
-                    tooltip_class: 'public-policy-missing-requirements-tooltip',
-                    "tooltip-gravity" => 'e'
-                  }
-                ) %>
-              <% end %>
-            </td>
-          <% end %>
         </tr>
       <% end %>
     </tbody>

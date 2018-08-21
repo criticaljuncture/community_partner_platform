@@ -3,12 +3,16 @@ FactoryBot.define do
     sequence(:name) {|i| "Organization #{i}"}
     legal_status { create(:legal_status) }
 
-    trait :approved_for_public do
-      approved_for_public true
-      approved_for_public_by 1
-      approved_for_public_on '2017-01-01'
+    trait :private do
+      approved_for_public false
+      approved_for_public_by nil
+      approved_for_public_on nil
     end
 
-    factory :public_organization, traits: [:approved_for_public]
+    trait :public do
+      approved_for_public true
+      approved_for_public_by 1
+      approved_for_public_on { DateTime.current }
+    end
   end
 end
