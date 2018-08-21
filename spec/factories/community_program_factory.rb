@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :community_program do
     sequence(:name) {|i| "Community Program #{i}"}
+    active true
 
     association :organization, strategy: :create
     association :quality_element, strategy: :create
