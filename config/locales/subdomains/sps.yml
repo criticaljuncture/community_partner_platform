@@ -1,0 +1,16 @@
+sps: &sps
+  app:
+    title: 'SPS Community Partner Platform'
+  district:
+    name: 'Seattle Public Schools'
+    abbreviation: 'SPS'
+  public:
+    home_page:
+      description:
+        "Homepage description needed"
+
+en:
+  sps:
+    <<: *sps
+  sps-staging:
+    <<: *sps

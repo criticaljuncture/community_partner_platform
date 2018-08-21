@@ -1,0 +1,43 @@
+app_config:
+  organization:
+    completion_policy:
+      weights:
+        -
+          value: 0.25
+          fields:
+            - :required_fields
+        -
+          value: 0.75
+          fields:
+            - :address
+            - :board_approved_contract
+            - :city
+            - :mission_statement
+            - :phone_number
+            - :program_impact
+            - :services_description
+            - :total_cost
+            - :url
+            - :zip_code
+
+    public_policy:
+      percentage_complete: 0.75
+      required_attributes:
+        - :board_approved_contract
+      public_attributes:
+        - :name
+        - :phone_number
+        - :program_impact
+        - :services_description
+        - :url
+      verification_required: true
+
+    validations:
+      -
+        attribute: :name
+        options:
+          presence: true
+
+    verification_policy:
+      verification_date: '2018-08-21'
+      grace_period_end_date: '2018-11-01'
