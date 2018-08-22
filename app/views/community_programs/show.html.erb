@@ -71,7 +71,6 @@
 <%= page_nav_tabs [
   ['Program Info', '#program-info'],
   ['Schools', '#schools'],
-  ['Enrollment', '#enrollment'],
 ] %>
 
 <div class="tab-content">
@@ -115,9 +114,5 @@
         @community_program.school_programs
       )
     } %>
-  </div>
-
-  <div id="enrollment" class="tab-pane active">
-    <%= render partial: 'enrollment' %>
   </div>
 </div>
