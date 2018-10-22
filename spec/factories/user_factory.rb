@@ -4,8 +4,8 @@ FactoryBot.define do
     last_name 'Doe'
     email { "#{first_name}.#{last_name}@example.com".downcase }
 
-    password 'sup3rs3cr3t!'
-    password_confirmation 'sup3rs3cr3t!'
+    password 'Sup3rs3cr3t!'
+    password_confirmation 'Sup3rs3cr3t!'
 
     roles { [build(:role)] }
 
