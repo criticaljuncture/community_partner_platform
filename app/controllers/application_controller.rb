@@ -67,7 +67,7 @@ class ApplicationController < ActionController::Base
 
   def set_security_headers
     # https://developer.mozilla.org/en/Security/HTTP_Strict_Transport_Security
-    response.headers['Strict-Transport-Security'] = "max-age=#{6.months}; includeSubDomains"
+    response.headers['Strict-Transport-Security'] = "max-age=#{1.year}; includeSubDomains; preload"
   end
 
   # make current_user available outside of normal controller view context

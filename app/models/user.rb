@@ -31,6 +31,25 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :invitable
 
+  validates :password,
+    format: {
+      with: /\d/,
+      message: "must contain at least one number",
+      allow_blank: true
+    }
+  validates :password,
+    format: {
+      with: /[a-z]/,
+      message: "must contain at least one lowercase letter",
+      allow_blank: true
+    }
+  validates :password,
+    format: {
+      with: /[A-Z]/,
+      message: "must contain at least one uppercase letter",
+      allow_blank: true
+    }
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, uniqueness: true
