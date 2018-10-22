@@ -1,0 +1,45 @@
+schools:
+  options:
+    #where_query: 'WHERE schools.state_code = csv_file_imports.state_code'
+
+  columns:
+    address:
+      id: address
+      type: string
+    city:
+      id: city
+      type: string
+    grades_served:
+      id: grades_served
+      type: string
+    high_grade:
+      id: high_grade
+      type: string
+    lat:
+      id: lat
+      type: float
+    lng:
+      id: lng
+      type: float
+    low_grade:
+      id: low_grade
+      type: string
+    name:
+      id: name
+      type: string
+    region_id:
+      id: region
+      type: integer
+    site_code:
+      id: site_code
+      type: integer
+    site_type:
+      id: site_type
+      type: string
+    state_code:
+      id: state_code
+      type: string
+      mapping: "CONCAT('WA-17001-',@`state_code`)"
+    zip_code:
+      id: zip_code
+      type: string

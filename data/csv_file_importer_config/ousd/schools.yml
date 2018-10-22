@@ -2,7 +2,7 @@
 
 schools:
   options:
-    #where_query: 'WHERE schools.state_cde_code = csv_file_imports.state_cde_code'
+    #where_query: 'WHERE schools.state_code = csv_file_imports.state_cde_code'
 
   columns:
     address:
@@ -50,7 +50,7 @@ schools:
     site_type_norm:
       id: site_type_norm
       type: string
-    state_cde_code:
+    state_code:
       id: 'state_cde_code'
       type: string
       mapping: "LPAD(@`state_cde_code`, 7, '0')"
