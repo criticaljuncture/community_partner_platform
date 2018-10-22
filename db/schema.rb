@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_06_07_001626) do
+ActiveRecord::Schema.define(version: 2018_10_22_200506) do
 
   create_table "community_program_demographic_groups", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "demographic_group_id"
@@ -286,7 +286,7 @@ ActiveRecord::Schema.define(version: 2017_06_07_001626) do
     t.integer "region_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "state_cde_code"
+    t.string "state_code"
     t.boolean "direct_funded_charter_school"
     t.string "direct_funded_charter_school_number"
     t.boolean "active", default: true
@@ -306,7 +306,7 @@ ActiveRecord::Schema.define(version: 2017_06_07_001626) do
     t.index ["active", "direct_funded_charter_school"], name: "index_schools_on_active_and_direct_funded_charter_school"
     t.index ["direct_funded_charter_school", "active"], name: "index_schools_on_direct_funded_charter_school_and_active"
     t.index ["site_code"], name: "index_schools_on_site_code", unique: true
-    t.index ["state_cde_code"], name: "index_schools_on_state_cde_code", unique: true
+    t.index ["state_code"], name: "index_schools_on_state_code", unique: true
   end
 
   create_table "service_times", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
