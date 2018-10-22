@@ -37,3 +37,6 @@ data/kml/*
 
 # Ignore rspec report files
 spec/examples.txt
+
+# Ignore local dev folders
+private/
