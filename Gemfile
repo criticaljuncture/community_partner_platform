@@ -16,7 +16,8 @@ gem 'active_hash'
 gem 'active_model_serializers' #0.8.1
 
 # fast imports
-gem 'activerecord-fast-import', '~> 0.2.1'
+gem 'activerecord-fast-import',
+  git: 'https://github.com/criticaljuncture/activerecord-fast-import.git'
 gem 'temping', '~> 3.2.0'
 
 # makes small classes easier to cleanup and define without resorting to structs, etc.

@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/criticaljuncture/activerecord-fast-import.git
+  revision: 141b35bc0be714356f99935e8ec8898d89e9f74e
+  specs:
+    activerecord-fast-import (0.2.1)
+      activerecord (>= 2.1.2)
+
+GIT
   remote: https://github.com/square/border_patrol
   revision: 72c50ea17c89f7fa89fbaed25ad3db3fa1d8eeb1
   specs:
@@ -51,8 +58,6 @@ GEM
       activemodel (= 5.2.1)
       activesupport (= 5.2.1)
       arel (>= 9.0)
-    activerecord-fast-import (0.2.1)
-      activerecord (>= 2.1.2)
     activestorage (5.2.1)
       actionpack (= 5.2.1)
       activerecord (= 5.2.1)
@@ -184,7 +189,7 @@ GEM
       sprockets (>= 2.0.0)
       tilt (>= 1.2)
     honeybadger (3.3.0)
-    i18n (1.1.0)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     inflecto (0.0.2)
     jquery-modal-rails-assets (0.9.1)
@@ -363,7 +368,7 @@ PLATFORMS
 DEPENDENCIES
   active_hash
   active_model_serializers
-  activerecord-fast-import (~> 0.2.1)
+  activerecord-fast-import!
   attr_extras
   atv
   aws-ses (~> 0.5.0)
