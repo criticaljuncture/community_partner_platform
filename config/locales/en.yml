@@ -175,13 +175,6 @@ en:
     class:
       name: Network
 
-    childhood_development_center: Childhood Development Center
-    elementary_area_1: Area 1 Elementary
-    elementary_area_2: Area 2 Elementary
-    elementary_area_3: Area 3 Elementary
-    middle: Middle School
-    high_school: High School
-
   school_programs:
     customized_attributes: Custom Site Attributes
     user: Primary School Contact

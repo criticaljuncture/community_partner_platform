@@ -10,7 +10,7 @@ class School < ApplicationRecord
   has_many :user_schools
   has_many :users, through: :user_schools
 
-  belongs_to_active_hash :region
+  belongs_to :region
 
   default_scope -> { where(active: true) }
 
