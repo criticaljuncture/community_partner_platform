@@ -12,7 +12,7 @@ class School < ApplicationRecord
 
   belongs_to_active_hash :region
 
-  default_scope -> { where(direct_funded_charter_school: false).where(active: true) }
+  default_scope -> { where(active: true) }
 
 
   def ethnicity_culture_groups_with_programs

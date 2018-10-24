@@ -28,7 +28,7 @@ schools:
       id: name
       type: string
     region_id:
-      id: region
+      id: region_id
       type: integer
     site_code:
       id: site_code
