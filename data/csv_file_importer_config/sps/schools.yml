@@ -36,6 +36,11 @@ schools:
     site_type:
       id: site_type
       type: string
+    # map site_type_norm value to site_type for now
+    site_type_norm:
+      id: site_type_norm
+      type: string
+      mapping: "@`site_type`"
     state_code:
       id: state_code
       type: string
