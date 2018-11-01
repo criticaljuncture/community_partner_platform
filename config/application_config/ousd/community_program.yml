@@ -60,4 +60,4 @@ app_config:
 
     verification_policy:
       verification_date: '2018-07-23'
-      grace_period_end_date: '2018-11-01'
+      grace_period_end_date: '2018-11-07'
