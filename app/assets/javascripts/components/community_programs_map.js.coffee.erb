@@ -3,34 +3,39 @@
 class @CPP.CommunityProgramsMap
   accessToken: 'pk.eyJ1IjoiY3JpdGljYWxqdW5jdHVyZSIsImEiOiJjaXExZjdkdWUwMHg0Zndub255c3I0OGpxIn0.oUGPwQ4zi0LQo9z3qayhEg'
 
-  mapDefaults: {
-    center: [-122.2711, 37.8044], #Oakland City Center
-    debug: false,
-    style: 'mapbox://styles/criticaljuncture/ciq1hi7yy004dcbm8kd75bkpm',
-    zoom: 13,
-  }
-
-  constructor: (@mapEl, options)->
+  constructor: (@mapEl, mapConfig)->
     mapboxgl.accessToken = @accessToken
-    @mapSettings = _.extend(@mapDefaults, options || {})
+    @mapConfig = @generateMapConfig(mapConfig)
 
     @createMap()
     @addMapControls()
 
-    cppMap = this
-    @map.on 'load', ->
-      CPP.CommunityProgramMarkers.add(cppMap.map, "CDC")
-      CPP.CommunityProgramMarkers.add(cppMap.map, "Elementary")
-      CPP.CommunityProgramMarkers.add(cppMap.map, "Middle")
-      CPP.CommunityProgramMarkers.add(cppMap.map, "Senior")
+    markers = new CPP.CommunityProgramMarkers(this.map, @mapConfig)
 
-    if @mapSettings.debug
+    @map.on 'load', ->
+      markers.add()
+
+    if @mapConfig.debug
       @logEvents()
+
+  generateMapConfig: (config)->
+    {
+      bearing: config.bearing,
+      center: [config.center.lng, config.center.lat],
+      debug: false,
+      layers: config.layers,
+      maxBounds: [
+        [config.max_bounds.southwest.lng, config.max_bounds.southwest.lat],
+        [config.max_bounds.northeast.lng, config.max_bounds.northeast.lat]
+      ],
+      style: 'mapbox://styles/criticaljuncture/ciq1hi7yy004dcbm8kd75bkpm',
+      zoom: config.zoom
+    }
 
   createMap: ->
     cppMap = this
     @map = new mapboxgl.Map(
-      _.extend(@mapSettings, {container: cppMap.mapEl.get(0)})
+      _.extend(@mapConfig, {container: cppMap.mapEl.get(0)})
     )
 
   addMapControls: ->

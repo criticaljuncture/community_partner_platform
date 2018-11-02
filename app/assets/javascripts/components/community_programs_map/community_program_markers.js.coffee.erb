@@ -1,67 +1,31 @@
 class @CPP.CommunityProgramMarkers
-  @layers:
-    "CDC": [75, '#d975ef', '#e6a4f5'],
-    "Elementary": [60, '#ef75a1', '#f4a3c0'],
-    "Middle": [30, '#f1f17e', '#f6f6ac'],
-    "Senior": [0, '#4ab8d4', '#73c8de']
+  constructor: (@map, @mapConfig)->
+    #noop
 
-  @siteTypeLabels:
-    "CDC": "Childhood Development Centers",
-    "Elementary": "Elementary Schools & Grade K-8 Schools",
-    "Middle": "Middle Schools",
-    "Senior": "High Schools & Grade 6-12 Schools"
+  add: ->
+    _.each @mapConfig.layers, (layer)=>
+      @addCommunityProgramSource(layer)
+      @addCommunutyProgramMarkers(layer)
+      @addCommunutyProgramMarkerClustering(layer)
+      @addTooltips(layer)
+      @addLegend(layer)
 
-  @add: (map, site_type_norm)->
-    @addCommunityProgramSource(map, site_type_norm)
-    @addCommunutyProgramMarkers(map, site_type_norm)
-    @addCommunutyProgramMarkerClustering(map, site_type_norm)
-    @addTooltips(map, site_type_norm)
-    @addLegend(map, site_type_norm)
-
-  @addLegend: (map, site_type_norm) ->
-    legend_item_link = $(
-      HandlebarsTemplates['legend_item']({
-        "school-type-class": site_type_norm.toLowerCase(),
-        "label": @siteTypeLabels[site_type_norm]
-      })
-    )
-
-    legend_item_link.appendTo('#menu ul')
-
-    legend_item_link.on "click", (e) ->
-      e.preventDefault()
-      e.stopPropagation()
-      _.each [
-        "non-cluster-markers-blur-"
-        "non-cluster-markers-"
-        "program-count-label-"
-        "cluster-count-"
-      ], (layerType) ->
-        layer = layerType + site_type_norm
-        visibility = map.getLayoutProperty(layer, 'visibility')
-        if visibility == 'visible'
-          map.setLayoutProperty layer, 'visibility', 'none'
-          @className = ''
-        else
-          @className = 'active'
-          map.setLayoutProperty layer, 'visibility', 'visible'
-
-  @addCommunityProgramSource: (map, site_type_norm)->
-    map.addSource("community-program-markers-#{site_type_norm}", {
+  addCommunityProgramSource: (layer)->
+    @map.addSource("community-program-markers-#{layer.name}", {
       type: "geojson",
-      data: "/api/community_program_markers/#{site_type_norm}",
+      data: "/api/schools/map_markers/#{layer.name}.json",
       cluster: false,
       clusterMaxZoom: 14,
       clusterRadius: 50
     })
 
-  @addCommunutyProgramMarkers: (map, site_type_norm)->
-    map.addLayer({
-        "id": "non-cluster-markers-blur-#{site_type_norm}",
+  addCommunutyProgramMarkers: (layer)->
+    @map.addLayer({
+        "id": "non-cluster-markers-blur-#{layer.name}",
         "type": "circle",
-        "source": "community-program-markers-#{site_type_norm}",
+        "source": "community-program-markers-#{layer.name}",
         "paint": {
-            "circle-color": @layers[site_type_norm][2],
+            "circle-color": layer.border_color,
             "circle-radius": 22
         },
         "layout": {
@@ -69,12 +33,12 @@ class @CPP.CommunityProgramMarkers
         }
     });
 
-    map.addLayer({
-        "id": "non-cluster-markers-#{site_type_norm}",
+    @map.addLayer({
+        "id": "non-cluster-markers-#{layer.name}",
         "type": "circle",
-        "source": "community-program-markers-#{site_type_norm}",
+        "source": "community-program-markers-#{layer.name}",
         "paint": {
-            "circle-color": @layers[site_type_norm][1],
+            "circle-color": layer.fill_color,
             "circle-radius": 18
         },
         "layout": {
@@ -83,10 +47,10 @@ class @CPP.CommunityProgramMarkers
 
     });
 
-    map.addLayer({
-        "id": "program-count-label-#{site_type_norm}",
+    @map.addLayer({
+        "id": "program-count-label-#{layer.name}",
         "type": "symbol",
-        "source": "community-program-markers-#{site_type_norm}",
+        "source": "community-program-markers-#{layer.name}",
         "layout": {
             "text-field": "{programCount}",
             "text-font": [
@@ -99,14 +63,12 @@ class @CPP.CommunityProgramMarkers
     });
 
 
-  @addCommunutyProgramMarkerClustering: (map, site_type_norm)->
-    cppMarkers = this
-
+  addCommunutyProgramMarkerClustering: (layer)->
     #Add a layer for the clusters' count labels
-    map.addLayer({
-      "id": "cluster-count-#{site_type_norm}",
+    @map.addLayer({
+      "id": "cluster-count-#{layer.name}",
       "type": "symbol",
-      "source": "community-program-markers-#{site_type_norm}",
+      "source": "community-program-markers-#{layer.name}",
       "layout": {
         "text-field": "{programCount}",
         "text-font": [
@@ -118,18 +80,18 @@ class @CPP.CommunityProgramMarkers
       }
     })
 
-  @addTooltips: (map, site_type_norm)->
+  addTooltips: (layer)->
     popup = new (mapboxgl.Popup)(
       closeButton: false
       closeOnClick: false)
 
-    map.on 'mousemove', (e) ->
-      features = map.queryRenderedFeatures(
+    @map.on 'mousemove', (e) =>
+      features = @map.queryRenderedFeatures(
         e.point,
-        layers: [ "non-cluster-markers-blur-#{site_type_norm}" ] )
+        layers: [ "non-cluster-markers-blur-#{layer.name}" ] )
 
       # Change the cursor style as a UI indicator.
-      map.getCanvas().style.cursor = if features.length then 'pointer' else ''
+      @map.getCanvas().style.cursor = if features.length then 'pointer' else ''
 
       if !features.length
         popup.remove()
@@ -147,5 +109,34 @@ class @CPP.CommunityProgramMarkers
         ),
       })
 
-      popup.setLngLat(feature.geometry.coordinates).setHTML(tooltip).addTo map
+      popup.setLngLat(feature.geometry.coordinates).setHTML(tooltip).addTo @map
       return
+
+  addLegend: (layer) ->
+    legend_item_link = $(
+      HandlebarsTemplates['legend_item']({
+        "school-type-class": layer.name.toLowerCase(),
+        "label": layer.label
+      })
+    )
+
+    legend_item_link.appendTo('#menu ul')
+
+    map = @map
+    legend_item_link.on "click", (e) ->
+      e.preventDefault()
+      e.stopPropagation()
+      _.each [
+        "non-cluster-markers-blur-"
+        "non-cluster-markers-"
+        "program-count-label-"
+        "cluster-count-"
+      ], (layerType) ->
+        layerName = layerType + layer.name
+        visibility = map.getLayoutProperty(layerName, 'visibility')
+        if visibility == 'visible'
+          map.setLayoutProperty layerName, 'visibility', 'none'
+          @className = ''
+        else
+          @className = 'active'
+          map.setLayoutProperty layerName, 'visibility', 'visible'

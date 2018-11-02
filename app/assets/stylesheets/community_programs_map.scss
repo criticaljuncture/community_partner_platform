@@ -76,8 +76,10 @@ $map-menu-link-bg-dark: darken($map-menu-link-bg, 10);
 
     &.cdc { background-color: $map-circle-cdc-dark; }
     &.elementary { background-color: $map-circle-elementary-dark; }
+    &.k-8 { background-color: $map-circle-k-8-dark; }
     &.middle { background-color: $map-circle-middle-dark; }
     &.senior { background-color: $map-circle-high-dark; }
+    &.alternative { background-color: $map-circle-alternative-dark; }
   }
 
   .outer-circle {
@@ -86,8 +88,10 @@ $map-menu-link-bg-dark: darken($map-menu-link-bg, 10);
 
     &.cdc { background-color: $map-circle-cdc; }
     &.elementary { background-color: $map-circle-elementary; }
+    &.k-8 { background-color: $map-circle-k-8; }
     &.middle { background-color: $map-circle-middle; }
     &.senior { background-color: $map-circle-high; }
+    &.alternative { background-color: $map-circle-alternative; }
   }
 }
 

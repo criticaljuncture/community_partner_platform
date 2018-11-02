@@ -1,0 +1,50 @@
+app_config:
+  school_map:
+    bearing: 0
+    center: #Seattle City Center
+      lat: 47.6062
+      lng: -122.3121
+    max_bounds:
+      northeast:
+        lat: 47.7929
+        lng: -121.5046
+      southwest:
+        lat: 47.4225
+        lng: -123.0702
+    zoom: 9
+    layers:
+      -
+        border_color: '#f4a3c0'
+        fill_color: '#ef75a1'
+        index: 60
+        name: "Elementary"
+        site_types: ['Elementary School']
+        label: "Elementary Schools"
+      -
+        border_color: '#fba638'
+        fill_color: '#fd950e'
+        index: 45
+        name: "K-8"
+        site_types: ['K-8 School']
+        label: "Grade K-8 Schools"
+      -
+        border_color: '#f6f6ac'
+        fill_color: '#eaea39'
+        index: 30
+        name: "Middle"
+        site_types: ['Middle School']
+        label: "Middle Schools"
+      -
+        border_color: '#73c8de'
+        fill_color: '#4ab8d4'
+        index: 15
+        name: "Senior"
+        site_types: ['High School']
+        label: "High Schools"
+      -
+        border_color: '#aade73'
+        fill_color: '#91d44a'
+        index: 0
+        name: "Alternative"
+        site_types: ['Alternative & Service']
+        label: "Alternative & Service / Other Schools"

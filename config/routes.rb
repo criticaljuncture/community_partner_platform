@@ -70,11 +70,13 @@ Rails.application.routes.draw do
       get :school_hierarchy
       get :schools
       get :school_sub_areas
+    end
+  end
 
-      if Settings.application.public_view_enabled
-        get 'community_program_markers/:site_type_norm',
-          to: 'api#community_program_markers'
-      end
+  scope 'api' do
+    if Settings.application.public_view_enabled
+      get 'config/school_map', to: 'api/configuration#school_map'
+      get 'schools/map_markers/:site_type', to: 'api/schools#map_markers'
     end
   end
 
