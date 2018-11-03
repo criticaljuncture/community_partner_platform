@@ -6,7 +6,7 @@ app_config:
       lng: -122.2120
     max_bounds:
       northeast:
-        lng: 37.9269
+        lat: 37.9269
         lng: -122.0271
       southwest:
         lat: 37.6745
@@ -28,15 +28,15 @@ app_config:
         site_types: ['Elementary', 'K-8']
         label: "Elementary Schools & Grade K-8 Schools"
       -
-        border_color: '#f1f17e'
-        fill_color: '#f6f6ac'
+        border_color: '#f6f6ac'
+        fill_color: '#eaea39'
         index: 30
         name: "Middle"
         site_types: ['Middle']
         label: "Middle Schools"
       -
-        border_color: '#4ab8d4'
-        fill_color: '#73c8de'
+        border_color: '#73c8de'
+        fill_color: '#4ab8d4'
         index: 0
         name: "Senior"
         site_types: ['Senior', '6-12']
