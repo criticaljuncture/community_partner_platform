@@ -1,0 +1,43 @@
+app_config:
+  school_map:
+    bearing: 30
+    center: #Oakland City Center
+      lat: 37.8031
+      lng: -122.2120
+    max_bounds:
+      northeast:
+        lat: 37.9269
+        lng: -122.0271
+      southwest:
+        lat: 37.6745
+        lng: -122.3996
+    zoom: 11
+    layers:
+      -
+        border_color: '#e6a4f5'
+        fill_color: '#d975ef'
+        index: 75
+        name: "CDC"
+        site_types: ['CDC']
+        label: "Childhood Development Centers"
+      -
+        border_color: '#f4a3c0'
+        fill_color: '#ef75a1'
+        index: 60
+        name: "Elementary"
+        site_types: ['Elementary', 'K-8']
+        label: "Elementary Schools & Grade K-8 Schools"
+      -
+        border_color: '#f6f6ac'
+        fill_color: '#eaea39'
+        index: 30
+        name: "Middle"
+        site_types: ['Middle']
+        label: "Middle Schools"
+      -
+        border_color: '#73c8de'
+        fill_color: '#4ab8d4'
+        index: 0
+        name: "Senior"
+        site_types: ['Senior', '6-12']
+        label: "High Schools & Grade 6-12 Schools"
