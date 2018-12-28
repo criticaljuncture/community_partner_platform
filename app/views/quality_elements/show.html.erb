@@ -29,6 +29,8 @@
 
     <div class="table_wrapper">
       <% @quality_element.school_programs.group_by(&:school).each do |school, school_programs| %>
+        <% next unless school %>
+        
         <h2><%= link_to school.try(:name), school_path(school) %></h2>
 
         <table class="table table-striped">

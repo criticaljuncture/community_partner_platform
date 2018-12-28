@@ -11,7 +11,8 @@ class QualityElement < ApplicationRecord
   has_many :organizations, through: :community_programs
 
   validates :name, presence: true
-  validates :element_type, presence: true
+  validates :element_type, presence: true,
+    inclusion: {in: Proc.new { QualityElement.element_types }}
 
   scope :programmatic, -> { where(element_type: 'programmatic') }
   scope :foundational, -> { where(element_type: 'foundational') }
@@ -34,5 +35,9 @@ class QualityElement < ApplicationRecord
 
   def description
     I18n.t("quality_elements.descriptions.#{identifier}")
+  end
+
+  def self.element_types
+    %w(programmatic foundational)
   end
 end

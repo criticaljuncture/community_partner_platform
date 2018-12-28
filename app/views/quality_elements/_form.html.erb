@@ -1,8 +1,6 @@
-<%= f.inputs do %>
-  <%= f.input :name %>
-  <%= f.input :element_type %>
-<% end %>
+<%= f.input :name %>
+<%= f.input :element_type, as: :select,
+  collection: QualityElement.element_types.map{|t| [t,t]} %>
 
-<%= f.actions do %>
-  <%= f.button 'Save', class: "btn btn-success" %>
-<% end %>
+<%= f.submit 'Save',
+  class: "btn btn-large btn-success" %>
