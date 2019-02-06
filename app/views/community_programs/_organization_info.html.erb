@@ -10,8 +10,10 @@
   <tr>
     <td><%=I18n.t('community_programs.organization_contact') %></td>
     <td>
-      <%= link_to community_program.user.full_name,
-        user_path(community_program.user) %>
+      <% if community_program.user %>
+        <%= link_to community_program.user.full_name,
+          user_path(community_program.user) %>
+      <% end %>
     </td>
   </tr>
 <% end %>
