@@ -1,0 +1,11 @@
+community_programs:
+  columns:
+    name:
+      id: program_name
+      type: string
+    organization_id:
+      id: organization_id
+      type: integer
+    active:
+      id: active
+      type: boolean

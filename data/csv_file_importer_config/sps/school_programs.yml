@@ -1,0 +1,8 @@
+school_programs:
+  columns:
+    school_id:
+      id: school_id
+      type: integer
+    community_program_id:
+      id: community_program_id
+      type: integer
