@@ -80,6 +80,7 @@ class CommunityProgramsController < ApplicationController
       session[:redirect_back] = params[:redirect_back]
     end
 
+    @community_program.build_primary_quality_element unless @community_program.primary_quality_element
     @community_program = CommunityProgramDecorator.decorate(@community_program)
   end
 
