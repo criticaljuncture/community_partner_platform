@@ -73,7 +73,6 @@
         where(organization_id: @community_program.organization_id).
         sort_by(&:full_name),
       label_method: :full_name,
-      required: true,
       wrapper_html: {class: 'clear both'},
       public: policy.public_attribute?(:user_id)  %>
   </div>
