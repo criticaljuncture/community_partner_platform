@@ -53,8 +53,7 @@
 <%= collapsible_field_set_tag "Organization Details", class: collapsed do %>
   <%= f.input :organization_id,
     as: :select,
-    collection: Organization.accessible_by(current_ability).
-      with_users.sort_by(&:name),
+    collection: Organization.accessible_by(current_ability).sort_by(&:name),
     include_blank: true,
     selected: f.object.organization_id.present? ? f.object.organization_id : (
       current_user.role?(:organization_member) ? current_user.organization_id : ""),
