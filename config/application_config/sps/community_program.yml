@@ -54,5 +54,5 @@ app_config:
             message: must choose a primary quality element
 
     verification_policy:
-      verification_date: '2018-08-21'
-      grace_period_end_date: '2018-11-01'
+      verification_date: '2019-01-01'
+      grace_period_end_date: '2020-01-01'
