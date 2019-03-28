@@ -6,7 +6,7 @@
   <% form = f %>
 <% end %>
 
-<%= form.simple_fields_for :primary_quality_element do |element| %>
+<%= form.simple_fields_for :primary_quality_element_attributes do |element| %>
   <%= element.input :service_type_ids,
     as: :columized_checkboxes,
     collection: ServiceType.accessible_by(current_ability).
