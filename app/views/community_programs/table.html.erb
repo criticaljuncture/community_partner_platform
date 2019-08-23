@@ -6,6 +6,7 @@
         <th class="organization"><%= I18n.t('organizations.class.name') %></th>
         <th class="school"><%= I18n.t('school.class.name').pluralize %></th>
         <th class="sqisa"><%= I18n.t('quality_element.class.name') %></th>
+        <th class="service-type"><%= I18n.t('service_type.class.name') %></th>
         <th class="actions sorter-false filter-false"></th>
       </tr>
     </thead>
@@ -27,6 +28,9 @@
           </td>
           <td class="sqisa">
             <%= community_program.quality_element.try(:name) %>
+          </td>
+          <td class="service-type">
+            <%= community_program.primary_service_types.map{|st| st.name}.join(', ') %>
           </td>
           <td class="actions center">
             <%= link_to_gicon 'view',

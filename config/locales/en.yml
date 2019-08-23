@@ -200,6 +200,10 @@ en:
       create:
         success: Successfully created '%{name}'
 
+  service_type:
+    class:
+      name: Service Type
+      
   user:
     active: Active
     attended_orientation_at: Orientation Date
