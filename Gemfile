@@ -33,7 +33,7 @@ gem 'bootsnap', require: false
 gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
 
 # Twitter bootstrap
-gem 'bootstrap-sass', '~> 3.3.5.1'
+gem 'bootstrap-sass', '~> 3.4.1'
 
 # Check if point exists in kml boundary
 gem 'border_patrol', git: 'https://github.com/square/border_patrol'
