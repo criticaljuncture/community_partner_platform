@@ -41,14 +41,17 @@
     collection: LegalStatus.for_select,
     public: policy.public_attribute?(:legal_status_id) %>
 
-  <%= f.input :board_approved_contract, as: :boolean,
-    public: policy.public_attribute?(:board_approved_contract) %>
+  <%= f.input(:board_approved_contract, as: :boolean,
+    public: policy.public_attribute?(:board_approved_contract)
+  ) if render_field?(:organization, :board_approved_contract) %>
 
-  <%= f.input :subcontractor_with_lead_agency, as: :boolean,
-    public: policy.public_attribute?(:subcontractor_with_lead_agency) %>
+  <%= f.input(:subcontractor_with_lead_agency, as: :boolean,
+    public: policy.public_attribute?(:subcontractor_with_lead_agency)
+  ) if render_field?(:organization, :subcontractor_with_lead_agency) %>
 
-  <%= f.input :receives_district_funding, as: :boolean,
-    public: policy.public_attribute?(:receives_district_funding) %>
+  <%= f.input(:receives_district_funding, as: :boolean,
+    public: policy.public_attribute?(:receives_district_funding)
+  ) if render_field?(:organization, :receives_district_funding) %>
 
   <%= f.input :mission_statement, as: :text,
     public: policy.public_attribute?(:mission_statement) %>

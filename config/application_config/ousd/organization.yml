@@ -20,6 +20,9 @@ app_config:
             - :url
             - :zip_code
 
+    fields:
+      fields_to_skip: []
+
     public_policy:
       percentage_complete: 0.75
       required_attributes:

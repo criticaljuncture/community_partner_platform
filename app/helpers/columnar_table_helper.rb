@@ -2,6 +2,8 @@ module ColumnarTableHelper
   def columnar_attributes_display(header:, model:, attrs:, only_public_attrs:, options:{})
     attrs = only_public_attrs ? attrs.select{|attr| model.send(:public_attribute?, attr) } : attrs
 
+    attrs = attrs.select{|attr| render_field?(model, attr)}
+
     return '' unless attrs.present?
 
     columnar_table_block(header, options) do

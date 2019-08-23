@@ -21,6 +21,12 @@ app_config:
             - :url
             - :zip_code
 
+    fields:
+      fields_to_skip:
+        - :board_approved_contract
+        - :subcontractor_with_lead_agency
+        - :receives_district_funding
+
     public_policy:
       percentage_complete: 0.25
       public_attributes:
