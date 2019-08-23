@@ -198,7 +198,7 @@ end
 
 
 grade_levels  = [
-  "Pre-Kingergarten",
+  "Pre-Kindergarten",
   "Transitional Kindergarten",
   "Kindergarten",
   "1st Grade",
