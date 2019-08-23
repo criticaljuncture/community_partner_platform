@@ -10,10 +10,11 @@ app_config:
           value: 0.75
           fields:
             - :address
-            - :board_approved_contract
             - :city
+            - :legal_status
             - :mission_statement
             - :phone_number
+            - :primary_contact
             - :program_impact
             - :services_description
             - :total_cost
@@ -21,12 +22,10 @@ app_config:
             - :zip_code
 
     public_policy:
-      percentage_complete: 0.75
-      required_attributes:
-        - :board_approved_contract
+      percentage_complete: 0.25
       public_attributes:
+        - :mission_statement
         - :name
-        - :phone_number
         - :program_impact
         - :services_description
         - :url
@@ -38,11 +37,10 @@ app_config:
         options:
           presence: true
       -
-        attribute: :legal_status_id
+        attribute: :services_description  
         options:
-          presence:
-            message: Please choose from the list above
+          presence: true
 
     verification_policy:
-      verification_date: '2018-07-25'
-      grace_period_end_date: '2018-11-01'
+      verification_date: '2020-07-01'
+      grace_period_end_date: '2020-08-01'

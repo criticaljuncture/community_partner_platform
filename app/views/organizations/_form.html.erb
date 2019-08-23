@@ -17,7 +17,7 @@
 
   <%= f.input :url,
     placeholder: "http://example.com",
-    public: policy.public_attribute?(:placeholder) %>
+    public: policy.public_attribute?(:url) %>
 <% end %>
 
 <%= field_set_tag 'Organization Details' do %>
@@ -39,7 +39,6 @@
   <%= f.input :legal_status_id,
     as: :select,
     collection: LegalStatus.for_select,
-    required: true,
     public: policy.public_attribute?(:legal_status_id) %>
 
   <%= f.input :board_approved_contract, as: :boolean,

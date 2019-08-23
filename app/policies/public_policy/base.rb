@@ -24,6 +24,8 @@ class PublicPolicy::Base
   end
 
   def required_attributes_present?
+    return true unless required_attributes
+
     required_attributes.all? do |attr|
       model.send(attr).present?
     end
