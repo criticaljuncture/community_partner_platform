@@ -4,6 +4,8 @@
   position: fixed;
   width: 600px;
 
+  &.modal-open { }
+
   .modal-header {
     @include border-top-radius(6px);
     background-color: $gray-10;
@@ -35,7 +37,9 @@
   }
 
   .modal-body {
+    max-height: 500px;
     min-height: 100px;
+    overflow-y: auto;
 
     form { padding: 0 15px; }
   }

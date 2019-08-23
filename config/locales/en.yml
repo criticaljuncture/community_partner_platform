@@ -72,6 +72,8 @@ en:
     organization_contact: Primary Organization Contact
     organization_name: Name
     quality_element: Community School Element
+    quality_element_description: Quality Element Descriptions
+    quality_element_description_modal_link: View quality element descriptions
     receives_district_funding: Receives District Funding
     school_name: Name
     service_description: Program Description
@@ -79,6 +81,7 @@ en:
     service_times: Service Times
     service_types: Service Types
     student_population: Student Population
+
 
   date:
     datepicker:

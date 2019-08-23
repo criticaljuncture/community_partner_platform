@@ -1,0 +1,6 @@
+en:
+  simple_form:
+    labels:
+      community_program:
+        primary_quality_element:
+          quality_element_id: Community Program Element
