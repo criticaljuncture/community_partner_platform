@@ -13,7 +13,7 @@ class OrganizationDecorator < Draper::Decorator
 
   def city_state_zip
     (city.present? && zip_code.present?) ?
-      "#{city}, CA #{zip_code}" : h.hint_tag(h.t('app.not_provided'))
+      "#{city}, #{ZipcodeStateMap::ZIPCODE_STATE[zip_code]} #{zip_code}" : h.hint_tag(h.t('app.not_provided'))
   end
 
   def show_verification_modal?
