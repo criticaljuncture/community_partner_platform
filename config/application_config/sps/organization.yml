@@ -35,6 +35,7 @@ app_config:
         - :program_impact
         - :services_description
         - :url
+      required_attributes: []
       verification_required: true
 
     validations:
