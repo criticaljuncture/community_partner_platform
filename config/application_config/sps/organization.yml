@@ -36,7 +36,7 @@ app_config:
         - :services_description
         - :url
       required_attributes: []
-      verification_required: true
+      verification_required: false
 
     validations:
       -

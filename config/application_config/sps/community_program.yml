@@ -38,7 +38,7 @@ app_config:
         - :service_time_ids
         - :service_types
         - :student_population_id
-      verification_required: true
+      verification_required: false
 
     validations:
       -

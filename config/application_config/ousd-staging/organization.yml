@@ -33,7 +33,7 @@ app_config:
         - :program_impact
         - :services_description
         - :url
-      verification_required: true
+      verification_required: false
 
     validations:
       -

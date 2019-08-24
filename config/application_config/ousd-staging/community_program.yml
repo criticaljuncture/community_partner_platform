@@ -37,7 +37,7 @@ app_config:
         - :quality_element
         - :service_description
         - :service_types
-      verification_required: true
+      verification_required: false
 
     validations:
       -
