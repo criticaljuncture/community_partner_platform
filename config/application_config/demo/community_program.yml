@@ -25,6 +25,9 @@ app_config:
           fields:
             - :school_programs
 
+    fields:
+      fields_to_skip: []
+
     public_policy:
       percentage_complete: 0.75
       required_attributes: []

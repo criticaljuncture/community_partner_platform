@@ -21,6 +21,9 @@ app_config:
           fields:
             - :days
             - :user
+    
+    fields:
+      fields_to_skip: []
             
     public_policy:
       percentage_complete: 0.40
