@@ -133,6 +133,12 @@ class CommunityProgramsController < ApplicationController
 
     if @community_program.active?
       @community_program.active = false
+
+      # ensure program is not automatically made public if reactivated
+      @community_program.approved_for_public = false
+      @community_program.approved_for_public_by = nil
+      @community_program.approved_for_public_on = nil
+      
       @community_program.school_programs.each do |program|
         program.active = false
         program.active_changed_by = current_user.id
