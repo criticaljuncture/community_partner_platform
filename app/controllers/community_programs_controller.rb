@@ -137,7 +137,7 @@ class CommunityProgramsController < ApplicationController
         program.active = false
         program.active_changed_by = current_user.id
         program.active_changed_on = Time.now
-        program.save(verify: false)
+        program.save(validate: false)
       end
     else
       @community_program.active = true
@@ -145,13 +145,13 @@ class CommunityProgramsController < ApplicationController
         program.active = true
         program.active_changed_by = current_user.id
         program.active_changed_on = Time.now
-        program.save(verify: false)
+        program.save(validate: false)
       end
     end
 
     @community_program.active_changed_by = current_user.id
     @community_program.active_changed_on = Time.now
-    @community_program.save
+    @community_program.save(validate: false)
 
     respond_to do |wants|
       wants.json do
