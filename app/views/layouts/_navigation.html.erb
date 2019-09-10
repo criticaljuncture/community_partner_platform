@@ -54,7 +54,7 @@
 
           <ul class="dropdown-menu">
             <% if can?(:manage, QualityElement) %>
-              <li><%= link_to 'Community School Elements', quality_elements_path %></li>
+              <li><%= link_to I18n.t('quality_element.class.name').pluralize, quality_elements_path %></li>
             <% end %>
             <% if can?(:manage, ServiceType) %>
               <li><%= link_to 'Service Types', service_types_path %></li>

@@ -22,7 +22,7 @@
 
       <% if can? :view, :school_overview_community_school_element_breakdown %>
         <div id="community-program-breakdown" class="tab-pane">
-          <h2>Community School Elements </h2>
+          <h2><%= I18n.t('quality_element.class.name').pluralize %></h2>
           <% @overview_presenter.regions.each do |region| %>
             <%= render partial: "schools/overview/community_school_elements_for_region",
               locals: {region: region} %>

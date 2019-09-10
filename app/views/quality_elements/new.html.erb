@@ -1,11 +1,11 @@
 <%= breadcrumb [
-  ['Community School Elements', quality_elements_path],
+  [I18n.t('quality_element.class.name').pluralize, quality_elements_path],
   ["Create", ""]
 ] %>
 
 <div class="row-fluid">
   <div class="span12">
-    <%= page_header("Create New Community School Element", "") %>
+    <%= page_header("Create New #{I18n.t('quality_element.class.name')}", "") %>
 
     <div class="form_wrapper">
       <%= simple_form_for @quality_element, method: :post, html: {class: "form-horizontal"} do |f| %>

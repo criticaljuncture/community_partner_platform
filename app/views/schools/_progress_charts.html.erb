@@ -1,6 +1,6 @@
 <div class="donut_status_box_wrapper">
   <%= completeness_donut(
-      'Community School Elements Covered',
+      "#{I18n.t('quality_element.class.name').pluralize} Covered",
       school.quality_elements.count,
       QualityElement.accessible_by(current_ability).count) %>
 

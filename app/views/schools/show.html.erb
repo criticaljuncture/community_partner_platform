@@ -31,12 +31,12 @@
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">
     <%= page_nav_tabs [
       ['Community Programs', '#community-programs'],
-      ['Community School Element Summary', '#community-school-elements']
+      ["#{I18n.t('quality_element.class.name')} Summary", '#community-school-elements']
     ] %>
 
     <div class="tab-content">
       <div id="community-programs" class="tab-pane active">
-        <h2>Community Programs by Community School Element</h2>
+        <h2>Community Programs by <%= I18n.t('quality_element.class.name') %></h2>
         <%= render partial: 'community_programs', locals: {
           school: @school,
           school_programs: @school.school_programs

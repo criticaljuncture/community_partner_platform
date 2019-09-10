@@ -1,16 +1,16 @@
-<%= breadcrumb [['Community School Elements', quality_elements_path]] %>
+<%= breadcrumb [[I18n.t('quality_element.class.name').pluralize, quality_elements_path]] %>
 
 <div class="row-fluid">
   <div class="span12">
-    <%= page_header("Community School Elements", "") do %>
-      <%= link_to 'Create New Community School Element', new_quality_element_path, class: "btn btn-primary" %>
+    <%= page_header(I18n.t('quality_element.class.name').pluralize, "") do %>
+      <%= link_to "Create New #{I18n.t('quality_element.class.name')}", new_quality_element_path, class: "btn btn-primary" %>
     <% end %>
 
     <div class="table_wrapper">
       <table class="table table-striped table-hover table-sorter quality_elements">
         <thead>
           <tr>
-            <th>Community School Element</th>
+            <th><%= I18n.t('quality_element.class.name') %></th>
             <th>Element Type</th>
             <th>Schools</th>
             <th>Organizations</th>

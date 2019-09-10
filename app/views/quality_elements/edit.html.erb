@@ -1,5 +1,5 @@
 <%= breadcrumb [
-  ['Community School Elements', quality_elements_path],
+  [I18n.t('quality_element.class.name').pluralize, quality_elements_path],
   [truncate(@quality_element.name, length: 20), quality_element_path(@quality_element)],
   ["Edit", ""]
 ] %>
