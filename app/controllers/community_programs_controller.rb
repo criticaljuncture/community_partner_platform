@@ -36,11 +36,12 @@ class CommunityProgramsController < ApplicationController
     )
     authorize! :create, @community_program
 
+    # add service types
     if @community_program.primary_quality_element
       if community_program_params[:primary_quality_element_attributes][:service_type_ids].present?
-        @community_program.primary_quality_element.service_type_ids = community_program_params[:primary_quality_element_attributes][:service_type_ids]
+        @community_program.primary_quality_element.service_type_ids = community_program_params[:primary_quality_element_attributes][:service_type_ids].reject{|x| x.blank?}
       elsif community_program_params[:primary_quality_element][:service_type_ids].present?
-        @community_program.primary_quality_element.service_type_ids = community_program_params[:primary_quality_element][:service_type_ids].reject{|a| a.blank?}
+        @community_program.primary_quality_element.service_type_ids = community_program_params[:primary_quality_element][:service_type_ids].reject{|x| x.blank?}
       end
     end
 
@@ -168,7 +169,7 @@ class CommunityProgramsController < ApplicationController
 
   def table
     @community_programs = CommunityProgram.active.accessible_by(current_ability).
-      includes(:organization, :school_programs, :schools, :quality_element).
+      includes(:organization, :school_programs, :schools, :quality_element, primary_quality_element: :service_types).
       order("organizations.name")
     authorize! :index, CommunityProgram
 

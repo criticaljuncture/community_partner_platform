@@ -27,10 +27,10 @@
             <% end %>
           </td>
           <td class="sqisa">
-            <%= community_program.quality_element.try(:name) %>
+            <%= community_program.primary_quality_element&.name %>
           </td>
           <td class="service-type">
-            <%= community_program.primary_service_types.map{|st| st.name}.join(', ') %>
+            <%= community_program.primary_quality_element&.service_types&.map{|st| st.name}&.join(', ') %> 
           </td>
           <td class="actions center">
             <%= link_to_gicon 'view',
