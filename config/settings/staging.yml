@@ -1,3 +1,2 @@
 application:
-  canonical_hostname: 'https://ousd-staging.communitypartnerplatform.org'
   public_view_enabled: true

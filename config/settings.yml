@@ -1,4 +1,4 @@
 application:
-  canonical_hostname: 'https://ousd.communitypartnerplatform.org'
+  canonical_hostname: <%= "https://#{ENV["SUBDOMAIN"]}.communitypartnerplatform.org" %>
   public_view_enabled: true
   subdomain: <%= ENV["SUBDOMAIN"] %>
