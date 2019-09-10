@@ -56,11 +56,11 @@ app_config:
         options:
           presence:
             message: must choose a partnership category
-      -
-        attribute: :primary_service_types
-        options:
-          presence:
-            message: must choose at least one primary service type
+      # -
+      #   attribute: :primary_service_types
+      #   options:
+      #     presence:
+      #       message: must choose at least one primary service type
       -
         attribute: :service_description
         options:
