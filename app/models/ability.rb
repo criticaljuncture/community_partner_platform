@@ -71,7 +71,7 @@ class Ability < BaseAbility
     can :view_district_internals, CommunityProgram, organization_id: @user.organization_id
 
     can :new, SchoolProgram
-    can [:create, :edit, :update, :toggle_active], SchoolProgram do
+    can [:create, :edit, :update, :delete, :toggle_active], SchoolProgram do
       can?(:create, CommunityProgram) || can?(:edit, CommunityProgram)
     end
 
