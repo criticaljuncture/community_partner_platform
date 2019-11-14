@@ -102,12 +102,16 @@ en:
     class:
       name: Organization
     address: Address
+    alignment_agreement: Alignment agreement
     board_approved_contract: Board approved contract
     city_state_zip: City, State ZIP
+    data_sharing_agreement: Data sharing agreement
     last_verified: Last verified
     legal_status: Legal status
+    memorandum_of_understanding: Memorandum of understanding
     mission_statement: Mission statement
     name: Name
+    personal_services_contract: Personal services contract
     phone_number: Phone number
     primary_contact: Primary contact
     program_impact: Program impact

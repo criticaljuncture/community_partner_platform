@@ -49,9 +49,21 @@
     public: policy.public_attribute?(:subcontractor_with_lead_agency)
   ) if render_field?(:organization, :subcontractor_with_lead_agency) %>
 
-  <%= f.input(:receives_district_funding, as: :boolean,
-    public: policy.public_attribute?(:receives_district_funding)
-  ) if render_field?(:organization, :receives_district_funding) %>
+  <%= f.input(:personal_services_contract, as: :boolean,
+    public: policy.public_attribute?(:personal_services_contract)
+  ) if render_field?(:organization, :personal_services_contract) %>
+
+  <%= f.input(:memorandum_of_understanding, as: :boolean,
+    public: policy.public_attribute?(:memorandum_of_understanding)
+  ) if render_field?(:organization, :memorandum_of_understanding) %>
+
+  <%= f.input(:alignment_agreement, as: :boolean,
+    public: policy.public_attribute?(:alignment_agreement)
+  ) if render_field?(:organization, :alignment_agreement) %>
+  
+  <%= f.input(:data_sharing_agreement, as: :boolean,
+    public: policy.public_attribute?(:data_sharing_agreement)
+  ) if render_field?(:organization, :data_sharing_agreement) %>
 
   <%= f.input :mission_statement, as: :text,
     public: policy.public_attribute?(:mission_statement) %>
