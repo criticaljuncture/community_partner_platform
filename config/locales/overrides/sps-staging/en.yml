@@ -3,9 +3,11 @@ en:
     quality_element: Partnership category
     quality_element_description: Partnership Category Descriptions
     quality_element_description_modal_link: View partnership category descriptions
+  
   quality_element:
     class:
       name: Partnership Category
+  
   quality_elements:
     descriptions:
       academic_learning: "Programs that support and reinforce school-day academic instruction within any subject area -  language arts, career and technical education, math, science/technology, visual and performing arts, physical education, health education, ethnic studies, social studies, and world languages - in alignment to the curriculum and academic goals for students and the district."

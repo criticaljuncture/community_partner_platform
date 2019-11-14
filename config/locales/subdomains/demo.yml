@@ -5,3 +5,5 @@ en:
     district:
       name: 'Demo District'
       abbreviation: 'Demo'
+    layout:
+      footer: ''

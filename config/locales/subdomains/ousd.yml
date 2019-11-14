@@ -4,6 +4,8 @@ ousd: &ousd
   district:
     name: 'Oakland Unified School District'
     abbreviation: 'OUSD'
+  layout:
+    footer: ''
   public:
     home_page:
       description:
