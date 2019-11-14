@@ -10,7 +10,13 @@ table.community_programs {
   .organization { width: 20%; }
   .sqisa { width: 25%; }
   .service { width: 25%; }
-  .actions { width: 147px; }
+  .actions {
+    width: 147px;
+    .btn-medium {
+      min-width: 63px;
+      margin-bottom: 5px;
+    }
+  }
 }
 
 .columnar-table-block {
