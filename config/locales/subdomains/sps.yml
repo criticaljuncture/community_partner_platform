@@ -9,7 +9,7 @@ sps: &sps
   public:
     home_page:
       description:
-        "Homepage description needed"
+        "<p>The purpose of the Seattle Public Schools Community Partner Portal is to ensure that school communities – staff, families, partners, and community members – understand the resources available at each school. If you have questions, or would like to make updates to the information, contact communitypartnerships@seattleschools.org.</p>"
 
 en:
   sps:
