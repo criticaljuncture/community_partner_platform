@@ -62,15 +62,19 @@ en:
     class:
       name: Community Program
 
+    alignment_agreement: Alignment Agreement
+    data_sharing_agreement: Data Sharing Agreement
     days: Service Days
     demographic_groups: Target Demographic Groups
     ethnicity_culture_groups: Target Ethnicity/Culture Groups
     grade_levels: Target Grade Levels
     last_verified: Last verified
+    memorandum_of_understanding: Memorandum of Understanding
     name: Program Name
     notes: Notes
     organization_contact: Primary Organization Contact
     organization_name: Name
+    personal_services_contract: Personal Services Contract
     quality_element: Community School Element
     quality_element_description: Quality Element Descriptions
     quality_element_description_modal_link: View quality element descriptions

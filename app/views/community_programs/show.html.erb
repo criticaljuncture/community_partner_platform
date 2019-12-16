@@ -101,10 +101,13 @@
 
     <% if can?(:view_district_internals, @community_program) && @community_program.internal_details_present? %>
       <div class="row">
-        <%= render partial: 'internal_details', locals: {
-          community_program: @community_program
-        } %>
-      </div>
+        <%= columnar_attributes_display(
+          header: 'Internal Details',
+          model: @community_program,
+          attrs: %i(receives_district_funding? personal_services_contract? memorandum_of_understanding? alignment_agreement? data_sharing_agreement? notes),
+          only_public_attrs: false,
+        ) %>
+      </div>      
     <% end %>
   </div>
 

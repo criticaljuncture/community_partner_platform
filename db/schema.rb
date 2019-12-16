@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_000442) do
+ActiveRecord::Schema.define(version: 2019_12_16_205629) do
 
   create_table "community_program_demographic_groups", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "demographic_group_id"
@@ -108,6 +108,10 @@ ActiveRecord::Schema.define(version: 2019_11_14_000442) do
     t.boolean "approved_for_public", default: false
     t.datetime "approved_for_public_on"
     t.integer "approved_for_public_by"
+    t.boolean "personal_services_contract", default: false
+    t.boolean "memorandum_of_understanding", default: false
+    t.boolean "alignment_agreement", default: false
+    t.boolean "data_sharing_agreement", default: false
     t.index ["active"], name: "index_community_programs_on_active"
     t.index ["last_verified_by"], name: "index_community_programs_on_last_verified_by"
     t.index ["organization_id"], name: "index_community_programs_on_organization_id"

@@ -79,5 +79,22 @@
 
 <%= collapsible_field_set_tag "Internal Details", class: collapsed do %>
   <%= f.input :receives_district_funding, as: :boolean  %>
+  
+  <%= f.input(:personal_services_contract, as: :boolean,
+    public: policy.public_attribute?(:personal_services_contract)
+  ) if render_field?(:community_program, :personal_services_contract) %>
+
+  <%= f.input(:memorandum_of_understanding, as: :boolean,
+    public: policy.public_attribute?(:memorandum_of_understanding)
+  ) if render_field?(:community_program, :memorandum_of_understanding) %>
+
+  <%= f.input(:alignment_agreement, as: :boolean,
+    public: policy.public_attribute?(:alignment_agreement)
+  ) if render_field?(:community_program, :alignment_agreement) %>
+
+  <%= f.input(:data_sharing_agreement, as: :boolean,
+    public: policy.public_attribute?(:data_sharing_agreement)
+  ) if render_field?(:community_program, :data_sharing_agreement) %>
+  
   <%= f.input :notes %>
 <% end %>

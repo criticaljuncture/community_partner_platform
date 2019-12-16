@@ -197,11 +197,15 @@ class CommunityProgramsController < ApplicationController
 
   def community_program_params
     params.require(:community_program).permit(
+      :alignment_agreement,
+      :data_sharing_agreement,
       :merge_target,
       :board_approved_contract,
+      :memorandum_of_understanding,
       :name,
       :notes,
       :organization_id,
+      :personal_services_contract,
       :receives_district_funding,
       :school_id,
       :school_user_id,
