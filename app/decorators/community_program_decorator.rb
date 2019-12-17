@@ -49,10 +49,6 @@ class CommunityProgramDecorator < Draper::Decorator
     end
   end
 
-  def internal_details_present?
-    receives_district_funding? || notes.present?
-  end
-
   def page_header
     if approved_for_public?
       icon = h.content_tag(:span, '',

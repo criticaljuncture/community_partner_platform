@@ -99,7 +99,7 @@
       } %>
     </div>
 
-    <% if can?(:view_district_internals, @community_program) && @community_program.internal_details_present? %>
+    <% if can?(:view_district_internals, @community_program) %>
       <div class="row">
         <%= columnar_attributes_display(
           header: 'Internal Details',
