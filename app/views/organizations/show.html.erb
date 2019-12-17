@@ -74,7 +74,7 @@
     <% end %>
 <% end %>
 
-<%= page_header(@organization.page_header, "icon-cpp-small-business") do %>
+<%= page_header(@organization.page_header, "icon-cpp-small-business", wrapper_class: 'organizations') do %>
   <%= link_to_gicon('Verify Organization',
       edit_organization_path(@organization),
       class: "btn btn-create",

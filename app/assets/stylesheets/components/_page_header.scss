@@ -3,10 +3,10 @@ $header-border-color: $gray-70;
 $header-color: $gray-70;
 
 %header-button-wrapper {
+  bottom: 5px;
   position: absolute;
   right: 5px;
   text-align: right;
-  top: 15px;
 }
 
 .header {
@@ -20,16 +20,20 @@ $header-color: $gray-70;
 
   .header-outer {
     border-bottom: 1px solid $header-border-color;
-    height: 62px;
+    min-height: 62px;
   }
 
   .header-inner {
     border-bottom: 3px solid $header-border-color;
-    height: 56px;
+    min-height: 56px;
     position: relative;
+    
 
     h1 {
-      width: 80%;
+      margin-bottom: 0;
+      width: 65%;
+
+      .icon-primary { text-indent: 0; }
 
       .icon-cpp-globe.icon-secondary {
         color: $orange-dark;
@@ -64,14 +68,14 @@ $header-color: $gray-70;
 
     .icon-cpp-school {
       margin-left: 10px;
-      margin-right: 0;
+      margin-right: 10px;
       position: relative;
       top: 4px;
     }
 
     .icon-cpp-small-business {
       margin-left: 5px;
-      margin-right: 0;
+      margin-right: 10px;
       position: relative;
       top: 5px;
       width: 30px;
@@ -90,4 +94,20 @@ $header-color: $gray-70;
       top: 7px;
     }
   }
+}
+
+// specific adjustments based on primary icon width
+.community-programs .header .header-inner h1 {
+  margin-left: 80px;
+  text-indent: -84px;
+}
+
+.schools .header .header-inner h1 {
+  margin-left: 55px;
+  text-indent: -59px;
+}
+
+.organizations .header .header-inner h1 {
+  margin-left: 38px;
+  text-indent: -42px;
 }

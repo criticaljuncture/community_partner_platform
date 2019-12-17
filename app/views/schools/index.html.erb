@@ -1,6 +1,6 @@
 <%= breadcrumb [['Schools', schools_path]] %>
 
-<%= page_header("Schools", "icon-cpp-school") do %>
+<%= page_header("Schools", "icon-cpp-school", wrapper_class: 'schools') do %>
   <%= link_to_gicon('Create New School',
     new_school_path,
     class: "btn btn-primary",

@@ -18,7 +18,7 @@
     t('organization.messages.unverified_organization.edit').html_safe,
   ) if @organization.verifiable? %>
 
-<%= page_header("Edit #{@organization.name}", "icon-cpp-small-business") %>
+<%= page_header("Edit #{@organization.name}", "icon-cpp-small-business", wrapper_class: 'organizations') %>
 
 <div class="row organization-page" data-organization-id='<%= @organization.id %>'>
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">

@@ -3,7 +3,8 @@
   [@school.name, school_path(@school)]
 ] %>
 
-<%= page_header @school.name, "icon-cpp-school" do %>
+<%= page_header @school.name, "icon-cpp-school",
+  wrapper_class: 'schools' do %>
   <%= link_to_gicon('Edit School',
     edit_school_path(@school),
     class: "btn btn-primary",

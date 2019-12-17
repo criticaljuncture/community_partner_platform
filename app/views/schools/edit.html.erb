@@ -3,7 +3,7 @@
   [truncate(@school.name, length: 20), school_path(@school)],
   ["Edit", ""]] %>
 
-<%= page_header("Edit #{@school.name}", "icon-cpp-school") %>
+<%= page_header("Edit #{@school.name}", "icon-cpp-school", wrapper_class: 'schools') %>
 
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">

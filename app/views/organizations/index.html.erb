@@ -1,6 +1,6 @@
 <%= breadcrumb [['Partner Organizations', organizations_path]] %>
 
-<%= page_header("Organizations", "icon-cpp-small-business") do %>
+<%= page_header("Organizations", "icon-cpp-small-business", wrapper_class: 'organizations') do %>
   <%= link_to_gicon('Create New Organization',
     new_organization_path,
     class: "btn btn-primary",
