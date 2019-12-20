@@ -12,7 +12,11 @@ class SchoolDecorator < Draper::Decorator
     when nil
       nil
     else
-      "#{model.site_type_norm} Schools"
+      if model.site_type_norm.match(/School\Z/)
+        model.site_type_norm.pluralize
+      else
+        "#{model.site_type_norm} Schools"
+      end
     end
   end
 end

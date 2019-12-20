@@ -1,6 +1,6 @@
 class Public::HomePagePresenter
   def schools
-    ordered_site_types = ["Childhood Development Centers", "Elementary Schools", "Grades K-8", "Middle Schools", "Grades 6-12", "High Schools"]
+    ordered_site_types = ["Childhood Development Centers", "Elementary Schools", "Grades K-8", "K-8 Schools", "Middle Schools", "Grades 6-12", "High Schools", "Alternative & Service Schools", "Other Schools"]
 
     @schools ||= SchoolDecorator.decorate_collection(
       School.select(
