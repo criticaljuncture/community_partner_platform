@@ -26,7 +26,11 @@ app_config:
             - :school_programs
 
     fields:
-      fields_to_skip: []
+      fields_to_skip:
+        - :personal_services_contract
+        - :memorandum_of_understanding
+        - :alignment_agreement
+        - :data_sharing_agreement
 
     public_policy:
       percentage_complete: 0.75
