@@ -5,11 +5,11 @@ sps: &sps
     name: 'Seattle Public Schools'
     abbreviation: 'SPS'
   layout:
-    footer: "<p>We do our best to keep the information in the partner portal up-to-date, but at times there may be missing or outdated information given the dynamic nature of our partnerships.</p> <p>If you notice that information is missing or incorrect, please let us know at communitypartnerships@seattleschools.org</p>"
+    footer: "<p>We do our best to keep the information in the partner platform up-to-date, but at times there may be missing or outdated information given the dynamic nature of our partnerships.</p> <p>If you notice that information is missing or incorrect, please let us know at communitypartnerships@seattleschools.org</p>"
   public:
     home_page:
       description:
-        "<p>The purpose of the Seattle Public Schools Community Partner Portal is to ensure that school communities – staff, families, partners, and community members – understand the resources available at each school. If you have questions, or would like to make updates to the information, contact communitypartnerships@seattleschools.org.</p>"
+        "<p>The purpose of the Seattle Public Schools Community Partner Platform is to ensure that school communities – staff, families, partners, and community members – understand the resources available at each school. If you have questions, or would like to make updates to the information, contact communitypartnerships@seattleschools.org.</p>"
 
 en:
   sps:
