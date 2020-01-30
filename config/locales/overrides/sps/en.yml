@@ -1,0 +1,30 @@
+en:
+  community_programs:
+    quality_element: Partnership category
+    quality_element_description: Partnership Category Descriptions
+    quality_element_description_modal_link: View partnership category descriptions
+  
+  quality_element:
+    class:
+      name: Partnership Category
+  
+  quality_elements:
+    descriptions:
+      academic_learning: "Programs that support and reinforce school-day academic instruction within any subject area -  language arts, career and technical education, math, science/technology, visual and performing arts, physical education, health education, ethnic studies, social studies, and world languages - in alignment to the curriculum and academic goals for students and the district."
+      basic_needs: "Programs that support students and families in receiving and accessing resources related to hunger and food security, housing insecurity/homelessness, clothing, hygiene products, and other necessities."
+      college_career_readiness: "Programs that support preparing all students for college, career, and life, including supporting students through the college admission process, exposing them to careers through internships, and helping them to develop post-secondary plans."
+      culture_climate: "Programs that support the creation of an inclusive, welcoming school environment that honors the experiences of all students and families, and provides opportunity for building community, strong relationships, and an overall positive climate for learning and growth."
+      expanded_learning: "Programs that provide opportunities outside of the regular school day to practice and reinforce the skills students are learning in the classroom, to get exposure to new and different areas that may spark their interest and curiosity, and to cultivate strong social emotional skills and mindsets."
+      family_engagement_support: "Programs that support partnership with families and caregivers so that families can understand and support their child's academic and social emotional learning, easily navigate schools/district systems, and so that schools can leverage the assets and knowledge of families within the school community."
+      health_wellness: "Programs that meet students' physical and behavioral health needs so they can be in school and ready to learn."
+      racial_cultural_identity: "Programs that support strong, positive identity development and understanding of one's culture grounded in the experiences of a student's racial/cultural group, and their own individual experiences as members of particular racial/cultural groups."
+      readiness_transitions: "Programs that prepare and support students to move from early childhood into elementary, middle, and high school, and beyond into higher education and the workforce."
+      social_emotional: "Programs that support adults and students in developing 21st century skills and competencies such as self-management, social awareness, responsible decision-making, and building trusting relationships, in order to handle ourselves, our relationships, and our work/studies effectively. This is inclusive of programs supporting alternative discipline approaches such as restorative justice."
+
+  simple_form:
+    labels:
+      community_program:
+        primary_quality_element:
+          quality_element_id: Primary partnership category
+          service_type_ids: Primary service types
+        quality_element: Partnership category
