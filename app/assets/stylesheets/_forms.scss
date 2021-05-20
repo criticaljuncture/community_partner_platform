@@ -155,9 +155,10 @@ form.community-program {
     margin-top: 10px;
 
     .add-school-program {
-      position: absolute;
-      top: -18px;
-      right: 5px;
+      display: block;
+      float: right;
+      position: relative;
+      top: -10px;
     }
   }
 }
