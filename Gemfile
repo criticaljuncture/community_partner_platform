@@ -24,7 +24,7 @@ gem 'temping', '~> 3.2.0'
 gem 'attr_extras'
 
 # AWS email
-gem "aws-ses", "~> 0.5.0"
+gem 'aws-sdk-rails', '~> 3.6'
 
 # fast application loading
 gem 'bootsnap', require: false
@@ -52,7 +52,7 @@ gem 'coffee-rails'
 gem 'config'
 
 # user signin and auth checks
-gem "devise"
+gem "devise", "~> 4.7.0"
 gem "devise_invitable"
 
 # graphing
