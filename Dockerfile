@@ -35,21 +35,32 @@ RUN ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 COPY docker/web/service/web/run /etc/service/web/run
 COPY docker/web/my_init.d /etc/my_init.d
 
-RUN adduser app -uid 1000 --system
-RUN usermod -a -G docker_env app
+
+###############################
+### APP USER/GROUP
+###############################
+
+RUN addgroup --gid 1000 app &&\
+  adduser app -uid 1000 --gid 1000 --system &&\
+  usermod -a -G docker_env app
+
+# switch to app user automatically when exec into container
+RUN echo 'su - app -s /bin/bash' | tee -a /root/.bashrc
 
 
 ###############################
 ### GEMS & PASSENGER INSTALL
 ###############################
 
-RUN gem install bundler -v '~> 1.16.3'
+RUN gem install bundler
+
 WORKDIR /tmp
 COPY Gemfile /tmp/Gemfile
 COPY Gemfile.lock /tmp/Gemfile.lock
 RUN bundle install --system &&\
   passenger-config install-standalone-runtime &&\
   passenger start --runtime-check-only
+
 
 # docker cached layer build optimization:
 # caches the latest security upgrade versions
@@ -67,14 +78,11 @@ ENV WEB_PORT 3000
 ### APP
 ##################
 
-USER app
 COPY --chown=1000:1000 . /home/app/
 
 WORKDIR /home/app
 
 RUN SUBDOMAIN=dev SECRET_KEY_BASE=XXX DEVISE_SECRET_KEY=XXXXXXXXX RAILS_ENV=production rake assets:precompile
-
-USER root
 
 
 ##################
