@@ -95,6 +95,10 @@
   <%= f.input(:data_sharing_agreement, as: :boolean,
     public: policy.public_attribute?(:data_sharing_agreement)
   ) if render_field?(:community_program, :data_sharing_agreement) %>
+
+  <%= f.input(:levy_funded, as: :boolean,
+    public: policy.public_attribute?(:levy_funded)
+  ) if render_field?(:community_program, :levy_funded) %>
   
   <%= f.input :notes %>
 <% end %>

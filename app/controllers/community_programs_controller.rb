@@ -201,6 +201,7 @@ class CommunityProgramsController < ApplicationController
       :data_sharing_agreement,
       :merge_target,
       :board_approved_contract,
+      :levy_funded,
       :memorandum_of_understanding,
       :name,
       :notes,
