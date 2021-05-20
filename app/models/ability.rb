@@ -41,8 +41,24 @@ class Ability < BaseAbility
   end
 
   def school_manager_abilities
-    can :verify, CommunityProgram, school_id: @user.school_ids
-    can :view_district_internals, CommunityProgram, school_id: @user.school_ids
+    can :verify, :view_district_internals, CommunityProgram do |community_program|
+      community_program.school_ids.include? @user.school_ids
+    end
+
+    can :manage, CommunityProgram do |community_program|
+      community_program.school_ids.include? @user.school_ids
+    end
+
+    can :new, SchoolProgram
+    can [:create, :edit, :update, :delete, :toggle_active], SchoolProgram do
+      can?(:create, CommunityProgram) || can?(:edit, CommunityProgram)
+    end
+
+    can :manage, School, school_id: @user.school_ids
+
+    can :view_district_internals, Organization do |organization|
+      organization.schools.map(&:id).include?(@user.school_ids)
+    end
   end
 
   def organization_member_abilities
