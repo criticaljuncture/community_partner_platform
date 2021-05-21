@@ -1,15 +1,15 @@
-/.git
+.git
 
-/tmp
-!tmp/.gitkeep
+tmp
+!/tmp/.gitkeep
 
-/log
-!log/.gitkeep
+log
+!/log/.gitkeep
 
-/.bundle
+.bundle
 
 # Ignore our secret keys
-/.env
+.env
 
 # Ignore documentation
-/doc
+doc
