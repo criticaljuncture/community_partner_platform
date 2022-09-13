@@ -54,7 +54,7 @@ class Ability < BaseAbility
       can?(:create, CommunityProgram) || can?(:edit, CommunityProgram)
     end
 
-    can :manage, School, school_id: @user.school_ids
+    can :manage, School, id: @user.school_ids
 
     can :view_district_internals, Organization do |organization|
       organization.schools.map(&:id).include?(@user.school_ids)
