@@ -3,7 +3,7 @@
     <h2>Program Breakdown by Region</h2>
 
     <dl>
-      <% @overview_presenter.regions.each do |region| %>
+      <% @overview_presenter.regions.sort_by(&:name).each do |region| %>
         <dt><%= region.name %></dt>
         <dd><%= pluralize(region.community_programs_count, "program") %></dd>
       <% end %>
