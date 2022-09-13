@@ -8,10 +8,14 @@ class SchoolsOverviewPresenter < BasePresenter
   end
 
   def page_nav_tabs
-    tabs = [
-      ['Overview', '#overview'],
-      ['Schools', '#schools-table']
-    ]
+    tabs = []
+
+    if h.can?(:view, :school_overview_program_breakdown_by_region) ||
+      h.can?(:view, :school_overview_school_status)
+        tabs << ['Overview', '#overview']
+    end
+
+    tabs << ['Schools', '#schools-table']
 
     if h.can?(:view, :school_overview_community_school_element_breakdown)
       tabs << ['Community Program Breakdown', '#community-program-breakdown']

@@ -12,11 +12,11 @@
     <%= page_nav_tabs @overview_presenter.page_nav_tabs %>
 
     <div class="tab-content">
-      <div id="overview" class="tab-pane active">
+      <div id="overview" class="tab-pane <%= @overview_presenter.page_nav_tabs.first.last == "#overview" ? 'active' : '' %>">
         <%= render partial: 'overview' %>
       </div>
 
-      <div id="schools-table" class="tab-pane">
+      <div id="schools-table" class="tab-pane <%= @overview_presenter.page_nav_tabs.first.last == "#schools-table" ? 'active' : '' %>">
         <div class="loader loading"></div>
       </div>
 
