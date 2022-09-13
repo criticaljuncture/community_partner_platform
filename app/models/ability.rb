@@ -41,11 +41,9 @@ class Ability < BaseAbility
   end
 
   def school_manager_abilities
-    can :verify, :view_district_internals, CommunityProgram do |community_program|
-      community_program.school_ids.include? @user.school_ids
-    end
+    can :view_district_internals, CommunityProgram
 
-    can :manage, CommunityProgram do |community_program|
+    can :manage, :verify, CommunityProgram do |community_program|
       community_program.school_ids.include? @user.school_ids
     end
 
