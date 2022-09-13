@@ -21,6 +21,7 @@
     clear: both;
     margin-bottom: 5px;
     overflow: auto;
+    overflow-x: hidden;
     position: relative;
 
     &:last-child { border-bottom: 0; }
