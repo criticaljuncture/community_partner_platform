@@ -1,7 +1,7 @@
 <%
   header = "#{active ? 'Active' : 'Inactive'} Programs"
 
-  if active && can?(:new, CommunityProgram)
+  if active && can?(:new, CommunityProgram) && can?(:edit, @organization)
     link = link_to_gicon(
       'Add a Community Program',
       new_community_program_path(community_program: {
