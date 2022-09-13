@@ -200,6 +200,7 @@ class CommunityProgramsController < ApplicationController
   def community_program_params
     params.require(:community_program).permit(
       :alignment_agreement,
+      :creative_advantage_roster,
       :data_sharing_agreement,
       :merge_target,
       :board_approved_contract,
@@ -216,6 +217,7 @@ class CommunityProgramsController < ApplicationController
       :service_description,
       :student_population_id,
       :user_id,
+      :youth_services_programming_roster,
       day_ids: [],
       demographic_group_ids: [],
       ethnicity_culture_group_ids: [],

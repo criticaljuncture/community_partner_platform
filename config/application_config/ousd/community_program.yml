@@ -32,12 +32,15 @@ app_config:
         - :alignment_agreement
         - :data_sharing_agreement
         - :levy_funded
+        - :youth_services_programming_roster
+        - :creative_advantage_roster
 
     public_policy:
       percentage_complete: 0.75
       required_attributes: []
       public_attributes:
         - :grade_level_ids
+        - :grade_levels
         - :name
         - :quality_element
         - :service_description

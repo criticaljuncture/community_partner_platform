@@ -63,6 +63,7 @@ en:
       name: Community Program
 
     alignment_agreement: Alignment Agreement
+    creative_advantage_roster: Creative Advantage Roster
     data_sharing_agreement: Data Sharing Agreement
     days: Service Days
     demographic_groups: Target Demographic Groups
@@ -86,7 +87,7 @@ en:
     service_times: Service Times
     service_types: Service Types
     student_population: Student Population
-
+    youth_services_programming_roster: Youth Services Programming Roster
 
   date:
     datepicker:
@@ -212,7 +213,7 @@ en:
   service_type:
     class:
       name: Service Type
-      
+
   user:
     active: Active
     attended_orientation_at: Orientation Date

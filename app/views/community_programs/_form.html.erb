@@ -79,7 +79,7 @@
 
 <%= collapsible_field_set_tag "Internal Details", class: collapsed do %>
   <%= f.input :receives_district_funding, as: :boolean  %>
-  
+
   <%= f.input(:personal_services_contract, as: :boolean,
     public: policy.public_attribute?(:personal_services_contract)
   ) if render_field?(:community_program, :personal_services_contract) %>
@@ -99,6 +99,14 @@
   <%= f.input(:levy_funded, as: :boolean,
     public: policy.public_attribute?(:levy_funded)
   ) if render_field?(:community_program, :levy_funded) %>
-  
+
+  <%= f.input(:creative_advantage_roster, as: :boolean,
+    public: policy.public_attribute?(:creative_advantage_roster)
+  ) if render_field?(:community_program, :creative_advantage_roster) %>
+
+  <%= f.input(:youth_services_programming_roster, as: :boolean,
+    public: policy.public_attribute?(:youth_services_programming_roster)
+  ) if render_field?(:community_program, :youth_services_programming_roster) %>
+
   <%= f.input :notes %>
 <% end %>
