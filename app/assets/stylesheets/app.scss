@@ -6,7 +6,10 @@ $footer-bg-color: $gray-20;
   font-style: italic;
 }
 
-body, html { height: 100%; }
+body, html {
+  height: 100%;
+  overflow-x: hidden;
+}
 
 body {
   > .container {
