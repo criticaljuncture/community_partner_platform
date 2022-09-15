@@ -23,12 +23,12 @@
             <%= link_to_gicon('view',
               school_path(school.id),
               class: "btn btn-small btn-info",
-              icon: 'eye-open') if can? :show, School %>
+              icon: 'eye-open') if can? :show, school.school %>
 
             <%= link_to_gicon('edit',
               edit_school_path(school.id),
               class: "btn btn-small btn-primary",
-              icon: 'pencil') if can? :edit, School %>
+              icon: 'pencil') if can?(:update, school.school) %>
           </td>
         </tr>
       <% end %>
