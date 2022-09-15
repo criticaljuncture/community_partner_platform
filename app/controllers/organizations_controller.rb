@@ -67,7 +67,7 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
     authorize! :update, @organization
 
-    @organization.update_attributes!(
+    @organization.update!(
       organization_params.except(:verification_process)
     )
 
@@ -75,7 +75,7 @@ class OrganizationsController < ApplicationController
         can?(:verify, @organization)
 
       previously_needed_verified = @organization.verification_required?
-      @organization.update_attributes!(
+      @organization.update!(
         last_verified_at: Time.now,
         last_verified_by: current_user.id
       )

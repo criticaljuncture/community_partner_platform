@@ -25,13 +25,13 @@ class SchoolQualityIndicatorSubAreasController < ApplicationController
 
   def update
     @school_quality_indicator_sub_area = SchoolQualityIndicatorSubArea.find(params[:id])
-    @school_quality_indicator_sub_area.update_attributes(school_quality_indicator_sub_area_params)
+    @school_quality_indicator_sub_area.update(school_quality_indicator_sub_area_params)
 
     redirect_to school_quality_indicator_sub_area_path(@school_quality_indicator_sub_area)
   end
 
   private
-  
+
   def school_quality_indicator_sub_area_params
     params.require(:school_quality_indicator_sub_area).permit(:name)
   end

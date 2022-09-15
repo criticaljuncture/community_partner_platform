@@ -40,3 +40,6 @@ spec/examples.txt
 
 # Ignore local dev folders
 private/
+
+# Ignore generated assets
+public/assets

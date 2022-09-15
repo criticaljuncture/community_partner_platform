@@ -6,7 +6,7 @@ class CommunityProgramAuthorizationService
   end
 
   def make_public!
-    community_program.update_attributes!(
+    community_program.update!(
       approved_for_public: true,
       approved_for_public_on: DateTime.current,
       approved_for_public_by: User.current.id
@@ -14,7 +14,7 @@ class CommunityProgramAuthorizationService
   end
 
   def make_private!
-    community_program.update_attributes!(
+    community_program.update!(
       approved_for_public: false,
       approved_for_public_on: nil,
       approved_for_public_by: nil

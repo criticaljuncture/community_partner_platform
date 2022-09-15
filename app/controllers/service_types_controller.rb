@@ -32,7 +32,7 @@ class ServiceTypesController < ApplicationController
     @service_type = ServiceType.find(params[:id])
     authorize! :update, @service_type
 
-    @service_type.update_attributes(service_type_params)
+    @service_type.update(service_type_params)
 
     redirect_to service_type_path(@service_type)
   end

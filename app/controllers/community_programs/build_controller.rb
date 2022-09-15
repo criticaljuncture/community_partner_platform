@@ -24,7 +24,7 @@ class CommunityPrograms::BuildController < ApplicationController
       @community_program.last_verified_by = current_user.id
     end
 
-    @community_program.update_attributes(community_program_params)
+    @community_program.update(community_program_params)
 
     render_wizard @community_program
   end

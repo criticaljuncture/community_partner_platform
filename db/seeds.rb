@@ -74,7 +74,7 @@ quality_elements.each do |quality_element|
     identifier: quality_element[:identifier]
   )
 
-  ql.update_attributes(
+  ql.update(
     name: quality_element[:name],
     element_type: quality_element[:type]
   )

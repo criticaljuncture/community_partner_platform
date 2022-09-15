@@ -4,7 +4,7 @@ shared: &shared
   username: <%= ENV["MYSQL_PORT_3306_TCP_USERNAME"] || 'root' %>
   password: <%= ENV["MYSQL_PORT_3306_TCP_PASSWORD"] %>
   port: <%= ENV["MYSQL_PORT_3306_TCP_PORT"] || 3306 %>
-  host: '<%= ENV["MYSQL_PORT_3306_TCP_ADDR"] || '127.0.0.1' %>'
+  host: '<%= ENV["MYSQL_PORT_3306_TCP_ADDR"] || "127.0.0.1" %>'
   reconnect: true
   encoding: utf8
   local_infile: true

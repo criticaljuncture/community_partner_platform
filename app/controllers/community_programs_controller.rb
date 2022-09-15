@@ -93,13 +93,13 @@ class CommunityProgramsController < ApplicationController
 
     @community_program = CommunityProgramDecorator.decorate(@community_program)
 
-    @community_program.update_attributes!(community_program_params)
+    @community_program.update!(community_program_params)
 
     if params["commit"] == t('forms.buttons.save_verify') &&
         can?(:verify, @community_program)
 
       previously_needed_verified = @community_program.verification_required?
-      @community_program.update_attributes!(
+      @community_program.update!(
         last_verified_at: Time.now,
         last_verified_by: current_user.id
       )

@@ -6,7 +6,7 @@ class OrganizationAuthorizationService
   end
 
   def make_public!(options={})
-    organization.update_attributes!(
+    organization.update!(
       approved_for_public: true,
       approved_for_public_on: DateTime.current,
       approved_for_public_by: User.current.id
@@ -20,7 +20,7 @@ class OrganizationAuthorizationService
   end
 
   def make_private!
-    organization.update_attributes!(
+    organization.update!(
       approved_for_public: false,
       approved_for_public_on: nil,
       approved_for_public_by: nil

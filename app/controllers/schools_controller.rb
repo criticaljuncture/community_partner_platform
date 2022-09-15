@@ -46,7 +46,7 @@ class SchoolsController < ApplicationController
     @school = School.find(params[:id])
     authorize! :update, @school
 
-    @school.update_attributes!(school_params)
+    @school.update!(school_params)
 
     flash.notice = t('schools.flash_messages.save.success',
                      name: @school.name)

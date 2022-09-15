@@ -1,3 +1,4 @@
 application:
   canonical_hostname: 'https://dev.communitypartnerplatform.org'
   public_view_enabled: true
+  subdomain: <%= ENV["SUBDOMAIN"] || "dev" %>

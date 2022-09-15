@@ -47,7 +47,7 @@ class SchoolProgramsController < ApplicationController
     @school_program = SchoolProgram.find(params[:id])
     authorize! :update, @school_program
 
-    @school_program.update_attributes!(school_program_params)
+    @school_program.update!(school_program_params)
 
     # If the form didn't pass any params for one of the delegated methods
     # then we want to remove that association as it should now be delegating

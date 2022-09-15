@@ -1,14 +1,24 @@
 ##################
 ### BASE (FIRST)
 ##################
-FROM quay.io/criticaljuncture/baseimage:18.04
+FROM quay.io/criticaljuncture/baseimage:20.04
 
 
 ##################
 ### RUBY
 ##################
 
-RUN apt-get update && apt-get install -y ruby2.6 ruby2.6-dev
+ARG RUBY_VERSION=3.0-jemalloc
+
+# install ruby
+RUN apt update &&\
+   apt install -y \
+     # ruby
+     fullstaq-ruby-common fullstaq-ruby-${RUBY_VERSION} &&\
+   apt-get clean &&\
+   apt-get autoremove &&\
+   apt-get purge &&\
+   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
 
 
 ##################
@@ -16,7 +26,9 @@ RUN apt-get update && apt-get install -y ruby2.6 ruby2.6-dev
 ##################
 
 # libsqlite3-dev is dependency of the fast import gem
-RUN apt-get update && apt-get install -y build-essential git mysql-client libmysqlclient-dev libssl-dev libsqlite3-dev nodejs &&\
+RUN apt-get update && apt-get install -y \
+    build-essential git mysql-client libmysqlclient-dev \
+    libssl-dev libsqlite3-dev nodejs &&\
   apt-get clean &&\
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
 
@@ -40,12 +52,20 @@ COPY docker/web/my_init.d /etc/my_init.d
 ### APP USER/GROUP
 ###############################
 
-RUN addgroup --gid 1000 app &&\
-  adduser app -uid 1000 --gid 1000 --system &&\
+RUN adduser app -uid 1000 --system &&\
   usermod -a -G docker_env app
 
 # switch to app user automatically when exec into container
-RUN echo 'su - app -s /bin/bash' | tee -a /root/.bashrc
+RUN echo 'su app -s /bin/bash' | tee -a /root/.bashrc
+
+
+###############################
+### ADDITIONAL RUBY SETUP
+###############################
+
+# make available in default path
+ENV PATH="/usr/lib/fullstaq-ruby/versions/${RUBY_VERSION}/bin:${PATH}"
+RUN echo "PATH="${PATH}"" > /etc/environment
 
 
 ###############################
@@ -68,7 +88,7 @@ RUN bundle install --system &&\
 # but something we do often enough that the final unattended upgrade at the
 # end of this dockerfile isn't installing the entire world of security updates
 # since we set up the dockerfile for the project
-RUN apt-get update && unattended-upgrade -d
+# RUN apt-get update && unattended-upgrade -d
 
 ENV PASSENGER_MIN_INSTANCES 1
 ENV WEB_PORT 3000
@@ -92,6 +112,6 @@ RUN SUBDOMAIN=dev SECRET_KEY_BASE=XXX DEVISE_SECRET_KEY=XXXXXXXXX RAILS_ENV=prod
 
 # ensure all packages are as up to date as possible
 # installs all updates since we last bundled
-RUN apt-get update && unattended-upgrade -d
+# RUN apt-get update && unattended-upgrade -d
 
 ENV TERM=linux

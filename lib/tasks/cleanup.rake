@@ -23,7 +23,7 @@ namespace :cleanup do
   task :set_subdomain_for_current_users => :environment do
     User.all.each do |user|
       user.subdomain = 'ousd'
-      user.save(verify: false)
+      user.save(validate: false)
     end
   end
 
@@ -94,7 +94,7 @@ namespace :cleanup do
         program.active = false
         program.active_changed_by = community_program.active_changed_by
         program.active_changed_on = community_program.active_changed_on
-        program.save(verify: false)
+        program.save(validate: false)
       end
     end
   end
@@ -104,7 +104,7 @@ namespace :cleanup do
 
     users.each do |user|
       user.email = user.email.gsub('ousd.k12.ca.us', 'ousd.org')
-      user.save(verify: false)
+      user.save(validate: false)
     end
   end
 end

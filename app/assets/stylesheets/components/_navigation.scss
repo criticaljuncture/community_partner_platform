@@ -202,6 +202,7 @@ $nav-active-color: $green;
   position: fixed;
   text-align: right;
   top: 0px;
+  width: 100%;
   z-index: 1030; // same as .navbar-fixed-top
 
   .user-info {

@@ -33,7 +33,7 @@ class QualityElementsController < ApplicationController
     @quality_element = QualityElement.find(params[:id])
     authorize! :edit, @quality_element
 
-    @quality_element.update_attributes(quality_element_params)
+    @quality_element.update(quality_element_params)
 
     redirect_to quality_element_path(@quality_element)
   end
