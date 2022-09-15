@@ -146,8 +146,6 @@ group :development, :test do
   # live reloading of css & html via chrome browser extension
   gem 'guard', '~> 2.13.0'
 
-  gem 'rack-mini-profiler'
-
   # chrome inspector support
   #gem 'sass-rails-source-maps'
 
@@ -159,5 +157,5 @@ group :development, :test do
   #gem 'peek-performance_bar'
   #gem 'peek-rblineprof'
   #gem 'peek-dalli'
-  #gem 'rack-mini-profiler'
+  gem 'rack-mini-profiler'
 end
