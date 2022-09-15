@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   before_action :set_current_user
 
   # cancan
-  check_authorization :unless => :devise_controller?
+  check_authorization unless: :devise_controller?
 
   # active model serializers
   serialization_scope :current_user
@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
     if Rails.env.development?
       raise [current_user, current_ability, exception].inspect
     else
-      redirect_to root_url, :alert => exception.message
+      redirect_to root_url, alert: exception.message
     end
   end
 
@@ -48,12 +48,12 @@ class ApplicationController < ActionController::Base
 
   before_action do
     Honeybadger.context({
-      :user_id => current_user.id,
-      :user_email => current_user.email
+      user_id: current_user.id,
+      user_email: current_user.email
     }) if current_user
 
     Honeybadger.context({
-      :subdomain => request.subdomain
+      subdomain: request.subdomain
     })
   end
 

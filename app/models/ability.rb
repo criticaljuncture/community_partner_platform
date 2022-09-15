@@ -103,6 +103,7 @@ class Ability < BaseAbility
     end
   end
 
+  # all users have public abilities added in the base_ability
   def public_abilities
     can :read, School
     can :read, CommunityProgram
