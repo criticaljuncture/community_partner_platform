@@ -139,6 +139,9 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "database_cleaner"
+  gem "turbo_tests"
+  # rspec results for CI
+  gem "rspec_junit_formatter"
 
   gem "better_errors"
   gem "binding_of_caller"

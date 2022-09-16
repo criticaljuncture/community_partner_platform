@@ -1,20 +1,21 @@
-web:
-  extends:
-    file: shared.yml
-    service: web
-  environment:
-    - RAILS_ENV=development
+services:
+  web:
+    extends:
+      file: shared.yml
+      service: web
+    environment:
+      - RAILS_ENV=development
 
-mariadb:
-  extends:
-    file: shared.yml
-    service: mariadb
-  ports:
-    - "3306:3306"
+  mariadb:
+    extends:
+      file: shared.yml
+      service: mariadb
+    ports:
+      - "3306:3306"
 
-redis:
-  extends:
-    file: shared.yml
-    service: redis
-  ports:
-    - "6379:6379"
+  redis:
+    extends:
+      file: shared.yml
+      service: redis
+    ports:
+      - "6379:6379"

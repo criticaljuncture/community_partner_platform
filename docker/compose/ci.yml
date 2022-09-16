@@ -1,20 +1,23 @@
-web:
-  extends:
-    file: shared.yml
-    service: web
-  environment:
-    - RAILS_ENV=test
-    - MYSQL_DATABASE=community_partner_platform
-  links:
-    - mariadb
-    - redis
+services:
+  web:
+    extends:
+      file: shared.yml
+      service: web
+    environment:
+      - RAILS_ENV=test
+    image: $CI_IMAGE
+    volumes:
+      - /tmp/test-results:/home/app/tmp/test-results
+    links:
+      - mariadb
+      - redis
 
-mariadb:
-  extends:
-    file: shared.yml
-    service: mariadb
+  mariadb:
+    extends:
+      file: shared.yml
+      service: mariadb
 
-redis:
-  extends:
-    file: shared.yml
-    service: redis
+  redis:
+    extends:
+      file: shared.yml
+      service: redis

@@ -14,7 +14,7 @@ development:
 
 test:
   <<: *shared
-  database: community_partner_platform_test
+  database: community_partner_platform_test<%= ENV['TEST_ENV_NUMBER'] == "1" ? "" : ENV['TEST_ENV_NUMBER'] %>
 
 staging:
   <<: *shared

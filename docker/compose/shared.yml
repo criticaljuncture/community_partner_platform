@@ -1,28 +1,29 @@
-web:
-  image: 497017152678.dkr.ecr.us-east-1.amazonaws.com/community-partner-platform:latest
-  ports:
-    - "3000:3000"
-  expose:
-    - "3000"
-  environment:
-    - WEB_PORT=3000
-    - PASSENGER_MIN_INSTANCES=2
-    - MYSQL_PORT_3306_TCP_ADDR=mariadb
-    - REDIS_PORT_6379_TCP_ADDR=redis
-    - HONEYBADGER_API_KEY=''
-    - SUBDOMAIN=ousd
-    - SECRET_KEY_BASE=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    - DEVISE_SECRET_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-  restart: always
+services:
+  web:
+    image: 497017152678.dkr.ecr.us-east-1.amazonaws.com/community-partner-platform:latest
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    environment:
+      - WEB_PORT=3000
+      - PASSENGER_MIN_INSTANCES=2
+      - MYSQL_PORT_3306_TCP_ADDR=mariadb
+      - REDIS_PORT_6379_TCP_ADDR=redis
+      - HONEYBADGER_API_KEY=''
+      - SUBDOMAIN=ousd
+      - SECRET_KEY_BASE=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+      - DEVISE_SECRET_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    restart: always
 
-mariadb:
-  image: mariadb:10.1
-  expose:
-    - "3306"
-  environment:
-    - MYSQL_ALLOW_EMPTY_PASSWORD='yes'
+  mariadb:
+    image: mariadb:10.1
+    expose:
+      - "3306"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD='yes'
 
-redis:
-  image: redis:4.0-alpine
-  expose:
-    - "6379"
+  redis:
+    image: redis:4.0-alpine
+    expose:
+      - "6379"
