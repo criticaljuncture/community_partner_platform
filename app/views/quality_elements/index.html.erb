@@ -3,7 +3,9 @@
 <div class="row-fluid">
   <div class="span12">
     <%= page_header(I18n.t('quality_element.class.name').pluralize, "") do %>
-      <%= link_to "Create New #{I18n.t('quality_element.class.name')}", new_quality_element_path, class: "btn btn-primary" %>
+      <%= link_to("Create New #{I18n.t('quality_element.class.name')}",
+        new_quality_element_path,
+        class: "btn btn-primary") if can?(:create, QualityElement) %>
     <% end %>
 
     <div class="table_wrapper">
@@ -29,9 +31,9 @@
                 <%= link_to 'view',
                   quality_element_path(element),
                   class: "btn btn-small btn-info" %>
-                <%= link_to 'edit',
+                <%= link_to('edit',
                   edit_quality_element_path(element),
-                  class: "btn btn-small btn-primary" %>
+                  class: "btn btn-small btn-primary") if can?(:edit, QualityElement) %>
               </td>
             </tr>
           <% end %>
@@ -40,5 +42,3 @@
     </div>
   </div>
 </div>
-
-

@@ -6,7 +6,9 @@
 <div class="row-fluid">
   <div class="span12">
     <%= page_header(@quality_element.name, "") do %>
-      <%= link_to 'Edit', edit_quality_element_path(@quality_element), class: "btn btn-primary" %>
+      <%= link_to('Edit',
+        edit_quality_element_path(@quality_element),
+        class: "btn btn-primary") if can?(:edit, QualityElement) %>
     <% end %>
 
     <div class="table_wrapper">
@@ -30,7 +32,7 @@
     <div class="table_wrapper">
       <% @quality_element.school_programs.group_by(&:school).each do |school, school_programs| %>
         <% next unless school %>
-        
+
         <h2><%= link_to school.try(:name), school_path(school) %></h2>
 
         <table class="table table-striped">
