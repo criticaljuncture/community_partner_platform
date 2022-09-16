@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 module ApplicationConfig
   class ValidationTest < Struct.new(:favorite_color, :name)
