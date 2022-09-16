@@ -7,7 +7,7 @@ gem 'rails', '6.0.6'
 gem 'mysql2'
 
 # production app server
-gem 'passenger', '6.0.4'
+gem 'passenger', '6.0.14'
 
 # Memory based static tables
 gem 'active_hash'
@@ -126,6 +126,11 @@ gem "underscore-rails"
 # multi-step wizard like controllers
 gem "wicked"
 
+
+# lock version until rails 7 update for psych 4 compat (default in ruby 3.1)
+gem 'psych', '< 4'
+# remove in Rails 7 - ruby 3.1 compat
+gem 'net-smtp', require: false
 
 group :development, :test do
   # ascii table values - test multiple cases via tables for clarity

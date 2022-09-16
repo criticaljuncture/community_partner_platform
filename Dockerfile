@@ -8,7 +8,7 @@ FROM quay.io/criticaljuncture/baseimage:20.04
 ### RUBY
 ##################
 
-ARG RUBY_VERSION=3.0-jemalloc
+ARG RUBY_VERSION=3.1-jemalloc
 
 # install ruby
 RUN apt update &&\
@@ -77,7 +77,7 @@ RUN gem install bundler
 WORKDIR /tmp
 COPY Gemfile /tmp/Gemfile
 COPY Gemfile.lock /tmp/Gemfile.lock
-RUN bundle install --system &&\
+RUN bundle install &&\
   passenger-config install-standalone-runtime &&\
   passenger start --runtime-check-only
 
