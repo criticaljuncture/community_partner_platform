@@ -131,6 +131,8 @@ gem "wicked"
 gem 'psych', '< 4'
 # remove in Rails 7 - ruby 3.1 compat
 gem 'net-smtp', require: false
+gem 'net-pop', require: false
+gem 'net-imap', require: false
 
 group :development, :test do
   # ascii table values - test multiple cases via tables for clarity
