@@ -1,6 +1,9 @@
 class GeoJsonSerializer < BaseSerializer
   attributes :type, :features
 
+  def self.model_name
+  end
+
   def type
     "FeatureCollection"
   end
