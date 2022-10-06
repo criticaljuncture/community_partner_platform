@@ -7,3 +7,6 @@ en:
       abbreviation: 'Demo'
     layout:
       footer: ''
+    public:
+      home_page:
+        description: "<p>This is a demonstation of the Community Partner Platform.<p>"
