@@ -17,6 +17,8 @@ class QualityElement < ApplicationRecord
   scope :programmatic, -> { where(element_type: 'programmatic') }
   scope :foundational, -> { where(element_type: 'foundational') }
 
+  before_create :generate_identifier
+
   def default_display
     self.name
   end
@@ -34,10 +36,16 @@ class QualityElement < ApplicationRecord
   end
 
   def description
-    I18n.t("quality_elements.descriptions.#{identifier}")
+    I18n.t("quality_elements.descriptions.#{identifier}") || ""
   end
 
   def self.element_types
     %w(programmatic foundational)
+  end
+
+  private
+
+  def generate_identifier
+    self.identifier = self.name.downcase.gsub(/[^\w]+/, "_").gsub(/_\z/, '')
   end
 end
