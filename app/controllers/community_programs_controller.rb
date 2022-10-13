@@ -1,9 +1,7 @@
 class CommunityProgramsController < ApplicationController
 
   def index
-    @community_programs = CommunityProgram.active
-      .joins(:schools)
-      .where(schools: {id: current_user.school_ids})
+    @community_programs = CommunityProgram.active.accessible_by(current_ability)
     authorize! :index, CommunityProgram
   end
 

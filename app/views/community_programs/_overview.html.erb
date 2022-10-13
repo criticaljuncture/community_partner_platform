@@ -5,7 +5,7 @@
   <dd><%= community_programs.count %></dd>
 
   <dt>Schools with Programs</dt>
-  <dd><%= community_programs.map{|cp| cp.school_id}.flatten.uniq.count %>/<%= School.count %></dd>
+  <dd><%= community_programs.map{|cp| cp.schools.map(&:id)}.flatten.uniq.count %>/<%= School.count %></dd>
 
   <dt>Organizations with Programs</dt>
   <dd><%= community_programs.map{|cp| cp.organization_id}.flatten.uniq.count %>/<%= Organization.count %></dd>
