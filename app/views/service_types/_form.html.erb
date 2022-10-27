@@ -1,6 +1,8 @@
 <%= f.input :name %>
-<%= f.input :quality_elements,
-  collection: QualityElement.accessible_by(current_ability).order(:name) %>
+<%= f.input :quality_element_ids,
+  collection: QualityElement.accessible_by(current_ability).order(:name),
+  label: t("quality_element.class.name"),
+  input_html: { multiple: true } %>
 
 <%= f.submit t('forms.buttons.save'),
   class: "btn btn-large btn-success" %>

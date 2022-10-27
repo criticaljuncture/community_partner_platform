@@ -42,8 +42,10 @@ class ServiceTypesController < ApplicationController
   def service_type_params
     params.
       require(:service_type).
-      permit(:name,
-             quality_element_ids: [])
+      permit(
+        :name,
+        quality_element_ids: []
+      )
   end
 
 end
