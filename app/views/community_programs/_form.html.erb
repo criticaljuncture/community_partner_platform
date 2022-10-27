@@ -32,7 +32,9 @@
     <%= element.input :quality_element_id,
       as: :select,
       collection: QualityElement.accessible_by(current_ability).
-        programmatic.sort_by(&:name),
+        programmatic.
+        with_service_types.
+        sort_by(&:name),
       input_html: {class: 'wrap'},
       wrapper_html: {class: "#{f.object.errors.present? && f.object.errors[:primary_quality_element] ? 'has-error' : ''}"},
       public: policy.public_attribute?(:quality_element_id) %>

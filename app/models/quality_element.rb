@@ -17,6 +17,13 @@ class QualityElement < ApplicationRecord
   scope :programmatic, -> { where(element_type: 'programmatic') }
   scope :foundational, -> { where(element_type: 'foundational') }
 
+  # only return quality elements that have service types
+  scope :with_service_types, -> {
+    joins(:quality_element_service_types).
+    where.not(quality_element_service_types: {service_types: nil}).
+    uniq
+  }
+
   before_create :generate_identifier
 
   def default_display
