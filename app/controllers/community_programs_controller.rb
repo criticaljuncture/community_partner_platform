@@ -38,10 +38,16 @@ class CommunityProgramsController < ApplicationController
 
     # add service types
     if @community_program.primary_quality_element
-      if community_program_params[:primary_quality_element_attributes][:service_type_ids].present?
-        @community_program.primary_quality_element.service_type_ids = community_program_params[:primary_quality_element_attributes][:service_type_ids].reject{|x| x.blank?}
-      elsif community_program_params[:primary_quality_element][:service_type_ids].present?
-        @community_program.primary_quality_element.service_type_ids = community_program_params[:primary_quality_element][:service_type_ids].reject{|x| x.blank?}
+      if community_program_params.dig(:primary_quality_element_attributes, :service_type_ids)
+        service_type_ids = community_program_params.dig(:primary_quality_element_attributes, :service_type_ids).reject{|x| x.blank?}
+        if service_type_ids.present?
+          @community_program.primary_quality_element.service_type_ids = service_type_ids
+        end
+      elsif community_program_params.dig(:primary_quality_element, :service_type_ids)
+        service_type_ids = community_program_params.dig(:primary_quality_element, :service_type_ids).reject{|x| x.blank?}
+        if service_type_ids.present?
+          @community_program.primary_quality_element.service_type_ids = service_type_ids
+        end
       end
     end
 
