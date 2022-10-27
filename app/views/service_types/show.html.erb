@@ -24,7 +24,7 @@
         <tbody>
           <% @service_type.quality_elements.sort_by(&:name).each do |quality_element| %>
             <tr>
-              <td><%= link_to quality_element.name, quality_element_path(quality_element_path) %></td>
+              <td><%= link_to quality_element.name, quality_element_path(quality_element) %></td>
               <td class="center"><%= @service_type.schools_for_quality_element_service_type(quality_element).count %></td>
               <td class="center"><%= @service_type.organizations_for_quality_element_service_type(quality_element).count %></td>
               <td class="center"><%= @service_type.community_programs_for_quality_element_service_type(quality_element).count %></td>
