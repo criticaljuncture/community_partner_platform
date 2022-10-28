@@ -21,10 +21,10 @@ app_config:
           fields:
             - :days
             - :user
-    
+
     fields:
       fields_to_skip: []
-            
+
     public_policy:
       percentage_complete: 0.40
       required_attributes: []
@@ -33,6 +33,7 @@ app_config:
         - :ethnicity_culture_group_ids
         - :grade_level_ids
         - :name
+        - :url
         - :quality_element
         - :service_description
         - :service_time_ids

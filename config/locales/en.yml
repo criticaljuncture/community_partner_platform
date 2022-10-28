@@ -87,6 +87,7 @@ en:
     service_times: Service Times
     service_types: Service Types
     student_population: Student Population
+    url: URL
     youth_services_programming_roster: Youth Services Programming Roster
 
   date:

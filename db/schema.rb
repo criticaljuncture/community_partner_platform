@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_13_203029) do
+ActiveRecord::Schema.define(version: 2022_10_28_174812) do
 
   create_table "community_program_demographic_groups", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "demographic_group_id"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 2022_09_13_203029) do
     t.boolean "levy_funded"
     t.boolean "creative_advantage_roster"
     t.boolean "youth_services_programming_roster"
+    t.string "url"
     t.index ["active"], name: "index_community_programs_on_active"
     t.index ["last_verified_by"], name: "index_community_programs_on_last_verified_by"
     t.index ["organization_id"], name: "index_community_programs_on_organization_id"

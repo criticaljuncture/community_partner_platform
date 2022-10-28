@@ -220,6 +220,7 @@ class CommunityProgramsController < ApplicationController
       :secondary_quality_element_id,
       :service_description,
       :student_population_id,
+      :url,
       :user_id,
       :youth_services_programming_roster,
       day_ids: [],

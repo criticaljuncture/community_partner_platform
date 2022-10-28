@@ -23,6 +23,9 @@
   <%= f.input :name,
     public: policy.public_attribute?(:name) %>
 
+  <%= f.input :url,
+    public: policy.public_attribute?(:url) %>
+
   <%= f.input :service_description,
     public: policy.public_attribute?(:service_description) %>
 

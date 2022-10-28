@@ -33,6 +33,7 @@ app_config:
         - :ethnicity_culture_group_ids
         - :grade_level_ids
         - :name
+        - :url
         - :quality_element
         - :service_description
         - :service_time_ids
