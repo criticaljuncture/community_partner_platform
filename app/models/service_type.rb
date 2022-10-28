@@ -1,5 +1,5 @@
 class ServiceType < ApplicationRecord
-  has_many :quality_element_service_types
+  has_many :quality_element_service_types, dependent: :destroy
   has_many :quality_elements, through: :quality_element_service_types
 
   has_many :community_program_quality_element_service_types
