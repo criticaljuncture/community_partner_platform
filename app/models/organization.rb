@@ -11,14 +11,29 @@ class Organization < ApplicationRecord
   after_update :clear_associated_cache
 
   has_many :community_programs
-
   has_many :schools, through: :community_programs
+
   has_many :users
+
+  has_one :cte_quality_element,
+    ->{ where element_type: "cte"} ,
+    class_name: 'OrganizationQualityElement'
+  has_many :cte_service_types,
+    through: :cte_quality_element,
+    source: :service_types,
+    dependent: :destroy
+
+  has_many :cte_event_type_organizations
+  has_many :cte_event_types,
+    through: :cte_event_type_organizations
+
+  accepts_nested_attributes_for :cte_quality_element, reject_if: proc {|attr| attr['quality_element_id'].blank? }
 
   belongs_to :legal_status
   belongs_to :primary_contact, foreign_key: :user_id, class_name: 'User'
   belongs_to :verifier, foreign_key: :last_verified_by, class_name: 'User'
   belongs_to :public_authorizer, foreign_key: :approved_for_public_by, class_name: 'User'
+
 
   scope :ousd, -> { where("organizations.name LIKE 'OUSD%'") }
   scope :non_ousd, -> { where("organizations.name NOT LIKE 'OUSD%'") }

@@ -49,7 +49,7 @@ app_config:
         options:
           presence: true
       -
-        attribute: :services_description  
+        attribute: :services_description
         options:
           presence: true
 

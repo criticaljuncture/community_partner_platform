@@ -26,6 +26,9 @@ app_config:
         - :memorandum_of_understanding
         - :alignment_agreement
         - :data_sharing_agreement
+        - :participates_in_cte
+        - :cte_event_type_ids
+        - :cte_quality_element_attributes
 
     public_policy:
       percentage_complete: 0.75

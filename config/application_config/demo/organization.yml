@@ -19,9 +19,12 @@ app_config:
             - :total_cost
             - :url
             - :zip_code
-    
+
     fields:
-      fields_to_skip: []
+      fields_to_skip:
+        - :participates_in_cte
+        - :cte_event_type_ids
+        - :cte_quality_element_attributes
 
     public_policy:
       percentage_complete: 0.75

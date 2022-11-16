@@ -14,8 +14,9 @@ class QualityElement < ApplicationRecord
   validates :element_type, presence: true,
     inclusion: {in: Proc.new { QualityElement.element_types }}
 
-  scope :programmatic, -> { where(element_type: 'programmatic') }
+  scope :cte, -> { where(element_type: 'cte') }
   scope :foundational, -> { where(element_type: 'foundational') }
+  scope :programmatic, -> { where(element_type: 'programmatic') }
 
   # only return quality elements that have service types
   scope :with_service_types, -> {

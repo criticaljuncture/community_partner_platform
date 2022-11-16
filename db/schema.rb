@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_28_174812) do
+ActiveRecord::Schema.define(version: 2022_11_14_171549) do
 
   create_table "community_program_demographic_groups", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "demographic_group_id"
@@ -124,6 +124,20 @@ ActiveRecord::Schema.define(version: 2022_10_28_174812) do
     t.index ["user_id"], name: "index_community_programs_on_user_id"
   end
 
+  create_table "cte_event_type_organizations", charset: "utf8", force: :cascade do |t|
+    t.integer "cte_event_type_id"
+    t.integer "organization_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cte_event_types", charset: "utf8", force: :cascade do |t|
+    t.string "name"
+    t.boolean "active", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "days", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at"
@@ -166,6 +180,21 @@ ActiveRecord::Schema.define(version: 2022_10_28_174812) do
     t.datetime "updated_at"
   end
 
+  create_table "organization_quality_element_service_types", charset: "utf8", force: :cascade do |t|
+    t.integer "organization_quality_element_id"
+    t.integer "service_type_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "organization_quality_elements", charset: "utf8", force: :cascade do |t|
+    t.integer "organization_id"
+    t.integer "quality_element_id"
+    t.string "element_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "organizations", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at"
@@ -197,6 +226,7 @@ ActiveRecord::Schema.define(version: 2022_10_28_174812) do
     t.boolean "memorandum_of_understanding"
     t.boolean "alignment_agreement"
     t.boolean "data_sharing_agreement"
+    t.boolean "participates_in_cte", default: false
     t.index ["last_verified_by"], name: "index_organizations_on_last_verified_by"
     t.index ["legal_status_id"], name: "index_organizations_on_legal_status_id"
     t.index ["user_id"], name: "index_organizations_on_user_id"

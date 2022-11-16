@@ -7,6 +7,9 @@
         <th>Service Types</th>
         <th class="center">Active Schools</th>
         <th class="center">Active Programs</th>
+        <th class="center">CTE Participation</th>
+        <th>CTE Pathways</th>
+        <th>CTE Event Interest</th>
         <th class="sorter-false filter-false"></th>
       </tr>
     </thead>
@@ -22,10 +25,19 @@
             <%= organization.service_types.map{|cp| cp.name}.join(', <br />').html_safe %>
           </td>
           <td class="center">
-            <%= organization.schools.uniq.count %>
+            <%= @counts_by_org.dig(organization.id, :school_count) || 0 %>
           </td>
           <td class="center">
-            <%= organization.community_programs.count %>
+            <%= @counts_by_org.dig(organization.id, :program_count) || 0 %>
+          </td>
+          <td class="center">
+            <%= boolean_yes_no(organization.participates_in_cte?) %>
+          </td>
+          <td>
+            <%= organization.cte_service_types.map{|cp| cp.name}.join(', <br />').html_safe %>
+          </td>
+          <td>
+            <%= organization.cte_event_types.map{|cp| cp.name}.join(', <br />').html_safe %>
           </td>
           <td class="center buttons">
             <%= link_to_gicon 'view',

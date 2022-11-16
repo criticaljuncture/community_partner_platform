@@ -26,4 +26,14 @@
     only_public_attrs: false,
     options: {class: 'organization-description'},
   ) %>
+
+  <% if @organization.participates_in_cte? %>
+    <%= columnar_attributes_display(
+      header: 'Career/Technical Education',
+      model: @organization,
+      attrs: %i(cte_event_types cte_service_types),
+      only_public_attrs: false,
+      options: {class: 'organization-cte'},
+    ) %>
+  <% end %>
 </div>

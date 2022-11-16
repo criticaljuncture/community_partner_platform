@@ -60,7 +60,7 @@
   <%= f.input(:alignment_agreement, as: :boolean,
     public: policy.public_attribute?(:alignment_agreement)
   ) if render_field?(:organization, :alignment_agreement) %>
-  
+
   <%= f.input(:data_sharing_agreement, as: :boolean,
     public: policy.public_attribute?(:data_sharing_agreement)
   ) if render_field?(:organization, :data_sharing_agreement) %>
@@ -87,6 +87,42 @@
           class: "hidden" %>
   <% end %>
 
+<% end %>
+
+<% if render_field?(:organization, :participates_in_cte) %>
+  <%= field_set_tag 'Career/Technical Education' do %>
+    <%= f.input(:participates_in_cte, as: :select,
+      label: "Participates in CTE",
+      public: policy.public_attribute?(:participates_in_cte),
+      include_blank: false,
+      input_html: {value: @organization.participates_in_cte ? 1 : 0}
+    ) %>
+
+    <%= f.simple_fields_for :cte_quality_element do |element| %>
+      <%= element.hidden_field :quality_element_id,
+        value: QualityElement.cte.first.id %>
+
+      <%= element.input :service_type_ids,
+        as: :columized_checkboxes,
+        collection: ServiceType.accessible_by(current_ability).
+          includes(:quality_elements).
+          where(quality_elements:
+            {id: QualityElement.cte.first.id}
+          ).
+          sort_by(&:name),
+        columns: 2,
+        label: "CTE Pathway",
+        public: policy.public_attribute?(:cte_service_type_ids)  %>
+    <% end %>
+
+    <%= f.input :cte_event_type_ids,
+      as: :columized_checkboxes,
+      collection: CteEventType.accessible_by(current_ability).
+        sort_by(&:name),
+      columns: 2,
+      label: "CTE Event Interest",
+      public: policy.public_attribute?(:cte_event_type_ids)  %>
+  <% end %>
 <% end %>
 
 <% if can?(:manage_district_details, :organization) %>

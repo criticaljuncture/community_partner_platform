@@ -10,10 +10,14 @@ module FieldsHelper
         model = :community_program
       end
     end
-    
+
     # properly handle rendering question mark ('eh') methods/fields
     field = field.to_s.gsub('?', '').to_sym
-    
-    ! Settings.app_config[model].fields.fields_to_skip.include?(field.to_sym)  
+
+    ! Settings.app_config[model].fields.fields_to_skip.include?(field.to_sym)
+  end
+
+  def boolean_yes_no(val)
+    val.is_a?(TrueClass) ? I18n.t("app.yes") : I18n.t("app.no")
   end
 end

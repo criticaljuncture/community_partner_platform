@@ -32,6 +32,8 @@ class Ability < BaseAbility
     can :view_district_internals, Organization
     can :make_public, Organization
 
+    can :manage, CteEventType
+
     can :manage, QualityElement
     can :manage, ServiceType
     can :read, :organization_users
