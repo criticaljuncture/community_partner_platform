@@ -28,6 +28,7 @@ app_config:
         - :data_sharing_agreement
         - :participates_in_cte
         - :cte_event_type_ids
+        - :cte_notes
         - :cte_quality_element_attributes
 
     public_policy:

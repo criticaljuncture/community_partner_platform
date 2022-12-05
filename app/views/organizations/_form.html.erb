@@ -122,6 +122,11 @@
       columns: 2,
       label: "CTE Event Interest",
       public: policy.public_attribute?(:cte_event_type_ids)  %>
+
+    <%= f.input :cte_notes,
+      as: :text,
+      label: "CTE Notes",
+      public: policy.public_attribute?(:cte_notes)  %>
   <% end %>
 <% end %>
 

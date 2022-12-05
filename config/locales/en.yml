@@ -113,6 +113,7 @@ en:
     board_approved_contract: Board approved contract
     city_state_zip: City, State ZIP
     cte_event_types: CTE event interest
+    cte_notes: CTE notes
     cte_service_types: CTE pathway
     data_sharing_agreement: Data sharing agreement
     last_verified: Last verified

@@ -194,6 +194,7 @@ class OrganizationsController < ApplicationController
 
   def cte_params
     [
+      :cte_notes,
       :participates_in_cte,
       cte_event_type_ids: [],
       cte_quality_element_attributes: [
