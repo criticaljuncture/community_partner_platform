@@ -45,6 +45,10 @@ class OrganizationsController < ApplicationController
 
     @organization.user_ids_to_assign = users_to_assign.map(&:id)
 
+    # remove cte quality element unless participating
+    # form automatically adds the only cte quality element
+    @organization.cte_quality_element = nil unless @organization.participates_in_cte?
+
     ActiveRecord::Base.transaction do
       begin
         @organization.save!
