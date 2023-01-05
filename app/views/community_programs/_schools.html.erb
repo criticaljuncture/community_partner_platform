@@ -1,7 +1,7 @@
 <%= columnar_table_block 'Schools',
   auto_table: false, class: 'school-programs' do %>
 
-  <% school_programs.each do |school_program| %>
+  <% school_programs.sort_by{|sp| sp.school.name}.each do |school_program| %>
     <div class="columnar-table-block-header">
       <h5>
         <%= link_to school_program.school.name,
