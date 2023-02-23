@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_05_192549) do
+ActiveRecord::Schema.define(version: 2023_02_22_171923) do
 
   create_table "community_program_demographic_groups", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "demographic_group_id"
@@ -180,7 +180,30 @@ ActiveRecord::Schema.define(version: 2022_12_05_192549) do
     t.datetime "updated_at"
   end
 
-  create_table "organization_quality_element_service_types", charset: "utf8", force: :cascade do |t|
+  create_table "locations", id: :integer, charset: "utf8", force: :cascade do |t|
+    t.string "name"
+    t.integer "region_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "state_code"
+    t.boolean "active", default: true
+    t.string "site_code"
+    t.string "site_type"
+    t.string "site_type_norm"
+    t.string "address"
+    t.string "city"
+    t.string "zip_code"
+    t.string "grades_served"
+    t.string "low_grade"
+    t.string "high_grade"
+    t.float "lat"
+    t.float "lng"
+    t.string "type", default: "School"
+    t.index ["active"], name: "index_schools_on_active_and_direct_funded_charter_school"
+    t.index ["active"], name: "index_schools_on_direct_funded_charter_school_and_active"
+    t.index ["site_code"], name: "index_locations_on_site_code", unique: true
+    t.index ["state_code"], name: "index_locations_on_state_code", unique: true
+  end
     t.integer "organization_quality_element_id"
     t.integer "service_type_id"
     t.datetime "created_at", precision: 6, null: false
@@ -333,30 +356,6 @@ ActiveRecord::Schema.define(version: 2022_12_05_192549) do
     t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "schools", id: :integer, charset: "utf8", force: :cascade do |t|
-    t.string "name"
-    t.integer "region_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "state_code"
-    t.boolean "active", default: true
-    t.string "site_code"
-    t.string "site_type"
-    t.string "site_type_norm"
-    t.string "address"
-    t.string "city"
-    t.string "zip_code"
-    t.string "grades_served"
-    t.string "low_grade"
-    t.string "high_grade"
-    t.float "lat"
-    t.float "lng"
-    t.index ["active"], name: "index_schools_on_active_and_direct_funded_charter_school"
-    t.index ["active"], name: "index_schools_on_direct_funded_charter_school_and_active"
-    t.index ["site_code"], name: "index_schools_on_site_code", unique: true
-    t.index ["state_code"], name: "index_schools_on_state_code", unique: true
   end
 
   create_table "service_times", id: :integer, charset: "utf8", force: :cascade do |t|

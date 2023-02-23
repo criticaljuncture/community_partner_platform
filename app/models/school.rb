@@ -1,4 +1,4 @@
-class School < ApplicationRecord
+class School < Location
   include SchoolAudit
 
   has_many :school_programs
@@ -11,9 +11,6 @@ class School < ApplicationRecord
   has_many :users, through: :user_schools
 
   belongs_to :region
-
-  default_scope -> { where(active: true) }
-
 
   def ethnicity_culture_groups_with_programs
     community_programs.map{|cp| cp.ethnicity_culture_groups}.flatten.compact.uniq
