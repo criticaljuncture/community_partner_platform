@@ -1,0 +1,19 @@
+<%= breadcrumb [
+  ["Events", events_path],
+  ["Create", ""]
+] %>
+
+<%= page_header("Create New Event", "icon-cpp-event-calendar",
+  wrapper_class: "events") %>
+
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+    <div class="form_wrapper">
+      <%= simple_form_for @event, method: :post,
+        html: {class: "form-horizontal event"},
+        wrapper: :horizontal_form do |f| %>
+          <%= render partial: "form", locals: {f: f} %>
+      <% end %>
+    </div>
+  </div>
+</div>

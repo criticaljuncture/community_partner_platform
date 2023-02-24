@@ -4,10 +4,12 @@ module FieldsHelper
       model = model
     else
       case model.class.name.underscore.to_sym
-      when :organization, :organization_decorator
-        model = :organization
+      when :event, :event_decorator
+        model = :event
       when :community_program, :community_program_decorator
         model = :community_program
+      when :organization, :organization_decorator
+        model = :organization
       end
     end
 

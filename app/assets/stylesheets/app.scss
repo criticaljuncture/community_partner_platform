@@ -94,6 +94,11 @@ dl.horizontal_stack {
   }
 }
 
+ol {
+  list-style: none;
+  padding-left: 10px;
+}
+
 .danger { color: $red-dark; }
 
 .hide { display: none; }

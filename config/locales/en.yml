@@ -98,12 +98,32 @@ en:
       default: "%m/%d/%Y"
       long: '%B %d, %Y'
 
+  events:
+    class:
+      name: Event
+
+    description: Description
+    end_date: End date
+    name: Event name
+    notes: Notes
+    start_date: Start date
+
+    flash_messages:
+      create:
+        success: Successfully created '%{name}'
+      save:
+        success: Successfully saved '%{name}'
+
   invitations:
     accepted: 'Accepted <br>'
     sent: 'Sent %{sent_at} <br>'
     not_sent: 'Not Sent <br>'
     resend: 'Resend Invitation'
     send: 'Invite to CPP'
+
+  locations:
+    class:
+      name: Location
 
   organizations:
     class:

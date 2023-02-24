@@ -22,24 +22,31 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <% if current_user %>
-        <li class="nav-item <%= active_for_controller('schools') %>">
-          <%= icon_link_to 'Schools',
-            schools_path,
-            class: "single-line",
-            icon_class: "icon-cpp-school" %>
-        </li>
-        <li class="nav-item <%= active_for_controller('community_programs') %>">
-          <%= icon_link_to 'Community Programs',
-            community_programs_path,
-            icon_class: "icon-cpp-handshake",
-            nav_label_class: "community_partnership" %>
-        </li>
-        <li class="nav-item <%= active_for_controller('organizations') %>">
-          <%= icon_link_to 'Partner Organizations',
-            organizations_path,
-            icon_class: "icon-cpp-small-business",
-            nav_label_class: "organization" %>
-        </li>
+          <li class="nav-item <%= active_for_controller('schools') %>">
+            <%= icon_link_to 'Schools',
+              schools_path,
+              class: "single-line",
+              icon_class: "icon-cpp-school" %>
+          </li>
+          <li class="nav-item <%= active_for_controller('community_programs') %>">
+            <%= icon_link_to 'Community Programs',
+              community_programs_path,
+              icon_class: "icon-cpp-handshake",
+              nav_label_class: "community_partnership" %>
+          </li>
+          <li class="nav-item <%= active_for_controller('organizations') %>">
+            <%= icon_link_to 'Partner Organizations',
+              organizations_path,
+              icon_class: "icon-cpp-small-business",
+              nav_label_class: "organization" %>
+          </li>
+          <li class="nav-item <%= active_for_controller('events') %>">
+            <%= icon_link_to 'Events',
+              events_path,
+              class: "single-line",
+              icon_class: "icon-cpp-event-calendar",
+              nav_label_class: "events" %>
+          </li>
         <% end %>
 
         <% if can? :manage, :application %>

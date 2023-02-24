@@ -8,18 +8,18 @@ module ColumnarTableHelper
 
     columnar_table_block(header, options) do
       attrs.each do |attr|
-        concat columnar_attribute_display(model, attr)
+        concat columnar_attribute_display(model, attr, options: options)
       end
     end
   end
 
-  def columnar_attribute_display(model, attr)
+  def columnar_attribute_display(model, attr, options:{})
     content_tag(:tr) do
       content_tag(:td) do
         I18n.t("#{model.class.table_name}.#{attr.to_s.gsub('?', '')}")
       end +
       content_tag(:td) do
-        default_value_for(model, attr)
+        default_value_for(model, attr, options: options)
       end
     end
   end

@@ -44,3 +44,8 @@
   - Shashank Singh (https://thenounproject.com/rshashank19/)
   - CC3 Attribution
   - Globe by shashank singh from the Noun Project
+* Event Calendar
+  - https://thenounproject.com/icon/event-1371124
+  - Tomas Knopp (https://thenounproject.com/tomas.knopp)
+  - CCBY3.0 Attribution
+  - event by Tomas Knopp from Noun Project (CCBY3.0)

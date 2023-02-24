@@ -26,7 +26,8 @@ class CommunityProgram < ApplicationRecord
 
   has_many :primary_service_types,
            through: :primary_quality_element,
-           source: :service_types
+           source: :service_types,
+           dependent: :destroy
 
   accepts_nested_attributes_for :primary_quality_element, reject_if: proc {|attr| attr['quality_element_id'].blank? }
 

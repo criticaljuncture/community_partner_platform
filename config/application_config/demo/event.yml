@@ -1,0 +1,4 @@
+app_config:
+  event:
+    fields:
+      fields_to_skip: []

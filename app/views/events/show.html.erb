@@ -1,0 +1,77 @@
+<%= breadcrumb [
+  ['Events', events_path],
+  [@event.name, event_path(@event)]
+] %>
+
+<%= page_header @event.name, "icon-cpp-event-calendar",
+  wrapper_class: 'events' do %>
+  <%= link_to_gicon('Edit Event',
+    edit_event_path(@event),
+    class: "btn btn-primary",
+    icon: 'pencil'
+  ) if can? :manage, @event %>
+<% end %>
+
+<div class="row">
+  <%= columnar_attributes_display(
+    header: 'Event Details',
+    model: @event,
+    attrs: %i(name description),
+    only_public_attrs: false,
+    options: {class: 'event-details'},
+  ) %>
+
+  <%= columnar_attributes_display(
+    header: 'Event Date',
+    model: @event,
+    attrs: %i(start_date end_date),
+    only_public_attrs: false,
+    options: {class: 'event-dates'},
+  ) %>
+</div>
+
+<div class="row">
+  <%= columnar_table_block 'Event Locations',
+    auto_table: false,
+    class: 'event-locations',
+    columns: {xs: 12, md: 6} do %>
+    <ol>
+      <% @event.locations.each do |location| %>
+        <li>
+          <% if location.type == "School" %>
+            <%= link_to location.name, school_path(location) %>
+          <% else %>
+            <%#= link_to school.name, school_path(school) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ol>
+  <% end %>
+
+  <%= columnar_table_block 'Participating Organizations',
+    auto_table: false,
+    class: 'event-organizations',
+    columns: {xs: 12, md: 6} do %>
+    <ol>
+      <% @event.organizations.each do |organization| %>
+        <li>
+          <%= link_to organization.name, organization_path(organization) %>
+        </li>
+      <% end %>
+    </ol>
+  <% end %>
+</div>
+
+<div class="row">
+  <%= columnar_attributes_display(
+    header: 'Internal Details',
+    model: @event,
+    attrs: %i(notes),
+    only_public_attrs: false,
+    options: {
+      class: 'event-notes',
+      columns: {xs: 12, md: 12},
+      simple_format: true
+    }
+  ) %>
+</div>

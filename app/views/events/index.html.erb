@@ -1,0 +1,26 @@
+<%= breadcrumb [['Events', events_path()]] %>
+
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
+    <%= page_header("Events", "icon-cpp-event-calendar", wrapper_class: 'events') do %>
+      <%= link_to_gicon( 'Create New Event',
+        new_event_path(),
+        class: "btn btn btn-primary",
+        icon: "plus") if can?(:create, Event) %>
+    <% end %>
+
+
+    <%= page_nav_tabs [['Overview', '#overview'],
+                       ['Events', '#events-table']] %>
+
+    <div class="tab-content">
+      <div id="overview" class="tab-pane active">
+        <%#= render partial: 'overview', locals: {community_programs: @community_programs} %>
+      </div>
+
+      <div id="events-table" class="tab-pane">
+        <div class="loader loading"></div>
+      </div>
+    </div>
+  </div>
+</div>

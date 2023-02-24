@@ -56,6 +56,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :events do
+    collection do
+      get :table
+    end
+  end
+
   resources :quality_elements do
     member do
       get :service_type_inputs

@@ -1,0 +1,71 @@
+<%= f.input :name %>
+<%= f.input :description %>
+
+<%= field_set_tag "", class: "date-row" do %>
+  <%= f.input :start_date,
+    as: :bootstrap_datepicker,
+    placeholder: "MM/DD/YYYY",
+    value: f.object.start_date&.to_date,
+    wrapper_html: {
+      class: "col-sm-6"
+    },
+    input_html: {
+      data: {
+        "date-orientation" => "top"
+      }
+    } %>
+
+  <%= f.input :start_time,
+    as: :string,
+    placeholder: "HH:MM AM/PM",
+    wrapper_html: {
+      class: "col-sm-6"
+    } %>
+<% end %>
+
+<%= field_set_tag "", class: "date-row" do %>
+  <%= f.input :end_date,
+        as: :bootstrap_datepicker,
+        placeholder: "MM/DD/YYYY",
+        value: f.object.end_date&.to_date,
+        wrapper_html: {
+          class: "col-sm-6"
+        },
+        input_html: {
+          data: {
+            "date-orientation" => "top"
+          }
+        } %>
+
+  <%= f.input :end_time,
+        as: :string,
+        placeholder: "HH:MM AM/PM",
+        wrapper_html: {
+          class: "col-sm-6"
+        } %>
+<% end %>
+
+<%= f.input :organization_ids,
+    collection: Organization.accessible_by(current_ability).sort_by(&:name),
+    input_html: { multiple: true },
+    label: "Participating #{I18n.t("organizations.class.name").pluralize}",
+    selected: f.object.organization_ids
+   %>
+
+<%= f.input :location_ids,
+    collection: School.accessible_by(current_ability).sort_by(&:name),
+    input_html: { multiple: true },
+    label: "Participating #{I18n.t("school.class.name").pluralize}",
+    selected: f.object.location_ids
+   %>
+
+<%= field_set_tag 'Internal Details' do %>
+  <%= f.input :notes %>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-3 hidden-sm"></div>
+  <div class="col-sm-9">
+    <%= f.submit 'Save', class: "btn btn-large btn-success" %>
+  </div>
+</div>

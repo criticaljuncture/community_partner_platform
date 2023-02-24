@@ -53,6 +53,10 @@ class Organization < ApplicationRecord
     where(approved_for_public: true)
   }
 
+  def default_display
+    self.name
+  end
+
   def quality_elements
     @qe ||= community_programs.map{|cp| cp.quality_element}.flatten.uniq
   end

@@ -20,6 +20,7 @@ class Ability < BaseAbility
     can :edit_district_details, User
 
     can :read, Role, id: [2,3,4]
+
     can :manage, School
     can :manage, SchoolProgram
 
@@ -31,13 +32,15 @@ class Ability < BaseAbility
     can :manage_district_details, Organization
     can :view_district_internals, Organization
     can :make_public, Organization
+    can :read, :organization_users
 
     can :manage, CteEventType
 
     can :manage, QualityElement
     can :manage, ServiceType
-    can :read, :organization_users
     can :read, Region
+
+    can :manage, Event
 
     admin_page_level_abilities
   end
@@ -101,7 +104,8 @@ class Ability < BaseAbility
       can?(:index, User) ||
       can?(:view, :admin_dashboard) ||
       can?(:manage, Organization) ||
-      can?(:manage, CommunityProgram)
+      can?(:manage, CommunityProgram) ||
+      can?(:manage, Event)
     end
   end
 

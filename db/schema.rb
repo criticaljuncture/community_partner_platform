@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_22_171923) do
+ActiveRecord::Schema.define(version: 2023_02_23_012850) do
 
   create_table "community_program_demographic_groups", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "demographic_group_id"
@@ -124,14 +124,14 @@ ActiveRecord::Schema.define(version: 2023_02_22_171923) do
     t.index ["user_id"], name: "index_community_programs_on_user_id"
   end
 
-  create_table "cte_event_type_organizations", charset: "utf8", force: :cascade do |t|
+  create_table "cte_event_type_organizations", charset: "latin1", force: :cascade do |t|
     t.integer "cte_event_type_id"
     t.integer "organization_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "cte_event_types", charset: "utf8", force: :cascade do |t|
+  create_table "cte_event_types", charset: "latin1", force: :cascade do |t|
     t.string "name"
     t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
@@ -165,6 +165,35 @@ ActiveRecord::Schema.define(version: 2023_02_22_171923) do
     t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "event_locations", charset: "latin1", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "location_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id", "location_id"], name: "el_eid_lid"
+    t.index ["location_id", "event_id"], name: "el_lid_eid"
+  end
+
+  create_table "event_organizations", charset: "latin1", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "organization_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id", "organization_id"], name: "eo_eid_oid"
+    t.index ["organization_id", "event_id"], name: "eo_oid_eid"
+  end
+
+  create_table "events", charset: "latin1", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.boolean "active", default: false
+    t.text "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "grade_levels", id: :integer, charset: "utf8", force: :cascade do |t|
@@ -204,13 +233,15 @@ ActiveRecord::Schema.define(version: 2023_02_22_171923) do
     t.index ["site_code"], name: "index_locations_on_site_code", unique: true
     t.index ["state_code"], name: "index_locations_on_state_code", unique: true
   end
+
+  create_table "organization_quality_element_service_types", charset: "latin1", force: :cascade do |t|
     t.integer "organization_quality_element_id"
     t.integer "service_type_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "organization_quality_elements", charset: "utf8", force: :cascade do |t|
+  create_table "organization_quality_elements", charset: "latin1", force: :cascade do |t|
     t.integer "organization_id"
     t.integer "quality_element_id"
     t.string "element_type"
