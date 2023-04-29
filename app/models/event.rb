@@ -5,10 +5,10 @@ class Event < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
-  has_many :event_locations
+  has_many :event_locations, dependent: :destroy
   has_many :locations, through: :event_locations
 
-  has_many :event_organizations
+  has_many :event_organizations, dependent: :destroy
   has_many :organizations, through: :event_organizations
 
   ################################################################

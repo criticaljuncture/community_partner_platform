@@ -19,7 +19,7 @@ class Ability < BaseAbility
     can :send_invitation, User
     can :edit_district_details, User
 
-    can :read, Role, id: [2,3,4]
+    can :read, Role, id: [2,3,4,5]
 
     can :manage, School
     can :manage, SchoolProgram
@@ -101,12 +101,33 @@ class Ability < BaseAbility
     can :manage, :application do
       can?(:manage, QualityElement) ||
       can?(:manage, ServiceType) ||
-      can?(:index, User) ||
+      can?(:new, User) ||
       can?(:view, :admin_dashboard) ||
       can?(:manage, Organization) ||
       can?(:manage, CommunityProgram) ||
       can?(:manage, Event)
     end
+  end
+
+  def read_only_user_abilities
+    can :read, CommunityProgram
+    can :read, Event
+    can :read, Organization
+    can :read, School
+    can :read, User
+
+    can :read, CteEventType
+    can :read, Day
+    can :read, DemographicGroup
+    can :read, EthnicityCultureGroup
+    can :read, GradeLevel
+    can :read, ServiceType
+    can :read, ServiceTime
+    can :read, StudentPopulation
+    can :read, QualityElement
+
+    can :view_district_internals, CommunityProgram
+    can :view_district_internals, Organization
   end
 
   # all users have public abilities added in the base_ability

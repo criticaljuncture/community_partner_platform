@@ -2,7 +2,8 @@ roles = [
   ['Super Admin', :super_admin],
   ['District Manager', :district_manager],
   ['School Manager', :school_manager],
-  ['Organization Member', :organization_member]
+  ['Organization Member', :organization_member],
+  ['Read Only User', :read_only_user]
 ]
 
 Role.truncate
