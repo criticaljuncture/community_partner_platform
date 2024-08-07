@@ -77,6 +77,8 @@ Rails.application.configure do
   # App specific changes
   #
 
+  config.action_view.preload_links_header = false
+
   config.action_controller.action_on_unpermitted_parameters = :raise
 
   config.sass.debug_info = true
