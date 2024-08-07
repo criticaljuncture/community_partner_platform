@@ -1,0 +1,73 @@
+app_config:
+  community_program:
+    completion_policy:
+      weights:
+        -
+          value: 0.40
+          fields:
+            - :required_fields
+        -
+          value: 0.40
+          fields:
+            - :demographic_groups
+            - :ethnicity_culture_groups
+            - :grade_levels
+            - :service_times
+            - :student_population
+            - :user
+            - :school_programs
+        -
+          value: 0.20
+          fields:
+            - :days
+            - :user
+
+    fields:
+      fields_to_skip: []
+
+    public_policy:
+      percentage_complete: 0.40
+      required_attributes: []
+      public_attributes:
+        - :demographic_group_ids
+        - :ethnicity_culture_group_ids
+        - :grade_level_ids
+        - :name
+        - :url
+        - :quality_element
+        - :service_description
+        - :service_time_ids
+        - :service_types
+        - :student_population_id
+      verification_required: true
+
+    validations:
+      -
+        attribute: :name
+        options:
+          presence:
+            message: must choose a program name
+      -
+        attribute: :organization_id
+        options:
+          presence:
+            message: must choose an organization
+      -
+        attribute: :primary_quality_element
+        options:
+          presence:
+            message: must choose a partnership category
+      # -
+      #   attribute: :primary_service_types
+      #   options:
+      #     presence:
+      #       message: must choose at least one primary service type
+      -
+        attribute: :service_description
+        options:
+          presence:
+            message: must provide a service description
+
+    verification_policy:
+      verification_date: '2020-07-01'
+      grace_period_end_date: '2020-08-01'

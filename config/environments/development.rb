@@ -60,7 +60,7 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # CJ: enable
-  config.i18n.raise_on_missing_translations = true
+  config.i18n.raise_on_missing_translations = false
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
@@ -85,11 +85,13 @@ Rails.application.configure do
   config.sass.line_comments = false
 
   config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.default_url_options = { :host => 'https://dev.communitypartnerplatform.org' }
+  config.action_mailer.default_url_options = {
+    host: Settings.application.canonical_hostname
+  }
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
 
-  config.hosts << "dev.communitypartnerplatform.org"
+  config.hosts << Settings.development_flags.dev_host
 end

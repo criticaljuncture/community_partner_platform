@@ -1,0 +1,29 @@
+dev: &dev
+  app:
+    title: 'Dev Community Partner Platform'
+  district:
+    name: 'Dev District'
+    abbreviation: 'Dev'
+  layout:
+    footer: "<p>We do our best to keep the information in the partner portal up-to-date, but at times there may be missing or outdated information given the dynamic nature of our partnerships.</p> <p>If you notice that information is missing or incorrect, please let us know at communitypartnerships@seattleschools.org</p>"
+  public:
+    home_page:
+      description:
+        Community Schools leverage community partnerships and resources so our
+        campuses become hubs of support and opportunity for students, families
+        and community members. By working with the community in this way,
+        schools become better equipped to tap into the unique talents and
+        gifts of every student, teacher, and staff member in our district, and
+        can better break down barriers to student achievement.
+
+
+        Dev uses the Community Partner Platform to organize and track our
+        partnerships. As a parent, teacher, student or community member you can
+        use this web platform to learn more about the organizations we partner
+        with and the programs they provide.
+
+en:
+  cpp:
+    bob:
+      dev:
+        <<: *dev

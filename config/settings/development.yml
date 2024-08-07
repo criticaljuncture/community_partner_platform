@@ -1,3 +1,6 @@
 application:
   public_view_enabled: true
   subdomain: <%= ENV["SUBDOMAIN"] || "dev" %>
+
+development_flags:
+  dev_host: #set in development.local.yml

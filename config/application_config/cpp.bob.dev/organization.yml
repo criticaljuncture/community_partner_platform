@@ -1,0 +1,58 @@
+app_config:
+  organization:
+    completion_policy:
+      weights:
+        -
+          value: 0.25
+          fields:
+            - :required_fields
+        -
+          value: 0.75
+          fields:
+            - :address
+            - :city
+            - :legal_status
+            - :mission_statement
+            - :phone_number
+            - :primary_contact
+            - :program_impact
+            - :services_description
+            - :total_cost
+            - :url
+            - :zip_code
+
+    fields:
+      fields_to_skip:
+        - :board_approved_contract
+        - :subcontractor_with_lead_agency
+        - :receives_district_funding
+        # turn off for sps also
+        - :personal_services_contract
+        - :memorandum_of_understanding
+        - :alignment_agreement
+        - :data_sharing_agreement
+
+    public_policy:
+      percentage_complete: 0.25
+      public_attributes:
+        - :mission_statement
+        - :name
+        - :program_impact
+        - :services_description
+        - :url
+      required_attributes: []
+      verification_required: true
+
+    validations:
+      -
+        attribute: :name
+        options:
+          presence: true
+      -
+        attribute: :services_description
+        options:
+          presence: true
+
+    verification_policy:
+      verification_date: '2020-07-01'
+      grace_period_end_date: '2020-08-01'
