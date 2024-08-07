@@ -6,9 +6,9 @@ $nav-item-a-margin: 10px;
 $nav-active-border-height: 4px;
 $dropdown-active-border-width: 4px;
 
-$user-nav-height: 27px;
+$user-nav-height: 28px;
 $user-nav-vertical-padding: 4px;
-$user-nav-border-size: 1px;
+$user-nav-border-size: 0px;
 
 $navigation-bg-fade: $white;
 
@@ -199,6 +199,7 @@ $nav-active-color: $green;
   border-bottom: 1px solid $gray-10;
   color: $nav-item-a-color;
   font-size: modular-scale(-1);
+  height: $user-nav-height;
   position: fixed;
   text-align: right;
   top: 0px;
@@ -209,10 +210,10 @@ $nav-active-color: $green;
     display: block;
     height: $user-nav-height;
     padding: $user-nav-vertical-padding 10px;
+  }
 
-    .btn-mini {
-      position: relative;
-      top: -1px;
-    }
+  .btn-mini.btn-info {
+    position: relative;
+    top: 2px;
   }
 }

@@ -14,7 +14,8 @@ class ServiceType < ApplicationRecord
   end
 
   def quality_element_groups
-    community_program_quality_elements.group_by(&:quality_element_id)
+    @quality_element_groups ||= community_program_quality_elements.
+      group_by(&:quality_element_id)
   end
 
   def community_programs_for_quality_element_service_type(quality_element)

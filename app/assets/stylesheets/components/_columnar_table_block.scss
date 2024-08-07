@@ -30,6 +30,7 @@
       float: left;
       margin-bottom: 5px;
       margin-top: 10px;
+      max-width: 900px;
 
       .item-info {
         @extend %hint;

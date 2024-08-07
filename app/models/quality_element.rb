@@ -27,6 +27,10 @@ class QualityElement < ApplicationRecord
 
   before_create :generate_identifier
 
+  scope :publicly_accessible, -> {
+    where("1=1")
+  }
+
   def default_display
     self.name
   end

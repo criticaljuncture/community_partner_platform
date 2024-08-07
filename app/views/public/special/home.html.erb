@@ -16,11 +16,10 @@
   </div>
 </div>
 
-<%= page_header "Choose a School", "icon-cpp-school" %>
+<%= page_header "View a School", "icon-cpp-school" %>
 
 <div class="row">
-  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-
+  <div class="<%= bootstrap_col xs: 12, md: 9 %>">
     <div class="form_wrapper">
       <%= simple_form_for :school,
         url: '',
@@ -42,15 +41,18 @@
           required: false %>
       <% end %>
     </div>
-
+  </div>
+  <div class="<%= bootstrap_col xs: 12, md: 3 %> home-buttons">
+    <a href="<%= public_schools_path %>" class="btn btn-info">
+      View table of all schools
+    </a>
   </div>
 </div>
 
-<%= page_header "Choose an Organization", "icon-cpp-small-business" %>
+<%= page_header "View an Organization", "icon-cpp-small-business" %>
 
 <div class="row">
-  <div class="<%= bootstrap_col xs: 12, md: 12 %>">
-
+  <div class="<%= bootstrap_col xs: 12, md: 9 %>">
     <div class="form_wrapper">
       <%= simple_form_for :organization,
         url: '',
@@ -70,9 +72,41 @@
           prompt: "Please Select an Organization" %>
       <% end %>
     </div>
+  </div>
 
+  <div class="<%= bootstrap_col xs: 12, md: 3 %> home-buttons">
+    <a href="<%= public_organizations_path %>" class="btn btn-info">
+      View table of all organizations
+    </a>
   </div>
 </div>
+
+<%= page_header "View a Category or Service Type", "",
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 95 118.75" xml:space="preserve"><path d="M37.68,55.98H5.88c-0.74,0-1.34,0.6-1.34,1.34v31.79c0,0.74,0.6,1.34,1.34,1.34h31.79c0.74,0,1.34-0.6,1.34-1.34V57.32  C39.02,56.58,38.42,55.98,37.68,55.98z M36.33,87.77H7.23V58.67h29.11V87.77z M37.68,4.54H5.88c-0.74,0-1.34,0.6-1.34,1.34v31.79  c0,0.74,0.6,1.34,1.34,1.34h31.79c0.74,0,1.34-0.6,1.34-1.34V5.88C39.02,5.14,38.42,4.54,37.68,4.54z M36.33,36.33H7.23V7.23h29.11  V36.33z M89.12,4.54H57.32c-0.74,0-1.34,0.6-1.34,1.34v31.79c0,0.74,0.6,1.34,1.34,1.34h31.79c0.74,0,1.34-0.6,1.34-1.34V5.88  C90.46,5.14,89.86,4.54,89.12,4.54z M87.77,36.33H58.67V7.23h29.11V36.33z M89.12,55.98H57.32c-0.74,0-1.34,0.6-1.34,1.34v31.79  c0,0.74,0.6,1.34,1.34,1.34h31.79c0.74,0,1.34-0.6,1.34-1.34V57.32C90.46,56.58,89.86,55.98,89.12,55.98z M87.77,87.77H58.67V58.67  h29.11V87.77z"/></svg>' %>
+
+<div class="row">
+  <div class="<%= bootstrap_col xs: 12, md: 9 %>">
+    <div class="form_wrapper">
+      <%= simple_form_for :quality_element,
+        url: '',
+        method: :get,
+        html: {
+          class: "form-horizontal goto-selection",
+          :"data-named-route" => 'public_quality_element_path'
+        },
+        wrapper: :vertical_form do |f| %>
+
+        <%= f.input :id,
+          label: false,
+          as: :select,
+          collection: @presenter.quality_elements,
+
+          prompt: "Please Select a Category" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 
 <div class="row">
   <div class="<%= bootstrap_col xs: 12, md: 12 %>">

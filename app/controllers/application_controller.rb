@@ -66,6 +66,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_security_headers
+    return if Rails.env.development?
+
     # https://developer.mozilla.org/en/Security/HTTP_Strict_Transport_Security
     response.headers['Strict-Transport-Security'] = "max-age=#{1.year}; includeSubDomains; preload"
   end

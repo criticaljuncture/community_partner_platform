@@ -40,6 +40,6 @@ class School < ApplicationRecord
   end
 
   def quality_elements
-    community_programs.map{|cp| cp.quality_element}.flatten.uniq
+    community_programs.map{|cp| cp.quality_element}.flatten.compact.uniq
   end
 end

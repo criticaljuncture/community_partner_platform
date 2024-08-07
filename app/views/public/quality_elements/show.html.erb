@@ -1,0 +1,103 @@
+<%= breadcrumb [
+  [@quality_element.name, public_quality_element_path(@quality_element)]
+] %>
+
+<%= page_header(
+  "#{@quality_element.name} <span class='hint'>(#{pluralize @quality_element.community_programs.count, 'program'})</span>".html_safe,
+  "",
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 95 118.75" xml:space="preserve"><path d="M37.68,55.98H5.88c-0.74,0-1.34,0.6-1.34,1.34v31.79c0,0.74,0.6,1.34,1.34,1.34h31.79c0.74,0,1.34-0.6,1.34-1.34V57.32  C39.02,56.58,38.42,55.98,37.68,55.98z M36.33,87.77H7.23V58.67h29.11V87.77z M37.68,4.54H5.88c-0.74,0-1.34,0.6-1.34,1.34v31.79  c0,0.74,0.6,1.34,1.34,1.34h31.79c0.74,0,1.34-0.6,1.34-1.34V5.88C39.02,5.14,38.42,4.54,37.68,4.54z M36.33,36.33H7.23V7.23h29.11  V36.33z M89.12,4.54H57.32c-0.74,0-1.34,0.6-1.34,1.34v31.79c0,0.74,0.6,1.34,1.34,1.34h31.79c0.74,0,1.34-0.6,1.34-1.34V5.88  C90.46,5.14,89.86,4.54,89.12,4.54z M87.77,36.33H58.67V7.23h29.11V36.33z M89.12,55.98H57.32c-0.74,0-1.34,0.6-1.34,1.34v31.79  c0,0.74,0.6,1.34,1.34,1.34h31.79c0.74,0,1.34-0.6,1.34-1.34V57.32C90.46,56.58,89.86,55.98,89.12,55.98z M87.77,87.77H58.67V58.67  h29.11V87.77z"/></svg>'
+) %>
+  <p>
+    <%= I18n.t("quality_elements.descriptions.#{@quality_element.identifier}") %>
+  </p>
+
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="table_wrapper">
+     <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Schools</th>
+            <th>Partner Organizations</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><%= @quality_element.schools.uniq.count %></td>
+            <td><%= @quality_element.organizations.uniq.count %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <% @quality_element.service_types.sort_by(&:name).each do |service_type| %>
+      <% next unless service_type %>
+
+      <% community_programs = service_type
+            .community_programs_for_quality_element_service_type(@quality_element)
+            .compact %>
+
+      <% next unless community_programs.present? %>
+
+      <div id="<%= service_type.name.downcase.gsub(/\s+/, '-') %>"
+        class="link-target-wrapper">
+        <%= columnar_table_block "#{service_type.name}
+          <span class='hint'>(#{pluralize community_programs.count, 'program'})</span>".html_safe,
+          auto_table: false,
+          class: 'service-types',
+          #id: service_type.name.downcase.gsub(/\s+/, '-'),
+          columns: {xs: 12, md: 12} do %>
+
+          <div class="columnar-table-block-wrapper">
+            <% community_programs.sort_by(&:name).each do |program| %>
+              <div class="columnar-table-block-header">
+                <h5>
+                  <%= link_to program.name,
+                    public_community_program_path(program) %>
+
+                  provided by
+
+                  <%= link_to program.organization.name,
+                    public_organization_path(program.organization) %>
+                </h5>
+                <%= link_to_gicon 'Show Details', '#',
+                  class: "btn btn-medium btn-info toggle closed",
+                  icon: 'eye-open eye-close',
+                  wrapper_span: {id: "community-program-link-#{program.id}"},
+                  "data-toggle-target" => "#community-program-table-#{program.id}",
+                  "data-toggle-text-node" => "#community-program-link-#{program.id}",
+                  "data-toggle-show-text" => "Show Details",
+                  "data-toggle-hide-text" => "Hide Details"
+                %>
+              </div>
+
+              <%= columnar_table nil, id: "community-program-table-#{program.id}",
+                class: "hidden embedded" do %>
+                <tr>
+                  <td>Service Types</td>
+                  <td>
+                    <%= program.service_types.map(&:name).sort.join(', ') %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Student Population</td>
+                  <td><%= program.student_population.try(:name) %></td>
+                </tr>
+                <tr>
+                  <td>Schools</td>
+                  <td>
+                    This program is present at
+                    <%= link_to pluralize(program.schools.count, 'school'),
+                      public_community_program_path(program)  %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </div> <!-- columnar-table-block-wrapper -->
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

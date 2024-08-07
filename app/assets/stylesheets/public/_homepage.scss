@@ -1,1 +1,11 @@
 .home-page-description { margin-top: 40px; }
+
+// align buttons with select lists
+.home-buttons {
+  padding-left: 0;
+
+  a.btn {
+    margin-top: 20px;
+    min-width: 220px;
+  }
+}

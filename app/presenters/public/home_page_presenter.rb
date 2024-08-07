@@ -20,4 +20,25 @@ class Public::HomePagePresenter
       .select(:name, :id).order(:name)
       .group_by{|o| o.name.chars.first}
   end
+
+  def quality_elements
+    @quality_elements ||= QualityElement.all
+      .select(:name, :id)
+      .includes(:service_types)
+      .order(:name)
+
+    elements = []
+
+    @quality_elements.each do |quality_element|
+      elements << [quality_element.name, quality_element.id]
+
+      quality_element.service_types.each do |st|
+        elements << ["&nbsp;&nbsp;&nbsp;&nbsp; #{st.name}".html_safe,
+          st.name.downcase.gsub(/\s+/, '-'),
+          {'data-parent-id' => quality_element.id}]
+      end
+    end
+
+    elements
+  end
 end

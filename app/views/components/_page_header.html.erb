@@ -4,6 +4,12 @@
       <div class="header-outer">
         <div class="header-inner">
           <h1>
+            <% if svg %>
+              <span class="svg-icon">
+                <%= svg.html_safe %>
+              </span>
+            <% end %>
+
             <% unless icon.blank? %>
               <span class='icon <%=icon %> icon-primary'></span>
             <% end %>

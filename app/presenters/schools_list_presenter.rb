@@ -24,5 +24,11 @@ class SchoolsListPresenter
     def quality_element_count
       @qe_count ||= school.quality_elements.count
     end
+
+    def quality_element_list
+      return "" if school.quality_elements.nil?
+
+      school.quality_elements.map(&:name).sort.join(", <br/>").html_safe
+    end
   end
 end

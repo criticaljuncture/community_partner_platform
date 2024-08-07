@@ -98,9 +98,10 @@ Rails.application.routes.draw do
 
   if Settings.application.public_view_enabled
     namespace :public do
-      resources :schools, only: [:show]
-      resources :organizations, only: [:show]
+      resources :schools, only: [:index, :show]
+      resources :organizations, only: [:index, :show]
       resources :community_programs, only: [:show]
+      resources :quality_elements, only: [:index, :show]
     end
 
     root to: "public/special#home"

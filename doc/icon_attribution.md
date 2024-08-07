@@ -44,3 +44,7 @@
   - Shashank Singh (https://thenounproject.com/rshashank19/)
   - CC3 Attribution
   - Globe by shashank singh from the Noun Project
+* Category
+  - https://thenounproject.com/icon/category-5144285/
+  - feri ulan taufiq (https://thenounproject.com/creator/feri.ulan99)
+  - Category by feri ulan taufiq from Noun Project

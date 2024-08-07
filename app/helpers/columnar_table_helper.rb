@@ -39,6 +39,7 @@ module ColumnarTableHelper
     render partial: 'record_display/columnar_table', locals: {
       content: capture(&block),
       header: header,
+      id: options[:id],
       table: table,
       wrapper_class: wrapper_class
     }

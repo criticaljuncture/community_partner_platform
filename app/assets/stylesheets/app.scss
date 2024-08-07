@@ -9,6 +9,7 @@ $footer-bg-color: $gray-20;
 body, html {
   height: 100%;
   overflow-x: hidden;
+  scroll-padding-top: 80px; /* height of sticky header */
 }
 
 body {
@@ -16,9 +17,6 @@ body {
     margin-top: 120px;
     min-height: 100%;
   }
-}
-.page-wrapper {
-  //@extend .span12 !optional;
 }
 
 .navbar-fixed-top,
@@ -53,6 +51,8 @@ h6 { color: $gray-80; }
   padding: 20px 20px 0px 20px;
   overflow: hidden;
 }
+
+.link-target-wrapper { overflow: auto;}
 
 /* override some bootstraps */
 .row-fluid {

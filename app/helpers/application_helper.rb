@@ -20,12 +20,14 @@ module ApplicationHelper
 
   def page_header(title, icon, options={}, &block)
     wrapper_class = options.fetch(:wrapper_class){ '' }
+    svg = options[:svg]
 
     buttons = block_given? ? capture(&block) : ''
 
     render partial: 'components/page_header', locals: {
       buttons: buttons,
       icon: icon,
+      svg: svg,
       title: title,
       wrapper_class: wrapper_class
     }

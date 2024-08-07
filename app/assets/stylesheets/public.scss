@@ -3,3 +3,32 @@
 @import "community_programs_map";
 
 @import 'public/homepage';
+
+.svg-icon {
+  display: inline-block;
+  margin: 0 8px;
+  position: relative;
+  top: 12px;
+  width: 30px;
+
+  svg path {
+    fill: $header-color;
+    stroke: $header-color;
+    stroke-width: 5px;
+  }
+}
+
+// overrides
+.tablesorter-bootstrap .tablesorter-filter-row .tablesorter-filter.disabled {
+  border: none;
+  box-shadow: none;
+}
+
+// quality elements show
+.columnar-table-block.service-types {
+  margin-bottom: 20px;
+
+  .columnar-table-block-wrapper {
+    margin-left: 40px;
+  }
+}
