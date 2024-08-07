@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.1.7'
+gem 'rails', '6.1.7.8'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
 # production app server
-gem 'passenger', '6.0.14'
+gem 'passenger', '6.0.22'
 
 # Memory based static tables
 gem 'active_hash'
